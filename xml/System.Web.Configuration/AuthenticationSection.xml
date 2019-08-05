@@ -1,5 +1,5 @@
 <Type Name="AuthenticationSection" FullName="System.Web.Configuration.AuthenticationSection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="51fe056beff63548eee1d72c9f73119a2fae26f7" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55382692" /></Metadata><TypeSignature Language="C#" Value="public sealed class AuthenticationSection : System.Configuration.ConfigurationSection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6494270184745f1ce72cf91f9ef284604607c11a" /><Meta Name="ms.sourcegitcommit" Value="0959d8d88abd48debd487e54e54df29d51634f7f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/02/2019" /><Meta Name="ms.locfileid" Value="68731592" /></Metadata><TypeSignature Language="C#" Value="public sealed class AuthenticationSection : System.Configuration.ConfigurationSection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed AuthenticationSection extends System.Configuration.ConfigurationSection" />
   <TypeSignature Language="DocId" Value="T:System.Web.Configuration.AuthenticationSection" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class AuthenticationSection&#xA;Inherits ConfigurationSection" />
@@ -23,17 +23,17 @@
  <xref:System.Web.Configuration.AuthenticationSection> クラスを使用すると、構成ファイルの `authentication` セクションにプログラムからアクセスして変更できます。  
   
 > [!NOTE]
->  <xref:System.Web.Configuration.AuthenticationSection>セクション プロパティで定義されている制約に従って、構成ファイルの関連セクションに情報を書き込むことができます<xref:System.Configuration.SectionInformation.AllowDefinition%2A>値が<xref:System.Configuration.ConfigurationAllowDefinition.MachineToApplication>します。 階層では許可されませんレベルで構成ファイルに書き込みをしようとすると、パーサーによって生成されたエラー メッセージが発生します。 ただし、このクラスを使用すると、階層内の任意のレベルでの構成情報を読み取る。 安全性とスケーラビリティは、データベースなど、外部のリポジトリを使用して、ユーザーの資格情報を保持することをお勧めします。  
+>  は<xref:System.Web.Configuration.AuthenticationSection> 、値が<xref:System.Configuration.ConfigurationAllowDefinition.MachineToApplication>である section プロパティ<xref:System.Configuration.SectionInformation.AllowDefinition%2A>によって定義された制限に従って、構成ファイルの関連セクションに情報を書き込むことができます。 階層内で許可されていないレベルで構成ファイルを作成しようとすると、パーサーによってエラーメッセージが生成されます。 ただし、このクラスを使用して、階層内の任意のレベルの構成情報を読み取ることができます。 安全性とスケーラビリティを確保するために、データベースなどの外部リポジトリを使用してユーザーの資格情報を保持することをお勧めします。  
   
    
   
 ## Examples  
- このセクションでは、2 つのコード例を示します。 最初のいくつかの属性に対する宣言によっての値を指定する方法を説明、`authentication`セクションのメンバーとしてアクセスすることも、<xref:System.Web.Configuration.AuthenticationSection>クラス。 2 つ目は、使用する方法を示します、<xref:System.Web.Configuration.AuthenticationSection>クラス。  
+ このセクションでは、2つのコード例について説明します。 最初の例では、 `authentication`セクションのいくつかの属性に対して宣言的に値を指定する方法を示します。これには、 <xref:System.Web.Configuration.AuthenticationSection>クラスのメンバーとしてアクセスすることもできます。 2番目の例では<xref:System.Web.Configuration.AuthenticationSection> 、クラスの使用方法を示します。  
   
- 次の構成ファイルの例は、宣言によっての値を指定する方法を示します、`authentication`セクション。  
+ 次の構成ファイルの例は、 `authentication`セクションの値を宣言によって指定する方法を示しています。  
   
 > [!NOTE]
->  使用する場合、`credentials`セクションで説明されているガイドラインに従ってください[ASP.NET 認証](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))します。 スケーラビリティとセキュリティの強化は、外部のユーザーの資格情報を格納するデータベースを使用してお勧めします。 アプリケーションはセキュリティで保護された ASP.NET の構築の詳細については、Microsoft MSDN Web サイトを検索 (http://msdn.microsoft.com) "セキュリティで保護する、ASP.NET アプリケーションの"、および"セキュリティで保護された ASP.NET アプリケーションの構築。認証、承認、およびセキュリティで保護された通信"。  
+>  `credentials`セクションを使用する場合は、「 [ASP.NET Authentication](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))」で説明されているガイドラインに従ってください。 スケーラビリティとセキュリティを強化するために、外部データベースを使用してユーザーの資格情報を保存することをお勧めします。 Secure ASP.NET アプリケーションの構築の詳細については、Microsoft MSDN Webhttp://msdn.microsoft.com)サイト (「ASP.NET アプリケーションのセキュリティ保護」、および「安全な ASP.NET アプリケーションの構築」を参照してください。認証、承認、セキュリティで保護された通信」。  
   
 ```  
 <authentication mode="Forms">  
@@ -47,8 +47,10 @@
   </forms>  
 </authentication>  
 ```  
+
+ この例では、SHA1 を使用します。 SHA1 との競合問題のため、Microsoft では SHA256 を推奨しています。
   
- 次のコード例は、使用する方法を示します、<xref:System.Web.Configuration.AuthenticationSection>クラス。  
+ クラスの<xref:System.Web.Configuration.AuthenticationSection>使用方法を次のコード例に示します。  
   
  [!code-csharp[System.Web.Configuration.AuthenticationSection#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Configuration.AuthenticationSection/CS/authenticationsection.cs#1)]
  [!code-vb[System.Web.Configuration.AuthenticationSection#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Configuration.AuthenticationSection/VB/authenticationsection.vb#1)]  
@@ -57,7 +59,7 @@
     </remarks>
     <altmember cref="T:System.Web.Configuration.FormsAuthenticationConfiguration" />
     <altmember cref="T:System.Web.Configuration.PassportAuthentication" />
-    <related type="Article" href="https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100)">ASP.NET の認証</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100)">ASP.NET 認証</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -84,12 +86,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Configuration.AuthenticationSection.%23ctor%2A>コンス トラクターは、コードから直接使用するものはありません。 ASP.NET 構成システムによって呼び出されます。 インスタンスを取得する、<xref:System.Web.Configuration.AuthenticationSection>クラスを使用して、<xref:System.Configuration.Configuration.GetSection%2A>メソッド。  
+ コンストラクター <xref:System.Web.Configuration.AuthenticationSection.%23ctor%2A>は、コードから直接使用するためのものではありません。 これは、ASP.NET 構成システムによって呼び出されます。 <xref:System.Web.Configuration.AuthenticationSection>クラスのインスタンスを取得するには、 <xref:System.Configuration.Configuration.GetSection%2A>メソッドを使用します。  
   
    
   
 ## Examples  
- 次のコード例は、取得する方法を示します、<xref:System.Web.Configuration.AuthenticationSection>オブジェクト。  
+ オブジェクトを<xref:System.Web.Configuration.AuthenticationSection>取得する方法を次のコード例に示します。  
   
  [!code-csharp[System.Web.Configuration.AuthenticationSection#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Configuration.AuthenticationSection/CS/authenticationsection.cs#2)]
  [!code-vb[System.Web.Configuration.AuthenticationSection#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Configuration.AuthenticationSection/VB/authenticationsection.vb#2)]  
@@ -126,7 +128,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例を使用する方法を示しています、<xref:System.Web.Configuration.AuthenticationSection.Forms%2A>要素プロパティ。  
+ 要素の<xref:System.Web.Configuration.AuthenticationSection.Forms%2A>プロパティを使用する方法を次のコード例に示します。  
   
  [!code-csharp[System.Web.Configuration.AuthenticationSection#5](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Configuration.AuthenticationSection/CS/authenticationsection.cs#5)]
  [!code-vb[System.Web.Configuration.AuthenticationSection#5](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Configuration.AuthenticationSection/VB/authenticationsection.vb#5)]  
@@ -159,7 +161,7 @@
       </ReturnValue>
       <Docs>
         <summary>認証モードを取得または設定します。</summary>
-        <value><see cref="T:System.Web.Configuration.AuthenticationMode" /> 値のいずれか。</value>
+        <value><see cref="T:System.Web.Configuration.AuthenticationMode" /> 値のいずれか 1 つ。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -205,7 +207,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例を使用する方法を示しています、<xref:System.Web.Configuration.AuthenticationSection.Passport%2A>要素プロパティ。  
+ 要素の<xref:System.Web.Configuration.AuthenticationSection.Passport%2A>プロパティを使用する方法を次のコード例に示します。  
   
  [!code-csharp[System.Web.Configuration.AuthenticationSection#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Configuration.AuthenticationSection/CS/authenticationsection.cs#3)]
  [!code-vb[System.Web.Configuration.AuthenticationSection#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Configuration.AuthenticationSection/VB/authenticationsection.vb#3)]  
