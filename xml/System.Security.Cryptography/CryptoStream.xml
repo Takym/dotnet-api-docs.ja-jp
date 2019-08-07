@@ -1,5 +1,5 @@
 <Type Name="CryptoStream" FullName="System.Security.Cryptography.CryptoStream">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7926cb2f266b315fb81634423124042712c2c009" /><Meta Name="ms.sourcegitcommit" Value="2767b5903996fbd7e2b81eda1114dfc9d0d9db63" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="05/02/2019" /><Meta Name="ms.locfileid" Value="64997376" /></Metadata><TypeSignature Language="C#" Value="public class CryptoStream : System.IO.Stream" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c41b9b61de00807bad1df95c497d07afbcfec5f3" /><Meta Name="ms.sourcegitcommit" Value="0959d8d88abd48debd487e54e54df29d51634f7f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/02/2019" /><Meta Name="ms.locfileid" Value="68731453" /></Metadata><TypeSignature Language="C#" Value="public class CryptoStream : System.IO.Stream" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CryptoStream extends System.IO.Stream implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.CryptoStream" />
   <TypeSignature Language="VB.NET" Value="Public Class CryptoStream&#xA;Inherits Stream" />
@@ -95,7 +95,7 @@
       <Docs>
         <param name="stream">暗号変換を実行する対象のストリーム。</param>
         <param name="transform">指定したストリームで実行する暗号変換。</param>
-        <param name="mode"><see cref="T:System.Security.Cryptography.CryptoStreamMode" /> 値のいずれか。</param>
+        <param name="mode"><see cref="T:System.Security.Cryptography.CryptoStreamMode" /> 値のいずれか 1 つ。</param>
         <summary>暗号化の対象とするストリーム、実行する変換、およびストリームのモードを指定して、<see cref="T:System.Security.Cryptography.CryptoStream" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -175,14 +175,35 @@
         <Parameter Name="state" Type="System.Object" Index="4" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="offset">To be added.</param>
-        <param name="count">To be added.</param>
-        <param name="callback">To be added.</param>
-        <param name="state">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">データを読み込むバッファー。</param>
+        <param name="offset">ストリームから読み込んだデータの書き込み開始位置を示す <paramref name="buffer" /> 内のバイト オフセット。</param>
+        <param name="count">読み取る最大バイト数。</param>
+        <param name="callback">読み取り完了時に呼び出されるオプションの非同期コールバック。</param>
+        <param name="state">この特定の非同期読み取り要求を他の要求と区別するために使用するユーザー指定のオブジェクト。</param>
+        <summary>非同期の読み込み動作を開始します。 (代わりに、<see cref="Overload:System.Security.Cryptography.CryptoStream.ReadAsync" /> の使用を検討してください。)</summary>
+        <returns>非同期の読み込みを表す <see cref="T:System.IAsyncResult" />。まだ保留状態の場合もあります。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ .NET Framework 4 およびそれ以前のバージョンで非同期 I/O 操作を実装するには、 <xref:System.IO.Stream.BeginRead%2A> 、 <xref:System.IO.Stream.EndRead%2A> などのメソッドを使用する必要があります。 これらのメソッドは、レガシコードをサポートするために .NET で引き続き使用できます。ただし、 <xref:System.Security.Cryptography.CryptoStream.ReadAsync%2A>、、 <xref:System.IO.Stream.CopyToAsync%2A>、 <xref:System.Security.Cryptography.CryptoStream.WriteAsync%2A>などの新しい非同期メソッドを使用すると、非同期i/o操作をより簡単に実装できます。<xref:System.Security.Cryptography.CryptoStream.FlushAsync%2A>  
+  
+ ストリームの<xref:System.Security.Cryptography.CryptoStream.EndRead%2A>メソッドに戻り値を渡して、読み取ったバイト数を確認し、読み取りに使用するオペレーティングシステムリソースを解放します。`IAsyncResult` <xref:System.Security.Cryptography.CryptoStream.EndRead%2A>を呼び出すたびに、を<xref:System.Security.Cryptography.CryptoStream.BeginRead%2A>呼び出す必要があります。 これを行うには、を呼び出し`BeginRead`たのと同じコードを使用するか、に`BeginRead`渡されたコールバックでを使用します。  
+  
+ ストリーム内の現在位置は、i/o 操作が完了したときではなく、非同期の読み取りまたは書き込みが実行されたときに更新されます。  
+  
+ 複数の同時非同期要求は、要求の完了順序が不明確であることを表示します。  
+  
+ 現在の<xref:System.Security.Cryptography.CryptoStream.CanRead%2A>インスタンスが読み取りをサポートしているかどうかを確認するには、プロパティを使用します。  
+  
+ ストリームが閉じているか、無効な引数を渡した場合、から`BeginRead`すぐに例外がスローされます。 I/o 要求中のディスク障害など、非同期の読み取り要求中に発生したエラーは、スレッドプールのスレッドで発生し、を呼び出す`EndRead`ときに例外をスローします。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.IO.IOException">ストリームの末尾を越えて非同期の読み込みを実行しようとしました。または、ディスク エラーが発生しました。</exception>
+        <exception cref="T:System.ArgumentException">1 つ以上の引数が無効です。</exception>
+        <exception cref="T:System.ObjectDisposedException">ストリームが閉じた後でメソッドが呼び出されました。</exception>
+        <exception cref="T:System.NotSupportedException">現在の <see langword="Stream" /> 実装は、読み取り操作をサポートしていません。</exception>
       </Docs>
     </Member>
     <Member MemberName="BeginWrite">
@@ -215,14 +236,35 @@
         <Parameter Name="state" Type="System.Object" Index="4" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <param name="offset">To be added.</param>
-        <param name="count">To be added.</param>
-        <param name="callback">To be added.</param>
-        <param name="state">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="buffer">データの書き込み元となるバッファー。</param>
+        <param name="offset">書き込むデータの開始位置を示す <paramref name="buffer" /> 内のバイト オフセット。</param>
+        <param name="count">書き込む最大バイト数。</param>
+        <param name="callback">書き込みの完了時に呼び出されるオプションの非同期コールバック。</param>
+        <param name="state">この特定の非同期書き込み要求を他の要求と区別するために使用するユーザー指定のオブジェクト。</param>
+        <summary>非同期の書き込み操作を開始します。 (代わりに、<see cref="Overload:System.Security.Cryptography.CryptoStream.WriteAsync" /> の使用を検討してください。)</summary>
+        <returns>非同期の書き込みを表す <see langword="IAsyncResult" />。まだ保留状態の場合もあります。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ .NET Framework 4 およびそれ以前のバージョンで非同期 I/O 操作を実装するには、 <xref:System.Security.Cryptography.CryptoStream.BeginWrite%2A> 、 <xref:System.Security.Cryptography.CryptoStream.EndWrite%2A> などのメソッドを使用する必要があります。 これらのメソッドは、レガシコードをサポートするために .NET で引き続き使用できます。ただし、 <xref:System.Security.Cryptography.CryptoStream.ReadAsync%2A>、、 <xref:System.IO.Stream.CopyToAsync%2A>、 <xref:System.Security.Cryptography.CryptoStream.WriteAsync%2A>などの新しい非同期メソッドを使用すると、非同期i/o操作をより簡単に実装できます。<xref:System.Security.Cryptography.CryptoStream.FlushAsync%2A>  
+  
+ 書き込みが完了し、リソースが適切<xref:System.Security.Cryptography.CryptoStream.EndWrite%2A>に解放されるように、現在のメソッドによって返されたをに渡します。`IAsyncResult` <xref:System.Security.Cryptography.CryptoStream.EndWrite%2A>を呼び出すたびに、を<xref:System.Security.Cryptography.CryptoStream.BeginWrite%2A>呼び出す必要があります。 これを行うには、を呼び出し`BeginWrite`たのと同じコードを使用するか、に`BeginWrite`渡されたコールバックでを使用します。 非同期書き込み中にエラーが発生した場合、このメソッドによって`EndWrite` `IAsyncResult`返されるを使用してが呼び出されるまで、例外はスローされません。  
+  
+ ストリームが書き込み可能な場合は、ストリームの末尾に書き込みを行うとストリームが拡張されます。  
+  
+ ストリーム内の現在位置は、i/o 操作が完了したときではなく、非同期の読み取りまたは書き込みを発行したときに更新されます。 複数の同時非同期要求は、要求の完了順序が不明確であることを表示します。  
+  
+ 現在の<xref:System.Security.Cryptography.CryptoStream.CanWrite%2A>インスタンスが書き込みをサポートしているかどうかを判断するには、プロパティを使用します。  
+  
+ ストリームが閉じているか、無効な引数を渡した場合、から`BeginWrite`すぐに例外がスローされます。 I/o 要求中のディスク障害など、非同期の書き込み要求中に発生したエラーは、スレッドプールのスレッドで発生し、を呼び出す`EndWrite`ときに例外をスローします。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.IO.IOException">ファイルの末尾を越えて非同期の書き込みを実行しようとしました。または、ディスク エラーが発生しました。</exception>
+        <exception cref="T:System.ArgumentException">1 つ以上の引数が無効です。</exception>
+        <exception cref="T:System.ObjectDisposedException">ストリームが閉じた後でメソッドが呼び出されました。</exception>
+        <exception cref="T:System.NotSupportedException">現在の <see langword="Stream" /> 実装は、書き込み操作をサポートしていません。</exception>
       </Docs>
     </Member>
     <Member MemberName="CanRead">
@@ -487,9 +529,20 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary><see cref="T:System.Security.Cryptography.CryptoStream" /> によって使用されているアンマネージ リソースを非同期に解放します。</summary>
+        <returns>非同期の破棄操作を表すタスク。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ <xref:System.Security.Cryptography.CryptoStream.DisposeAsync%2A>メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用する dispose 操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは、Visual Basic および`async` `await` C#のキーワードと共に使用されます。 
+ 
+ このメソッドは、バッキングストアに変更を書き込んでストリームを破棄し、リソースを解放するためにストリームを閉じます。   
+  
+ を`DisposeAsync`呼び出すと、 <xref:System.Security.Cryptography.CryptoStream>によって使用されるリソースを他の目的で再割り当てできます。 詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="EndRead">
@@ -518,10 +571,31 @@
         <Parameter Name="asyncResult" Type="System.IAsyncResult" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="asyncResult">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="asyncResult">終了させる保留状態の非同期リクエストへの参照。</param>
+        <summary>保留中の非同期読み取りが完了するまで待機します。 (代わりに、<see cref="Overload:System.Security.Cryptography.CryptoStream.ReadAsync" /> の使用を検討してください。)</summary>
+        <returns>ストリームから読み取ったバイト数 (0 ～要求したバイト数の間の数値)。 ゼロ (0) が返されるのは、ストリームの末尾で読み取ろうとしたときだけです。それ以外の場合は、少なくとも 1 バイトが読み込み可能になるまでブロックします。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ .NET Framework 4 およびそれ以前のバージョンで非同期 I/O 操作を実装するには、 <xref:System.Security.Cryptography.CryptoStream.BeginRead%2A> 、 <xref:System.Security.Cryptography.CryptoStream.EndRead%2A> などのメソッドを使用する必要があります。 これらのメソッドは、レガシコードをサポートするために .NET で引き続き使用できます。ただし、 <xref:System.Security.Cryptography.CryptoStream.ReadAsync%2A>、、 <xref:System.IO.Stream.CopyToAsync%2A>、 <xref:System.Security.Cryptography.CryptoStream.WriteAsync%2A>などの新しい非同期メソッドを使用すると、非同期i/o操作をより簡単に実装できます。<xref:System.Security.Cryptography.CryptoStream.FlushAsync%2A>  
+  
+ を`EndRead`呼び出して、ストリームから読み取られたバイト数を確認します。  
+  
+ `EndRead`は、のごと<xref:System.IAsyncResult> <xref:System.Security.Cryptography.CryptoStream.BeginRead%2A>に1回呼び出すことができます。  
+  
+ このメソッドは、I/O 操作が完了するまでブロックします。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="asyncResult" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentException">保留中の読み取り操作へのハンドルは使用できません。  
+  
+ または  
+  
+ 保留中の操作は読み取りをサポートしていません。</exception>
+        <exception cref="T:System.InvalidOperationException"><paramref name="asyncResult" /> は現在のストリームの <see cref="M:System.Security.Cryptography.CryptoStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> メソッドから取得されませんでした。</exception>
+        <exception cref="T:System.IO.IOException">ストリームが閉じているか、内部エラーが発生しました。</exception>
       </Docs>
     </Member>
     <Member MemberName="EndWrite">
@@ -550,9 +624,28 @@
         <Parameter Name="asyncResult" Type="System.IAsyncResult" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="asyncResult">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="asyncResult">保留状態の非同期 I/O リクエストへの参照。</param>
+        <summary>非同期書き込み操作を終了します。 (代わりに、<see cref="Overload:System.Security.Cryptography.CryptoStream.WriteAsync" /> の使用を検討してください。)</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ .NET Framework 4 およびそれ以前のバージョンで非同期 I/O 操作を実装するには、 <xref:System.Security.Cryptography.CryptoStream.BeginWrite%2A> 、 <xref:System.Security.Cryptography.CryptoStream.EndWrite%2A> などのメソッドを使用する必要があります。 これらのメソッドは、レガシコードをサポートするために .NET で引き続き使用できます。ただし、 <xref:System.Security.Cryptography.CryptoStream.ReadAsync%2A>、、 <xref:System.IO.Stream.CopyToAsync%2A>、 <xref:System.Security.Cryptography.CryptoStream.WriteAsync%2A>などの新しい非同期メソッドを使用すると、非同期i/o操作をより簡単に実装できます。<xref:System.Security.Cryptography.CryptoStream.FlushAsync%2A>  
+  
+ `EndWrite`は、から<xref:System.IAsyncResult> <xref:System.Security.Cryptography.CryptoStream.BeginWrite%2A>のたびに1回だけ呼び出す必要があります。  
+  
+ このメソッドは、I/O 操作が完了するまでブロックします。 I/o 要求中のディスク障害など、非同期の書き込み要求中に発生したエラーは、スレッドプールのスレッドで発生し、の呼び出し`EndWrite`時に表示されるようになります。 スレッドプールのスレッドによってスローされた例外は`EndWrite`、の呼び出し時には表示されません。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="asyncResult" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentException">保留中の書き込み操作へのハンドルは使用できません。  
+  
+ または  
+  
+ 保留中の操作は書き込みをサポートしていません。</exception>
+        <exception cref="T:System.InvalidOperationException"><paramref name="asyncResult" /> は現在のストリームの <see cref="M:System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> メソッドから取得されませんでした。</exception>
+        <exception cref="T:System.IO.IOException">ストリームが閉じているか、内部エラーが発生しました。</exception>
       </Docs>
     </Member>
     <Member MemberName="Finalize">
@@ -717,8 +810,9 @@
         <exception cref="T:System.Security.Cryptography.CryptographicException">キーが破損しており、ストリームに無効な埋め込みが行われる可能性があります。</exception>
         <exception cref="T:System.NotSupportedException">現在のストリームが書き込み可能ではありません。  
   
-- または - 
-最後のブロックが既に変換されています。</exception>
+ または  
+  
+ 最後のブロックが既に変換されています。</exception>
         <related type="Article" href="~/docs/standard/security/cryptographic-services.md">暗号化サービス</related>
       </Docs>
     </Member>
@@ -988,9 +1082,20 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>ストリームから 1 バイトを読み取り、ストリーム内の位置を 1 バイト進めます。ストリームの末尾の場合は -1 を返します。</summary>
+        <returns><see langword="Int32" /> にキャストされた符号なしバイト。ストリームの末尾の場合は -1。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 現在の<xref:System.Security.Cryptography.CryptoStream.CanRead%2A>インスタンスが読み取りをサポートしているかどうかを確認するには、プロパティを使用します。  
+  
+ ストリームが閉じられた後にストリームを操作しようと<xref:System.ObjectDisposedException>すると、がスローされる可能性があります。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.NotSupportedException">ストリームは読み取りをサポートしません。</exception>
+        <exception cref="T:System.ObjectDisposedException">ストリームが閉じた後でメソッドが呼び出されました。</exception>
       </Docs>
     </Member>
     <Member MemberName="Seek">
@@ -1168,7 +1273,7 @@
         <exception cref="T:System.NotSupportedException">現在の <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> オブジェクトと関連付けられた <see cref="T:System.Security.Cryptography.CryptoStream" /> が、使用されているストリームと一致しません。  <see cref="F:System.Security.Cryptography.CryptoStreamMode.Write" /> を読み取り専用のストリームで使用した場合などに、この例外がスローされます。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> パラメーターが 0 未満。  
   
-- または - 
+または 
 <paramref name="count" /> パラメーターが 0 未満。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="count" /> パラメーターと <paramref name="offset" /> パラメーターの合計が、バッファーの長さを超えています。</exception>
         <related type="Article" href="~/docs/standard/security/cryptographic-services.md">暗号化サービス</related>
@@ -1223,7 +1328,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> または <paramref name="count" /> が負の値です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="offset" /> と <paramref name="count" /> の合計が、バッファーの長さよりも大きいです。</exception>
         <exception cref="T:System.NotSupportedException">ストリームは書き込みをサポートしません。</exception>
@@ -1259,9 +1364,19 @@
         <Parameter Name="value" Type="System.Byte" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="value">ストリームに書き込むバイト。</param>
+        <summary>ストリームの現在位置にバイトを書き込み、ストリームの位置を 1 バイトだけ進めます。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 現在の<xref:System.Security.Cryptography.CryptoStream.CanWrite%2A>インスタンスが書き込みをサポートしているかどうかを判断するには、プロパティを使用します。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.IO.IOException">I/O エラーが発生します。</exception>
+        <exception cref="T:System.NotSupportedException">ストリームが書き込みをサポートしていないか、既に閉じています。</exception>
+        <exception cref="T:System.ObjectDisposedException">ストリームが閉じた後でメソッドが呼び出されました。</exception>
       </Docs>
     </Member>
   </Members>

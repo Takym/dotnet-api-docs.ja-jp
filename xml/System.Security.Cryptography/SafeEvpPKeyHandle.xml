@@ -1,5 +1,5 @@
 <Type Name="SafeEvpPKeyHandle" FullName="System.Security.Cryptography.SafeEvpPKeyHandle">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8da885d6f2b05cf8a5740b1b959b002785d0712e" /><Meta Name="ms.sourcegitcommit" Value="434f60616a9793fa8436744549fc856e94f7a648" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/24/2018" /><Meta Name="ms.locfileid" Value="36528996" /></Metadata><TypeSignature Language="C#" Value="public sealed class SafeEvpPKeyHandle : System.Runtime.InteropServices.SafeHandle" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="dfa631d0368a2e278823567c1275afbd1dd15f08" /><Meta Name="ms.sourcegitcommit" Value="0959d8d88abd48debd487e54e54df29d51634f7f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/02/2019" /><Meta Name="ms.locfileid" Value="68731742" /></Metadata><TypeSignature Language="C#" Value="public sealed class SafeEvpPKeyHandle : System.Runtime.InteropServices.SafeHandle" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SafeEvpPKeyHandle extends System.Runtime.InteropServices.SafeHandle" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.SafeEvpPKeyHandle" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SafeEvpPKeyHandle&#xA;Inherits SafeHandle" />
@@ -9,14 +9,24 @@
     <AssemblyName>System.Security.Cryptography.OpenSsl</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Runtime.InteropServices.SafeHandle</BaseTypeName>
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>OpenSSL からの <see langword="EVP_PKEY*" /> ポインター型を表します。</summary>
+    <remarks>
+      <format type="text/markdown"><![CDATA[  
+
+## Remarks
+
+ を使用<xref:System.Security.Cryptography.SafeEvpPKeyHandle>して OpenSSL との相互運用を行う前に、呼び出し元は、呼び出し元の openssl のバージョンが、side-by-side バージョンではなく、.net ランタイムが呼び出しているバージョンと同じであることを確認する必要があります。 ランタイムが呼び出している OpenSSL のバージョンは、によって<xref:System.Security.Cryptography.SafeEvpPKeyHandle.OpenSslVersion>決定できます。
+
+ ]]></format>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -31,15 +41,17 @@
         <AssemblyName>System.Security.Cryptography.OpenSsl</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="handle" Type="System.IntPtr" />
         <Parameter Name="ownsHandle" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="handle">To be added.</param>
-        <param name="ownsHandle">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="handle">表すハンドルの値。</param>
+        <param name="ownsHandle">終了処理中に <see cref="T:System.Security.Cryptography.SafeEvpPKeyHandle" /> によってハンドルを確実に解放する場合は <see langword="true" />。それ以外の場合は <see langword="false" /> (お勧めしません)。</param>
+        <summary>指定されたハンドルの値を使用して、<see cref="T:System.Security.Cryptography.SafeEvpPKeyHandle" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -55,15 +67,19 @@
         <AssemblyName>System.Security.Cryptography.OpenSsl</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.SafeEvpPKeyHandle</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>独立した有効期間を持つが同じリソースを追跡する、この型の別のインスタンスを作成します。</summary>
+        <returns>独立した有効期間を持つが同じリソースを追跡する、この型の別のインスタンス。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.InvalidOperationException">このハンドルは無効です。</exception>
+        <altmember cref="P:System.Security.Cryptography.SafeEvpPKeyHandle.IsInvalid" />
       </Docs>
     </Member>
     <Member MemberName="IsInvalid">
@@ -78,14 +94,49 @@
         <AssemblyName>System.Security.Cryptography.OpenSsl</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>ハンドルの値が無効かどうかを示す値を取得します。</summary>
+        <value>ハンドル値が無効な場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</value>
         <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OpenSslVersion">
+      <MemberSignature Language="C#" Value="public static long OpenSslVersion { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property int64 OpenSslVersion" />
+      <MemberSignature Language="DocId" Value="P:System.Security.Cryptography.SafeEvpPKeyHandle.OpenSslVersion" />
+      <MemberSignature Language="VB.NET" Value="Public Shared ReadOnly Property OpenSslVersion As Long" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; static property long OpenSslVersion { long get(); };" />
+      <MemberSignature Language="F#" Value="member this.OpenSslVersion : int64" Usage="System.Security.Cryptography.SafeEvpPKeyHandle.OpenSslVersion" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.Security.Cryptography.OpenSsl</AssemblyName>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int64</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>読み込まれたバージョンの OpenSSL によって報告されたバージョン番号を表す値を取得します。</summary>
+        <value>OpenSSL の読み込まれたバージョンによって報告されたバージョン番号を表す値。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+
+## Remarks
+
+ を使用<xref:System.Security.Cryptography.SafeEvpPKeyHandle>して OpenSSL との相互運用を行う前に、呼び出し元は、呼び出し元の openssl のバージョンが、side-by-side バージョンではなく、.net ランタイムが呼び出しているバージョンと同じであることを確認する必要があります。
+
+ OpenSSL 1.1.0 以降では、この値は`OpenSSL_version_num()`関数から報告されます。 OpenSSL の古いバージョンが使用されて`SSLeay()`いる場合、この値は関数から報告されます。
+
+ 呼び出し元は、この値を使用して等価性チェックのみを実行することをお勧めします。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="ReleaseHandle">
@@ -100,14 +151,16 @@
         <AssemblyName>System.Security.Cryptography.OpenSsl</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>ハンドルを解放するために必要なコードを実行します。</summary>
+        <returns>常に <see langword="true" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

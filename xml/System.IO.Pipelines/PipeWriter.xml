@@ -1,5 +1,5 @@
 <Type Name="PipeWriter" FullName="System.IO.Pipelines.PipeWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="516bf85c50018c232baa1f57d372bb071e982018" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68437778" /></Metadata><TypeSignature Language="C#" Value="public abstract class PipeWriter : System.Buffers.IBufferWriter&lt;byte&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="818fb4247b3b59e76e13e0f277dc8ccd9fee8a50" /><Meta Name="ms.sourcegitcommit" Value="7b48428cbeb3a3c0221a3a096013b2659d01348c" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/04/2019" /><Meta Name="ms.locfileid" Value="68776258" /></Metadata><TypeSignature Language="C#" Value="public abstract class PipeWriter : System.Buffers.IBufferWriter&lt;byte&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit PipeWriter extends System.Object implements class System.Buffers.IBufferWriter`1&lt;unsigned int8&gt;" />
   <TypeSignature Language="DocId" Value="T:System.IO.Pipelines.PipeWriter" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class PipeWriter&#xA;Implements IBufferWriter(Of Byte)" />
@@ -91,9 +91,9 @@
         <Parameter Name="leaveOpen" Type="System.Boolean" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="leaveOpen">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="leaveOpen">返された <see cref="T:System.IO.Stream" /> を破棄するとき、<see cref="T:System.IO.Pipelines.PipeReader" /> を開いたままにするか (<see langword="true" />)、または <see cref="T:System.IO.Pipelines.PipeReader" /> を完了するか (<see langword="false" />) を示す省略可能なフラグ。</param>
+        <summary><see cref="T:System.IO.Pipelines.PipeWriter" /> によってラップされた基になる <see cref="T:System.IO.Stream" /> を返します。</summary>
+        <returns>基になるストリーム。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -213,9 +213,9 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="cancellationToken">To be added.</param>
+        <param name="cancellationToken">キャンセル要求を監視するためのトークン。 既定値は <see cref="T:System.Threading.CancellationToken.None" /> です。</param>
         <summary><see cref="T:System.IO.Pipelines.PipeReader" /> に対して書き込みバイト数を使用できるようにし、<see cref="M:System.IO.Pipelines.PipeReader.ReadAsync(System.Threading.CancellationToken)" /> 継続を実行します。</summary>
-        <returns>To be added.</returns>
+        <returns>非同期のフラッシュ操作を表してラップするタスク。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -323,10 +323,19 @@
         <Parameter Name="state" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="callback">To be added.</param>
-        <param name="state">To be added.</param>
+        <param name="callback">登録するコールバック。</param>
+        <param name="state">呼び出されたとき、<paramref name="callback" /> に渡す状態オブジェクト。</param>
         <summary>パイプの <see cref="T:System.IO.Pipelines.PipeReader" /> 側が完了すると実行されるコールバックを登録します。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+> [!IMPORTANT]
+> `OnReaderCompleted`は、のすべての<xref:System.IO.Pipelines.PipeWriter>実装で呼び出すことはできません。 このメソッドは、今後のリリースで削除される予定です。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="WriteAsync">
@@ -349,10 +358,10 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="source">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>パイプに <paramref name="source" /> を書き込み、<see cref="T:System.IO.Pipelines.PipeReader" /> からデータにアクセスできるようにします。</summary>
-        <returns>To be added.</returns>
+        <param name="source">書き込む読み取り専用のバイト メモリ領域。</param>
+        <param name="cancellationToken">キャンセル要求を監視するためのトークン。 既定値は <see cref="T:System.Threading.CancellationToken.None" /> です。</param>
+        <summary>指定されたバイト メモリ範囲をパイプに書き込み、<see cref="T:System.IO.Pipelines.PipeReader" /> がデータにアクセスできるようにします。</summary>
+        <returns>非同期の書き込み操作を表し、非同期のフラッシュ操作をラップするタスク。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
