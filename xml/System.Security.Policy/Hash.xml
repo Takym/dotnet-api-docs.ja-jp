@@ -1,5 +1,5 @@
 <Type Name="Hash" FullName="System.Security.Policy.Hash">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="224c66d93d18b83f7dc711f1234a8a448ef9e038" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56773682" /></Metadata><TypeSignature Language="C#" Value="public sealed class Hash : System.Security.Policy.EvidenceBase, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="01bb9512e6888fb24b0b8425a487ad462a3e0852" /><Meta Name="ms.sourcegitcommit" Value="43c8e74d92c78325492baf27e41b400443f0dfbf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/08/2019" /><Meta Name="ms.locfileid" Value="68858341" /></Metadata><TypeSignature Language="C#" Value="public sealed class Hash : System.Security.Policy.EvidenceBase, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit Hash extends System.Security.Policy.EvidenceBase implements class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Security.Policy.Hash" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Hash&#xA;Inherits EvidenceBase&#xA;Implements ISerializable" />
@@ -41,10 +41,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ハッシュ値は、特定のバイトのセットに対応する一意の値を表します。 アセンブリを参照する、名前、バージョン、またはその他の指定によってではなくハッシュ値は、あいまいさがなく、アセンブリを指定します。 名前が競合を完全に別のコードを同じ名前が指定した場合のまれなケースで適用されます。 異なる種類のコードは、同じバージョンで誤ってマークできます。 ただし、単一ビットを変更するだけでは、非常に異なるハッシュ値で結果します。  
+ ハッシュ値は、特定のバイトのセットに対応する一意の値を表します。 名前、バージョン、またはその他の指定によってアセンブリを参照するのではなく、ハッシュ値によってアセンブリがあいまいにならないように指定します。 名前は、まったく異なるコードに同じ名前が指定されているまれなケースでは、競合の影響を受けます。 異なるコードのバリエーションを同じバージョンで誤ってマークすることができます。 ただし、1つのビットを変更しても、まったく異なるハッシュ値になります。  
   
- ハッシュ値は、デジタル署名を使用せず、ポリシーで特定のアセンブリを参照する暗号強度が高い方法です。 セキュア ハッシュ アルゴリズムでは、誤ってまたは悪意のある試みによって同一のハッシュ値を持つ別のアセンブリを構築するためのないように設計されています。 既定から証拠、<xref:System.Security.Cryptography.SHA1>と<xref:System.Security.Cryptography.MD5>を通じて任意のハッシュ アルゴリズムを使用できますが、ハッシュ アルゴリズムがサポートされる<xref:System.Security.Policy.Hash.GenerateHash%2A>します。  
-  
+ ハッシュ値は、デジタル署名を使用せずに、ポリシー内の特定のアセンブリを参照するための、暗号的に安全な方法です。 セキュリティで保護されたハッシュアルゴリズムは、偶発的または悪意のある試行によって、同じハッシュ値を持つ別のアセンブリを構築するために、計算が不可能になるように設計されています。 既定では、 <xref:System.Security.Cryptography.SHA1>および<xref:System.Security.Cryptography.MD5>ハッシュアルゴリズムからの証拠はサポートされていますが、を<xref:System.Security.Policy.Hash.GenerateHash%2A>介して使用できるハッシュアルゴリズムもあります。  
+
+ MD5 と SHA1 の衝突の問題により、SHA256 以上に基づくセキュリティモデルをお勧めします。
+
  ]]></format>
     </remarks>
   </Docs>
@@ -79,7 +81,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティまたはメソッドのいずれかが呼び出されるまで、ハッシュ値の計算は実行されません。  
+ ハッシュ値の計算は、プロパティまたはメソッドのいずれかが呼び出されるまで実行されません。  
   
  ]]></format>
         </remarks>
@@ -146,8 +148,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Security.Policy.Hash>オブジェクトのみを含む、<xref:System.Security.Policy.Hash.MD5%2A>プロパティ。  
-  
+ 返さ<xref:System.Security.Policy.Hash>れたオブジェクトには<xref:System.Security.Policy.Hash.MD5%2A> 、プロパティのみが含まれています。  
+
+ MD5 との衝突の問題により、SHA256 以上に基づくセキュリティモデルをお勧めします。
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="md5" /> パラメーターが <see langword="null" /> です。</exception>
@@ -187,8 +191,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Security.Policy.Hash>オブジェクトのみを含む、<xref:System.Security.Policy.Hash.SHA1%2A>プロパティ。  
-  
+ 返さ<xref:System.Security.Policy.Hash>れたオブジェクトには<xref:System.Security.Policy.Hash.SHA1%2A> 、プロパティのみが含まれています。  
+
+ SHA1 の衝突の問題により、SHA256 以上に基づくセキュリティモデルをお勧めします。
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="sha1" /> パラメーターが <see langword="null" /> です。</exception>
@@ -226,7 +232,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Security.Policy.Hash>オブジェクトのみを含む、<xref:System.Security.Policy.Hash.SHA256%2A>プロパティ。  
+ 返さ<xref:System.Security.Policy.Hash>れたオブジェクトには<xref:System.Security.Policy.Hash.SHA256%2A> 、プロパティのみが含まれています。  
   
  ]]></format>
         </remarks>
@@ -268,7 +274,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クラスのコンス トラクターで指定されたアセンブリは、ハッシュ値を計算するためのバイトを提供します。 `hashAlg`パラメーターが特定から派生したオブジェクト<xref:System.Security.Cryptography.HashAlgorithm>します。 返されたハッシュ値がで識別される型`hashAlg`します。  
+ クラスコンストラクターで指定されたアセンブリは、ハッシュ値を計算するためのバイトを提供します。 パラメーターは、特定<xref:System.Security.Cryptography.HashAlgorithm>のから派生したオブジェクトです。 `hashAlg` 返されるハッシュ値は、によって`hashAlg`識別される型です。  
   
  ]]></format>
         </remarks>
@@ -320,11 +326,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 継承をサポートするためにこのメソッドが提供される、<xref:System.Runtime.Serialization.ISerializable>インターフェイス。  
+ このメソッドは、 <xref:System.Runtime.Serialization.ISerializable>インターフェイスの継承をサポートするために用意されています。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="MD5">
@@ -358,12 +364,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クラスのコンス トラクターで指定されたアセンブリでは、ハッシュ計算の対象のバイトを提供します。  
+ クラスコンストラクターで指定されたアセンブリは、ハッシュ計算のバイトを提供します。  
   
-   
+ MD5 の衝突の問題により、Microsoft は SHA256 を推奨しています。 
   
 ## Examples  
- 次の例では、計算、<xref:System.Security.Cryptography.MD5>用のハッシュを`myAssembly`に格納`hashcode`します。  
+ 次の例では<xref:System.Security.Cryptography.MD5> 、の`myAssembly`ハッシュを計算し`hashcode`、に格納します。  
   
  [!code-cpp[Classic Hash.MD5 Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Hash.MD5 Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Hash.MD5 Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Hash.MD5 Example/CS/source.cs#1)]
@@ -404,12 +410,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コンス トラクターで指定されたアセンブリでは、ハッシュ計算の対象のバイトを提供します。  
+ コンストラクターで指定されたアセンブリは、ハッシュ計算のバイトを提供します。  
   
-   
+ SHA1 との競合問題のため、Microsoft では SHA256 を推奨しています。  
   
 ## Examples  
- 次の例では、計算、<xref:System.Security.Cryptography.SHA1>用のハッシュを`myAssembly`に格納`hashcode`します。  
+ 次の例では<xref:System.Security.Cryptography.SHA1> 、の`myAssembly`ハッシュを計算し`hashcode`、に格納します。  
   
  [!code-cpp[Classic Hash.SHA1 Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Hash.SHA1 Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Hash.SHA1 Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Hash.SHA1 Example/CS/source.cs#1)]
@@ -447,7 +453,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定されているアセンブリ、<xref:System.Security.Policy.Hash.%23ctor%2A>コンス トラクターは、ハッシュ計算のバイトを提供します。  
+ <xref:System.Security.Policy.Hash.%23ctor%2A>コンストラクターで指定されたアセンブリによって、ハッシュ計算のバイトが提供されます。  
   
  ]]></format>
         </remarks>
@@ -485,7 +491,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、デバッグ中に、オブジェクトの読みやすい表現を取得するのに便利です。  
+ このメソッドは、オブジェクトの読みやすい表現を取得するためにデバッグ中に便利です。  
   
  ]]></format>
         </remarks>

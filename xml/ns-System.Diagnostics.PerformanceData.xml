@@ -1,51 +1,51 @@
 <Namespace Name="System.Diagnostics.PerformanceData">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b1c5ad58fc8cb70eeab256e01ab98bfc4478c7cb" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58559343" /></Metadata><Docs>
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b1c5ad58fc8cb70eeab256e01ab98bfc4478c7cb" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68908473" /></Metadata><Docs>
     <summary>カウンター データを提供するには、この名前空間のクラスを使用します。 カウンターは、パフォーマンス モニターなどのコンシューマーにパフォーマンス メトリックスを公開するために使われます。 名前空間には、カウンター データを使用するためのクラスは含まれません。 パフォーマンス カウンター アーキテクチャの詳細については、「<see href="https://msdn.microsoft.com/library/windows/desktop/aa373083\(v=vs.85\">パフォーマンス カウンター</see>」をご覧ください。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この名前空間のクラスは、Windows Vista で導入されたパフォーマンス カウンターの新しいアーキテクチャ (バージョン 2.0) をサポートします。 新しいアーキテクチャでは、プロバイダーは直接、コンシューマーの要求に応答しないが、代わりに、カウンター データを保持するだけにします。 システムでは、プロバイダーは、カウンター セットのインスタンスを作成するときに、プロバイダーのプロセスにスレッドを挿入します。スレッドは、コンシューマーの要求を処理します。  
+ この名前空間のクラスは、Windows Vista で導入されたパフォーマンスカウンターの新しいアーキテクチャ (バージョン 2.0) をサポートしています。 新しいアーキテクチャでは、プロバイダーはコンシューマーの要求に直接応答しなくなりますが、代わりにカウンターデータを保持するだけです。 プロバイダーがカウンターセットのインスタンスを作成すると、システムはスレッドをプロバイダーのプロセスに挿入します。スレッドは、コンシューマー要求の処理を担当します。  
   
- 次の手順では、カウンターのプロバイダーを作成する手順を示します。  
+ 次の手順は、カウンタープロバイダーを作成するプロセスを示しています。  
   
-1.  プロバイダーが提供するカウンターは、XML ベースのマニフェストで定義されます。 カウンターは、カウンター セットに論理的にグループ化されます。 カウンター セット内のカウンターは、カウンター セット内で一意の数値識別子によって識別されます。 プロバイダーは、1 つまたは複数のカウンター セットを定義できます。 カウンター セットは、プロバイダーに一意の Guid によって識別されます。 これらのクラスを使用して、プロバイダーを記述する場合をに注意してください。  
+1.  プロバイダーによって提供されるカウンターは、XML ベースのマニフェストで定義されます。 カウンターは、カウンターセットに論理的にグループ化されます。 カウンターセット内のカウンターは、カウンターセット内で一意の数値識別子によって識別されます。 プロバイダーは、1つまたは複数のカウンターセットを定義できます。 カウンターセットは、プロバイダーに固有の Guid によって識別されます。 これらのクラスを使用してプロバイダーを記述する場合は、次の点に注意してください。  
   
-    -   Provider 要素のコールバック属性は無視されます。  
+    -   Provider 要素の callback 属性は無視されます。  
   
-    -   参照 counterAttribute 要素の name 属性の値は無視されます。  
+    -   CounterAttribute 要素の name 属性の参照値は無視されます。  
   
-     マニフェストの記述について詳しくは、次を参照してください。[パフォーマンス カウンター スキーマ](https://msdn.microsoft.com/library/windows/desktop/aa373092\(v=vs.85\).aspx)します。  
+     マニフェストの記述の詳細については、「[パフォーマンスカウンターのスキーマ](https://msdn.microsoft.com/library/windows/desktop/aa373092\(v=vs.85\).aspx)」を参照してください。  
   
-2.  使用してマニフェストを作成した後、 [CTRPP](https://msdn.microsoft.com/library/windows/desktop/aa372128\(v=vs.85\).aspx)マニフェスト (ctrpp provider.man) をコンパイルするためのツール。 このツールは、4 つのファイルを生成: .h、.c、.rc、および * _r.h。 .H および .c ファイルを無視することができます。 .Rc ファイルには、マニフェストで定義されているローカライズされた文字列が含まれています。 .Rc、*_r.h ファイルを使用して、プロジェクトに含めることが、コンパイル済みのリソース ファイル (.res) を作成します。 次の呼び出しでは、リソース ファイルをコンパイルする方法を示します。  
+2.  マニフェストを記述した後、 [ctrpp](https://msdn.microsoft.com/library/windows/desktop/aa372128\(v=vs.85\).aspx)ツールを使用してマニフェストをコンパイルします (ctrpp)。 このツールでは、.h、.c、.rc、* _r という4つのファイルが生成されます。 .H ファイルと .c ファイルは無視してかまいません。 .Rc ファイルには、マニフェストで定義されているローカライズされた文字列が含まれています。 プロジェクトに含めるコンパイル済みのリソースファイル (.res) を作成するには、.rc ファイルと * _r ファイルを使用します。 次の呼び出しは、リソースファイルをコンパイルする方法を示しています。  
   
     ```console  
     rc /r /i "c:\Program Files\Microsoft SDKs\Windows\v6.0\Include" provider.rc  
     ```  
   
-     Sal.h を参照するエラーが発生する場合を Visual C のインクルード ディレクトリ、/i スイッチの指定したディレクトリを Microsoft Visual Studio から sal.h ファイルをコピーします。  
+     Sal を参照するエラーが発生した場合は、Microsoft Visual Studio から、Visual C インクルードディレクトリから/i スイッチに指定したディレクトリに sal ファイルをコピーします。  
   
-     プロジェクトのアプリケーション プロパティ ページには、コンパイル済みのリソース ファイル (.res) へのパスを追加します。  
+     コンパイルされたリソースファイル (.res) へのパスをプロジェクトのアプリケーションプロパティページに追加します。  
   
-3.  プロバイダーを記述します。 次の手順では、プロバイダーによって行われた呼び出しを示しています。  
+3.  プロバイダーを作成します。 次の手順は、プロバイダーによる呼び出しを示しています。  
   
-    1.  呼び出す、<xref:System.Diagnostics.PerformanceData.CounterSet.%23ctor%2A?displayProperty=nameWithType>カウンター セットを定義するコンス トラクター。 マニフェストで定義されている各カウンターには、このメソッドを呼び出します。  
+    1.  カウンターセット<xref:System.Diagnostics.PerformanceData.CounterSet.%23ctor%2A?displayProperty=nameWithType>を定義するには、コンストラクターを呼び出します。 マニフェストで定義されている各カウンターセットに対して、このメソッドを呼び出します。  
   
-    2.  各カウンター セットのいずれかを呼び出して、<xref:System.Diagnostics.PerformanceData.CounterSet.AddCounter%2A?displayProperty=nameWithType>セットにカウンターを追加するメソッド。 各カウンターをカウンター セットで定義されているは、このメソッドを呼び出します。  
+    2.  各カウンターセットに対して、 <xref:System.Diagnostics.PerformanceData.CounterSet.AddCounter%2A?displayProperty=nameWithType>メソッドの1つを呼び出して、セットにカウンターを追加します。 カウンターセットで定義されている各カウンターに対して、このメソッドを呼び出します。  
   
-    3.  呼び出す、<xref:System.Diagnostics.PerformanceData.CounterSet.CreateCounterSetInstance%2A?displayProperty=nameWithType>メソッド (インスタンスには、カウンター データが含まれています)、カウンター セットのインスタンスを作成します。 1 つのインスタンスのカウンター セットは、1 回このメソッドを呼び出します。 複数インスタンスのカウンター セットのカウンターのデータ (インスタンスごとに一意の名前を使用) を提供する必要がある各インスタンスに対してこのメソッドを呼び出します。  
+    3.  <xref:System.Diagnostics.PerformanceData.CounterSet.CreateCounterSetInstance%2A?displayProperty=nameWithType>メソッドを呼び出して、カウンターセットのインスタンスを作成します (カウンターデータを格納しているインスタンス)。 単一インスタンスのカウンターセットの場合は、このメソッドを1回呼び出します。 複数インスタンスのカウンターセットの場合は、カウンターデータを提供する必要がある各インスタンスに対してこのメソッドを呼び出します (インスタンスごとに一意の名前を使用します)。  
   
-    4.  使用して、<xref:System.Diagnostics.PerformanceData.CounterSetInstance.Counters%2A?displayProperty=nameWithType>アクセスして、カウンターのカウンター データを設定するプロパティ。  
+    4.  カウンターの<xref:System.Diagnostics.PerformanceData.CounterSetInstance.Counters%2A?displayProperty=nameWithType>カウンターデータにアクセスして設定するには、プロパティを使用します。  
   
-4.  完了したら、プロバイダーを使用して、 [LodCtr](https://docs.microsoft.com/windows/desktop/perfctrs/adding-counter-names-and-descriptions-to-the-registry#running-the-lodctr-tool)コンピューターのカウンターを登録するためのツール。 たとえば、オブジェクトに適用された  
+4.  プロバイダーが完成したら、 [LodCtr](https://docs.microsoft.com/windows/desktop/perfctrs/adding-counter-names-and-descriptions-to-the-registry#running-the-lodctr-tool)ツールを使用して、コンピューターにカウンターを登録します。 たとえば、オブジェクトに適用された  
   
     ```console  
     lodctr /m:provider.man  
     ```  
   
-     この例では、マニフェストと、実行可能ファイルは、現在のディレクトリにします。  
+     この例では、マニフェストと実行可能ファイルが現在のディレクトリにあることを前提としています。  
   
- Windows Vista およびそれ以降のオペレーティング システムを実行するコンピューターでこの名前空間のクラスを使用することができます。  
+ この名前空間のクラスは、Windows Vista 以降のオペレーティングシステムを実行しているコンピューターで使用できます。  
   
    
   
@@ -152,7 +152,7 @@
 </instrumentationManifest>  
 ```  
   
- マニフェストの単純なプロバイダーの実装を次に示します。  
+ マニフェストの単純なプロバイダー実装を次に示します。  
   
 ```cs  
 using System.Diagnostics.PerformanceData;  
