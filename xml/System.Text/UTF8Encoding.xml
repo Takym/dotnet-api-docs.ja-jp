@@ -1,5 +1,5 @@
 <Type Name="UTF8Encoding" FullName="System.Text.UTF8Encoding">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="567bccf4e3679939d5849b3e1088df8da667065d" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68438736" /></Metadata><TypeSignature Language="C#" Value="public class UTF8Encoding : System.Text.Encoding" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7088d553aa894e006add89f8658de26841fe5002" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68901361" /></Metadata><TypeSignature Language="C#" Value="public class UTF8Encoding : System.Text.Encoding" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit UTF8Encoding extends System.Text.Encoding" />
   <TypeSignature Language="DocId" Value="T:System.Text.UTF8Encoding" />
   <TypeSignature Language="VB.NET" Value="Public Class UTF8Encoding&#xA;Inherits Encoding" />
@@ -373,10 +373,25 @@
         <Parameter Name="chars" Type="System.ReadOnlySpan&lt;System.Char&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="chars">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="chars">エンコードする文字のセットを格納するスパン。</param>
+        <summary>指定された文字スパンをエンコードすることによって生成されるバイト数を計算します。</summary>
+        <returns>指定された文字スパンをエンコードすることによって生成されるバイト数。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 結果のバイトを格納するため<xref:System.Text.UTF8Encoding.GetBytes%2A>にで必要とされる正確なサイズ<xref:System.Text.UTF8Encoding.GetByteCount%2A>を計算するには、メソッドを呼び出します。 最大サイズを計算するには、 <xref:System.Text.UTF8Encoding.GetMaxByteCount%2A>メソッドを呼び出します。 メソッドは通常、より少ないメモリを割り当て<xref:System.Text.UTF8Encoding.GetMaxByteCount%2A>ますが、メソッドは通常、より高速に実行されます。 <xref:System.Text.UTF8Encoding.GetByteCount%2A>  
+  
+ エラー検出を使用すると、無効なシーケンスによって<xref:System.ArgumentException>このメソッドが例外をスローします。 エラー検出を行わないと、無効なシーケンスは無視され、例外はスローされません。  
+  
+ エンコードされたバイトがファイルまたはストリームとして保存されるときに正しくデコードされるようにするには、エンコードされたバイトのストリームにプリアンブルを付けることができます。 ファイルに書き込む一連のバイトの先頭に、プリアンブルをバイトストリームの先頭に挿入することは、開発者の責任であり、プリアンブル内のバイト数は<xref:System.Text.UTF8Encoding.GetByteCount%2A>メソッドによって返される値には反映されません。  
+  
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException">エラーの検出が有効になり、<paramref name="chars" /> に無効な文字のシーケンスが含まれています。</exception>
+        <exception cref="T:System.Text.EncoderFallbackException">フォールバックが発生しました (詳細な説明は、「[.NET Framework における文字エンコーディング](~/docs/standard/base-types/character-encoding.md)」をご覧ください) 
+および 
+ <see cref="P:System.Text.Encoding.EncoderFallback" /> が <see cref="T:System.Text.EncoderExceptionFallback" /> に設定されます。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetByteCount">
@@ -511,10 +526,10 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="chars" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="chars" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count" /> が 0 未満です。  
   
-- または - 
+または 
 結果のバイト数が、整数として返すことのできる最大数を超えています。</exception>
         <exception cref="T:System.ArgumentException">エラーの検出が有効になり、<paramref name="chars" /> に無効な文字のシーケンスが含まれています。</exception>
         <exception cref="T:System.Text.EncoderFallbackException">フォールバックが発生しました (詳細な説明は、「[.NET Framework における文字エンコーディング](~/docs/standard/base-types/character-encoding.md)」をご覧ください) 
@@ -676,11 +691,24 @@
         <Parameter Name="bytes" Type="System.Span&lt;System.Byte&gt;" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="chars">To be added.</param>
-        <param name="bytes">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="chars">エンコードする文字スパン。</param>
+        <param name="bytes">結果のバイト セットを格納するスパン。</param>
+        <summary>指定された文字スパンを指定されたバイト スパンにエンコードします。</summary>
+        <returns><paramref name="bytes" /> に書き込まれた実際のバイト数。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 結果のバイトを格納するため<xref:System.Text.UTF8Encoding.GetBytes%2A>にで必要とされる正確なサイズ<xref:System.Text.UTF8Encoding.GetByteCount%2A>を計算するには、メソッドを呼び出します。 最大サイズを計算するには、 <xref:System.Text.UTF8Encoding.GetMaxByteCount%2A>メソッドを呼び出します。 メソッドは通常、より少ないメモリを割り当て<xref:System.Text.UTF8Encoding.GetMaxByteCount%2A>ますが、メソッドは通常、より高速に実行されます。 <xref:System.Text.UTF8Encoding.GetByteCount%2A>  
+  
+ エラー検出を使用すると、無効なシーケンスによって<xref:System.ArgumentException>このメソッドが例外をスローします。 エラー検出を行わないと、無効なシーケンスは無視され、例外はスローされません。  
+  
+ ストリームから読み取られたデータなど、変換されるデータは、連続したブロックでのみ使用できる可能性があります。 この場合、またはデータ量が非常に大きく、小さいブロックに分割する必要がある場合<xref:System.Text.Decoder>は、 <xref:System.Text.UTF8Encoding.GetDecoder%2A>メソッドまたは<xref:System.Text.UTF8Encoding.GetEncoder%2A>メソッド<xref:System.Text.Encoder>によって返されたまたはをそれぞれ使用します。  
+  
+ エンコードされたバイトがファイルまたはストリームとして保存されるときに正しくデコードされるようにするには、エンコードされたバイトのストリームにプリアンブルを付けることができます。 ファイルに書き込む一連のバイトの先頭に、プリアンブルをバイトストリームの先頭に挿入することは、開発者の責任です。 メソッド<xref:System.Text.UTF8Encoding.GetBytes%2A>は、エンコードされたバイトシーケンスの先頭にプリアンブルを付加しません。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetBytes">
@@ -748,14 +776,14 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="chars" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="chars" /> が <see langword="null" /> です。  
   
 - または - 
  <paramref name="bytes" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="charCount" /> または <paramref name="byteCount" /> が 0 未満です。</exception>
         <exception cref="T:System.ArgumentException">エラーの検出が有効になり、<paramref name="chars" /> に無効な文字のシーケンスが含まれています。  
   
-または 
+- または - 
  <paramref name="byteCount" /> が結果のバイト数より少なくなっています。</exception>
         <exception cref="T:System.Text.EncoderFallbackException">フォールバックが発生しました (詳細な説明は、「[.NET Framework における文字エンコーディング](~/docs/standard/base-types/character-encoding.md)」をご覧ください) 
 および 
@@ -839,7 +867,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="chars" /> が <see langword="null" /> です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="chars" /> は <see langword="null" />です。  
   
 - または - 
  <paramref name="bytes" /> は <see langword="null" />です。</exception>
@@ -993,10 +1021,19 @@
         <Parameter Name="bytes" Type="System.ReadOnlySpan&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="bytes">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="bytes">デコードするバイトのセットを格納しているスパン。</param>
+        <summary>指定されたバイト スパンをデコードすることによって生成される文字数を計算します。</summary>
+        <returns>指定されたバイト スパンをデコードすることによって生成される文字数。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 結果の文字を格納するため<xref:System.Text.UTF8Encoding.GetChars%2A>にで必要とされる正確な<xref:System.Text.UTF8Encoding.GetCharCount%2A>サイズを計算するには、メソッドを呼び出します。 最大サイズを計算するには、 <xref:System.Text.UTF8Encoding.GetMaxCharCount%2A>メソッドを呼び出します。 メソッドは通常、より少ないメモリを割り当て<xref:System.Text.UTF8Encoding.GetMaxCharCount%2A>ますが、メソッドは通常、より高速に実行されます。 <xref:System.Text.UTF8Encoding.GetCharCount%2A>  
+  
+ エラー検出を使用すると、無効なシーケンスによって<xref:System.ArgumentException>このメソッドが例外をスローします。 エラー検出を行わないと、無効なシーケンスは無視され、例外はスローされません。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetCharCount">
@@ -1136,7 +1173,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="bytes" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="bytes" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> または <paramref name="count" /> が 0 未満です。  
   
 - または - 
@@ -1189,11 +1226,24 @@
         <Parameter Name="chars" Type="System.Span&lt;System.Char&gt;" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="bytes">To be added.</param>
-        <param name="chars">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="bytes">デコードするバイトを格納しているスパン。</param>
+        <param name="chars">結果の文字セットを格納するスパン。</param>
+        <summary>指定されたバイト スパンを指定された文字スパンにデコードします。</summary>
+        <returns><paramref name="chars" /> に書き込まれた実際の文字数。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 結果の文字を格納するため<xref:System.Text.UTF8Encoding.GetChars%2A>にで必要とされる正確な<xref:System.Text.UTF8Encoding.GetCharCount%2A>サイズを計算するには、メソッドを呼び出します。 最大サイズを計算するには、 <xref:System.Text.UTF8Encoding.GetMaxCharCount%2A>メソッドを呼び出します。 メソッドは通常、より少ないメモリを割り当て<xref:System.Text.UTF8Encoding.GetMaxCharCount%2A>ますが、メソッドは通常、より高速に実行されます。 <xref:System.Text.UTF8Encoding.GetCharCount%2A>  
+  
+ エラー検出を使用すると、無効なシーケンスによって<xref:System.ArgumentException>このメソッドが例外をスローします。 エラー検出を行わないと、無効なシーケンスは無視され、例外はスローされません。  
+  
+ デコードするバイトセットにバイトオーダーマーク (bom) が含まれており、非 BOM 対応型のメソッドによってバイトの範囲が返された場合、その`U+FFFE`文字は、このメソッドによって返される文字の範囲に含まれます。 <xref:System.String.TrimStart%2A?displayProperty=nameWithType>メソッドを呼び出すことで削除できます。  
+  
+ ストリームから読み取られたデータなど、変換されるデータは、連続したブロックでのみ使用できる可能性があります。 この場合、またはデータ量が非常に大きく、小さいブロックに分割する必要がある場合<xref:System.Text.Decoder>は、 <xref:System.Text.UTF8Encoding.GetDecoder%2A>メソッドまたは<xref:System.Text.UTF8Encoding.GetEncoder%2A>メソッド<xref:System.Text.Encoder>によって提供されるまたはオブジェクトをそれぞれ使用します。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetChars">
@@ -1261,7 +1311,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="bytes" /> が <see langword="null" /> です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="bytes" /> は <see langword="null" />です。  
   
 - または - 
  <paramref name="chars" /> は <see langword="null" />です。</exception>
@@ -1687,7 +1737,7 @@
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="byteCount" /> が 0 未満です。  
   
-または 
+- または - 
 結果のバイト数が、整数として返すことのできる最大数を超えています。</exception>
         <exception cref="T:System.Text.DecoderFallbackException">フォールバックが発生しました (詳細な説明は、「[.NET Framework における文字エンコーディング](~/docs/standard/base-types/character-encoding.md)」をご覧ください) 
 および 
@@ -1764,7 +1814,7 @@
  [!code-csharp[System.Text.UTF8Encoding.GetPreamble Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Text.UTF8Encoding.GetPreamble Example/CS/getpreamble-.cs#1)]
  [!code-vb[System.Text.UTF8Encoding.GetPreamble Example#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Text.UTF8Encoding.GetPreamble Example/VB/getpreamble-.vb#1)]  
   
- 次の例では<xref:System.Text.UTF8Encoding> 、2つのオブジェクトをインスタンス化<xref:System.Text.UTF8Encoding.%23ctor>します。最初のオブジェクトは、BOM を提供しないパラメーターなし<xref:System.Text.UTF8Encoding.%23ctor%28System.Boolean%29>のコンストラクターを`encoderShouldEmitUTF8Identifier`呼び出し、2番目のオブジェクトの引数をに設定してコンストラクターを呼び出します`true`。 次に、メソッド<xref:System.Text.UTF8Encoding.GetPreamble%2A>を呼び出して、UF8 エンコードされた文字列を書き込む前に BOM をファイルに書き込みます。 この例のコンソール出力に示されているように、2番目のエンコーダーからバイトを保存するファイルには、最初のエンコーダーよりも3バイトが含まれています。  
+ 次の例では<xref:System.Text.UTF8Encoding> 、2つのオブジェクトをインスタンス化<xref:System.Text.UTF8Encoding.%23ctor>します。最初のオブジェクトは、BOM を提供しないパラメーターなし<xref:System.Text.UTF8Encoding.%23ctor%28System.Boolean%29>のコンストラクターを`encoderShouldEmitUTF8Identifier`呼び出し、2番目のオブジェクトの引数をに設定してコンストラクターを呼び出します `true`。 次に、メソッド<xref:System.Text.UTF8Encoding.GetPreamble%2A>を呼び出して、UF8 エンコードされた文字列を書き込む前に BOM をファイルに書き込みます。 この例のコンソール出力に示されているように、2番目のエンコーダーからバイトを保存するファイルには、最初のエンコーダーよりも3バイトが含まれています。  
   
  [!code-csharp[System.Text.UTF8Encoding.GetPreamble#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.text.utf8encoding.getpreamble/cs/getpreamble1.cs#1)]
  [!code-vb[System.Text.UTF8Encoding.GetPreamble#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.text.utf8encoding.getpreamble/vb/getpreamble1.vb#1)]  
@@ -1882,9 +1932,35 @@
         <ReturnType>System.ReadOnlySpan&lt;System.Byte&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>このオブジェクトが UTF-8 形式でエンコードされた Unicode バイト順マークを提供するように構成されている場合は、そのようなマークを取得します。</summary>
+        <value>このオブジェクトが1を指定するように構成されている場合は、Unicode バイト順マークを格納しているバイト範囲。それ以外の場合は、既定のスパンです。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ オブジェクト<xref:System.Text.UTF8Encoding>はプリアンブルを提供できます。これは、エンコーディングプロセスによって生成されるバイトシーケンスにプレフィックスを付けることができる、バイトの範囲です。 エンコードされたバイトシーケンスをバイト順マーク (コードポイント`U+FEFF`) で前に付けると、デコーダーはバイト順と変換形式 (UTF) を決定できます。 Unicode バイト順マーク (BOM) は、0xEF 0Xef 0Xef としてシリアル化されます。 Unicode 標準では、UTF-8 でエンコードされたストリームに BOM を使用する必要はありません。  
+  
+ が有効な BOM <xref:System.Text.UTF8Encoding>であるオブジェクトをインスタンス化するには、次の方法があります。 `Preamble`  
+  
+-   プロパティによって返されるオブジェクトを取得する<xref:System.Text.UTF8Encoding>。 <xref:System.Text.Encoding.UTF8%2A?displayProperty=nameWithType>  
+  
+-   パラメーターを`true` <xref:System.Text.UTF8Encoding> `encoderShouldEmitUTF8Identifier`使用してコンストラクターを呼び出し、その値をに設定します。  
+  
+ 他の<xref:System.Text.UTF8Encoding>すべてのオブジェクトは、有効な BOM ではなく既定のスパンを返すように構成されています。  
+  
+ BOM は、タグ付けされていない、または不適切なタグの付いた web データや、ビジネスに国際的な関心事がない場合に保存されたランダムテキストファイルなど、エンコードへの参照が失われたファイルのエンコードをほぼ特定の方法で識別します。 データが一貫して適切にタグ付けされている場合、ユーザーの問題が回避されることがよくあります。  
+  
+ エンコードの種類を提供する標準の場合、BOM はやや冗長です。 ただし、このメソッドを使用して、サーバーが正しいエンコードヘッダーを送信できるようにすることができます。 または、エンコードが失われた場合にフォールバックとして使用することもできます。  
+  
+ BOM の使用にはいくつかの欠点があります。 たとえば、BOM を使用するデータベースフィールドを制限する方法を理解することは困難です。 ファイルの連結も問題になることがあります。たとえば、不要な文字がデータの途中で終了するような方法でファイルをマージする場合などです。 ただし、いくつかの欠点がありますが、BOM を使用することを強くお勧めします。  
+  
+ バイト順とバイト順マークの詳細については、unicode[ホームページ](https://go.microsoft.com/fwlink/?LinkId=37123)の unicode 標準を参照してください。  
+  
+> [!IMPORTANT]
+>  エンコードされたバイトがファイルまたはストリームとして保存されるときに適切にデコードされるようにするには、エンコードされたバイトのストリームの先頭にプリアンブルを付けることができます。 メソッドは、 <xref:System.Text.UTF8Encoding.GetBytes%2A> bom をエンコードされたバイトシーケンスに付加しないことに注意してください。適切なバイトストリームの先頭に bom を指定することは、開発者の責任です。
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
   </Members>
