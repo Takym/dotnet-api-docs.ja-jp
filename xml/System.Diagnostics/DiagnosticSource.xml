@@ -1,5 +1,5 @@
 <Type Name="DiagnosticSource" FullName="System.Diagnostics.DiagnosticSource">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e4e02866434c5d718f1e5b5791fa4eb7fa1c5428" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68540884" /></Metadata><TypeSignature Language="C#" Value="public abstract class DiagnosticSource" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f7c25e47e6d8703bd6ae6526b806dc841b20080e" /><Meta Name="ms.sourcegitcommit" Value="43c8e74d92c78325492baf27e41b400443f0dfbf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/08/2019" /><Meta Name="ms.locfileid" Value="68859004" /></Metadata><TypeSignature Language="C#" Value="public abstract class DiagnosticSource" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DiagnosticSource extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DiagnosticSource" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DiagnosticSource" />
@@ -41,7 +41,7 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary><see cref="T:System.Diagnostics.DiagnosticSource" /> クラスのインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -137,15 +137,15 @@
         <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="activity">To be added.</param>
-        <param name="payload">To be added.</param>
+        <param name="activity">外部イベントの影響を受けるアクティビティ。</param>
+        <param name="payload">送信要求を表すオブジェクト。</param>
         <summary>送信される HTTP 要求など、プロセスの外で発生するイベントまたは操作にアクティビティから状態を転送します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-アクティビティがプロセスを終了する場所 (発信 HTTP 要求など) にあるサイトがある場合、そのサイトはアクティビティから発信要求に状態を転送する必要があります。
+インストルメンテーションサイトが、アクティビティがプロセスを終了する場所 (送信 HTTP 要求など) にある場合、そのサイトはアクティビティから発信要求に状態を転送する必要があります。
 
-これは、インストルメンテーションサイトによって実行される必要があります。これは、 <xref:System.Diagnostics.Activity>と、インストルメンテーションサイトでの ougoing 要求ロジックとの間にコントラクトがあるためです。   ただし、インストルメンテーションサイトでは、ポリシーを処理することはできません (たとえば、互換性上の理由から、アクティビティ情報を無効にするか、古い形式で記述する必要があるかなど)。
+これは、インストルメンテーションサイトの<xref:System.Diagnostics.Activity>との間にコントラクトがあるため、インストルメンテーションサイトで可能な限り実行する必要があります。   ただし、インストルメンテーションサイトではポリシーを処理できません (たとえば、互換性上の理由から、アクティビティ情報を無効にするか、以前の形式で記述する必要があるかなど)。
 この場合、インストルメンテーションサイトでは、ログシステムにコールバックし、ポリシーを解決するように要求する必要があります。 これは、 `OnActivityExport`メソッドの目的です。
 
 メソッド`OnActivityExport`には、 <xref:System.Diagnostics.Activity>送信要求を表すペイロードオブジェクトと共にが与えられます。 サブスクライバー <xref:System.Diagnostics.DiagnosticSource>は、送信前に送信要求を更新することができます。
@@ -183,7 +183,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-着信 HTTP 要求など、プロセス外のイベントに応答して新しいアクティビティを作成する場合は、 `OnActivityImport`メソッドを使用して、そのサイトで新しいアクティビティを作成し、状態を受信要求からに転送することができます。演習. 
+インストルメンテーションサイトが、プロセス外の HTTP 要求`OnActivityImport`などの何らかのイベントに応答して新しいアクティビティを作成する場合、メソッドによって、そのサイトは新しいアクティビティを作成し、受信要求から演習. 
 
 インストルメンテーションサイトでは、 <xref:System.Diagnostics.Activity>との間の要求ロジックとの間にコントラクトがあるため、これは可能な限りインストルメンテーションサイトで行う必要があります。   ただし、インストルメンテーションサイトではポリシーを処理できません。 (たとえば、サンプリングが実行された場合は、どの要求をサンプリングする必要がありますか。)このような場合、インストルメンテーションサイトでは、ログシステムにコールバックし、ポリシーを解決するように要求する必要があります (たとえば、アクティビティの "サンプリング" ビットを設定する必要があるかどうかを判断する場合など)。 これは、 `OnActivityImport`メソッドの目的です。 これには、アクティビティと、着信要求を表すペイロードオブジェクトが付与されます。 その後、の<xref:System.Diagnostics.DiagnosticSource>サブスクライバーは、このアクティビティを必要に応じて更新できます。 
 

@@ -1,5 +1,5 @@
 <Type Name="WindowsRuntimeStorageExtensions" FullName="System.IO.WindowsRuntimeStorageExtensions">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f536cba5b3add0b256e2534ec907b30a860b209" /><Meta Name="ms.sourcegitcommit" Value="4ee26ac79338b0bf99fa1e0913e8a06b21994d8e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/26/2019" /><Meta Name="ms.locfileid" Value="58453910" /></Metadata><TypeSignature Language="C#" Value="public static class WindowsRuntimeStorageExtensions" />
+  <TypeSignature Language="C#" Value="public static class WindowsRuntimeStorageExtensions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit WindowsRuntimeStorageExtensions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.IO.WindowsRuntimeStorageExtensions" />
   <TypeSignature Language="VB.NET" Value="Public Module WindowsRuntimeStorageExtensions" />
@@ -26,25 +26,25 @@
 
 ## Remarks
 
-これらの拡張メソッドは、Windows ストア アプリを開発する場合にのみ使用します。 メソッドは、Windows ストア アプリで読み取りまたは書き込みのファイルのオープンの便利な手段を提供します。 インスタンスを作成しない、`WindowsRuntimeStorageExtensions`クラスのインスタンスからこれらのメソッドを使用する代わりに、ことは、<xref:Windows.Storage.IStorageFile>と<xref:Windows.Storage.IStorageFolder>インターフェイス。
+これらの拡張メソッドは、Windows ストアアプリを開発する場合にのみ使用できます。 これらのメソッドは、Windows ストアアプリで読み取りまたは書き込みを行うためにファイルを開く便利な方法を提供します。 `WindowsRuntimeStorageExtensions`クラスのインスタンスを作成するのではなく、インターフェイス<xref:Windows.Storage.IStorageFile>と<xref:Windows.Storage.IStorageFolder>インターフェイスのインスタンスからこれらのメソッドを使用します。
 
-`WindowsRuntimeStorageExtensions`クラスには拡張する 2 つのメソッドが含まれています<xref:Windows.Storage.IStorageFile>の読み取りまたは書き込み。
+クラス`WindowsRuntimeStorageExtensions`には、読み取りまたは<xref:Windows.Storage.IStorageFile>書き込みのためにを拡張する2つのメソッドが含まれています。
 
   - <xref:System.IO.WindowsRuntimeStorageExtensions.OpenStreamForReadAsync(Windows.Storage.IStorageFile)>
   - <xref:System.IO.WindowsRuntimeStorageExtensions.OpenStreamForWriteAsync(Windows.Storage.IStorageFile)>
 
-WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッドが含まれています<xref:Windows.Storage.IStorageFolder>の読み取りと書き込み。
+Windowsruntimestorageextensions クラスには、読み取りと書き込み<xref:Windows.Storage.IStorageFolder>のためにを拡張する2つのメソッドが含まれています。
   - <xref:System.IO.WindowsRuntimeStorageExtensions.OpenStreamForReadAsync(Windows.Storage.IStorageFolder,System.String)>
   - <xref:System.IO.WindowsRuntimeStorageExtensions.OpenStreamForWriteAsync(Windows.Storage.IStorageFolder,System.String,Windows.Storage.CreationCollisionOption)>
 
 ## Examples
 
-次の例は、アプリケーション データとして、ファイルを開く方法を示しています、 <xref:System.IO.Stream> Windows ストア アプリ、およびのインスタンスを使用して、書き込み、<xref:System.IO.StreamWriter>クラス。 インスタンスを使用し、ファイルの内容を読み取り、<xref:System.IO.StreamReader>クラス。
+次の例は、Windows ストアアプリ<xref:System.IO.Stream>でアプリケーションデータのファイルをとして開き、 <xref:System.IO.StreamWriter>クラスのインスタンスを使用してそのファイルに書き込む方法を示しています。 次に、 <xref:System.IO.StreamReader>クラスのインスタンスを使用して、ファイルの内容を読み取ります。
 
 [!code-csharp[windowsruntimestorageextensions#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage4.xaml.cs#8)]
 [!code-vb[windowsruntimestorageextensions#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage4.xaml.vb#8)]
 
-次の例では、前の例に関連付けられている XAML コードを示します。 
+次の例は、前の例に関連付けられている XAML コードを示しています。 
 
 [!code-xaml[windowsruntimestorageextensions#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage4.xaml#7)]
 
@@ -52,6 +52,27 @@ WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッド
     </remarks>
   </Docs>
   <Members>
+    <MemberGroup MemberName="CreateSafeFileHandle">
+      <AssemblyInfo>
+        <AssemblyName>System.Runtime.WindowsRuntime</AssemblyName>
+        <AssemblyVersion>4.0.14.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Docs>
+        <summary>拡張される IStorage インスタンスのセーフ ファイル ハンドルへの参照を作成して返します。</summary>
+        <remarks>
+          <format type="text/markdown">
+        
+
+## Remarks
+
+Windows 10 の記念日更新では<xref:Windows.Storage.IStorageFolder> 、および`IStorageFolderHandleAccess`と<xref:Windows.Storage.IStorageFile> `IStorageItemHandleAccess`いう標準の Win32 ファイルハンドルの作成を可能にする新しいインターフェイスがに追加されました。 拡張`CreateSafeFileHandle`メソッドのグループは、これらのインターフェイス`Create`のメソッドを利用します。
+
+API の主な利点は、仲介`SafeFileHandle`型にアクセスすることです。 これは、 [AppContainer](https://docs.microsoft.com/en-us/windows/win32/secauthz/appcontainer-isolation)でを実行している<xref:System.IO.FileStream>ときに<xref:Windows.Storage.IStorageItem>また<xref:Windows.Storage.IStorageFolder>はの周りでを作成する場合に非常に重要です。 AppContainer で実行する場合、アプリケーションにはファイルアクセス権が非常に制限されています。 画像やドキュメントフォルダーなどでは、アプリケーションプロセス自体がほとんどのファイル`RuntimeBroker.exe`に対する権限を持っていないため、ネイティブファイルハンドルは経由でプロキシされる必要があります。 この API は、プロキシ処理されたハンドルを取得します。 ユーザーデータフォルダーにアクセスする場合、またはファイルピッカーを使用する場合、この API <xref:System.IO.FileStream>は常にを作成するために使用する必要があります。 多くの場合、パスを<xref:System.AccessViolationException>使用すると、このような場合にがスローされます。
+
+             </format>
+        </remarks>
+      </Docs>
+    </MemberGroup>
     <Member MemberName="CreateSafeFileHandle">
       <MemberSignature Language="C#" Value="public static Microsoft.Win32.SafeHandles.SafeFileHandle CreateSafeFileHandle (this Windows.Storage.IStorageFolder rootDirectory, string relativePath, System.IO.FileMode mode);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Microsoft.Win32.SafeHandles.SafeFileHandle CreateSafeFileHandle(class Windows.Storage.IStorageFolder rootDirectory, string relativePath, valuetype System.IO.FileMode mode) cil managed" />
@@ -78,12 +99,27 @@ WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッド
         <Parameter Name="mode" Type="System.IO.FileMode" Index="2" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="rootDirectory">To be added.</param>
-        <param name="relativePath">To be added.</param>
-        <param name="mode">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="rootDirectory">現在のストレージ フォルダー インスタンス。</param>
+        <param name="relativePath">ハンドルを取得する対象のファイルの名前。</param>
+        <param name="mode">オペレーティング システムでファイルを開く必要があるモード。</param>
+        <summary>現在のストレージ フォルダー インスタンス内にあるファイルのセーフ ファイル ハンドルを作成します。</summary>
+        <returns>操作が成功した場合は、セーフ ファイル ハンドル インスタンス。<paramref name="rootDirectory" /> の IStorageFolderHandleAccess への変換で <see langword="null" /> が返された場合は、<see langword="null" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+このメソッドを呼び出すと、指定され<xref:System.IO.FileMode.Append?displayProperty=nameWithType>たモードがの場合、ファイル<xref:System.IO.FileAccess.Read?displayProperty=nameWithType>はアクセス許可で開かれます。 その他のモードでは、ファイルはアクセス許可<xref:System.IO.FileAccess.ReadWrite?displayProperty=nameWithType>を使用して開かれます。
+
+さらに、このメソッドは、ストリーム共有<xref:System.IO.FileShare.Read?displayProperty=nameWithType>アクセス<xref:System.IO.FileOptions.None?displayProperty=nameWithType>および高度なファイル作成オプションを使用してファイルを開きます。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="rootDirectory" /> が <see langword="null" /> です。
+
+- または -
+
+<paramref name="relativePath" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="CreateSafeFileHandle">
@@ -112,13 +148,14 @@ WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッド
         <Parameter Name="options" Type="System.IO.FileOptions" Index="3" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="windowsRuntimeFile">To be added.</param>
-        <param name="access">To be added.</param>
-        <param name="share">To be added.</param>
-        <param name="options">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="windowsRuntimeFile">ストレージ ファイル インスタンス。</param>
+        <param name="access">ファイルを開くときに使用する必要があるアクセスの種類。 既定値は <see cref="F:System.IO.FileAccess.ReadWrite" /> です。</param>
+        <param name="share">同じファイルに対して他の <see cref="T:System.IO.FileStream" /> オブジェクトから可能なストリーム共有アクセスの種類。 既定値は <see cref="F:System.IO.FileShare.Read" /> です。</param>
+        <param name="options"><see cref="T:System.IO.FileStream" /> オブジェクトを作成するための詳細オプション。 既定値は <see cref="F:System.IO.FileOptions.None" /> です。</param>
+        <summary>現在のストレージ ファイル インスタンスのセーフ ファイル ハンドルを作成します。</summary>
+        <returns>操作が成功した場合は、セーフ ファイル ハンドル インスタンス。<paramref name="windowsRuntimeFile" /> の IStorageItemHandleAccess への変換で <see langword="null" /> が返された場合は、<see langword="null" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="windowsRuntimeFile" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="CreateSafeFileHandle">
@@ -149,15 +186,20 @@ WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッド
         <Parameter Name="options" Type="System.IO.FileOptions" Index="5" FrameworkAlternate="dotnet-plat-ext-3.0" />
       </Parameters>
       <Docs>
-        <param name="rootDirectory">To be added.</param>
-        <param name="relativePath">To be added.</param>
-        <param name="mode">To be added.</param>
-        <param name="access">To be added.</param>
-        <param name="share">To be added.</param>
-        <param name="options">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="rootDirectory">現在のストレージ フォルダー インスタンス。</param>
+        <param name="relativePath">ハンドルを取得する対象のファイルの名前。</param>
+        <param name="mode">オペレーティング システムでファイルを開く必要があるモード。</param>
+        <param name="access">ファイルを開くときに使用する必要があるアクセスの種類。</param>
+        <param name="share">同じファイルに対して他の <see cref="T:System.IO.FileStream" /> オブジェクトから可能なストリーム共有アクセスの種類。 既定値は <see cref="F:System.IO.FileShare.Read" /> です。</param>
+        <param name="options"><see cref="T:System.IO.FileStream" /> オブジェクトを作成するための詳細オプション。 既定値は <see cref="F:System.IO.FileOptions.None" /> です。</param>
+        <summary>現在のストレージ フォルダー インスタンス内にあるファイルのセーフ ファイル ハンドルを作成します。</summary>
+        <returns>操作が成功した場合は、セーフ ファイル ハンドル インスタンス。<paramref name="rootDirectory" /> の IStorageFolderHandleAccess への変換で <see langword="null" /> が返された場合は、<see langword="null" />。</returns>
         <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="rootDirectory" /> は <see langword="null" />です。
+
+- または -
+
+<paramref name="relativePath" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="OpenStreamForReadAsync">
@@ -193,16 +235,16 @@ WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッド
 ## Remarks
 
 > [!NOTE]
-> Visual Basic とC#、このメソッドは、型のオブジェクトのインスタンス メソッドとして呼び出すことができます<xref:Windows.Storage.IStorageFile>します。 インスタンス メソッド構文を使用してこのメソッドを呼び出す場合は、最初のパラメーターを省略します。 詳細については、次を参照してください。[拡張メソッド (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)または[拡張メソッド (C#プログラミング ガイド)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)します。
+> Visual Basic とC#では、このメソッドを型<xref:Windows.Storage.IStorageFile>の任意のオブジェクトのインスタンスメソッドとして呼び出すことができます。 インスタンス メソッド構文を使用してこのメソッドを呼び出す場合は、最初のパラメーターを省略します。 詳細については、「[拡張メソッド (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md) 」または「[拡張メソッド (C#プログラミングガイド)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)」を参照してください。
 
 ## Examples
 
-次の例として、ファイルを開く方法を示しています、 <xref:System.IO.Stream> Windows ストア アプリでのインスタンスを使用してその内容を読み取ると、<xref:System.IO.StreamReader>クラス。
+次の例は、Windows ストアアプリ<xref:System.IO.Stream>でファイルをとして開き、 <xref:System.IO.StreamReader>クラスのインスタンスを使用してその内容を読み取る方法を示しています。
 
 [!code-csharp[windowsruntimestorageextensions#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage.xaml.cs#2)]
 [!code-vb[windowsruntimestorageextensions#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage.xaml.vb#2)]
 
-次の例では、前の例に関連付けられている XAML コードを示します。 
+次の例は、前の例に関連付けられている XAML コードを示しています。 
 
 [!code-xaml[windowsruntimestorageextensions#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage.xaml#1)]
 
@@ -248,16 +290,16 @@ WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッド
 ## Remarks
 
 > [!NOTE]
-> Visual Basic とC#、IStorageFolder の種類のオブジェクトのインスタンス メソッドとして、このメソッドを呼び出すことができます。 インスタンス メソッド構文を使用してこのメソッドを呼び出す場合は、最初のパラメーターを省略します。 詳細については、次を参照してください。[拡張メソッド (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)または[拡張メソッド (C#プログラミング ガイド)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)します。
+> Visual Basic とC#では、IStorageFolder 型のオブジェクトのインスタンスメソッドとしてこのメソッドを呼び出すことができます。 インスタンス メソッド構文を使用してこのメソッドを呼び出す場合は、最初のパラメーターを省略します。 詳細については、「[拡張メソッド (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md) 」または「[拡張メソッド (C#プログラミングガイド)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)」を参照してください。
 
 ## Examples
 
-次の例として、ファイルを開く方法を示しています、 <xref:System.IO.Stream> Windows ストア アプリでのインスタンスを使用してその内容を読み取ると、<xref:System.IO.StreamReader>クラス。
+次の例は、Windows ストアアプリ<xref:System.IO.Stream>でファイルをとして開き、 <xref:System.IO.StreamReader>クラスのインスタンスを使用してその内容を読み取る方法を示しています。
 
 [!code-csharp[windowsruntimestorageextensions#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage2.xaml.cs#4)]
 [!code-vb[windowsruntimestorageextensions#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage2.xaml.vb#4)]
 
-次の例では、前の例に関連付けられている XAML コードを示します。 
+次の例は、前の例に関連付けられている XAML コードを示しています。 
 
 [!code-xaml[windowsruntimestorageextensions#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage2.xaml#3)]
 
@@ -301,22 +343,22 @@ WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッド
 ## Remarks
 
 > [!NOTE]
-> Visual Basic とC#、このメソッドは、型のオブジェクトのインスタンス メソッドとして呼び出すことができます<xref:Windows.Storage.IStorageFile>します。 インスタンス メソッド構文を使用してこのメソッドを呼び出す場合は、最初のパラメーターを省略します。 詳細については、次を参照してください。[拡張メソッド (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)または[拡張メソッド (C#プログラミング ガイド)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)します。
+> Visual Basic とC#では、このメソッドを型<xref:Windows.Storage.IStorageFile>の任意のオブジェクトのインスタンスメソッドとして呼び出すことができます。 インスタンス メソッド構文を使用してこのメソッドを呼び出す場合は、最初のパラメーターを省略します。 詳細については、「[拡張メソッド (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md) 」または「[拡張メソッド (C#プログラミングガイド)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)」を参照してください。
 
 ## Examples
 
-次の例として、ファイルを開く方法を示しています、 <xref:System.IO.Stream> Windows ストア アプリ、およびのインスタンスを使用して、書き込み、<xref:System.IO.StreamReader>クラス。
+次の例は、Windows ストアアプリ<xref:System.IO.Stream>でファイルをとして開き、 <xref:System.IO.StreamReader>クラスのインスタンスを使用してファイルに書き込む方法を示しています。
 
 [!code-csharp[windowsruntimestorageextensions#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage3.xaml.cs#6)]
 [!code-vb[windowsruntimestorageextensions#6](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage3.xaml.vb#6)]
 
-次の例では、前の例に関連付けられている XAML コードを示します。 
+次の例は、前の例に関連付けられている XAML コードを示しています。 
 
 [!code-xaml[windowsruntimestorageextensions#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage3.xaml#5)]
 
 ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="windowsRuntimeFile" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="windowsRuntimeFile" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.IOException">ファイルを開くことができなかったか、ストリームとして取得できませんでした。</exception>
       </Docs>
     </Member>
@@ -357,16 +399,16 @@ WindowsRuntimeStorageExtensions クラスには拡張する 2 つのメソッド
 ## Remarks
 
 > [!NOTE]
-> Visual Basic とC#、このメソッドは、型のオブジェクトのインスタンス メソッドとして呼び出すことができます<xref:Windows.Storage.IStorageFolder>します。 インスタンス メソッド構文を使用してこのメソッドを呼び出す場合は、最初のパラメーターを省略します。 詳細については、次を参照してください。[拡張メソッド (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md)または[拡張メソッド (C#プログラミング ガイド)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)します。
+> Visual Basic とC#では、このメソッドを型<xref:Windows.Storage.IStorageFolder>の任意のオブジェクトのインスタンスメソッドとして呼び出すことができます。 インスタンス メソッド構文を使用してこのメソッドを呼び出す場合は、最初のパラメーターを省略します。 詳細については、「[拡張メソッド (Visual Basic)](~/docs/visual-basic/programming-guide/language-features/procedures/extension-methods.md) 」または「[拡張メソッド (C#プログラミングガイド)](~/docs/csharp/programming-guide/classes-and-structs/extension-methods.md)」を参照してください。
 
 ## Examples
 
-次の例として、ファイルを開く方法を示しています、 <xref:System.IO.Stream> Windows ストア アプリ、およびのインスタンスを使用して、書き込み、<xref:System.IO.StreamReader>クラス。
+次の例は、Windows ストアアプリ<xref:System.IO.Stream>でファイルをとして開き、 <xref:System.IO.StreamReader>クラスのインスタンスを使用してファイルに書き込む方法を示しています。
 
 [!code-csharp[windowsruntimestorageextensions#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage4.xaml.cs#8)]
 [!code-vb[windowsruntimestorageextensions#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/vb/blankpage4.xaml.vb#8)]
 
-次の例では、前の例に関連付けられている XAML コードを示します。 
+次の例は、前の例に関連付けられている XAML コードを示しています。 
 
 [!code-xaml[windowsruntimestorageextensions#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.io.windowsruntimestorageextensions/cs/blankpage4.xaml#7)]
 

@@ -1,5 +1,5 @@
 <Type Name="DiagnosticListener" FullName="System.Diagnostics.DiagnosticListener">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4763ab72c8ad9e4816cfcecd2fa46cbf44e165de" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68543200" /></Metadata><TypeSignature Language="C#" Value="public class DiagnosticListener : System.Diagnostics.DiagnosticSource, IDisposable, IObservable&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt;" />
+  <TypeSignature Language="C#" Value="public class DiagnosticListener : System.Diagnostics.DiagnosticSource, IDisposable, IObservable&lt;System.Collections.Generic.KeyValuePair&lt;string,object&gt;&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DiagnosticListener extends System.Diagnostics.DiagnosticSource implements class System.IDisposable, class System.IObservable`1&lt;valuetype System.Collections.Generic.KeyValuePair`2&lt;string, object&gt;&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DiagnosticListener" />
   <TypeSignature Language="VB.NET" Value="Public Class DiagnosticListener&#xA;Inherits DiagnosticSource&#xA;Implements IDisposable, IObservable(Of KeyValuePair(Of String, Object))" />
@@ -28,8 +28,13 @@
   <Docs>
     <summary>ソースがその情報を送信する (イベント) 名前付きの場所を表す抽象 <see cref="T:System.Diagnostics.DiagnosticSource" /> クラスの実装を提供します。</summary>
     <remarks>
-      <format type="text/markdown"><![CDATA[
-        
+      <format type="text/markdown">
+  <![CDA
+
+## Remarks
+
+`DiagnosticListener`は notificationsource です。つまり、返された結果を使用して通知をログに記録できます<xref:System.Diagnostics.DiagnosticListener.Subscribe%2A>が、通知を任意の方法で転送できるようにする方法もあります。 そのため、ジョブはプロデューサーからすべてのリスナー (マルチキャスト) に項目を転送します。 一般に、独自<xref:System.Diagnostics.DiagnosticListener>のを作成するのではなく、既定値を使用して、通知が可能な限りパブリックになるようにする必要があります。
+
 クラス<xref:System.Diagnostics.DiagnosticSource> と<xref:System.Diagnostics.DiagnosticListener>クラスの詳細については、「 [DiagnosticSource User Guide](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md)」を参照してください。
 
         ]]></format>
@@ -59,13 +64,7 @@
       <Docs>
         <param name="name">この <see cref="T:System.Diagnostics.DiagnosticListener" /> の名前。</param>
         <summary>新しい <see cref="T:System.Diagnostics.DiagnosticListener" /> を作成します。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-
-`DiagnosticListener`は notificationsource です。つまり、返された結果を使用して通知をログに記録できます<xref:System.Diagnostics.DiagnosticListener.Subscribe%2A>が、通知を任意の方法で転送できるようにする方法もあります。 そのため、ジョブはプロデューサーからすべてのリスナー (マルチキャスト) に項目を転送します。 一般に、独自<see cref="T:System.Diagnostics.DiagnosticListener" />のを作成するのではなく、既定値を使用して、通知が可能な限りパブリックになるようにする必要があります。
- 
-         ]]></format>
-        </remarks>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="AllListeners">
@@ -266,9 +265,9 @@
         <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="activity">To be added.</param>
-        <param name="payload">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="activity">外部イベントの影響を受けるアクティビティ。</param>
+        <param name="payload">送信要求を表すオブジェクト。</param>
+        <summary>すべてのサブスクライバーの OnActivityExport メソッドを呼び出します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -291,9 +290,9 @@
         <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="activity">To be added.</param>
-        <param name="payload">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="activity">外部イベントの影響を受けるアクティビティ。</param>
+        <param name="payload">受信要求を表すオブジェクト。</param>
+        <summary>すべてのサブスクライバーの OnActivityImport メソッドを呼び出します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -437,10 +436,10 @@
         <Parameter Name="onActivityExport" Type="System.Action&lt;System.Diagnostics.Activity,System.Object&gt;" Index="3" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="observer">To be added.</param>
-        <param name="isEnabled">To be added.</param>
-        <param name="onActivityImport">To be added.</param>
-        <param name="onActivityExport">To be added.</param>
+        <param name="observer">サブスクライバーです。</param>
+        <param name="isEnabled">その名前と最大 2 つのコンテキスト オブジェクト (<see langword="null" /> が可能) に基づいてイベントをフィルタリングするデリゲートです。あるいは、イベント フィルターが望ましくない場合、<see langword="null" />。</param>
+        <param name="onActivityImport">外部イベントの影響を受けるアクティビティを受け取るアクション デリゲートおよび受信要求を表すオブジェクトです。</param>
+        <param name="onActivityExport">外部イベントの影響を受けるアクティビティを受け取るアクション デリゲートおよび送信要求を表すオブジェクトです。</param>
         <summary>サブスクライバーを追加し、任意で、その名前と最大 2 つのコンテキスト オブジェクトに基づいてイベントをフィルタリングし、プロバイダーがプロセスの外からアクティビティをインポートまたはエクスポートするときに呼び出すメソッドを指定します。</summary>
         <returns><see cref="T:System.Diagnostics.DiagnosticSource" /> が通知の送信を完了する前に、リスナーが通知の受信を停止できるインターフェイスへの参照。</returns>
         <remarks>

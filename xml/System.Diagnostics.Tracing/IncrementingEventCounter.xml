@@ -1,5 +1,5 @@
 <Type Name="IncrementingEventCounter" FullName="System.Diagnostics.Tracing.IncrementingEventCounter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a4d200a548b8301ed771729f2eb4ccfd0f28445c" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68540013" /></Metadata><TypeSignature Language="C#" Value="public class IncrementingEventCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="087f04e4f5d30e7b8b28f44158902f0c69032712" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68906882" /></Metadata><TypeSignature Language="C#" Value="public class IncrementingEventCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit IncrementingEventCounter extends System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Tracing.IncrementingEventCounter" />
   <TypeSignature Language="VB.NET" Value="Public Class IncrementingEventCounter&#xA;Inherits DiagnosticCounter" />
@@ -18,7 +18,11 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
 
-`IncrementingEventCounter`は、平均や標準偏差などの統計を計算しません。これは、カウンター値のみを蓄積するためです。
+## Remarks
+
+`IncrementingEventCounter`は、要求の合計数、スローされた例外の合計数など、常に増加している値を追跡するために使用されます。このようなメトリックについては、単に合計値を報告するだけでは、正常性の監視に役立つとは限りません。 たとえば、プロセスの全期間にわたって割り当てられたバイト数を追跡しておくと、メモリの割り当てが過剰になる可能性がある問題を診断するのには役立ちません。 このメトリックは、過去1分、1時間、または任意の期間に割り当てられたバイト数であり、プロセスの全体としてではありません。 `IncrementingEventCounter`を使用すると、メトリックのコンシューマーによって指定された時間間隔でのインクリメントだけを追跡し、報告することができます。
+
+`IncrementingEventCounter`平均や標準偏差などの統計を計算しません。これは、一定期間の増加を追跡するだけであるためです。
 
     ]]></format>
     </remarks>
@@ -46,7 +50,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-イベントカウンターが明示的に破棄さ<see cref="T:System.Diagnostics.Tracing.EventSource" />れていない限り、アタッチされているである限り、イベントカウンターの増分を維持します。
+## Remarks
+
+<xref:System.Diagnostics.Tracing.IncrementingEventCounter>明示的に破棄さ<xref:System.Diagnostics.Tracing.EventSource>れていない限り、アタッチされていると同じ長さのライブ。
 
          ]]></format>
         </remarks>
@@ -68,9 +74,17 @@
         <ReturnType>System.TimeSpan</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>このメトリックを表示する頻度を取得します。値の設定も可能です。</summary>
+        <value>このメトリックを表示する速度を取得します。値の設定も可能です。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+
+## Remarks
+
+`DisplayRateTimeScale`プロパティの値は、ペイロードに文字列として含まれます。
+
+         ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Increment">
@@ -113,8 +127,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>インクリメントされる現在のイベント カウンター インスタンスの文字列形式を返します。</summary>
+        <returns>インクリメントされる現在のイベント カウンターの名前および増分値。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

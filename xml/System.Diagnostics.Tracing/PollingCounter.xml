@@ -1,5 +1,5 @@
 <Type Name="PollingCounter" FullName="System.Diagnostics.Tracing.PollingCounter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="de7fa120fc4ba761c0de31760a68875f6500e72c" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68539963" /></Metadata><TypeSignature Language="C#" Value="public class PollingCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0fd828e9646ba65d166367916d42a99f59de8ff2" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68906769" /></Metadata><TypeSignature Language="C#" Value="public class PollingCounter : System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PollingCounter extends System.Diagnostics.Tracing.DiagnosticCounter" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Tracing.PollingCounter" />
   <TypeSignature Language="VB.NET" Value="Public Class PollingCounter&#xA;Inherits DiagnosticCounter" />
@@ -18,7 +18,15 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
 
-`PollingCounter`は、ユーザーが毎回を呼び出す<see cref="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Double)" />必要がないように、コールバック関数を利用して独自のメトリックを収集するという点で、とは異なります。<see cref="T:System.Diagnostics.Tracing.EventCounter" />
+## Remarks
+
+<xref:System.Diagnostics.Tracing.PollingCounter>は、コールバック<xref:System.Diagnostics.Tracing.EventCounter>メソッドを使用して値をポーリングするのバリアントで、値を追跡する<xref:System.Diagnostics.Tracing.EventCounter.WriteMetric%2A?displayProperty=nameWithType>たびにライターが明示的に`metricProvider`呼び出す必要はありません。は、値をポーリングするコールバックメソッドです。 インスタンス<xref:System.Diagnostics.Tracing.PollingCounter>は、リスナーによって要求され`metricProvider`た間隔で1回だけを呼び出すことによって取得された値をポーリングして報告します。 
+
+は<xref:System.Diagnostics.Tracing.PollingCounter> 、明示的に破棄<xref:System.Diagnostics.Tracing.EventSource>されていない限り、アタッチされていると同じ長さになります。
+
+`PollingCounter`は、ユーザーが毎回を呼び出す<xref:System.Diagnostics.Tracing.EventCounter.WriteMetric%2A>必要がないように、コールバック関数を利用して独自のメトリックを収集するという点で、とは異なります。<xref:System.Diagnostics.Tracing.EventCounter>
+
+ランタイムの内部でランタイム<xref:System.Diagnostics.Tracing.PollingCounter>パフォーマンスカウンターを使用する例については、GitHub の[runtimeeventsource](https://github.com/dotnet/coreclr/blob/master/src/System.Private.CoreLib/src/System/Diagnostics/Eventing/RuntimeEventSource.cs)の CoreCLR ソースを参照してください。
 
       ]]></format>
     </remarks>
@@ -43,15 +51,9 @@
       <Docs>
         <param name="name">この <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> インスタンスの名前。</param>
         <param name="eventSource">イベント ソース。</param>
-        <param name="metricProvider">To be added.</param>
+        <param name="metricProvider">値のポーリングに使用するメソッド。</param>
         <summary><see cref="T:System.Diagnostics.Tracing.PollingCounter" /> クラスの新しいインスタンスを初期化します。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-
-ポーリングカウンターは、明示的に<see cref="T:System.Diagnostics.Tracing.EventSource" />破棄されていない限り、アタッチされているとして有効です。
-
-        ]]></format>
-        </remarks>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="ToString">
@@ -71,8 +73,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>現在のポーリング カウンター インスタンスの文字列形式を返します。</summary>
+        <returns>現在のポーリング カウンターの名前と平均値。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
