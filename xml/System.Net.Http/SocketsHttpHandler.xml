@@ -1,5 +1,5 @@
 <Type Name="SocketsHttpHandler" FullName="System.Net.Http.SocketsHttpHandler">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="652ff7e690e9dc802e86546a417b0b84424b85f7" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67237798" /></Metadata><TypeSignature Language="C#" Value="public sealed class SocketsHttpHandler : System.Net.Http.HttpMessageHandler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f45af4dd43abcc12125dbcd2b935b829949aeb9d" /><Meta Name="ms.sourcegitcommit" Value="8af6a5b7dc34602affd2891b564c1f359eb643a2" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/13/2019" /><Meta Name="ms.locfileid" Value="68984183" /></Metadata><TypeSignature Language="C#" Value="public sealed class SocketsHttpHandler : System.Net.Http.HttpMessageHandler" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SocketsHttpHandler extends System.Net.Http.HttpMessageHandler" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.SocketsHttpHandler" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SocketsHttpHandler&#xA;Inherits HttpMessageHandler" />
@@ -18,17 +18,17 @@
     <remarks>
       <format type="text/markdown"><![CDATA[
 
-.NET Core 2.1 では、以降、`SocketsHttpHandler`クラスなどの上位レベルの HTTP ネットワーク クラスで使用される実装を提供<xref:System.Net.Http.HttpClient>します。 使用`SocketsHttpHandler`いくつかの利点を提供しています。
+.Net Core 2.1 以降、クラスは`SocketsHttpHandler` 、など<xref:System.Net.Http.HttpClient>の上位レベルの HTTP ネットワーククラスで使用される実装を提供します。 の`SocketsHttpHandler`使用には、次のようないくつかの利点があります。
 
 - 以前の実装と比較して、パフォーマンスが大幅に向上しています。
 
-- 展開とサービスを簡略化するプラットフォームの依存関係を除去します。 たとえば、 `libcurl` macOS と .NET Core の .NET Core への依存関係を for Linux が不要になった。
+- プラットフォームの依存関係を削除することで、デプロイとサービスが簡単になります。 たとえば、は`libcurl` 、macOS 用の .net core と Linux 用の .net core に依存しなくなりました。
 
-- すべての .NET プラットフォーム間で一貫性のある動作。
+- すべての .NET プラットフォームでの一貫した動作。
 
-この変更が望ましくない場合は、旧バージョンを使用するアプリケーションを構成することができます<xref:System.Net.Http.HttpClientHandler?displayProperty=nameWithType>クラスの代わりにさまざまな方法で。
+この変更が望ましくない場合は、古い<xref:System.Net.Http.HttpClientHandler?displayProperty=nameWithType>クラスを使用するようにアプリケーションを構成できます。これには、次のようなさまざまな方法があります。
 
-- 呼び出すことによって、<xref:System.AppContext.SetSwitch%2A?displayProperty=nameWithType>メソッドとして、次のとおりです。
+- 次の<xref:System.AppContext.SetSwitch%2A?displayProperty=nameWithType>ようにメソッドを呼び出します。
 
    ```csharp
    AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
@@ -37,7 +37,7 @@
    ```vb
    AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", False)
    ```
-- 定義することで、`System.Net.Http.UseSocketsHttpHandler`に切り替え、 *. netcore.runtimeconfig.json*構成ファイル。
+- `System.Net.Http.UseSocketsHttpHandler` *. Netcore. runtimeconfig. json*構成ファイルでスイッチを定義します。
 
   ```json
   "runtimeOptions": {
@@ -47,7 +47,7 @@
   }
   ```
 
-- という名前の環境変数を定義することで`DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER`いずれかに設定して`false`または 0。
+- という名前`DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER`の環境変数を定義し、これ`false`をまたは0に設定します。
 
          ]]></format>
     </remarks>
@@ -107,8 +107,8 @@
         <ReturnType>System.Net.DecompressionMethods</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>HTTP コンテンツ応答を自動展開するためにハンドラーによって使用される展開メソッドの種類を取得または設定します。</summary>
+        <value>HTTP コンテンツ応答を自動展開するためにハンドラーによって使用される展開方法の種類。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -149,8 +149,8 @@
         <ReturnType>System.Net.CookieContainer</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>マネージド クッキー コンテナー オブジェクトを取得または設定します。</summary>
+        <value>マネージクッキーコンテナーオブジェクト。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -191,9 +191,15 @@
         <ReturnType>System.Net.ICredentials</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>既定の (システム) プロキシが使用されている場合、認証のために既定のプロキシ サーバーに送信するための使用されている資格情報を取得または設定します。</summary>
+        <value>認証プロキシに対してユーザーを認証するために使用される資格情報。</value>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+既定のプロキシは、<xref:System.Net.Http.SocketsHttpHandler.UseProxy> が `true` に設定され、<xref:System.Net.Http.SocketsHttpHandler.Proxy> が `null` に設定されている場合にのみ使用されます。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -257,8 +263,8 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>許可される HTTP リダイレクトの最大数を取得または設定します。</summary>
+        <value>許可される HTTP リダイレクトの最大数。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -278,8 +284,8 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>1 つのサーバーに対して許可されている同時 TCP 接続の最大数を取得または設定します。</summary>
+        <value>1台のサーバーに対して許可されている同時 TCP 接続の最大数。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -299,9 +305,15 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>応答からドレインできる最大データ量 (バイト単位) を取得または設定します。</summary>
+        <value>応答からドレインできるデータの最大量 (バイト単位)。</value>
+        <remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+ドレインは、要求が取り消された場合、またはコンテンツを完全に読み取る前に応答が破棄された場合に発生します。 ドレインされたバイト数がこの値を超えた場合、接続は再利用されるのではなく、閉じられます。
+
+         ]]></format>
+         </remarks>
       </Docs>
     </Member>
     <Member MemberName="MaxResponseHeadersLength">
@@ -320,9 +332,15 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>応答ヘッダーの最大長 (KB 単位、1 KB = 1024 バイト) を取得または設定します。</summary>
+        <value>サーバー応答のヘッダー部分の最大サイズ (kb 単位)。</value>
+        <remarks><remarks>  
+          <format type="text/markdown"><![CDATA[  
+
+For example, if the value is 64, then 65,536 bytes are allowed for the maximum response headers' length.
+
+         ]]></format>
+         </remarks></remarks>
       </Docs>
     </Member>
     <Member MemberName="PooledConnectionIdleTimeout">
@@ -342,7 +360,7 @@
       </ReturnValue>
       <Docs>
         <summary>再利用可能と見なされるプールで接続がアイドル状態でいられる時間を取得または設定します。</summary>
-        <value>プール内の接続の最大アイドル時間。 このプロパティの既定値は、2 分です。</value>
+        <value>プール内の接続の最大アイドル時間。 このプロパティの既定値は2分です。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentOutOfRangeException">指定された値が <see cref="F:System.TimeSpan.Zero" /> 未満、または <see cref="F:System.Threading.Timeout.InfiniteTimeSpan" /> と等しいです。</exception>
       </Docs>
@@ -384,8 +402,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>ハンドラーが要求と共に認証ヘッダーを送信するかどうかを示す値を取得または設定します。</summary>
+        <value><see langword="true" />ハンドラーが要求と共に認証ヘッダーを送信する場合は。それ以外<see langword="false" />の場合は。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -426,8 +444,8 @@
         <ReturnType>System.Net.IWebProxy</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary> <see cref="P:System.Net.Http.SocketsHttpHandler.UseProxy" /> プロパティが <see langword="true" /> の場合に、カスタム プロキシを取得または設定します。</summary>
+        <value>カスタムプロキシ。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -471,10 +489,10 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" />
       </Parameters>
       <Docs>
-        <param name="request">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="request">送信する HTTP 要求メッセージ。</param>
+        <param name="cancellationToken">キャンセル トークン。</param>
+        <summary>非同期操作として HTTP 要求を送信します。</summary>
+        <returns>非同期操作を表すタスク オブジェクト。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -494,8 +512,8 @@
         <ReturnType>System.Net.Security.SslClientAuthenticationOptions</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>クライアント TLS 認証に使用するオプションのセットを取得または設定します。</summary>
+        <value>クライアントの TLS 認証に使用されるオプションのセット。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
