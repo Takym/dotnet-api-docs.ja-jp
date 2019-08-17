@@ -1,5 +1,5 @@
 <Type Name="Message" FullName="System.ServiceModel.Channels.Message">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ca6a4f2f65a77c3c7ed86ca3093d46725ec6e0ba" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58549668" /></Metadata><TypeSignature Language="C#" Value="public abstract class Message : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1b5099ccaa67b1e991b405f3815d136560eebd57" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69155240" /></Metadata><TypeSignature Language="C#" Value="public abstract class Message : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit Message extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.Message" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Message&#xA;Implements IDisposable" />
@@ -1055,10 +1055,10 @@
       <Docs>
         <param name="localName">XML ノードのローカル名。  
   
-このメンバーに対応する要素の名前。 この文字列は、有効な XML 要素名であることが必要です。</param>
+ このメンバーに対応する要素の名前。 この文字列は、有効な XML 要素名であることが必要です。</param>
         <param name="ns">この XML 要素が属する名前空間。  
   
-このメンバーに対応する要素の名前空間 URI。 システムでは、トランスポート アドレス以外の URI は検証されません。</param>
+ このメンバーに対応する要素の名前空間 URI。 システムでは、トランスポート アドレス以外の URI は検証されません。</param>
         <summary>メッセージ本文の属性を取得します。</summary>
         <returns>メッセージ本文の属性。</returns>
         <remarks>
@@ -1151,9 +1151,9 @@
 ## Remarks  
  <xref:System.ServiceModel.Channels.Message> は、メッセージ内のアプリケーション固有の情報を渡すための拡張機構として使用される 0 個以上のヘッダーを持つことができます。 <xref:System.ServiceModel.Channels.Message.Headers%2A> を使用して、<xref:System.ServiceModel.Channels.MessageHeaders.Add%2A> メソッドを呼び出すことにより、メッセージ ヘッダーをメッセージに追加します。  
   
- Windows Communication Foundation (WCF) は、次の表に示すように、いくつかの定義済みのメッセージのヘッダーを提供します。  
+ Windows Communication Foundation (WCF) では、次の表に示すように、いくつかの定義済みメッセージヘッダーが用意されています。  
   
-|ヘッダー名|ヘッダー名が含まれています。|  
+|ヘッダー名|ヘッダー名を格納します。|  
 |-----------------|-------------------------------|  
 |終了|メッセージのターゲットのロールを格納します。|  
 |アクション|メッセージの処理方法の説明を提供します。|  
@@ -1569,10 +1569,10 @@
       <Docs>
         <param name="localName">XML ノードのローカル名。  
   
-このメンバーに対応する要素の名前。 この文字列は、有効な XML 要素名であることが必要です。</param>
+ このメンバーに対応する要素の名前。 この文字列は、有効な XML 要素名であることが必要です。</param>
         <param name="ns">この XML 要素が属する名前空間。  
   
-このメンバーに対応する要素の名前空間 URI。 システムでは、トランスポート アドレス以外の URI は検証されません。</param>
+ このメンバーに対応する要素の名前空間 URI。 システムでは、トランスポート アドレス以外の URI は検証されません。</param>
         <summary>メッセージ本文の属性が取得されるときに呼び出されます。</summary>
         <returns>メッセージ本文の属性。</returns>
         <remarks>To be added.</remarks>
@@ -1910,7 +1910,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Channels.Message> を使い終わったら、このメソッドを呼び出します。 このメソッドは、<xref:System.ServiceModel.Channels.Message> を使用できない状態にします。 このメソッドを呼び出した後にすべての参照を解放する必要があります、<xref:System.ServiceModel.Channels.Message>ガベージ コレクターがメモリをクリアできるようにする、<xref:System.ServiceModel.Channels.Message>に備わっていました。  
+ <xref:System.ServiceModel.Channels.Message> を使い終わったら、このメソッドを呼び出します。 このメソッドは、<xref:System.ServiceModel.Channels.Message> を使用できない状態にします。 このメソッドを呼び出した後、に含まれてい<xref:System.ServiceModel.Channels.Message> <xref:System.ServiceModel.Channels.Message>たメモリをガベージコレクターが再利用できるように、へのすべての参照を解放する必要があります。  
   
 > [!NOTE]
 >  <xref:System.ServiceModel.Channels.Message> への最後の参照を解放する前に、必ずこのメソッドを呼び出してください。 このメソッドを呼び出さないと、<xref:System.ServiceModel.Channels.Message> オブジェクトが使用しているリソースは、ガベージ コレクターがこのオブジェクトの `Finalize` メソッドを呼び出すまで解放されません。  
@@ -2327,7 +2327,7 @@
         <param name="writer">メッセージの開始本文の書き込みに使用される <see cref="T:System.Xml.XmlDictionaryWriter" /> オブジェクト。</param>
         <summary>指定した <see cref="T:System.Xml.XmlDictionaryWriter" /> を使用して、メッセージの開始本文をシリアル化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteStartEnvelope">
@@ -2363,7 +2363,7 @@
         <param name="writer">開始エンベロープの書き込みに使用される <see cref="T:System.Xml.XmlDictionaryWriter" /> オブジェクト。</param>
         <summary>指定した <see cref="T:System.Xml.XmlDictionaryWriter" /> を使用して、開始エンベロープをシリアル化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
   </Members>

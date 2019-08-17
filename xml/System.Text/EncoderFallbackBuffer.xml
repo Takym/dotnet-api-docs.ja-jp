@@ -1,5 +1,5 @@
 <Type Name="EncoderFallbackBuffer" FullName="System.Text.EncoderFallbackBuffer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e141f420e0edf6d758c8945e920a86ecdb9ac315" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58721561" /></Metadata><TypeSignature Language="C#" Value="public abstract class EncoderFallbackBuffer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="36d20c01a10df1ac3b8d9349072ea2049fe240af" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69144644" /></Metadata><TypeSignature Language="C#" Value="public abstract class EncoderFallbackBuffer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit EncoderFallbackBuffer extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Text.EncoderFallbackBuffer" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class EncoderFallbackBuffer" />
@@ -35,37 +35,37 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- エンコーディングと Unicode 文字と、エンコード済みバイト シーケンス間のマッピングを定義します。 特定の文字のマッピングが定義されていない場合、入力文字を出力バイト シーケンスに変換、エンコードの操作が失敗します。  
+ エンコーディングは、Unicode 文字とエンコードされたバイトシーケンスとの間のマッピングを定義します。 入力文字を出力バイトシーケンスに変換するエンコード操作は、特定の文字に対してマッピングが定義されていない場合に失敗します。  
   
- .NET Framework では、エラー処理、変換を実行できない場合に、フォールバックと呼ばれるメカニズムを提供します。 すべてのエンコーダー フォールバック ハンドラーを次に実装する必要があります。  
+ 変換を実行できない場合、.NET Framework はフォールバックと呼ばれるエラー処理機構を提供します。 すべてのエンコーダーフォールバックハンドラーは、次のものを実装する必要があります。  
   
--   派生したクラスによって表されるエンコーダー フォールバック、<xref:System.Text.EncoderFallback>クラス。  
+-   エンコーダーフォールバック。 <xref:System.Text.EncoderFallback>クラスから派生したクラスによって表されます。  
   
--   エンコーダー フォールバック バッファーから派生した型によって表される、<xref:System.Text.EncoderFallbackBuffer>変換操作に文字列を返すことができるクラス。  
+-   エンコーダーフォールバックバッファー。変換操作に文字列を返すことができる<xref:System.Text.EncoderFallbackBuffer>クラスから派生した型によって表されます。  
   
- フォールバックは、3 つの戦略を使用して、変換エラーを処理できます。  
+ フォールバックでは、変換エラーを処理するために3つの方法を使用できます。  
   
--   最適マッピングします。 エンコーダー フォールバック バッファーには、入力文字の近似値を表す文字列を返すことができます。 .NET Framework には、最適のパブリックは行わない<xref:System.Text.EncoderFallbackBuffer>実装します。  
+-   最適マッピング。 エンコーダーフォールバックバッファーは、入力文字の近似値を表す文字列を返すことができます。 .NET Framework には、最適な<xref:System.Text.EncoderFallbackBuffer>パブリック実装が用意されていません。  
   
--   置換します。 エンコーダー フォールバック バッファーは、疑問符 () などの文字列を返すことができます ("?")、文字をエンコードしないことを示します。 .NET Framework で、<xref:System.Text.EncoderReplacementFallback>と<xref:System.Text.EncoderReplacementFallbackBuffer>クラス パブリック置換フォールバック バッファーの実装を提供します。 コンス トラクター、<xref:System.Text.EncoderReplacementFallback>クラスでは、置換文字列を定義することができます。  
+-   代わりに. エンコーダーフォールバックバッファーは、文字をエンコードできなかったことを示す疑問符 ("?") などの文字列を返すことができます。 .NET Framework では、クラス<xref:System.Text.EncoderReplacementFallback>と<xref:System.Text.EncoderReplacementFallbackBuffer>クラスは、パブリックな置換フォールバックバッファーの実装を提供します。 <xref:System.Text.EncoderReplacementFallback>クラスのコンストラクターを使用すると、置換文字列を定義できます。  
   
--   例外。 <xref:System.Text.EncoderFallbackBuffer>実装文字はエンコードできないし、エンコード操作の終了を示す例外をスローします。 この場合、フォールバック ハンドラーが提供する必要があります、<xref:System.Text.EncoderFallbackBuffer>実装では、エンコーダーに文字列が返されませんが。 .NET Framework で、<xref:System.Text.EncoderExceptionFallback>と<xref:System.Text.EncoderExceptionFallbackBuffer>クラスをスローするパブリック例外フォールバックの実装を提供、<xref:System.Text.EncoderFallbackException>文字をエンコードことはできません。  
+-   例外。 実装<xref:System.Text.EncoderFallbackBuffer>は、文字をエンコードできないことを示す例外をスローし、エンコーディング操作を終了します。 この場合、フォールバックハンドラーは<xref:System.Text.EncoderFallbackBuffer>実装を提供する必要がありますが、エンコーダーに文字列を返しません。 .NET Framework では、クラス<xref:System.Text.EncoderExceptionFallback>と<xref:System.Text.EncoderExceptionFallbackBuffer>クラスは、文字をエンコードできない<xref:System.Text.EncoderFallbackException>場合にをスローするパブリック例外フォールバックの実装を提供します。  
   
- 内のバッファー、<xref:System.Text.EncoderFallbackBuffer>実装は、フォールバック エンコーダーへの応答のエンコーダーに返される文字列全体を表します。 一般に、実装には、返されるには、エンコーダーと残りの文字数に戻るには、次の文字のインデックスなどの状態情報も含まれます。 <xref:System.Text.EncoderFallbackBuffer>抽象クラスでは、派生クラスには、少なくとも次のメンバーを実装する必要があります。  
+ <xref:System.Text.EncoderFallbackBuffer>実装内のバッファーは、エンコーダーフォールバックに応答してエンコーダーに返される文字列全体を表します。 通常、実装には、エンコーダーに返す次の文字のインデックスや、返される残りの文字数など、状態情報も含まれます。 は<xref:System.Text.EncoderFallbackBuffer>抽象クラスであるため、少なくとも次のメンバーを実装するための派生クラスが必要です。  
   
--   オーバー ロードされた<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>文字をエンコードできないときに、エンコーダーによって呼び出されるメソッド。 エンコーダーは、2 つの情報をフォールバック バッファーの実装に渡します。 文字またはエンコードできないサロゲート ペアと、入力された文字のインデックス。 エンコーダー フォールバック例外ハンドラーでは、このメソッドで例外がスローされます。 メソッドを返しますそれ以外の場合、 `true` 、フォールバックを提供する場合または`false`そうでない場合。  
+-   オーバーロード<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>されたメソッド。文字をエンコードできないときにエンコーダーによって呼び出されます。 エンコーダーは、2つの情報をフォールバックバッファーの実装に渡します。エンコードできなかった文字またはサロゲートペアと入力内の文字のインデックスです。 エンコーダーフォールバック例外ハンドラーでは、このメソッドで例外がスローされます。 それ以外の場合、 `true`メソッドはフォールバックを提供するか`false` 、そうでない場合はを返します。  
   
--   <xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>場合、エンコーダーによって繰り返し呼び出されるメソッド、<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>メソッドを返します。`true`します。 ハンドラーは、連続呼び出しで、バッファー内の各文字を返す必要があります。 それにより、すべての文字が返されますは、u+0000 を返す必要があります。 例外ハンドラーは、u+0000 を常に返します。  
+-   メソッド。 <xref:System.Text.EncoderFallbackBuffer.Fallback%2A>メソッドがを返し`true`た場合、エンコーダーによって繰り返し呼び出されます。 <xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A> 後続の呼び出しでは、ハンドラーはバッファー内の各文字を返す必要があります。 すべての文字が返された場合は、U + 0000 を返します。 例外ハンドラーは常に U + 0000 を返します。  
   
--   <xref:System.Text.EncoderFallbackBuffer.MovePrevious%2A>メソッドでは、バッファー内の前の位置にポインターを移動しようとして、移動が成功したかどうかを示します。 例外ハンドラーが常に返します`false`します。  
+-   メソッド<xref:System.Text.EncoderFallbackBuffer.MovePrevious%2A> 。このメソッドは、ポインターをバッファー内の前の位置に移動しようとし、移動が成功したかどうかを示します。 例外ハンドラーは常に`false`を返します。  
   
--   <xref:System.Text.EncoderFallbackBuffer.Remaining%2A>プロパティで、エンコーダーに返される残りの文字の数を示します。 例外フォールバック ハンドラーは、常に 0 を返します。  
+-   <xref:System.Text.EncoderFallbackBuffer.Remaining%2A>プロパティ。エンコーダーに返される残りの文字数を示します。 例外フォールバックハンドラーは常に0を返します。  
   
  ]]></format>
     </remarks>
     <altmember cref="T:System.Text.EncoderFallback" />
     <related type="Article" href="~/docs/standard/base-types/character-encoding.md">.NET Framework における文字エンコーディング</related>
-    <related type="ExternalDocumentation" href="https://code.msdn.microsoft.com/Cyrillic-to-Roman-f7e88b29">サンプル:キリル文字のローマ数字音訳ユーティリティへ</related>
+    <related type="ExternalDocumentation" href="https://code.msdn.microsoft.com/Cyrillic-to-Roman-f7e88b29">サンプル:キリル ~ ローマ翻字ユーティリティ</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -154,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>と<xref:System.Text.Encoder.Convert%2A?displayProperty=nameWithType>メソッドを呼び出す<xref:System.Text.DecoderFallbackBuffer.Fallback%28System.Byte%5B%5D%2CSystem.Int32%29>不明なエンコードできない入力文字が発生した場合。 戻り値`true`フォールバック バッファーが呼び出し元のメソッドを呼び出すと、入力文字を処理できることを示します、<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>フォールバック バッファーの各文字を取得します。 個々 の文字は処理されないため、<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>例外フォールバック ハンドラーのメソッドが例外をスローします。  
+ メソッド<xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>と<xref:System.Text.Encoder.Convert%2A?displayProperty=nameWithType>メソッドは<xref:System.Text.DecoderFallbackBuffer.Fallback%28System.Byte%5B%5D%2CSystem.Int32%29> 、エンコードできない不明な入力文字が検出された場合にを呼び出します。 戻り値がの`true`場合は、フォールバックバッファーが入力文字を処理できることを示します。これにより<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A> 、呼び出し元のメソッドがメソッドを呼び出し、フォールバックバッファーの各文字を取得します。 個々の文字を処理しないため、 <xref:System.Text.EncoderFallbackBuffer.Fallback%2A>例外フォールバックハンドラーのメソッドは例外をスローします。  
   
  ]]></format>
         </remarks>
@@ -206,7 +206,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>と<xref:System.Text.Encoder.Convert%2A?displayProperty=nameWithType>メソッドを呼び出す<xref:System.Text.EncoderFallbackBuffer.Fallback%28System.Char%2CSystem.Char%2CSystem.Int32%29>が入力サロゲート ペアが発生した場合。 戻り値`true`フォールバック バッファーがサロゲート ペアは、これにより、呼び出し元のメソッドを呼び出すを処理できることを示します、<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>フォールバック バッファーの各文字を取得します。  個々 の文字は処理されないため、<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>例外フォールバック ハンドラーのメソッドが例外をスローします。  
+ メソッド<xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>と<xref:System.Text.Encoder.Convert%2A?displayProperty=nameWithType>メソッドは<xref:System.Text.EncoderFallbackBuffer.Fallback%28System.Char%2CSystem.Char%2CSystem.Int32%29> 、入力にサロゲートペアが見つかった場合、を呼び出します。 戻り値がの`true`場合は、フォールバックバッファーがサロゲートペアを処理できることを示します。これにより<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A> 、呼び出し元のメソッドがメソッドを呼び出し、フォールバックバッファーの各文字を取得します。  個々の文字を処理しないため、 <xref:System.Text.EncoderFallbackBuffer.Fallback%2A>例外フォールバックハンドラーのメソッドは例外をスローします。  
   
  ]]></format>
         </remarks>
@@ -251,9 +251,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- エンコード操作の呼び出し、<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>メソッド、不明な文字またはサロゲート ペアの入力で操作が発生した場合。 置換フォールバック、if 場合など、<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>メソッドを返します。 `true`、代替文字列が存在し、不明な入力の代わりにエンコードすることができます。 エンコード操作の呼び出し、<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>メソッド繰り返し一度に置換文字列の 1 つの文字を取得します。 エンコーダーにフォールバック バッファー内のすべての文字が返されたときに、<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>メソッドは u+0000 を返す必要があります。  
+ 操作で入力で不明<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>な文字またはサロゲートペアが検出された場合、エンコーディング操作はメソッドを呼び出します。 たとえば、置換フォールバックの場合、メソッドから<xref:System.Text.EncoderFallbackBuffer.Fallback%2A>が返さ`true`れた場合、不明な入力ではなくエンコードできる代替文字列が存在します。 エンコーディング操作は、 <xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>メソッドを繰り返し呼び出し、置換文字列を一度に1文字ずつ取得します。 フォールバックバッファー内のすべての文字がエンコーダーに返されると、メソッド<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>は U + 0000 を返す必要があります。  
   
- 例外フォールバック ハンドラーで、<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>メソッドは u+0000 を返す必要があります。  
+ 例外フォールバックハンドラーの場合、メソッド<xref:System.Text.EncoderFallbackBuffer.GetNextChar%2A>は U + 0000 を返す必要があります。  
   
  ]]></format>
         </remarks>
@@ -298,7 +298,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 例外フォールバック ハンドラーが返す必要があります`false`します。  
+ 例外フォールバックハンドラーはを返す`false`必要があります。  
   
  ]]></format>
         </remarks>
@@ -342,9 +342,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Text.EncoderFallbackBuffer.Fallback%2A>メソッドを返します。`true`場合<xref:System.Text.EncoderFallbackBuffer.Remaining%2A>は 0 以外の値です。  
+ が<xref:System.Text.EncoderFallbackBuffer.Fallback%2A> 0 以外`true`の<xref:System.Text.EncoderFallbackBuffer.Remaining%2A>値の場合、メソッドはを返します。  
   
- 例外フォールバック ハンドラーで、<xref:System.Text.DecoderFallbackBuffer.Remaining%2A>メソッドは 0 を返す必要があります。  
+ 例外フォールバックハンドラーの場合、メソッド<xref:System.Text.DecoderFallbackBuffer.Remaining%2A>は0を返す必要があります。  
   
  ]]></format>
         </remarks>
@@ -385,7 +385,7 @@
       <Docs>
         <summary>このフォールバック バッファーに関連するすべてのデータおよびステータス情報を初期化します。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>呼び出した後、<see cref="M:System.Text.EncoderFallbackBuffer.Reset" />メソッド、<see cref="P:System.Text.EncoderFallbackBuffer.Remaining" />プロパティは、0 を返す必要があります、<see cref="M:System.Text.EncoderFallbackBuffer.GetNextChar" />メソッドは u+0000 を返す必要があります、<see cref="M:System.Text.EncoderFallbackBuffer.MovePrevious" />メソッドが返す<see langword="false" />。</para></block>
+        <block subset="none" type="overrides"><para><see cref="M:System.Text.EncoderFallbackBuffer.Reset" />メソッドを呼び出した後、 <see cref="P:System.Text.EncoderFallbackBuffer.Remaining" />プロパティは0を返し、 <see cref="M:System.Text.EncoderFallbackBuffer.GetNextChar" />メソッドは U + 0000 を返す必要が<see cref="M:System.Text.EncoderFallbackBuffer.MovePrevious" />あり、メソッド<see langword="false" />はを返す必要があります。</para></block>
       </Docs>
     </Member>
   </Members>
