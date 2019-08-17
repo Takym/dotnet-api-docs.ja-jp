@@ -1,5 +1,5 @@
 <Type Name="UrlIdentityPermission" FullName="System.Security.Permissions.UrlIdentityPermission">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="15ceb69cdd2ae11e7a2cb0b31e28580570dfbc33" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66818995" /></Metadata><TypeSignature Language="C#" Value="public sealed class UrlIdentityPermission : System.Security.CodeAccessPermission" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7854e5419ae2c75a2936c28e494931dcd3c5333f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69057426" /></Metadata><TypeSignature Language="C#" Value="public sealed class UrlIdentityPermission : System.Security.CodeAccessPermission" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit UrlIdentityPermission extends System.Security.CodeAccessPermission" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.UrlIdentityPermission" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class UrlIdentityPermission&#xA;Inherits CodeAccessPermission" />
@@ -36,20 +36,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロトコル (HTTP、HTTPS、FTP) や、ファイルを含む完全な URL と見なされます。 たとえば、`http://www.fourthcoffee.com/process/grind.htm`は完全な URL です。  
+ プロトコル (HTTP、HTTPS、FTP) とファイルを含む完全な URL が考慮されます。 たとえば、 `http://www.fourthcoffee.com/process/grind.htm`は完全な URL です。  
   
- Url 一致するかのワイルドカードには、最後の位置を正確にたとえば:`http://www.fourthcoffee.com/process/*`します。 Url は、ワイルドカードを含めることもできます ("\*") ドット区切り文字のプレフィックス。 たとえば、URL の名前文字列`http://www.fourthcoffee.com/process/grind.htm/`のサブセットである`http://*.fourthcoffee.com/process/grind.htm/`と`http://*.com/process/grind.htm/`します。  
+ Url は、の`http://www.fourthcoffee.com/process/*`ように完全にまたはワイルドカードで一致できます。 Url には、ドット区切り記号で\*ワイルドカード ("") プレフィックスを含めることもできます。 たとえば、URL 名の文字列`http://www.fourthcoffee.com/process/grind.htm/`はと`http://*.com/process/grind.htm/`の`http://*.fourthcoffee.com/process/grind.htm/`サブセットです。  
   
 > [!IMPORTANT]
->  以降では、 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]、id アクセス許可は使用されません。  
+>  以降では、id 権限は使用されません。 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]  
 >   
->  .NET Framework バージョン 1.0 および 1.1 では、id アクセス許可の要求は、呼び出し元のアセンブリが完全に信頼されている場合でも有効です。 つまり、呼び出し元のアセンブリに完全な信頼関係が id アクセス許可を要求は、アセンブリが要求の基準を満たしていない場合失敗します。 以降、.NET Framework version 2.0 では、id アクセス許可の要求は有効なは、呼び出し元のアセンブリに完全な信頼がある場合です。 つまり、id の要求は常に成功すると、アセンブリの id に関係なく、アセンブリに完全な信頼が付与されている場合。 これには、特殊なケースとしての id アクセス許可の扱いをなくして、すべてのアクセス許可の一貫性が保証されします。  
+>  .NET Framework バージョン1.0 および1.1 では、呼び出し元のアセンブリが完全に信頼されている場合でも、id アクセス許可に対する要求が有効になります。 つまり、呼び出し元のアセンブリには完全な信頼があるにもかかわらず、アセンブリが要求された条件を満たしていない場合、id アクセス許可の要求は失敗します。 .NET Framework バージョン2.0 以降では、呼び出し元のアセンブリに完全な信頼がある場合、id 権限に対する要求は無効になります。 つまり、アセンブリに完全な信頼が付与されている場合、アセンブリの id に関係なく、id の要求は常に成功します。 これにより、すべてのアクセス許可の一貫性が確保され、特殊なケースとしての id アクセス許可の処理が不要になります。  
   
 > [!NOTE]
->  前に .NET Framework のバージョンでは、 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]、使用する可能性があります、<xref:System.Security.CodeAccessPermission.Deny%2A?displayProperty=nameWithType>にシステム リソースに信頼されたコードによって不注意によるアクセスを阻止する方法。 <xref:System.Security.CodeAccessPermission.Deny%2A> 残されていますし、リソースへのアクセスが付与されたアクセス許可がアセンブリのセットのだけで決定されるようになりました。 ファイルへのアクセスを制限するには、サンド ボックスで部分信頼コードを実行し、コードのアクセスが許可されているリソースにのみアクセス許可を割り当てる必要があります。 サンド ボックスで、アプリケーションを実行する方法の詳細については、次を参照してください。[方法。Run Partially Trusted Code in a Sandbox](~/docs/framework/misc/how-to-run-partially-trusted-code-in-a-sandbox.md)」 (方法: サンドボックスで部分信頼コードを実行する) を参照してください。  
+>  より前[!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]のバージョンの .NET Framework では、 <xref:System.Security.CodeAccessPermission.Deny%2A?displayProperty=nameWithType>メソッドを使用して、信頼されたコードによってシステムリソースに誤ってアクセスすることを防ぐことができました。 <xref:System.Security.CodeAccessPermission.Deny%2A>は互換性のために残されています。また、リソースへのアクセスは、アセンブリに与えられたアクセス許可セットによってのみ決定されるようになりました。 ファイルへのアクセスを制限するには、サンドボックスで部分信頼コードを実行し、コードがアクセスできるリソースにのみアクセス許可を割り当てる必要があります。 サンドボックスでアプリケーションを実行する方法について[は、「方法:Run Partially Trusted Code in a Sandbox](~/docs/framework/misc/how-to-run-partially-trusted-code-in-a-sandbox.md)」 (方法: サンドボックスで部分信頼コードを実行する) を参照してください。  
   
 > [!NOTE]
->  .NET Framework バージョン 1.0 および 1.1 では、id アクセス許可を持つことはできません、<xref:System.Security.Permissions.PermissionState.Unrestricted>アクセス許可の状態の値。 以降、.NET Framework version 2.0 では、id アクセス許可は、アクセス許可の状態値を設定できます。 つまり、2.0 以降のバージョンでは、id アクセス許可があるアクセス許可を実装する場合と同様、<xref:System.Security.Permissions.IUnrestrictedPermission>インターフェイス。  
+>  .NET Framework バージョン1.0 および1.1 では、id 権限にアクセス許可<xref:System.Security.Permissions.PermissionState.Unrestricted>の状態の値を設定することはできません。 .NET Framework バージョン2.0 以降では、id 権限は任意の権限の状態値を持つことができます。 つまり、2.0 以降のバージョンでは、id アクセス許可は、 <xref:System.Security.Permissions.IUnrestrictedPermission>インターフェイスを実装するアクセス許可と同じ動作になります。  
   
  ]]></format>
     </remarks>
@@ -93,23 +93,23 @@
         <Parameter Name="state" Type="System.Security.Permissions.PermissionState" />
       </Parameters>
       <Docs>
-        <param name="state"><see cref="T:System.Security.Permissions.PermissionState" /> 値のいずれか。</param>
+        <param name="state"><see cref="T:System.Security.Permissions.PermissionState" /> 値のいずれか 1 つ。</param>
         <summary><see cref="T:System.Security.Permissions.UrlIdentityPermission" /> を指定して、<see cref="T:System.Security.Permissions.PermissionState" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 作成するか完全に制限 (`None`) または`Unrestricted`アクセス許可。  
+ 完全に制限された`None`() `Unrestricted`またはアクセス許可のいずれかを作成します。  
   
 > [!NOTE]
->  .NET Framework バージョン 1.0 および 1.1 では、id アクセス許可を持つことはできません、<xref:System.Security.Permissions.PermissionState.Unrestricted>アクセス許可の状態の値。 以降、.NET Framework version 2.0 では、id アクセス許可は、アクセス許可の状態値を設定できます。 つまり、2.0 以降のバージョンでは、id アクセス許可があるアクセス許可を実装する場合と同様、<xref:System.Security.Permissions.IUnrestrictedPermission>インターフェイス。 つまり、id の要求は常に成功すると、アセンブリの id に関係なく、アセンブリに完全な信頼が付与されている場合。  
+>  .NET Framework バージョン1.0 および1.1 では、id 権限にアクセス許可<xref:System.Security.Permissions.PermissionState.Unrestricted>の状態の値を設定することはできません。 .NET Framework バージョン2.0 以降では、id 権限は任意の権限の状態値を持つことができます。 つまり、2.0 以降のバージョンでは、id アクセス許可は、 <xref:System.Security.Permissions.IUnrestrictedPermission>インターフェイスを実装するアクセス許可と同じ動作になります。 つまり、アセンブリに完全な信頼が付与されている場合、アセンブリの id に関係なく、id の要求は常に成功します。  
   
- .NET Framework バージョン 1.0 および 1.1 では、id アクセス許可の要求は、呼び出し元のアセンブリが完全に信頼されている場合でも、効果的なは。 つまり、呼び出し元のアセンブリに完全な信頼関係が id アクセス許可を要求は、アセンブリが要求の基準を満たしていない場合失敗します。 以降、.NET Framework version 2.0 では、id アクセス許可の要求は有効なは、呼び出し元のアセンブリに完全な信頼がある場合です。 これには、特殊なケースとしての id アクセス許可の扱いをなくして、すべてのアクセス許可の一貫性が保証されします。  
+ .NET Framework バージョン1.0 および1.1 では、呼び出し元のアセンブリが完全に信頼されている場合でも、id アクセス許可に対する要求が有効になります。 つまり、呼び出し元のアセンブリには完全な信頼があるにもかかわらず、アセンブリが要求された条件を満たしていない場合、id アクセス許可の要求は失敗します。 .NET Framework バージョン2.0 以降では、呼び出し元のアセンブリに完全な信頼がある場合、id 権限に対する要求は無効になります。 これにより、すべてのアクセス許可の一貫性が確保され、特殊なケースとしての id アクセス許可の処理が不要になります。  
   
    
   
 ## Examples  
- 次の例では、使用、<xref:System.Security.Permissions.UrlIdentityPermission.%23ctor%28System.Security.Permissions.PermissionState%29?displayProperty=nameWithType>コンス トラクター。  
+ <xref:System.Security.Permissions.UrlIdentityPermission.%23ctor%28System.Security.Permissions.PermissionState%29?displayProperty=nameWithType>コンストラクターの使用例を次に示します。  
   
  [!code-cpp[System.Security.Permissions.UrlIdentityPermission#7](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UrlIdentityPermission/CPP/urlidentity.cpp#7)]
  [!code-csharp[System.Security.Permissions.UrlIdentityPermission#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UrlIdentityPermission/CS/urlidentity.cs#7)]
@@ -151,17 +151,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- たとえば、プロトコル (HTTP、HTTPS、FTP) や、ファイルを含む、完全な URL と見なさ:`http://www.fourthcoffee.com/process/grind.htm/`します。  
+ 完全な URL は、プロトコル (HTTP、HTTPS、FTP など) とファイル (たとえば`http://www.fourthcoffee.com/process/grind.htm/`、) で考慮されます。  
   
- Url 一致するかのワイルドカードには、最後の位置を正確にたとえば:`http://www.fourthcoffee.com/process/*`します。 Url は、ワイルドカードを含めることもできます ("\*") ドット区切り文字のプレフィックス。 たとえば、URL の名前文字列`http://www.fourthcoffee.com/process/grind.htm/`のサブセットである`http://*.fourthcoffee.com/process/grind.htm/`と`http://*.com/process/grind.htm/`します。  
+ Url は、の`http://www.fourthcoffee.com/process/*`ように完全にまたはワイルドカードで一致できます。 Url には、ドット区切り記号で\*ワイルドカード ("") プレフィックスを含めることもできます。 たとえば、URL 名の文字列`http://www.fourthcoffee.com/process/grind.htm/`はと`http://*.com/process/grind.htm/`の`http://*.fourthcoffee.com/process/grind.htm/`サブセットです。  
   
 > [!NOTE]
->  以降、.NET Framework version 2.0 では、パフォーマンス上の理由では、無効な URL がでないクラスの新しいインスタンスを作成時に引数例外。  セット操作 (Union、Intersect、または IsSubsetOf) のいずれかが実行される、引数の例外が発生します。  アクセス許可が原因で、必要に応じて<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>セキュリティ インフラストラクチャによって呼び出されます。 その結果、引数の例外により要求が失敗、<xref:System.Security.SecurityException>がスローされます。 この場合は、元の<xref:System.ArgumentException>例外は表示されません。  
+>  .NET Framework バージョン2.0 以降では、パフォーマンス上の理由から、新しいクラスのインスタンスが作成されたときに、無効な URL によって引数の例外が発生することはありません。  Set 操作 (Union、Intersect、または IsSubsetOf) のいずれかが実行されると、引数の例外が発生します。  アクセス許可<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>に対する要求によって、がセキュリティインフラストラクチャによって呼び出されます。 引数の例外が原因で要求が失敗し、が<xref:System.Security.SecurityException>スローされます。 この場合、元<xref:System.ArgumentException>の例外は表示されません。  
   
    
   
 ## Examples  
- 次の例では、使用、<xref:System.Security.Permissions.UrlIdentityPermission.%23ctor%28System.String%29?displayProperty=nameWithType>コンス トラクター。  
+ <xref:System.Security.Permissions.UrlIdentityPermission.%23ctor%28System.String%29?displayProperty=nameWithType>コンストラクターの使用例を次に示します。  
   
  [!code-cpp[System.Security.Permissions.UrlIdentityPermission#8](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UrlIdentityPermission/CPP/urlidentity.cpp#8)]
  [!code-csharp[System.Security.Permissions.UrlIdentityPermission#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UrlIdentityPermission/CS/urlidentity.cs#8)]
@@ -206,7 +206,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アクセス許可のコピーを元のアクセス許可リソースに対して同じアクセス権を表します。  
+ アクセス許可のコピーは、元のアクセス許可と同じリソースへのアクセスを表します。  
   
  ]]></format>
         </remarks>
@@ -247,7 +247,7 @@
         <exception cref="T:System.ArgumentException"><paramref name="esd" /> パラメーターが有効なアクセス許可要素ではありません。  
   
 または 
-<paramref name="esd" /> パラメーターのバージョン番号が有効ではありません。</exception>
+<paramref name="esd" /> パラメーターのバージョン番号が正しくありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="Intersect">
@@ -278,22 +278,22 @@
         <Parameter Name="target" Type="System.Security.IPermission" />
       </Parameters>
       <Docs>
-        <param name="target">現在のアクセス許可との積集合を持つアクセス許可。 これは、現在のアクセス許可と同じ型であることが必要です。</param>
+        <param name="target">現在のアクセス許可との共通部分のあるアクセス許可。 これは、現在のアクセス許可と同じ型であることが必要です。</param>
         <summary>現在のアクセス許可と指定したアクセス許可の積集合となるアクセス許可を作成して返します。</summary>
         <returns>現在のアクセス許可と指定したアクセス許可の共通部分を表す新しいアクセス許可。 積集合が空の場合、この新しいアクセス許可は <see langword="null" /> です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2 つのアクセス許可の積集合になるアクセス許可と、両方に共通する Url へのアクセスについて説明します。 元の両方の権限を通過する要求だけでは、積集合を渡します。 アクセスを表すアクセス許可の交差など`http://www.fourthcoffee.com/process/grind.htm`へのアクセスを表すアクセス許可と`http://www.fourthcoffee.com/*`へのアクセスを表すアクセス許可は、`http://www.fourthcoffee.com/process/grind.htm`します。  
+ 2つのアクセス許可の積集合は、両方とも共通の Url へのアクセスを記述するアクセス許可です。 両方の元のアクセス許可を渡す要求だけが、積集合を渡します。 たとえば、へ`http://www.fourthcoffee.com/process/grind.htm`のアクセスを表すアクセス許可とへ`http://www.fourthcoffee.com/*`のアクセスを表すアクセス許可の積集合は、へ`http://www.fourthcoffee.com/process/grind.htm`のアクセスを表すアクセス許可です。  
   
- <xref:System.Security.Permissions.UrlIdentityPermission> セット操作をサポートしています (<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>、 <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>、および<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) のみ現在のアクセス許可が、指定したアクセス許可オブジェクトと等しい場合、またはワイルドカード演算子を使用している場合、権限のいずれか ("\*")。  
+ <xref:System.Security.Permissions.UrlIdentityPermission>現在のアクセス許可<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>が指定し<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>たアクセス許可オブジェクトと等しい場合、またはいずれかのアクセス許可でワイルドカード演算子 ("\*") が使用されている場合にのみ、セット操作 (、 <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>、および) をサポートします。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> でなく、また現在のアクセス許可と同じ型でもありません。  
   
-または 
+- または - 
 Url プロパティが、有効な URL ではありません。</exception>
       </Docs>
     </Member>
@@ -325,16 +325,16 @@ Url プロパティが、有効な URL ではありません。</exception>
         <Parameter Name="target" Type="System.Security.IPermission" />
       </Parameters>
       <Docs>
-        <param name="target">サブセットの関係を調べる対象のアクセス許可。 このアクセス許可は、現在のアクセス許可と同じ型であることが必要です。</param>
+        <param name="target">サブセットの関係にあるかどうかをテストするアクセス許可。 このアクセス許可は、現在のアクセス許可と同じ型であることが必要です。</param>
         <summary>現在のアクセス許可が、指定したアクセス許可のサブセットであるかどうかを判断します。</summary>
         <returns>現在のアクセス許可が、指定したアクセス許可のサブセットの場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在のアクセス許可は、現在のアクセス許可が、指定した権限によって完全に含まれる URL へのアクセスを指定する場合、指定したアクセス許可のサブセットです。 アクセスを表すアクセス許可など`http://www.fourthcoffee.com/process/grind.htm`へのアクセスを表すアクセス許可のサブセットである`http://www.fourthcoffee.com/*`します。 このメソッドが戻る場合`true`、現在のアクセス許可がない以上へのアクセスが保護されたリソースは、指定した権限を表します。  
+ 現在のアクセス許可が、指定したアクセス許可によって完全に含まれる URL へのアクセスを識別する場合、現在のアクセス許可は、指定したアクセス許可のサブセットになります。 たとえば、へのアクセスを表す`http://www.fourthcoffee.com/process/grind.htm`アクセス許可は、へ`http://www.fourthcoffee.com/*`のアクセスを表すアクセス許可のサブセットです。 このメソッドがを`true`返す場合、現在のアクセス許可は、指定されたアクセス許可よりも保護されたリソースへのアクセスを許可しません。  
   
- <xref:System.Security.Permissions.UrlIdentityPermission> セット操作をサポートしています (<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>、 <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>、および<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) のみ現在のアクセス許可が、指定した権限に等しい場合、またはワイルドカード演算子を使用している場合、権限のいずれか ("\*")。  
+ <xref:System.Security.Permissions.UrlIdentityPermission>現在のアクセス許可<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>が指定し<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>たアクセス許可と等しい場合、またはいずれかのアクセス許可でワイルドカード演算子 ("\*") が使用されている場合にのみ、セット操作 (、 <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>、および) をサポートします。  
   
  ]]></format>
         </remarks>
@@ -370,7 +370,7 @@ Url プロパティが、有効な URL ではありません。</exception>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>アクセス許可とその現在の状態を表す XML エンコーディングを作成します。</summary>
+        <summary>アクセス許可とその現在の状態の XML エンコードを作成します。</summary>
         <returns>状態情報を含む、アクセス許可の XML エンコード。</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -410,15 +410,15 @@ Url プロパティが、有効な URL ではありません。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出しの結果、<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>メソッドは、現在のアクセス許可によって表される URL へのアクセスと、指定した権限によって表される URL へのアクセスを表すアクセス許可。  
+ メソッドの<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>呼び出しの結果は、現在のアクセス許可によって表される url へのアクセスと、指定したアクセス許可によって表される url へのアクセスを表すアクセス許可です。  
   
- <xref:System.Security.Permissions.UrlIdentityPermission>クラスは、セットの操作をサポートしている<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>、 <xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>、および<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>) 現在のアクセス許可が指定した権限に等しい場合にのみ、またはワイルドカード演算子を使用して、権限のいずれか ("\*") と 1 つは、その他のサブセットです。  
+ クラス<xref:System.Security.Permissions.UrlIdentityPermission>では、現在の<xref:System.Security.Permissions.UrlIdentityPermission.Intersect%2A>アクセス許可<xref:System.Security.Permissions.UrlIdentityPermission.Union%2A>が指定したアクセス許可と等しい場合、またはいずれかのアクセス許可でワイルドカード演算子 ("\*") が使用されている場合にのみ、設定操作<xref:System.Security.Permissions.UrlIdentityPermission.IsSubsetOf%2A>、、およびがサポートされます。他方のサブセット。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> でなく、また現在のアクセス許可と同じ型でもありません。  
   
-または 
+- または - 
 <see cref="P:System.Security.Permissions.UrlIdentityPermission.Url" /> プロパティが、有効な URL ではありません。  
   
 または 
@@ -457,9 +457,9 @@ Url プロパティが、有効な URL ではありません。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- たとえば、プロトコル (HTTP、HTTPS、FTP) や、ファイルを含む、完全な URL と見なさ:`http://www.fourthcoffee.com/process/grind.htm/`します。  
+ 完全な URL は、プロトコル (HTTP、HTTPS、FTP など) とファイル (たとえば`http://www.fourthcoffee.com/process/grind.htm/`、) で考慮されます。  
   
- Url 一致するかのワイルドカードには、最後の位置を正確にたとえば:`http://www.fourthcoffee.com/process/*`します。  
+ Url は、の`http://www.fourthcoffee.com/process/*`ように完全にまたはワイルドカードで一致できます。  
   
  ]]></format>
         </remarks>
