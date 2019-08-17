@@ -1,5 +1,5 @@
 <Type Name="MailEventNotificationInfo" FullName="System.Web.Management.MailEventNotificationInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="26d8479abd410fa2aee8ad17827aff91e5b2bced" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64146517" /></Metadata><TypeSignature Language="C#" Value="public sealed class MailEventNotificationInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a3b2e64a790f6ae3fc61dd42b954692005bf746f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69054108" /></Metadata><TypeSignature Language="C#" Value="public sealed class MailEventNotificationInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit MailEventNotificationInfo extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Web.Management.MailEventNotificationInfo" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class MailEventNotificationInfo" />
@@ -20,9 +20,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このクラスの使用の電子メールのテンプレートに情報を渡す、<xref:System.Web.Management.TemplatedMailWebEventProvider>オブジェクトのイベント通知の発生時にします。 電子メール テンプレートは、電子メール メッセージの本文にイベント情報に、書式を設定します。  
+ このクラスは、イベント通知が発生したときに、 <xref:System.Web.Management.TemplatedMailWebEventProvider>オブジェクトの電子メールテンプレートに情報を渡すために使用されます。 電子メールテンプレートによって、電子メールメッセージの本文のイベント情報が書式設定されます。  
   
- 通知が発生するは、バッファリングを無効にする、イベント バッファー処理システムは蓄積されたイベントのメッセージを送信またはイベントが発生して、イベント バッファー処理システムが無効になっています。  
+ 通知は、バッファーが無効になっている場合、イベントバッファリングシステムが累積イベントのメッセージを送信した場合、またはイベントが発生し、イベントバッファリングシステムが無効になっている場合に発生します。  
   
  ]]></format>
     </remarks>
@@ -88,7 +88,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 最後の通知以降にバッファーがオーバー ロードした場合、イベントは破棄されます。  
+ 最後の通知以降にバッファーが過負荷になった場合、イベントは破棄されます。  
   
  ]]></format>
         </remarks>
@@ -122,9 +122,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メッセージの制限は、メッセージごとに許可されるイベントの最大数を掛けた通知あたりのメッセージの最大数は、1 つの通知中に送信されるメッセージの最大数を指定します。 これらの値がで指定された、`maxEventsPerMessage`と`maxMessagesPerNotification`属性の適切なプロバイダーのサブ セクションでは、`healthMonitoring`構成ファイルのセクション。  
+ メッセージの制限は、1つの通知で送信されるメッセージの最大数を指定します。これは、1つの通知につきメッセージの最大数に、メッセージごとに許可されるイベントの最大数を乗算したものです。 これらの値は、 `maxEventsPerMessage`構成ファイルの`maxMessagesPerNotification` `healthMonitoring`セクションの適切なプロバイダーサブセクションの属性と属性によって指定されます。  
   
- 通知は、イベント バッファー処理システムが蓄積されたイベントのメッセージを送信するときに発生します。 最大イベントを送信するまでの期間の期限が切れたため、または正常性の監視システムには、バッファーのフラッシュが要求したため、イベントの数をバッファーに蓄積された可能性があります。 全体のイベント バッファーが、できるだけ少ないメッセージの受信者に送信されるに基づいて、`maxEventsPerMessage`値。 バッファーの設定で指定されます、`bufferModes`のサブセクション、`healthMonitoring`構成ファイルのセクション。  
+ 通知は、イベントバッファリングシステムが累積イベントのメッセージを送信するときに発生します。 これは、バッファーに許可されているイベントの最大数が累積したために発生する可能性があります。これは、イベントを送信するまでの時間間隔が経過したか、または正常性監視システムがバッファーフラッシュを要求したためです。 イベントバッファー全体は、の`maxEventsPerMessage`値に基づいて、できるだけ少ない数のメッセージで受信者に送信されます。 バッファー設定は、構成ファイル`bufferModes`の`healthMonitoring`セクションのサブセクションで指定します。  
   
  ]]></format>
         </remarks>
@@ -189,7 +189,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この数は、現在の通知イベントが含まれます、のみイベント バッファーから破棄またはメッセージの制限のための除外は含まれません。  
+ この数には、現在の通知のイベントだけが含まれ、バッファーによって削除されたイベントや、メッセージの制限のために除外されたイベントは含まれません。  
   
  ]]></format>
         </remarks>
@@ -223,7 +223,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この数には、イベント バッファーから破棄またはメッセージの制限のための除外は含まれません。  
+ この数には、バッファーによって削除されたイベントや、メッセージの制限のために除外されたイベントは含まれません。  
   
  ]]></format>
         </remarks>
@@ -279,12 +279,12 @@
       </ReturnValue>
       <Docs>
         <summary>現在のメッセージとして送信される電子メール メッセージを取得します。</summary>
-        <value>A<see cref="T:System.Web.Mail.MailMessage" />送信する電子メール メッセージを指定します。</value>
+        <value>送信する電子メールメッセージを指定する。<see cref="T:System.Web.Mail.MailMessage" /></value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Mail.MailMessage>このプロパティによって指定されたオブジェクトがテンプレート作成の一部であるメッセージの本文を除く完了します。 テンプレートの値を変更できる、<xref:System.Web.Mail.MailMessage>オブジェクト、該当する場合。  
+ このプロパティによって提供されるオブジェクトは、テンプレートによって作成される部分であるメッセージ本文を除き、完了します。<xref:System.Web.Mail.MailMessage> 必要に応じて、テンプレートで<xref:System.Web.Mail.MailMessage>オブジェクトの値を変更できます。  
   
  ]]></format>
         </remarks>
@@ -320,7 +320,7 @@
 ## Remarks  
   
 > [!NOTE]
->  シーケンス番号は、最初のメッセージを 1 から始まります。  
+>  シーケンス番号は、最初のメッセージに対して1から始まります。  
   
  ]]></format>
         </remarks>
@@ -383,7 +383,7 @@
 ## Remarks  
   
 > [!NOTE]
->  シーケンス番号は、最初の通知の 1 から始まります。  
+>  最初の通知では、シーケンス番号は1から始まります。  
   
  ]]></format>
         </remarks>
