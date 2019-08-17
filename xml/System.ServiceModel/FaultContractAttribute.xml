@@ -1,5 +1,5 @@
 <Type Name="FaultContractAttribute" FullName="System.ServiceModel.FaultContractAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6a1b0b7822ed3e618c35f1a625e351deb4debcc4" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58548979" /></Metadata><TypeSignature Language="C#" Value="public sealed class FaultContractAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="258dde72e7912d28ac6a726677683455fbada41b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69102501" /></Metadata><TypeSignature Language="C#" Value="public sealed class FaultContractAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit FaultContractAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.FaultContractAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class FaultContractAttribute&#xA;Inherits Attribute" />
@@ -37,7 +37,7 @@
 ## Remarks  
  Web サービス記述言語 (WSDL) のサービス操作の説明に追加される 1 つ以上の特定の例外条件を、操作によって返される明示的な SOAP エラー メッセージとして宣言する <xref:System.ServiceModel.FaultContractAttribute> 属性を使用して、操作にマークを付けます。  
   
- すべてのマネージド アプリケーションで、操作エラーは <xref:System.Exception> オブジェクトにより表されます。 Windows Communication Foundation (WCF) アプリケーションなど (SOAP) ベースのアプリケーションでは、サービス メソッドは、SOAP エラー メッセージを使用して、処理のエラー情報を通知します。 WCF アプリケーションは、両方の種類のエラー システムで実行、ため、マネージ例外情報をクライアントに送信する必要がありますが例外から SOAP エラーに変換する必要があります。 既定のサービス例外動作を使用できます。または、例外をエラー メッセージにマッピングするかどうかとそのマッピング方法を明示的に制御できます。 例外と WCF アプリケーションで SOAP エラーの概要については、次を参照してください。[を指定すると処理のエラー コントラクトおよびサービスの](~/docs/framework/wcf/specifying-and-handling-faults-in-contracts-and-services.md)します。  
+ すべてのマネージド アプリケーションで、操作エラーは <xref:System.Exception> オブジェクトにより表されます。 Windows Communication Foundation (WCF) アプリケーションなどの SOAP ベースのアプリケーションでは、サービスメソッドは SOAP エラーメッセージを使用して処理エラー情報を通信します。 WCF アプリケーションは、両方の種類のエラーシステムで実行されるため、クライアントに送信する必要があるマネージ例外情報は、例外から SOAP エラーに変換する必要があります。 既定のサービス例外動作を使用できます。または、例外をエラー メッセージにマッピングするかどうかとそのマッピング方法を明示的に制御できます。 WCF アプリケーションでの例外と SOAP エラーの概要については、「[コントラクトとサービスのエラーの指定と処理](~/docs/framework/wcf/specifying-and-handling-faults-in-contracts-and-services.md)」を参照してください。  
   
  <xref:System.ServiceModel.FaultContractAttribute> を使用して、通常の操作中に受信することをクライアントが想定できるすべての SOAP エラーを正式に指定することをお勧めします。 また、SOAP エラーでは、情報の開示を最小限に抑えるために、クライアントが知る必要がある情報だけを返すことをお勧めします。  
   
@@ -58,12 +58,12 @@
   
 -   セキュリティを無効にしたバインド (たとえば、<xref:System.ServiceModel.BasicHttpBinding?displayProperty=nameWithType> は既定でセキュリティが無効に設定されています) を選択し、<xref:System.ServiceModel.FaultContractAttribute.ProtectionLevel%2A> を明示的に設定しない場合は、すべてのアプリケーション データが保護されません。  
   
- ほとんどの場合、エラー メッセージでは、<xref:System.ServiceModel.FaultContractAttribute.ProtectionLevel%2A> を <xref:System.Net.Security.ProtectionLevel.EncryptAndSign> に設定すれば十分です。 詳細については、次を参照してください。[について保護レベル](~/docs/framework/wcf/understanding-protection-level.md)します。  
+ ほとんどの場合、エラー メッセージでは、<xref:System.ServiceModel.FaultContractAttribute.ProtectionLevel%2A> を <xref:System.Net.Security.ProtectionLevel.EncryptAndSign> に設定すれば十分です。 詳細については、「[保護レベルについ](~/docs/framework/wcf/understanding-protection-level.md)て」を参照してください。  
   
- 指定したエラーを <xref:System.ServiceModel.FaultContractAttribute> でマークした操作から返すには、操作中にマネージド例外が発生したときに、<xref:System.ServiceModel.FaultException%601> をスローします (型パラメーターは、シリアル化可能なエラー情報です)。 WCF クライアント アプリケーションは、-は、クライアント実装でスローされたのと同じ型で、SOAP エラーを画面として、 <xref:System.ServiceModel.FaultException%601> (、typeparameter はシリアル化可能なエラー情報です)。 <xref:System.ServiceModel.FaultContractAttribute> は、双方向サービス操作と非同期操作のペアで発生する SOAP エラーを指定する場合のみ使用できます。一方向操作では SOAP エラーはサポートされないため、<xref:System.ServiceModel.FaultContractAttribute> もサポートされません。  
+ 指定したエラーを <xref:System.ServiceModel.FaultContractAttribute> でマークした操作から返すには、操作中にマネージド例外が発生したときに、<xref:System.ServiceModel.FaultException%601> をスローします (型パラメーターは、シリアル化可能なエラー情報です)。 WCF クライアントアプリケーションは、クライアント実装<xref:System.ServiceModel.FaultException%601>でスローされたのと同じ型 (つまり、typeparameter がシリアル化可能なエラー情報である) として SOAP エラーを格納します。 <xref:System.ServiceModel.FaultContractAttribute> は、双方向サービス操作と非同期操作のペアで発生する SOAP エラーを指定する場合のみ使用できます。一方向操作では SOAP エラーはサポートされないため、<xref:System.ServiceModel.FaultContractAttribute> もサポートされません。  
   
 > [!NOTE]
->  エラー情報を伝えるために、任意のシリアル化可能な型を使用できます。 このバージョンの WCF での唯一の制限は、型がで指定されている、<xref:System.ServiceModel.FaultContractAttribute>によってシリアル化可能である必要があります、<xref:System.Runtime.Serialization.DataContractSerializer?displayProperty=nameWithType>します。 シリアル化のサポート、<xref:System.Runtime.Serialization.DataContractSerializer>提供しますを参照してください[データ コントラクト シリアライザー](~/docs/framework/wcf/feature-details/data-contract-serializer.md)します。  
+>  エラー情報を伝えるために、任意のシリアル化可能な型を使用できます。 このバージョンの WCF では、に<xref:System.ServiceModel.FaultContractAttribute>指定された型はに<xref:System.Runtime.Serialization.DataContractSerializer?displayProperty=nameWithType>よってシリアル化可能である必要があります。 が提供する<xref:System.Runtime.Serialization.DataContractSerializer>シリアル化のサポートについては、「[データコントラクトシリアライザー](~/docs/framework/wcf/feature-details/data-contract-serializer.md)」を参照してください。  
   
  たとえば、クライアントが <xref:System.Int32> を含む SOAP エラーの受信を想定できるように指定するには、サービス メソッドの <xref:System.ServiceModel.FaultContractAttribute> に型パラメーターを配置します。  
   
@@ -78,19 +78,19 @@
  [!code-csharp[C_FCA#2](~/samples/snippets/csharp/VS_Snippets_CFX/c_fca/cs/fcademo.cs#2)]
  [!code-vb[C_FCA#2](~/samples/snippets/visualbasic/VS_Snippets_CFX/c_fca/vb/fcademo.vb#2)]  
   
- 上の例は非常に基本的な形であり、<xref:System.Int32?displayProperty=nameWithType> コードを使用してあらゆる情報を渡すことができます。したがって、この詳細型は最も有効な型ではありません。 通常、WCF アプリケーションは、クライアントのエラー情報要件に固有の詳細な型の SOAP エラーを指定します。 より完全な例については、「使用例」のセクションを参照してください。  
+ 上の例は非常に基本的な形であり、<xref:System.Int32?displayProperty=nameWithType> コードを使用してあらゆる情報を渡すことができます。したがって、この詳細型は最も有効な型ではありません。 通常、WCF アプリケーションは、クライアントのエラー情報要件に固有の詳細な種類を使用して、SOAP エラーを指定します。 より完全な例については、「使用例」のセクションを参照してください。  
   
 > [!NOTE]
 >  型パラメーターが <xref:System.ServiceModel.FaultException%601> である <xref:System.String?displayProperty=nameWithType> を指定した場合、クライアント アプリケーションでは文字列値に Detail プロパティが割り当てられ、クライアントは <xref:System.ServiceModel.FaultException%601.ToString%2A?displayProperty=nameWithType> メソッドを呼び出しても、その文字列を取得できません。 クライアント アプリケーションが <xref:System.Exception.ToString%2A?displayProperty=nameWithType> を呼び出したときにこの文字列値を返すには、操作内で <xref:System.ServiceModel.FaultException?displayProperty=nameWithType> 例外をスローし、この文字列をコンストラクターに渡します。  
   
- 例外または <xref:System.ServiceModel.FaultException%601> がスローされるときのアプリケーションの動作を明示的に制御するには、<xref:System.ServiceModel.Dispatcher.IErrorHandler?displayProperty=nameWithType>、<xref:System.ServiceModel.Description.IServiceBehavior?displayProperty=nameWithType>、または <xref:System.ServiceModel.Description.IContractBehavior?displayProperty=nameWithType> で <xref:System.ServiceModel.Description.IEndpointBehavior?displayProperty=nameWithType> インターフェイスを実装し、これを <xref:System.ServiceModel.Dispatcher.ChannelDispatcher.ErrorHandlers%2A?displayProperty=nameWithType> プロパティに割り当てます。 <xref:System.ServiceModel.Dispatcher.IErrorHandler> 生成される SOAP エラーを明示的に制御することと、クライアントに送信するかどうかを使用できます。  
+ 例外または <xref:System.ServiceModel.FaultException%601> がスローされるときのアプリケーションの動作を明示的に制御するには、<xref:System.ServiceModel.Dispatcher.IErrorHandler?displayProperty=nameWithType>、<xref:System.ServiceModel.Description.IServiceBehavior?displayProperty=nameWithType>、または <xref:System.ServiceModel.Description.IContractBehavior?displayProperty=nameWithType> で <xref:System.ServiceModel.Description.IEndpointBehavior?displayProperty=nameWithType> インターフェイスを実装し、これを <xref:System.ServiceModel.Dispatcher.ChannelDispatcher.ErrorHandlers%2A?displayProperty=nameWithType> プロパティに割り当てます。 <xref:System.ServiceModel.Dispatcher.IErrorHandler>生成された SOAP エラーと、それをクライアントに送信するかどうかを明示的に制御できます。  
   
- デバッグを容易にするには設定、<xref:System.ServiceModel.ServiceBehaviorAttribute.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType>に`true`またはコードで使用できます、<xref:System.ServiceModel.Description.ServiceDebugBehavior.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType>アプリケーション構成ファイルでします。 有効な場合は、サービスが自動的に例外情報を呼び出し元に返します。 これらのエラーは、<xref:System.ServiceModel.FaultException> 例外としてクライアントに表示されます。  
+ デバッグを容易にするに<xref:System.ServiceModel.ServiceBehaviorAttribute.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType>は`true` 、コードでをに設定する<xref:System.ServiceModel.Description.ServiceDebugBehavior.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType>か、アプリケーション構成ファイルでを使用します。 有効な場合は、サービスが自動的に例外情報を呼び出し元に返します。 これらのエラーは、<xref:System.ServiceModel.FaultException> 例外としてクライアントに表示されます。  
   
 > [!IMPORTANT]
->  設定するため、マネージ例外には、内部アプリケーション情報を公開できますが、<xref:System.ServiceModel.ServiceBehaviorAttribute.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType>または<xref:System.ServiceModel.Description.ServiceDebugBehavior.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType>に`true`個人など、内部サービス操作例外に関する情報を取得する WCF クライアントを許可します。特定できる情報やその他の機密情報。  
+>  マネージ例外によって内部アプリケーション情報が公開<xref:System.ServiceModel.ServiceBehaviorAttribute.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType>される`true`可能性があるため、またはをに設定すると<xref:System.ServiceModel.Description.ServiceDebugBehavior.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType> 、WCF クライアントは、個人を含む内部サービス操作例外に関する情報を取得することができます。特定可能な情報またはその他の機密情報。  
 >   
->  したがって、<xref:System.ServiceModel.ServiceBehaviorAttribute.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType> または <xref:System.ServiceModel.Description.ServiceDebugBehavior.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType> を `true` に設定することは、サービス アプリケーションを一時的にデバッグする方法としてのみお勧めできます。 さらに、このようにして未処理のマネージド例外を返すメソッドの WSDL には、<xref:System.ServiceModel.FaultException%601> 型の <xref:System.String> のコントラクトが含まれません。 クライアントは、不明な SOAP エラーの可能性を想定する必要があります (として WCF クライアントに返される<xref:System.ServiceModel.FaultException?displayProperty=nameWithType>オブジェクト) を正しくデバッグ情報を取得します。  
+>  したがって、<xref:System.ServiceModel.ServiceBehaviorAttribute.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType> または <xref:System.ServiceModel.Description.ServiceDebugBehavior.IncludeExceptionDetailInFaults%2A?displayProperty=nameWithType> を `true` に設定することは、サービス アプリケーションを一時的にデバッグする方法としてのみお勧めできます。 さらに、このようにして未処理のマネージド例外を返すメソッドの WSDL には、<xref:System.ServiceModel.FaultException%601> 型の <xref:System.String> のコントラクトが含まれません。 クライアントは、デバッグ情報を適切に取得するために、不明な SOAP <xref:System.ServiceModel.FaultException?displayProperty=nameWithType>エラー (WCF クライアントにオブジェクトとして返される) の可能性を期待する必要があります。  
   
    
   
@@ -100,7 +100,7 @@
  [!code-csharp[FaultContractAttribute#1](~/samples/snippets/csharp/VS_Snippets_CFX/faultcontractattribute/cs/services.cs#1)]
  [!code-vb[FaultContractAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/faultcontractattribute/vb/services.vb#1)]  
   
- コード例を次に示しますの WCF クライアント`ISampleService`としてこの SOAP エラーが発生する、<xref:System.ServiceModel.FaultException%601>型の`GreetingFault`します。  
+ 次のコード例は、の`ISampleService` WCF クライアントが、 <xref:System.ServiceModel.FaultException%601>この SOAP エラーを型`GreetingFault`のとして経験していることを示しています。  
   
  [!code-csharp[FaultContractAttribute#3](~/samples/snippets/csharp/VS_Snippets_CFX/faultcontractattribute/cs/client.cs#3)]
  [!code-vb[FaultContractAttribute#3](~/samples/snippets/visualbasic/VS_Snippets_CFX/faultcontractattribute/vb/client.vb#3)]  
@@ -387,12 +387,12 @@
       </ReturnValue>
       <Docs>
         <summary>SOAP エラーがバインドに要求する保護レベルを指定します。</summary>
-        <value><see cref="T:System.Net.Security.ProtectionLevel" /> 値のいずれか。 既定値は、<see cref="F:System.Net.Security.ProtectionLevel.None" /> です。</value>
+        <value><see cref="T:System.Net.Security.ProtectionLevel" /> 値のいずれか 1 つ。 既定値は、<see cref="F:System.Net.Security.ProtectionLevel.None" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Description.FaultDescription.ProtectionLevel%2A?displayProperty=nameWithType> プロパティを使用して、SOAP エラーの送信時に、バインドを行う必要がある暗号化、署名、またはその両方の程度を指定します。 コントラクトのセキュリティ保護レベル要件を、操作のエラーで明示的に決定することを強くお勧めします。 既定の保護レベルは <xref:System.Net.Security.ProtectionLevel.None?displayProperty=nameWithType> ですが、これは、定義する SOAP エラー メッセージには暗号化もデジタル署名も不要であることを意味します (ただし、バインドを構成することで、これらをサポートすることもできます)。 機密性が高いか、またはセキュリティの問題につながる可能性がある情報がエラー メッセージに含まれる場合は、<xref:System.ServiceModel.FaultContractAttribute.ProtectionLevel%2A> プロパティを <xref:System.Net.Security.ProtectionLevel.EncryptAndSign?displayProperty=nameWithType> に設定することを強くお勧めします。 詳細については、セキュリティの問題は、次を参照してください。[について保護レベル](~/docs/framework/wcf/understanding-protection-level.md)します。  
+ <xref:System.ServiceModel.Description.FaultDescription.ProtectionLevel%2A?displayProperty=nameWithType> プロパティを使用して、SOAP エラーの送信時に、バインドを行う必要がある暗号化、署名、またはその両方の程度を指定します。 コントラクトのセキュリティ保護レベル要件を、操作のエラーで明示的に決定することを強くお勧めします。 既定の保護レベルは <xref:System.Net.Security.ProtectionLevel.None?displayProperty=nameWithType> ですが、これは、定義する SOAP エラー メッセージには暗号化もデジタル署名も不要であることを意味します (ただし、バインドを構成することで、これらをサポートすることもできます)。 機密性が高いか、またはセキュリティの問題につながる可能性がある情報がエラー メッセージに含まれる場合は、<xref:System.ServiceModel.FaultContractAttribute.ProtectionLevel%2A> プロパティを <xref:System.Net.Security.ProtectionLevel.EncryptAndSign?displayProperty=nameWithType> に設定することを強くお勧めします。 セキュリティの問題の詳細については、「[保護レベルについ](~/docs/framework/wcf/understanding-protection-level.md)て」を参照してください。  
   
  ランタイム時の保護動作は、階層構造になっている保護レベルのプロパティの組み合わせです。 最も外側の値を設定すると、それより狭いスコープで異なる値を明示的に設定していなければ、より狭いスコープでその既定の設定が定まります。 この場合、外側の値は特に設定された値を除いて、それより狭いすべてのスコープで既定の設定として残ります。  
   

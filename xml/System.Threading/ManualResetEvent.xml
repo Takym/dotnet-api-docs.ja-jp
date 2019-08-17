@@ -1,5 +1,5 @@
 <Type Name="ManualResetEvent" FullName="System.Threading.ManualResetEvent">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="50280627a764fdaf9fec13f62e5e70616ce14337" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58712664" /></Metadata><TypeSignature Language="C#" Value="public sealed class ManualResetEvent : System.Threading.EventWaitHandle" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fc38683df38d8ccd043f3a8b1a312aae448c5e2f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69098889" /></Metadata><TypeSignature Language="C#" Value="public sealed class ManualResetEvent : System.Threading.EventWaitHandle" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ManualResetEvent extends System.Threading.EventWaitHandle" />
   <TypeSignature Language="DocId" Value="T:System.Threading.ManualResetEvent" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ManualResetEvent&#xA;Inherits EventWaitHandle" />
@@ -41,31 +41,31 @@
   
 ## Remarks  
 
- 使用する`ManualResetEvent`、 <xref:System.Threading.AutoResetEvent>、および<xref:System.Threading.EventWaitHandle>スレッドの相互作用 (またはスレッドがシグナル通知)。 詳細については、次を参照してください。、[スレッドの相互作用、またはシグナル](~/docs/standard/threading/overview-of-synchronization-primitives.md#thread-interaction-or-signaling)のセクション、[同期プリミティブの概要](~/docs/standard/threading/overview-of-synchronization-primitives.md)記事。  
+ スレッド操作`ManualResetEvent`( <xref:System.Threading.AutoResetEvent>または<xref:System.Threading.EventWaitHandle>スレッドシグナリング) には、、、およびを使用します。 詳細については、「[同期プリミティブの概要](~/docs/standard/threading/overview-of-synchronization-primitives.md)」の「[スレッドの操作」または「シグナル通知](~/docs/standard/threading/overview-of-synchronization-primitives.md#thread-interaction-or-signaling)」を参照してください。  
 
- スレッドの前に完了する必要がありますをアクティビティの開始時にスレッドの続行を呼び出します[ManualResetEvent.Reset](xref:System.Threading.EventWaitHandle.Reset%2A)に`ManualResetEvent`非シグナル状態にします。 このスレッドを制御するとして考えることができます、`ManualResetEvent`します。 スレッドの呼び出しに[ManualResetEvent.WaitOne](xref:System.Threading.WaitHandle.WaitOne%2A)ブロック、シグナルを待機しています。 呼び出しスレッドを制御するには、アクティビティが完了すると、 [ManualResetEvent.Set](xref:System.Threading.EventWaitHandle.Set%2A)を待機しているスレッドが進むことができます。 すべての待機中のスレッドが解放されます。  
+ スレッドは、他のスレッドが続行する前に完了する必要がある[](xref:System.Threading.EventWaitHandle.Reset%2A)アクティビティを開始すると`ManualResetEvent` 、ManualResetEvent を呼び出して、シグナル状態ではない状態になります。 このスレッドは、 `ManualResetEvent`を制御すると考えることができます。 シグナルを待機している[ManualResetEvent system.threading.waithandle.waitone](xref:System.Threading.WaitHandle.WaitOne%2A) block を呼び出すスレッド。 制御スレッドがアクティビティを完了すると、ManualResetEvent を呼び出して、待機しているスレッドが続行できることを通知し[ます。](xref:System.Threading.EventWaitHandle.Set%2A) 待機中のスレッドはすべて解放されます。  
 
- シグナル状態されて`ManualResetEvent`呼び出すことによって手動でリセットされるまでシグナル状態のまま、<xref:System.Threading.EventWaitHandle.Reset>メソッド。 つまり、呼び出し<xref:System.Threading.WaitHandle.WaitOne%2A>すぐに返します。  
+ シグナルが通知されると`ManualResetEvent` 、は<xref:System.Threading.EventWaitHandle.Reset>メソッドを呼び出すことによって手動でリセットされるまで、シグナル状態のままになります。 つまり、を<xref:System.Threading.WaitHandle.WaitOne%2A>呼び出すと、が直ちに返されます。  
 
- 初期状態を制御することができます、`ManualResetEvent`コンス トラクターにブール値を渡すことによって:`true`初期状態はシグナル状態になる場合と`false`それ以外の場合。  
+ コンストラクターにブール値を渡すことに`ManualResetEvent`よって、の初期状態を制御でき`true`ます。初期`false`状態がシグナル状態の場合は、それ以外の場合はです。  
  
- `ManualResetEvent` 使用することができますも、 `static` <xref:System.Threading.WaitHandle.WaitAll%2A>と<xref:System.Threading.WaitHandle.WaitAny%2A>メソッド。  
+ `ManualResetEvent`は、メソッド`static` <xref:System.Threading.WaitHandle.WaitAll%2A>および<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドと共に使用することもできます。  
   
- .NET Framework version 2.0 以降<xref:System.Threading.ManualResetEvent>から派生した、<xref:System.Threading.EventWaitHandle>クラス。 A<xref:System.Threading.ManualResetEvent>は機能的に等価、<xref:System.Threading.EventWaitHandle>で作成された<xref:System.Threading.EventResetMode.ManualReset?displayProperty=nameWithType>します。  
+ .NET Framework バージョン2.0 以降では、 <xref:System.Threading.ManualResetEvent>は<xref:System.Threading.EventWaitHandle>クラスから派生します。 は<xref:System.Threading.ManualResetEvent> 、 <xref:System.Threading.EventWaitHandle> で<xref:System.Threading.EventResetMode.ManualReset?displayProperty=nameWithType>作成されたと機能的には等価です。  
   
 > [!NOTE]
-> 異なり、<xref:System.Threading.ManualResetEvent>クラス、<xref:System.Threading.EventWaitHandle>クラスが名前付きシステム同期イベントへのアクセスを提供します。  
+> クラスとは異なり、 <xref:System.Threading.EventWaitHandle>クラスは、名前付きシステム同期イベントへのアクセスを提供します。 <xref:System.Threading.ManualResetEvent>  
 
- .NET Framework バージョン 4.0 では、以降では、<xref:System.Threading.ManualResetEventSlim?displayProperty=nameWithType>クラスは、軽量版を<xref:System.Threading.ManualResetEvent>します。    
+ .NET Framework バージョン 4.0 <xref:System.Threading.ManualResetEventSlim?displayProperty=nameWithType>以降では、クラスはに<xref:System.Threading.ManualResetEvent>代わる軽量の方法です。    
    
    
   
 ## Examples  
- 次の例でどのように<xref:System.Threading.ManualResetEvent>動作します。 例の先頭で、<xref:System.Threading.ManualResetEvent>非シグナル状態で (つまり、`false`コンス トラクターに渡される)。 この例では、3 つを作成、ブロックのそれぞれにスレッド、<xref:System.Threading.ManualResetEvent>を呼び出してその<xref:System.Threading.WaitHandle.WaitOne%2A>メソッド。 押されたとき、 **Enter**キーの例では、<xref:System.Threading.EventWaitHandle.Set%2A>メソッドで、次の 3 つのスレッドをすべて解放します。 動作とは対照的、<xref:System.Threading.AutoResetEvent>クラスは、各リリース後に自動的にリセットしています。 一度に 1 つのスレッドを解放します。  
+ 次の例は、 <xref:System.Threading.ManualResetEvent>のしくみを示しています。 この例は、非シグナル<xref:System.Threading.ManualResetEvent>状態のを使用して開始さ`false`れます (つまり、がコンストラクターに渡されます)。 この例では、3つのスレッドを作成し<xref:System.Threading.ManualResetEvent>ます。各<xref:System.Threading.WaitHandle.WaitOne%2A>スレッドは、そのメソッドを呼び出すことによってをブロックします。 ユーザーが**enter**キーを押すと、この例では<xref:System.Threading.EventWaitHandle.Set%2A>メソッドが呼び出され、3つのスレッドがすべて解放されます。 これは、 <xref:System.Threading.AutoResetEvent>クラスの動作と比較して、スレッドを一度に1つずつ解放します。これにより、各リリースの後に自動的にリセットされます。  
   
- キーを押して、 **」と入力**キーがもう一度ことを示します、<xref:System.Threading.ManualResetEvent>までシグナル状態のままになります、<xref:System.Threading.EventWaitHandle.Reset%2A>メソッドが呼び出されます。この例では、2 つのスレッドを開始します。 呼び出し時に、これらのスレッドがブロックされません、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドが完了する代わりに実行します。  
+ もう一度**enter**キーを押すと、 <xref:System.Threading.ManualResetEvent>その<xref:System.Threading.EventWaitHandle.Reset%2A>メソッドが呼び出されるまで、がシグナル状態のままであることがわかります。この例では、さらに2つのスレッドを開始します。 これらのスレッドは、 <xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを呼び出すときにはブロックされず、代わりに完了まで実行されます。  
   
- キーを押して、 **」と入力**キーを呼び出す例では、もう一度押すと、<xref:System.Threading.EventWaitHandle.Reset%2A>メソッドを呼び出すときにブロックする 1 つ以上のスレッドを開始して<xref:System.Threading.WaitHandle.WaitOne%2A>します。 キーを押して、 **」と入力**キー 1 つの呼び出しの最後に<xref:System.Threading.EventWaitHandle.Set%2A>リリース、最後のスレッドと、プログラムを終了します。  
+ もう一度**enter**キーを押すと、この例で<xref:System.Threading.EventWaitHandle.Reset%2A>はメソッドが呼び出され、スレッドが呼び出さ<xref:System.Threading.WaitHandle.WaitOne%2A>れるとブロックされるスレッドがもう1つ起動します。 **Enter**キー <xref:System.Threading.EventWaitHandle.Set%2A>を押すと最後のスレッドが解放され、プログラムが終了します。  
   
  [!code-cpp[System.Threading.ManualResetEvent#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ManualResetEvent/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ManualResetEvent#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ManualResetEvent/CS/source.cs#1)]
@@ -73,7 +73,7 @@
   
  ]]></format>
     </remarks>
-    <threadsafe>このクラスは、スレッド セーフです。</threadsafe>
+    <threadsafe>このクラスはスレッドセーフです。</threadsafe>
     <altmember cref="T:System.Threading.WaitHandle" />
     <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
     <related type="Article" href="~/docs/standard/threading/overview-of-synchronization-primitives.md">同期プリミティブの概要</related>
@@ -121,7 +121,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合の初期状態を<xref:System.Threading.ManualResetEvent>通知される (を渡すことによって作成されている場合は、`true`の`initialState`)、スレッドを待機している、<xref:System.Threading.ManualResetEvent>はブロックしません。 スレッドがブロックされるまで初期状態が非シグナル状態の場合は、<xref:System.Threading.EventWaitHandle.Set%2A>メソッドが呼び出されます。  
+ の<xref:System.Threading.ManualResetEvent>初期状態が通知される場合 (つまり、がに`initialState`渡す`true`ことによって作成された場合)、 <xref:System.Threading.ManualResetEvent> do not block で待機するスレッド。 初期状態が非シグナル状態の場合、スレッドは<xref:System.Threading.EventWaitHandle.Set%2A>メソッドが呼び出されるまでブロックします。  
   
  ]]></format>
         </remarks>
@@ -187,7 +187,7 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-までシグナル状態のまま待機ハンドルに Set メソッドを呼び出す、<xref:System.Threading.ManualResetEvent.Reset>メソッドが呼び出されます。
+Set メソッドを呼び出すと、 <xref:System.Threading.ManualResetEvent.Reset>メソッドが呼び出されるまで、待機ハンドルはシグナル状態のままになります。
 
 ]]></format>
         </remarks>

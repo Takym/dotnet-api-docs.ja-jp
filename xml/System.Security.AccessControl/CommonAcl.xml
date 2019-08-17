@@ -1,5 +1,5 @@
 <Type Name="CommonAcl" FullName="System.Security.AccessControl.CommonAcl">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7ed9c6867806a346d0490130f4e1d6cc262b19e7" /><Meta Name="ms.sourcegitcommit" Value="42a3c35677e9d87eeb503607ae50c9d39827d414" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2018" /><Meta Name="ms.locfileid" Value="53460073" /></Metadata><TypeSignature Language="C#" Value="public abstract class CommonAcl : System.Security.AccessControl.GenericAcl" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7fdc532164d2f3c6e1dc7a8fe38e8b3f3cb1c1fe" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69086448" /></Metadata><TypeSignature Language="C#" Value="public abstract class CommonAcl : System.Security.AccessControl.GenericAcl" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CommonAcl extends System.Security.AccessControl.GenericAcl" />
   <TypeSignature Language="DocId" Value="T:System.Security.AccessControl.CommonAcl" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CommonAcl&#xA;Inherits GenericAcl" />
@@ -29,41 +29,41 @@
   
 ## Remarks  
   
--   特定の継承とアクセス マスク フラグの組み合わせには意味がありません。  
+-   継承およびアクセスマスクフラグの特定の組み合わせは無意味です。  
   
--   アクセスの制御エントリ (ACE) 0 アクセス マスクを持つは削除されます。  
+-   ゼロアクセスマスクを持つすべてのアクセス制御エントリ (ACE) は削除されます。  
   
--   オブジェクトの Acl 内の継承のみの Ace が削除されます。  
+-   オブジェクト Acl 内の継承専用の Ace は削除されます。  
   
--   <xref:System.Security.AccessControl.PropagationFlags.InheritOnly>、 <xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>、 <xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>、および<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグ リーフのすべての Ace をオブジェクトの Acl がクリアされます。  
+-   <xref:System.Security.AccessControl.PropagationFlags.InheritOnly>リーフ<xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>オブジェクト<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>acl 内<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>のすべての ace の、、、の各フラグがクリアされます。  
   
--   Ace を持つ、<xref:System.Security.AccessControl.PropagationFlags.InheritOnly>フラグがない場合、<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>または<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグは意味がありません。 削除されます。  
+-   <xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>また<xref:System.Security.AccessControl.PropagationFlags.InheritOnly> は<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグがない場合、フラグを持つ ace は無意味であり、削除されます。  
   
--   <xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>フラグがない場合、<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>または<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグを削除することができます。  
+-   <xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>フラグまたは<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグがない場合は、フラグを削除できます。<xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>  
   
--   Ace を持つ、 <xref:System.Security.AccessControl.AuditFlags> @property<xref:System.Security.AccessControl.AuditFlags.Success>または<xref:System.Security.AccessControl.AuditFlags.Failure>随意アクセス制御リスト (Dacl) が削除されます。  
+-   随意アクセス制御リスト<xref:System.Security.AccessControl.AuditFlags> (dacl <xref:System.Security.AccessControl.AuditFlags.Success> ) <xref:System.Security.AccessControl.AuditFlags.Failure>にまたはの値を持つ ace は削除されます。  
   
--   いずれかの監査 ACE のいずれかが指定されていない<xref:System.Security.AccessControl.AuditFlags.Success>または<xref:System.Security.AccessControl.AuditFlags.Failure>が削除されます。  
+-   <xref:System.Security.AccessControl.AuditFlags.Success>または<xref:System.Security.AccessControl.AuditFlags.Failure>が指定されていない監査 ACE は削除されます。  
   
--   Dacl に SystemAudit と SystemAlarm Ace は削除されます。  
+-   Dacl では、SystemAudit Ace と Systemaudit Ace は削除されます。  
   
--   システム アクセス制御リスト (Sacl) で AccessAllowed と AccessDenied Ace は削除されます。  
+-   システムアクセス制御リスト (Sacl) では、AccessAllowed Ace と Accessallowed Ace が削除されます。  
   
- 正規の順序は、次のアルゴリズムに従って保持されます。  
+ 正規の順序は、次のアルゴリズムに従って維持されます。  
   
--   明示的な Ace は継承された Ace より優先します。このルールは、Dacl と Sacl の両方に適用されます。  
+-   明示的な Ace は、継承された Ace より優先されます。このルールは、Dacl と Sacl の両方に適用されます。  
   
--   明示的な Ace の間での Dacl のアクセスを拒否する Ace はアクセスを許可する Ace に優先します。 ディレクトリ オブジェクトの Acl の非オブジェクトへの Ace は、オブジェクトの Ace の前に。  
+-   Dacl では、明示的な Ace の中で、アクセスを拒否する Ace がアクセスを許可する Ace より優先されます。 ディレクトリオブジェクト Acl の場合、非オブジェクトへ Ace はオブジェクトの Ace の前にあります。  
   
--   すべての共通の Ace は、共通でない Ace よりも優先されます。  
+-   共通の Ace はすべて、共通でない Ace よりも優先されます。  
   
--   継承された Ace は、canonicity 後、その相対順序を維持します。  
+-   継承された Ace は、canonicity の後の相対順序を維持します。  
   
--   Dacl と Sacl の両方では、認識されないと、カスタムの Ace が許可されていません。  
+-   認識されない Ace とカスタム Ace は、Dacl と Sacl の両方で許可されていません。  
   
--   (明示的な AccessDenied および Dacl、Sacl のすべての明示的な Ace に AccessAllowed Ace) の連続した範囲内での Ace を使用して並べ替えられて、<xref:System.Security.Principal.SecurityIdentifier.CompareTo%2A>のメソッド、 <xref:System.Security.Principal.SecurityIdentifier> Ace に関連付けられているオブジェクト。  
+-   連続する範囲 (明示的な accessdenied と dacl の accessdenied ace、sacl 上のすべての明示的な ace) では<xref:System.Security.Principal.SecurityIdentifier.CompareTo%2A> 、ace に<xref:System.Security.Principal.SecurityIdentifier>関連付けられているオブジェクトのメソッドを使用して ace が並べ替えられます。  
   
- 該当する場合、隣接する Ace が結合されます。  許可するアクセス制御セマンティクスに影響を与えずに、ACL のサイズが減少します。  
+ 隣接する Ace は、必要に応じて結合されます。  これにより、アクセス制御のセマンティクスに影響を与えることなく、ACL のサイズが縮小されます。  
   
  ]]></format>
     </remarks>
@@ -160,7 +160,7 @@
       <Docs>
         <param name="binaryForm"><see cref="T:System.Security.AccessControl.CommonAcl" /> のコンテンツのマーシャリング先のバイト配列。</param>
         <param name="offset">マーシャリングの開始位置を表すオフセット。</param>
-        <summary><see cref="T:System.Security.AccessControl.CommonAcl" /> オブジェクトのコンテンツを、指定したオフセットを開始位置として、指定したバイト配列にマーシャリングします。</summary>
+        <summary><see cref="T:System.Security.AccessControl.CommonAcl" /> オブジェクトのコンテンツを、指定したオフセットから始まる指定したバイト配列にマーシャリングします。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -282,7 +282,7 @@
         <Parameter Name="index" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="index">取得または設定する <see cref="T:System.Security.AccessControl.CommonAce" /> の、0 から始まるインデックス番号。</param>
+        <param name="index">取得または設定する <see cref="T:System.Security.AccessControl.CommonAce" /> の 0 から始まるインデックス番号。</param>
         <summary>指定したインデックス位置にある <see cref="T:System.Security.AccessControl.CommonAce" /> を取得または設定します。</summary>
         <value>指定されたインデックス位置にある <see cref="T:System.Security.AccessControl.CommonAce" />。</value>
         <remarks>To be added.</remarks>
