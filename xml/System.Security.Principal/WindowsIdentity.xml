@@ -1,5 +1,5 @@
 <Type Name="WindowsIdentity" FullName="System.Security.Principal.WindowsIdentity">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c26672d01e1299bb7555943d63dc4bf899a1ea86" /><Meta Name="ms.sourcegitcommit" Value="2dd0eede6edd6dd3d2aa8f79010848658b967609" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/17/2019" /><Meta Name="ms.locfileid" Value="59676638" /></Metadata><TypeSignature Language="C#" Value="public class WindowsIdentity : System.Security.Claims.ClaimsIdentity, IDisposable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7edb57acbc5dbe46340661e552f8a9269f5ef26a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69162275" /></Metadata><TypeSignature Language="C#" Value="public class WindowsIdentity : System.Security.Claims.ClaimsIdentity, IDisposable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit WindowsIdentity extends System.Security.Claims.ClaimsIdentity implements class System.IDisposable, class System.Runtime.Serialization.IDeserializationCallback, class System.Runtime.Serialization.ISerializable, class System.Security.Principal.IIdentity" />
   <TypeSignature Language="DocId" Value="T:System.Security.Principal.WindowsIdentity" />
   <TypeSignature Language="VB.NET" Value="Public Class WindowsIdentity&#xA;Inherits ClaimsIdentity&#xA;Implements IDeserializationCallback, IDisposable, ISerializable" />
@@ -50,7 +50,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す、<xref:System.Security.Principal.WindowsIdentity.GetCurrent%2A>を作成する方法、<xref:System.Security.Principal.WindowsIdentity>現在のユーザーを表すオブジェクト。  
+ メソッドを呼び出して、現在<xref:System.Security.Principal.WindowsIdentity>のユーザーを表すオブジェクトを作成します。 <xref:System.Security.Principal.WindowsIdentity.GetCurrent%2A>  
   
 > [!IMPORTANT]
 >  この型は <xref:System.IDisposable> インターフェイスを実装します。 型の使用が完了したら、直接的または間接的に型を破棄する必要があります。 直接的に型を破棄するには、`try` / `catch` ブロック内で <xref:System.IDisposable.Dispose%2A> メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
@@ -58,7 +58,7 @@
    
   
 ## Examples  
- 次の例のメンバーの使用を示しています。<xref:System.Security.Principal.WindowsIdentity>クラス。  アカウント、Windows を入手する方法を示す例については、アンマネージ Win32 呼び出しを通じてトークン`LogonUser`関数、および別のユーザーを偽装トークンを使用して参照してください、<xref:System.Security.Principal.WindowsImpersonationContext>クラス。  
+ 次の例は、クラスの<xref:System.Security.Principal.WindowsIdentity>メンバーの使用方法を示しています。  アンマネージ Win32 `LogonUser`関数の呼び出しを使用して Windows アカウントトークンを取得し、そのトークンを使用して別のユーザーの権限を借用する<xref:System.Security.Principal.WindowsImpersonationContext>方法を示す例については、クラスを参照してください。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#1)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#1)]
@@ -114,7 +114,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 次の表のインスタンスの初期プロパティ値<xref:System.Security.Principal.WindowsIdentity>します。  
+ 次の表に、の<xref:System.Security.Principal.WindowsIdentity>インスタンスのプロパティの初期値を示します。  
   
 |プロパティ|初期値|  
 |--------------|-------------------|  
@@ -123,7 +123,7 @@
 |<xref:System.Security.Principal.WindowsIdentity.IsAuthenticated%2A>|`false`|  
   
 > [!NOTE]
->  によって表されるトークンを取得する`userToken`Windows API などのアンマネージ コードを呼び出すことによって`LogonUser`関数。 常にリリース`userToken`Windows API を呼び出すことによって`CloseHandle`関数。 アンマネージ コードの呼び出しの詳細については、次を参照してください。[アンマネージ DLL 関数の処理](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)します。  
+>  Windows API `userToken` `LogonUser`関数などのアンマネージコードを呼び出すことによって、によって表されるトークンを取得できます。 常に`userToken` Windows API `CloseHandle`関数を呼び出してリリースします。 アンマネージコードの呼び出しの詳細については、「[アンマネージ DLL 関数](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)の使用」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -133,9 +133,10 @@
  <paramref name="userToken" /> は、複製され、偽装に対して無効になっています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。  
   
-または 
-Win32 エラーが発生しました。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージ コードにアクセスする機能。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
+ - または -  
+  
+ Win32 エラーが発生しました。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -205,10 +206,10 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- UPN 形式には*username*@*domainname*.com、つまり、電子メール アドレス。 識別される UPN `sUserPrincipalName` Windows API を通じてそのユーザーのトークンを取得するために使用`LsaLogonUser`関数。 さらにそのトークンは、ユーザーを識別するために使用されます。 指定した UPN を使用してログオンできないのため、例外を返される可能性があります。  
+ UPN の形式は、 *username*@*domainname*.com です。つまり、電子メールアドレスです。 で`sUserPrincipalName`識別される UPN は、Windows API `LsaLogonUser`関数を通じてそのユーザーのトークンを取得するために使用されます。 その後、トークンを使用してユーザーを識別します。 指定された UPN を使用してログオンできないことが原因で、例外が返されることがあります。  
   
 > [!NOTE]
->  このコンス トラクターは、Windows Server 2003 またはそれ以降のドメインに参加しているコンピューターでのみ使用する対象としています。 以前のドメインの種類、例外がスローされます。 この制限は、このコンス トラクターを使用しているため、 [KERB_S4U_LOGON 構造](https://go.microsoft.com/fwlink/?LinkId=143533)、Windows Server 2003 で導入されたいました。  
+>  このコンストラクターは、Windows Server 2003 以降のドメインに参加しているコンピューターでのみ使用することを目的としています。 以前のドメイン型に対しては例外がスローされます。 この制限は、このコンストラクターが Windows Server 2003 で初めて導入された[KERB_S4U_LOGON 構造体](https://go.microsoft.com/fwlink/?LinkId=143533)を使用していることが原因です。  
   
  ]]></format>
         </remarks>
@@ -216,15 +217,18 @@ Win32 エラーが発生しました。</exception>
         <exception cref="T:System.OutOfMemoryException">使用できるメモリが不足しています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。  
   
-または 
-コンピューターは Windows 2003 以降のドメインに接続されていません。  
+ - または -  
   
-または 
-コンピューターは Windows 2003 以降を実行していません。  
+ コンピューターは Windows 2003 以降のドメインに接続されていません。  
   
-または 
-ユーザーは、コンピューターが接続されているドメインのメンバーではありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージ コードにアクセスする機能。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
+ - または -  
+  
+ コンピューターは Windows 2003 以降を実行していません。  
+  
+ または  
+  
+ ユーザーは、コンピューターが接続されているドメインのメンバーではありません。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -265,22 +269,22 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 次の表のインスタンスの初期プロパティ値<xref:System.Security.Principal.WindowsIdentity>します。  
+ 次の表に、の<xref:System.Security.Principal.WindowsIdentity>インスタンスのプロパティの初期値を示します。  
   
 |プロパティ|初期値|  
 |--------------|-------------------|  
 |<xref:System.Security.Principal.WindowsAccountType>|`Normal`|  
 |<xref:System.Security.Principal.WindowsIdentity.IsAuthenticated%2A>|`false`|  
   
- 値、`type`パラメーターを設定するため、<xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>パラメーター。 場合`type`は`null`、セキュリティ システムのセット<xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>に`Negotiate`Windows Vista およびそれ以降のバージョンの Windows オペレーティング システム、および`Kerberos`Windows オペレーティング システムの以前のバージョン。 セキュリティ システムがこの値を使用していません。情報目的のみになります。  
+ パラメーターの`type`値は、 <xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>パラメーターの設定に使用されます。 が`type` <xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A> `Kerberos` `Negotiate`の場合、セキュリティシステムは、windows Vista 以降のバージョンの windows オペレーティングシステムで、および以前のバージョンの windows オペレーティングシステムに対してをに設定します。 `null` セキュリティシステムでは、この値は使用されません。情報提供のみを目的としています。  
   
 > [!NOTE]
->  によって表されるトークンを取得する`userToken`Windows API などのアンマネージ コードを呼び出すことによって`LogonUser`関数。 常にリリース`userToken`Windows API を呼び出すことによって`CloseHandle`関数。 アンマネージ コードの呼び出しの詳細については、次を参照してください。[アンマネージ DLL 関数の処理](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)します。  
+>  Windows API `userToken` `LogonUser`関数などのアンマネージコードを呼び出すことによって、によって表されるトークンを取得できます。 常に`userToken` Windows API `CloseHandle`関数を呼び出してリリースします。 アンマネージコードの呼び出しの詳細については、「[アンマネージ DLL 関数](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)の使用」を参照してください。  
   
    
   
 ## Examples  
- 次のコードは、使用、<xref:System.Security.Principal.WindowsIdentity.%23ctor%2A>の新しいインスタンスを作成するコンス トラクター、<xref:System.Security.Principal.WindowsIdentity>指定した Windows アカウント トークンと指定した認証の種類によって表されるユーザー クラス。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.%23ctor%2A>コンストラクターを使用して、指定した Windows アカウントトークンと指定した認証の種類によって表されるユーザーの<xref:System.Security.Principal.WindowsIdentity>クラスの新しいインスタンスを作成する方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#4)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#4)]
@@ -290,13 +294,14 @@ Win32 エラーが発生しました。</exception>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="userToken" /> が 0 です。  
   
-または 
+- または - 
  <paramref name="userToken" /> は、複製され、偽装に対して無効になっています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。  
   
-または 
-Win32 エラーが発生しました。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージ コードにアクセスする機能。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
+ または  
+  
+ Win32 エラーが発生しました。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -344,9 +349,10 @@ Win32 エラーが発生しました。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.Security.Principal.WindowsIdentity" /> はプロセス間でシリアル化することはできません。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。  
   
-または 
-Win32 エラーが発生しました。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパル オブジェクトを操作する権限です。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /> (関連する列挙体)</permission>
+ - または -  
+  
+ Win32 エラーが発生しました。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパルオブジェクトを操作する権限。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -384,12 +390,12 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 値、`type`パラメーターを設定するため、<xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>パラメーター。 場合`type`は`null`、セキュリティ システムのセット<xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>に`Negotiate`Windows Vista およびそれ以降のバージョンの Windows オペレーティング システム、および`Kerberos`Windows オペレーティング システムの以前のバージョン。 セキュリティ システムがこの値を使用していません。情報目的のみになります。  
+ パラメーターの`type`値は、 <xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>パラメーターの設定に使用されます。 が`type` <xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A> `Kerberos` `Negotiate`の場合、セキュリティシステムは、windows Vista 以降のバージョンの windows オペレーティングシステムで、および以前のバージョンの windows オペレーティングシステムに対してをに設定します。 `null` セキュリティシステムでは、この値は使用されません。情報提供のみを目的としています。  
   
- 識別される UPN `sUserPrincipalName` Windows API を通じてそのユーザーのトークンを取得するために使用`LsaLogonUser`関数。 さらにそのトークンは、ユーザーを識別するために使用されます。 指定した UPN を使用してログオンできないのため、例外を返される可能性があります。  
+ で`sUserPrincipalName`識別される UPN は、Windows API `LsaLogonUser`関数を通じてそのユーザーのトークンを取得するために使用されます。 その後、トークンを使用してユーザーを識別します。 指定された UPN を使用してログオンできないことが原因で、例外が返されることがあります。  
   
 > [!NOTE]
->  このコンス トラクターは、Windows Server 2003 またはそれ以降のドメインに参加しているコンピューターでのみ使用する対象としています。 以前のドメインの種類、例外がスローされます。 この制限は、このコンス トラクターを使用しているため、 [KERB_S4U_LOGON 構造](https://go.microsoft.com/fwlink/?LinkId=143533)、Windows Server 2003 で導入されたいました。  
+>  このコンストラクターは、Windows Server 2003 以降のドメインに参加しているコンピューターでのみ使用することを目的としています。 以前のドメイン型に対しては例外がスローされます。 この制限は、このコンストラクターが Windows Server 2003 で初めて導入された[KERB_S4U_LOGON 構造体](https://go.microsoft.com/fwlink/?LinkId=143533)を使用していることが原因です。  
   
  ]]></format>
         </remarks>
@@ -397,15 +403,18 @@ Win32 エラーが発生しました。</exception>
         <exception cref="T:System.OutOfMemoryException">使用できるメモリが不足しています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。  
   
-または 
-コンピューターは Windows 2003 以降のドメインに接続されていません。  
+ - または -  
   
-または 
-コンピューターは Windows 2003 以降を実行していません。  
+ コンピューターは Windows 2003 以降のドメインに接続されていません。  
   
-または 
-ユーザーは、コンピューターが接続されているドメインのメンバーではありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージ コードにアクセスする機能。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
+ - または -  
+  
+ コンピューターは Windows 2003 以降を実行していません。  
+  
+ - または -  
+  
+ ユーザーは、コンピューターが接続されているドメインのメンバーではありません。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -433,9 +442,9 @@ Win32 エラーが発生しました。</exception>
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="userToken" Type="System.IntPtr" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="type" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="acctType" Type="System.Security.Principal.WindowsAccountType" Index="2" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="userToken" Type="System.IntPtr" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.0" />
+        <Parameter Name="type" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.0" />
+        <Parameter Name="acctType" Type="System.Security.Principal.WindowsAccountType" Index="2" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.0" />
       </Parameters>
       <Docs>
         <param name="userToken">コードが実行されている対象ユーザーのアカウント トークン。</param>
@@ -446,21 +455,21 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 次の表のインスタンスの初期プロパティ値<xref:System.Security.Principal.WindowsIdentity>します。  
+ 次の表に、の<xref:System.Security.Principal.WindowsIdentity>インスタンスのプロパティの初期値を示します。  
   
 |プロパティ|初期値|  
 |--------------|-------------------|  
 |<xref:System.Security.Principal.WindowsIdentity.IsAuthenticated%2A>|`false`|  
   
- 値、`type`パラメーターを設定するため、<xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>パラメーター。 場合`type`は`null`、セキュリティ システムのセット<xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>に`Negotiate`Windows Vista およびそれ以降のバージョンの Windows オペレーティング システム、および`Kerberos`Windows オペレーティング システムの以前のバージョン。 セキュリティ システムがこの値を使用していません。情報目的のみになります。  
+ パラメーターの`type`値は、 <xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>パラメーターの設定に使用されます。 が`type` <xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A> `Kerberos` `Negotiate`の場合、セキュリティシステムは、windows Vista 以降のバージョンの windows オペレーティングシステムで、および以前のバージョンの windows オペレーティングシステムに対してをに設定します。 `null` セキュリティシステムでは、この値は使用されません。情報提供のみを目的としています。  
   
 > [!NOTE]
->  によって表されるトークンを取得する`userToken`Windows API などのアンマネージ コードを呼び出すことによって`LogonUser`関数。 常にリリース`userToken`Windows API を呼び出すことによって`CloseHandle`関数。 アンマネージ コードの呼び出しの詳細については、次を参照してください。[アンマネージ DLL 関数の処理](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)します。  
+>  Windows API `userToken` `LogonUser`関数などのアンマネージコードを呼び出すことによって、によって表されるトークンを取得できます。 常に`userToken` Windows API `CloseHandle`関数を呼び出してリリースします。 アンマネージコードの呼び出しの詳細については、「[アンマネージ DLL 関数](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)の使用」を参照してください。  
   
    
   
 ## Examples  
- 次のコードは、使用、<xref:System.Security.Principal.WindowsIdentity.%23ctor%2A>の新しいインスタンスを作成するコンス トラクター、<xref:System.Security.Principal.WindowsIdentity>指定した Windows アカウント トークン、指定した認証の種類、および指定した Windows アカウントの種類によって表されるユーザーのクラス。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.%23ctor%2A>コンストラクターを使用して、指定した windows アカウントトークン、指定した認証の種類、および指定された windows アカウントの種類によって表されるユーザーの<xref:System.Security.Principal.WindowsIdentity>クラスの新しいインスタンスを作成する方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#7](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#7)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#7)]
@@ -474,9 +483,10 @@ Win32 エラーが発生しました。</exception>
  <paramref name="userToken" /> は、複製され、偽装に対して無効になっています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。  
   
-または 
-Win32 エラーが発生しました。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージ コードにアクセスする機能。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
+ - または -  
+  
+ Win32 エラーが発生しました。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -504,10 +514,10 @@ Win32 エラーが発生しました。</exception>
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="userToken" Type="System.IntPtr" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="type" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="acctType" Type="System.Security.Principal.WindowsAccountType" Index="2" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="isAuthenticated" Type="System.Boolean" Index="3" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="userToken" Type="System.IntPtr" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.0" />
+        <Parameter Name="type" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.0" />
+        <Parameter Name="acctType" Type="System.Security.Principal.WindowsAccountType" Index="2" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.0" />
+        <Parameter Name="isAuthenticated" Type="System.Boolean" Index="3" FrameworkAlternate="dotnet-plat-ext-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.0" />
       </Parameters>
       <Docs>
         <param name="userToken">コードが実行されている対象ユーザーのアカウント トークン。</param>
@@ -519,14 +529,14 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 値、`type`パラメーターを設定するため、<xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>パラメーター。 場合`type`は`null`、セキュリティ システムのセット<xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>に`Negotiate`Windows Vista およびそれ以降のバージョンの Windows オペレーティング システム、および`Kerberos`Windows オペレーティング システムの以前のバージョン。 セキュリティ システムがこの値を使用していません。情報目的のみになります。  
+ パラメーターの`type`値は、 <xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A>パラメーターの設定に使用されます。 が`type` <xref:System.Security.Principal.WindowsIdentity.AuthenticationType%2A> `Kerberos` `Negotiate`の場合、セキュリティシステムは、windows Vista 以降のバージョンの windows オペレーティングシステムで、および以前のバージョンの windows オペレーティングシステムに対してをに設定します。 `null` セキュリティシステムでは、この値は使用されません。情報提供のみを目的としています。  
   
- によって表されるトークンを取得する`userToken`Windows API などのアンマネージ コードを呼び出すことによって`LogonUser`関数。 常にリリース`userToken`Windows API を呼び出すことによって`CloseHandle`関数。 アンマネージ コードの呼び出しの詳細については、次を参照してください。[アンマネージ DLL 関数の処理](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)します。  
+ Windows API `userToken` `LogonUser`関数などのアンマネージコードを呼び出すことによって、によって表されるトークンを取得できます。 常に`userToken` Windows API `CloseHandle`関数を呼び出してリリースします。 アンマネージコードの呼び出しの詳細については、「[アンマネージ DLL 関数](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)の使用」を参照してください。  
   
    
   
 ## Examples  
- 次のコードは、使用、<xref:System.Security.Principal.WindowsIdentity.%23ctor%2A>の新しいインスタンスを作成するコンス トラクター、<xref:System.Security.Principal.WindowsIdentity>指定した Windows アカウント トークン、指定した認証の種類、指定した Windows アカウントの種類によって表されるユーザーのクラスと、認証の状態を指定します。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.%23ctor%2A>コンストラクターを使用して、指定した windows アカウントトークン、指定した認証の種類、指定された windows アカウントの種類、およびによって表されるユーザーの<xref:System.Security.Principal.WindowsIdentity>クラスの新しいインスタンスを作成する方法を示しています。指定された認証ステータス。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#17](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#17)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#17](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#17)]
@@ -536,13 +546,14 @@ Win32 エラーが発生しました。</exception>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="userToken" /> が 0 です。  
   
-または 
+- または - 
  <paramref name="userToken" /> は、複製され、偽装に対して無効になっています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。  
   
-または 
-Win32 エラーが発生しました。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージ コードにアクセスする機能。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
+ - または -  
+  
+ Win32 エラーが発生しました。</exception>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="AccessToken">
@@ -617,7 +628,7 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは参照用です。セキュリティ システムでは使用されません。 Windows Vista および Windows オペレーティング システムの以降のバージョンでは、このプロパティの既定値は`Negotiate`顧客が構成したセキュリティ ポリシーに基づいて最適なセキュリティ サポート プロバイダー (SSP) を選択します。 以前のバージョンの Windows オペレーティング システムの既定のプロパティの値は`Kerberos`します。  
+ このプロパティは情報提供です。セキュリティシステムでは使用されません。 Windows Vista 以降のバージョンの windows オペレーティングシステムでは、このプロパティの既定値はです`Negotiate`。これにより、ユーザーが構成したセキュリティポリシーに基づいて最適なセキュリティサポートプロバイダー (SSP) が選択されます。 以前のバージョンの Windows オペレーティングシステムの既定のプロパティ値は`Kerberos`です。  
   
  ]]></format>
         </remarks>
@@ -625,14 +636,17 @@ Win32 エラーが発生しました。</exception>
         <exception cref="T:System.OutOfMemoryException">使用できるメモリが不足しています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。  
   
-または 
-コンピューターは Windows 2003 以降のドメインに接続されていません。  
+ - または -  
   
-または 
-コンピューターは Windows 2003 以降を実行していません。  
+ コンピューターは Windows 2003 以降のドメインに接続されていません。  
   
-または 
-ユーザーは、コンピューターが接続されているドメインのメンバーではありません。</exception>
+ または  
+  
+ コンピューターは Windows 2003 以降を実行していません。  
+  
+ - または -  
+  
+ ユーザーは、コンピューターが接続されているドメインのメンバーではありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="Claims">
@@ -660,7 +674,7 @@ Win32 エラーが発生しました。</exception>
         <Attribute FrameworkAlternate="netframework-4.6">
           <AttributeName>get: System.Runtime.CompilerServices.IteratorStateMachine(typeof(System.Security.Principal.WindowsIdentity/&lt;get_Claims&gt;d__1))</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0">
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2">
           <AttributeName>get: System.Runtime.CompilerServices.IteratorStateMachine(typeof(System.Security.Principal.WindowsIdentity/&lt;get_Claims&gt;d__79))</AttributeName>
         </Attribute>
       </Attributes>
@@ -855,16 +869,16 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose()`メソッドと<xref:System.Object.Finalize%2A>メソッド。 `Dispose()` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 <xref:System.Object.Finalize%2A> 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック`Dispose()`メソッド<xref:System.Object.Finalize%2A>とメソッドによって呼び出されます。 `Dispose()``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 <xref:System.Object.Finalize%2A>をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.Security.Principal.WindowsIdentity> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 オーバーライドするときに<see langword="Dispose(Boolean)" />の事前に呼び出したで以前破棄されたオブジェクトを参照しないように注意する<see langword="Dispose" />します。 実装する方法についての詳細は<see langword="Dispose(Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 をオーバーライド<see langword="Dispose(Boolean)" />する場合は、以前にを<see langword="Dispose" />呼び出したときに破棄されたオブジェクトを参照しないように注意してください。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see cref="M:System.Object.Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)します。</para></block>
+<see langword="Dispose" /> および<see cref="M:System.Object.Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Finalize">
@@ -894,10 +908,10 @@ Win32 エラーが発生しました。</exception>
 ## Remarks  
 
 > [!NOTE]
-> このメンバーは、.NET Framework version 2.0 およびそれ以降のバージョンで削除されます。
+> このメンバーは .NET Framework バージョン2.0 以降のバージョンでは削除されます。
 
 
-アプリケーション コードには、このメソッドは呼び出しません。ガベージ コレクターによって終了処理が無効になっている場合を除き、ガベージ コレクション中に自動的に呼び出されます。 詳細については、次のトピックを参照してください。 <xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType> および <xref:System.Object.Finalize> このメソッドは、<xref:System.Object.Finalize> をオーバーライドします。
+アプリケーションコードはこのメソッドを呼び出しません。ガベージコレクターによる終了処理が無効になっていない限り、ガベージコレクションの実行中に自動的に呼び出されます。 詳細については、次のトピックを参照してください。 <xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType> および <xref:System.Object.Finalize> このメソッドは、<xref:System.Object.Finalize> をオーバーライドします。
 
 ]]></format>
         </remarks>
@@ -940,14 +954,14 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、空白を返します<xref:System.Security.Principal.WindowsIdentity>オブジェクト匿名として操作を処理することができます。 プロパティの値は、Windows の匿名ユーザーに対応していないと、権限借用には使用できません。 また、このプロパティによって返される id が static; ではないことに注意してください。呼び出しごとに<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>別の匿名 id を返します。  
+ このプロパティは、操作<xref:System.Security.Principal.WindowsIdentity>を匿名として扱うことができる空のオブジェクトを返します。 プロパティ値が Windows 匿名ユーザーに対応しておらず、権限借用に使用できません。 また、このプロパティによって返される id は静的ではないことに注意してください。を呼び出す<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>たびに、異なる匿名 id が返されます。  
   
- 使用することができます、<xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>プロパティからの戻り値を検出するために<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>します。 ただし、 <xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A> Windows 匿名の id と、このメソッドによって返された匿名 id の両方を検出します。 後者の id を使用するには、キャッシュ、<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>戻り値ではなく、<xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>プロパティ。  
+ <xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>プロパティを使用して、から<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>の戻り値を検出できます。 ただし、 <xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>は、Windows 匿名 id と、このメソッドによって返される匿名 id の両方を検出します。 後者の id を使用するには<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A> 、 <xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>プロパティに依存するのではなく、戻り値をキャッシュします。  
   
    
   
 ## Examples  
- 次のコードは、使用、<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>を返すメソッドを<xref:System.Security.Principal.WindowsIdentity>匿名の Windows ユーザーを表すオブジェクト。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>メソッドを使用して、匿名の Windows ユーザーを表す<xref:System.Security.Principal.WindowsIdentity>オブジェクトを返す方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#15](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#15)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#15](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#15)]
@@ -1004,7 +1018,7 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコードは、使用、<xref:System.Security.Principal.WindowsIdentity.GetCurrent%2A>を返すメソッドを<xref:System.Security.Principal.WindowsIdentity>現在の Windows ユーザーを表すオブジェクト。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.GetCurrent%2A>メソッドを使用して、現在の Windows ユーザーを表す<xref:System.Security.Principal.WindowsIdentity>オブジェクトを返す方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#13](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#13)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#13](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#13)]
@@ -1013,7 +1027,7 @@ Win32 エラーが発生しました。</exception>
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパル オブジェクトを操作する権限です。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパルオブジェクトを操作する権限。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="GetCurrent">
@@ -1055,11 +1069,11 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`ifImpersonating`は`true`と、スレッドが偽装中でない、返された<xref:System.Security.Principal.WindowsIdentity>オブジェクトに値がありません。  場合`ifImpersonating`は`false`スレッドが偽装し、<xref:System.Security.Principal.WindowsIdentity>スレッドが返されます。  場合`ifImpersonating`は`false`スレッドが偽装中でないと、<xref:System.Security.Principal.WindowsIdentity>プロセスが返されます。  
+ が`ifImpersonating` <xref:System.Security.Principal.WindowsIdentity>で、スレッドが偽装されていない場合、返されるオブジェクトには値がありません。 `true`  が`ifImpersonating` <xref:System.Security.Principal.WindowsIdentity>で、スレッドが偽装されている場合は、スレッドのが返されます。 `false`  が`ifImpersonating` <xref:System.Security.Principal.WindowsIdentity>で、スレッドが偽装されていない場合は、プロセスのが返されます。 `false`  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパル オブジェクトを操作する権限です。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパルオブジェクトを操作する権限。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="GetCurrent">
@@ -1101,11 +1115,11 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `desiredAccess`パラメーターが要求されたアクセス トークンへのアクセスの種類を識別するアクセス マスクを指定します。 これらの要求されたアクセス タイプは、トークンの随意アクセス制御リスト (DACL) をどの種類のアクセスを許可または拒否の判断と比較されます。  
+ パラメーター `desiredAccess`は、アクセストークンへの要求されたアクセスの種類を識別するアクセスマスクを指定します。 これらの要求されたアクセスの種類は、トークンの随意アクセス制御リスト (DACL) と比較され、許可または拒否されるアクセスの種類を決定します。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパル オブジェクトを操作する権限です。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパルオブジェクトを操作する権限。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="Groups">
@@ -1143,7 +1157,7 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例の使用を示しています、<xref:System.Security.Principal.WindowsIdentity.Groups%2A>プロパティを現在のユーザーが属するグループの id の参照を表示します。  このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコード例は、 <xref:System.Security.Principal.WindowsIdentity.Groups%2A>プロパティを使用して、現在のユーザーが属するグループの id 参照を表示する方法を示しています。  このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#20](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#20)]
  [!code-vb[System.Security.Principal.WindowsIdentity_AllMembers#20](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/VB/Form1.vb#20)]  
@@ -1196,12 +1210,12 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Windows NT プラットフォームでは、権限借用を許可するための十分な権限が、現在のユーザーに必要です。  
+ Windows NT プラットフォームでは、現在のユーザーは偽装を許可する十分な権限を持っている必要があります。  
   
    
   
 ## Examples  
- 次の例は、アンマネージ win32、Windows アカウント トークンを取得する方法を示します`LogonUser`関数、およびそのトークンを使用して、別のユーザーを偽装し、元の id に、元に戻す方法。  
+ 次の例は、アンマネージ Win32 `LogonUser`関数を呼び出して Windows アカウントトークンを取得する方法と、そのトークンを使用して別のユーザーの権限を借用した後、元の id に戻す方法を示しています。  
   
  [!code-cpp[WindowsIdentity Impersonation#1](~/samples/snippets/cpp/VS_Snippets_CLR/WindowsIdentity Impersonation/CPP/source.cpp#1)]
  [!code-csharp[WindowsIdentity Impersonation#1](~/samples/snippets/csharp/VS_Snippets_CLR/WindowsIdentity Impersonation/CS/source.cs#1)]
@@ -1211,8 +1225,8 @@ Win32 エラーが発生しました。</exception>
         </remarks>
         <exception cref="T:System.InvalidOperationException">偽装を実行しようとした匿名 ID。</exception>
         <exception cref="T:System.Security.SecurityException">Win32 エラーが発生しました。</exception>
-        <block subset="none" type="overrides"><para>Microsoft Windows 98 と Windows Millennium Edition (Windows Me) プラットフォームには、ユーザー トークンはありません、ため、権限借用は、これらのプラットフォームで行わことはできません。</para></block>
-        <block subset="none" type="usage"><para>使用した後<see cref="M:System.Security.Principal.WindowsIdentity.Impersonate" />、呼び出しすることが重要、<see cref="M:System.Security.Principal.WindowsImpersonationContext.Undo" />メソッドを権限の借用を終了します。</para></block>
+        <block subset="none" type="overrides"><para>Microsoft Windows 98 および Windows Millennium Edition (Windows Me) プラットフォームにはユーザートークンがないため、これらのプラットフォームで偽装を行うことはできません。</para></block>
+        <block subset="none" type="usage"><para>を使用<see cref="M:System.Security.Principal.WindowsIdentity.Impersonate" />した後、 <see cref="M:System.Security.Principal.WindowsImpersonationContext.Undo" />メソッドを呼び出して偽装を終了することが重要です。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Impersonate">
@@ -1252,17 +1266,17 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Windows NT プラットフォームでは、権限借用を許可するための十分な権限が、現在のユーザーに必要です。  
+ Windows NT プラットフォームでは、現在のユーザーは偽装を許可する十分な権限を持っている必要があります。  
   
 > [!NOTE]
->  呼び出す、<xref:System.Security.Principal.WindowsIdentity.Impersonate%28System.IntPtr%29>メソッドを`userToken`値<xref:System.IntPtr.Zero>は win32 に相当`RevertToSelf`関数。 現在、別のユーザーを偽装されている、コントロールは、元のユーザーに戻ります。  
+>  `RevertToSelf`値を`userToken`指定<xref:System.Security.Principal.WindowsIdentity.Impersonate%28System.IntPtr%29> してメソッドを呼び出すことは、Win32関数を呼び出すこと<xref:System.IntPtr.Zero>と同じです。 現在、別のユーザーが偽装されている場合は、元のユーザーに制御が戻ります。  
   
- アンマネージ コードへの呼び出しの詳細については、次を参照してください。[アンマネージ DLL 関数の処理](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)します。  
+ アンマネージコードの呼び出しの詳細については、「[アンマネージ DLL 関数](~/docs/framework/interop/consuming-unmanaged-dll-functions.md)の使用」を参照してください。  
   
    
   
 ## Examples  
- 次の例は、アンマネージ win32、Windows アカウント トークンを取得する方法を示します`LogonUser`関数、およびそのトークンを使用して、別のユーザーを偽装し、元の id に、元に戻す方法。  
+ 次の例は、アンマネージ Win32 `LogonUser`関数を呼び出して Windows アカウントトークンを取得する方法と、そのトークンを使用して別のユーザーの権限を借用した後、元の id に戻す方法を示しています。  
   
  [!code-csharp[WindowsIdentity Impersonation2#1](~/samples/snippets/csharp/VS_Snippets_CLR/windowsidentity impersonation2/cs/source.cs#1)]
  [!code-vb[WindowsIdentity Impersonation2#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/windowsidentity impersonation2/vb/source.vb#1)]  
@@ -1272,9 +1286,9 @@ Win32 エラーが発生しました。</exception>
         <exception cref="T:System.UnauthorizedAccessException">Windows は、Windows NT ステータス コード STATUS_ACCESS_DENIED を返しました。</exception>
         <exception cref="T:System.OutOfMemoryException">使用できるメモリが不足しています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、正しいアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパル オブジェクトを操作し、アンマネージ コードにアクセスする権限です。 列挙体に関連付けられている:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />と <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
-        <block subset="none" type="overrides"><para>Microsoft Windows 98 と Windows Millennium Edition (Windows Me) プラットフォームには、ユーザー トークンはありません、ため、権限借用は、これらのプラットフォームで行わことはできません。</para></block>
-        <block subset="none" type="usage"><para>使用した後<see cref="M:System.Security.Principal.WindowsIdentity.Impersonate(System.IntPtr)" />、呼び出しすることが重要、<see cref="M:System.Security.Principal.WindowsImpersonationContext.Undo" />メソッドを権限の借用を終了します。</para></block>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">プリンシパルオブジェクトを操作し、アンマネージコードにアクセスする機能。 関連付けられ<see cref="F:System.Security.Permissions.SecurityPermissionFlag.ControlPrincipal" />た列挙型: および<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <block subset="none" type="overrides"><para>Microsoft Windows 98 および Windows Millennium Edition (Windows Me) プラットフォームにはユーザートークンがないため、これらのプラットフォームで偽装を行うことはできません。</para></block>
+        <block subset="none" type="usage"><para>を使用<see cref="M:System.Security.Principal.WindowsIdentity.Impersonate(System.IntPtr)" />した後、 <see cref="M:System.Security.Principal.WindowsImpersonationContext.Undo" />メソッドを呼び出して偽装を終了することが重要です。</para></block>
       </Docs>
     </Member>
     <Member MemberName="ImpersonationLevel">
@@ -1320,7 +1334,7 @@ Win32 エラーが発生しました。</exception>
    
   
 ## Examples  
- 次のコード例の使用を示しています、<xref:System.Security.Principal.WindowsIdentity.ImpersonationLevel%2A>プロパティを現在のユーザーの偽装レベルを表示します。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコード例は、 <xref:System.Security.Principal.WindowsIdentity.ImpersonationLevel%2A>プロパティを使用して、現在のユーザーの偽装レベルを表示する方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#21](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#21)]
  [!code-vb[System.Security.Principal.WindowsIdentity_AllMembers#21](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/VB/Form1.vb#21)]  
@@ -1365,14 +1379,14 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>プロパティによって返される匿名の id および Windows の匿名 id の両方を検出、<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>メソッド。  
+ プロパティ<xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>は、Windows 匿名 id と、 <xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>メソッドによって返される匿名 id の両方を検出します。  
   
- 匿名アカウントは通常ときにのみ発生のみから ASP.NET ベースのアプリケーション内で匿名アクセスが許可されますが、インターネット インフォメーション サービス (IIS)。  
+ 匿名アカウントは、通常、インターネットインフォメーションサービス (IIS) によって匿名アクセスが許可されている場合にのみ、ASP.NET ベースのアプリケーション内からのみ発生します。  
   
    
   
 ## Examples  
- 次のコードの使用を示しています、<xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>プロパティをシステムによってユーザー アカウントが匿名アカウントとして識別されるかどうかを検出します。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.IsAnonymous%2A>プロパティを使用して、ユーザーアカウントがシステムによって匿名アカウントとして識別されているかどうかを検出する方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#9](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#9)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#9](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#9)]
@@ -1451,7 +1465,7 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコードの使用を示しています、<xref:System.Security.Principal.WindowsIdentity.IsGuest%2A>プロパティとして、ユーザー アカウントが識別されているかどうかを示す値を返す、<xref:System.Security.Principal.WindowsAccountType.Guest>システム アカウント。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.IsGuest%2A>プロパティを使用して、ユーザーアカウントがシステムによって<xref:System.Security.Principal.WindowsAccountType.Guest>アカウントとして識別されているかどうかを示す値を返す方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#12](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#12)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#12](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#12)]
@@ -1497,7 +1511,7 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコードの使用を示しています、<xref:System.Security.Principal.WindowsIdentity.IsSystem%2A>プロパティとして、ユーザー アカウントが識別されているかどうかを示す値を返す、<xref:System.Security.Principal.WindowsAccountType.System>システム アカウント。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.IsSystem%2A>プロパティを使用して、ユーザーアカウントがシステムによって<xref:System.Security.Principal.WindowsAccountType.System>アカウントとして識別されているかどうかを示す値を返す方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#11](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#11)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#11](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#11)]
@@ -1546,12 +1560,12 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ログオン名は、domain \username の形式では。  
+ ログオン名は、DOMAIN\USERNAME という形式になっています。  
   
    
   
 ## Examples  
- 次のコードは、使用、<xref:System.Security.Principal.WindowsIdentity.Name%2A>ユーザーの Windows ログオン名を取得するプロパティ。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.Name%2A>プロパティを使用してユーザーの Windows ログオン名を取得する方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#8](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#8)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#8)]
@@ -1599,12 +1613,12 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- SID は、ユーザーまたは Windows NT のすべての実装上のグループを一意に識別します。  返された SID は、新しく作成されたオブジェクトに適用される SID の既定の所有者を識別します。  
+ SID は、すべての Windows NT 実装でユーザーまたはグループを一意に識別します。  返される SID は、新しく作成されたオブジェクトに適用される既定の所有者 SID を識別します。  
   
    
   
 ## Examples  
- 次のコード例の使用を示しています、<xref:System.Security.Principal.WindowsIdentity.Owner%2A>トークン所有者のセキュリティ識別子を表示するプロパティ。  このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス  
+ 次のコード例は、 <xref:System.Security.Principal.WindowsIdentity.Owner%2A>プロパティを使用して、トークン所有者のセキュリティ識別子を表示する方法を示しています。  このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスで提供されている大規模な例の一部です。  
   
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#19](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#19)]
  [!code-vb[System.Security.Principal.WindowsIdentity_AllMembers#19](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/VB/Form1.vb#19)]  
@@ -1651,10 +1665,10 @@ Win32 エラーが発生しました。</exception>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、使用、<xref:System.Security.Principal.WindowsIdentity>ユーザーを偽装するクラス。  
+ 次の例は、 <xref:System.Security.Principal.WindowsIdentity>クラスを使用してユーザーを偽装する方法を示しています。  
   
 > [!WARNING]
->  このサンプルでは、コンソール画面にパスワードを入力するユーザーを確認します。 コンソール ウィンドウで、マスク入力をネイティブでサポートされていないために、パスワードは、画面に表示になります。  
+>  このサンプルでは、コンソール画面でパスワードを入力するようにユーザーに求めます。 コンソールウィンドウでは、マスクされた入力がネイティブでサポートされないため、パスワードは画面に表示されます。  
   
 ```csharp  
 // The following example demonstrates the use of the WindowsIdentity class to impersonate a user.   
@@ -1775,10 +1789,10 @@ public class ImpersonationDemo
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、使用、<xref:System.Security.Principal.WindowsIdentity>ユーザーを偽装するクラス。  
+ 次の例は、 <xref:System.Security.Principal.WindowsIdentity>クラスを使用してユーザーを偽装する方法を示しています。  
   
 > [!WARNING]
->  このサンプルでは、コンソール画面にパスワードを入力するユーザーを確認します。 コンソール ウィンドウで、マスク入力をネイティブでサポートされていないために、パスワードは、画面に表示になります。  
+>  このサンプルでは、コンソール画面でパスワードを入力するようにユーザーに求めます。 コンソールウィンドウでは、マスクされた入力がネイティブでサポートされないため、パスワードは画面に表示されます。  
   
 ```csharp  
 // The following example demonstrates the use of the WindowsIdentity class to impersonate a user.   
@@ -1932,13 +1946,13 @@ public class ImpersonationDemo
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、設定、<xref:System.Runtime.Serialization.SerializationInfo>論理呼び出しコンテキスト情報。 逆シリアル化中に実行コンテキストのオブジェクトが再構成されます、<xref:System.Runtime.Serialization.SerializationInfo>ストリームで送信します。  
+ このメソッドは、 <xref:System.Runtime.Serialization.SerializationInfo>論理呼び出しコンテキスト情報を使用してを設定します。 逆シリアル化中に、実行コンテキストオブジェクトは、 <xref:System.Runtime.Serialization.SerializationInfo>ストリームで送信されたから再構成されます。  
   
  詳細については、「<xref:System.Runtime.Serialization.SerializationInfo>」を参照してください。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="Token">
@@ -1976,15 +1990,15 @@ public class ImpersonationDemo
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アカウント トークンによって返される明示的にリリースしないで、<xref:System.Security.Principal.WindowsIdentity.Token%2A>プロパティ。 によってトークンがリリースされた、<xref:System.Security.Principal.WindowsIdentity.Dispose%2A>メソッドで、コードで呼び出すことができます。 <xref:System.Security.Principal.WindowsIdentity.Dispose%2A> ガベージ コレクターによって自動的に呼び出されます。  
+ <xref:System.Security.Principal.WindowsIdentity.Token%2A>プロパティによって返されたアカウントトークンを明示的に解放しないでください。 トークンは、コードで呼び出す<xref:System.Security.Principal.WindowsIdentity.Dispose%2A>ことができるメソッドによって解放されます。 <xref:System.Security.Principal.WindowsIdentity.Dispose%2A>も、ガベージコレクターによって自動的に呼び出されます。  
   
 > [!NOTE]
->  によって返されるアカウント トークン、<xref:System.Security.Principal.WindowsIdentity.Token%2A>プロパティは、作成に使用される Windows トークンの複製、<xref:System.Security.Principal.WindowsIdentity>オブジェクトし、は、.NET Framework によって自動的に解放します。 これは、アカウント トークンとは異なります (、 `userToken` 、コンス トラクターのパラメーター)、作成に使用される、<xref:System.Security.Principal.WindowsIdentity>オブジェクト。 `userToken` 呼び出しによって作成される Windows アカウント トークンは、`LogonUser`し、メモリ リークを避けるために終了する必要があります。  
+>  <xref:System.Security.Principal.WindowsIdentity.Token%2A>プロパティによって返されるアカウントトークンは、オブジェクトの<xref:System.Security.Principal.WindowsIdentity>作成に使用される Windows トークンの複製であり、.NET Framework によって自動的に解放されます。 これは、オブジェクトの`userToken` <xref:System.Security.Principal.WindowsIdentity>作成に使用されるアカウントトークン (コンストラクターのパラメーター) とは異なります。 `userToken`は、の呼び出し`LogonUser`によって作成され、メモリリークを回避するために閉じる必要がある Windows アカウントトークンです。  
   
    
   
 ## Examples  
- 次のコードは、使用、<xref:System.Security.Principal.WindowsIdentity.IsSystem%2A>プロパティをユーザーの Windows アカウント トークンを取得します。 このコード例が示されている例の一部、<xref:System.Security.Principal.WindowsIdentity>クラス。  
+ 次のコードは、 <xref:System.Security.Principal.WindowsIdentity.IsSystem%2A>プロパティを使用して、ユーザーの Windows アカウントトークンを取得する方法を示しています。 このコード例は、 <xref:System.Security.Principal.WindowsIdentity>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Principal.WindowsIdentity_AllMembers#14](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CPP/windowsidentitymembers.cpp#14)]
  [!code-csharp[System.Security.Principal.WindowsIdentity_AllMembers#14](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Principal.WindowsIdentity_AllMembers/CS/windowsidentitymembers.cs#14)]
@@ -1992,7 +2006,7 @@ public class ImpersonationDemo
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージ コードにアクセスする機能。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="User">
@@ -2033,10 +2047,10 @@ public class ImpersonationDemo
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- SID は、ユーザーまたは Windows NT のすべての実装上のグループを一意に識別します。  
+ SID は、すべての Windows NT 実装でユーザーまたはグループを一意に識別します。  
   
 > [!NOTE]
->  <xref:System.Security.Principal.WindowsIdentity>によって返されるオブジェクト、<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>メソッドが同じで、Windows の匿名ユーザーとしてではありません。 このプロパティを取得`null`によって表される匿名のユーザー、<xref:System.Security.Principal.WindowsIdentity>によって返されるオブジェクト、<xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>メソッドは匿名の Windows ユーザーを表す SID を取得しません。  
+>  メソッドによって返されたオブジェクトが、Windowsの匿名ユーザーと同じではありません。<xref:System.Security.Principal.WindowsIdentity> <xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A> このプロパティは`null` 、 <xref:System.Security.Principal.WindowsIdentity.GetAnonymous%2A>メソッドによって返される<xref:System.Security.Principal.WindowsIdentity>オブジェクトによって表される匿名ユーザーのを取得します。匿名の Windows ユーザーを表す SID を取得しません。  
   
  ]]></format>
         </remarks>

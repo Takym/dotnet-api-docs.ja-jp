@@ -1,5 +1,5 @@
 <Type Name="GroupPrincipal" FullName="System.DirectoryServices.AccountManagement.GroupPrincipal">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0048cecbccb10acd95671993ada5688afb014dd3" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63886519" /></Metadata><TypeSignature Language="C#" Value="public class GroupPrincipal : System.DirectoryServices.AccountManagement.Principal" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="36321f3023b04e9161ebe31fe2dc0127cba7cdd6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69075233" /></Metadata><TypeSignature Language="C#" Value="public class GroupPrincipal : System.DirectoryServices.AccountManagement.Principal" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GroupPrincipal extends System.DirectoryServices.AccountManagement.Principal" />
   <TypeSignature Language="DocId" Value="T:System.DirectoryServices.AccountManagement.GroupPrincipal" />
   <TypeSignature Language="VB.NET" Value="Public Class GroupPrincipal&#xA;Inherits Principal" />
@@ -62,7 +62,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 作成時にそのグループのプリンシパル アカウントは保持されません。 アカウントを保持するための呼び出し、<xref:System.DirectoryServices.AccountManagement.Principal.Save%2A>メソッド。  
+ グループプリンシパルアカウントは、作成時に保持されません。 アカウントを永続化するには<xref:System.DirectoryServices.AccountManagement.Principal.Save%2A> 、メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
@@ -94,7 +94,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 作成時にそのグループのプリンシパル アカウントは保持されません。 アカウントを保持するための呼び出し、<xref:System.DirectoryServices.AccountManagement.Principal.Save%2A>メソッド。  
+ グループプリンシパルアカウントは、作成時に保持されません。 アカウントを永続化するには<xref:System.DirectoryServices.AccountManagement.Principal.Save%2A> 、メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
@@ -235,9 +235,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドでは、現在のグループに再帰的には検索されません。 そのため、グループ オブジェクトは、プリンシパル オブジェクトのコレクションで返される可能性があります。  
+ このメソッドは、現在のグループを再帰的に検索しません。 したがって、グループオブジェクトはプリンシパルオブジェクトコレクションで返される場合があります。  
   
- コンテキストに関係なく、メンバーが返されます。 例では、AD DS コンテキストに基づいている場合、"CN SpecialUsers, DC = Fabrikam, DC = com を ="、PrincipalFindResult セットの下にあるグループのメンバーが含まれます"CN NormalUsers, DC = Fabrikam, DC = com を ="はないスコープに該当する場合でもまたの一部で、検索されるコンテキスト。 返されたプリンシパル コレクションは、グループとは異なるストアに格納されているメンバーを含めることもできます。  
+ メンバーはコンテキストに対して返されません。 たとえば、"CN = AD DS、DC = Fabrikam, DC = com" に基づいているコンテキストがある場合、PrincipalFindResult set には、"CN = NormalUsers, DC = Fabrikam, DC = com" の下にあるグループメンバーが含まれますが、これらのメンバーは、検索されるコンテキスト。 返されたプリンシパルコレクションには、グループとは異なるストアにあるメンバーも含まれる場合があります。  
   
  ]]></format>
         </remarks>
@@ -271,16 +271,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Recursive フラグが設定されている場合、返されたプリンシパル コレクションはグループ オブジェクトを含まない`true`; のみリーフ ノードが返されます。 たとえば、コンピューター オブジェクトと (ユーザー プリンシパルのみ) 使用して、グループ オブジェクトを含むグループが再帰的に検索の場合、返されたコレクションにはコンピューター オブジェクトと、入れ子になったグループのユーザー プリンシパル オブジェクトが含まれます。 グループ オブジェクトは、リーフではないため、空の場合でもが返されない再帰検索します。  Recursive フラグを設定すると`false`、返されるコレクションは、グループ オブジェクトを含めることができます。  
+ 再帰フラグがに`true`設定されている場合、返されるプリンシパルコレクションにはグループオブジェクトは含まれません。リーフノードのみが返されます。 たとえば、コンピューターオブジェクトとグループオブジェクト (ユーザープリンシパルのみ) を含むグループを再帰的に検索する場合、返されるコレクションには、入れ子になったグループ内の computer オブジェクトおよび user principal オブジェクトが含まれます。 グループオブジェクトはリーフではないため、空の場合でも、再帰検索では返されません。  Recursive フラグがに`false`設定されている場合、返されるコレクションには group オブジェクトが含まれる場合があります。  
   
- コンテキストに関係なく、メンバーが返されます。 例では、AD DS コンテキストに基づいている場合、"CN SpecialUsers, DC = Fabrikam, DC = com を ="、PrincipalFindResult セットの下にあるグループのメンバーが含まれます"CN NormalUsers, DC = Fabrikam, DC = com を ="はないスコープに該当する場合でもまたの一部で、検索されるコンテキスト。 返されたプリンシパル コレクションは、グループとは異なるストアに格納されているメンバーを含めることもできます。  
+ メンバーはコンテキストに対して返されません。 たとえば、"CN = AD DS、DC = Fabrikam, DC = com" に基づいているコンテキストがある場合、PrincipalFindResult set には、"CN = NormalUsers, DC = Fabrikam, DC = com" の下にあるグループメンバーが含まれますが、これらのメンバーは、検索されるコンテキスト。 返されたプリンシパルコレクションには、グループとは異なるストアにあるメンバーも含まれる場合があります。  
   
    
   
 ## Examples  
- 次のコードが LDAP ドメイン"fabrikam.com"ユーザー名"administrator"と"SecretPwd123"に設定するパスワードを設定する接続、<xref:System.DirectoryServices.AccountManagement.PrincipalContext>コンス トラクター。  
+ 次のコードでは、ユーザー名が "administrator" に設定され、パスワードが<xref:System.DirectoryServices.AccountManagement.PrincipalContext>コンストラクターで "SecretPwd123" に設定されている LDAP ドメイン "fabrikam.com" に接続します。  
   
- 指定されたコンテナーの下で"Domain Admins"の名前を持つグループを検索する検索を実行、<xref:System.DirectoryServices.AccountManagement.PrincipalContext>コンス トラクター"DC = fabrikam, DC = com"。 グループが見つかった場合は、再帰メンバーが含まれており、このグループのメンバーであるすべてのプリンシパルが列挙されます。  
+ "Dc = fabrikam, DC = com" と<xref:System.DirectoryServices.AccountManagement.PrincipalContext>いうコンストラクターで指定されたコンテナーの下に "domain Admins" という名前のグループが検索されます。 グループが見つかると、このグループのメンバーであるすべてのプリンシパル (再帰メンバーを含む) が列挙されます。  
   
 ```  
 PrincipalContext ctx = new PrincipalContext(ContextType.Domain,                                                                      
@@ -357,9 +357,9 @@ ctx.Dispose();
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは false を返します、ときに、グループは一時的にセキュリティ-無効です。 ときに、<xref:System.DirectoryServices.AccountManagement.GroupPrincipal.IsSecurityGroup>プロパティは後で、true にリセット、グループは、前に false が設定されていると、同じプロパティがあります。  
+ このプロパティが false を返す場合、グループは一時的にセキュリティが有効になっていません。 後で<xref:System.DirectoryServices.AccountManagement.GroupPrincipal.IsSecurityGroup>プロパティを true にリセットすると、グループのプロパティは、false に設定される前と同じになります。  
   
- プリンシパルはストアに永続化されていない、このプロパティは null を返します。 プリンシパルが永続化された後、セキュリティが有効な既定の設定は、ストアによって異なります。 AD DS および AD LDS ストアを無効にする新しいプリンシパル、永続化するときに、永続化するときに、SAM が新しいプリンシパルを有効にします。  
+ プリンシパルがストアに永続化されていない場合、このプロパティは null を返します。 プリンシパルが永続化された後、既定のセキュリティが有効な設定はストアによって異なります。 AD DS と AD LDS は、永続化されたときに新しいプリンシパルを無効にしますが、SAM は永続化されたときに新しいプリンシパルを有効にします。  
   
  ]]></format>
         </remarks>
@@ -390,18 +390,18 @@ ctx.Dispose();
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- AD DS グループの場合、<xref:System.DirectoryServices.AccountManagement.GroupPrincipal.Members%2A>プロパティには、その primaryId 属性により、グループのメンバーであるユーザーのプリンシパルが含まれています。 グループにこれらの種類のメンバーが含まれている場合、次の制限が適用されます。  
+ AD DS グループの場合、 <xref:System.DirectoryServices.AccountManagement.GroupPrincipal.Members%2A>プロパティには、primaryid 属性によってグループのメンバーであるユーザープリンシパルが含まれます。 グループにこれらの種類のメンバーが含まれている場合は、次の制限が適用されます。  
   
--   <xref:System.DirectoryServices.AccountManagement.PrincipalCollection.Remove*>メソッドを使用して、primaryId 属性により、グループの一部であるメンバーを削除することはできません。  
+-   Primaryid 属性が原因で、メソッドを使用してグループの一部であるメンバーを削除することはできません。<xref:System.DirectoryServices.AccountManagement.PrincipalCollection.Remove*>  
   
--   <xref:System.DirectoryServices.AccountManagement.PrincipalCollection.Clear*> PrimaryId 属性により、グループの一部であるメンバーを消去する方法は使用できません。  
+-   Primaryid 属性が原因で、メソッドを使用してグループの一部であるメンバーを消去することはできません。<xref:System.DirectoryServices.AccountManagement.PrincipalCollection.Clear*>  
   
    
   
 ## Examples  
- 次のコードが LDAP ドメイン"fabrikam.com"ユーザー名"administrator"と"SecretPwd123"に設定するパスワードを設定する接続、<xref:System.DirectoryServices.AccountManagement.PrincipalContext>コンス トラクター。  
+ 次のコードでは、ユーザー名が "administrator" に設定され、パスワードが<xref:System.DirectoryServices.AccountManagement.PrincipalContext>コンストラクターで "SecretPwd123" に設定されている LDAP ドメイン "fabrikam.com" に接続します。  
   
- 指定されたコンテナーの下で"Domain Admins"の名前を持つグループを検索する検索を実行、<xref:System.DirectoryServices.AccountManagement.PrincipalContext>コンス トラクターは、"DC = fabrikam, DC = com"。 "John Smith"の名前を持つユーザーがグループから削除し、"Jim Daly"の名前を持つユーザーがグループに追加、グループが見つかった場合  
+ "Dc = fabrikam, DC = com" という<xref:System.DirectoryServices.AccountManagement.PrincipalContext>コンストラクターで指定されたコンテナーの下に "domain Admins" という名前のグループが検索されます。 グループが見つかると、"John Smith" という名前のユーザーがグループから削除され、"加藤 Daly" という名前のユーザーがグループに追加されます。  
   
 ```  
 PrincipalContext ctx = new PrincipalContext(ContextType.Domain,                                                                       

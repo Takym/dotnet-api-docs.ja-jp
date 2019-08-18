@@ -1,5 +1,5 @@
 <Type Name="DesignerTransaction" FullName="System.ComponentModel.Design.DesignerTransaction">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1e013ed7735281522d4f88b1b64c4490d302c1e3" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63901862" /></Metadata><TypeSignature Language="C#" Value="public abstract class DesignerTransaction : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b9e1e6ca934582313022c535bd5cb244c9168ba4" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69330116" /></Metadata><TypeSignature Language="C#" Value="public abstract class DesignerTransaction : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DesignerTransaction extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.DesignerTransaction" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DesignerTransaction&#xA;Implements IDisposable" />
@@ -36,28 +36,28 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- トランザクションは、可能性のある完了後で操作を追跡できます。 トランザクション中に行われた変更しようと自動的に変更に変更された各プロパティを設定して各変更を反転するトランザクションをキャンセルして元に戻すことができます。 トランザクションのトランザクションが完了するまで画面への更新を遅らせることで、一連の操作中にパフォーマンスを改善できます。  
+ トランザクションでは、後から元に戻すことができるアクションを追跡できます。 トランザクション中に行われた変更は、トランザクションをキャンセルすることで取り消すことができます。これにより、変更された各プロパティを変更前の値に設定することによって、各変更が自動的に反転されます。 トランザクションは、トランザクションが完了するまで表示の更新を延期することで、一連の操作中のパフォーマンスを向上させることもできます。  
   
- 一部のコンポーネントでは、その処理をリッスンすることにより、トランザクションが完了するまで遅延トランザクションが進行中ですが、<xref:System.ComponentModel.Design.IDesignerHost.TransactionOpening>と<xref:System.ComponentModel.Design.IDesignerHost.TransactionClosed>イベント。 [プロパティ] ウィンドウなどは更新されません表示が、トランザクションが閉じられるまで、トランザクションが開いた後。  
+ トランザクションが進行中の場合、イベント<xref:System.ComponentModel.Design.IDesignerHost.TransactionOpening>と<xref:System.ComponentModel.Design.IDesignerHost.TransactionClosed>イベントをリッスンすることによってトランザクションが完了するまで、一部のコンポーネントで処理が遅延されます。 たとえば、プロパティウィンドウでは、トランザクションが閉じられるまでトランザクションが開かれた後に、その表示が更新されません。  
   
- を元に戻すことまたは複数の操作のトランザクションを使用するには、作成、designer を持ち、<xref:System.ComponentModel.Design.DesignerTransaction>の各操作または一連の操作を元に戻すことがあります。 元に戻すイベントのシーケンスが正常に完了するを妨げる可能性があるトランザクションの外部の操作を実行しないように注意します。  
+ トランザクションを元に戻す操作または複数の操作に使用する<xref:System.ComponentModel.Design.DesignerTransaction>には、元に戻す必要がある操作または一連の操作ごとに、を作成する必要があります。 取り消しイベントのシーケンスが正常に完了しない可能性のあるトランザクションの外部では、操作を実行しないように注意してください。  
   
- 新しいを取得する<xref:System.ComponentModel.Design.DesignerTransaction>呼び出すことによって、<xref:System.ComponentModel.Design.IDesignerHost.CreateTransaction%2A>のメソッド、<xref:System.ComponentModel.Design.IDesignerHost>します。 必ず各を取得して<xref:System.ComponentModel.Design.DesignerTransaction>アクティブから<xref:System.ComponentModel.Design.IDesignerHost>新しいを作成するのではなく、処理メカニズムでは、デザイナーのトランザクションと正しく統合するために<xref:System.ComponentModel.Design.DesignerTransaction>直接。  
+ の<xref:System.ComponentModel.Design.DesignerTransaction> メソッドを<xref:System.ComponentModel.Design.IDesignerHost.CreateTransaction%2A>呼び出すことによって、新しいを取得できます。<xref:System.ComponentModel.Design.IDesignerHost> 新しい<xref:System.ComponentModel.Design.IDesignerHost> <xref:System.ComponentModel.Design.DesignerTransaction> を直接作成するのではなく、デザイナーのトランザクション処理機構と適切に統合するために、それぞれをアクティブなから取得するようにしてください。<xref:System.ComponentModel.Design.DesignerTransaction>  
   
- トランザクション内でアクションを実行するには、まずにトランザクションを作成する必要があります。 呼び出す必要があります、<xref:System.ComponentModel.Design.IComponentChangeService.OnComponentChanging%2A>メソッドの各変更または一連の変更が発生する前に、<xref:System.ComponentModel.Design.IComponentChangeService.OnComponentChanged%2A>メソッドごとの変更または一連の変更後に発生します。 最後に、完了し、呼び出すことによって、トランザクションを閉じて、<xref:System.ComponentModel.Design.DesignerTransaction.Commit%2A>メソッド。  
+ トランザクション内でアクションを実行するには、最初にトランザクションを作成する必要があります。 次に、変更また<xref:System.ComponentModel.Design.IComponentChangeService.OnComponentChanging%2A>は一連の変更が発生<xref:System.ComponentModel.Design.IComponentChangeService.OnComponentChanged%2A>する前に、メソッドを呼び出す必要があります。また、各変更または変更セットが発生した後にメソッドを呼び出す必要があります。 最後に、 <xref:System.ComponentModel.Design.DesignerTransaction.Commit%2A>メソッドを呼び出してトランザクションを完了し、閉じます。  
   
 > [!NOTE]
->  プロパティの値に変更を加えるときに使用して、<xref:System.ComponentModel.PropertyDescriptor.SetValue%2A>のメソッド、<xref:System.ComponentModel.PropertyDescriptor>のコンポーネントの変更メソッドを呼び出し、<xref:System.ComponentModel.Design.IComponentChangeService>を作成し、<xref:System.ComponentModel.Design.DesignerTransaction>自動的に変更を表します。  
+>  プロパティ値に変更を加える場合は、 <xref:System.ComponentModel.PropertyDescriptor.SetValue%2A>のメソッドを<xref:System.ComponentModel.PropertyDescriptor>使用します。このメソッドは、の<xref:System.ComponentModel.Design.IComponentChangeService>コンポーネント変更メソッド<xref:System.ComponentModel.Design.DesignerTransaction>を呼び出し、変更を自動的に表すを作成します。  
   
- トランザクションを実行するには、次の手順を完了します。  
+ トランザクションを実行するには、次の手順を実行します。  
   
-1.  呼び出す<xref:System.ComponentModel.Design.IDesignerHost.CreateTransaction%2A>を取得する、<xref:System.ComponentModel.Design.DesignerTransaction>トランザクションを制御できます。  
+1.  を<xref:System.ComponentModel.Design.IDesignerHost.CreateTransaction%2A>呼び出して、 <xref:System.ComponentModel.Design.DesignerTransaction>トランザクションの制御に使用できるを取得します。  
   
-2.  内で、`try`各アクションを追跡したいが、ブロック、<xref:System.ComponentModel.Design.DesignerTransaction>を呼び出す、<xref:System.ComponentModel.Design.IComponentChangeService.OnComponentChanging%2A>メソッドを呼び出して変更または変更、<xref:System.ComponentModel.Design.IComponentChangeService.OnComponentChanged%2A>変更または変更が行われたことを通知するメソッド。  
+2.  ブロック内で、を<xref:System.ComponentModel.Design.DesignerTransaction>使用して追跡する各アクションに対して、 <xref:System.ComponentModel.Design.IComponentChangeService.OnComponentChanging%2A>メソッドを呼び出し、変更または変更を行い、 <xref:System.ComponentModel.Design.IComponentChangeService.OnComponentChanged%2A>メソッドを呼び出して、変更または変更が行われたことを通知します。 `try`  
   
-3.  トランザクションを完了するには、呼び出す<xref:System.ComponentModel.Design.DesignerTransaction.Commit%2A>内から、`finally`ブロックします。  
+3.  トランザクションを完了するには<xref:System.ComponentModel.Design.DesignerTransaction.Commit%2A> 、 `finally`ブロック内からを呼び出します。  
   
- C# で使用することができます、`using`ステートメントではなく`try/finally`ブロックする場合に、次の例のようにします。  
+ でC#は、次の例`using`のように、 `try/finally`ブロックではなくステートメントを使用できます。  
   
 ```  
 using (host.CreateTransaction() {  
@@ -65,18 +65,18 @@ using (host.CreateTransaction() {
 }  
 ```  
   
- 前に、コミットされたトランザクションをロールバックしようとしました。 取り消して、呼び出し、<xref:System.ComponentModel.Design.DesignerTransaction.Cancel%2A>メソッド。 ときに、<xref:System.ComponentModel.Design.DesignerTransaction.Cancel%2A>メソッドが呼び出されると、によって追跡される操作、<xref:System.ComponentModel.Design.DesignerTransaction>変更をロールバックしようとするが取り消されます。 以前のトランザクションの一部として発生したアクションを元に戻すには、開発環境で提供元に戻すコマンドを使用する必要があります。  
+ トランザクションをコミットする前に取り消して、ロールバックを試行するには、 <xref:System.ComponentModel.Design.DesignerTransaction.Cancel%2A>メソッドを呼び出します。 メソッドが呼び出されると、に<xref:System.ComponentModel.Design.DesignerTransaction>よって追跡されるアクションが元に戻され、変更のロールバックが試行されます。 <xref:System.ComponentModel.Design.DesignerTransaction.Cancel%2A> 以前のトランザクションの一部として発生した操作を元に戻すには、開発環境によって提供される [元に戻す] コマンドを使用する必要があります。  
   
    
   
 ## Examples  
- 次のコード例のプログラムを作成する方法を示します、<xref:System.ComponentModel.Design.DesignerTransaction>デザイナーから。 このサンプルを実行するには、クラス ライブラリにソース コードをコンパイルします。 System.Design アセンブリへの参照を追加する必要があります。 新しいプロジェクトでコンパイルされた DLL への参照を追加し、ライブラリでは、コンポーネントを追加、**ツールボックス**します。  
+ 次のコード例は、デザイナーからを<xref:System.ComponentModel.Design.DesignerTransaction>作成する方法を示しています。 このサンプルを実行するには、ソースコードをクラスライブラリにコンパイルします。 System. Design アセンブリへの参照を追加する必要があります。 新しいプロジェクトで、コンパイルされた DLL への参照を追加し、ライブラリ内のコンポーネントを**ツールボックス**に追加します。  
   
- Visual Studio でこの機能の広範なサポートがあります。  
+ この機能は Visual Studio で幅広くサポートされています。  
   
- [チュートリアル: カスタム コンポーネントでツールボックスが自動的に入力](https://msdn.microsoft.com/library/fw694kde\(v=vs.110\).aspx)します。  
+ [チュートリアル: ツールボックスにカスタムコンポーネント](https://msdn.microsoft.com/library/fw694kde\(v=vs.110\).aspx)を自動的に設定します。  
   
- デザイナーは、デザイナーのトランザクションのイベントに関する通知を必要に応じて表示できます。 インスタンスを追加する場合、`DTComponent`フォーム デザイン モードでメッセージ ボックスを表示するかを確認するにデザイナーのトランザクションのイベント通知を受信するかどうか。 インスタンスを右クリックしたときに表示されるショートカット メニューを使用してこれらの通知を切り替えることが、`DTComponent`します。 [プロパティ] ウィンドウを使用して値を変更すると、トランザクションが作成されます。 デザイナーをクリックして、トランザクションを実行することもできます**トランザクション例を実行**コンポーネントのショートカット メニューの します。  
+ デザイナーでは、必要に応じて、デザイナーのトランザクションイベントに関する通知を表示できます。 デザインモードでのインスタンスをフォーム`DTComponent`に追加すると、デザイナーのトランザクションイベント通知を受信するかどうかを確認するメッセージボックスが表示されます。 これらの通知は、 `DTComponent`のインスタンスを右クリックしたときに表示されるショートカットメニューを使用して切り替えることができます。 プロパティウィンドウを使用して値を変更すると、トランザクションが作成されます。 コンポーネントのショートカットメニューで **[サンプルトランザクションの実行]** をクリックして、デザイナーでトランザクションを実行することもできます。  
   
  [!code-cpp[DesignerTransaction Sample#1](~/samples/snippets/cpp/VS_Snippets_Winforms/DesignerTransaction Sample/CPP/source.cpp#1)]
  [!code-csharp[DesignerTransaction Sample#1](~/samples/snippets/csharp/VS_Snippets_Winforms/DesignerTransaction Sample/CS/source.cs#1)]
@@ -84,7 +84,7 @@ using (host.CreateTransaction() {
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+    <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
     <altmember cref="T:System.ComponentModel.Design.IDesignerHost" />
     <altmember cref="T:System.ComponentModel.Design.IComponentChangeService" />
     <altmember cref="T:System.ComponentModel.PropertyDescriptor" />
@@ -133,7 +133,7 @@ using (host.CreateTransaction() {
       <Docs>
         <summary>説明を指定せずに <see cref="T:System.ComponentModel.Design.DesignerTransaction" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -176,11 +176,11 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターでは、指定された説明を使用してトランザクションを初期化します。  
+ このコンストラクターは、指定された説明でトランザクションを初期化します。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
       </Docs>
     </Member>
     <Member MemberName="Cancel">
@@ -215,7 +215,7 @@ using (host.CreateTransaction() {
       <Docs>
         <summary>トランザクションをキャンセルし、そのトランザクションのイベントによって行われた変更をすべて元に戻そうとします。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
         <altmember cref="M:System.ComponentModel.Design.DesignerTransaction.OnCancel" />
       </Docs>
     </Member>
@@ -259,11 +259,11 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- デザイナーのトランザクションが取り消されたときに、トランザクション処理のメカニズムは、トランザクションにこれまでに加えられた変更をロールバックしようとします。 これが成功したかどうかは、その他の操作の妨げと、関連するコードの状態のいずれかと、必要な操作のシーケンスを完了できなかったかどうかに、各操作の種類などの要因によって異なります。  
+ デザイナートランザクションがキャンセルされると、トランザクション処理メカニズムは、これまでトランザクションで行われた変更をロールバックしようとします。 成功するかどうかは、各操作の種類などの要因、他の操作が関連するコードの状態に盗み見るかどうか、および一連の想定される操作の完了に失敗したかどうかによって決まります。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
       </Docs>
     </Member>
     <Member MemberName="Commit">
@@ -301,13 +301,13 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- デザイナーのトランザクションがコミットされると、トランザクションは完了と見なされます、さらの変更は追跡されません。  
+ デザイナートランザクションがコミットされると、トランザクションは完了したと見なされ、それ以上の変更は追跡されません。  
   
- トランザクションがコミットされた後さらにこのメソッドの呼び出しを何もありません。 常にトランザクションが正常に閉じることを確認するトランザクションの作成後にこのメソッドを呼び出します。  
+ トランザクションがコミットされると、このメソッドを呼び出しても何も行われません。 トランザクションを作成した後は、必ずこのメソッドを呼び出して、トランザクションが正常に終了するようにしてください。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
         <altmember cref="M:System.ComponentModel.Design.DesignerTransaction.OnCommit" />
       </Docs>
     </Member>
@@ -351,11 +351,11 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- デザイナーのトランザクションがコミットされると、トランザクションは完了と見なされます、さらの変更は追跡されません。  
+ デザイナートランザクションがコミットされると、トランザクションは完了したと見なされ、それ以上の変更は追跡されません。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
       </Docs>
     </Member>
     <Member MemberName="Description">
@@ -398,11 +398,11 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- トランザクションは、操作の種類を識別するのに役立つ説明を持つことができます。  
+ トランザクションには、操作または操作の性質を特定するのに役立つ説明を含めることができます。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -448,17 +448,17 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose()`メソッドと<xref:System.Object.Finalize%2A>メソッド。 `Dispose()` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 <xref:System.Object.Finalize%2A> 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック`Dispose()`メソッド<xref:System.Object.Finalize%2A>とメソッドによって呼び出されます。 `Dispose()``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 <xref:System.Object.Finalize%2A>をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.ComponentModel.Design.DesignerTransaction> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 <see langword="Dispose(Boolean)" /> をオーバーライドする場合は、以前に <see langword="Dispose" /> を呼び出したときに破棄されたオブジェクトを参照しないように注意する必要があります。 実装する方法についての詳細は<see langword="Dispose(Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 <see langword="Dispose(Boolean)" /> をオーバーライドする場合は、以前に <see langword="Dispose" /> を呼び出したときに破棄されたオブジェクトを参照しないように注意する必要があります。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see cref="M:System.Object.Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)と[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。</para></block>
+<see langword="Dispose" /> および<see cref="M:System.Object.Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」と「 [Finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。</para></block>
         <related type="Article" href="~/docs/standard/garbage-collection/implementing-dispose.md">Dispose メソッドの実装</related>
         <related type="Article" href="~/docs/standard/garbage-collection/unmanaged.md">アンマネージ リソースのクリーンアップ</related>
       </Docs>
@@ -498,15 +498,15 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは<xref:System.Object.Finalize%2A?displayProperty=nameWithType>を呼び出してリソースをクリーンアップし、`Dispose(false)`します。 `Dispose(Boolean)` をオーバーライドしてクリーンアップをカスタマイズします。  
+ このメソッドは<xref:System.Object.Finalize%2A?displayProperty=nameWithType> 、を呼び出し`Dispose(false)`てリソースをオーバーライドし、クリーンアップします。 `Dispose(Boolean)` をオーバーライドしてクリーンアップをカスタマイズします。  
   
- アプリケーション コードは、このメソッドを呼び出さないでください。オブジェクトの`Finalize`への呼び出しによって、ガベージ コレクターによって終了処理が無効になっている場合を除き、ガベージ コレクション中にメソッドが自動的に起動、<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>メソッド。  
+ アプリケーションコードはこのメソッドを呼び出すことはできません。オブジェクトの`Finalize`メソッドは、ガベージコレクションの実行中に、メソッドの<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>呼び出しによってガベージコレクターによる終了処理が無効にされていない限り、自動的に呼び出されます。  
   
- 詳細については、次を参照してください。 [Finalize メソッドおよびデストラクター](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/0s71x931(v%3dvs.100))、[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)、および[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。  
+ 詳細については、「 [Finalize メソッドとデストラクター](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/0s71x931(v%3dvs.100))」、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」、および「 [finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
       </Docs>
     </Member>
     <Member MemberName="OnCancel">
@@ -544,12 +544,12 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- デザイナーのトランザクションが取り消されたときに、トランザクション処理のメカニズムは、トランザクションにこれまでに加えられた変更をロールバックしようとします。 これが成功したかどうかは、その他の操作の妨げと、関連するコードの状態のいずれかと、必要な操作のシーケンスを完了できなかったかどうかに、各操作の種類などの要因によって異なります。  
+ デザイナートランザクションがキャンセルされると、トランザクション処理メカニズムは、これまでトランザクションで行われた変更をロールバックしようとします。 成功するかどうかは、各操作の種類などの要因、他の操作が関連するコードの状態に盗み見るかどうか、および一連の想定される操作の完了に失敗したかどうかによって決まります。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
-        <block subset="none" type="overrides"><para>派生クラスで実装された場合、このメソッドは、トランザクションをキャンセルします。</para></block>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
+        <block subset="none" type="overrides"><para>派生クラスで実装された場合、このメソッドはトランザクションをキャンセルします。</para></block>
         <altmember cref="M:System.ComponentModel.Design.DesignerTransaction.Cancel" />
       </Docs>
     </Member>
@@ -588,12 +588,12 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- デザイナーのトランザクションがコミットされると、トランザクションは完了と見なされます、さらの変更は追跡されません。  
+ デザイナートランザクションがコミットされると、トランザクションは完了したと見なされ、それ以上の変更は追跡されません。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
-        <block subset="none" type="overrides"><para>派生クラスで実装された場合、このメソッドは、トランザクションの処理に関連付けられている作業を実行します。</para></block>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
+        <block subset="none" type="overrides"><para>派生クラスとして実装された場合、このメソッドはトランザクションの処理に関連する作業を実行します。</para></block>
         <altmember cref="M:System.ComponentModel.Design.DesignerTransaction.Commit" />
       </Docs>
     </Member>
@@ -634,11 +634,11 @@ using (host.CreateTransaction() {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- トランザクションが破棄されたときにコミットされます。  
+ トランザクションが破棄されると、トランザクションはコミットされます。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 要求値:<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />します。 関連付けられた状態。</permission>
+        <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />:。 関連付けられた状態:</permission>
       </Docs>
     </Member>
   </Members>

@@ -1,5 +1,5 @@
 <Type Name="CallbackBehaviorAttribute" FullName="System.ServiceModel.CallbackBehaviorAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0e8bd187ddd71538086cd4030393c537407a6467" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58549590" /></Metadata><TypeSignature Language="C#" Value="public sealed class CallbackBehaviorAttribute : Attribute, System.ServiceModel.Description.IEndpointBehavior" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0db9438ebd6fd072df2bfdde46eae644badbbd33" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69102717" /></Metadata><TypeSignature Language="C#" Value="public sealed class CallbackBehaviorAttribute : Attribute, System.ServiceModel.Description.IEndpointBehavior" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit CallbackBehaviorAttribute extends System.Attribute implements class System.ServiceModel.Description.IEndpointBehavior" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.CallbackBehaviorAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class CallbackBehaviorAttribute&#xA;Inherits Attribute&#xA;Implements IEndpointBehavior" />
@@ -216,13 +216,13 @@
   
  <xref:System.ServiceModel.ConcurrencyMode> を <xref:System.ServiceModel.ConcurrencyMode.Single> に設定すると、サービスのインスタンスを 1 つずつのスレッド実行に制限するようシステムに指示します。それにより、スレッドの問題に対応することから解放されます。 これが既定値です。 <xref:System.ServiceModel.ConcurrencyMode.Multiple> の値は、サービス オブジェクトを複数のスレッドで一度に実行できることを示します。 この場合は、開発者がスレッド セーフと状態の整合性を保証する必要があります。  
   
- <xref:System.ServiceModel.ConcurrencyMode.Reentrant> また、一度に 1 つのスレッドにアクセスを制限します。 ただし、この設定は、実行中のサービス メソッドから呼び出され、実行中のサービスに戻って再入する呼び出しを可能にします。 再入可能呼び出しは異なるマネージド スレッドで実行できますが、その場合は、再入可能呼び出しの有効期間の間、元のスレッドがブロックされます。  
+ <xref:System.ServiceModel.ConcurrencyMode.Reentrant>では、一度に1つのスレッドへのアクセスも制限されます。 ただし、この設定は、実行中のサービス メソッドから呼び出され、実行中のサービスに戻って再入する呼び出しを可能にします。 再入可能呼び出しは異なるマネージド スレッドで実行できますが、その場合は、再入可能呼び出しの有効期間の間、元のスレッドがブロックされます。  
   
  通常、コンカレンシー モードに違反するインスタンスにメッセージが届いた場合は、そのインスタンスが使用可能になるまで、またはタイムアウトになるまで、メッセージは待機します。  
   
  さらに、<xref:System.ServiceModel.ConcurrencyMode> が <xref:System.ServiceModel.ConcurrencyMode.Single> に設定され、再入可能呼び出しが、インスタンスが解放されるまで待機する間ブロックされた場合、システムはデッドロックを検出し、例外をスローします。  
   
- 同時実行の詳細については、次を参照してください。<xref:System.ServiceModel.ServiceBehaviorAttribute.ConcurrencyMode%2A?displayProperty=nameWithType>と[セッション、インスタンス化、および同時実行](~/docs/framework/wcf/feature-details/sessions-instancing-and-concurrency.md)します。  
+ 同時実行の詳細について<xref:System.ServiceModel.ServiceBehaviorAttribute.ConcurrencyMode%2A?displayProperty=nameWithType>は、「」および「[セッション、インスタンス化、および同時実行](~/docs/framework/wcf/feature-details/sessions-instancing-and-concurrency.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -264,11 +264,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タイプが <xref:System.Runtime.Serialization.IExtensibleDataObject> インターフェイスを実装している場合は、そのタイプに逆シリアル化するときにネットワークから着信した未知のあらゆる追加データが、そのタイプにより保存されます。 たとえば、タイプ `Person` にメンバー `FirstName` と `LastName` があり、`PhoneNumber` という要素が加わる場合、その要素は保存されます。 後でこのタイプをシリアル化するときに、`PhoneNumber` が再発行されます。 問題なのスキーマは`Person`によってサービスのみがエクスポートされた`FirstName`と`LastName`ので、Windows Communication Foundation (WCF) には、スキーマが無効なインスタンスが生成されます。 厳しいスキーマ コンプライアンスが重要な場合は、<xref:System.ServiceModel.CallbackBehaviorAttribute.IgnoreExtensionDataObject%2A> を `true` に設定すると、この再発行動作をオフにすることができます。  
+ タイプが <xref:System.Runtime.Serialization.IExtensibleDataObject> インターフェイスを実装している場合は、そのタイプに逆シリアル化するときにネットワークから着信した未知のあらゆる追加データが、そのタイプにより保存されます。 たとえば、タイプ `Person` にメンバー `FirstName` と `LastName` があり、`PhoneNumber` という要素が加わる場合、その要素は保存されます。 後でこのタイプをシリアル化するときに、`PhoneNumber` が再発行されます。 問題は、そのサービスによっ`Person`てエクスポートされるのスキーマ`FirstName`に`LastName`はとのみが含まれているため、Windows Communication Foundation (WCF) によってスキーマが無効なインスタンスが生成されることです。 厳しいスキーマ コンプライアンスが重要な場合は、<xref:System.ServiceModel.CallbackBehaviorAttribute.IgnoreExtensionDataObject%2A> を `true` に設定すると、この再発行動作をオフにすることができます。  
   
- 関係なく、<xref:System.ServiceModel.CallbackBehaviorAttribute.IgnoreExtensionDataObject%2A>設定すると、WCF 常に (in および out 両方) 既知のデータを処理し、余分なデータを受信すると、例外をスローしません。  
+ <xref:System.ServiceModel.CallbackBehaviorAttribute.IgnoreExtensionDataObject%2A>設定に関係なく、WCF は常に既知のデータ (in と out の両方) を処理し、追加のデータがある場合は例外をスローしません。  
   
- 使用することができます、 [ &lt;callbackDebug&gt; ](~/docs/framework/configure-apps/file-schema/wcf/callbackdebug.md)クライアント アプリケーション構成ファイルでこのプロパティを設定する要素。  
+ このプロパティは、クライアントアプリケーション構成ファイルで設定するために、の[ &lt;デバッグのデバッグ&gt; ](~/docs/framework/configure-apps/file-schema/wcf/callbackdebug.md)要素を使用します。  
   
  ]]></format>
         </remarks>
@@ -312,7 +312,7 @@
  可能な場合に例外情報をデバッグ用にサービスに返すことを有効にするには、<xref:System.ServiceModel.CallbackBehaviorAttribute.IncludeExceptionDetailInFaults%2A> を `true` に設定します。 これは開発専用の機能なので、展開されたサービスで使用しないでください。 これらのエラーは、呼び出し元で <xref:System.ServiceModel.FaultException> オブジェクトとして出現します。  
   
 > [!IMPORTANT]
->  設定<xref:System.ServiceModel.CallbackBehaviorAttribute.IncludeExceptionDetailInFaults%2A>に`true`により、内部クライアント コールバック例外に関する情報を取得するサービスの双方向クライアント アプリケーションを一時的にデバッグする方法としてのみお勧めします。  
+>  を<xref:System.ServiceModel.CallbackBehaviorAttribute.IncludeExceptionDetailInFaults%2A> に`true`設定すると、サービスが内部クライアントコールバック例外に関する情報を取得できるようになります。これは、双方向クライアントアプリケーションを一時的にデバッグする方法としてのみお勧めします。  
   
    
   
@@ -361,7 +361,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オブジェクト グラフでシリアル化されるアイテム数を制限する <xref:System.ServiceModel.ServiceBehaviorAttribute.MaxItemsInObjectGraph%2A> プロパティを使用します。 使用することも、 [ &lt;dataContractSerializer&gt; ](~/docs/framework/configure-apps/file-schema/wcf/datacontractserializer.md)クライアント アプリケーション構成ファイルでこの値を設定する要素。  
+ オブジェクト グラフでシリアル化されるアイテム数を制限する <xref:System.ServiceModel.ServiceBehaviorAttribute.MaxItemsInObjectGraph%2A> プロパティを使用します。 また、 [ &lt;dataContractSerializer&gt; ](~/docs/framework/configure-apps/file-schema/wcf/datacontractserializer.md)要素を使用して、クライアントアプリケーション構成ファイルでこの値を設定することもできます。  
   
  ]]></format>
         </remarks>

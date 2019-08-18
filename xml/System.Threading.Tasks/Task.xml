@@ -1,5 +1,5 @@
 <Type Name="Task" FullName="System.Threading.Tasks.Task">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1b3a892e619a7f6b33870dc717111e8aa3c53be5" /><Meta Name="ms.sourcegitcommit" Value="b70421b26e0c5afdfde405f0a610fcabac2bb088" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/18/2019" /><Meta Name="ms.locfileid" Value="67169496" /></Metadata><TypeSignature Language="C#" Value="public class Task : IAsyncResult, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c200bb14e9b286622509ade5fbfb3ca3adb9b4db" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69099125" /></Metadata><TypeSignature Language="C#" Value="public class Task : IAsyncResult, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Task extends System.Object implements class System.IAsyncResult, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.Task" />
   <TypeSignature Language="VB.NET" Value="Public Class Task&#xA;Implements IAsyncResult, IDisposable" />
@@ -50,107 +50,107 @@
       <format type="text/markdown"><![CDATA[  
    
 ## Remarks  
- <xref:System.Threading.Tasks.Task>クラスを返さない値を通常は 1 回の操作が非同期的に実行を表します。 <xref:System.Threading.Tasks.Task> オブジェクトは、中央のコンポーネントの 1 つ、[タスクベースの非同期パターン](~/docs/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap.md).NET Framework 4 で初めて導入されました。 によって、作業が実行されるため、<xref:System.Threading.Tasks.Task>オブジェクト通常は非同期的に実行スレッド プールのスレッドで同期的に、メイン アプリケーション スレッドで使用できますではなく、<xref:System.Threading.Tasks.Task.Status%2A>プロパティだけでなく<xref:System.Threading.Tasks.Task.IsCanceled%2A>、<xref:System.Threading.Tasks.Task.IsCompleted%2A>と<xref:System.Threading.Tasks.Task.IsFaulted%2A>プロパティ、タスクの状態を判断します。 ほとんどの場合、ラムダ式は、タスクを実行する作業の指定に使用されます。  
+ クラス<xref:System.Threading.Tasks.Task>は、値を返さず、通常は非同期的に実行する1つの操作を表します。 <xref:System.Threading.Tasks.Task>オブジェクトは、.NET Framework 4 で最初に導入された[タスクベースの非同期パターン](~/docs/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap.md)の中心的なコンポーネントの1つです。 <xref:System.Threading.Tasks.Task>オブジェクトによって実行される作業は通常、メインアプリケーションスレッド上で同期的に実行されるのではなく、スレッド<xref:System.Threading.Tasks.Task.Status%2A>プールスレッドで非同期的に実行<xref:System.Threading.Tasks.Task.IsCompleted%2A>されるため、プロパティ<xref:System.Threading.Tasks.Task.IsCanceled%2A>、、、およびを使用できます。<xref:System.Threading.Tasks.Task.IsFaulted%2A>プロパティ。タスクの状態を決定します。 通常、ラムダ式を使用して、タスクが実行する作業を指定します。  
   
- 使用する値を返す操作で、<xref:System.Threading.Tasks.Task%601>クラス。  
+ 値を返す操作の場合は、 <xref:System.Threading.Tasks.Task%601>クラスを使用します。  
   
  このセクションの内容:  
   
  [タスクのインスタンス化の例](#Instant)   
- [作成して、タスクを実行します。](#Creating)   
+ [タスクの作成と実行](#Creating)   
  [タスクの作成と実行の分離](#Separating)   
- [1 つまたは複数のタスクを完了するを待機](#WaitingForOne)   
+ [1つ以上のタスクが完了するのを待機しています](#WaitingForOne)   
  [タスクとカルチャ](#Culture)   
- [デバッガーの開発者向け](#Debugger)  
+ [デバッガー開発者向け](#Debugger)  
 
  <a name="Instant"></a>     
 ## <a name="task-instantiation"></a>タスクのインスタンス化  
- 次の例では、作成し、4 つのタスクを実行します。 3 つのタスクの実行、<xref:System.Action%601>という名前のデリゲート`action`、型の引数を受け入れる<xref:System.Object>します。 4 番目のタスクは、ラムダ式を実行します (、<xref:System.Action>デリゲート)、タスク作成メソッドの呼び出しでインラインで定義されています。 各タスクがインスタンス化され、別の方法で実行します。  
+ 次の例では、4つのタスクを作成して実行します。 3つのタスク<xref:System.Action%601>は、 `action`型<xref:System.Object>の引数を受け取るという名前のデリゲートを実行します。 4番目のタスクは、タスク作成<xref:System.Action>メソッドの呼び出しでインラインで定義されているラムダ式 (デリゲート) を実行します。 各タスクはインスタンス化され、別の方法で実行されます。  
   
--   タスク`t1`タスク クラスのコンス トラクターを呼び出すことによってインスタンス化されますが、呼び出しによって開始されたが、<xref:System.Threading.Tasks.Task.Start>タスクの後にのみメソッド`t2`が開始します。  
+-   タスクはタスククラスコンストラクターを呼び出すことによってインスタンス化され<xref:System.Threading.Tasks.Task.Start>ますが、タスク`t2`が開始された後にのみメソッドを呼び出すことによって開始されます。 `t1`  
   
--   タスク`t2`がインスタンス化され、1 つのメソッド呼び出しの呼び出しによって開始された、<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%29?displayProperty=nameWithType>メソッド。  
+-   タスク`t2`は、 <xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%29?displayProperty=nameWithType>メソッドを呼び出すことによってインスタンス化され、1回のメソッド呼び出しで開始されます。  
   
--   タスク`t3`がインスタンス化され、1 つのメソッド呼び出しの呼び出しによって開始された、<xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッド。  
+-   タスク`t3`は、 <xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッドを呼び出すことによってインスタンス化され、1回のメソッド呼び出しで開始されます。  
   
--   タスク`t4`を呼び出して、メイン スレッドで同期的に実行が、<xref:System.Threading.Tasks.Task.RunSynchronously>メソッド。  
+-   タスク`t4`は、メソッドを<xref:System.Threading.Tasks.Task.RunSynchronously>呼び出すことによって、メインスレッドで同期的に実行されます。  
   
- タスク`t4`同期的に、実行、アプリケーションのメイン スレッドで実行します。 残りのタスク実行非同期的に通常 1 つまたは複数のスレッド プール スレッドでします。  
+ タスク`t4`は同期的に実行されるため、メインアプリケーションスレッドで実行されます。 残りのタスクは、通常、1つ以上のスレッドプールのスレッドで非同期的に実行されます。  
   
  [!code-csharp[System.Threading.Tasks.Task#01](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/startnew.cs#01)]
  [!code-vb[System.Threading.Tasks.Task#01](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/startnew.vb#01)] 
     
 <a name="Creating"></a>   
-## <a name="creating-and-executing-a-task"></a>作成して、タスクを実行します。  
- <xref:System.Threading.Tasks.Task> インスタンスは、さまざまな方法で作成できます。 以降で使用できますが、最も一般的なアプローチ、[!INCLUDE[net_v45](~/includes/net-v45-md.md)]は、静的な<xref:System.Threading.Tasks.Task.Run%2A>メソッド。 <xref:System.Threading.Tasks.Task.Run%2A>メソッドは、既定値を使用してタスクを開始する簡単な方法を提供します。 追加のパラメーターを必要もありません。 次の例では、<xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッドをループし、ループのイテレーションの数を表示するタスクを開始します。  
+## <a name="creating-and-executing-a-task"></a>タスクの作成と実行  
+ <xref:System.Threading.Tasks.Task>インスタンスは、さまざまな方法で作成できます。 から使用できる[!INCLUDE[net_v45](~/includes/net-v45-md.md)]最も一般的な方法は、静的<xref:System.Threading.Tasks.Task.Run%2A>メソッドを呼び出すことです。 メソッド<xref:System.Threading.Tasks.Task.Run%2A>は、既定値を使用してタスクを開始する簡単な方法を提供し、追加のパラメーターを必要としません。 次の例では<xref:System.Threading.Tasks.Task.Run%28System.Action%29> 、メソッドを使用して、ループするタスクを開始し、ループイテレーションの数を表示します。  
   
  [!code-csharp[System.Threading.Tasks.Task#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/run1.cs#6)]
  [!code-vb[System.Threading.Tasks.Task#6](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/run1.vb#6)]  
   
- 代わりに、およびタスクを開始する最も一般的な方法[!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)]、静的なの<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッド。 <xref:System.Threading.Tasks.Task.Factory%2A?displayProperty=nameWithType>プロパティが返す、<xref:System.Threading.Tasks.TaskFactory>オブジェクト。 オーバー ロード、<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッドを使用して、タスク作成オプションとタスク スケジューラに渡すパラメーターを指定できます。 次の例では、<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>タスクを開始するメソッド。 このメソッドは、前の例のコードには  
+ また、で[!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)]タスクを開始するための最も一般的な方法として、 <xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>静的メソッドもあります。 プロパティ<xref:System.Threading.Tasks.Task.Factory%2A?displayProperty=nameWithType>は、オブジェクト<xref:System.Threading.Tasks.TaskFactory>を返します。 <xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッドのオーバーロードを使用すると、タスクの作成オプションとタスクスケジューラに渡すパラメーターを指定できます。 次の例では<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType> 、メソッドを使用してタスクを開始します。 これは、前の例のコードと機能的には同等です。  
   
  [!code-csharp[System.Threading.Tasks.Task#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/startnew1.cs#7)]
  [!code-vb[System.Threading.Tasks.Task#7](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/startnew1.vb#7)]  
   
- 詳細な例については、次を参照してください。[タスクベースの非同期プログラミング](~/docs/standard/parallel-programming/task-based-asynchronous-programming.md)します。  
+ 詳細な例については、「[タスクベースの非同期プログラミング](~/docs/standard/parallel-programming/task-based-asynchronous-programming.md)」を参照してください。  
   
 <a name="Separating"></a>   
 ## <a name="separating-task-creation-and-execution"></a>タスクの作成と実行の分離  
- <xref:System.Threading.Tasks.Task>クラスには、タスクを初期化するが、実行のスケジュールをそのしないコンス トラクターも用意されています。 パフォーマンス向上のため、<xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>または<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッドが作成および計算のタスクをスケジュールするための推奨メカニズムが、シナリオの作成とスケジュール設定を区切る必要があります、コンス トラクターを使用して、呼び出して、<xref:System.Threading.Tasks.Task.Start%2A?displayProperty=nameWithType>メソッドは後で実行するためのタスクをスケジュールします。  
+ クラス<xref:System.Threading.Tasks.Task>には、タスクを初期化するコンストラクターも用意されていますが、実行のスケジュールは設定されていません。 パフォーマンス上の理由<xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>により、または<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッドは、計算タスクを作成およびスケジュールするための推奨メカニズムですが、作成とスケジュールを分離する必要があるシナリオでは、コンストラクターを使用して、<xref:System.Threading.Tasks.Task.Start%2A?displayProperty=nameWithType>タスクを後で実行するようにスケジュールする方法。  
   
 <a name="WaitingForOne"></a>   
-## <a name="waiting-for-one-or-more-tasks-to-complete"></a>1 つまたは複数のタスクを完了するを待機  
- タスクは通常、スレッド プールのスレッドで非同期的に実行、ために、作成およびタスクを開始するスレッドは、タスクのインスタンスを作成するとすぐに実行を続行します。 場合によっては、呼び出し元のスレッドは、メイン アプリケーション スレッド、アプリは終了前に、タスクが実際に実行を開始します。 他の実行で、アプリケーションのロジックは、1 つまたは複数のタスクの実行が完了した場合にのみ、呼び出し元のスレッドが実行を続行する必要があります。 呼び出し元のスレッドの実行を同期して、非同期タスクが起動を呼び出して、`Wait`メソッドを 1 つまたは複数のタスクが完了するまで待ちます。  
+## <a name="waiting-for-one-or-more-tasks-to-complete"></a>1つ以上のタスクが完了するのを待機しています  
+ タスクは通常、スレッドプールのスレッドで非同期に実行されるため、タスクを作成して開始するスレッドは、タスクがインスタンス化されるとすぐに実行を継続します。 場合によっては、呼び出し元のスレッドがメインアプリケーションスレッドである場合、タスクが実際に実行を開始する前にアプリが終了することがあります。 それ以外の場合、アプリケーションのロジックでは、1つ以上のタスクが実行を完了したときにのみ、呼び出し元のスレッドが実行を継続することが必要になる場合があります。 1つ以上のタスクが完了するまで待機するメソッドを`Wait`呼び出すことによって、呼び出し元スレッドと起動する非同期タスクの実行を同期できます。  
   
- 1 つのタスクが完了するまで待つ、呼び出すことができます、<xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>メソッド。 呼び出し、<xref:System.Threading.Tasks.Task.Wait%2A>メソッドは、1 つのクラス インスタンスの実行が完了するまで、呼び出し元のスレッドをブロックします。  
+ 1つのタスクが完了するまで待機するには、 <xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>そのメソッドを呼び出すことができます。 <xref:System.Threading.Tasks.Task.Wait%2A>メソッドを呼び出すと、単一クラスのインスタンスの実行が完了するまで、呼び出し元のスレッドがブロックされます。  
   
- 次の例では、パラメーターなし<xref:System.Threading.Tasks.Task.Wait>メソッドが、タスクが完了するまで、無条件で待機します。 タスクが呼び出すことによって作業をシミュレート、<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドを 2 秒間スリープ状態になります。  
+ 次の例では、 <xref:System.Threading.Tasks.Task.Wait>パラメーターなしのメソッドを呼び出して、タスクが完了するまで無条件に待機します。 タスクは、 <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドを呼び出して2秒間スリープ状態にすることで、作業をシミュレートします。  
   
  [!code-csharp[System.Threading.Tasks.Task#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/Wait1.cs#8)]
  [!code-vb[System.Threading.Tasks.Task#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/Wait1.vb#8)]  
   
- タスクが完了することも条件付きで待機できます。 <xref:System.Threading.Tasks.Task.Wait%28System.Int32%29>と<xref:System.Threading.Tasks.Task.Wait%28System.TimeSpan%29>メソッドは、タスクが完了するまで、呼び出し元のスレッドをブロックまたはタイムアウト間隔が経過すると、先に達した。 次の例では、2 秒間スリープ状態が定義されている 1 秒のタイムアウト値、呼び出しスレッドは、タイムアウトになるまでブロックするタスクを起動するため、前に、タスクには、実行が完了しました。  
+ タスクの完了を条件付きで待機することもできます。 メソッド<xref:System.Threading.Tasks.Task.Wait%28System.Int32%29> と<xref:System.Threading.Tasks.Task.Wait%28System.TimeSpan%29>メソッドは、タスクが終了するまで、またはタイムアウト間隔が経過するまで、呼び出し元のスレッドをブロックします。 次の例では、2秒間スリープするタスクを起動しますが、1秒間のタイムアウト値を定義するため、呼び出し元のスレッドはタイムアウトが経過するまでブロックされ、タスクの実行が完了するまでブロックされます。  
   
  [!code-csharp[System.Threading.Tasks.Task#9](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/Wait2.cs#9)]
  [!code-vb[System.Threading.Tasks.Task#9](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/Wait2.vb#9)]  
   
- 呼び出して、キャンセル トークンを指定することも、<xref:System.Threading.Tasks.Task.Wait%28System.Threading.CancellationToken%29>と<xref:System.Threading.Tasks.Task.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29>メソッド。 場合、トークンの<xref:System.Threading.CancellationToken.IsCancellationRequested%2A>プロパティは`true`なったり`true`中に、<xref:System.Threading.Tasks.Task.Wait%2A>メソッドを実行して、メソッドはスロー、<xref:System.OperationCanceledException>します。  
+ また、メソッド<xref:System.Threading.Tasks.Task.Wait%28System.Threading.CancellationToken%29>と<xref:System.Threading.Tasks.Task.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29>メソッドを呼び出すことによって、キャンセルトークンを指定することもできます。 <xref:System.Threading.CancellationToken.IsCancellationRequested%2A> <xref:System.OperationCanceledException> `true` `true`メソッドの実行中にトークンのプロパティがまたはになった場合、メソッドはをスローします。 <xref:System.Threading.Tasks.Task.Wait%2A>  
   
- 場合によっては、待機することがあります、タスクが注意が完了するがない、一連のタスクを実行して、最初の。  この目的で、いずれかのオーバー ロードを呼び出すことができます、<xref:System.Threading.Tasks.Task.WaitAny%2A?displayProperty=nameWithType>メソッド。  次の例では、乱数ジェネレーターで間隔を決定のそれぞれのスリープ状態になり、3 つのタスクを作成します。 <xref:System.Threading.Tasks.Task.WaitAny%28System.Threading.Tasks.Task%5B%5D%29>メソッドは最初のタスクが完了するまで待機します。 3 つのタスクの状態に関する情報を表示します。  
+ 場合によっては、一連の実行中の一連のタスクが完了するまで待機する必要がありますが、それがどのようなタスクであるかは気にしません。  このためには、 <xref:System.Threading.Tasks.Task.WaitAny%2A?displayProperty=nameWithType>メソッドのオーバーロードの1つを呼び出すことができます。  次の例では、3つのタスクを作成します。各タスクは、ランダムな数値ジェネレーターによって決定された間隔でスリープします。 メソッド<xref:System.Threading.Tasks.Task.WaitAny%28System.Threading.Tasks.Task%5B%5D%29>は、最初のタスクが完了するまで待機します。 この例では、3つのタスクすべての状態に関する情報が表示されます。  
   
  [!code-csharp[System.Threading.Tasks.Task#10](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/WhenAny1.cs#10)]
  [!code-vb[System.Threading.Tasks.Task#10](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/WaitAny1.vb#10)]  
   
- すべての一連のタスクが呼び出すことによって完了するを待機することも、<xref:System.Threading.Tasks.Task.WaitAll%2A>メソッド。 次の例では、10 個のタスクを作成し、すべて 10 を完了するまで待機し、それらの状態を表示します。  
+ <xref:System.Threading.Tasks.Task.WaitAll%2A>メソッドを呼び出すことで、一連のタスクがすべて完了するまで待機することもできます。 次の例では、10個のタスクを作成し、すべての10が完了するまで待機して、その状態を表示します。  
   
  [!code-csharp[System.Threading.Tasks.Task#11](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/WaitAll1.cs#11)]
  [!code-vb[System.Threading.Tasks.Task#11](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/WaitAll1.vb#11)]  
   
- 1 つまたは複数のタスクが完了するを待機する場合、実行中のタスクでスローされた例外を呼び出すスレッドに伝達されているに注意してください、`Wait`メソッドを次の例を示します。 12 のタスクを正常に完了する 3 つと、例外がスローの 3 つを起動します。 残りの 6 つのタスクの実行されているときに 3 つが取り消されます、開始する前に 3 つはキャンセルされます。 例外がスローされた、<xref:System.Threading.Tasks.Task.WaitAll%2A>によって処理されるメソッドの呼び出しとは、 `try` / `catch`ブロックします。  
+ 1つ以上のタスクが完了するまで待機すると、次の例に示すように、実行中のタスクでスローさ`Wait`れた例外は、メソッドを呼び出すスレッドで反映されることに注意してください。 12個のタスクが起動され、そのうち3つは正常に完了し、そのうち3つは例外をスローします。 残りの6つのタスクのうち、3つは開始前にキャンセルされ、3つは実行中にキャンセルされます。 例外は、 <xref:System.Threading.Tasks.Task.WaitAll%2A>メソッドの呼び出しでスローされ、 `catch`ブロック`try` /によって処理されます。  
   
  [!code-csharp[System.Threading.Tasks.Task#12](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/WaitAll2.cs#12)]
  [!code-vb[System.Threading.Tasks.Task#12](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/WaitAll2.vb#12)]  
   
- タスク ベースの非同期操作での例外処理の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスクベースの非同期操作での例外処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
 <a name="Culture"></a>   
 ## <a name="tasks-and-culture"></a>タスクとカルチャ  
- 対象に、デスクトップ アプリ以降、[!INCLUDE[net_v46](~/includes/net-v46-md.md)]を作成し、タスクを呼び出すスレッドのカルチャがスレッドのコンテキストの一部になります。 つまり、タスクが実行されるスレッドの現在のカルチャに関係なく、タスクの現在のカルチャは、呼び出し元スレッドのカルチャです。 前のバージョンの .NET Framework のバージョンを対象とするアプリを[!INCLUDE[net_v46](~/includes/net-v46-md.md)]タスクのカルチャは、タスクが実行されるスレッドのカルチャ。 詳細については、の「カルチャとタスク ベースの非同期操作」セクションを参照してください、<xref:System.Globalization.CultureInfo>トピック。  
+ を対象[!INCLUDE[net_v46](~/includes/net-v46-md.md)]とするデスクトップアプリ以降では、タスクを作成して呼び出すスレッドのカルチャがスレッドのコンテキストの一部になります。 つまり、タスクが実行されるスレッドの現在のカルチャに関係なく、タスクの現在のカルチャが呼び出し元スレッドのカルチャになります。 より前[!INCLUDE[net_v46](~/includes/net-v46-md.md)]のバージョンの .NET Framework を対象とするアプリの場合、タスクのカルチャは、タスクが実行されるスレッドのカルチャになります。 詳細については、「」 <xref:System.Globalization.CultureInfo>トピックの「カルチャとタスクベースの非同期操作」セクションを参照してください。  
   
 > [!NOTE]
->  ストア アプリでは、設定と既定のカルチャの取得での Windows ランタイムに従います。  
+>  ストアアプリは、設定の Windows ランタイムに従い、既定のカルチャを取得します。  
   
 <a name="Debugger"></a>   
-## <a name="for-debugger-developers"></a>デバッガーの開発者向け  
- 開発者はカスタムのデバッガーを実装する、タスクのいくつかの内部、プライベート メンバーが役立ちます (リリースごとに変更可能性があります) 可能性があります。 `m_taskId`のバッキング ストアとして、フィールド、<xref:System.Threading.Tasks.Task.Id%2A>ただしへのアクセスをデバッガーから直接には、このフィールドがあります、プロパティの getter メソッドで同じ値にアクセスするよりも効率的プロパティ (、`s_taskIdCounter`カウンターは、使用されるタスクの [次へ] の使用可能な ID を取得する)。 同様に、`m_stateFlags`フィールドからもアクセスできる情報は、タスクの現在のライフ サイクル ステージに関する情報を格納する、<xref:System.Threading.Tasks.Task.Status%2A>プロパティ。 `m_action`フィールドは、タスクのデリゲートへの参照を格納し、`m_stateObject`フィールドには、開発者がタスクに渡される非同期の状態が格納されます。 スタック フレームを解析するデバッガーに対して、最後に、`InternalWait`メソッドには、タスクが待機操作を入力する場合の潜在的なマーカーが機能します。   
+## <a name="for-debugger-developers"></a>デバッガー開発者向け  
+ カスタムデバッガーを実装する開発者にとっては、タスクのいくつかの内部メンバーとプライベートメンバーが役に立つ場合があります (これらはリリースごとに変更される可能性があります)。 フィールド`m_taskId`は、 <xref:System.Threading.Tasks.Task.Id%2A>プロパティのバッキングストアとして機能しますが、デバッガーから直接このフィールドにアクセスする方が、プロパティ`s_taskIdCounter`の getter メソッドを使用して同じ値にアクセスするよりも効率的な場合があります (カウンターはです。タスクで使用可能な次の ID を取得するために使用します)。 同様に`m_stateFlags` 、このフィールドには、タスクの現在のライフサイクルステージに関する情報が格納<xref:System.Threading.Tasks.Task.Status%2A>されます。情報は、プロパティを介してアクセスすることもできます。 フィールドには、タスクのデリゲート`m_stateObject`への参照が格納されます。フィールドには、開発者によってタスクに渡される非同期状態が格納されます。 `m_action` 最後に、スタックフレームを解析するデバッガーの`InternalWait`場合、メソッドはタスクが待機操作に入ったときのマーカーとして機能します。   
   
  ]]></format>
     </remarks>
-    <threadsafe>すべてのメンバー<see cref="T:System.Threading.Tasks.Task" />を除く<see cref="M:System.Threading.Tasks.Task.Dispose" />スレッド セーフなは、複数のスレッドから同時に使用できます。</threadsafe>
+    <threadsafe><see cref="T:System.Threading.Tasks.Task" />を<see cref="M:System.Threading.Tasks.Task.Dispose" />除くのすべてのメンバーはスレッドセーフであり、複数のスレッドから同時に使用することができます。</threadsafe>
     <altmember cref="T:System.Threading.Tasks.Task`1" />
     <related type="Article" href="~/docs/standard/parallel-programming/task-parallel-library-tpl.md">タスク並列ライブラリ (TPL)</related>
     <related type="Article" href="~/docs/standard/parallel-programming/task-based-asynchronous-programming.md">タスク ベースの非同期プログラミング</related>
-    <related type="ExternalDocumentation" href="https://code.msdn.microsoft.com/Samples-for-Parallel-b4b76364">.NET Framework による並列プログラミングのサンプル</related>
+    <related type="ExternalDocumentation" href="https://code.msdn.microsoft.com/Samples-for-Parallel-b4b76364">.NET Framework を使用した並列プログラミングのサンプル</related>
   </Docs>
   <Members>
     <MemberGroup MemberName=".ctor">
@@ -200,21 +200,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターがでのみ使用高度なシナリオが必要な場合、作成とタスクの開始が分離されています。  
+ このコンストラクターは、タスクの作成と開始を分離する必要がある高度なシナリオでのみ使用してください。  
   
- インスタンスを作成する最も一般的な方法、このコンス トラクターを呼び出すのではなく、<xref:System.Threading.Tasks.Task>オブジェクトとタスクは、静的なを呼び出すことによって、起動<xref:System.Threading.Tasks.Task.Run%28System.Action%29?displayProperty=nameWithType>または<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%29?displayProperty=nameWithType>メソッド。  
+ オブジェクトを<xref:System.Threading.Tasks.Task>インスタンス化してタスクを起動する最も一般的な方法は、このコンストラクターを呼び出すのではなく<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%29?displayProperty=nameWithType> 、静的<xref:System.Threading.Tasks.Task.Run%28System.Action%29?displayProperty=nameWithType>メソッドまたはメソッドを呼び出すことです。  
   
- API のコンシューマーのためだけに表示を待機するには、操作は不要のタスクが必要な場合、<xref:System.Threading.Tasks.TaskCompletionSource%601>使用する必要があります。  
+ API のコンシューマーが待機する必要があるタスクがない場合は、を<xref:System.Threading.Tasks.TaskCompletionSource%601>使用する必要があります。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Threading.Tasks.Task.%23ctor%28System.Action%29>でファイル名を取得するタスクを作成するコンス トラクターは、ディレクトリを指定します。 すべてのタスクを 1 つのファイル名の書き込み<xref:System.Collections.Concurrent.ConcurrentBag%601>オブジェクト。 例を呼び出して、<xref:System.Threading.Tasks.Task.WaitAll%28System.Threading.Tasks.Task%5B%5D%29>に書き込まれるファイル名の合計数を表示し、すべてのタスクが完了したら、いることを確認する方法、<xref:System.Collections.Concurrent.ConcurrentBag%601>オブジェクト。  
+ 次の例では<xref:System.Threading.Tasks.Task.%23ctor%28System.Action%29> 、コンストラクターを使用して、指定したディレクトリ内のファイル名を取得するタスクを作成します。 すべてのタスクは、ファイル名を 1 <xref:System.Collections.Concurrent.ConcurrentBag%601>つのオブジェクトに書き込みます。 次に、 <xref:System.Threading.Tasks.Task.WaitAll%28System.Threading.Tasks.Task%5B%5D%29>メソッドを呼び出して、すべてのタスクが完了したことを確認した後、 <xref:System.Collections.Concurrent.ConcurrentBag%601>オブジェクトに書き込まれたファイル名の総数を表示します。  
   
  [!code-csharp[System.Threading.Tasks.Task.Ctor#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.ctor/cs/ctor1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.Ctor#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.ctor/vb/ctor1.vb#1)]  
   
- 次の例は、これは、使用する点を除いて同じですが、<xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッドをインスタンス化し、1 つの操作でタスクを実行します。 メソッドを返します、<xref:System.Threading.Tasks.Task>タスクを表すオブジェクト。  
+ 次の例は同じですが、 <xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッドを使用して1回の操作でタスクをインスタンス化して実行する点が異なります。 メソッドは、タスク<xref:System.Threading.Tasks.Task>を表すオブジェクトを返します。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/run2.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.Run#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/run2.vb#1)]  
@@ -264,14 +264,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンスを作成する最も一般的な方法、このコンス トラクターを呼び出すのではなく、<xref:System.Threading.Tasks.Task>オブジェクトとタスクは、静的なを呼び出すことによって、起動<xref:System.Threading.Tasks.Task.Run%28System.Action%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>と<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>メソッド。 このコンス トラクターによって提供される唯一の利点は、タスクの呼び出しから分離するオブジェクトのインスタンス化できることです。  
+ オブジェクトを<xref:System.Threading.Tasks.Task>インスタンス化してタスクを起動する最も一般的な方法は、このコンストラクターを呼び出すのではなく<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType> 、静的<xref:System.Threading.Tasks.Task.Run%28System.Action%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>メソッドとメソッドを呼び出すことです。 このコンストラクターによって提供される唯一の利点は、オブジェクトのインスタンス化をタスクの呼び出しから分離できることです。  
   
- 詳細については、次を参照してください。[タスクの並列化 (タスク並列ライブラリ)](~/docs/standard/parallel-programming/task-based-asynchronous-programming.md)と[マネージ スレッドのキャンセル](~/docs/standard/threading/cancellation-in-managed-threads.md)します。  
+ 詳細については、「[タスクの並列化 (タスク並列ライブラリ)](~/docs/standard/parallel-programming/task-based-asynchronous-programming.md) 」および「[マネージスレッドでのキャンセル](~/docs/standard/threading/cancellation-in-managed-threads.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、 <xref:System.Threading.Tasks.Task.%23ctor%28System.Action%2CSystem.Threading.CancellationToken%29> C:\Windows\System32 ディレクトリ内のファイルを反復処理するタスクを作成するコンス トラクター。 ラムダ式の呼び出し、<xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>に各ファイルに関する情報を追加するメソッドを<xref:System.Collections.Generic.List%601>オブジェクト。 各のデタッチされた入れ子のタスクによって呼び出される、<xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>ループは、キャンセル トークンの状態をチェックし、キャンセルが要求される場合は、<xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A?displayProperty=nameWithType>メソッド。 <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A?displayProperty=nameWithType>メソッドがスローされます、<xref:System.OperationCanceledException>で処理される例外を`catch`ブロック呼び出し元のスレッドを呼び出すと、<xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>メソッド。  <xref:System.Threading.Tasks.Task.Start%2A>タスクを開始するのにはメソッドが呼び出されます。  
+ 次の例では<xref:System.Threading.Tasks.Task.%23ctor%28System.Action%2CSystem.Threading.CancellationToken%29> 、コンストラクターを呼び出して、C:\Windows\System32 ディレクトリ内のファイルを反復処理するタスクを作成します。 ラムダ式は、 <xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>メソッドを呼び出して、各ファイルに関する情報を<xref:System.Collections.Generic.List%601>オブジェクトに追加します。 <xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>ループによって呼び出された、デタッチされた入れ子になった各タスクは、キャンセルトークンの状態<xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A?displayProperty=nameWithType>をチェックし、キャンセルが要求された場合はメソッドを呼び出します。 メソッド<xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A?displayProperty=nameWithType>は、呼び出し<xref:System.OperationCanceledException>元のスレッドがメソッドを`catch` <xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>呼び出したときに、ブロックで処理される例外をスローします。  次<xref:System.Threading.Tasks.Task.Start%2A>に、メソッドを呼び出してタスクを開始します。  
   
  [!code-csharp[System.Threading.Tasks.Task.ctor#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.ctor/cs/run4.cs#4)]
  [!code-vb[System.Threading.Tasks.Task.ctor#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.ctor/vb/run4.vb#4)]  
@@ -321,7 +321,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンスを作成する最も一般的な方法、このコンス トラクターを呼び出すのではなく、<xref:System.Threading.Tasks.Task>オブジェクトとタスクは、静的なを呼び出すことによって、起動<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%2CSystem.Threading.Tasks.TaskCreationOptions%29?displayProperty=nameWithType>メソッド。 このコンス トラクターによって提供される唯一の利点は、タスクの呼び出しから分離するオブジェクトのインスタンス化できることです。  
+ オブジェクトを<xref:System.Threading.Tasks.Task>インスタンス化してタスクを起動する最も一般的な方法は、このコンストラクターを呼び出すのでは<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%2CSystem.Threading.Tasks.TaskCreationOptions%29?displayProperty=nameWithType>なく、静的メソッドを呼び出すことです。 このコンストラクターによって提供される唯一の利点は、オブジェクトのインスタンス化をタスクの呼び出しから分離できることです。  
   
  ]]></format>
         </remarks>
@@ -369,12 +369,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンスを作成する最も一般的な方法、このコンス トラクターを呼び出すのではなく、<xref:System.Threading.Tasks.Task>オブジェクトとタスクは、静的なを呼び出すことによって、起動<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%29?displayProperty=nameWithType>メソッド。 このコンス トラクターによって提供される唯一の利点は、タスクの呼び出しから分離するオブジェクトのインスタンス化できることです。  
+ オブジェクトを<xref:System.Threading.Tasks.Task>インスタンス化してタスクを起動する最も一般的な方法は、このコンストラクターを呼び出すのでは<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%29?displayProperty=nameWithType>なく、静的メソッドを呼び出すことです。 このコンストラクターによって提供される唯一の利点は、オブジェクトのインスタンス化をタスクの呼び出しから分離できることです。  
   
    
   
 ## Examples  
- 次の例では、6 文字の単語の配列を定義します。 各単語がへの引数として渡されます、<xref:System.Threading.Tasks.Task.%23ctor%28System.Action%7BSystem.Object%7D%2CSystem.Object%29>コンス トラクターを持つ<xref:System.Action%601>デリゲートは、word で文字にスクランブルをかけるし、元の単語とそのスクランブルされたバージョンを表示します。  
+ 次の例では、6文字の単語の配列を定義しています。 各単語は引数として<xref:System.Threading.Tasks.Task.%23ctor%28System.Action%7BSystem.Object%7D%2CSystem.Object%29>コンストラクターに渡され<xref:System.Action%601> 、デリゲートは単語内の文字をスクランブルします。その後、元の単語とそのスクランブルバージョンが表示されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.ctor#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.ctor/cs/startnew3.cs#3)]
  [!code-vb[System.Threading.Tasks.Task.ctor#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.ctor/vb/startnew3.vb#3)]  
@@ -426,9 +426,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンスを作成する最も一般的な方法、このコンス トラクターを呼び出すのではなく、<xref:System.Threading.Tasks.Task>オブジェクトとタスクは、静的なを呼び出すことによって、起動<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.TaskCreationOptions%2CSystem.Threading.Tasks.TaskScheduler%29?displayProperty=nameWithType>メソッド。 このコンス トラクターによって提供される唯一の利点は、タスクの呼び出しから分離するオブジェクトのインスタンス化できることです。  
+ オブジェクトを<xref:System.Threading.Tasks.Task>インスタンス化してタスクを起動する最も一般的な方法は、このコンストラクターを呼び出すのでは<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.TaskCreationOptions%2CSystem.Threading.Tasks.TaskScheduler%29?displayProperty=nameWithType>なく、静的メソッドを呼び出すことです。 このコンストラクターによって提供される唯一の利点は、オブジェクトのインスタンス化をタスクの呼び出しから分離できることです。  
   
- 詳細については、次を参照してください。[タスクの並列化 (タスク並列ライブラリ)](~/docs/standard/parallel-programming/task-based-asynchronous-programming.md)と[タスクのキャンセル](~/docs/standard/parallel-programming/task-cancellation.md)します。  
+ 詳細については、「[タスクの並列化 (タスク並列ライブラリ)](~/docs/standard/parallel-programming/task-based-asynchronous-programming.md) 」および「[タスクのキャンセル](~/docs/standard/parallel-programming/task-cancellation.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -478,7 +478,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンスを作成する最も一般的な方法、このコンス トラクターを呼び出すのではなく、<xref:System.Threading.Tasks.Task>オブジェクトとタスクは、静的なを呼び出すことによって、起動<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>メソッド。 このコンス トラクターによって提供される唯一の利点は、タスクの呼び出しから分離するオブジェクトのインスタンス化できることです。  
+ オブジェクトを<xref:System.Threading.Tasks.Task>インスタンス化してタスクを起動する最も一般的な方法は、このコンストラクターを呼び出すのでは<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>なく、静的メソッドを呼び出すことです。 このコンストラクターによって提供される唯一の利点は、オブジェクトのインスタンス化をタスクの呼び出しから分離できることです。  
   
  ]]></format>
         </remarks>
@@ -528,7 +528,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンスを作成する最も一般的な方法、このコンス トラクターを呼び出すのではなく、<xref:System.Threading.Tasks.Task>オブジェクトとタスクは、静的なを呼び出すことによって、起動<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%2CSystem.Threading.Tasks.TaskCreationOptions%29?displayProperty=nameWithType>メソッド。 このコンス トラクターによって提供される唯一の利点は、タスクの呼び出しから分離するオブジェクトのインスタンス化できることです。  
+ オブジェクトを<xref:System.Threading.Tasks.Task>インスタンス化してタスクを起動する最も一般的な方法は、このコンストラクターを呼び出すのでは<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%2CSystem.Threading.Tasks.TaskCreationOptions%29?displayProperty=nameWithType>なく、静的メソッドを呼び出すことです。 このコンストラクターによって提供される唯一の利点は、オブジェクトのインスタンス化をタスクの呼び出しから分離できることです。  
   
  ]]></format>
         </remarks>
@@ -579,7 +579,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンスを作成する最も一般的な方法、このコンス トラクターを呼び出すのではなく、<xref:System.Threading.Tasks.Task>オブジェクトとタスクは、静的なを呼び出すことによって、起動<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.TaskCreationOptions%2CSystem.Threading.Tasks.TaskScheduler%29?displayProperty=nameWithType>メソッド。 このコンス トラクターによって提供される唯一の利点は、タスクの呼び出しから分離するオブジェクトのインスタンス化できることです。  
+ オブジェクトを<xref:System.Threading.Tasks.Task>インスタンス化してタスクを起動する最も一般的な方法は、このコンストラクターを呼び出すのでは<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%7BSystem.Object%7D%2CSystem.Object%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.TaskCreationOptions%2CSystem.Threading.Tasks.TaskScheduler%29?displayProperty=nameWithType>なく、静的メソッドを呼び出すことです。 このコンストラクターによって提供される唯一の利点は、オブジェクトのインスタンス化をタスクの呼び出しから分離できることです。  
   
  ]]></format>
         </remarks>
@@ -629,7 +629,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オブジェクトにそのデータを取得する元の型にキャストします。  
+ オブジェクトを元の型にキャストして、データを取得します。  
   
  ]]></format>
         </remarks>
@@ -672,9 +672,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、タスクを返しますが<xref:System.Threading.Tasks.Task.Status%2A>プロパティに設定されて<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>します。 値を返し、実行が完了するタスクを作成するには、<xref:System.Threading.Tasks.Task.FromResult%2A>メソッド。  
+ このプロパティは、 <xref:System.Threading.Tasks.Task.Status%2A>プロパティがに<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>設定されているタスクを返します。 値を返して完了まで実行するタスクを作成するには<xref:System.Threading.Tasks.Task.FromResult%2A> 、メソッドを呼び出します。  
   
- 常に、このプロパティの値を取得する繰り返し試行では、同じインスタンスを返す可能性がありますされません。  
+ このプロパティ値を繰り返し取得しようとすると、必ずしも同じインスタンスが返されるとは限りません。  
   
  ]]></format>
         </remarks>
@@ -779,19 +779,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
    
   
 ## Examples  
- 次の例では、100 のランダムな日付と時刻の値を含む配列を設定するタスクを定義します。 使用して、<xref:System.Threading.Tasks.Task.ContinueWith%28System.Action%7BSystem.Threading.Tasks.Task%7D%29>メソッドを配列が完全に設定した後、最も古いと最新の日付値を選択します。  
+ 次の例では、100のランダムな日付と時刻の値を配列に設定するタスクを定義します。 配列が完全<xref:System.Threading.Tasks.Task.ContinueWith%28System.Action%7BSystem.Threading.Tasks.Task%7D%29>に設定されたら、メソッドを使用して、最も古い日付値と最新の日付値を選択します。  
   
  [!code-csharp[System.Threading.Tasks.Task.ContinueWith#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.continuewith/cs/continuewith1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.ContinueWith#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.continuewith/vb/continuewith1.vb#1)]  
   
- コンソール アプリケーションは、継続タスクの実行前に終了可能性がありますので、<xref:System.Threading.Tasks.Task.Wait>メソッドを呼び出して、継続は、例が終了する前に実行が完了したことを確認します。  
+ 継続タスクが実行される前にコンソールアプリケーションが終了する<xref:System.Threading.Tasks.Task.Wait>可能性があるため、メソッドを呼び出して、この例が終了する前に継続が実行を終了するようにします。  
   
- たとえば、次を参照してください。[を使用して継続タスクをタスクの連結](~/docs/standard/parallel-programming/chaining-tasks-by-using-continuation-tasks.md)します。  
+ その他の例については、「[継続タスクを使用](~/docs/standard/parallel-programming/chaining-tasks-by-using-continuation-tasks.md)したタスクの連結」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -842,7 +842,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、またはキャンセルにより早く終了するために完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、ハンドルされない例外が原因でエラーが発生したか、キャンセルによって早期に終了したことが原因です。  
   
  ]]></format>
         </remarks>
@@ -892,7 +892,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
@@ -944,12 +944,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>現在のタスクが完了するまで実行のスケジュールされません。 を通じて、継続条件が指定されている場合、`continuationOptions`パラメーターが満たされていない、継続タスクは取り消されますの代わりにスケジュールします。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。 `continuationOptions`パラメーターで指定した継続条件が満たされない場合、継続タスクはスケジュールではなくキャンセルされます。  
   
    
   
 ## Examples  
- 次の例を使用して<xref:System.Threading.Tasks.TaskContinuationOptions>に継続元タスクの完了時に同期的に継続タスクを実行するように指定します。 (指定したタスクが時間によって既に完了したかどうか<xref:System.Threading.Tasks.Task.ContinueWith%2A>が呼び出されると、同期、スレッドの呼び出し元で継続が実行する<xref:System.Threading.Tasks.Task.ContinueWith%2A>)。  
+ 次の例では<xref:System.Threading.Tasks.TaskContinuationOptions> 、を使用して、継続元タスクが完了したときに継続タスクを同期的に実行するように指定しています。 (が呼び出されたとき<xref:System.Threading.Tasks.Task.ContinueWith%2A>に指定されたタスクが既に完了している場合、同期継続はを呼び出し<xref:System.Threading.Tasks.Task.ContinueWith%2A>ているスレッドで実行されます)。  
   
 ```csharp  
   
@@ -1042,14 +1042,14 @@ End Class
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.Tasks.Task" /> は破棄されています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="continuationAction" /> 引数が <see langword="null" /> です。  
   
-または 
+- または - 
 <paramref name="scheduler" /> 引数が null です。</exception>
       </Docs>
     </Member>
@@ -1098,7 +1098,7 @@ End Class
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
@@ -1152,7 +1152,7 @@ End Class
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>現在のタスクが完了するまで実行のスケジュールされません。 を通じて、継続条件が指定されている場合、`continuationOptions`パラメーターが満たされていない、継続タスクは取り消されますの代わりにスケジュールします。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。 `continuationOptions`パラメーターで指定した継続条件が満たされない場合、継続タスクはスケジュールではなくキャンセルされます。  
   
  ]]></format>
         </remarks>
@@ -1206,7 +1206,7 @@ End Class
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
@@ -1260,12 +1260,12 @@ End Class
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>現在のタスクが完了するまで実行のスケジュールされません。 使用条件が指定されている場合、`continuationOptions`パラメーターが満たされていない、継続タスクは取り消されますの代わりにスケジュールします。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。 `continuationOptions`パラメーターで指定した条件が満たされない場合、継続タスクはスケジュールではなくキャンセルされます。  
   
    
   
 ## Examples  
- 次に作業を実行するバック グラウンドでと、ユーザー インターフェイス スレッド ContinueWith の使用例を示します。  
+ System.threading.tasks.task.continuewith を使用して、バックグラウンドとユーザーインターフェイススレッドの両方で作業を実行する例を次に示します。  
   
 ```csharp  
   
@@ -1308,7 +1308,7 @@ End Sub
         <exception cref="T:System.ObjectDisposedException">トークンを作成した <see cref="T:System.Threading.CancellationTokenSource" /> は、既に破棄されています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="continuationAction" /> 引数が null です。  
   
-または 
+- または - 
 <paramref name="scheduler" /> 引数が null です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="continuationOptions" /> 引数が、<see cref="T:System.Threading.Tasks.TaskContinuationOptions" /> の無効な値を指定しています。</exception>
       </Docs>
@@ -1362,7 +1362,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task>現在のタスクが完了するまで実行のスケジュールされません。 使用条件が指定されている場合、`continuationOptions`パラメーターが満たされていない、継続タスクは取り消されますの代わりにスケジュールします。  
+ 返さ<xref:System.Threading.Tasks.Task>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。 `continuationOptions`パラメーターで指定した条件が満たされない場合、継続タスクはスケジュールではなくキャンセルされます。  
   
  ]]></format>
         </remarks>
@@ -1417,12 +1417,12 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
    
   
 ## Examples  
- 次の例では、ContinueWith メソッドを使用する方法を示します。  
+ 次の例は、System.threading.tasks.task.continuewith メソッドの使用方法を示しています。  
   
  [!code-csharp[System.Threading.Tasks.Task#03](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/continuationsimple.cs#03)]
  [!code-vb[System.Threading.Tasks.Task#03](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/continuationsimple.vb#03)]  
@@ -1481,7 +1481,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
@@ -1535,7 +1535,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
@@ -1594,7 +1594,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>現在のタスクが完了するまで実行のスケジュールされません。 を通じて、継続条件が指定されている場合、`continuationOptions`パラメーターが満たされていない、継続タスクは取り消されますの代わりにスケジュールします。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。 `continuationOptions`パラメーターで指定した継続条件が満たされない場合、継続タスクはスケジュールではなくキャンセルされます。  
   
  ]]></format>
         </remarks>
@@ -1651,14 +1651,14 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.Tasks.Task" /> は破棄されています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="continuationFunction" /> 引数が null です。  
   
-または 
+- または - 
 <paramref name="scheduler" /> 引数が null です。</exception>
       </Docs>
     </Member>
@@ -1711,7 +1711,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
@@ -1769,7 +1769,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>現在のタスクが完了するまで実行のスケジュールされません。 を通じて、継続条件が指定されている場合、`continuationOptions`パラメーターが満たされていない、継続タスクは取り消されますの代わりにスケジュールします。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。 `continuationOptions`パラメーターで指定した継続条件が満たされない場合、継続タスクはスケジュールではなくキャンセルされます。  
   
  ]]></format>
         </remarks>
@@ -1827,7 +1827,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>はスケジュールされません実行の現在のタスクが完了するまで正常に完了するまで実行されて、ハンドルされない例外、エラー、または取り消されることによって早い段階を終了によって完了するかどうか。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。実行が正常に完了したか、未処理の例外が原因でエラーが発生したか、または取り消されたため早期に終了したかのいずれかになります。  
   
  ]]></format>
         </remarks>
@@ -1885,12 +1885,12 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>現在のタスクが完了するまで実行のスケジュールされません。 使用条件が指定されている場合、`continuationOptions`パラメーターが満たされていない、継続タスクは取り消されますの代わりにスケジュールします。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。 `continuationOptions`パラメーターで指定した条件が満たされない場合、継続タスクはスケジュールではなくキャンセルされます。  
   
    
   
 ## Examples  
- 次の例では、継続のオプションでの ContinueWith メソッドを使用する方法を示します。  
+ 次の例は、System.threading.tasks.task.continuewith メソッドを継続オプションと共に使用する方法を示しています。  
   
  [!code-csharp[System.Threading.Tasks.Task#04](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/continuationoptions.cs#04)]
  [!code-vb[System.Threading.Tasks.Task#04](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/continuationoptions.vb#04)]  
@@ -1899,11 +1899,11 @@ End Sub
         </remarks>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.Tasks.Task" /> は破棄されています。  
   
-または 
+- または - 
 トークンを作成した <see cref="T:System.Threading.CancellationTokenSource" /> は、既に破棄されています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="continuationFunction" /> 引数が null です。  
   
-または 
+- または - 
 <paramref name="scheduler" /> 引数が null です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="continuationOptions" /> 引数が、<see cref="T:System.Threading.Tasks.TaskContinuationOptions" /> の無効な値を指定しています。</exception>
       </Docs>
@@ -1961,7 +1961,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返された<xref:System.Threading.Tasks.Task%601>現在のタスクが完了するまで実行のスケジュールされません。 使用条件が指定されている場合、`continuationOptions`パラメーターが満たされていない、継続タスクは取り消されますの代わりにスケジュールします。  
+ 返さ<xref:System.Threading.Tasks.Task%601>れるは、現在のタスクが完了するまで実行されるようにスケジュールされません。 `continuationOptions`パラメーターで指定した条件が満たされない場合、継続タスクはスケジュールではなくキャンセルされます。  
   
  ]]></format>
         </remarks>
@@ -2045,9 +2045,9 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.CurrentId%2A> `static` (`Shared` Visual basic)、タスクを実行しているコードから、現在実行中のタスクの識別子を取得するために使用するプロパティ。 異なり、<xref:System.Threading.Tasks.Task.Id%2A>プロパティで、特定の識別子を返します<xref:System.Threading.Tasks.Task>インスタンス。 取得しようとした場合、<xref:System.Threading.Tasks.Task.CurrentId%2A>タスクを実行しているコードの外部からの値、プロパティを返す`null`します。  
+ <xref:System.Threading.Tasks.Task.CurrentId%2A>は、タスク`Shared`が実行されているコードから現在実行中のタスクの識別子を取得するために使用される(VisualBasic)プロパティです。`static` これは、特定<xref:System.Threading.Tasks.Task.Id%2A> <xref:System.Threading.Tasks.Task>のインスタンスの識別子を返すプロパティとは異なります。 タスクが実行されて<xref:System.Threading.Tasks.Task.CurrentId%2A>いるコードの外部から値を取得しようとすると、 `null`プロパティはを返します。  
   
- 競合は非常にまれですが、タスクの識別子とは限りません一意であることに注意してください。  
+ 競合は非常にまれですが、タスク識別子は一意であるとは限りません。  
   
  ]]></format>
         </remarks>
@@ -2106,26 +2106,26 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Delay%2A>メソッドは通常、すべての操作またはタスクの一部を指定した時間間隔の遅延を使用します。 ほとんどの場合、遅延時間が導入されています。  
+ 通常<xref:System.Threading.Tasks.Task.Delay%2A> 、メソッドは、指定された時間間隔でタスクの全体または一部の操作を遅らせるために使用されます。 通常、遅延時間は次のようになります。  
   
--   次の例として、タスクの先頭を示します。  
+-   次の例に示すように、タスクの先頭にあります。  
   
      [!code-csharp[System.Threading.Tasks.Task.Delay#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.delay/cs/delay5.cs#5)]
      [!code-vb[System.Threading.Tasks.Task.Delay#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.delay/vb/delay5.vb#5)]  
   
--   タスクを実行すると中にいずれかの時点します。 この場合、呼び出し、<xref:System.Threading.Tasks.Task.Delay%2A>メソッドの次の例のように、タスク内の子タスクとして実行します。 以降、タスクを呼び出します、<xref:System.Threading.Tasks.Task.Delay%2A>メソッドが非同期的に実行されるを使用して完了する、親タスクが待機する必要があります、`await`キーワード。  
+-   タスクの実行中に発生します。 この場合、メソッドの<xref:System.Threading.Tasks.Task.Delay%2A>呼び出しは、次の例に示すように、タスク内の子タスクとして実行されます。 <xref:System.Threading.Tasks.Task.Delay%2A>メソッドを呼び出すタスクは非同期的に実行されるため、親タスクは、 `await`キーワードを使用して完了するまで待機する必要があることに注意してください。  
   
      [!code-csharp[System.Threading.Tasks.Task.Delay#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.delay/cs/delay5.cs#7)]
      [!code-vb[System.Threading.Tasks.Task.Delay#7](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.delay/vb/delay5.vb#7)]  
   
- 指定した時間の遅延の後、タスクが完了した、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態。  
+ 指定された遅延時間が経過すると、タスク<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>は状態で完了します。  
   
- このメソッドは、システム クロックに依存します。 つまり、エントリの場合、遅延時間は、システム時計の解像度が等しく約、`millisecondsDelay`引数は、Windows システムでは、約 15 ミリ秒であるシステム時計の解像度より小さい。  
+ この方法は、システムクロックによって異なります。 これは、 `millisecondsDelay`引数がシステムクロックの解像度 (Windows システムで約15ミリ秒) よりも小さい場合、時間の遅延がシステムクロックの解像度とほぼ同じであることを意味します。  
   
    
   
 ## Examples  
- 次の例の簡単な使用を示しています、<xref:System.Threading.Tasks.Task.Delay%2A>メソッド。  
+ 次の例は、 <xref:System.Threading.Tasks.Task.Delay%2A>メソッドを簡単に使用する方法を示しています。  
   
  [!code-csharp[System.Threading.Tasks.Task.Delay#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.delay/cs/delay1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.Delay#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.delay/vb/delay1.vb#1)]  
@@ -2177,16 +2177,16 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定した時間の遅延の後、タスクが完了した<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態。  
+ 指定された遅延時間が経過すると、 <xref:System.Threading.Tasks.TaskStatus.RanToCompletion>タスクは状態で完了します。  
   
- 使用シナリオとその他の例では、ドキュメントを参照して、<xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>オーバー ロードします。  
+ 使用シナリオとその他の例については、 <xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>オーバーロードのドキュメントを参照してください。  
   
- このメソッドは、システム クロックに依存します。 つまり、エントリの場合、遅延時間は、システム時計の解像度が等しく約、`delay`引数は、Windows システムでは、約 15 ミリ秒であるシステム時計の解像度より小さい。  
+ この方法は、システムクロックによって異なります。 これは、 `delay`引数がシステムクロックの解像度 (Windows システムで約15ミリ秒) よりも小さい場合、時間の遅延がシステムクロックの解像度とほぼ同じであることを意味します。  
   
    
   
 ## Examples  
- 次の例の簡単な使用を示しています、<xref:System.Threading.Tasks.Task.Delay%2A>メソッド。  
+ 次の例は、 <xref:System.Threading.Tasks.Task.Delay%2A>メソッドを簡単に使用する方法を示しています。  
   
  [!code-csharp[System.Threading.Tasks.Task.Delay#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.delay/cs/delay2.cs#2)]
  [!code-vb[System.Threading.Tasks.Task.Delay#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.delay/vb/delay2.vb#2)]  
@@ -2195,7 +2195,7 @@ End Sub
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="delay" /> は、<see langword="TimeSpan.FromMilliseconds(-1)" /> 以外の負の時間間隔を表します。  
   
-または 
+- または - 
 <paramref name="delay" /> 引数の <see cref="P:System.TimeSpan.TotalMilliseconds" />プロパティが <see cref="F:System.Int32.MaxValue" /> より大きい値です。</exception>
       </Docs>
     </Member>
@@ -2242,16 +2242,16 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定した時間の遅延の前にキャンセル トークンがシグナル通知された場合、<xref:System.Threading.Tasks.TaskCanceledException>で例外の結果と、タスクが完了した、<xref:System.Threading.Tasks.TaskStatus.Canceled>状態。  タスクが完了して、それ以外の場合、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>遅延指定の時間が経過した後の状態します。  
+ 指定された遅延<xref:System.Threading.Tasks.TaskCanceledException>時間が経過する前にキャンセルトークンがシグナル状態になった場合、例外が発生し、その<xref:System.Threading.Tasks.TaskStatus.Canceled>状態でタスクが完了します。  それ以外の場合、指定され<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>た遅延時間が経過すると、タスクは状態で完了します。  
   
- 使用シナリオとその他の例では、ドキュメントを参照して、<xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>オーバー ロードします。  
+ 使用シナリオとその他の例については、 <xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>オーバーロードのドキュメントを参照してください。  
   
- このメソッドは、システム クロックに依存します。 つまり、エントリの場合、遅延時間は、システム時計の解像度が等しく約、`millisecondsDelay`引数は、Windows システムでは、約 15 ミリ秒であるシステム時計の解像度より小さい。  
+ この方法は、システムクロックによって異なります。 これは、 `millisecondsDelay`引数がシステムクロックの解像度 (Windows システムで約15ミリ秒) よりも小さい場合、時間の遅延がシステムクロックの解像度とほぼ同じであることを意味します。  
   
    
   
 ## Examples  
- 次の例への呼び出しが含まれるタスクの起動、<xref:System.Threading.Tasks.Task.Delay%28System.Int32%2CSystem.Threading.CancellationToken%29>秒の遅延を 1 つのメソッド。 待機時間の間隔が経過する前に、トークンが取り消されました。 出力の例で示すは、その結果、<xref:System.Threading.Tasks.TaskCanceledException>スローされると、タスクの<xref:System.Threading.Tasks.Task.Status%2A>プロパティに設定されて<xref:System.Threading.Tasks.TaskStatus.Canceled>。  
+ 次の例では、1秒間隔でメソッドの<xref:System.Threading.Tasks.Task.Delay%28System.Int32%2CSystem.Threading.CancellationToken%29>呼び出しを含むタスクを起動します。 遅延間隔が経過する前に、トークンは取り消されます。 この例の出力は、結果<xref:System.Threading.Tasks.TaskCanceledException>としてがスローされ、 <xref:System.Threading.Tasks.Task.Status%2A>タスクのプロパティがに<xref:System.Threading.Tasks.TaskStatus.Canceled>設定されていることを示しています。  
   
  [!code-csharp[System.Threading.Tasks.Task.Delay#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.delay/cs/delay3.cs#3)]
  [!code-vb[System.Threading.Tasks.Task.Delay#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.delay/vb/delay3.vb#3)]  
@@ -2306,21 +2306,21 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定した時間の遅延の前にキャンセル トークンがシグナル通知された場合、<xref:System.Threading.Tasks.TaskCanceledException>で例外の結果と、タスクが完了した、<xref:System.Threading.Tasks.TaskStatus.Canceled>状態。  タスクが完了して、それ以外の場合、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>遅延指定の時間が経過した後の状態します。  
+ 指定された遅延<xref:System.Threading.Tasks.TaskCanceledException>時間が経過する前にキャンセルトークンがシグナル状態になった場合、例外が発生し、その<xref:System.Threading.Tasks.TaskStatus.Canceled>状態でタスクが完了します。  それ以外の場合、指定され<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>た遅延時間が経過すると、タスクは状態で完了します。  
   
- 使用シナリオとその他の例では、ドキュメントを参照して、<xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>オーバー ロードします。  
+ 使用シナリオとその他の例については、 <xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>オーバーロードのドキュメントを参照してください。  
   
- このメソッドは、システム クロックに依存します。 つまり、エントリの場合、遅延時間は、システム時計の解像度が等しく約、`delay`引数は、Windows システムでは、約 15 ミリ秒であるシステム時計の解像度より小さい。  
+ この方法は、システムクロックによって異なります。 これは、 `delay`引数がシステムクロックの解像度 (Windows システムで約15ミリ秒) よりも小さい場合、時間の遅延がシステムクロックの解像度とほぼ同じであることを意味します。  
   
    
   
 ## Examples  
- 次の例への呼び出しが含まれるタスクの起動、 <xref:System.Threading.Tasks.Task.Delay%28System.TimeSpan%2CSystem.Threading.CancellationToken%29> 1.5 秒の遅延を持つメソッド。 待機時間の間隔が経過する前に、トークンが取り消されました。 出力の例で示すは、その結果、<xref:System.Threading.Tasks.TaskCanceledException>スローされると、タスクの<xref:System.Threading.Tasks.Task.Status%2A>プロパティに設定されて<xref:System.Threading.Tasks.TaskStatus.Canceled>。  
+ 次の例では、1.5 秒の遅延がある<xref:System.Threading.Tasks.Task.Delay%28System.TimeSpan%2CSystem.Threading.CancellationToken%29>メソッドへの呼び出しを含むタスクを起動します。 遅延間隔が経過する前に、トークンは取り消されます。 この例の出力は、結果<xref:System.Threading.Tasks.TaskCanceledException>としてがスローされ、 <xref:System.Threading.Tasks.Task.Status%2A>タスクのプロパティがに<xref:System.Threading.Tasks.TaskStatus.Canceled>設定されていることを示しています。  
   
  [!code-csharp[System.Threading.Tasks.Task.Delay#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.delay/cs/delay4.cs#4)]
  [!code-vb[System.Threading.Tasks.Task.Delay#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.delay/vb/delay4.vb#4)]  
   
- この例が、潜在的な競合状態が含まれることに注意してください。 トークンが取り消されたときに、遅延を非同期に実行するタスクに依存します。 呼び出しから 1.5 秒の遅延が、<xref:System.Threading.Tasks.Task.Delay%28System.TimeSpan%2CSystem.Threading.CancellationToken%29>メソッドでは、可能性の仮定がなります、考えられることを呼び出し、<xref:System.Threading.Tasks.Task.Delay%28System.TimeSpan%2CSystem.Threading.CancellationToken%29>メソッドは、トークンが取り消される前に返すことができます。 その場合は、例では、次の出力が生成されます。  
+ この例には潜在的な競合状態が含まれていることに注意してください。これは、トークンが取り消されたときに、タスクが非同期的に遅延を実行することに依存します。 メソッドの<xref:System.Threading.Tasks.Task.Delay%28System.TimeSpan%2CSystem.Threading.CancellationToken%29>呼び出しから1.5 秒の遅延が発生したとしても、そのことが想定されるため、 <xref:System.Threading.Tasks.Task.Delay%28System.TimeSpan%2CSystem.Threading.CancellationToken%29>トークンが取り消される前にメソッドの呼び出しが返される可能性があります。 その場合、この例では次の出力が生成されます。  
   
 ```  
 Task t Status: RanToCompletion, Result: 42  
@@ -2385,7 +2385,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task>クラスが実装する、<xref:System.IDisposable>インターフェイスも実装するリソースを使用して内部的にいるため<xref:System.IDisposable>します。 ただし場合に、特に対象とするアプリ、[!INCLUDE[net_v45](~/includes/net-v45-md.md)]または後を呼び出す必要がない<xref:System.Threading.Tasks.Task.Dispose%2A>パフォーマンスやスケーラビリティのテストを示します、しない限り、使用パターンに基づいて、アプリのパフォーマンスはタスクを破棄して向上します。 詳細については、次を参照してください。[タスクを破棄する必要がありますか?](https://devblogs.microsoft.com/pfxteam/do-i-need-to-dispose-of-tasks/) .NET ブログでの並列プログラミングにします。  
+ クラス<xref:System.Threading.Tasks.Task>は、内部<xref:System.IDisposable>的にも実装<xref:System.IDisposable>するリソースを使用するため、インターフェイスを実装します。 ただし、特に、アプリが以降[!INCLUDE[net_v45](~/includes/net-v45-md.md)]を対象としている場合、パフォーマンス<xref:System.Threading.Tasks.Task.Dispose%2A>やスケーラビリティのテストでは、使用パターンに基づいてアプリのパフォーマンスが向上することを示している場合を除き、を呼び出す必要はありません。 詳細については、「.NET を使用した並列プログラミング」ブログの「[タスクを破棄する必要がありますか](https://devblogs.microsoft.com/pfxteam/do-i-need-to-dispose-of-tasks/)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -2431,12 +2431,12 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task>クラスが実装する、<xref:System.IDisposable>インターフェイスも実装するリソースを使用して内部的にいるため<xref:System.IDisposable>します。 ただし場合に、特に対象とするアプリ、[!INCLUDE[net_v45](~/includes/net-v45-md.md)]または後を呼び出す必要がない<xref:System.Threading.Tasks.Task.Dispose%2A>パフォーマンスやスケーラビリティのテストを示します、しない限り、使用パターンに基づいて、アプリのパフォーマンスはタスクを破棄して向上します。 詳細については、次を参照してください。[タスクを破棄する必要がありますか?](https://devblogs.microsoft.com/pfxteam/do-i-need-to-dispose-of-tasks/) .NET ブログでの並列プログラミングにします。  
+ クラス<xref:System.Threading.Tasks.Task>は、内部<xref:System.IDisposable>的にも実装<xref:System.IDisposable>するリソースを使用するため、インターフェイスを実装します。 ただし、特に、アプリが以降[!INCLUDE[net_v45](~/includes/net-v45-md.md)]を対象としている場合、パフォーマンス<xref:System.Threading.Tasks.Task.Dispose%2A>やスケーラビリティのテストでは、使用パターンに基づいてアプリのパフォーマンスが向上することを示している場合を除き、を呼び出す必要はありません。 詳細については、「.NET を使用した並列プログラミング」ブログの「[タスクを破棄する必要がありますか](https://devblogs.microsoft.com/pfxteam/do-i-need-to-dispose-of-tasks/)」を参照してください。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">タスクが最終的な状態、<see cref="F:System.Threading.Tasks.TaskStatus.RanToCompletion" />、<see cref="F:System.Threading.Tasks.TaskStatus.Faulted" />、または <see cref="F:System.Threading.Tasks.TaskStatus.Canceled" /> のいずれでもありません。</exception>
-        <threadsafe>ほとんどのメンバーとは異なり、<see cref="T:System.Threading.Tasks.Task" />クラスでは、このメソッドはスレッド セーフではありません。</threadsafe>
+        <threadsafe><see cref="T:System.Threading.Tasks.Task" />クラスのほとんどのメンバーとは異なり、このメソッドはスレッドセーフではありません。</threadsafe>
       </Docs>
     </Member>
     <Member MemberName="Exception">
@@ -2477,7 +2477,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ハンドルされない例外をスローするタスクの結果の例外を格納およびに伝播にラップする、<xref:System.AggregateException>への呼び出しで<xref:System.Threading.Tasks.Task.Wait%2A>またはへのアクセス、<xref:System.Threading.Tasks.Task.Exception%2A>プロパティ。 タスク インスタンスがガベージ コレクション時間で観察されない例外はファイナライザー スレッドに反映されます。 詳細と例では、次を参照してください。[例外処理 (タスク並列ライブラリ)](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ 未処理の例外をスローするタスク<xref:System.AggregateException> <xref:System.Threading.Tasks.Task.Wait%2A> <xref:System.Threading.Tasks.Task.Exception%2A>は、結果として生成される例外を格納し、プロパティへのアクセスまたはの呼び出しで、にラップします。 タスクインスタンスがガベージコレクションされた時間によって監視されない例外は、ファイナライザースレッドで反映されます。 詳細と例については、「[例外処理 (タスク並列ライブラリ)](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -2521,21 +2521,21 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの既定のインスタンスを返します、<xref:System.Threading.Tasks.TaskFactory>パラメーターなしで呼び出すことによって作成されたものと同じであるクラス<xref:System.Threading.Tasks.TaskFactory.%23ctor?displayProperty=nameWithType>コンス トラクター。 次のプロパティ値があります。  
+ このプロパティは、パラメーターなし<xref:System.Threading.Tasks.TaskFactory> <xref:System.Threading.Tasks.TaskFactory.%23ctor?displayProperty=nameWithType>のコンストラクターを呼び出すことによって作成されたものと同一のクラスの既定のインスタンスを返します。 これには、次のプロパティ値があります。  
   
 |プロパティ|[値]|  
 |--------------|-----------|  
 |<xref:System.Threading.Tasks.TaskFactory.CancellationToken%2A?displayProperty=nameWithType>|<xref:System.Threading.CancellationToken.None%2A?displayProperty=nameWithType>|  
 |<xref:System.Threading.Tasks.TaskFactory.ContinuationOptions%2A?displayProperty=nameWithType>|<xref:System.Threading.Tasks.TaskContinuationOptions.None?displayProperty=nameWithType>|  
 |<xref:System.Threading.Tasks.TaskFactory.CreationOptions%2A?displayProperty=nameWithType>|<xref:System.Threading.Tasks.TaskCreationOptions.None?displayProperty=nameWithType>|  
-|<xref:System.Threading.Tasks.TaskFactory.Scheduler%2A?displayProperty=nameWithType>|`null`、または <xref:System.Threading.Tasks.TaskScheduler.Current%2A?displayProperty=nameWithType>|  
+|<xref:System.Threading.Tasks.TaskFactory.Scheduler%2A?displayProperty=nameWithType>|`null`、、または<xref:System.Threading.Tasks.TaskScheduler.Current%2A?displayProperty=nameWithType>|  
   
- このプロパティの最も一般的な使用が作成して 1 回の呼び出しで新しいタスクを開始するには、<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッド。  
+ このプロパティを使用する最も一般的な方法は、メソッドの<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType> 1 回の呼び出しで新しいタスクを作成して開始することです。  
   
 > [!NOTE]
->  以降では、 [!INCLUDE[net_v45](~/includes/net-v45-md.md)]、<xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>メソッドを作成する最も簡単な方法を提供する、<xref:System.Threading.Tasks.Task>既定の構成値を持つオブジェクト。  
+>  以降では、既定の構成値を使用してオブジェクト<xref:System.Threading.Tasks.Task>を作成するための最も簡単な方法が、メソッドによって提供されています。<xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType> [!INCLUDE[net_v45](~/includes/net-v45-md.md)]  
   
- 次のコードの例では、静的な<xref:System.Threading.Tasks.Task.Factory%2A>プロパティを 2 つの呼び出しを行う、<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッド。 最初は、2 つ目は、ユーザーのマイ ドキュメント ディレクトリのサブディレクトリの名前を持つ配列を設定します。 中に、ユーザーの [マイ ドキュメント] のディレクトリ内のファイルの名前を持つ配列を設定します。 呼び出して、<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%28System.Threading.Tasks.Task%5B%5D%2CSystem.Action%7BSystem.Threading.Tasks.Task%5B%5D%7D%29?displayProperty=nameWithType>メソッドは、最初の 2 つのタスクの実行が完了した後は、2 つの配列でファイルとディレクトリの数に関する情報を表示します。  
+ 次の例では、 <xref:System.Threading.Tasks.Task.Factory%2A>静的プロパティを使用して、 <xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッドを2回呼び出します。 最初のは、ユーザーのマイドキュメント ディレクトリ内のファイルの名前を配列に格納し、2番目のは配列にユーザーのマイドキュメント ディレクトリのサブディレクトリの名前を設定します。 次に、 <xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%28System.Threading.Tasks.Task%5B%5D%2CSystem.Action%7BSystem.Threading.Tasks.Task%5B%5D%7D%29?displayProperty=nameWithType>メソッドを呼び出します。これにより、最初の2つのタスクの実行が完了した後に、2つの配列内のファイルとディレクトリの数に関する情報が表示されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.Factory#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.factory/cs/factory1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.Factory#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.factory/vb/factory1.vb#1)]  
@@ -2669,7 +2669,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを作成、<xref:System.Threading.Tasks.Task>オブジェクト<xref:System.Threading.Tasks.Task.Status%2A>プロパティが<xref:System.Threading.Tasks.TaskStatus.Faulted>と持つ<xref:System.Threading.Tasks.Task.Exception%2A>プロパティが含まれています`exception`。 すぐにタスクを実行する作業が長いコード パスを実行する前に例外をスローすることをおわかっている場合に、メソッドは、よく使用されます。 例については、次を参照してください。、<xref:System.Threading.Tasks.Task.FromException%60%601%28System.Exception%29>オーバー ロードします。  
+ このメソッドは、 <xref:System.Threading.Tasks.Task> <xref:System.Threading.Tasks.Task.Status%2A>プロパティがであり<xref:System.Threading.Tasks.TaskStatus.Faulted> 、 <xref:System.Threading.Tasks.Task.Exception%2A>プロパティにが`exception`含まれているオブジェクトを作成します。 メソッドは、通常、タスクが実行する作業が、長いコードパスを実行する前に例外をスローすることがわかっている場合に使用されます。 例については、 <xref:System.Threading.Tasks.Task.FromException%60%601%28System.Exception%29> 「オーバーロード」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -2719,12 +2719,12 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを作成、<xref:System.Threading.Tasks.Task%601>オブジェクト<xref:System.Threading.Tasks.Task.Status%2A>プロパティが<xref:System.Threading.Tasks.TaskStatus.Faulted>と持つ<xref:System.Threading.Tasks.Task.Exception%2A>プロパティが含まれています`exception`。 すぐにタスクを実行する作業が長いコード パスを実行する前に例外をスローすることをおわかっている場合に、メソッドは、よく使用されます。 具体的な例を次に示します。  
+ このメソッドは、 <xref:System.Threading.Tasks.Task%601> <xref:System.Threading.Tasks.Task.Status%2A>プロパティがであり<xref:System.Threading.Tasks.TaskStatus.Faulted> 、 <xref:System.Threading.Tasks.Task.Exception%2A>プロパティにが`exception`含まれているオブジェクトを作成します。 メソッドは、通常、タスクが実行する作業が、長いコードパスを実行する前に例外をスローすることがわかっている場合に使用されます。 具体的な例を次に示します。  
   
    
   
 ## Examples  
- 次の例は、各ディレクトリ、コマンドラインの引数として渡される名前のファイル内のバイト数を計算するコマンド ライン ユーティリティです。 インスタンス化する長いコード パスを実行するのではなく、<xref:System.IO.FileInfo>オブジェクトし、の値を取得しますその<xref:System.IO.FileInfo.Length%2A?displayProperty=nameWithType>ディレクトリ内の各ファイルのプロパティは、例では、を呼び出すだけです、<xref:System.Threading.Tasks.Task.FromException%60%601%28System.Exception%29>場合は、特定のエラーが発生したタスクを作成する方法。サブディレクトリは存在しません。  
+ 次の例は、コマンドライン引数として渡された名前を持つ各ディレクトリ内のファイルのバイト数を計算するコマンドラインユーティリティです。 オブジェクトを<xref:System.IO.FileInfo>インスタンス化し、ディレクトリ内の各ファイルの<xref:System.IO.FileInfo.Length%2A?displayProperty=nameWithType>プロパティの値を取得する長いコードパスを実行するのではなく、この<xref:System.Threading.Tasks.Task.FromException%60%601%28System.Exception%29>例では、メソッドを呼び出して、エラーが発生したタスクを作成します。サブディレクトリが存在しません。  
   
  [!code-csharp[System.Threading.Tasks.Task.FromResult#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.fromresult/cs/fromresult1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.FromResult#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.fromresult/vb/fromresult1.vb#1)]  
@@ -2779,14 +2779,14 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを作成、<xref:System.Threading.Tasks.Task%601>オブジェクト<xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>プロパティが`result`とが<xref:System.Threading.Tasks.Task.Status%2A>プロパティが<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>します。 タスクの戻り値が長いコード パスを実行することがなくすぐにわかっている場合、メソッドは、よく使用されます。 具体的な例を次に示します。  
+ このメソッドは、 <xref:System.Threading.Tasks.Task%601> <xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>プロパティが`result`で、 <xref:System.Threading.Tasks.Task.Status%2A>プロパティが<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>であるオブジェクトを作成します。 メソッドは、タスクの戻り値が、長いコードパスを実行せずにすぐにわからない場合によく使用されます。 具体的な例を次に示します。  
   
- 値を返さないタスク オブジェクトを作成するからタスク オブジェクトを取得、<xref:System.Threading.Tasks.Task.CompletedTask%2A>プロパティ。  
+ 値を返さないタスクオブジェクトを作成するには、 <xref:System.Threading.Tasks.Task.CompletedTask%2A>プロパティからタスクオブジェクトを取得します。  
   
    
   
 ## Examples  
- 次の例は、各ディレクトリ、コマンドラインの引数として渡される名前のファイル内のバイト数を計算するコマンド ライン ユーティリティです。 インスタンス化する長いコード パスを実行するのではなく、<xref:System.IO.FileStream>オブジェクトし、の値を取得しますその<xref:System.IO.FileStream.Length%2A?displayProperty=nameWithType>ディレクトリ内の各ファイルのプロパティは、例では、を呼び出すだけです、<xref:System.Threading.Tasks.Task.FromResult%2A>タスクを作成するメソッドが<xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>。プロパティはゼロ (0)、ディレクトリにファイルがあるありません。  
+ 次の例は、コマンドライン引数として渡された名前を持つ各ディレクトリ内のファイルのバイト数を計算するコマンドラインユーティリティです。 オブジェクトを<xref:System.IO.FileStream>インスタンス化し、ディレクトリ内の各ファイルの<xref:System.IO.FileStream.Length%2A?displayProperty=nameWithType>プロパティの値を取得する長いコードパスを実行するのではなく、この<xref:System.Threading.Tasks.Task.FromResult%2A>例では、メソッド<xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>を呼び出して、ディレクトリにファイルがない場合、プロパティはゼロ (0) になります。  
   
  [!code-csharp[System.Threading.Tasks.Task.FromResult#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.fromresult/cs/fromresult1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.FromResult#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.fromresult/vb/fromresult1.vb#1)]  
@@ -2840,7 +2840,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アプリケーション コードで使用するためではなく、コンパイラです。  
+ このメソッドは、アプリケーションコードで使用するためではなく、コンパイラの使用を目的としています。  
   
  ]]></format>
         </remarks>
@@ -2884,9 +2884,9 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスク Id は、オンデマンドで割り当てられているし、必ずしもタスク インスタンスが作成された順序を表していません。 競合は非常にまれですが、タスクの識別子とは限りません一意であることに注意してください。  
+ タスク Id は要求に応じて割り当てられ、必ずしもタスクインスタンスの作成順序を表すとは限りません。 競合は非常にまれですが、タスク識別子は一意であるとは限りません。  
   
- そのタスクからタスクをコード内で現在実行中のタスク ID を取得するには、実行を使用して、<xref:System.Threading.Tasks.Task.CurrentId%2A>プロパティ。  
+ タスクが実行されているコード内から現在実行中のタスクのタスク ID を取得<xref:System.Threading.Tasks.Task.CurrentId%2A>するには、プロパティを使用します。  
   
  ]]></format>
         </remarks>
@@ -2931,16 +2931,16 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.Threading.Tasks.Task>で完了、<xref:System.Threading.Tasks.TaskStatus.Canceled>下で、次の条件のいずれかの状態。  
+ は<xref:System.Threading.Tasks.Task> 、次のいずれ<xref:System.Threading.Tasks.TaskStatus.Canceled>かの状態で完了します。  
   
--   その<xref:System.Threading.Tasks.TaskFactory.CancellationToken%2A>タスクが実行を開始する前に取り消し状態マークされました  
+-   タスクの実行が開始される前に、キャンセルのマークが付けられました。<xref:System.Threading.Tasks.TaskFactory.CancellationToken%2A>  
   
--   タスクが既にシグナルでキャンセル要求を受信確認<xref:System.Threading.Tasks.TaskFactory.CancellationToken%2A>スローすることによって、<xref:System.OperationCanceledException>が同じである<xref:System.Threading.CancellationToken>します。  
+-   タスクは、同じ<xref:System.Threading.Tasks.TaskFactory.CancellationToken%2A> <xref:System.OperationCanceledException> <xref:System.Threading.CancellationToken>を持つをスローすることによって、既にシグナル状態にある取り消し要求を受信確認しています。  
   
--   タスクが既にシグナルでキャンセル要求を受信確認<xref:System.Threading.Tasks.TaskFactory.CancellationToken%2A>呼び出すことによって、<xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A>メソッドを<xref:System.Threading.CancellationToken>します。  
+-   タスクは、でメソッドを<xref:System.Threading.Tasks.TaskFactory.CancellationToken%2A> <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A>呼び出して、 <xref:System.Threading.CancellationToken>既にシグナル状態になっている取り消し要求を受信確認しています。  
   
 > [!IMPORTANT]
->  値を取得、<xref:System.Threading.Tasks.Task.IsCanceled%2A>タスクが完了するまでプロパティが呼び出し元のスレッドをブロックしません。  
+>  <xref:System.Threading.Tasks.Task.IsCanceled%2A>プロパティの値を取得しても、タスクが完了するまで呼び出し元のスレッドはブロックされません。  
   
  ]]></format>
         </remarks>
@@ -2987,14 +2987,14 @@ Task t Status: RanToCompletion, Result: 42
       </ReturnValue>
       <Docs>
         <summary>タスクが完了したかどうかを示す値を取得します。</summary>
-        <value><see langword="true" /> タスクが完了した場合 (これは、タスクは 3 つの最終的な状態のいずれかがある: <see cref="F:System.Threading.Tasks.TaskStatus.RanToCompletion" />、 <see cref="F:System.Threading.Tasks.TaskStatus.Faulted" />、または<see cref="F:System.Threading.Tasks.TaskStatus.Canceled" />)、それ以外の<see langword="false" />します。</value>
+        <value><see langword="true" />タスクが完了した場合<see cref="F:System.Threading.Tasks.TaskStatus.RanToCompletion" />(つまり、、 <see cref="F:System.Threading.Tasks.TaskStatus.Faulted" />、または<see cref="F:System.Threading.Tasks.TaskStatus.Canceled" />の3つの最終状態のいずれか) は、それ以外<see langword="false" />の場合はです。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
 > [!IMPORTANT]
-> 値を取得、<xref:System.Threading.Tasks.Task.IsCompleted%2A?displayProperty=nameWithType>タスクが完了するまでプロパティが呼び出し元のスレッドをブロックしません。  
+> <xref:System.Threading.Tasks.Task.IsCompleted%2A?displayProperty=nameWithType>プロパティの値を取得しても、タスクが完了するまで呼び出し元のスレッドはブロックされません。  
   
  ]]></format>
         </remarks>
@@ -3065,15 +3065,15 @@ Task t Status: RanToCompletion, Result: 42
       </ReturnValue>
       <Docs>
         <summary>ハンドルされない例外が発生したことが原因で <see cref="T:System.Threading.Tasks.Task" /> が完了したかどうかを示す値を取得します。</summary>
-        <value>タスクがハンドルされない例外をスローした場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value>タスクがハンドルされない例外をスローした場合は<see langword="true" /> 。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合<xref:System.Threading.Tasks.Task.IsFaulted%2A>は`true`、タスクの<xref:System.Threading.Tasks.Task.Status%2A>と等しい<xref:System.Threading.Tasks.TaskStatus.Faulted>、およびその<xref:System.Threading.Tasks.Task.Exception%2A>プロパティは null になります。  
+ が<xref:System.Threading.Tasks.Task.IsFaulted%2A> <xref:System.Threading.Tasks.Task.Status%2A> <xref:System.Threading.Tasks.TaskStatus.Faulted>の場合、タスクのはと等しく、その<xref:System.Threading.Tasks.Task.Exception%2A>プロパティは null 以外になります。 `true`  
   
 > [!IMPORTANT]
->  値を取得、<xref:System.Threading.Tasks.Task.IsFaulted%2A?displayProperty=nameWithType>タスクが完了するまでプロパティが呼び出し元のスレッドをブロックしません。  
+>  <xref:System.Threading.Tasks.Task.IsFaulted%2A?displayProperty=nameWithType>プロパティの値を取得しても、タスクが完了するまで呼び出し元のスレッドはブロックされません。  
   
  ]]></format>
         </remarks>
@@ -3091,7 +3091,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Run%2A>メソッドには、一連のオーバー ロードを既定値を使用してタスクを開始するが簡単にするが用意されています。 軽量の代わりに、<xref:System.Threading.Tasks.TaskFactory.StartNew%2A>オーバー ロードします。  
+ メソッド<xref:System.Threading.Tasks.Task.Run%2A>には、既定値を使用してタスクを簡単に開始できるようにする一連のオーバーロードが用意されています。 <xref:System.Threading.Tasks.TaskFactory.StartNew%2A>オーバーロードに代わる軽量の方法です。  
   
  ]]></format>
         </remarks>
@@ -3138,34 +3138,34 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Run%2A>メソッドを作成し、1 つのメソッド呼び出しでタスクを実行することができより簡単には、<xref:System.Threading.Tasks.TaskFactory.StartNew%2A>メソッド。 既定値は次のタスクが作成されます。  
+ メソッドを使用すると、1回のメソッド呼び出しでタスクを作成および実行できます。これは<xref:System.Threading.Tasks.TaskFactory.StartNew%2A> 、メソッドの代わりに、より簡単な方法です。 <xref:System.Threading.Tasks.Task.Run%2A> 次の既定値を使用してタスクを作成します。  
   
--   そのキャンセル トークンは<xref:System.Threading.CancellationToken.None%2A?displayProperty=nameWithType>します。  
+-   そのキャンセルトークンは<xref:System.Threading.CancellationToken.None%2A?displayProperty=nameWithType>です。  
   
--   その<xref:System.Threading.Tasks.Task.CreationOptions%2A>プロパティの値が<xref:System.Threading.Tasks.TaskCreationOptions.DenyChildAttach?displayProperty=nameWithType>します。  
+-   プロパティ値が<xref:System.Threading.Tasks.TaskCreationOptions.DenyChildAttach?displayProperty=nameWithType>です。 <xref:System.Threading.Tasks.Task.CreationOptions%2A>  
   
--   既定のタスク スケジューラを使用します。  
+-   既定のタスクスケジューラを使用します。  
   
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、定義、`ShowThreadInfo`を表示するメソッド、<xref:System.Threading.Thread.ManagedThreadId%2A?displayProperty=nameWithType>現在のスレッド。 アプリケーション スレッドから直接呼び出されから呼び出されること、<xref:System.Action>に渡されたデリゲート、<xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッド。  
+ 次の例では`ShowThreadInfo` 、現在のスレッド<xref:System.Threading.Thread.ManagedThreadId%2A?displayProperty=nameWithType>のを表示するメソッドを定義しています。 これはアプリケーションスレッドから直接呼び出され、 <xref:System.Action> <xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッドに渡されたデリゲートから呼び出されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#11](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/Run11.cs#11)]
  [!code-vb[System.Threading.Tasks.Task.Run#11](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/Run11.vb#11)]  
   
- 次の例は、タスクは、実行するコードを定義するラムダ式を使用するには、前に似ています。  
+ 次の例は前の例と似ていますが、ラムダ式を使用して、タスクが実行するコードを定義している点が異なります。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/run6.cs#3)]
  [!code-vb[System.Threading.Tasks.Task.Run#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/run6.vb#3)]  
   
- 例では、メイン アプリケーション スレッドとは異なるスレッドで非同期タスクが実行されることを示します。  
+ この例は、非同期タスクがメインアプリケーションスレッドとは異なるスレッドで実行されることを示しています。  
   
- 呼び出し、<xref:System.Threading.Tasks.Task.Wait%2A>メソッドは、タスクが完了し、アプリケーションが終了する前にその出力を表示することを確認します。 それを`Main`メソッドは、タスクが終了する前に完了します。  
+ メソッドの<xref:System.Threading.Tasks.Task.Wait%2A>呼び出しによって、タスクが完了し、アプリケーションが終了する前にその出力が表示されます。 それ以外の場合は、タスク`Main`が終了する前にメソッドが完了する可能性があります。  
   
- 次の例を示しています、<xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッド。 ディレクトリ名の配列を定義し、各ディレクトリにファイル名を取得する別のタスクを開始します。 すべてのタスクを 1 つのファイル名の書き込み<xref:System.Collections.Concurrent.ConcurrentBag%601>オブジェクト。 例を呼び出して、<xref:System.Threading.Tasks.Task.WaitAll%28System.Threading.Tasks.Task%5B%5D%29>に書き込まれるファイル名の合計数を表示し、すべてのタスクが完了したら、いることを確認する方法、<xref:System.Collections.Concurrent.ConcurrentBag%601>オブジェクト。  
+ 次の例は、 <xref:System.Threading.Tasks.Task.Run%28System.Action%29>メソッドを示しています。 ディレクトリ名の配列を定義し、各ディレクトリ内のファイル名を取得するための別のタスクを開始します。 すべてのタスクは、ファイル名を 1 <xref:System.Collections.Concurrent.ConcurrentBag%601>つのオブジェクトに書き込みます。 次に、 <xref:System.Threading.Tasks.Task.WaitAll%28System.Threading.Tasks.Task%5B%5D%29>メソッドを呼び出して、すべてのタスクが完了したことを確認した後、 <xref:System.Collections.Concurrent.ConcurrentBag%601>オブジェクトに書き込まれたファイル名の総数を表示します。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/run2.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.Run#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/run2.vb#1)]  
@@ -3218,7 +3218,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -3269,20 +3269,20 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスクの実行が開始する前にキャンセルが要求される場合、タスクは実行されません。 設定されている代わりに、<xref:System.Threading.Tasks.TaskStatus.Canceled>状態とがスローされます、<xref:System.Threading.Tasks.TaskCanceledException>例外。  
+ タスクが実行を開始する前にキャンセルが要求された場合、タスクは実行されません。 代わりに、 <xref:System.Threading.Tasks.TaskStatus.Canceled>状態に設定され、例外を<xref:System.Threading.Tasks.TaskCanceledException>スローします。  
   
- <xref:System.Threading.Tasks.Task.Run%28System.Action%2CSystem.Threading.CancellationToken%29>メソッドがより簡単、<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>メソッド。 既定値は次のタスクが作成されます。  
+ メソッドは、メソッドの代わり<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>に、より簡単な方法です。<xref:System.Threading.Tasks.Task.Run%28System.Action%2CSystem.Threading.CancellationToken%29> 次の既定値を使用してタスクを作成します。  
   
--   その<xref:System.Threading.Tasks.Task.CreationOptions%2A>プロパティの値が<xref:System.Threading.Tasks.TaskCreationOptions.DenyChildAttach?displayProperty=nameWithType>します。  
+-   プロパティ値が<xref:System.Threading.Tasks.TaskCreationOptions.DenyChildAttach?displayProperty=nameWithType>です。 <xref:System.Threading.Tasks.Task.CreationOptions%2A>  
   
--   既定のタスク スケジューラを使用します。  
+-   既定のタスクスケジューラを使用します。  
   
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、 <xref:System.Threading.Tasks.Task.Run%28System.Action%2CSystem.Threading.CancellationToken%29> C:\Windows\System32 ディレクトリ内のファイルを反復処理するタスクを作成します。 ラムダ式の呼び出し、<xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>に各ファイルに関する情報を追加するメソッドを<xref:System.Collections.Generic.List%601>オブジェクト。 各のデタッチされた入れ子のタスクによって呼び出される、<xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>ループは、キャンセル トークンの状態をチェックし、キャンセルが要求される場合は、<xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A?displayProperty=nameWithType>メソッド。 <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A?displayProperty=nameWithType>メソッドがスローされます、<xref:System.OperationCanceledException>で処理される例外を`catch`ブロック呼び出し元のスレッドを呼び出すと、<xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>メソッド。  
+ 次の例では<xref:System.Threading.Tasks.Task.Run%28System.Action%2CSystem.Threading.CancellationToken%29> 、メソッドを呼び出して、C:\Windows\System32 ディレクトリ内のファイルを反復処理するタスクを作成します。 ラムダ式は、 <xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>メソッドを呼び出して、各ファイルに関する情報を<xref:System.Collections.Generic.List%601>オブジェクトに追加します。 <xref:System.Threading.Tasks.Parallel.ForEach%2A?displayProperty=nameWithType>ループによって呼び出された、デタッチされた入れ子になった各タスクは、キャンセルトークンの状態<xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A?displayProperty=nameWithType>をチェックし、キャンセルが要求された場合はメソッドを呼び出します。 メソッド<xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A?displayProperty=nameWithType>は、呼び出し<xref:System.OperationCanceledException>元のスレッドがメソッドを`catch` <xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>呼び出したときに、ブロックで処理される例外をスローします。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/run4.cs#4)]
  [!code-vb[System.Threading.Tasks.Task.Run#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/run4.vb#4)]  
@@ -3338,7 +3338,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -3395,7 +3395,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -3449,25 +3449,25 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Run%2A>メソッドがより簡単、<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%29?displayProperty=nameWithType>メソッド。 既定値は次のタスクが作成されます。  
+ メソッドは、メソッドの代わり<xref:System.Threading.Tasks.TaskFactory.StartNew%28System.Action%29?displayProperty=nameWithType>に、より簡単な方法です。<xref:System.Threading.Tasks.Task.Run%2A> 次の既定値を使用してタスクを作成します。  
   
--   そのキャンセル トークンは<xref:System.Threading.CancellationToken.None%2A?displayProperty=nameWithType>します。  
+-   そのキャンセルトークンは<xref:System.Threading.CancellationToken.None%2A?displayProperty=nameWithType>です。  
   
--   その<xref:System.Threading.Tasks.Task.CreationOptions%2A>プロパティの値が<xref:System.Threading.Tasks.TaskCreationOptions.DenyChildAttach?displayProperty=nameWithType>します。  
+-   プロパティ値が<xref:System.Threading.Tasks.TaskCreationOptions.DenyChildAttach?displayProperty=nameWithType>です。 <xref:System.Threading.Tasks.Task.CreationOptions%2A>  
   
--   既定のタスク スケジューラを使用します。  
+-   既定のタスクスケジューラを使用します。  
   
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、パブリッシュされたブックを表すテキスト ファイル内の単語のおおよその数をカウントします。 各タスクは、ファイルを開いて、内容全体を非同期的に読み取り、および正規表現を使用してワード カウントを計算する責任を負います。 <xref:System.Threading.Tasks.Task.WaitAll%28System.Threading.Tasks.Task%5B%5D%29>メソッドが呼び出され、各書籍のワード カウントをコンソールに表示する前にすべてのタスクが完了したことを確認します。  
+ 次の例では、発行されたブックを表すテキストファイル内の単語数の概算値をカウントします。 各タスクは、ファイルを開いて、その内容全体を非同期に読み取り、正規表現を使用して単語数を計算する役割を担います。 メソッド<xref:System.Threading.Tasks.Task.WaitAll%28System.Threading.Tasks.Task%5B%5D%29>は、すべてのタスクが完了したことを確認するために呼び出されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/run3.cs#2)]
  [!code-vb[System.Threading.Tasks.Task.Run#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/run3.vb#2)]  
   
- 正規表現`\p{P}*\s+`0、1、または複数の区切り文字の後ろに 1 つまたは複数の空白文字と一致します。 一致の合計数が、おおよそのワード カウントと等しいことが前提としています。  
+ 正規表現`\p{P}*\s+`は、0個以上の区切り文字の後に1つ以上の空白文字が続くパターンに一致します。 一致の合計数が、おおよその単語数と同じであることを前提としています。  
   
  ]]></format>
         </remarks>
@@ -3522,7 +3522,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -3580,32 +3580,32 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスクの実行が開始する前にキャンセルが要求される場合、タスクは実行されません。 設定されている代わりに、<xref:System.Threading.Tasks.TaskStatus.Canceled>状態とがスローされます、<xref:System.Threading.Tasks.TaskCanceledException>例外。  
+ タスクが実行を開始する前にキャンセルが要求された場合、タスクは実行されません。 代わりに、 <xref:System.Threading.Tasks.TaskStatus.Canceled>状態に設定され、例外を<xref:System.Threading.Tasks.TaskCanceledException>スローします。  
   
- <xref:System.Threading.Tasks.Task.Run%2A>メソッドがより簡単、<xref:System.Threading.Tasks.TaskFactory.StartNew%2A>メソッド。 既定値は次のタスクが作成されます。  
+ メソッドは、メソッドの代わり<xref:System.Threading.Tasks.TaskFactory.StartNew%2A>に、より簡単な方法です。<xref:System.Threading.Tasks.Task.Run%2A> 次の既定値を使用してタスクを作成します。  
   
--   その<xref:System.Threading.Tasks.Task.CreationOptions%2A>プロパティの値が<xref:System.Threading.Tasks.TaskCreationOptions.DenyChildAttach?displayProperty=nameWithType>します。  
+-   プロパティ値が<xref:System.Threading.Tasks.TaskCreationOptions.DenyChildAttach?displayProperty=nameWithType>です。 <xref:System.Threading.Tasks.Task.CreationOptions%2A>  
   
--   既定のタスク スケジューラを使用します。  
+-   既定のタスクスケジューラを使用します。  
   
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、200万の値にカウンターが増加するまでループする 20 件のタスクを作成します。 最初の 10 個のタスクは、200万の到達し、キャンセル トークンが取り消された場合は、カウンターに 200万回に達していないすべてのタスクが取り消されます。 この例では、使用可能な出力を示します。  
+ 次の例では、カウンターが200万の値にインクリメントされるまでループするタスクを20個作成します。 最初の10個のタスクが200万に達した場合、キャンセルトークンは取り消され、カウンターが200万に達していないすべてのタスクは取り消されます。 この例は、考えられる出力を示しています。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/Run7.cs#7)]
  [!code-vb[System.Threading.Tasks.Task.Run#7](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/Run7.vb#7)]  
   
- 使用する代わりに、<xref:System.AggregateException.InnerExceptions%2A>プロパティは、例外を確認する例では、すべてのタスクが正常に完了してが取り消された決定を反復処理します。 完了しているは、タスクによって返される値が表示されます。  
+ この例では<xref:System.AggregateException.InnerExceptions%2A> 、プロパティを使用して例外を調べる代わりに、すべてのタスクを反復処理して、正常に完了し、取り消されたものを特定します。 完了したものについては、タスクによって返された値が表示されます。  
   
- キャンセルは協調的であるために、各タスクはキャンセルに応答する方法を決定できます。 次の例は、タスクが例外をスローするのではなく、完了したイテレーションの数を返すと、トークンが取り消されたする点を除いて、最初のようなは。  
+ 取り消しは協調しているため、各タスクはキャンセルに応答する方法を決定できます。 次の例は最初の例と似ていますが、トークンが取り消されると、タスクは、例外をスローするのではなく、完了したイテレーションの数を返します。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#28](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/Run28.cs#28)]
  [!code-vb[System.Threading.Tasks.Task.Run#28](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/Run28.vb#28)]  
   
- 例では、まだ処理する必要があります、<xref:System.AggregateException>例外、キャンセルが要求されたときに開始されていないすべてのタスクが例外をスローするためです。  
+ キャンセルが要求された<xref:System.AggregateException>ときに開始されていないタスクも例外をスローするため、この例では引き続き例外を処理する必要があります。  
   
  ]]></format>
         </remarks>
@@ -3664,14 +3664,14 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常、タスクはスレッド プールのスレッドで非同期的に実行され、呼び出し元のスレッドをブロックしないでください。 呼び出すことによって実行されるタスク、<xref:System.Threading.Tasks.Task.RunSynchronously>メソッドは、現在に関連付けられた<xref:System.Threading.Tasks.TaskScheduler>呼び出し元のスレッドで実行されます。 ターゲットのスケジューラが呼び出し元のスレッドでこのタスクの実行をサポートしていない場合、スケジューラで実行するため、タスクがスケジュールされ、タスクの実行が完了するまで呼び出し元のスレッドがブロックされます。 呼び出し元のスレッドが呼び出す必要がありますが、タスクを同期的に実行する場合でも<xref:System.Threading.Tasks.Task.Wait%2A>タスクがスローされる例外を処理します。  例外処理の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ 通常、タスクはスレッドプールのスレッドで非同期的に実行され、呼び出し元のスレッドはブロックされません。 <xref:System.Threading.Tasks.Task.RunSynchronously>メソッドを呼び出すことによって実行される<xref:System.Threading.Tasks.TaskScheduler>タスクは、現在のに関連付けられ、呼び出し元のスレッドで実行されます。 ターゲットスケジューラが呼び出し元のスレッドでこのタスクの実行をサポートしていない場合は、タスクがスケジューラで実行されるようにスケジュールされ、呼び出し元のスレッドはタスクの実行が完了するまでブロックされます。 タスクが同期的に実行される場合でも、呼び出し<xref:System.Threading.Tasks.Task.Wait%2A>元のスレッドは、タスクがスローする可能性のある例外を処理するためにを呼び出す必要があります。  例外処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
- 呼び出すことによって実行されるタスク、<xref:System.Threading.Tasks.Task.RunSynchronously%2A>メソッドは呼び出しをインスタンス化、<xref:System.Threading.Tasks.Task>または<xref:System.Threading.Tasks.Task%601>クラスのコンス トラクター。 タスクを同期的に実行する必要があります、<xref:System.Threading.Tasks.TaskStatus.Created>状態。 タスクの開始し、1 回だけ実行可能性があります。 例外時の結果が 2 番目のタスクをスケジュールしようとするとします。  
+ <xref:System.Threading.Tasks.Task.RunSynchronously%2A>メソッドを呼び出すことによって実行される<xref:System.Threading.Tasks.Task>タスク<xref:System.Threading.Tasks.Task%601>は、クラスまたはクラスコンストラクターを呼び出すことによってインスタンス化されます。 同期的に実行するタスクは、 <xref:System.Threading.Tasks.TaskStatus.Created>状態である必要があります。 タスクを開始して1回だけ実行することができます。 タスクを2回目にスケジュールしようとすると、例外が発生します。  
   
    
   
 ## Examples  
- 次の例では、呼び出すことによって実行されるタスク、<xref:System.Threading.Tasks.Task.RunSynchronously%2A>メソッドを 1 つの非同期的に実行します。 どちらの場合も、タスクの実行タスクの ID とスレッドの ID を表示する同等のラムダ式で、タスクが実行されています。 タスクは、1 から 1,000,000 までの整数の合計を計算します。 呼び出して、タスクを実行、出力の例に示すよう、<xref:System.Threading.Tasks.Task.RunSynchronously%2A>メソッドの実行、アプリケーションのスレッドで非同期タスクではありません。  
+ 次の例では、 <xref:System.Threading.Tasks.Task.RunSynchronously%2A>メソッドを呼び出して、非同期に実行されるタスクを比較します。 どちらの場合も、タスクは、タスクが実行されているスレッドのタスク ID と ID を表示する、同一のラムダ式を実行します。 このタスクでは、1 ~ 100万の整数の合計を計算します。 この例の出力が示すように、メソッドの<xref:System.Threading.Tasks.Task.RunSynchronously%2A>呼び出しによって実行されるタスクはアプリケーションスレッドで実行されますが、非同期タスクでは実行されません。  
   
  [!code-csharp[System.Threading.Tasks.Task.RunSynchronously#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.runsynchronously/cs/runsynchronously1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.RunSynchronously#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.runsynchronously/vb/runsynchronously1.vb#1)]  
@@ -3724,9 +3724,9 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出すことによって実行されるタスク、<xref:System.Threading.Tasks.Task.RunSynchronously%2A>メソッドは呼び出しをインスタンス化、<xref:System.Threading.Tasks.Task>または<xref:System.Threading.Tasks.Task%601>クラスのコンス トラクター。 タスクを同期的に実行する必要があります、<xref:System.Threading.Tasks.TaskStatus.Created>状態。 タスクの開始し、1 回だけ実行可能性があります。 例外時の結果が 2 番目のタスクをスケジュールしようとするとします。  
+ <xref:System.Threading.Tasks.Task.RunSynchronously%2A>メソッドを呼び出すことによって実行される<xref:System.Threading.Tasks.Task>タスク<xref:System.Threading.Tasks.Task%601>は、クラスまたはクラスコンストラクターを呼び出すことによってインスタンス化されます。 同期的に実行するタスクは、 <xref:System.Threading.Tasks.TaskStatus.Created>状態である必要があります。 タスクを開始して1回だけ実行することができます。 タスクを2回目にスケジュールしようとすると、例外が発生します。  
   
- ターゲットのスケジューラが現在のスレッドでこのタスクの実行をサポートしていない場合、スケジューラで実行するため、タスクがスケジュールされ、タスクの実行が完了するまで、現在のスレッドがブロックされます。 このためは、呼び出し元のスレッドはなどのメソッドを呼び出す必要ありません<xref:System.Threading.Tasks.Task.Wait%2A>タスクの実行が完了したことを確認します。 タスク操作の例外処理の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ ターゲットスケジューラが現在のスレッドでこのタスクの実行をサポートしていない場合は、タスクがスケジューラで実行されるようにスケジュールされ、現在のスレッドはタスクの実行が完了するまでブロックされます。 このため、呼び出し元のスレッドは、タスクが実行を完了した<xref:System.Threading.Tasks.Task.Wait%2A>ことを確認するためになどのメソッドを呼び出す必要はありません。 タスク操作の例外処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -3785,16 +3785,16 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスクの開始し、1 回だけ実行可能性があります。 しようとすると、2 回目のタスクをスケジュールすると、例外が発生します。  
+ タスクを開始して1回だけ実行することができます。 タスクを2回目にスケジュールしようとすると、例外が発生します。  
   
- <xref:System.Threading.Tasks.Task.Start%2A>のいずれかを呼び出すことによって作成されたタスクを実行するために使用、<xref:System.Threading.Tasks.Task>コンス トラクター。 通常、これを行うタスクの作成作成したタスクを条件付きで実行する場合など、その実行からを分離する必要がある場合。 一般的なケースがタスクのインスタンス化の実行を分離する必要はありません、お勧めのオーバー ロードを呼び出すこと、<xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>または<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッド。  
+ は<xref:System.Threading.Tasks.Task.Start%2A> 、 <xref:System.Threading.Tasks.Task>コンストラクターのいずれかを呼び出すことによって作成されたタスクを実行するために使用されます。 これは通常、作成したタスクを条件付きで実行する場合など、タスクの作成を実行から分離する必要がある場合に行います。 タスクのインスタンス化を実行から分離する必要がない場合の一般的なケースとして、メソッド<xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>または<xref:System.Threading.Tasks.TaskFactory.StartNew%2A?displayProperty=nameWithType>メソッドのオーバーロードを呼び出すことをお勧めします。  
   
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Threading.Tasks.Task.%23ctor%28System.Action%29>新しいインスタンスを作成するコンス トラクター<xref:System.Threading.Tasks.Task>オブジェクト ID とマネージ スレッド ID は、そのタスクを表示し、ループを実行します。 呼び出して、<xref:System.Threading.Tasks.Task.Start%2A>タスクを実行するメソッド。  これは、コンソールのアプリへの呼び出しなので、<xref:System.Threading.Tasks.Task.Wait%2A>メソッドが、アプリがタスクの実行を終了する前に終了するを防ぐために必要です。  
+ 次の例では<xref:System.Threading.Tasks.Task.%23ctor%28System.Action%29> 、コンストラクターを呼び出して<xref:System.Threading.Tasks.Task> 、タスク id とマネージスレッド ID を表示する新しいオブジェクトをインスタンス化し、ループを実行します。 次に、 <xref:System.Threading.Tasks.Task.Start%2A>メソッドを呼び出してタスクを実行します。  これはコンソールアプリであるため、タスクが実行<xref:System.Threading.Tasks.Task.Wait%2A>を終了する前にアプリが終了するのを防ぐために、メソッドを呼び出す必要があります。  
   
  [!code-csharp[System.Threading.Tasks.Task.Start#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.start/cs/Start1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.Start#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.start/vb/Start1.vb#1)]  
@@ -3847,9 +3847,9 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タスクの開始し、1 回だけ実行のみ可能性があります。 しようとすると、2 回目のタスクをスケジュールすると、例外が発生します。  
+ タスクを開始して実行できるのは一度だけです。 タスクを2回目にスケジュールしようとすると、例外が発生します。  
   
- タスク操作によってスローされた例外を処理する方法の詳細については、次を参照してください。[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)します。  
+ タスク操作によってスローされる例外の処理の詳細については、「[例外処理](~/docs/standard/parallel-programming/exception-handling-task-parallel-library.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -3898,14 +3898,14 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 値を取得、<xref:System.Threading.Tasks.Task.Status%2A?displayProperty=nameWithType>タスクが完了するまでプロパティが呼び出し元のスレッドをブロックしません。  
+ <xref:System.Threading.Tasks.Task.Status%2A?displayProperty=nameWithType>プロパティの値を取得しても、タスクが完了するまで呼び出し元のスレッドはブロックされません。  
   
- 詳細と例では、次を参照してください。[を使用して継続タスクをタスクの連結](~/docs/standard/parallel-programming/chaining-tasks-by-using-continuation-tasks.md)と[方法。タスクとその子を取り消す](~/docs/standard/parallel-programming/how-to-cancel-a-task-and-its-children.md)」を参照してください。  
+ 詳細と例については、「[継続タスクを使用](~/docs/standard/parallel-programming/chaining-tasks-by-using-continuation-tasks.md)した[タスクの連結」と「方法:タスクとその子を取り消す](~/docs/standard/parallel-programming/how-to-cancel-a-task-and-its-children.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、200万の値にカウンターが増加するまでループする 20 件のタスクを作成します。 最初の 10 個のタスクは、200万の到達し、キャンセル トークンが取り消された場合は、カウンターに 200万回に達していないすべてのタスクが取り消されます。 例を検査し、<xref:System.Threading.Tasks.Task.Status%2A>を正常に完了しましたが、または取り消されたかどうかを示すためには、各タスクのプロパティ。 完了した方は、タスクによって返される値が表示されます。  
+ 次の例では、カウンターが200万の値にインクリメントされるまでループするタスクを20個作成します。 最初の10個のタスクが200万に達した場合、キャンセルトークンは取り消され、カウンターが200万に達していないすべてのタスクは取り消されます。 この例では、 <xref:System.Threading.Tasks.Task.Status%2A>各タスクのプロパティを調べて、正常に完了したか取り消されたかを示します。 完了したものについては、タスクによって返された値が表示されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.Run#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.run/cs/Run7.cs#7)]
  [!code-vb[System.Threading.Tasks.Task.Run#7](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.run/vb/Run7.vb#7)]  
@@ -3955,7 +3955,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって提供される待機機能を使用して<xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>を使用することをお勧めは<xref:System.IAsyncResult.AsyncWaitHandle%2A>同様の機能です。 詳細については、「タスクで待機している」セクションを参照してください。[タスクベースの非同期プログラミング](~/docs/standard/parallel-programming/task-based-asynchronous-programming.md)と[とその他の非同期パターンを使用して TPL](~/docs/standard/parallel-programming/using-tpl-with-other-asynchronous-patterns.md)します。  
+ に用意されている<xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>待機機能を使用<xref:System.IAsyncResult.AsyncWaitHandle%2A>することをお勧めします。 詳細については、「[タスクベースの非同期プログラミング](~/docs/standard/parallel-programming/task-based-asynchronous-programming.md)」の「タスクを待機中」と、[他の非同期パターンで TPL を使用する方法](~/docs/standard/parallel-programming/using-tpl-with-other-asynchronous-patterns.md)に関するセクションを参照してください。  
   
  ]]></format>
         </remarks>
@@ -4050,10 +4050,10 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Wait%2A> 現在のタスクが完了するまで待機する呼び出し元のスレッド同期メソッドです。 現在のタスクが実行を開始していない場合、Wait メソッドは、スケジューラのタスクを削除し、現在のスレッドでインライン実行を試みます。 行うことがない場合、または現在のタスクが既に実行を開始した場合は、タスクが完了するまで、呼び出し元のスレッドをブロックします。 詳細については、次を参照してください。 [Task.Wait と"インライン"](https://devblogs.microsoft.com/pfxteam/task-wait-and-inlining/) .NET ブログでの並列プログラミングにします。   
+ <xref:System.Threading.Tasks.Task.Wait%2A>は、現在のタスクが完了するまで呼び出し元のスレッドを待機させる同期メソッドです。 現在のタスクが実行を開始していない場合、Wait メソッドはスケジューラからタスクを削除し、現在のスレッドでインラインで実行しようとします。 それができない場合、または現在のタスクが既に実行を開始している場合は、タスクが完了するまで呼び出し元のスレッドがブロックされます。 詳細については、「.NET を使用した並列プログラミング」ブログの「 [Task. Wait」と「インライン展開」](https://devblogs.microsoft.com/pfxteam/task-wait-and-inlining/)を参照してください。   
   
 ## Examples  
- 次の例では、100万の 0 から 100 まで整数の乱数を生成しの平均を計算するタスクを開始します。 この例では、<xref:System.Threading.Tasks.Task.Wait%2A>メソッドをアプリケーションが終了する前に、タスクが完了したことを確認します。 それ以外の場合、これは、コンソール アプリケーションであるため、例では、終了が終了前に、タスクを計算して、平均値を表示できます。  
+ 次の例では、0と100の間に100万のランダムな整数を生成し、その平均値を計算するタスクを開始します。 この例では<xref:System.Threading.Tasks.Task.Wait%2A> 、メソッドを使用して、アプリケーションが終了する前にタスクが完了するようにしています。 それ以外の場合、これはコンソールアプリケーションであるため、この例はタスクが計算して平均値を表示する前に終了します。  
   
  [!code-csharp[System.Threading.Tasks.Task.Wait#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.wait/cs/wait1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.Wait#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.wait/vb/wait1.vb#1)]  
@@ -4065,7 +4065,7 @@ Task t Status: RanToCompletion, Result: 42
   
 または 
 タスクの実行時に例外がスローされました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションには、例外に関する情報が含まれています。</exception>
-        <related type="ExternalDocumentation" href="https://devblogs.microsoft.com/pfxteam/task-wait-and-inlining/">Task.Wait と「インライン」</related>
+        <related type="ExternalDocumentation" href="https://devblogs.microsoft.com/pfxteam/task-wait-and-inlining/">タスク。待機と "インライン展開"</related>
       </Docs>
     </Member>
     <Member MemberName="Wait">
@@ -4110,18 +4110,18 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Wait%28System.Int32%29> 現在のタスク インスタンスは次のいずれかが発生するまでに完了するを待機する呼び出し元のスレッドを同期方法を示します。  
+ <xref:System.Threading.Tasks.Task.Wait%28System.Int32%29>は、次のいずれかが発生するまで、呼び出し元のスレッドが現在のタスクインスタンスの完了を待機する同期メソッドです。  
   
--   タスクが正常に完了します。  
+-   タスクが正常に完了しました。  
   
--   タスク自体が取り消されたまたは、例外をスローします。 この場合、処理、<xref:System.AggregateException>例外。 <xref:System.AggregateException.InnerExceptions%2A?displayProperty=nameWithType>プロパティには、例外の詳細が含まれています。  
+-   タスク自体が取り消されたか、例外がスローされました。 この場合は、 <xref:System.AggregateException>例外を処理します。 プロパティ<xref:System.AggregateException.InnerExceptions%2A?displayProperty=nameWithType>には、例外または例外の詳細が含まれます。  
   
--   によって定義された間隔`millisecondsTimeout`が経過するとします。 この場合は、現在のスレッドが実行を再開し、メソッドを返します`false`します。  
+-   によっ`millisecondsTimeout`て定義された間隔が経過します。 この場合、現在のスレッドは実行を再開し、メソッド`false`はを返します。  
   
    
   
 ## Examples  
- 次の例では、500万の 0 から 100 まで整数の乱数を生成しの平均を計算するタスクを開始します。 この例では、<xref:System.Threading.Tasks.Task.Wait%28System.Int32%29>メソッドをアプリケーションで 150 ミリ秒以内に完了するまで待機します。 アプリケーションが正常終了した場合、タスクには、それによって生成されたランダムな数値の平均と合計が表示されます。 タイムアウト間隔が経過した場合の例は、終了前にメッセージを表示します。  
+ 次の例では、0と100の間に500万のランダムな整数を生成し、その平均値を計算するタスクを開始します。 この例では<xref:System.Threading.Tasks.Task.Wait%28System.Int32%29> 、メソッドを使用して、アプリケーションが150ミリ秒以内に完了するのを待ちます。 アプリケーションが正常に完了した場合、タスクでは、生成された乱数の合計と平均が表示されます。 タイムアウト間隔が経過した場合、この例ではメッセージが終了する前に表示されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.Wait#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.wait/cs/Wait5.cs#5)]
  [!code-vb[System.Threading.Tasks.Task.Wait#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.wait/vb/Wait5.vb#5)]  
@@ -4132,7 +4132,7 @@ Task t Status: RanToCompletion, Result: 42
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> は無限のタイムアウトを表す -1 以外の負の数です。</exception>
         <exception cref="T:System.AggregateException">タスクが取り消されました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションに <see cref="T:System.Threading.Tasks.TaskCanceledException" /> オブジェクトが含まれています。  
   
-または 
+- または - 
 タスクの実行時に例外がスローされました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションには、例外に関する情報が含まれています。</exception>
       </Docs>
     </Member>
@@ -4176,19 +4176,19 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Wait%28System.Threading.CancellationToken%29>メソッドがキャンセル可能な待機を作成します。 これは、次のいずれかが発生するまで待機する、現在のスレッドが発生します。  
+ メソッド<xref:System.Threading.Tasks.Task.Wait%28System.Threading.CancellationToken%29>は、キャンセル可能な待機を作成します。つまり、次のいずれかが発生するまで、現在のスレッドが待機します。  
   
--   タスクを完了します。  
+-   タスクが完了します。  
   
--   キャンセル トークンが取り消されました。 この場合、呼び出し、<xref:System.Threading.Tasks.Task.Wait%28System.Threading.CancellationToken%29>メソッドがスローされます、<xref:System.OperationCanceledException>します。  
+-   キャンセルトークンが取り消されました。 この場合、 <xref:System.Threading.Tasks.Task.Wait%28System.Threading.CancellationToken%29>メソッドを呼び出すと、が<xref:System.OperationCanceledException>スローされます。  
   
 > [!NOTE]
->  キャンセル、`cancellationToken`キャンセル トークンも何も起こりませんの実行中のタスクがキャンセル トークンが渡されたも、キャンセルを処理する準備がない場合。 渡す、`cancellationToken`オブジェクトをこのメソッドは、待機が取り消さだけになります。  
+>  `cancellationToken`キャンセルトークンをキャンセルしても、キャンセルトークンが渡され、キャンセルを処理できるように準備されている場合を除き、実行中のタスクには影響しません。 `cancellationToken`オブジェクトをこのメソッドに渡すだけで、待機を取り消すことができます。  
   
    
   
 ## Examples  
- 次の例は、タスクの完了の待機をキャンセルするキャンセル トークンの簡単な使用を示しています。 タスクの起動は、呼び出しの<xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType>を 5 秒間キャンセル トークン ソースのキャンセル トークン、および、遅延のいずれかのメソッド。 タスク自体がキャンセル トークンが渡されていないと、取り消し可能でないことに注意してください。 アプリケーション スレッドの呼び出し、タスクの<xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>、キャンセル トークンが取り消された後に、タスクを完了するまで待機するメソッドが、待機が取り消された<xref:System.OperationCanceledException>がスローされます。 例外ハンドラーは、例外を報告し、6 秒間スリープしています。 その遅延によりで完了するタスク、例の出力が示すように、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態。  
+ 次の例では、キャンセルトークンを使用してタスクの完了を待機する方法を簡単に説明します。 タスクが起動された後<xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType> 、メソッドを呼び出してトークンソースのキャンセルトークンをキャンセルし、5秒間遅延します。 タスク自体にキャンセルトークンが渡されておらず、キャンセルできないことに注意してください。 アプリケーションスレッドはタスクの<xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType>メソッドを呼び出してタスクの完了を待機しますが、キャンセルトークンが取り消され<xref:System.OperationCanceledException>てがスローされると、待機はキャンセルされます。 例外ハンドラーは例外を報告し、6秒間スリープします。 この例の出力に示されているように、この遅延によって<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>タスクは状態で完了できます。  
   
  [!code-csharp[System.Threading.Tasks.Task.Wait#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.wait/cs/wait3.cs#3)]
  [!code-vb[System.Threading.Tasks.Task.Wait#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.wait/vb/wait3.vb#3)]  
@@ -4199,7 +4199,7 @@ Task t Status: RanToCompletion, Result: 42
         <exception cref="T:System.ObjectDisposedException">タスクが破棄されました。</exception>
         <exception cref="T:System.AggregateException">タスクが取り消されました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションに <see cref="T:System.Threading.Tasks.TaskCanceledException" /> オブジェクトが含まれています。  
   
-または 
+- または - 
 タスクの実行時に例外がスローされました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションには、例外に関する情報が含まれています。</exception>
       </Docs>
     </Member>
@@ -4245,18 +4245,18 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Wait%28System.TimeSpan%29> 現在のタスク インスタンスは次のいずれかが発生するまでに完了するを待機する呼び出し元のスレッドを同期方法を示します。  
+ <xref:System.Threading.Tasks.Task.Wait%28System.TimeSpan%29>は、次のいずれかが発生するまで、呼び出し元のスレッドが現在のタスクインスタンスの完了を待機する同期メソッドです。  
   
--   タスクが正常に完了します。  
+-   タスクが正常に完了しました。  
   
--   タスク自体が取り消されたまたは、例外をスローします。 この場合、処理、<xref:System.AggregateException>例外。 <xref:System.AggregateException.InnerExceptions%2A?displayProperty=nameWithType>プロパティには、例外の詳細が含まれています。  
+-   タスク自体が取り消されたか、例外がスローされました。 この場合は、 <xref:System.AggregateException>例外を処理します。 プロパティ<xref:System.AggregateException.InnerExceptions%2A?displayProperty=nameWithType>には、例外または例外の詳細が含まれます。  
   
--   によって定義された間隔`timeout`が経過するとします。 この場合は、現在のスレッドが実行を再開し、メソッドを返します`false`します。  
+-   によっ`timeout`て定義された間隔が経過します。 この場合、現在のスレッドは実行を再開し、メソッド`false`はを返します。  
   
    
   
 ## Examples  
- 次の例では、500万の 0 から 100 まで整数の乱数を生成しの平均を計算するタスクを開始します。 この例では、<xref:System.Threading.Tasks.Task.Wait%28System.TimeSpan%29>メソッドをアプリケーションで 150 ミリ秒以内に完了するまで待機します。 アプリケーションが正常終了した場合、タスクには、それによって生成されたランダムな数値の平均と合計が表示されます。 タイムアウト間隔が経過した場合の例は、終了前にメッセージを表示します。  
+ 次の例では、0と100の間に500万のランダムな整数を生成し、その平均値を計算するタスクを開始します。 この例では<xref:System.Threading.Tasks.Task.Wait%28System.TimeSpan%29> 、メソッドを使用して、アプリケーションが150ミリ秒以内に完了するのを待ちます。 アプリケーションが正常に完了した場合、タスクでは、生成された乱数の合計と平均が表示されます。 タイムアウト間隔が経過した場合、この例ではメッセージが終了する前に表示されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.Wait#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.wait/cs/Wait6.cs#6)]
  [!code-vb[System.Threading.Tasks.Task.Wait#6](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.wait/vb/Wait6.vb#6)]  
@@ -4265,11 +4265,11 @@ Task t Status: RanToCompletion, Result: 42
         </remarks>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.Tasks.Task" /> は破棄されています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> は無限のタイムアウトを表す -1 ミリ秒以外の負の数です。 
-または 
+- または - 
  <paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.AggregateException">タスクが取り消されました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションに <see cref="T:System.Threading.Tasks.TaskCanceledException" /> オブジェクトが含まれています。  
   
-または 
+- または - 
 タスクの実行時に例外がスローされました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションには、例外に関する情報が含まれています。</exception>
       </Docs>
     </Member>
@@ -4316,28 +4316,28 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Tasks.Task.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29> 現在のタスク インスタンスは次のいずれかが発生するまでに完了するを待機する呼び出し元のスレッドを同期方法を示します。  
+ <xref:System.Threading.Tasks.Task.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29>は、次のいずれかが発生するまで、呼び出し元のスレッドが現在のタスクインスタンスの完了を待機する同期メソッドです。  
   
--   タスクが正常に完了します。  
+-   タスクが正常に完了しました。  
   
--   タスク自体が取り消されたまたは、例外をスローします。 この場合、処理、<xref:System.AggregateException>例外。 <xref:System.AggregateException.InnerExceptions%2A?displayProperty=nameWithType>プロパティには、例外の詳細が含まれています。  
+-   タスク自体が取り消されたか、例外がスローされました。 この場合は、 <xref:System.AggregateException>例外を処理します。 プロパティ<xref:System.AggregateException.InnerExceptions%2A?displayProperty=nameWithType>には、例外または例外の詳細が含まれます。  
   
--   `cancellationToken`キャンセル トークンが取り消されました。 この場合、呼び出し、<xref:System.Threading.Tasks.Task.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29>メソッドがスローされます、<xref:System.OperationCanceledException>します。  
+-   キャンセル`cancellationToken`トークンが取り消されました。 この場合、 <xref:System.Threading.Tasks.Task.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29>メソッドを呼び出すと、が<xref:System.OperationCanceledException>スローされます。  
   
--   によって定義された間隔`millisecondsTimeout`が経過するとします。 この場合は、現在のスレッドが実行を再開し、メソッドを返します`false`します。  
+-   によっ`millisecondsTimeout`て定義された間隔が経過します。 この場合、現在のスレッドは実行を再開し、メソッド`false`はを返します。  
   
 > [!NOTE]
->  キャンセル、`cancellationToken`キャンセル トークンも何も起こりませんの実行中のタスクがキャンセル トークンが渡されたも、キャンセルを処理する準備がない場合。 渡す、`cancellationToken`このメソッドにオブジェクトだけになりますをキャンセルできる待機に基づいていくつかの条件にします。  
+>  `cancellationToken`キャンセルトークンをキャンセルしても、キャンセルトークンが渡され、キャンセルを処理できるように準備されている場合を除き、実行中のタスクには影響しません。 `cancellationToken`オブジェクトをこのメソッドに渡すだけで、何らかの条件に基づいて待機を取り消すことができます。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Threading.Tasks.Task.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29>タイムアウト値とキャンセル トークンを提供するメソッドは、タスクの完了の待機を終了できます。 新しいスレッドが開始され、実行、`CancelToken`メソッドでは、一時停止してから、<xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType>キャンセル トークンをキャンセルするメソッド。 タスクが起動し、5 秒間遅延します。 <xref:System.Threading.Tasks.Task.Wait%2A>メソッドが呼び出され、タスクの完了を待つし、簡単なタイムアウト値とキャンセル トークンの両方に提供されます。  
+ 次の例では<xref:System.Threading.Tasks.Task.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29> 、メソッドを呼び出して、タイムアウト値と、タスクの完了を待つことができるキャンセルトークンの両方を提供しています。 新しいスレッドが開始され、 `CancelToken`メソッドが実行されます。このメソッドは、一時停止して<xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType>メソッドを呼び出し、キャンセルトークンを取り消します。 タスクが起動され、5秒間遅延します。 次<xref:System.Threading.Tasks.Task.Wait%2A>に、メソッドを呼び出してタスクの完了を待機し、短いタイムアウト値とキャンセルトークンの両方を提供します。  
   
  [!code-csharp[System.Threading.Tasks.Task.Wait#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.wait/cs/wait4.cs#4)]
  [!code-vb[System.Threading.Tasks.Task.Wait#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.wait/vb/wait4.vb#4)]  
   
- 例の正確な出力に依存しているキャンセル トークンのため、待機が取り消されましたかどうか、またはタイムアウト間隔が経過したために注意してください。  
+ この例の正確な出力は、キャンセルトークンによって、またはタイムアウト間隔が経過したために待機がキャンセルされたかどうかによって異なります。  
   
  ]]></format>
         </remarks>
@@ -4346,7 +4346,7 @@ Task t Status: RanToCompletion, Result: 42
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> は無限のタイムアウトを表す -1 以外の負の数です。</exception>
         <exception cref="T:System.AggregateException">タスクが取り消されました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションに <see cref="T:System.Threading.Tasks.TaskCanceledException" /> オブジェクトが含まれています。  
   
-または 
+- または - 
 タスクの実行時に例外がスローされました。 <see cref="P:System.AggregateException.InnerExceptions" /> コレクションには、例外に関する情報が含まれています。</exception>
       </Docs>
     </Member>
@@ -4357,7 +4357,7 @@ Task t Status: RanToCompletion, Result: 42
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>指定したすべての <see cref="T:System.Threading.Tasks.Task" /> オブジェクトの実行が完了するまで待機します。</summary>
+        <summary>提供されたすべての <see cref="T:System.Threading.Tasks.Task" /> オブジェクトの実行が完了するまで待機します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="WaitAll">
@@ -4407,7 +4407,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、それぞれが、インデックスが渡される状態オブジェクトとしては、10 個のタスクを開始します。 2 つの 5 つからインデックスを使用してタスクでは、例外をスローします。 呼び出し、<xref:System.Threading.Tasks.Task.WaitAll%2A>メソッドのすべての例外をラップする、<xref:System.AggregateException>オブジェクトし、呼び出し元のスレッドに伝達します。  
+ 次の例では、10個のタスクを開始します。各タスクには、状態オブジェクトとしてインデックスが渡されます。 2 ~ 5 のインデックスを持つタスクは、例外をスローします。 <xref:System.Threading.Tasks.Task.WaitAll%2A>メソッドを呼び出すと、 <xref:System.AggregateException>オブジェクト内のすべての例外がラップされ、呼び出し元のスレッドに反映されます。  
   
  [!code-csharp[System.Threading.Tasks.Task#02](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task/cs/waitall.cs#02)]
  [!code-vb[System.Threading.Tasks.Task#02](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task/vb/waitall.vb#02)]  
@@ -4419,7 +4419,7 @@ Task t Status: RanToCompletion, Result: 42
         <exception cref="T:System.ArgumentException"><paramref name="tasks" /> 引数に NULL 要素が含まれています。</exception>
         <exception cref="T:System.AggregateException">少なくとも 1 つ以上の <see cref="T:System.Threading.Tasks.Task" /> インスタンスが取り消されました。 タスクが取り消された場合は、<see cref="T:System.AggregateException" /> 例外の <see cref="P:System.AggregateException.InnerExceptions" /> コレクションに <see cref="T:System.OperationCanceledException" /> 例外が格納されます。  
   
-または 
+- または - 
 少なくとも 1 つの <see cref="T:System.Threading.Tasks.Task" /> インスタンスの実行時に、例外がスローされました。</exception>
       </Docs>
     </Member>
@@ -4468,7 +4468,7 @@ Task t Status: RanToCompletion, Result: 42
         <exception cref="T:System.ArgumentNullException"><paramref name="tasks" /> 引数が <see langword="null" /> です。</exception>
         <exception cref="T:System.AggregateException">少なくとも 1 つ以上の <see cref="T:System.Threading.Tasks.Task" /> インスタンスが取り消されました。 タスクが取り消された場合、<see cref="T:System.AggregateException" /> の <see cref="T:System.OperationCanceledException" /> コレクションには <see cref="P:System.AggregateException.InnerExceptions" /> が含まれます。  
   
-または 
+- または - 
 少なくとも 1 つの <see cref="T:System.Threading.Tasks.Task" /> インスタンスの実行時に、例外がスローされました。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> は無限のタイムアウトを表す -1 以外の負の数です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="tasks" /> 引数に NULL 要素が含まれています。</exception>
@@ -4516,7 +4516,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `cancellationToken`待機操作をキャンセルする引数を使用します。 タスクのキャンセルはによって通知が、個別の操作、<xref:System.AggregateException>前述の。  
+ `cancellationToken`引数は、待機操作を取り消すために使用されます。 タスクの取り消しは個別の操作であり、前述のとおり、 <xref:System.AggregateException>によって通知されます。  
   
  ]]></format>
         </remarks>
@@ -4575,10 +4575,10 @@ Task t Status: RanToCompletion, Result: 42
         <exception cref="T:System.ArgumentNullException"><paramref name="tasks" /> 引数が <see langword="null" /> です。</exception>
         <exception cref="T:System.AggregateException">少なくとも 1 つ以上の <see cref="T:System.Threading.Tasks.Task" /> インスタンスが取り消されました。 タスクが取り消された場合、<see cref="T:System.AggregateException" /> の <see cref="T:System.OperationCanceledException" /> コレクションには <see cref="P:System.AggregateException.InnerExceptions" /> が含まれます。  
   
-または 
+- または - 
 少なくとも 1 つの <see cref="T:System.Threading.Tasks.Task" /> インスタンスの実行時に、例外がスローされました。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> は無限のタイムアウトを表す -1 ミリ秒以外の負の数です。 
-または 
+- または - 
  <paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="tasks" /> 引数に NULL 要素が含まれています。</exception>
       </Docs>
@@ -4628,7 +4628,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `cancellationToken`待機操作をキャンセルする引数を使用します。 タスクのキャンセルはによって通知が、個別の操作、<xref:System.AggregateException>上でメモします。  
+ `cancellationToken`引数は、待機操作を取り消すために使用されます。 タスクの取り消しは個別の操作であり、前述の<xref:System.AggregateException>によって通知されます。  
   
  ]]></format>
         </remarks>
@@ -4636,7 +4636,7 @@ Task t Status: RanToCompletion, Result: 42
         <exception cref="T:System.ArgumentNullException"><paramref name="tasks" /> 引数が <see langword="null" /> です。</exception>
         <exception cref="T:System.AggregateException">少なくとも 1 つ以上の <see cref="T:System.Threading.Tasks.Task" /> インスタンスが取り消されました。 タスクが取り消された場合、<see cref="T:System.AggregateException" /> の <see cref="T:System.OperationCanceledException" /> コレクションには <see cref="P:System.AggregateException.InnerExceptions" /> が含まれます。  
   
-または 
+- または - 
 少なくとも 1 つの <see cref="T:System.Threading.Tasks.Task" /> インスタンスの実行時に、例外がスローされました。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> は無限のタイムアウトを表す -1 以外の負の数です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="tasks" /> 引数に NULL 要素が含まれています。</exception>
@@ -4701,7 +4701,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、それぞれが 50 ミリ秒の最小値または 1,050 ミリ秒単位の最大のスリープ状態の 5 つのタスクを起動します。 <xref:System.Threading.Tasks.Task.WaitAny%2A>メソッドは、のいずれかのタスクが完了するまで待機します。 例では、すべてのタスクの現在の状態と同様に、待機を終了したタスクのタスク ID が表示されます。  
+ 次の例では、5つのタスクを起動します。各タスクは最低50ミリ秒、または最大1050ミリ秒間スリープします。 次<xref:System.Threading.Tasks.Task.WaitAny%2A>に、メソッドは、いずれかのタスクが完了するまで待機します。 この例では、待機を終了したタスクのタスク ID と、すべてのタスクの現在の状態が表示されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.WaitAny#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/System.Threading.Tasks.Task.WaitAny/cs/WaitAny1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.WaitAny#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/System.Threading.Tasks.Task.WaitAny/vb/WaitAny1.vb#1)]  
@@ -4850,7 +4850,7 @@ Task t Status: RanToCompletion, Result: 42
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.Tasks.Task" /> は破棄されています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="tasks" /> 引数が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> 引数の <see cref="P:System.TimeSpan.TotalMilliseconds" /> プロパティは、-1 (無制限のタイムアウトを表す) 以外の負の数です。 
-または 
+- または - 
 <paramref name="timeout" /> 引数の <see cref="P:System.TimeSpan.TotalMilliseconds" /> プロパティが <see cref="F:System.Int32.MaxValue" /> より大きい値です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="tasks" /> 引数に NULL 要素が含まれています。</exception>
       </Docs>
@@ -4956,23 +4956,23 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オーバー ロード、<xref:System.Threading.Tasks.Task.WhenAll%2A>を返すメソッドを<xref:System.Threading.Tasks.Task>関心がある一連のタスクの状態または一連のタスクによってスローされた例外と、オブジェクトは通常と呼ばれます。  
+ オブジェクトを<xref:System.Threading.Tasks.Task.WhenAll%2A> <xref:System.Threading.Tasks.Task>返すメソッドのオーバーロードは、通常、一連のタスクの状態または一連のタスクによってスローされる例外に関心がある場合に呼び出されます。  
   
 > [!NOTE]
->  呼び出し<xref:System.Threading.Tasks.Task.WhenAll%28System.Collections.Generic.IEnumerable%7BSystem.Threading.Tasks.Task%7D%29>メソッドが呼び出し元のスレッドをブロックしません。  
+>  メソッドを<xref:System.Threading.Tasks.Task.WhenAll%28System.Collections.Generic.IEnumerable%7BSystem.Threading.Tasks.Task%7D%29>呼び出すと、呼び出し元のスレッドがブロックされません。  
   
- エラーが発生した状態でいずれかの指定されたタスクが完了すると、返されたタスクはでも完了、<xref:System.Threading.Tasks.TaskStatus.Faulted>状態、その例外がラップされていない例外からの指定されたタスクのそれぞれのセットの集計に含まれています。  
+ 指定されたいずれかのタスクが faulted 状態で完了した場合は、返され<xref:System.Threading.Tasks.TaskStatus.Faulted>たタスクも状態で完了します。その例外には、指定された各タスクからのラップされていない例外の集合が含まれます。  
   
- 指定されたタスクのエラーが発生しましたが少なくとも 1 つが取り消された場合は、返されたタスクが終了、<xref:System.Threading.Tasks.TaskStatus.Canceled>状態。  
+ 指定されたタスクがいずれも失敗しても、そのうち少なくとも1つが取り消され<xref:System.Threading.Tasks.TaskStatus.Canceled>た場合、返されたタスクは状態で終了します。  
   
- 結果のタスクのタスクに障害が発生してタスクが取り消された場合は、終了、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態。  
+ タスクにエラーが発生しておらず、どのタスクも取り消されなかった場合、結果の<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>タスクは状態で終了します。  
   
- 返されたタスクはすぐに移行する場合は、指定された配列/列挙型が含まれていないタスクには、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態に、呼び出し元に返されます。  
+ 指定した配列または列挙可能なにタスクが含まれていない場合<xref:System.Threading.Tasks.TaskStatus.RanToCompletion> 、返されるタスクは、呼び出し元に返される前に直ちに状態に遷移します。  
   
    
   
 ## Examples  
- 次の例では、配列内の Url に ping を実行するタスクのセットを作成します。 タスクが格納されている、`List<Task>`に渡されるコレクション、<xref:System.Threading.Tasks.Task.WhenAll%28System.Collections.Generic.IEnumerable%7BSystem.Threading.Tasks.Task%7D%29>メソッド。 呼び出し後、<xref:System.Threading.Tasks.Task.Wait%2A>メソッドにより、すべてのスレッドが完了した例では、検査、<xref:System.Threading.Tasks.Task.Status%2A?displayProperty=nameWithType>プロパティをすべてのタスクに障害が発生しているかどうかを判断します。  
+ 次の例では、配列内の Url に ping を行う一連のタスクを作成します。 タスクは、 <xref:System.Threading.Tasks.Task.WhenAll%28System.Collections.Generic.IEnumerable%7BSystem.Threading.Tasks.Task%7D%29>メソッドに渡さ`List<Task>`れるコレクションに格納されます。 <xref:System.Threading.Tasks.Task.Wait%2A>メソッドを呼び出すと、すべてのスレッドが完了したことが確認さ<xref:System.Threading.Tasks.Task.Status%2A?displayProperty=nameWithType>れた後、この例では、プロパティを調べて、いずれかのタスクが失敗したかどうかを判断します。  
   
  [!code-csharp[System.Threading.Tasks.Task.WhenAll#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.whenall/cs/WhenAll4.cs#4)]
  [!code-vb[System.Threading.Tasks.Task.WhenAll#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.whenall/vb/WhenAll4.vb#4)]  
@@ -5031,23 +5031,23 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オーバー ロード、<xref:System.Threading.Tasks.Task.WhenAll%2A>を返すメソッドを<xref:System.Threading.Tasks.Task>関心がある一連のタスクの状態または一連のタスクによってスローされた例外と、オブジェクトは通常と呼ばれます。  
+ オブジェクトを<xref:System.Threading.Tasks.Task.WhenAll%2A> <xref:System.Threading.Tasks.Task>返すメソッドのオーバーロードは、通常、一連のタスクの状態または一連のタスクによってスローされる例外に関心がある場合に呼び出されます。  
   
 > [!NOTE]
->  呼び出し<xref:System.Threading.Tasks.Task.WhenAll%28System.Threading.Tasks.Task%5B%5D%29>メソッドが呼び出し元のスレッドをブロックしません。  
+>  メソッドを<xref:System.Threading.Tasks.Task.WhenAll%28System.Threading.Tasks.Task%5B%5D%29>呼び出すと、呼び出し元のスレッドがブロックされません。  
   
- エラーが発生した状態でいずれかの指定されたタスクが完了すると、返されたタスクはでも完了、<xref:System.Threading.Tasks.TaskStatus.Faulted>状態、その例外がラップされていない例外からの指定されたタスクのそれぞれのセットの集計に含まれています。  
+ 指定されたいずれかのタスクが faulted 状態で完了した場合は、返され<xref:System.Threading.Tasks.TaskStatus.Faulted>たタスクも状態で完了します。その例外には、指定された各タスクからのラップされていない例外の集合が含まれます。  
   
- 指定されたタスクのエラーが発生しましたが少なくとも 1 つが取り消された場合は、返されたタスクが終了、<xref:System.Threading.Tasks.TaskStatus.Canceled>状態。  
+ 指定されたタスクがいずれも失敗しても、そのうち少なくとも1つが取り消され<xref:System.Threading.Tasks.TaskStatus.Canceled>た場合、返されたタスクは状態で終了します。  
   
- 結果のタスクのタスクに障害が発生してタスクが取り消された場合は、終了、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態。  
+ タスクにエラーが発生しておらず、どのタスクも取り消されなかった場合、結果の<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>タスクは状態で終了します。  
   
- 返されたタスクはすぐに移行する場合は、指定された配列/列挙型が含まれていないタスクには、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態に、呼び出し元に返されます。  
+ 指定した配列または列挙可能なにタスクが含まれていない場合<xref:System.Threading.Tasks.TaskStatus.RanToCompletion> 、返されるタスクは、呼び出し元に返される前に直ちに状態に遷移します。  
   
    
   
 ## Examples  
- 次の例では、配列内の Url に ping を実行するタスクのセットを作成します。 タスクが格納されている、`List<Task>`コレクションを配列に変換されに渡される、<xref:System.Threading.Tasks.Task.WhenAll%28System.Collections.Generic.IEnumerable%7BSystem.Threading.Tasks.Task%7D%29>メソッド。 呼び出し後、<xref:System.Threading.Tasks.Task.Wait%2A>メソッドにより、すべてのスレッドが完了した例では、検査、<xref:System.Threading.Tasks.Task.Status%2A?displayProperty=nameWithType>プロパティをすべてのタスクに障害が発生しているかどうかを判断します。  
+ 次の例では、配列内の Url に ping を行う一連のタスクを作成します。 タスクは、配列に変換`List<Task>`され、 <xref:System.Threading.Tasks.Task.WhenAll%28System.Collections.Generic.IEnumerable%7BSystem.Threading.Tasks.Task%7D%29>メソッドに渡されるコレクションに格納されます。 <xref:System.Threading.Tasks.Task.Wait%2A>メソッドを呼び出すと、すべてのスレッドが完了したことが確認さ<xref:System.Threading.Tasks.Task.Status%2A?displayProperty=nameWithType>れた後、この例では、プロパティを調べて、いずれかのタスクが失敗したかどうかを判断します。  
   
  [!code-csharp[System.Threading.Tasks.Task.WhenAll#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.whenall/cs/WhenAll3.cs#3)]
  [!code-vb[System.Threading.Tasks.Task.WhenAll#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.whenall/vb/WhenAll3.vb#3)]  
@@ -5104,25 +5104,25 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出し<xref:System.Threading.Tasks.Task.WhenAll%60%601%28System.Collections.Generic.IEnumerable%7BSystem.Threading.Tasks.Task%7B%60%600%7D%7D%29>メソッドが呼び出し元のスレッドをブロックしません。 ただし、呼び出し、返された<xref:System.Threading.Tasks.Task%601.Result%2A>プロパティは、呼び出し元スレッドをブロックします。  
+ メソッドを<xref:System.Threading.Tasks.Task.WhenAll%60%601%28System.Collections.Generic.IEnumerable%7BSystem.Threading.Tasks.Task%7B%60%600%7D%7D%29>呼び出すと、呼び出し元のスレッドがブロックされません。 ただし、返され<xref:System.Threading.Tasks.Task%601.Result%2A>たプロパティを呼び出すと、呼び出し元のスレッドがブロックされます。  
   
- エラーが発生した状態でいずれかの指定されたタスクが完了すると、返されたタスクはでも完了、<xref:System.Threading.Tasks.TaskStatus.Faulted>状態、その例外がラップされていない例外からの指定されたタスクのそれぞれのセットの集計に含まれています。  
+ 指定されたいずれかのタスクが faulted 状態で完了した場合は、返され<xref:System.Threading.Tasks.TaskStatus.Faulted>たタスクも状態で完了します。その例外には、指定された各タスクからのラップされていない例外の集合が含まれます。  
   
- 指定されたタスクのエラーが発生しましたが少なくとも 1 つが取り消された場合は、返されたタスクが終了、<xref:System.Threading.Tasks.TaskStatus.Canceled>状態。  
+ 指定されたタスクがいずれも失敗しても、そのうち少なくとも1つが取り消され<xref:System.Threading.Tasks.TaskStatus.Canceled>た場合、返されたタスクは状態で終了します。  
   
- 結果のタスクのタスクに障害が発生してタスクが取り消された場合は、終了、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態。  <xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>返されたタスクのプロパティが指定されているすべてのと同じ順序で指定されたタスクの結果を含む配列に設定されます (例: 場合は、入力タスクに含まれている配列 t1、t2、t3、出力タスクの<xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>プロパティを返します`TResult[]`場所`arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result)`します。  
+ タスクにエラーが発生しておらず、どのタスクも取り消されなかった場合、結果の<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>タスクは状態で終了します。  返されたタスクの<xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType> プロパティは、指定されたタスクのすべての結果を含む配列に設定されます(たとえば、入力タスク配列にt1、t2、t3が含まれていた場合、出力タスクのプロパティはを返します)。<xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>を`TResult[]`指定します。 `arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result)`  
   
- 場合、`tasks`引数にタスクが含まれていない、返されたタスクはすぐに移行する、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態に、呼び出し元に返されます。 返された`TResult[]`0 要素の配列になります。  
+ 引数に`tasks`タスクが含まれていない場合、返されるタスクは<xref:System.Threading.Tasks.TaskStatus.RanToCompletion> 、呼び出し元に返される前に直ちに状態に遷移します。 返さ`TResult[]`れるは、0個の要素の配列になります。  
   
    
   
 ## Examples  
- 次の例では、それぞれを 1 ~ 1,000 で 1,000 のランダムな数値を作成しての平均を計算する乱数ジェネレーターをインスタンス化、10 個のタスクを作成します。 <xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>メソッドを使用する乱数ジェネレーターのインスタンス化を遅延できるように、同一のシード値では作成されません。 呼び出し、<xref:System.Threading.Tasks.Task.WhenAll%2A>メソッド、<xref:System.Int64>各タスクによって計算された平均値を格納している配列。 これらは、全体の平均を計算に使用されます。  
+ 次の例では、10個のタスクを作成し、1 ~ 1000 の範囲で1000の乱数を作成し、平均を計算する乱数ジェネレーターをインスタンス化します。 メソッド<xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>は、乱数ジェネレーターのインスタンス化を遅延させ、同じシード値で作成されないようにするために使用されます。 次に、 <xref:System.Threading.Tasks.Task.WhenAll%2A>メソッドを呼び出すと<xref:System.Int64> 、各タスクによって計算された平均値を含む配列が返されます。 これらは、全体の平均を計算するために使用されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.WhenAll#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.whenall/cs/whenall1.cs#1)]
  [!code-vb[System.Threading.Tasks.Task.WhenAll#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.whenall/vb/whenall1.vb#1)]  
   
- ここでは、10 個の個別のタスクに格納されます、<xref:System.Collections.Generic.List%601>オブジェクト。 <xref:System.Collections.Generic.List%601> では、<xref:System.Collections.Generic.IEnumerable%601> インターフェイスを実装します。  
+ この場合、10個の個別のタスクが<xref:System.Collections.Generic.List%601>オブジェクトに格納されます。 <xref:System.Collections.Generic.List%601> では、<xref:System.Collections.Generic.IEnumerable%601> インターフェイスを実装します。  
   
  ]]></format>
         </remarks>
@@ -5182,20 +5182,20 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出し<xref:System.Threading.Tasks.Task.WhenAll%60%601%28System.Threading.Tasks.Task%7B%60%600%7D%5B%5D%29>メソッドが呼び出し元のスレッドをブロックしません。 ただし、呼び出し、返された<xref:System.Threading.Tasks.Task%601.Result%2A>プロパティは、呼び出し元スレッドをブロックします。  
+ メソッドを<xref:System.Threading.Tasks.Task.WhenAll%60%601%28System.Threading.Tasks.Task%7B%60%600%7D%5B%5D%29>呼び出すと、呼び出し元のスレッドがブロックされません。 ただし、返され<xref:System.Threading.Tasks.Task%601.Result%2A>たプロパティを呼び出すと、呼び出し元のスレッドがブロックされます。  
   
- エラーが発生した状態でいずれかの指定されたタスクが完了すると、返されたタスクはでも完了、<xref:System.Threading.Tasks.TaskStatus.Faulted>状態、その例外がラップされていない例外からの指定されたタスクのそれぞれのセットの集計に含まれています。  
+ 指定されたいずれかのタスクが faulted 状態で完了した場合は、返され<xref:System.Threading.Tasks.TaskStatus.Faulted>たタスクも状態で完了します。その例外には、指定された各タスクからのラップされていない例外の集合が含まれます。  
   
- 指定されたタスクのエラーが発生しましたが少なくとも 1 つが取り消された場合は、返されたタスクが終了、<xref:System.Threading.Tasks.TaskStatus.Canceled>状態。  
+ 指定されたタスクがいずれも失敗しても、そのうち少なくとも1つが取り消され<xref:System.Threading.Tasks.TaskStatus.Canceled>た場合、返されたタスクは状態で終了します。  
   
- 結果のタスクのタスクに障害が発生してタスクが取り消された場合は、終了、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態。  <xref:System.Threading.Tasks.Task%601.Result%2A>の返されたタスクが指定されているすべてのと同じ順序で指定されたタスクの結果を含む配列に設定されます (例: 場合は、入力タスクに含まれている配列 t1、t2、t3、出力タスクの<xref:System.Threading.Tasks.Task%601.Result%2A>が返されます、 `TResult[]`場所`arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result)`します。  
+ タスクにエラーが発生しておらず、どのタスクも取り消されなかった場合、結果の<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>タスクは状態で終了します。  返さ<xref:System.Threading.Tasks.Task%601.Result%2A>れたタスクのは、指定されたタスクのすべての結果を含む配列に設定されます。たとえば、入力タスク配列に t1、t2、t3 が含まれている場合、出力<xref:System.Threading.Tasks.Task%601.Result%2A>タスク`TResult[]`はwhere `arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result)`。  
   
- 返されたタスクはすぐに移行する場合は、指定された配列/列挙型が含まれていないタスクには、<xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態に、呼び出し元に返されます。  返された`TResult[]`0 要素の配列になります。  
+ 指定した配列または列挙可能なにタスクが含まれていない場合<xref:System.Threading.Tasks.TaskStatus.RanToCompletion> 、返されるタスクは、呼び出し元に返される前に直ちに状態に遷移します。  返さ`TResult[]`れるは、0個の要素の配列になります。  
   
    
   
 ## Examples  
- 次の例では、それぞれを 1 ~ 1,000 で 1,000 のランダムな数値を作成しての平均を計算する乱数ジェネレーターをインスタンス化、10 個のタスクを作成します。 ここでは、10 個の個別のタスクに格納されます、`Task<Int64>`配列。  <xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>メソッドを使用する乱数ジェネレーターのインスタンス化を遅延できるように、同一のシード値では作成されません。 呼び出し、<xref:System.Threading.Tasks.Task.WhenAll%2A>メソッド、<xref:System.Int64>各タスクによって計算された平均値を格納している配列。 これらは、全体の平均を計算に使用されます。  
+ 次の例では、10個のタスクを作成し、1 ~ 1000 の範囲で1000の乱数を作成し、平均を計算する乱数ジェネレーターをインスタンス化します。 この場合、10個の個別のタスクが`Task<Int64>`配列に格納されます。  メソッド<xref:System.Threading.Tasks.Task.Delay%28System.Int32%29>は、乱数ジェネレーターのインスタンス化を遅延させ、同じシード値で作成されないようにするために使用されます。 次に、 <xref:System.Threading.Tasks.Task.WhenAll%2A>メソッドを呼び出すと<xref:System.Int64> 、各タスクによって計算された平均値を含む配列が返されます。 これらは、全体の平均を計算するために使用されます。  
   
  [!code-csharp[System.Threading.Tasks.Task.WhenAll#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.tasks.task.whenall/cs/whenall2.cs#2)]
  [!code-vb[System.Threading.Tasks.Task.WhenAll#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.tasks.task.whenall/vb/whenall2.vb#2)]  
@@ -5258,7 +5258,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タイミングで、返されたタスクは終了が完了したタスクを指定します。  返されたタスクは終了の常に、`RanToCompletion`状態と共に、その結果、最初のタスクを完了に設定します。  これは、最初のタスクが完了するがで終了した場合でも true、`Canceled`または`Faulted`状態。  
+ 指定されたタスクのいずれかが完了すると、返されたタスクが完了します。  返されたタスクは常に、 `RanToCompletion`最初のタスクが完了するまでの結果セットと共に終了します。  これは、 `Canceled`最初のタスクがまたは`Faulted`状態で終了した場合にも当てはまります。  
   
  ]]></format>
         </remarks>
@@ -5314,7 +5314,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タイミングで、返されたタスクは終了が完了したタスクを指定します。  末尾は、返されたタスク、`RanToCompletion`状態と共にその`Result`最初のタスクを完了に設定します。  これは、最初のタスクが完了するがで終了した場合でも true、`Canceled`または`Faulted`状態。  
+ 指定されたタスクのいずれかが完了すると、返されたタスクが完了します。  返されたタスクは常に、 `RanToCompletion`最初のタスク`Result`が完了するように設定された状態で終了します。  これは、 `Canceled`最初のタスクがまたは`Faulted`状態で終了した場合にも当てはまります。  
   
  ]]></format>
         </remarks>
@@ -5368,7 +5368,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タイミングで、返されたタスクは終了が完了したタスクを指定します。  返されたタスクは常に、最初のタスクを完了する設定に、結果を RanToCompletion 状態で終了します。 これは、最初のタスクが完了するが、Canceled、または Faulted 状態で終了した場合でも当てはまります。  
+ 指定されたタスクのいずれかが完了すると、返されたタスクが完了します。  返されたタスクは、最初のタスクが完了するまでの結果セットと共に、常に RanToCompletion 状態で終了します。 これは、最初のタスクが取り消された状態または Faulted 状態で終了した場合でも当てはまります。  
   
  ]]></format>
         </remarks>
@@ -5428,7 +5428,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タイミングで、返されたタスクは終了が完了したタスクを指定します。  返されたタスクは常に、最初のタスクを完了する設定に、結果を RanToCompletion 状態で終了します。 これは、最初のタスクが完了するが、Canceled、または Faulted 状態で終了した場合でも当てはまります。  
+ 指定されたタスクのいずれかが完了すると、返されたタスクが完了します。  返されたタスクは、最初のタスクが完了するまでの結果セットと共に、常に RanToCompletion 状態で終了します。 これは、最初のタスクが取り消された状態または Faulted 状態で終了した場合でも当てはまります。  
   
  ]]></format>
         </remarks>
@@ -5475,7 +5475,7 @@ Task t Status: RanToCompletion, Result: 42
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用することができます`await Task.Yield();`で強制的に非同期的に実行するメソッドを非同期メソッドです。 現在の同期コンテキストがある場合 (<xref:System.Threading.SynchronizationContext>オブジェクト)、これはそのコンテキストに戻す、メソッドの実行の残りの部分を投稿します。 ただし、コンテキストは、この作業と比較して保留中可能性のあるその他の作業の優先順位を設定する方法を決定します。 ほとんどの UI 環境では、UI スレッドに存在する同期コンテキストは、入力とレンダリング作業よりも高くのコンテキストにポストされた作業の優先順位を付ける多くの場合は。 このため、依存しない`await Task.Yield();`UI 応答性を維持します。  詳細については、エントリを参照してください。 [ContinueWith の有効な抽象化の便利な](https://devblogs.microsoft.com/pfxteam/useful-abstractions-enabled-with-continuewith/).NET ブログでの並列プログラミングにします。  
+ 非同期メソッドで`await Task.Yield();`を使用して、メソッドを強制的に非同期的に完了させることができます。 現在の同期コンテキスト (<xref:System.Threading.SynchronizationContext>オブジェクト) がある場合は、メソッドの残りの実行がそのコンテキストにポストされます。 ただし、コンテキストによって、保留中の他の作業と比較して、この作業の優先順位を決定する方法が決まります。 ほとんどの UI 環境で UI スレッドに存在する同期コンテキストでは、多くの場合、入力およびレンダリング作業よりも高いコンテキストにポストされた作業の優先順位が付けられます。 このため、UI の応答性を`await Task.Yield();`維持するためにに依存しないでください。  詳細については、.NET の並列プログラミングに関するブログの「 [system.threading.tasks.task.continuewith で有効な抽象化が有効になっている](https://devblogs.microsoft.com/pfxteam/useful-abstractions-enabled-with-continuewith/)」を参照してください。  
   
  ]]></format>
         </remarks>
