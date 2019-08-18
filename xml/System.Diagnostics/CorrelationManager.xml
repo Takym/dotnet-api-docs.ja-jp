@@ -1,5 +1,5 @@
 <Type Name="CorrelationManager" FullName="System.Diagnostics.CorrelationManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7dbe5f34e7570670b8b39d81d3fa6fef82066aec" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63888108" /></Metadata><TypeSignature Language="C#" Value="public class CorrelationManager" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7a03476e3dad201ec7fa345d86ca85189ee3cc21" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69253223" /></Metadata><TypeSignature Language="C#" Value="public class CorrelationManager" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CorrelationManager extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.CorrelationManager" />
   <TypeSignature Language="VB.NET" Value="Public Class CorrelationManager" />
@@ -31,17 +31,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 1 つの論理操作から生成されたトレースは、異なる論理操作からのトレースと区別するために操作の一意の id でタグ付けできます。 たとえば、ASP.NET 要求によってグループ関連のトレースに役立つ場合があります。 <xref:System.Diagnostics.CorrelationManager>クラスはスレッド バインド コンテキストに、論理操作 id を格納し、ストアドの id を持つスレッドによって生成された各トレース イベントを自動的にタグ付けに使用するメソッドを提供します。  
+ 1つの論理操作から生成されたトレースには、別の論理操作のトレースと区別するために、操作固有の id でタグを付けることができます。 たとえば、ASP.NET request によって相関トレースをグループ化すると便利な場合があります。 クラス<xref:System.Diagnostics.CorrelationManager>は、スレッドバインドコンテキストに論理操作 id を格納し、格納されている id を持つスレッドによって生成される各トレースイベントに自動的にタグを付けるために使用されるメソッドを提供します。  
   
- 論理演算をネストすることもできます。 <xref:System.Diagnostics.CorrelationManager.LogicalOperationStack%2A>プロパティは入れ子になった論理操作 id のスタックを公開します。 呼び出しごとに、<xref:System.Diagnostics.CorrelationManager.StartLogicalOperation%2A>メソッドは、スタックに新しい論理操作 id をプッシュします。 呼び出しごとに、<xref:System.Diagnostics.CorrelationManager.StopLogicalOperation%2A>メソッドがスタックからの論理操作の id が表示されます。  
+ 論理操作は入れ子にすることもできます。 プロパティ<xref:System.Diagnostics.CorrelationManager.LogicalOperationStack%2A>は、入れ子になった論理操作 id のスタックを公開します。 <xref:System.Diagnostics.CorrelationManager.StartLogicalOperation%2A>メソッドを呼び出すたびに、新しい論理操作 id がスタックにプッシュされます。 <xref:System.Diagnostics.CorrelationManager.StopLogicalOperation%2A>メソッドを呼び出すたびに、論理操作 id がスタックからポップされます。  
   
 > [!NOTE]
->  論理操作の id は、論理操作の id の型の使用を許可しているオブジェクトです。  
+>  論理操作 id はオブジェクトであり、論理操作 id に対して型を使用できます。  
   
    
   
 ## Examples  
- 次のコード例は、の使用を示します、<xref:System.Diagnostics.CorrelationManager>トレースされるイベントに関連付けられた論理操作を識別するクラス。 2 つの論理操作を開始すると、メイン スレッドとワーカー スレッドで他のいずれか。 両方の論理操作では、エラー イベントが記録されます。  
+ 次のコード例は、トレースされる<xref:System.Diagnostics.CorrelationManager>イベントに関連付けられた論理操作を識別することによって、クラスを使用する方法を示しています。 メインスレッドとワーカースレッドの2つの論理操作が開始されます。 両方の論理操作でエラーイベントがログに記録されます。  
   
  [!code-cpp[System.Diagnostics.CorrelationManager#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Diagnostics.CorrelationManager/cpp/correlationmanager.cpp#1)]
  [!code-csharp[System.Diagnostics.CorrelationManager#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Diagnostics.CorrelationManager/cs/program.cs#1)]
@@ -85,7 +85,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.CorrelationManager.ActivityId%2A>プロパティを取得およびグローバルのアクティビティ id を設定、<xref:System.Runtime.Remoting.Messaging.CallContext>スレッド。 <xref:System.Diagnostics.CorrelationManager.ActivityId%2A>のオーバーライドのトレース リスナーでトレース転送操作で使用、<xref:System.Diagnostics.TraceListener.TraceTransfer%2A>メソッドなど、<xref:System.Diagnostics.XmlWriterTraceListener>クラス。  
+ プロパティ<xref:System.Diagnostics.CorrelationManager.ActivityId%2A>は、スレッド<xref:System.Runtime.Remoting.Messaging.CallContext>の内のグローバルアクティビティ id を取得して設定します。 は<xref:System.Diagnostics.CorrelationManager.ActivityId%2A> 、 <xref:System.Diagnostics.XmlWriterTraceListener>クラスなどの<xref:System.Diagnostics.TraceListener.TraceTransfer%2A>メソッドをオーバーライドするトレースリスナーのトレース転送操作に使用されます。  
   
  ]]></format>
         </remarks>
@@ -130,7 +130,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出しごとに、<xref:System.Diagnostics.CorrelationManager.StartLogicalOperation%2A>メソッドに新しい論理操作 id のプッシュ、<xref:System.Diagnostics.CorrelationManager.LogicalOperationStack%2A>プロパティのスタック。 呼び出しごとに、<xref:System.Diagnostics.CorrelationManager.StopLogicalOperation%2A>メソッドがスタックからの論理操作の id が表示されます。  
+ <xref:System.Diagnostics.CorrelationManager.StartLogicalOperation%2A>メソッドを呼び出すたびに、新しい論理操作 id が<xref:System.Diagnostics.CorrelationManager.LogicalOperationStack%2A>プロパティのスタックにプッシュされます。 <xref:System.Diagnostics.CorrelationManager.StopLogicalOperation%2A>メソッドを呼び出すたびに、論理操作 id がスタックからポップされます。  
   
  ]]></format>
         </remarks>
@@ -180,7 +180,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 論理操作を開始するには、自動的に生成された GUID を使用して、論理操作の識別子。  
+ 論理操作は、論理操作識別子に対して自動的に生成された GUID を使用して開始されます。  
   
  ]]></format>
         </remarks>
@@ -223,12 +223,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `operationId`パラメーターがなど、任意のオブジェクトを指定できます、<xref:System.String>操作をトレース目的で識別できるようにします。 によって表されるオブジェクト`operationId`に追加されます、<xref:System.Diagnostics.CorrelationManager.LogicalOperationStack%2A>プロパティ。  
+ パラメーターには、の<xref:System.String>ような任意のオブジェクトを指定できます。この場合、トレースのために操作を識別することができます。 `operationId` によって`operationId`表されるオブジェクトが、 <xref:System.Diagnostics.CorrelationManager.LogicalOperationStack%2A>プロパティに追加されます。  
   
    
   
 ## Examples  
- 次のコード例は、の使用を示します、<xref:System.Diagnostics.CorrelationManager.StartLogicalOperation%28System.Object%29>メソッドによって、メイン スレッドに関連付けられる論理操作を初期化します。 完全なコード例については、<xref:System.Diagnostics.CorrelationManager>クラス。  
+ 次のコード例は、メインスレッドに<xref:System.Diagnostics.CorrelationManager.StartLogicalOperation%28System.Object%29>関連付けられる論理操作を初期化することによって、メソッドを使用する方法を示しています。 完全なコード例については<xref:System.Diagnostics.CorrelationManager> 、クラスを参照してください。  
   
  [!code-csharp[System.Diagnostics.CorrelationManager#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Diagnostics.CorrelationManager/cs/program.cs#2)]
  [!code-vb[System.Diagnostics.CorrelationManager#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Diagnostics.CorrelationManager/vb/module1.vb#2)]  
@@ -272,7 +272,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 論理操作は停止され、論理操作の id はから削除、<xref:System.Diagnostics.CorrelationManager.LogicalOperationStack%2A>プロパティ。  
+ 論理操作が停止し、論理操作 id が<xref:System.Diagnostics.CorrelationManager.LogicalOperationStack%2A>プロパティから削除されます。  
   
  ]]></format>
         </remarks>

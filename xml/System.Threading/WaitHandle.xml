@@ -1,5 +1,5 @@
 <Type Name="WaitHandle" FullName="System.Threading.WaitHandle">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="270c2a502b040636f65807d18c2bf250df51525c" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58722369" /></Metadata><TypeSignature Language="C#" Value="public abstract class WaitHandle : MarshalByRefObject, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5b0250cf5d94f2e2dd11058978329bf6d723a3d8" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69098409" /></Metadata><TypeSignature Language="C#" Value="public abstract class WaitHandle : MarshalByRefObject, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi abstract beforefieldinit WaitHandle extends System.MarshalByRefObject implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.WaitHandle" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class WaitHandle&#xA;Inherits MarshalByRefObject&#xA;Implements IDisposable" />
@@ -46,41 +46,41 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.WaitHandle>クラスはネイティブのオペレーティング システムの同期ハンドルをカプセル化し、ランタイム内の複数の待機操作を許可するすべての同期オブジェクトを表すために使用します。 他の同期オブジェクトと待機ハンドルの比較は、次を参照してください。[同期プリミティブの概要](~/docs/standard/threading/overview-of-synchronization-primitives.md)します。  
+ クラス<xref:System.Threading.WaitHandle>は、ネイティブオペレーティングシステムの同期ハンドルをカプセル化し、複数の待機操作を可能にするランタイム内のすべての同期オブジェクトを表すために使用されます。 他の同期オブジェクトとの待機ハンドルの比較については、「[同期プリミティブの概要](~/docs/standard/threading/overview-of-synchronization-primitives.md)」を参照してください。  
   
- <xref:System.Threading.WaitHandle>クラス自体が抽象クラス。 派生したクラス<xref:System.Threading.WaitHandle>を取得または解放の共有リソースへのアクセスを示すシグナリング機構を定義しますが、使用、継承された<xref:System.Threading.WaitHandle>へのアクセスの待機中にブロックするメソッドがリソースを共有します。 派生したクラス<xref:System.Threading.WaitHandle>が含まれます。  
+ <xref:System.Threading.WaitHandle>クラス自体は abstract です。 から<xref:System.Threading.WaitHandle>派生したクラスは、共有リソースへのアクセスの取得または解放を示すシグナリング機構を<xref:System.Threading.WaitHandle>定義しますが、共有リソースへのアクセスを待機している間に、継承されたメソッドを使用してブロックします。 から<xref:System.Threading.WaitHandle>派生したクラスには次のものが含まれます。  
   
--   <xref:System.Threading.Mutex> クラス 参照してください[ミュー テックス](~/docs/standard/threading/mutexes.md)します。  
+-   <xref:System.Threading.Mutex> クラス 「 [Mutex](~/docs/standard/threading/mutexes.md)」を参照してください。  
   
--   <xref:System.Threading.EventWaitHandle>クラスとその派生クラスでは、<xref:System.Threading.AutoResetEvent>と<xref:System.Threading.ManualResetEvent>します。  
+-   クラスとその派生<xref:System.Threading.AutoResetEvent>クラス、および<xref:System.Threading.ManualResetEvent>。 <xref:System.Threading.EventWaitHandle>  
   
--   <xref:System.Threading.Semaphore> クラス 参照してください[Semaphore と SemaphoreSlim](~/docs/standard/threading/semaphore-and-semaphoreslim.md)します。  
+-   <xref:System.Threading.Semaphore> クラス 「[セマフォと SemaphoreSlim」を](~/docs/standard/threading/semaphore-and-semaphoreslim.md)参照してください。  
   
- インスタンス メソッドを呼び出して個々 の待機ハンドルに対してスレッドをブロックできます<xref:System.Threading.WaitHandle.WaitOne%2A>から派生したクラスによって継承<xref:System.Threading.WaitHandle>します。  
+ スレッドは、から<xref:System.Threading.WaitHandle.WaitOne%2A> <xref:System.Threading.WaitHandle>派生したクラスによって継承されるインスタンスメソッドを呼び出すことによって、個々の待機ハンドルでブロックできます。  
   
- 派生クラスの<xref:System.Threading.WaitHandle>のスレッド アフィニティが異なります。 イベント待機ハンドル (<xref:System.Threading.EventWaitHandle>、 <xref:System.Threading.AutoResetEvent>、および<xref:System.Threading.ManualResetEvent>) セマフォにはスレッド アフィニティがありません。 任意のスレッドは、イベント待機ハンドルまたはセマフォを通知できます。 ミュー テックス、一方ではスレッド アフィニティが;ミュー テックスを所有するスレッドを解放する必要があります、およびスレッドの呼び出し、例外がスローされますが、<xref:System.Threading.Mutex.ReleaseMutex%2A>ミュー テックスを所有していないメソッドです。  
+ の<xref:System.Threading.WaitHandle>派生クラスがスレッドアフィニティと異なります。 イベント待機ハンドル (<xref:System.Threading.EventWaitHandle>、 <xref:System.Threading.AutoResetEvent>、および<xref:System.Threading.ManualResetEvent>) とセマフォにはスレッドアフィニティがありません。すべてのスレッドは、イベント待機ハンドルまたはセマフォを通知できます。 一方、ミューテックスにはスレッドアフィニティがあります。ミューテックスを所有するスレッドは、ミューテックスを解放する必要があります。スレッドが所有し<xref:System.Threading.Mutex.ReleaseMutex%2A>ていないミューテックスに対してメソッドを呼び出した場合、例外がスローされます。  
   
- <xref:System.Threading.WaitHandle>クラスから派生<xref:System.MarshalByRefObject>、これらのクラスは、アプリケーション ドメイン境界を越えてスレッドのアクティビティを同期するために使用できます。  
+ クラスは<xref:System.Threading.WaitHandle>から<xref:System.MarshalByRefObject>派生しているため、これらのクラスを使用して、アプリケーションドメインの境界を越えてスレッドのアクティビティを同期できます。  
   
- その派生クラスでだけでなく、<xref:System.Threading.WaitHandle>クラスにはさまざまな 1 つまでスレッドをブロックする静的メソッドまたは複数の同期オブジェクトがシグナルを受信します。 次の設定があります。  
+ <xref:System.Threading.WaitHandle>クラスには、その派生クラスに加えて、1つまたは複数の同期オブジェクトがシグナルを受信するまでスレッドをブロックする静的メソッドが多数あります。 次の設定があります。  
   
--   <xref:System.Threading.WaitHandle.SignalAndWait%2A>、スレッドの 1 つの待機ハンドルを通知し、すぐに別の待つことができます。  
+-   <xref:System.Threading.WaitHandle.SignalAndWait%2A>。スレッドが1つの待機ハンドルをシグナルし、他の待機ハンドルをすぐに待機できるようにします。  
   
--   <xref:System.Threading.WaitHandle.WaitAll%2A>、、スレッド、配列内のすべての待機ハンドルがシグナルを受信するまで待機することができます。  
+-   <xref:System.Threading.WaitHandle.WaitAll%2A>。配列内のすべての待機ハンドルがシグナルを受け取るまで、スレッドが待機できるようにします。  
   
--   <xref:System.Threading.WaitHandle.WaitAny%2A>、、スレッドの待機ハンドルの指定したセットのいずれかが通知されたまで待機することができます。  
+-   <xref:System.Threading.WaitHandle.WaitAny%2A>。指定された待機ハンドルのセットのいずれかがシグナル状態になるまで、スレッドが待機できるようにします。  
   
- これらのメソッドのオーバー ロードは、待機、およびその他のスレッド同期コンテキストを使用できるように、待機に入る前に同期コンテキストを終了する機会を放棄するためのタイムアウト間隔を提供します。  
+ これらのメソッドのオーバーロードは、待機を破棄するためのタイムアウト間隔と、待機に入る前に同期コンテキストを終了する機会を提供し、他のスレッドが同期コンテキストを使用できるようにします。  
   
 > [!IMPORTANT]
->  この型は <xref:System.IDisposable> インターフェイスを実装します。 型またはその派生型を使用してが完了したら、直接的または間接的にそれを破棄する必要があります。 直接的に型を破棄するには、`try` / `catch` ブロック内で <xref:System.Threading.WaitHandle.Close%2A> メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
+>  この型は <xref:System.IDisposable> インターフェイスを実装します。 型またはその派生型の使用が完了したら、直接または間接的に破棄する必要があります。 直接的に型を破棄するには、`try` / `catch` ブロック内で <xref:System.Threading.WaitHandle.Close%2A> メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
   
- <xref:System.Threading.WaitHandle> 実装して、<xref:System.IDisposable.Dispose%2A>パターン。 参照してください [Dispose メソッドの](~/docs/standard/garbage-collection/implementing-dispose.md) を実装します。 派生させた場合<xref:System.Threading.WaitHandle>を使用して、<xref:System.Threading.WaitHandle.SafeWaitHandle%2A>ネイティブのオペレーティング システム ハンドルを格納するプロパティ。 保護されたをオーバーライドする必要はありません<xref:System.Threading.WaitHandle.Dispose%2A>メソッド追加されているアンマネージ リソースを使用する場合を除き、します。  
+ <xref:System.Threading.WaitHandle>パターンを<xref:System.IDisposable.Dispose%2A>実装します。 「Dispose メソッドの実装」 (~/docs/standard/garbage-collection/implementing-dispose) を参照してください。 から<xref:System.Threading.WaitHandle>派生する場合は<xref:System.Threading.WaitHandle.SafeWaitHandle%2A> 、プロパティを使用して、ネイティブオペレーティングシステムハンドルを格納します。 追加のアンマネージリソースを使用し<xref:System.Threading.WaitHandle.Dispose%2A>ない限り、保護されたメソッドをオーバーライドする必要はありません。  
   
    
   
 ## Examples  
- 次のコード例に示す 2 つのスレッドができる方法は、メインの中にバック グラウンド タスク スレッド、静的なを使用して、タスクの待機<xref:System.Threading.WaitHandle.WaitAny%2A>と<xref:System.Threading.WaitHandle.WaitAll%2A>のメソッド、<xref:System.Threading.WaitHandle>クラス。  
+ 次のコード例では、2つのスレッドがバックグラウンドタスクを実行できます。一方、メインスレッドは、 <xref:System.Threading.WaitHandle.WaitAny%2A> <xref:System.Threading.WaitHandle>クラス<xref:System.Threading.WaitHandle.WaitAll%2A>の静的メソッドとメソッドを使用してタスクの完了を待機します。  
   
  [!code-cpp[WaitHandle#1](~/samples/snippets/cpp/VS_Snippets_CLR/WaitHandle/cpp/WaitHandle.cpp#1)]
  [!code-csharp[WaitHandle#1](~/samples/snippets/csharp/VS_Snippets_CLR/WaitHandle/CS/WaitHandle.cs#1)]
@@ -93,7 +93,7 @@
     <related type="Article" href="~/docs/standard/threading/threading-objects-and-features.md">スレッド処理オブジェクトと機能</related>
     <related type="Article" href="~/docs/standard/threading/mutexes.md">ミューテックス</related>
     <related type="Article" href="https://msdn.microsoft.com/library/cd94fc34-ac15-427f-b723-a1240a4fab7d">EventWaitHandle、AutoResetEvent、および ManualResetEvent</related>
-    <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">セマフォ</related>
+    <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">集合</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -165,16 +165,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリックな実装の<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>のメソッド、<xref:System.Threading.WaitHandle>クラスとその派生クラス。 呼び出す標準実装されています。、`Dispose(Boolean)`オーバー ロードを`true`引数に呼び出し、<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>メソッド。 インスタンスによって保持されているすべてのリソースを解放するには、このメソッドを呼び出す`WaitHandle`または派生クラス。  
+ このメソッドは、 <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> <xref:System.Threading.WaitHandle>クラスとその派生クラスのメソッドをパブリックに実装したものです。 これは、 `true`引数を使用して`Dispose(Boolean)`オーバーロードを呼び出し、メソッドを<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>呼び出す標準の実装を提供します。 のインスタンスまたは派生クラスによって保持され`WaitHandle`ているすべてのリソースを解放するには、このメソッドを呼び出します。  
   
- このメソッドが呼び出されると、現在のインスタンスへの参照は未定義の動作が発生します。  
+ このメソッドが呼び出されると、現在のインスタンスへの参照によって未定義の動作が発生します。  
   
 > [!NOTE]
->  常に呼び出す<xref:System.Threading.WaitHandle.Close%2A>または<xref:System.Threading.WaitHandle.Dispose>への参照を解放する前に、<xref:System.Threading.WaitHandle>します。 それ以外の場合、使用されているリソースは解放されません。  
+>  への<xref:System.Threading.WaitHandle.Close%2A>最後<xref:System.Threading.WaitHandle.Dispose>の参照を解放する前に、 <xref:System.Threading.WaitHandle>常にまたはを呼び出してください。 それ以外の場合、使用しているリソースは解放されません。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>オーバーライドする必要があります、<see langword="Dispose(Boolean)" />で割り当てられているリソースを解放するメソッドがクラスを派生します。</para></block>
+        <block subset="none" type="overrides"><para>派生クラスで割り当て<see langword="Dispose(Boolean)" />られたリソースを解放するには、メソッドをオーバーライドする必要があります。</para></block>
         <related type="Article" href="~/docs/standard/garbage-collection/implementing-dispose.md">Dispose メソッドの実装</related>
       </Docs>
     </Member>
@@ -231,10 +231,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、<xref:System.Threading.WaitHandle.Close%2A>メソッド。  
+ このメソッドは、 <xref:System.Threading.WaitHandle.Close%2A>メソッドに相当します。  
   
 > [!NOTE]
->  常に呼び出す<xref:System.Threading.WaitHandle.Close%2A>または<xref:System.Threading.WaitHandle.Dispose>への参照を解放する前に、<xref:System.Threading.WaitHandle>します。 それ以外の場合、使用されているリソースは解放されません。  
+>  への<xref:System.Threading.WaitHandle.Close%2A>最後<xref:System.Threading.WaitHandle.Dispose>の参照を解放する前に、 <xref:System.Threading.WaitHandle>常にまたはを呼び出してください。 それ以外の場合、使用しているリソースは解放されません。  
   
  ]]></format>
         </remarks>
@@ -288,13 +288,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、<xref:System.Threading.WaitHandle.Close%2A>と<xref:System.Threading.WaitHandle.Dispose>メソッド、`explicitDisposing`パラメーターに設定`true`。  ときに、`explicitDisposing`パラメーターが`true`、このメソッドは、すべてのマネージ オブジェクトによって保持されているすべてのリソースを解放します。 この<xref:System.Threading.WaitHandle>オブジェクト参照。  
+ このメソッド<xref:System.Threading.WaitHandle.Close%2A>は、 `explicitDisposing`パラメーターをに`true`設定<xref:System.Threading.WaitHandle.Dispose>したメソッドとメソッドによって呼び出されます。  パラメーターがの場合`true`、このメソッドは、この<xref:System.Threading.WaitHandle>オブジェクトが参照するすべてのマネージオブジェクトによって保持されているすべてのリソースを解放します。 `explicitDisposing`  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>オーバーライドする必要があります、<see cref="M:System.Threading.WaitHandle.Dispose(System.Boolean)" />で割り当てられているリソースを解放するメソッドがクラスを派生します。  
+        <block subset="none" type="overrides"><para>派生クラスで割り当て<see cref="M:System.Threading.WaitHandle.Dispose(System.Boolean)" />られたリソースを解放するには、メソッドをオーバーライドする必要があります。  
   
-<see cref="M:System.Threading.WaitHandle.Close" />または<see cref="M:System.Threading.WaitHandle.Dispose" />メソッドは、他のオブジェクトで複数回呼び出すことがあります。 このメソッドをオーバーライドする場合は、事前に呼び出したで破棄されたオブジェクトを参照しないように注意する<see langword="Dispose" />または<see langword="Close" />します。</para></block>
+また<see cref="M:System.Threading.WaitHandle.Close" /> は<see cref="M:System.Threading.WaitHandle.Dispose" />メソッドは、他のオブジェクトから複数回呼び出すことができます。 このメソッドをオーバーライドする場合は、以前にまたは<see langword="Dispose" /> <see langword="Close" />を呼び出したときに破棄されたオブジェクトを参照しないように注意してください。</para></block>
         <related type="Article" href="~/docs/standard/garbage-collection/implementing-dispose.md">Dispose メソッドの実装</related>
       </Docs>
     </Member>
@@ -328,10 +328,10 @@
 ## Remarks  
 
 > [!NOTE]
-> このメンバーは、.NET Framework version 2.0 およびそれ以降のバージョンから削除されました。 このトピックでは、このトピックの後半の「バージョン情報」に示したバージョンにのみ適用されます。
+> このメンバーは .NET Framework バージョン2.0 以降のバージョンから削除されています。 このトピックは、このトピックの「バージョン情報」に記載されているバージョンにのみ適用されます。
 
 
-アプリケーション コードには、このメソッドは呼び出しません。ガベージ コレクターによって終了処理が無効になっている場合を除き、ガベージ コレクション中に自動的に呼び出されます。 詳細については、次のトピックを参照してください。 <xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType> および <xref:System.Object.Finalize> このメソッドは、<xref:System.Object.Finalize> をオーバーライドします。
+アプリケーションコードはこのメソッドを呼び出しません。ガベージコレクターによる終了処理が無効になっていない限り、ガベージコレクションの実行中に自動的に呼び出されます。 詳細については、次のトピックを参照してください。 <xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType> および <xref:System.Object.Finalize> このメソッドは、<xref:System.Object.Finalize> をオーバーライドします。
 
 ]]></format>
         </remarks>
@@ -383,14 +383,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新しい値を割り当てる、<xref:System.Threading.WaitHandle.Handle%2A>プロパティが以前のハンドルを終了していません。 これは、結果、漏洩したハンドル。  
+ 新しい値を<xref:System.Threading.WaitHandle.Handle%2A>プロパティに割り当てると、前のハンドルは閉じられません。 これにより、ハンドルがリークする可能性があります。  
   
- .NET framework version 2.0 以降です。 このプロパティを使用しません。使用して、<xref:System.Threading.WaitHandle.SafeWaitHandle%2A>プロパティ代わりにします。 このプロパティの設定を有効なハンドルもセット、<xref:System.Threading.WaitHandle.SafeWaitHandle%2A>プロパティに設定すると<xref:System.Threading.WaitHandle.InvalidHandle>リークしたハンドルで発生することができます。  
+ このプロパティは .NET Framework バージョン2.0 以降では使用しないでください。代わりに、 <xref:System.Threading.WaitHandle.SafeWaitHandle%2A>プロパティを使用してください。 このプロパティを有効なハンドルに設定すると<xref:System.Threading.WaitHandle.SafeWaitHandle%2A> 、プロパティも設定され<xref:System.Threading.WaitHandle.InvalidHandle>ますが、に設定すると、リークしたハンドルが発生する可能性があります。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">プロパティ値を設定する直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで設定することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">派生型である必要があります<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />プロパティ値を設定します。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">プロパティ値を設定するには、直接の呼び出し元に対して完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは設定できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">派生型では<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> 、プロパティ値を設定する必要があります。</permission>
       </Docs>
     </Member>
     <Member MemberName="InvalidHandle">
@@ -431,11 +431,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 初期化するために内部的に使用される、<xref:System.Threading.WaitHandle.Handle%2A>プロパティ。  
+ プロパティを初期化する目的<xref:System.Threading.WaitHandle.Handle%2A>で内部的に使用されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>この値を使用するには判断するかどうか、<see cref="P:System.Threading.WaitHandle.Handle" />プロパティに有効なネイティブ オペレーティング システム ハンドルが含まれています。</para></block>
+        <block subset="none" type="overrides"><para>この値を使用して、プロパティに<see cref="P:System.Threading.WaitHandle.Handle" />有効なネイティブオペレーティングシステムハンドルが格納されているかどうかを判断できます。</para></block>
       </Docs>
     </Member>
     <Member MemberName="SafeWaitHandle">
@@ -486,14 +486,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新しい値を割り当てるとき、<xref:System.Threading.WaitHandle.SafeWaitHandle%2A>プロパティ、ときに、前のハンドルを閉じるは前<xref:Microsoft.Win32.SafeHandles.SafeWaitHandle>オブジェクトを収集します。 手動でハンドルを終了しないで、この結果、ため、<xref:System.ObjectDisposedException>ときに、<xref:Microsoft.Win32.SafeHandles.SafeWaitHandle>ハンドルを終了しようとしています。  
+ <xref:System.Threading.WaitHandle.SafeWaitHandle%2A>プロパティに新しい値を割り当てると、前の<xref:Microsoft.Win32.SafeHandles.SafeWaitHandle>オブジェクトが収集されるときに前のハンドルが閉じられます。 がハンドルを閉じようとし<xref:System.ObjectDisposedException> <xref:Microsoft.Win32.SafeHandles.SafeWaitHandle>たときにが発生するため、ハンドルを手動で閉じないでください。  
   
- <xref:System.Threading.WaitHandle> 実装して、<xref:System.IDisposable.Dispose%2A>パターン。 参照してください [Dispose メソッドの](~/docs/standard/garbage-collection/implementing-dispose.md) を実装します。 派生させた場合<xref:System.Threading.WaitHandle>を使用して、<xref:System.Threading.WaitHandle.SafeWaitHandle%2A>ネイティブのハンドルのオペレーティング システム ハンドルを格納するプロパティ。 保護されたをオーバーライドする必要はありません<xref:System.Threading.WaitHandle.Dispose%2A>メソッド追加されているアンマネージ リソースを使用する場合を除き、します。  
+ <xref:System.Threading.WaitHandle>パターンを<xref:System.IDisposable.Dispose%2A>実装します。 「Dispose メソッドの実装」 (~/docs/standard/garbage-collection/implementing-dispose) を参照してください。 から<xref:System.Threading.WaitHandle>派生する場合は、 <xref:System.Threading.WaitHandle.SafeWaitHandle%2A>プロパティを使用して、ネイティブハンドルのオペレーティングシステムハンドルを格納します。 追加のアンマネージリソースを使用し<xref:System.Threading.WaitHandle.Dispose%2A>ない限り、保護されたメソッドをオーバーライドする必要はありません。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">派生型である必要があります<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />このメンバーを呼び出します。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">派生型は<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> 、このメンバーを呼び出す必要があります。</permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="SignalAndWait">
@@ -546,14 +546,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この操作はアトミックであるは保証されません。 現在のスレッドの信号後`toSignal`までの間待機している`toWaitOn`、別のプロセッサで実行されているスレッドを通知`toWaitOn`待機またはします。  
+ この操作はアトミックであるとは限りません。 現在のスレッドが通知`toSignal`した後`toWaitOn`、待機する前に、別のプロセッサで実行され`toWaitOn`ているスレッドがシグナル状態になるか、待機します。  
   
    
   
 ## Examples  
- 次のコード例では、<xref:System.Threading.WaitHandle.SignalAndWait%28System.Threading.WaitHandle%2CSystem.Threading.WaitHandle%29>ブロックされたスレッドのシグナルを待ってから、スレッドがタスクを完了するまでメイン スレッドを許可するメソッドのオーバー ロードします。  
+ 次のコード例では<xref:System.Threading.WaitHandle.SignalAndWait%28System.Threading.WaitHandle%2CSystem.Threading.WaitHandle%29> 、メソッドオーバーロードを使用して、メインスレッドがブロックされたスレッドを通知し、スレッドがタスクを完了するまで待機することを許可します。  
   
- 例では、5 つのスレッドを開始、ブロックすることができます、<xref:System.Threading.EventWaitHandle>で作成された、<xref:System.Threading.EventResetMode.AutoReset?displayProperty=nameWithType>フラグ、およびユーザーが ENTER キーを押す、リリースの 1 つのスレッド時間。 例では、別の 5 つのスレッドのキューし、すべてを使用して、解放、<xref:System.Threading.EventWaitHandle>で作成された、<xref:System.Threading.EventResetMode.ManualReset?displayProperty=nameWithType>フラグ。  
+ この例では、5つのスレッドを開始し<xref:System.Threading.EventWaitHandle> 、 <xref:System.Threading.EventResetMode.AutoReset?displayProperty=nameWithType>フラグを使用して作成されたでブロックできるようにします。次に、ユーザーが enter キーを押すたびに1つのスレッドを解放します。 次に、別の5つのスレッドをキューに置い<xref:System.Threading.EventWaitHandle>て、 <xref:System.Threading.EventResetMode.ManualReset?displayProperty=nameWithType>フラグを使用して作成されたを使用してすべてを解放します。  
   
  [!code-cpp[System.Threading.WaitHandle.SignalAndWait#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.SignalAndWait/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.SignalAndWait#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.SignalAndWait/CS/source.cs#1)]
@@ -561,10 +561,10 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="toSignal" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="toSignal" /> が <see langword="null" /> です。  
   
 - または - 
- <paramref name="toWaitOn" /> は <see langword="null" />です。</exception>
+ <paramref name="toWaitOn" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.NotSupportedException">メソッドは <see cref="T:System.STAThreadAttribute" /> を持つスレッドで呼び出されました。</exception>
         <exception cref="T:System.PlatformNotSupportedException">このメソッドは、Windows 98 および Windows Millennium Edition ではサポートされていません。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="toSignal" /> はセマフォで、カウントは既に最大値になっています。</exception>
@@ -620,23 +620,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この操作はアトミックであるは保証されません。 現在のスレッドの信号後`toSignal`までの間待機している`toWaitOn`、別のプロセッサで実行されているスレッドを通知`toWaitOn`待機またはします。  
+ この操作はアトミックであるとは限りません。 現在のスレッドが通知`toSignal`した後`toWaitOn`、待機する前に、別のプロセッサで実行され`toWaitOn`ているスレッドがシグナル状態になるか、待機します。  
   
- 場合`millisecondsTimeout`が 0 の場合、メソッドはブロックしません。 テストの状態、`toWaitOn`をすぐに返します。  
+ が`millisecondsTimeout` 0 の場合、メソッドはブロックしません。 の状態をテスト`toWaitOn`し、すぐに制御を戻します。  
   
-## <a name="notes-on-exiting-the-context"></a>コンテキストの終了時の注意  
- `exitContext`パラメーターには効果がない場合を除き、<xref:System.Threading.WaitHandle.SignalAndWait%2A>既定以外の管理対象のコンテキスト内からメソッドが呼び出されます。 派生したクラスのインスタンスへの呼び出し、スレッドが場合に生じる<xref:System.ContextBoundObject>します。 派生していないクラスでメソッドを現在実行している場合でも<xref:System.ContextBoundObject>と同様に、 <xref:System.String>、既定以外のコンテキストであることができる場合、<xref:System.ContextBoundObject>が現在のアプリケーション ドメインで、スタック上にします。  
+## <a name="notes-on-exiting-the-context"></a>コンテキストの終了に関する注意事項  
+ 既定`exitContext`以外のマネージコンテキスト内から<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドが呼び出されない限り、パラメーターは無効です。 これは、スレッドがから<xref:System.ContextBoundObject>派生したクラスのインスタンスの呼び出し内にある場合に発生する可能性があります。 から<xref:System.ContextBoundObject>派生していないクラスのメソッドを現在実行している場合でも<xref:System.String>、の<xref:System.ContextBoundObject>ように、が現在のアプリケーションドメインのスタックにある場合は、既定以外のコンテキストにすることができます。  
   
- 既定以外のコンテキストでコードを実行しているときに指定する`true`の`exitContext`が原因で、既定以外の管理コンテキストを終了するスレッド (つまり、既定のコンテキストへの移行) 実行する前に、<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッド。 呼び出し後、スレッドが元の既定以外のコンテキストに戻る、<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドが完了するとします。  
+ コードが既定以外のコンテキストで実行されて`true`いる`exitContext`場合、にを指定すると、スレッドは<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドを実行する前に、既定以外のマネージコンテキスト (つまり、既定のコンテキストに遷移する) を終了します。 スレッドは、メソッドの<xref:System.Threading.WaitHandle.SignalAndWait%2A>呼び出しが完了した後、元の既定以外のコンテキストに戻ります。  
   
- これは、便利な場合、コンテキスト バインド クラスには<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>します。 その場合は、クラスのメンバーに対するすべての呼び出しを自動的に同期し、同期ドメインは、クラスのコードの本文全体。 メンバーの呼び出し履歴内のコードを呼び出すかどうか、<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドを指定して`true`の`exitContext`スレッドが続行する、オブジェクトのすべてのメンバーへの呼び出しでブロックされているスレッドを許可する、同期ドメインを終了します。 ときに、<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドが戻る呼び出しを行ったスレッドが同期ドメインを再入力を待つ必要があります。  
+ これは、コンテキストバインドクラスにがある<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>場合に便利です。 その場合、クラスのメンバーへのすべての呼び出しが自動的に同期され、同期ドメインがクラスのコード本文全体になります。 メンバーの呼び出し履歴内のコードが<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドを呼び出し、に`exitContext`を`true`指定した場合、スレッドは同期ドメインを終了します。これにより、オブジェクトの任意のメンバーへの呼び出しでブロックされているスレッドを続行できます。 メソッドから<xref:System.Threading.WaitHandle.SignalAndWait%2A>制御が戻ったとき、呼び出しを行ったスレッドは、同期ドメインの再入力を待機する必要があります。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="toSignal" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="toSignal" /> が <see langword="null" /> です。  
   
 - または - 
- <paramref name="toWaitOn" /> は <see langword="null" />です。</exception>
+ <paramref name="toWaitOn" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.NotSupportedException">メソッドは <see cref="T:System.STAThreadAttribute" /> を持つスレッドで呼び出されます。</exception>
         <exception cref="T:System.PlatformNotSupportedException">このメソッドは、Windows 98 および Windows Millennium Edition ではサポートされていません。</exception>
         <exception cref="T:System.InvalidOperationException">カウントの最大値を超えるため、<see cref="T:System.Threading.WaitHandle" /> はシグナル状態にはできません。</exception>
@@ -688,31 +688,31 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この操作はアトミックであるは保証されません。 現在のスレッドの信号後`toSignal`までの間待機している`toWaitOn`、別のプロセッサで実行されているスレッドを通知`toWaitOn`待機またはします。  
+ この操作はアトミックであるとは限りません。 現在のスレッドが通知`toSignal`した後`toWaitOn`、待機する前に、別のプロセッサで実行され`toWaitOn`ているスレッドがシグナル状態になるか、待機します。  
   
- 最大値`timeout`は<xref:System.Int32.MaxValue?displayProperty=nameWithType>します。  
+ の`timeout`最大値は<xref:System.Int32.MaxValue?displayProperty=nameWithType>です。  
   
- 場合`timeout`が 0 の場合、メソッドはブロックしません。 テストの状態、`toWaitOn`をすぐに返します。  
+ が`timeout` 0 の場合、メソッドはブロックしません。 の状態をテスト`toWaitOn`し、すぐに制御を戻します。  
   
-## <a name="notes-on-exiting-the-context"></a>コンテキストの終了時の注意  
- `exitContext`パラメーターには効果がない場合を除き、<xref:System.Threading.WaitHandle.SignalAndWait%2A>既定以外の管理対象のコンテキスト内からメソッドが呼び出されます。 派生したクラスのインスタンスへの呼び出し、スレッドが場合に生じる<xref:System.ContextBoundObject>します。 派生していないクラスでメソッドを現在実行している場合でも<xref:System.ContextBoundObject>と同様に、 <xref:System.String>、既定以外のコンテキストであることができる場合、<xref:System.ContextBoundObject>が現在のアプリケーション ドメインで、スタック上にします。  
+## <a name="notes-on-exiting-the-context"></a>コンテキストの終了に関する注意事項  
+ 既定`exitContext`以外のマネージコンテキスト内から<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドが呼び出されない限り、パラメーターは無効です。 これは、スレッドがから<xref:System.ContextBoundObject>派生したクラスのインスタンスの呼び出し内にある場合に発生する可能性があります。 から<xref:System.ContextBoundObject>派生していないクラスのメソッドを現在実行している場合でも<xref:System.String>、の<xref:System.ContextBoundObject>ように、が現在のアプリケーションドメインのスタックにある場合は、既定以外のコンテキストにすることができます。  
   
- 既定以外のコンテキストでコードを実行しているときに指定する`true`の`exitContext`が原因で、既定以外の管理コンテキストを終了するスレッド (つまり、既定のコンテキストへの移行) 実行する前に、<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッド。 呼び出し後、スレッドが元の既定以外のコンテキストに戻る、<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドが完了するとします。  
+ コードが既定以外のコンテキストで実行されて`true`いる`exitContext`場合、にを指定すると、スレッドは<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドを実行する前に、既定以外のマネージコンテキスト (つまり、既定のコンテキストに遷移する) を終了します。 スレッドは、メソッドの<xref:System.Threading.WaitHandle.SignalAndWait%2A>呼び出しが完了した後、元の既定以外のコンテキストに戻ります。  
   
- これは、便利な場合、コンテキスト バインド クラスには<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>します。 その場合は、クラスのメンバーに対するすべての呼び出しを自動的に同期し、同期ドメインは、クラスのコードの本文全体。 メンバーの呼び出し履歴内のコードを呼び出すかどうか、<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドを指定して`true`の`exitContext`スレッドが続行する、オブジェクトのすべてのメンバーへの呼び出しでブロックされているスレッドを許可する、同期ドメインを終了します。 ときに、<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドが戻る呼び出しを行ったスレッドが同期ドメインを再入力を待つ必要があります。  
+ これは、コンテキストバインドクラスにがある<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>場合に便利です。 その場合、クラスのメンバーへのすべての呼び出しが自動的に同期され、同期ドメインがクラスのコード本文全体になります。 メンバーの呼び出し履歴内のコードが<xref:System.Threading.WaitHandle.SignalAndWait%2A>メソッドを呼び出し、に`exitContext`を`true`指定した場合、スレッドは同期ドメインを終了します。これにより、オブジェクトの任意のメンバーへの呼び出しでブロックされているスレッドを続行できます。 メソッドから<xref:System.Threading.WaitHandle.SignalAndWait%2A>制御が戻ったとき、呼び出しを行ったスレッドは、同期ドメインの再入力を待機する必要があります。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="toSignal" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="toSignal" /> が <see langword="null" /> です。  
   
 - または - 
- <paramref name="toWaitOn" /> は <see langword="null" />です。</exception>
+ <paramref name="toWaitOn" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.NotSupportedException">メソッドは <see cref="T:System.STAThreadAttribute" /> を持つスレッドで呼び出されました。</exception>
         <exception cref="T:System.PlatformNotSupportedException">このメソッドは、Windows 98 および Windows Millennium Edition ではサポートされていません。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="toSignal" /> はセマフォで、カウントは既に最大値になっています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> は、-1 以外の負のミリ秒値となります。  
   
-または 
+- または - 
  <paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.Threading.AbandonedMutexException">スレッドがミューテックスを解放せずに終了したため、待機が完了しました。 Windows 98 または Windows Millennium Edition では、この例外はスローされません。</exception>
       </Docs>
@@ -748,7 +748,7 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-呼び出す`Dispose`によって使用されるリソースの使用、<xref:System.Threading.WaitHandle>他の目的で再割り当てします。 詳細については`Dispose`を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)します。
+を`Dispose`呼び出すと、 <xref:System.Threading.WaitHandle>によって使用されるリソースを他の目的で再割り当てできます。 の詳細`Dispose`については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。
 
 ]]></format>
         </remarks>
@@ -816,19 +816,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを返します。`true`ミュー テックスが破棄されます。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitAll%2A> 、ミューテックス`true`が破棄されると、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- <xref:System.Threading.WaitHandle.WaitAll%2A>メソッドは、すべてのハンドルがシグナルを返します。 一部の実装では、64 を超えるハンドルが渡された場合に、<xref:System.NotSupportedException>がスローされます。 配列に重複が含まれている場合、呼び出しは、<xref:System.DuplicateWaitObjectException>します。  
+ すべて<xref:System.Threading.WaitHandle.WaitAll%2A>のハンドルがシグナル状態になると、メソッドはを返します。 実装によっては、64を超えるハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。 配列に重複が含まれている場合、呼び出し<xref:System.DuplicateWaitObjectException>はで失敗します。  
   
 > [!NOTE]
->  <xref:System.Threading.WaitHandle.WaitAll%2A>が含まれるスレッドでメソッドがサポートされていません<xref:System.STAThreadAttribute>します。  
+>  メソッド<xref:System.Threading.WaitHandle.WaitAll%2A>は、がある<xref:System.STAThreadAttribute>スレッドではサポートされていません。  
   
- 呼び出しと同じですがこのメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitAll%28System.Threading.WaitHandle%5B%5D%2CSystem.Int32%2CSystem.Boolean%29>メソッドのオーバー ロードは、-1 を指定する (または<xref:System.Threading.Timeout.Infinite?displayProperty=nameWithType>) の`millisecondsTimeout`と`true`の`exitContext`します。  
+ この<xref:System.Threading.WaitHandle.WaitAll%28System.Threading.WaitHandle%5B%5D%2CSystem.Int32%2CSystem.Boolean%29>メソッドの`millisecondsTimeout` `true` <xref:System.Threading.Timeout.Infinite?displayProperty=nameWithType>オーバーロードを呼び出すことは、メソッドのオーバーロードを呼び出し、およびに対して-1(または)を指定することと同じです。`exitContext`  
   
    
   
 ## Examples  
- 次のコード例では、スレッド プールを使用して非同期的に作成し、ファイルのグループを出力する方法を示します。 個々 の書き込み操作は、作業項目および信号としてキューに登録が完了します。 メイン スレッドは、すべての項目からの通知の待機し、終了します。  
+ 次のコード例では、スレッドプールを使用して、ファイルのグループに対して非同期的に作成および書き込みを行う方法を示します。 各書き込み操作は、作業項目としてキューに登録され、完了時に通知されます。 メインスレッドは、すべての項目がシグナル状態になるのを待機してから終了します。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitAll1#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAll1/CPP/source1.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitAll1#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAll1/CS/source1.cs#1)]
@@ -836,7 +836,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="waitHandles" /> パラメーターが <see langword="null" /> です。 または 
+        <exception cref="T:System.ArgumentNullException"><paramref name="waitHandles" /> パラメーターが <see langword="null" /> です。 - または - 
 <paramref name="waitHandles" /> 配列内の 1 つ以上のオブジェクトが <see langword="null" /> です。  
   
 または 
@@ -907,20 +907,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`millisecondsTimeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`millisecondsTimeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.WaitHandle.WaitAll%2A>待機が終了する、つまりすべてのハンドルがシグナル状態になるとき、またはタイムアウトが発生したときに、メソッドが返されます。 一部の実装では、64 を超えるハンドルが渡された場合に、<xref:System.NotSupportedException>がスローされます。 配列に重複がある場合、呼び出しは、<xref:System.DuplicateWaitObjectException>します。  
+ この<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドは、待機が終了したときにを返します。これは、すべてのハンドルがシグナル状態になったか、タイムアウトが発生したかを示します。 実装によっては、64を超えるハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。 配列に重複がある場合、呼び出しはで<xref:System.DuplicateWaitObjectException>失敗します。  
   
 > [!NOTE]
->  <xref:System.Threading.WaitHandle.WaitAll%2A>が含まれるスレッドでメソッドがサポートされていません<xref:System.STAThreadAttribute>します。  
+>  メソッド<xref:System.Threading.WaitHandle.WaitAll%2A>は、がある<xref:System.STAThreadAttribute>スレッドではサポートされていません。  
   
- 呼び出しと同じには、このメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitAll%28System.Threading.WaitHandle%5B%5D%2CSystem.Int32%2CSystem.Boolean%29>オーバー ロードを指定して`false`の`exitContext`します。  
+ このメソッドオーバーロードの呼び出しは、 <xref:System.Threading.WaitHandle.WaitAll%28System.Threading.WaitHandle%5B%5D%2CSystem.Int32%2CSystem.Boolean%29>オーバーロードを呼び出し、に`exitContext`を`false`指定することと同じです。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="waitHandles" /> パラメーターが <see langword="null" /> です。  
   
-または 
+- または - 
 <paramref name="waitHandles" /> 配列内の 1 つ以上のオブジェクトが <see langword="null" /> です。  
   
 または 
@@ -991,22 +991,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`timeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`timeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.WaitHandle.WaitAll%2A>待機が終了するすべてのハンドルがシグナル状態になることを意味するか、タイムアウトが発生するときに、メソッドが返されます。 一部の実装では、64 を超えるハンドルが渡された場合に、<xref:System.NotSupportedException>がスローされます。 配列に重複が含まれている場合、呼び出しは失敗します。  
+ 待機が終了すると、メソッドはを返します。これは、すべてのハンドルがシグナル状態になるか、タイムアウトが発生することを意味します。<xref:System.Threading.WaitHandle.WaitAll%2A> 実装によっては、64を超えるハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。 配列に重複が含まれている場合、呼び出しは失敗します。  
   
 > [!NOTE]
->  <xref:System.Threading.WaitHandle.WaitAll%2A>が含まれるスレッドでメソッドがサポートされていません<xref:System.STAThreadAttribute>します。  
+>  メソッド<xref:System.Threading.WaitHandle.WaitAll%2A>は、がある<xref:System.STAThreadAttribute>スレッドではサポートされていません。  
   
- 最大値`timeout`は<xref:System.Int32.MaxValue?displayProperty=nameWithType>します。  
+ の`timeout`最大値は<xref:System.Int32.MaxValue?displayProperty=nameWithType>です。  
   
- 呼び出しと同じには、このメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitAll%28System.Threading.WaitHandle%5B%5D%2CSystem.TimeSpan%2CSystem.Boolean%29>オーバー ロードを指定して`false`の`exitContext`します。  
+ このメソッドオーバーロードの呼び出しは、 <xref:System.Threading.WaitHandle.WaitAll%28System.Threading.WaitHandle%5B%5D%2CSystem.TimeSpan%2CSystem.Boolean%29>オーバーロードを呼び出し、に`exitContext`を`false`指定することと同じです。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="waitHandles" /> パラメーターが <see langword="null" /> です。  
   
-または 
+- または - 
 <paramref name="waitHandles" /> 配列内の 1 つ以上のオブジェクトが <see langword="null" /> です。  
   
 または 
@@ -1024,7 +1024,7 @@
 または 
 <see cref="T:System.STAThreadAttribute" /> 属性は、現在のスレッドのスレッド プロシージャに適用されており、<paramref name="waitHandles" /> には複数の要素が含まれています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> は無限のタイムアウトを表す -1 ミリ秒以外の負の数です。 
-または 
+- または - 
  <paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.Threading.AbandonedMutexException">スレッドがミューテックスを解放せずに終了したため、待機が終了しました。 Windows 98 または Windows Millennium Edition では、この例外はスローされません。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="waitHandles" /> 配列には、別のアプリケーション ドメインの<see cref="T:System.Threading.WaitHandle" /> の透過プロキシが含まれます。</exception>
@@ -1078,26 +1078,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`millisecondsTimeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`millisecondsTimeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを返します。`true`ミュー テックスが破棄されます。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitAll%2A> 、ミューテックス`true`が破棄されると、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- <xref:System.Threading.WaitHandle.WaitAll%2A>待機が終了する、つまりすべてのハンドルがシグナル状態になるとき、またはタイムアウトが発生したときに、メソッドが返されます。 一部の実装では、64 を超えるハンドルが渡された場合に、<xref:System.NotSupportedException>がスローされます。 配列に重複がある場合、呼び出しは、<xref:System.DuplicateWaitObjectException>します。  
+ この<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドは、待機が終了したときにを返します。これは、すべてのハンドルがシグナル状態になったか、タイムアウトが発生したかを示します。 実装によっては、64を超えるハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。 配列に重複がある場合、呼び出しはで<xref:System.DuplicateWaitObjectException>失敗します。  
   
 > [!NOTE]
->  <xref:System.Threading.WaitHandle.WaitAll%2A>が含まれるスレッドでメソッドがサポートされていません<xref:System.STAThreadAttribute>します。  
+>  メソッド<xref:System.Threading.WaitHandle.WaitAll%2A>は、がある<xref:System.STAThreadAttribute>スレッドではサポートされていません。  
   
-## <a name="notes-on-exiting-the-context"></a>コンテキストの終了時の注意  
- `exitContext`パラメーターには効果がない場合を除き、<xref:System.Threading.WaitHandle.WaitAll%2A>既定以外の管理対象のコンテキスト内からメソッドが呼び出されます。 派生したクラスのインスタンスへの呼び出し、スレッドが場合に生じる<xref:System.ContextBoundObject>します。 派生していないクラスでメソッドを現在実行している場合でも<xref:System.ContextBoundObject>と同様に、 <xref:System.String>、既定以外のコンテキストであることができる場合、<xref:System.ContextBoundObject>が現在のアプリケーション ドメインで、スタック上にします。  
+## <a name="notes-on-exiting-the-context"></a>コンテキストの終了に関する注意事項  
+ 既定`exitContext`以外のマネージコンテキスト内から<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドが呼び出されない限り、パラメーターは無効です。 これは、スレッドがから<xref:System.ContextBoundObject>派生したクラスのインスタンスの呼び出し内にある場合に発生する可能性があります。 から<xref:System.ContextBoundObject>派生<xref:System.ContextBoundObject>していないクラスのメソッドを現在実行している場合でも、が現在のアプリケーションドメインのスタック上にある場合は、既定以外のコンテキストにすることができます。 <xref:System.String>  
   
- 既定以外のコンテキストでコードを実行しているときに指定する`true`の`exitContext`が原因で、既定以外の管理コンテキストを終了するスレッド (つまり、既定のコンテキストへの移行) 実行する前に、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッド。 呼び出し後、スレッドが元の既定以外のコンテキストに戻る、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドが完了するとします。  
+ コードが既定以外のコンテキストで実行されて`true`いる`exitContext`場合、にを指定すると、スレッドは<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを実行する前に、既定以外のマネージコンテキスト (つまり、既定のコンテキストに遷移する) を終了します。 スレッドは、メソッドの<xref:System.Threading.WaitHandle.WaitAll%2A>呼び出しが完了した後、元の既定以外のコンテキストに戻ります。  
   
- これは、便利な場合、コンテキスト バインド クラスには、<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>属性。 その場合は、クラスのメンバーに対するすべての呼び出しを自動的に同期し、同期ドメインは、クラスのコードの本文全体。 メンバーの呼び出し履歴内のコードを呼び出すかどうか、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを指定して`true`の`exitContext`スレッドが続行する、オブジェクトのすべてのメンバーへの呼び出しでブロックされているスレッドを許可する、同期ドメインを終了します。 ときに、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドが戻る呼び出しを行ったスレッドが同期ドメインを再入力を待つ必要があります。  
+ これは、コンテキストバインドクラスに<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>属性がある場合に便利です。 その場合、クラスのメンバーへのすべての呼び出しが自動的に同期され、同期ドメインがクラスのコード本文全体になります。 メンバーの呼び出し履歴内のコードが<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを呼び出し、に`exitContext`を`true`指定した場合、スレッドは同期ドメインを終了します。これにより、オブジェクトの任意のメンバーへの呼び出しでブロックされているスレッドを続行できます。 メソッドから<xref:System.Threading.WaitHandle.WaitAll%2A>制御が戻ったとき、呼び出しを行ったスレッドは、同期ドメインの再入力を待機する必要があります。  
   
    
   
 ## Examples  
- 次のコード例では、スレッド プールを使用して非同期的に作成し、ファイルのグループを出力する方法を示します。 個々 の書き込み操作は、作業項目および信号としてキューに登録が完了します。 メイン スレッドは、すべての項目からの通知の待機し、終了します。  
+ 次のコード例では、スレッドプールを使用して、ファイルのグループに対して非同期的に作成および書き込みを行う方法を示します。 各書き込み操作は、作業項目としてキューに登録され、完了時に通知されます。 メインスレッドは、すべての項目がシグナル状態になるのを待機してから終了します。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitAll2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAll2/CPP/source2.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitAll2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAll2/CS/source2.cs#1)]
@@ -1110,7 +1110,7 @@
 または 
 <paramref name="waitHandles" /> 配列内の 1 つ以上のオブジェクトが <see langword="null" /> です。  
   
-または 
+- または - 
  <paramref name="waitHandles" /> は要素を持たない配列で、.NET Framework のバージョンが 2.0 以降です。</exception>
         <exception cref="T:System.DuplicateWaitObjectException"><paramref name="waitHandles" /> 配列に、重複する要素が含まれています。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="waitHandles" /> のオブジェクトの数が、システムで許可されている範囲を超えています。  
@@ -1166,28 +1166,28 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`timeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`timeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを返します。`true`ミュー テックスが破棄されます。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitAll%2A> 、ミューテックス`true`が破棄されると、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- <xref:System.Threading.WaitHandle.WaitAll%2A>待機が終了するすべてのハンドルがシグナル状態になることを意味するか、タイムアウトが発生するときに、メソッドが返されます。 一部の実装では、64 を超えるハンドルが渡された場合に、<xref:System.NotSupportedException>がスローされます。 配列に重複が含まれている場合、呼び出しは失敗します。  
+ 待機が終了すると、メソッドはを返します。これは、すべてのハンドルがシグナル状態になるか、タイムアウトが発生することを意味します。<xref:System.Threading.WaitHandle.WaitAll%2A> 実装によっては、64を超えるハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。 配列に重複が含まれている場合、呼び出しは失敗します。  
   
 > [!NOTE]
->  <xref:System.Threading.WaitHandle.WaitAll%2A>が含まれるスレッドでメソッドがサポートされていません<xref:System.STAThreadAttribute>します。  
+>  メソッド<xref:System.Threading.WaitHandle.WaitAll%2A>は、がある<xref:System.STAThreadAttribute>スレッドではサポートされていません。  
   
- 最大値`timeout`は<xref:System.Int32.MaxValue?displayProperty=nameWithType>します。  
+ の`timeout`最大値は<xref:System.Int32.MaxValue?displayProperty=nameWithType>です。  
   
-## <a name="notes-on-exiting-the-context"></a>コンテキストの終了時の注意  
- `exitContext`パラメーターには効果がない場合を除き、<xref:System.Threading.WaitHandle.WaitAll%2A>既定以外の管理対象のコンテキスト内からメソッドが呼び出されます。 派生したクラスのインスタンスへの呼び出し、スレッドが場合に生じる<xref:System.ContextBoundObject>します。 派生していないクラスでメソッドを現在実行している場合でも<xref:System.ContextBoundObject>と同様に、 <xref:System.String>、既定以外のコンテキストであることができる場合、<xref:System.ContextBoundObject>が現在のアプリケーション ドメインで、スタック上にします。  
+## <a name="notes-on-exiting-the-context"></a>コンテキストの終了に関する注意事項  
+ 既定`exitContext`以外のマネージコンテキスト内から<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドが呼び出されない限り、パラメーターは無効です。 これは、スレッドがから<xref:System.ContextBoundObject>派生したクラスのインスタンスの呼び出し内にある場合に発生する可能性があります。 から<xref:System.ContextBoundObject>派生<xref:System.ContextBoundObject>していないクラスのメソッドを現在実行している場合でも、が現在のアプリケーションドメインのスタック上にある場合は、既定以外のコンテキストにすることができます。 <xref:System.String>  
   
- 既定以外のコンテキストでコードを実行しているときに指定する`true`の`exitContext`が原因で、既定以外の管理コンテキストを終了するスレッド (つまり、既定のコンテキストへの移行) 実行する前に、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッド。 呼び出しの後に元の既定以外のコンテキストを返します、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドが完了するとします。  
+ コードが既定以外のコンテキストで実行されて`true`いる`exitContext`場合、にを指定すると、スレッドは<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを実行する前に、既定以外のマネージコンテキスト (つまり、既定のコンテキストに遷移する) を終了します。 メソッドの<xref:System.Threading.WaitHandle.WaitAll%2A>呼び出しが完了した後、元の既定以外のコンテキストに戻ります。  
   
- これは、便利な場合、コンテキスト バインド クラスには<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>します。 その場合は、クラスのメンバーに対するすべての呼び出しを自動的に同期し、同期ドメインは、クラスのコードの本文全体。 メンバーの呼び出し履歴内のコードを呼び出すかどうか、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを指定して`true`の`exitContext`スレッドが続行する、オブジェクトのすべてのメンバーへの呼び出しでブロックされているスレッドを許可する、同期ドメインを終了します。 ときに、<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドが戻る呼び出しを行ったスレッドが同期ドメインを再入力を待つ必要があります。  
+ これは、コンテキストバインドクラスにがある<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>場合に便利です。 その場合、クラスのメンバーへのすべての呼び出しが自動的に同期され、同期ドメインがクラスのコード本文全体になります。 メンバーの呼び出し履歴内のコードが<xref:System.Threading.WaitHandle.WaitAll%2A>メソッドを呼び出し、に`exitContext`を`true`指定した場合、スレッドは同期ドメインを終了します。これにより、オブジェクトの任意のメンバーへの呼び出しでブロックされているスレッドを続行できます。 メソッドから<xref:System.Threading.WaitHandle.WaitAll%2A>制御が戻ったとき、呼び出しを行ったスレッドは、同期ドメインの再入力を待機する必要があります。  
   
    
   
 ## Examples  
- 次のコード例では、スレッド プールを使用して非同期的に作成し、ファイルのグループを出力する方法を示します。 個々 の書き込み操作は、作業項目および信号としてキューに登録が完了します。 メイン スレッドは、すべての項目からの通知の待機し、終了します。  
+ 次のコード例では、スレッドプールを使用して、ファイルのグループに対して非同期的に作成および書き込みを行う方法を示します。 各書き込み操作は、作業項目としてキューに登録され、完了時に通知されます。 メインスレッドは、すべての項目がシグナル状態になるのを待機してから終了します。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitAll3#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAll3/CPP/source3.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitAll3#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAll3/CS/source3.cs#1)]
@@ -1200,7 +1200,7 @@
 または 
 <paramref name="waitHandles" /> 配列内の 1 つ以上のオブジェクトが <see langword="null" /> です。  
   
-または 
+- または - 
  <paramref name="waitHandles" /> は要素を持たない配列で、.NET Framework のバージョンが 2.0 以降です。</exception>
         <exception cref="T:System.DuplicateWaitObjectException"><paramref name="waitHandles" /> 配列に、重複する要素が含まれています。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="waitHandles" /> のオブジェクトの数が、システムで許可されている範囲を超えています。  
@@ -1276,21 +1276,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを返します。`true`ミュー テックスが破棄されたため、待機が終了した場合。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitAny%2A> 、ミューテックス`true`が破棄されるため、待機が完了した場合、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- <xref:System.Threading.WaitHandle.WaitAny%2A>メソッドがスローされます、<xref:System.Threading.AbandonedMutexException>放棄されたミュー テックスのため、待機が完了したときにのみです。 場合`waitHandles`放棄されたミュー テックスよりも低いインデックス番号でリリースされたミュー テックスが含まれています、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが正常に完了して、例外はスローされません。  
+ メソッド<xref:System.Threading.WaitHandle.WaitAny%2A>は、破棄<xref:System.Threading.AbandonedMutexException>されたミューテックスが原因で待機が完了した場合にのみ、をスローします。 に`waitHandles`解放されたミューテックスが破棄された mutex よりも小さい場合<xref:System.Threading.WaitHandle.WaitAny%2A> 、メソッドは正常に完了し、例外はスローされません。  
   
 > [!NOTE]
->  .NET Framework バージョン 2.0 では、スレッドが終了するか明示的に解放しないままを中止する場合よりも前のバージョンで、 <xref:System.Threading.Mutex>、および`Mutex`で 0 (ゼロ) のインデックス位置にある、`WaitAny`別のスレッドによって返されるインデックスで配列`WaitAny`は0 ではなく 128 です。  
+>  バージョン2.0 より前の .NET Framework のバージョンでは、スレッドが明示<xref:System.Threading.Mutex>的にを解放せずに終了または中止`Mutex`し、別のスレッドの`WaitAny`配列のインデックス 0 (ゼロ) にある場合`WaitAny` 、によって返されるインデックスはです。0ではなく128。  
   
- このメソッドは、いずれかのハンドルがシグナルを受け取るを返します。 呼び出し中に 1 つ以上のオブジェクトがシグナル状態に場合、は、シグナル状態のすべてのオブジェクトの最小のインデックス値を含むシグナル状態のオブジェクトの配列インデックスを返します。 一部の実装の詳細は 64 ハンドルが渡される場合に、<xref:System.NotSupportedException>がスローされます。  
+ ハンドルがシグナル状態になると、このメソッドはを返します。 呼び出し中に複数のオブジェクトがシグナル状態になると、戻り値は、シグナルが発生したすべてのオブジェクトの最小のインデックス値を持つシグナル化されたオブジェクトの配列インデックスになります。 一部の実装では、64のハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。  
   
- 呼び出しと同じですがこのメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitAny%28System.Threading.WaitHandle%5B%5D%2CSystem.Int32%2CSystem.Boolean%29>メソッドのオーバー ロードは、-1 を指定する (または<xref:System.Threading.Timeout.Infinite?displayProperty=nameWithType>) の`millisecondsTimeout`と`true`の`exitContext`します。  
+ この<xref:System.Threading.WaitHandle.WaitAny%28System.Threading.WaitHandle%5B%5D%2CSystem.Int32%2CSystem.Boolean%29>メソッドの`millisecondsTimeout` `true` <xref:System.Threading.Timeout.Infinite?displayProperty=nameWithType>オーバーロードを呼び出すことは、メソッドのオーバーロードを呼び出し、およびに対して-1(または)を指定することと同じです。`exitContext`  
   
    
   
 ## Examples  
- 次のコード例は、呼び出し元を示します、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッド。  
+ 次のコード例は、メソッド<xref:System.Threading.WaitHandle.WaitAny%2A>を呼び出す方法を示しています。  
   
  [!code-cpp[WaitHandle#1](~/samples/snippets/cpp/VS_Snippets_CLR/WaitHandle/cpp/WaitHandle.cpp#1)]
  [!code-csharp[WaitHandle#1](~/samples/snippets/csharp/VS_Snippets_CLR/WaitHandle/CS/WaitHandle.cs#1)]
@@ -1358,13 +1358,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`millisecondsTimeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`millisecondsTimeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.WaitHandle.WaitAny%2A>メソッドがスローされます、<xref:System.Threading.AbandonedMutexException>放棄されたミュー テックスのため、待機が完了したときにのみです。 場合`waitHandles`放棄されたミュー テックスよりも低いインデックス番号でリリースされたミュー テックスが含まれています、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが正常に完了して、例外はスローされません。  
+ メソッド<xref:System.Threading.WaitHandle.WaitAny%2A>は、破棄<xref:System.Threading.AbandonedMutexException>されたミューテックスが原因で待機が完了した場合にのみ、をスローします。 に`waitHandles`解放されたミューテックスが破棄された mutex よりも小さい場合<xref:System.Threading.WaitHandle.WaitAny%2A> 、メソッドは正常に完了し、例外はスローされません。  
   
- このメソッドは、ハンドルのいずれかが通知されるとき、またはタイムアウトが発生したときに、待機が終了するときに返します。 呼び出し中に 1 つ以上のオブジェクトがシグナル状態に場合、は、シグナル状態のすべてのオブジェクトの最小のインデックス値を含むシグナル状態のオブジェクトの配列インデックスを返します。 一部の実装の詳細は 64 ハンドルが渡される場合に、<xref:System.NotSupportedException>がスローされます。  
+ このメソッドは、待機が終了したとき、いずれかのハンドルがシグナル状態になったとき、またはタイムアウトが発生したときに、を返します。 呼び出し中に複数のオブジェクトがシグナル状態になると、戻り値は、シグナルが発生したすべてのオブジェクトの最小のインデックス値を持つシグナル化されたオブジェクトの配列インデックスになります。 一部の実装では、64のハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。  
   
- 呼び出しと同じには、このメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitAny%28System.Threading.WaitHandle%5B%5D%2CSystem.Int32%2CSystem.Boolean%29>オーバー ロードを指定して`false`の`exitContext`します。  
+ このメソッドオーバーロードの呼び出しは、 <xref:System.Threading.WaitHandle.WaitAny%28System.Threading.WaitHandle%5B%5D%2CSystem.Int32%2CSystem.Boolean%29>オーバーロードを呼び出し、に`exitContext`を`false`指定することと同じです。  
   
  ]]></format>
         </remarks>
@@ -1428,15 +1428,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`timeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`timeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.WaitHandle.WaitAny%2A>メソッドがスローされます、<xref:System.Threading.AbandonedMutexException>放棄されたミュー テックスのため、待機が完了したときにのみです。 場合`waitHandles`放棄されたミュー テックスよりも低いインデックス番号でリリースされたミュー テックスが含まれています、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが正常に完了して、例外はスローされません。  
+ メソッド<xref:System.Threading.WaitHandle.WaitAny%2A>は、破棄<xref:System.Threading.AbandonedMutexException>されたミューテックスが原因で待機が完了した場合にのみ、をスローします。 に`waitHandles`解放されたミューテックスが破棄された mutex よりも小さい場合<xref:System.Threading.WaitHandle.WaitAny%2A> 、メソッドは正常に完了し、例外はスローされません。  
   
- このメソッドは、ハンドルのいずれかが通知されるとき、または、タイムアウトが発生したときに、待機が終了するときに返します。 呼び出し中に 1 つ以上のオブジェクトがシグナル状態に場合、は、シグナル状態のすべてのオブジェクトの最小のインデックス値を含むシグナル状態のオブジェクトの配列インデックスを返します。 一部の実装の詳細は 64 ハンドルが渡される場合に、<xref:System.NotSupportedException>がスローされます。  
+ このメソッドは、待機が終了したとき、いずれかのハンドルがシグナル状態になったとき、またはタイムアウトが発生したときに、を返します。 呼び出し中に複数のオブジェクトがシグナル状態になると、戻り値は、シグナルが発生したすべてのオブジェクトの最小のインデックス値を持つシグナル化されたオブジェクトの配列インデックスになります。 一部の実装では、64のハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。  
   
- 最大値`timeout`は<xref:System.Int32.MaxValue?displayProperty=nameWithType>します。  
+ の`timeout`最大値は<xref:System.Int32.MaxValue?displayProperty=nameWithType>です。  
   
- 呼び出しと同じには、このメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitAny%28System.Threading.WaitHandle%5B%5D%2CSystem.TimeSpan%2CSystem.Boolean%29>オーバー ロードを指定して`false`の`exitContext`します。  
+ このメソッドオーバーロードの呼び出しは、 <xref:System.Threading.WaitHandle.WaitAny%28System.Threading.WaitHandle%5B%5D%2CSystem.TimeSpan%2CSystem.Boolean%29>オーバーロードを呼び出し、に`exitContext`を`false`指定することと同じです。  
   
  ]]></format>
         </remarks>
@@ -1504,28 +1504,28 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`millisecondsTimeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`millisecondsTimeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを返します。`true`ミュー テックスが破棄されたため、待機が終了した場合。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitAny%2A> 、ミューテックス`true`が破棄されるため、待機が完了した場合、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- <xref:System.Threading.WaitHandle.WaitAny%2A>メソッドがスローされます、<xref:System.Threading.AbandonedMutexException>放棄されたミュー テックスのため、待機が完了したときにのみです。 場合`waitHandles`放棄されたミュー テックスよりも低いインデックス番号でリリースされたミュー テックスが含まれています、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが正常に完了して、例外はスローされません。  
+ メソッド<xref:System.Threading.WaitHandle.WaitAny%2A>は、破棄<xref:System.Threading.AbandonedMutexException>されたミューテックスが原因で待機が完了した場合にのみ、をスローします。 に`waitHandles`解放されたミューテックスが破棄された mutex よりも小さい場合<xref:System.Threading.WaitHandle.WaitAny%2A> 、メソッドは正常に完了し、例外はスローされません。  
   
 > [!NOTE]
->  .NET Framework バージョン 2.0 では、スレッドが終了するか明示的に解放しないままを中止する場合よりも前のバージョンで、 <xref:System.Threading.Mutex>、および`Mutex`で 0 (ゼロ) のインデックス位置にある、`WaitAny`別のスレッドによって返されるインデックスで配列`WaitAny`は0 ではなく 128 です。  
+>  バージョン2.0 より前の .NET Framework のバージョンでは、スレッドが明示<xref:System.Threading.Mutex>的にを解放せずに終了または中止`Mutex`し、別のスレッドの`WaitAny`配列のインデックス 0 (ゼロ) にある場合`WaitAny` 、によって返されるインデックスはです。0ではなく128。  
   
- このメソッドは、ハンドルのいずれかが通知されるとき、またはタイムアウトが発生したときに、待機が終了するときに返します。 呼び出し中に 1 つ以上のオブジェクトがシグナル状態に場合、は、シグナル状態のすべてのオブジェクトの最小のインデックス値を含むシグナル状態のオブジェクトの配列インデックスを返します。 一部の実装の詳細は 64 ハンドルが渡される場合に、<xref:System.NotSupportedException>がスローされます。  
+ このメソッドは、待機が終了したとき、いずれかのハンドルがシグナル状態になったとき、またはタイムアウトが発生したときに、を返します。 呼び出し中に複数のオブジェクトがシグナル状態になると、戻り値は、シグナルが発生したすべてのオブジェクトの最小のインデックス値を持つシグナル化されたオブジェクトの配列インデックスになります。 一部の実装では、64のハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。  
   
-## <a name="notes-on-exiting-the-context"></a>コンテキストの終了時の注意  
- `exitContext`パラメーターには効果がない場合を除き、<xref:System.Threading.WaitHandle.WaitAny%2A>既定以外の管理対象のコンテキスト内からメソッドが呼び出されます。 派生したクラスのインスタンスへの呼び出し、スレッドが場合に生じる<xref:System.ContextBoundObject>します。 派生していないクラスでメソッドを現在実行している場合でも<xref:System.ContextBoundObject>と同様に、 <xref:System.String>、既定以外のコンテキストであることができる場合、<xref:System.ContextBoundObject>が現在のアプリケーション ドメインで、スタック上にします。  
+## <a name="notes-on-exiting-the-context"></a>コンテキストの終了に関する注意事項  
+ 既定`exitContext`以外のマネージコンテキスト内から<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが呼び出されない限り、パラメーターは無効です。 これは、スレッドがから<xref:System.ContextBoundObject>派生したクラスのインスタンスの呼び出し内にある場合に発生する可能性があります。 から<xref:System.ContextBoundObject>派生していないクラスのメソッドを現在実行している場合でも<xref:System.String>、の<xref:System.ContextBoundObject>ように、が現在のアプリケーションドメインのスタックにある場合は、既定以外のコンテキストにすることができます。  
   
- 既定以外のコンテキストでコードを実行しているときに指定する`true`の`exitContext`が原因で、既定以外の管理コンテキストを終了するスレッド (つまり、既定のコンテキストへの移行) 実行する前に、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッド。 呼び出し後、スレッドが元の既定以外のコンテキストに戻る、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが完了するとします。  
+ コードが既定以外のコンテキストで実行されて`true`いる`exitContext`場合、にを指定すると、スレッドは<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを実行する前に、既定以外のマネージコンテキスト (つまり、既定のコンテキストに遷移する) を終了します。 スレッドは、メソッドの<xref:System.Threading.WaitHandle.WaitAny%2A>呼び出しが完了した後、元の既定以外のコンテキストに戻ります。  
   
- これは、便利な場合、コンテキスト バインド クラスには<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>します。 その場合は、クラスのメンバーに対するすべての呼び出しを自動的に同期し、同期ドメインは、クラスのコードの本文全体。 メンバーの呼び出し履歴内のコードを呼び出すかどうか、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを指定して`true`の`exitContext`スレッドが続行する、オブジェクトのすべてのメンバーへの呼び出しでブロックされているスレッドを許可する、同期ドメインを終了します。 ときに、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが戻る呼び出しを行ったスレッドが同期ドメインを再入力を待つ必要があります。  
+ これは、コンテキストバインドクラスにがある<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>場合に便利です。 その場合、クラスのメンバーへのすべての呼び出しが自動的に同期され、同期ドメインがクラスのコード本文全体になります。 メンバーの呼び出し履歴内のコードが<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを呼び出し、に`exitContext`を`true`指定した場合、スレッドは同期ドメインを終了します。これにより、オブジェクトの任意のメンバーへの呼び出しでブロックされているスレッドを続行できます。 メソッドから<xref:System.Threading.WaitHandle.WaitAny%2A>制御が戻ったとき、呼び出しを行ったスレッドは、同期ドメインの再入力を待機する必要があります。  
   
    
   
 ## Examples  
- 次のコード例では、同時に複数のディスク上のファイルを検索するスレッド プールを使用する方法を示します。 領域の考慮事項は、各ディスクのルート ディレクトリのみが検索されます。  
+ 次のコード例は、スレッドプールを使用して複数のディスク上のファイルを同時に検索する方法を示しています。 領域に関する考慮事項については、各ディスクのルートディレクトリのみが検索されます。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitAny2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAny2/CPP/source2.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitAny2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAny2/CS/source2.cs#1)]
@@ -1593,30 +1593,30 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`timeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`timeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを返します。`true`ミュー テックスが破棄されたため、待機が終了した場合。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitAny%2A> 、ミューテックス`true`が破棄されるため、待機が完了した場合、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- <xref:System.Threading.WaitHandle.WaitAny%2A>メソッドがスローされます、<xref:System.Threading.AbandonedMutexException>放棄されたミュー テックスのため、待機が完了したときにのみです。 場合`waitHandles`放棄されたミュー テックスよりも低いインデックス番号でリリースされたミュー テックスが含まれています、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが正常に完了して、例外はスローされません。  
+ メソッド<xref:System.Threading.WaitHandle.WaitAny%2A>は、破棄<xref:System.Threading.AbandonedMutexException>されたミューテックスが原因で待機が完了した場合にのみ、をスローします。 に`waitHandles`解放されたミューテックスが破棄された mutex よりも小さい場合<xref:System.Threading.WaitHandle.WaitAny%2A> 、メソッドは正常に完了し、例外はスローされません。  
   
 > [!NOTE]
->  .NET Framework バージョン 2.0 では、スレッドが終了するか明示的に解放しないままを中止する場合よりも前のバージョンで、 <xref:System.Threading.Mutex>、および`Mutex`で 0 (ゼロ) のインデックス位置にある、`WaitAny`別のスレッドによって返されるインデックスで配列`WaitAny`は0 ではなく 128 です。  
+>  バージョン2.0 より前の .NET Framework のバージョンでは、スレッドが明示<xref:System.Threading.Mutex>的にを解放せずに終了または中止`Mutex`し、別のスレッドの`WaitAny`配列のインデックス 0 (ゼロ) にある場合`WaitAny` 、によって返されるインデックスはです。0ではなく128。  
   
- このメソッドは、ハンドルのいずれかが通知されるとき、または、タイムアウトが発生したときに、待機が終了するときに返します。 呼び出し中に 1 つ以上のオブジェクトがシグナル状態に場合、は、シグナル状態のすべてのオブジェクトの最小のインデックス値を含むシグナル状態のオブジェクトの配列インデックスを返します。 一部の実装の詳細は 64 ハンドルが渡される場合に、<xref:System.NotSupportedException>がスローされます。  
+ このメソッドは、待機が終了したとき、いずれかのハンドルがシグナル状態になったとき、またはタイムアウトが発生したときに、を返します。 呼び出し中に複数のオブジェクトがシグナル状態になると、戻り値は、シグナルが発生したすべてのオブジェクトの最小のインデックス値を持つシグナル化されたオブジェクトの配列インデックスになります。 一部の実装では、64のハンドルが渡さ<xref:System.NotSupportedException>れると、がスローされます。  
   
- 最大値`timeout`は<xref:System.Int32.MaxValue?displayProperty=nameWithType>します。  
+ の`timeout`最大値は<xref:System.Int32.MaxValue?displayProperty=nameWithType>です。  
   
-## <a name="notes-on-exiting-the-context"></a>コンテキストの終了時の注意  
- `exitContext`パラメーターには効果がない場合を除き、<xref:System.Threading.WaitHandle.WaitAny%2A>既定以外の管理対象のコンテキスト内からメソッドが呼び出されます。 派生したクラスのインスタンスへの呼び出し、スレッドが場合に生じる<xref:System.ContextBoundObject>します。 派生していないクラスでメソッドを現在実行している場合でも<xref:System.ContextBoundObject>と同様に、 <xref:System.String>、既定以外のコンテキストであることができる場合、<xref:System.ContextBoundObject>が現在のアプリケーション ドメインで、スタック上にします。  
+## <a name="notes-on-exiting-the-context"></a>コンテキストの終了に関する注意事項  
+ 既定`exitContext`以外のマネージコンテキスト内から<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが呼び出されない限り、パラメーターは無効です。 これは、スレッドがから<xref:System.ContextBoundObject>派生したクラスのインスタンスの呼び出し内にある場合に発生する可能性があります。 から<xref:System.ContextBoundObject>派生していないクラスのメソッドを現在実行している場合でも<xref:System.String>、の<xref:System.ContextBoundObject>ように、が現在のアプリケーションドメインのスタックにある場合は、既定以外のコンテキストにすることができます。  
   
- 既定以外のコンテキストでコードを実行しているときに指定する`true`の`exitContext`が原因で、既定以外の管理コンテキストを終了するスレッド (つまり、既定のコンテキストへの移行) 実行する前に、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッド。 呼び出し後、スレッドが元の既定以外のコンテキストに戻る、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが完了するとします。  
+ コードが既定以外のコンテキストで実行されて`true`いる`exitContext`場合、にを指定すると、スレッドは<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを実行する前に、既定以外のマネージコンテキスト (つまり、既定のコンテキストに遷移する) を終了します。 スレッドは、メソッドの<xref:System.Threading.WaitHandle.WaitAny%2A>呼び出しが完了した後、元の既定以外のコンテキストに戻ります。  
   
- これは、便利な場合、コンテキスト バインド クラスには<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>します。 その場合は、クラスのメンバーに対するすべての呼び出しを自動的に同期し、同期ドメインは、クラスのコードの本文全体。 メンバーの呼び出し履歴内のコードを呼び出すかどうか、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを指定して`true`の`exitContext`スレッドが続行する、オブジェクトのすべてのメンバーへの呼び出しでブロックされているスレッドを許可する、同期ドメインを終了します。 ときに、<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドが戻る呼び出しを行ったスレッドが同期ドメインを再入力を待つ必要があります。  
+ これは、コンテキストバインドクラスにがある<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>場合に便利です。 その場合、クラスのメンバーへのすべての呼び出しが自動的に同期され、同期ドメインがクラスのコード本文全体になります。 メンバーの呼び出し履歴内のコードが<xref:System.Threading.WaitHandle.WaitAny%2A>メソッドを呼び出し、に`exitContext`を`true`指定した場合、スレッドは同期ドメインを終了します。これにより、オブジェクトの任意のメンバーへの呼び出しでブロックされているスレッドを続行できます。 メソッドから<xref:System.Threading.WaitHandle.WaitAny%2A>制御が戻ったとき、呼び出しを行ったスレッドは、同期ドメインの再入力を待機する必要があります。  
   
    
   
 ## Examples  
- 次のコード例では、同時に複数のディスク上のファイルを検索するスレッド プールを使用する方法を示します。 領域の考慮事項は、各ディスクのルート ディレクトリのみが検索されます。  
+ 次のコード例は、スレッドプールを使用して複数のディスク上のファイルを同時に検索する方法を示しています。 領域に関する考慮事項については、各ディスクのルートディレクトリのみが検索されます。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitAny3#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAny3/CPP/source3.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitAny3#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAny3/CS/source3.cs#1)]
@@ -1691,18 +1691,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを返します。`true`ミュー テックスが破棄されます。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitOne%2A> 、ミューテックス`true`が破棄されると、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- このメソッドは、現在のインスタンスまで無期限にブロックの呼び出し元がシグナルを受信します。 このメソッドを使用するまでブロック、<xref:System.Threading.WaitHandle>が別のスレッドからシグナルを受け取る、非同期操作の完了時に、生成がなど。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
+ このメソッドの呼び出し元は、現在のインスタンスがシグナルを受信するまで無期限にブロックされます。 このメソッドは、 <xref:System.Threading.WaitHandle>が別のスレッドからのシグナルを受信するまでブロックするために使用します。たとえば、非同期操作の完了時にが生成されます。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
   
- 呼び出しと同じですがこのメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitOne%28System.Int32%2CSystem.Boolean%29>メソッドのオーバー ロードは、-1 を指定するまたは<xref:System.Threading.Timeout.Infinite?displayProperty=nameWithType>、最初のパラメーターと`false`2 番目のパラメーター。  
+ このメソッド<xref:System.Threading.WaitHandle.WaitOne%28System.Int32%2CSystem.Boolean%29> のオーバーロード<xref:System.Threading.Timeout.Infinite?displayProperty=nameWithType>を呼び出すことは、メソッドのオーバーロードを呼び出し、最初のパラメーターに-1またはを指定し、2番目のパラメーターにを指定することと同じです。`false`  
   
  派生クラスの動作をカスタマイズするには、このメソッドをオーバーライドします。  
   
    
   
 ## Examples  
- 次のコード例では、待機ハンドルを使用して、バック グラウンド スレッドの実行が完了するまで待機する間に終了してから、プロセスを監視する方法を示します。  
+ 次のコード例は、待機ハンドルを使用して、バックグラウンドスレッドの実行が完了するのを待機している間にプロセスを終了しないようにする方法を示しています。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitOne1#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitOne1/CPP/source1.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitOne1#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitOne1/CS/source1.cs#1)]
@@ -1757,18 +1757,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`millisecondsTimeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`millisecondsTimeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- 現在のインスタンスがシグナルまたはタイムアウトを受信するまでこのメソッドはブロックの呼び出し元に発生します。 このメソッドを使用するまでブロック、<xref:System.Threading.WaitHandle>が別のスレッドからシグナルを受け取る、非同期操作の完了時に、生成がなど。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
+ このメソッドの呼び出し元は、現在のインスタンスがシグナルを受信するか、タイムアウトが発生するまでブロックします。 このメソッドは、 <xref:System.Threading.WaitHandle>が別のスレッドからのシグナルを受信するまでブロックするために使用します。たとえば、非同期操作の完了時にが生成されます。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
   
  派生クラスの動作をカスタマイズするには、このメソッドをオーバーライドします。  
   
- 呼び出しと同じには、このメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitOne%28System.Int32%2CSystem.Boolean%29>オーバー ロードを指定して`false`の`exitContext`します。  
+ このメソッドオーバーロードの呼び出しは、 <xref:System.Threading.WaitHandle.WaitOne%28System.Int32%2CSystem.Boolean%29>オーバーロードを呼び出し、に`exitContext`を`false`指定することと同じです。  
   
    
   
 ## Examples  
- 次のコード例では、待機ハンドルを使用して、バック グラウンド スレッドの実行が完了するまで待機する間に終了してから、プロセスを監視する方法を示します。  
+ 次のコード例は、待機ハンドルを使用して、バックグラウンドスレッドの実行が完了するのを待機している間にプロセスを終了しないようにする方法を示しています。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitOne2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitOne2/CPP/source2.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitOne2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitOne2/CS/source2.cs#1)]
@@ -1824,15 +1824,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`timeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`timeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- 現在のインスタンスがシグナルまたはタイムアウトを受信するまでこのメソッドはブロックの呼び出し元に発生します。 このメソッドを使用するまでブロック、<xref:System.Threading.WaitHandle>が別のスレッドからシグナルを受け取る、非同期操作の完了時に、生成がなど。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
+ このメソッドの呼び出し元は、現在のインスタンスがシグナルを受信するか、タイムアウトが発生するまでブロックします。 このメソッドは、 <xref:System.Threading.WaitHandle>が別のスレッドからのシグナルを受信するまでブロックするために使用します。たとえば、非同期操作の完了時にが生成されます。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
   
  派生クラスの動作をカスタマイズするには、このメソッドをオーバーライドします。  
   
- 最大値`timeout`は<xref:System.Int32.MaxValue?displayProperty=nameWithType>します。  
+ の`timeout`最大値は<xref:System.Int32.MaxValue?displayProperty=nameWithType>です。  
   
- 呼び出しと同じには、このメソッドのオーバー ロードを呼び出し、<xref:System.Threading.WaitHandle.WaitOne%28System.TimeSpan%2CSystem.Boolean%29>オーバー ロードを指定して`false`の`exitContext`します。  
+ このメソッドオーバーロードの呼び出しは、 <xref:System.Threading.WaitHandle.WaitOne%28System.TimeSpan%2CSystem.Boolean%29>オーバーロードを呼び出し、に`exitContext`を`false`指定することと同じです。  
   
  ]]></format>
         </remarks>
@@ -1885,25 +1885,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`millisecondsTimeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`millisecondsTimeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを返します。`true`ミュー テックスが破棄されます。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitOne%2A> 、ミューテックス`true`が破棄されると、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- 現在のインスタンスがシグナルまたはタイムアウトを受信するまでこのメソッドはブロックの呼び出し元に発生します。 このメソッドを使用するまでブロック、<xref:System.Threading.WaitHandle>が別のスレッドからシグナルを受け取る、非同期操作の完了時に、生成がなど。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
+ このメソッドの呼び出し元は、現在のインスタンスがシグナルを受信するか、タイムアウトが発生するまでブロックします。 このメソッドは、 <xref:System.Threading.WaitHandle>が別のスレッドからのシグナルを受信するまでブロックするために使用します。たとえば、非同期操作の完了時にが生成されます。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
   
  派生クラスの動作をカスタマイズするには、このメソッドをオーバーライドします。  
   
-## <a name="notes-on-exiting-the-context"></a>コンテキストの終了時の注意  
- `exitContext`パラメーターには効果がない場合を除き、<xref:System.Threading.WaitHandle.WaitOne%2A>既定以外の管理対象のコンテキスト内からメソッドが呼び出されます。 派生したクラスのインスタンスへの呼び出し、スレッドが場合に生じる<xref:System.ContextBoundObject>します。 派生していないクラスでメソッドを現在実行している場合でも<xref:System.ContextBoundObject>と同様に、 <xref:System.String>、既定以外のコンテキストであることができる場合、<xref:System.ContextBoundObject>が現在のアプリケーション ドメインで、スタック上にします。  
+## <a name="notes-on-exiting-the-context"></a>コンテキストの終了に関する注意事項  
+ 既定`exitContext`以外のマネージコンテキスト内から<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドが呼び出されない限り、パラメーターは無効です。 これは、スレッドがから<xref:System.ContextBoundObject>派生したクラスのインスタンスの呼び出し内にある場合に発生する可能性があります。 から<xref:System.ContextBoundObject>派生していないクラスのメソッドを現在実行している場合でも<xref:System.String>、の<xref:System.ContextBoundObject>ように、が現在のアプリケーションドメインのスタックにある場合は、既定以外のコンテキストにすることができます。  
   
- 既定以外のコンテキストでコードを実行しているときに指定する`true`の`exitContext`が原因で、既定以外の管理コンテキストを終了するスレッド (つまり、既定のコンテキストへの移行) 実行する前に、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッド。 呼び出し後、スレッドが元の既定以外のコンテキストに戻る、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドが完了するとします。  
+ コードが既定以外のコンテキストで実行されて`true`いる`exitContext`場合、にを指定すると、スレッドは<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを実行する前に、既定以外のマネージコンテキスト (つまり、既定のコンテキストに遷移する) を終了します。 スレッドは、メソッドの<xref:System.Threading.WaitHandle.WaitOne%2A>呼び出しが完了した後、元の既定以外のコンテキストに戻ります。  
   
- これは、便利な場合、コンテキスト バインド クラスには<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>します。 その場合は、クラスのメンバーに対するすべての呼び出しを自動的に同期し、同期ドメインは、クラスのコードの本文全体。 メンバーの呼び出し履歴内のコードを呼び出すかどうか、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを指定して`true`の`exitContext`スレッドが続行する、オブジェクトのすべてのメンバーへの呼び出しでブロックされているスレッドを許可する、同期ドメインを終了します。 ときに、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドが戻る呼び出しを行ったスレッドが同期ドメインを再入力を待つ必要があります。  
+ これは、コンテキストバインドクラスにがある<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>場合に便利です。 その場合、クラスのメンバーへのすべての呼び出しが自動的に同期され、同期ドメインがクラスのコード本文全体になります。 メンバーの呼び出し履歴内のコードが<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを呼び出し、に`exitContext`を`true`指定した場合、スレッドは同期ドメインを終了します。これにより、オブジェクトの任意のメンバーへの呼び出しでブロックされているスレッドを続行できます。 メソッドから<xref:System.Threading.WaitHandle.WaitOne%2A>制御が戻ったとき、呼び出しを行ったスレッドは、同期ドメインの再入力を待機する必要があります。  
   
    
   
 ## Examples  
- 次の例は、どのように<xref:System.Threading.WaitHandle.WaitOne%28System.Int32%2CSystem.Boolean%29>同期ドメイン内で呼び出されたときのメソッドのオーバー ロードの動作します。 最初に、スレッドが待機する`exitContext`設定`false`し、待機がタイムアウトになるまでブロックします。 2 番目のスレッドを実行後、最初のスレッドを終了し、待つ`exitContext`に設定`true`します。 この 2 つ目のスレッドの待機ハンドルの通知への呼び出しがブロックされていないと、印刷待ちタイムアウトする前に、スレッドが完了するとします。  
+ 次の例は、メソッド<xref:System.Threading.WaitHandle.WaitOne%28System.Int32%2CSystem.Boolean%29>のオーバーロードが同期ドメイン内で呼び出された場合の動作を示しています。 まず、スレッドはをに`exitContext` `false`設定して待機し、待機タイムアウトが経過するまでブロックします。 2番目のスレッドは、最初のスレッドが終了`exitContext`した`true`後に実行され、がに設定された状態で待機します。 この2番目のスレッドの待機ハンドルを通知する呼び出しはブロックされず、スレッドは待機タイムアウト前に完了します。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitOne4#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.threading.waithandle.waitone4/cpp/source.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitOne4#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.waithandle.waitone4/cs/source.cs#1)]
@@ -1958,27 +1958,27 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`timeout`が 0 の場合、メソッドはブロックしません。 これにより、待機ハンドルの状態をテストし、すぐに返します。  
+ が`timeout` 0 の場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。  
   
- <xref:System.Threading.AbandonedMutexException> .NET Framework version 2.0 の新機能です。 以前のバージョンで、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを返します。`true`ミュー テックスが破棄されます。 放棄されたミュー テックスは、多くの場合、深刻なコーディング エラーを示します。 システム全体のミュー テックスを (たとえば、Windows タスク マネージャーを使用して) して、アプリケーションが突然終了されたことが示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
+ <xref:System.Threading.AbandonedMutexException>は .NET Framework バージョン2.0 の新バージョンです。 以前のバージョンでは<xref:System.Threading.WaitHandle.WaitOne%2A> 、ミューテックス`true`が破棄されると、メソッドはを返します。 多くの場合、放棄ミューテックスは深刻なコーディングエラーを示しています。 システム全体のミューテックスの場合は、アプリケーションが突然 (たとえば、Windows タスクマネージャーを使用して) 終了したことを示している可能性があります。 例外には、デバッグに役立つ情報が含まれています。  
   
- 現在のインスタンスがシグナルまたはタイムアウトを受信するまでこのメソッドはブロックの呼び出し元に発生します。 このメソッドを使用するまでブロック、<xref:System.Threading.WaitHandle>が別のスレッドからシグナルを受け取る、非同期操作の完了時に、生成がなど。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
+ このメソッドの呼び出し元は、現在のインスタンスがシグナルを受信するか、タイムアウトが発生するまでブロックします。 このメソッドは、 <xref:System.Threading.WaitHandle>が別のスレッドからのシグナルを受信するまでブロックするために使用します。たとえば、非同期操作の完了時にが生成されます。 詳細については、<xref:System.IAsyncResult> インターフェイスのトピックを参照してください。  
   
  派生クラスの動作をカスタマイズするには、このメソッドをオーバーライドします。  
   
- 最大値`timeout`は<xref:System.Int32.MaxValue?displayProperty=nameWithType>します。  
+ の`timeout`最大値は<xref:System.Int32.MaxValue?displayProperty=nameWithType>です。  
   
-## <a name="notes-on-exiting-the-context"></a>コンテキストの終了時の注意  
- `exitContext`パラメーターには効果がない場合を除き、<xref:System.Threading.WaitHandle.WaitOne%2A>既定以外の管理対象のコンテキスト内からメソッドが呼び出されます。 派生したクラスのインスタンスへの呼び出し、スレッドが場合に生じる<xref:System.ContextBoundObject>します。 派生していないクラスでメソッドを現在実行している場合でも<xref:System.ContextBoundObject>と同様に、 <xref:System.String>、既定以外のコンテキストであることができる場合、<xref:System.ContextBoundObject>が現在のアプリケーション ドメインで、スタック上にします。  
+## <a name="notes-on-exiting-the-context"></a>コンテキストの終了に関する注意事項  
+ 既定`exitContext`以外のマネージコンテキスト内から<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドが呼び出されない限り、パラメーターは無効です。 これは、スレッドがから<xref:System.ContextBoundObject>派生したクラスのインスタンスの呼び出し内にある場合に発生する可能性があります。 から<xref:System.ContextBoundObject>派生していないクラスのメソッドを現在実行している場合でも<xref:System.String>、の<xref:System.ContextBoundObject>ように、が現在のアプリケーションドメインのスタックにある場合は、既定以外のコンテキストにすることができます。  
   
- 既定以外のコンテキストでコードを実行しているときに指定する`true`の`exitContext`が原因で、既定以外の管理コンテキストを終了するスレッド (つまり、既定のコンテキストへの移行) 実行する前に、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッド。 呼び出し後、スレッドが元の既定以外のコンテキストに戻る、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドが完了するとします。  
+ コードが既定以外のコンテキストで実行されて`true`いる`exitContext`場合、にを指定すると、スレッドは<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを実行する前に、既定以外のマネージコンテキスト (つまり、既定のコンテキストに遷移する) を終了します。 スレッドは、メソッドの<xref:System.Threading.WaitHandle.WaitOne%2A>呼び出しが完了した後、元の既定以外のコンテキストに戻ります。  
   
- これは、便利な場合、コンテキスト バインド クラスには<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>します。 その場合は、クラスのメンバーに対するすべての呼び出しを自動的に同期し、同期ドメインは、クラスのコードの本文全体。 メンバーの呼び出し履歴内のコードを呼び出すかどうか、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを指定して`true`の`exitContext`スレッドが続行する、オブジェクトのすべてのメンバーへの呼び出しでブロックされているスレッドを許可する、同期ドメインを終了します。 ときに、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドが戻る呼び出しを行ったスレッドが同期ドメインを再入力を待つ必要があります。  
+ これは、コンテキストバインドクラスにがある<xref:System.Runtime.Remoting.Contexts.SynchronizationAttribute>場合に便利です。 その場合、クラスのメンバーへのすべての呼び出しが自動的に同期され、同期ドメインがクラスのコード本文全体になります。 メンバーの呼び出し履歴内のコードが<xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを呼び出し、に`exitContext`を`true`指定した場合、スレッドは同期ドメインを終了します。これにより、オブジェクトの任意のメンバーへの呼び出しでブロックされているスレッドを続行できます。 メソッドから<xref:System.Threading.WaitHandle.WaitOne%2A>制御が戻ったとき、呼び出しを行ったスレッドは、同期ドメインの再入力を待機する必要があります。  
   
    
   
 ## Examples  
- 次のコード例では、待機ハンドルを使用して、バック グラウンド スレッドの実行が完了するまで待機する間に終了してから、プロセスを監視する方法を示します。  
+ 次のコード例は、待機ハンドルを使用して、バックグラウンドスレッドの実行が完了するのを待機している間にプロセスを終了しないようにする方法を示しています。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitOne3#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitOne3/CPP/source3.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitOne3#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitOne3/CS/source3.cs#1)]
@@ -2033,12 +2033,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このフィールドは戻り値のいずれかの`WaitAny`します。  
+ このフィールドは、の`WaitAny`有効な戻り値の1つです。  
   
    
   
 ## Examples  
- 次のコード例では、同時に複数のディスク上のファイルを検索するスレッド プールを使用する方法を示します。 領域の考慮事項は、各ディスクのルート ディレクトリのみが検索されます。  
+ 次のコード例は、スレッドプールを使用して複数のディスク上のファイルを同時に検索する方法を示しています。 領域に関する考慮事項については、各ディスクのルートディレクトリのみが検索されます。  
   
  [!code-cpp[System.Threading.WaitHandle.WaitAny2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAny2/CPP/source2.cpp#1)]
  [!code-csharp[System.Threading.WaitHandle.WaitAny2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.WaitHandle.WaitAny2/CS/source2.cs#1)]

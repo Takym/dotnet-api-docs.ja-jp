@@ -1,5 +1,5 @@
 <Type Name="ClaimsAuthenticationManager" FullName="System.Security.Claims.ClaimsAuthenticationManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="10292ce7dd245b3f3cdb26ecfc6eb397301111ad" /><Meta Name="ms.sourcegitcommit" Value="9e3550fb2088d4faf2043f0acb29da4555519937" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/12/2018" /><Meta Name="ms.locfileid" Value="53296476" /></Metadata><TypeSignature Language="C#" Value="public class ClaimsAuthenticationManager : System.IdentityModel.Configuration.ICustomIdentityConfiguration" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a180b05db991abf95954dec907506a207deaa8d6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69263944" /></Metadata><TypeSignature Language="C#" Value="public class ClaimsAuthenticationManager : System.IdentityModel.Configuration.ICustomIdentityConfiguration" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ClaimsAuthenticationManager extends System.Object implements class System.IdentityModel.Configuration.ICustomIdentityConfiguration" />
   <TypeSignature Language="DocId" Value="T:System.Security.Claims.ClaimsAuthenticationManager" />
   <TypeSignature Language="VB.NET" Value="Public Class ClaimsAuthenticationManager&#xA;Implements ICustomIdentityConfiguration" />
@@ -23,22 +23,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クレーム認証マネージャーは、アプリケーションの機能拡張ポイント要求処理パイプラインの検証、フィルター処理、変更に使用できる、着信要求、またはによって提示されるクレームのセットに新しい要求を挿入、 <xref:System.Security.Claims.ClaimsPrincipal> RP の前にアプリケーション コードが実行されます。 カスタム実装を返すことができますも<xref:System.Security.Claims.ClaimsPrincipal>に RP アプリケーションで必要な場合。 によって提供される既定の実装、<xref:System.Security.Claims.ClaimsAuthenticationManager>クラス内のクレームを返します、<xref:System.Security.Claims.ClaimsPrincipal>未変更の状態ただし、このクラスから派生し、上書き、<xref:System.Security.Claims.ClaimsAuthenticationManager.Authenticate%2A>内のクレームを変更する方法、 <xref:System.Security.Claims.ClaimsPrincipal> (またはカスタムを返す。<xref:System.Security.Claims.ClaimsPrincipal>).  
+ 要求認証マネージャーは、アプリケーションの要求処理パイプラインの機能拡張ポイントを提供します。このパイプラインを使用して、RP の<xref:System.Security.Claims.ClaimsPrincipal>前にによって提示されるクレームの検証、フィルター、変更、入力方向の要求、または新しい要求の挿入を行うことができます。アプリケーションコードが実行されます。 RP アプリケーションで必要な場合は、 <xref:System.Security.Claims.ClaimsPrincipal>のカスタム実装を返すこともできます。 <xref:System.Security.Claims.ClaimsAuthenticationManager>クラスによって提供される既定の実装では<xref:System.Security.Claims.ClaimsPrincipal> 、変更されていないの要求が返されます<xref:System.Security.Claims.ClaimsAuthenticationManager.Authenticate%2A> 。ただし、このクラスから派生<xref:System.Security.Claims.ClaimsPrincipal>させ、メソッドをオーバーライドして、内のクレームを変更することができます (または、カスタムを返すには、<xref:System.Security.Claims.ClaimsPrincipal>).  
   
- カスタム クレーム認証マネージャーを作成するための一般的な理由は、追加、削除、またはより RP アプリケーションによって管理される、おそらくでのみ認識個人情報に基づくクレームを変換します。 たとえば、RP アプリケーションによって管理されで見つかった名前クレームの値に基づくクレーム認証マネージャーによって返される要求プリンシパルに追加し、データ ベースでショッピング カート アプリケーションで顧客の購入の履歴を維持する可能性があります、受信プリンシパル。  
+ カスタム要求認証マネージャーを作成する一般的な理由は、によってのみ認識される情報に基づいて要求を追加、削除、または変換することです。また、RP アプリケーションによって管理しやすくなります。 たとえば、ショッピングカートアプリケーションで購入した顧客の履歴は、RP アプリケーションによって管理されているデータベースに保持されていて、要求認証マネージャーによって返された要求プリンシパルに、受信プリンシパル。  
   
- 使用するアプリケーションを構成することができます、`ClaimsAuthenticationManager`プログラムを使用するか、<xref:System.IdentityModel.Configuration.IdentityConfiguration>クラス、または構成を通じて、 [ &lt;claimsAuthenticationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthenticationmanager.md)要素 (子要素は、 [ &lt;identityConfiguration&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/identityconfiguration.md)要素)。 オーバーライドすることができます、<xref:System.Security.Claims.ClaimsAuthenticationManager.LoadCustomConfiguration%2A>のカスタムの子要素の処理を提供するメソッドを`<claimsAuthenticationManager>`要素により、カスタムのマネージャーを構成できます。 基本実装<xref:System.Security.Claims.ClaimsAuthenticationManager>すべての子要素を処理しません。  
+ アプリケーションでを`ClaimsAuthenticationManager`使用するように構成するには、 <xref:System.IdentityModel.Configuration.IdentityConfiguration>クラスを使用するか、 [ &lt;claimsAuthenticationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthenticationmanager.md)要素 (の子要素である) を使用して構成します。の構成要素)。 [ &lt;&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/identityconfiguration.md) <xref:System.Security.Claims.ClaimsAuthenticationManager.LoadCustomConfiguration%2A>メソッドをオーバーライドして、カスタムマネージャーを構成できる`<claimsAuthenticationManager>`要素のカスタム子要素に処理を提供できます。 の<xref:System.Security.Claims.ClaimsAuthenticationManager>基本実装では、子要素は処理されません。  
   
- Windows Identity Foundation (WIF) によって、起動要求パイプラインからすることにより、クレーム認証マネージャーを使用するアプリケーションを構成します。  
+ 要求認証マネージャーを使用するようにアプリケーションを構成すると、要求パイプラインから Windows Identity Foundation (WIF) によってアプリケーションが呼び出されるようになります。  
   
    
   
 ## Examples  
- 次のコードでは、入力方向の要求にいずれかのチェックを実行せず、受信プリンシパルにロール クレームを追加します。 マネージャーの単純な要求ベース認証を示します。 
+ 次のコードは、入力方向の要求に対してチェックを実行せずに、ロール要求を受信プリンシパルに追加する単純な要求認証マネージャーを示しています。 
   
  [!code-csharp[WifWebApplication1#1](~/samples/snippets/csharp/VS_Snippets_Misc/wifwebapplication1/cs/myclaimsauthenticationmanager/simpleclaimsauthenticatonmanager.cs#1)]  
   
- 次の XML に示す、`<claimsAuthenticationManager>`要素。  
+ 次の XML は、 `<claimsAuthenticationManager>`要素を示しています。  
   
 ```xml  
 <system.identityModel>  
@@ -100,7 +100,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Claims.ClaimsAuthenticationManager.Authenticate%2A>メソッドが呼び出されるフィルター処理する派生クラスでは、このメソッドをオーバーライドすることができます、要求処理パイプラインでは、変更、またはに RP アプリケーションのポリシーに従って要求プリンシパルに信頼性情報を挿入します。 RP アプリケーションの要件に応じてのカスタム実装をさらに返すことができます<xref:System.Security.Claims.ClaimsPrincipal>します。  
+ <xref:System.Security.Claims.ClaimsAuthenticationManager.Authenticate%2A>メソッドは、要求処理パイプラインから呼び出されます。このメソッドを派生クラスでオーバーライドすると、RP アプリケーションのポリシーに従って、クレームをフィルター処理、変更、または要求プリンシパルに挿入することができます。 RP アプリケーションの要件によっては、の<xref:System.Security.Claims.ClaimsPrincipal>カスタム実装を返すこともできます。  
   
  ]]></format>
         </remarks>
@@ -134,9 +134,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Claims.ClaimsAuthenticationManager.LoadCustomConfiguration%2A>メソッド構成インフラストラクチャによって呼び出されます。 このメソッドが呼び出されたときに、`nodelist`の最上位レベルの子要素が表示されます、 [ &lt;claimsAuthenticationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthenticationmanager.md)構成ファイルからの要素。 属性または派生クラスを定義する構成スキーマに応じて子要素を含むこれらの各要素が、さらに、します。 下の子要素が表示されない場合、`<claimsAuthenticationManager>`構成ファイル内の要素、このメソッドは呼び出されません。  
+ <xref:System.Security.Claims.ClaimsAuthenticationManager.LoadCustomConfiguration%2A>メソッドは、構成インフラストラクチャによって呼び出されます。 このメソッドが呼び出されると、 `nodelist`には、構成ファイルの[ &lt;claimsAuthenticationManager&gt; ](~/docs/framework/configure-apps/file-schema/windows-identity-foundation/claimsauthenticationmanager.md)要素の最上位レベルの子要素が含まれます。 これらの各要素には、派生クラスに対して定義した構成スキーマに応じて、属性または子要素が含まれている場合があります。 構成ファイルの要素の`<claimsAuthenticationManager>`下に子要素が表示されない場合、このメソッドは呼び出されません。  
   
- 既定の実装をスローする<xref:System.NotImplementedException>します。 構成ファイルから、クレーム認証マネージャーの初期化を有効にする派生クラスでは、このメソッドをオーバーライドします。 たとえば、構成要素が; 要求プリンシパルを認証するときに、その後にポリシーを表す場合があります。または、追加の要求のプリンシパルに追加する元の属性ストアをポイントする使用する場合があります。  
+ 既定の実装では<xref:System.NotImplementedException>、がスローされます。 派生クラスでこのメソッドをオーバーライドして、構成ファイルから要求認証マネージャーを初期化できるようにします。 たとえば、構成要素は、要求プリンシパルを認証するときに従うポリシーを記述する場合があります。または、追加の要求をプリンシパルに追加する属性ストアをポイントするために使用されることもあります。  
   
  ]]></format>
         </remarks>

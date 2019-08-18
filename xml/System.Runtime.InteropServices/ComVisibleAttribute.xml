@@ -1,5 +1,5 @@
 <Type Name="ComVisibleAttribute" FullName="System.Runtime.InteropServices.ComVisibleAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="62b9f8d872a804ac2525d257a5efdf9c4fadf8db" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67248236" /></Metadata><TypeSignature Language="C#" Value="public sealed class ComVisibleAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e70f1385fa56dc5921e4f6b8963f672bf8ee3abc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69064549" /></Metadata><TypeSignature Language="C#" Value="public sealed class ComVisibleAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ComVisibleAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.ComVisibleAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ComVisibleAttribute&#xA;Inherits Attribute" />
@@ -47,20 +47,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この属性は、アセンブリ、インターフェイス、クラス、構造体、デリゲート、列挙型、フィールド、メソッド、またはプロパティに適用できます。  
+ この属性は、アセンブリ、インターフェイス、クラス、構造体、デリゲート、列挙体、フィールド、メソッド、またはプロパティに適用できます。  
   
- 既定値は`true`、マネージ型が COM に表示されていることを示します この属性が表示されているパブリック マネージ アセンブリと型を作成する必要はありません。既定では、COM に表示されます。 のみ`public`型が表示されることができます。 属性を使用して、それを行うことはできません`internal`または`protected`型の可視性を COM または非表示の型のメンバーを表示します。  
+ 既定値は`true`で、マネージ型が COM から参照可能であることを示します。 この属性は、パブリックマネージアセンブリと型を参照できるようにするためには必要ありません。既定では、これらの値は COM から参照できます。 表示`public`できるのは型のみです。 属性を使用して、COM に対し`internal`て`protected`他のまたは型を参照可能にしたり、非表示型のメンバーを表示したりすることはできません。  
   
- 属性を設定`false`アセンブリをすべて非表示に`public`アセンブリ内の型。 できる選択的に表示すること、アセンブリ内の型の個々 の型に設定して`true`します。 属性を設定`false`特定の型にその型とそのメンバーを非表示にします。 ただし、種類が表示されない場合は、型のメンバーが見やすくことはできません。 属性を設定`false`でクラスが登録されていません; インターフェイスはアンマネージへの応答がない型は、その型がタイプ ライブラリにエクスポートされているがように`QueryInterface`呼び出し。  
+ アセンブリの属性を`false`に設定すると、 `public`アセンブリ内のすべての型が非表示になります。 個々の型をに設定することによって、アセンブリ内の`true`型を選択的に表示できます。 特定の型の`false`属性をに設定すると、その型とそのメンバーは非表示になります。 ただし、型が非表示になっている場合、型のメンバーを表示することはできません。 型の属性を`false`に設定すると、その型がタイプライブラリにエクスポートされるのを防ぐことができます。クラスは登録`QueryInterface`されません。インターフェイスはアンマネージ呼び出しに応答しません。  
   
- クラスおよびそのメンバーを明示的に設定しない限り`false`、継承されたクラスは、元のクラスで表示される基本クラス メンバーを COM に公開できます。 たとえば、ClassA に設定する`false`とそのメンバーに属性を適用しない、クラスとそのメンバーが COM に表示されません。 ただし、ClassA から ClassB を派生し、ClassB を COM にエクスポートする場合は、ClassA のメンバーは ClassB の表示の基本クラスのメンバーになります。  
+ クラスとそのメンバーをに明示的に`false`設定しない限り、継承されたクラスは、元のクラスで非表示になっている COM 基底クラスのメンバーに公開できます。 たとえば、classa をに`false`設定し、そのメンバーに属性を適用しない場合、クラスとそのメンバーは COM に対して非表示になります。 ただし、Classb から ClassB を派生させ、ClassB を COM にエクスポートすると、Classb メンバーは ClassB の基底クラスのメンバーとして表示されるようになります。  
   
- エクスポート プロセスの詳細については、次を参照してください。[アセンブリをタイプ ライブラリの変換の概要](https://msdn.microsoft.com/library/3a37eefb-a76c-4000-9080-7dbbf66a4896)します。  
+ エクスポートプロセスの詳細については、「[アセンブリからタイプライブラリへの変換の概要](https://msdn.microsoft.com/library/3a37eefb-a76c-4000-9080-7dbbf66a4896)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、そのメンバーが表示されるように、com クラスの可視性を制御する方法を示します。 設定して`ComVisibleAttribute`に`false`で`MyClass`(`SampleClass` Visual Basic の例で)、および`false`で`MyMethod`と`MyProperty`、誤って継承によってメンバーを COM に公開することを回避できます。  
+ 次の例は、クラスの COM の可視性を制御して、そのメンバーが非表示になるようにする方法を示しています。 を on `ComVisibleAttribute` `false` `MyMethod` に設定`MyProperty`する`SampleClass` と`false` (Visual Basic の例では)、およびでは、継承によって、誤ってメンバーが COM に公開されるのを防ぐことができます。 `MyClass`  
   
  [!code-cpp[Classic ComVisibleAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic ComVisibleAttribute Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ComVisibleAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic ComVisibleAttribute Example/CS/source.cs#1)]
@@ -110,7 +110,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 型を COM から参照できるようにするのには、属性設定`true`します。 COM から型を非表示に属性を設定します。`false`します。  
+ 型を COM から参照できるようにするには`true`、属性をに設定します。 COM の型を非表示にするには`false`、属性をに設定します。  
   
  ]]></format>
         </remarks>

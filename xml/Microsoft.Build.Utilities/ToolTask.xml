@@ -1,5 +1,5 @@
 <Type Name="ToolTask" FullName="Microsoft.Build.Utilities.ToolTask">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f5ec29399f16b5795acd11cdc25e7862919a9699" /><Meta Name="ms.sourcegitcommit" Value="4ee26ac79338b0bf99fa1e0913e8a06b21994d8e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/26/2019" /><Meta Name="ms.locfileid" Value="58460111" /></Metadata><TypeSignature Language="C#" Value="public abstract class ToolTask : Microsoft.Build.Utilities.Task, Microsoft.Build.Framework.ICancelableTask" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9a2d5eef006b42d1ecc9ac3a6d01dc66db65050f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69298385" /></Metadata><TypeSignature Language="C#" Value="public abstract class ToolTask : Microsoft.Build.Utilities.Task, Microsoft.Build.Framework.ICancelableTask" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ToolTask extends Microsoft.Build.Utilities.Task implements class Microsoft.Build.Framework.ICancelableTask, class Microsoft.Build.Framework.ITask" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Utilities.ToolTask" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ToolTask&#xA;Inherits Task&#xA;Implements ICancelableTask" />
@@ -34,12 +34,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この抽象クラスでは、メソッドとコマンド ライン ツールをラップするタスクのプロパティの既定の実装を提供します。  
+ この抽象クラスは、コマンドラインツールをラップするタスクのメソッドとプロパティの既定の実装を提供します。  
   
    
   
 ## Examples  
- 次の例では、作成、<xref:Microsoft.Build.Utilities.ToolTask>を実行する[Ilasm.exe (IL アセンブラー)](~/docs/framework/tools/ilasm-exe-il-assembler.md)します。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>、 <xref:Microsoft.Build.Utilities.ToolLocationHelper>、および<xref:Microsoft.Build.Utilities.TaskLoggingHelper>クラスを使用するタスクを実行するために必要な情報を生成します。  
+ 次の例では<xref:Microsoft.Build.Utilities.ToolTask> 、 [Ilasm (IL アセンブラー)](~/docs/framework/tools/ilasm-exe-il-assembler.md)を実行するを作成します。 、 <xref:Microsoft.Build.Utilities.CommandLineBuilder> 、<xref:Microsoft.Build.Utilities.ToolLocationHelper>および<xref:Microsoft.Build.Utilities.TaskLoggingHelper>の各クラスは、タスクを実行するために必要な情報を生成するために使用されます。  
   
  [!code-csharp[msbuild_ToolTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_ToolTask/CS/ILAsm.cs#1)]
  [!code-vb[msbuild_ToolTask#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/msbuild_ToolTask/VB/ILAsm.vb#1)]  
@@ -168,7 +168,7 @@
       <Parameters />
       <Docs>
         <summary>タスクの作業を実行するホスト オブジェクトを呼び出します。</summary>
-        <returns>メソッドが正常に実行された場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>メソッドが正常に実行された場合は<see langword="true" /> 。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -229,7 +229,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 何らかの理由で、削除操作が失敗した場合 (場合など、ファイルがロックされているウイルス対策ソフトウェアによって)、このメソッドは、ビルドの失敗の原因となる例外をスローするのではなく、警告を記録します。  
+ 何らかの理由で (ファイルがウイルス対策ソフトウェアによってロックされている場合など)、削除操作が失敗した場合、このメソッドは例外をスローするのではなく、警告をログに記録します。これにより、ビルドは失敗します。  
   
  ]]></format>
         </remarks>
@@ -260,12 +260,12 @@
       </ReturnValue>
       <Docs>
         <summary>コマンド ラインのエコーがオフかどうかを示す値を取得または設定します。</summary>
-        <value><see langword="true" /> 場合、コマンドラインのエコーがオフです。それ以外の場合、<see langword="false" />します。</value>
+        <value><see langword="true" />コマンドラインエコーがオフの場合は。それ以外<see langword="false" />の場合は。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- MSBuild は、コマンドラインのエコー/Q を cmd.exe コマンドラインに渡すことによってオフにします。  
+ MSBuild では、cmd.exe コマンドラインに/Q を渡すことにより、コマンドラインからのエコーがオフになります。  
   
  ]]></format>
         </remarks>
@@ -301,12 +301,12 @@
       </ReturnValue>
       <Docs>
         <summary>環境変数の名前と値のペアのセットを取得します。 カスタム タスク クラス (ToolTask から派生するクラス) でオーバーライドするために用意されています。オーバーライドして新しい環境変数や変更した環境変数のセットを返すことで、関連付けられているツールの実行コンテキストを作成できます。</summary>
-        <value>環境変数のセット。 各ディクショナリ キーは、オーバーライドするには、環境変数の名前と、ディクショナリの値は、その環境変数を設定する値。 EnvironmentOverride の既定の実装を返します<see langword="null" />します。</value>
+        <value>環境変数のセット。 各ディクショナリキーは、オーバーライドする環境変数の名前で、ディクショナリ値はその環境変数に設定する値です。 EnvironmentOverride の既定の実装で<see langword="null" />は、が返されます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ExecuteTool メソッドは、ツールが実行されるプロセスの StartInfo にこれらの環境変数を渡します。 EnvironmentOverride ディクショナリに含まれていない任意の環境変数は、ExecuteTool メソッドが実行されるプロセスから継承されます。  
+ ExecuteTool メソッドは、ツールが実行されるプロセスの StartInfo にこれらの環境変数を渡します。 EnvironmentOverride ディクショナリに含まれていない環境変数は、ExecuteTool メソッドを実行するプロセスから継承されます。  
   
    
   
@@ -371,7 +371,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用してこの EnvironmentOverride のではなく、StringDictionary を受け取るを設定できません MSBuild プロジェクトから。  
+ EnvironmentOverride の代わりにこのを使用します。これは、MSBuild プロジェクトから設定できない StringDictionary を受け取ります。  
   
  ]]></format>
         </remarks>
@@ -515,12 +515,12 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 後にこのメソッドが呼び出された<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>と<xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>します。  
+ このメソッドは、と<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A> <xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>の後に呼び出されます。  
   
    
   
 ## Examples  
- 次の例では、作成、<xref:Microsoft.Build.Utilities.ToolTask>を実行する[Ilasm.exe (IL アセンブラー)](~/docs/framework/tools/ilasm-exe-il-assembler.md)します。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>、 <xref:Microsoft.Build.Utilities.ToolLocationHelper>、および<xref:Microsoft.Build.Utilities.TaskLoggingHelper>クラスを使用するタスクを実行するために必要な情報を生成します。  
+ 次の例では<xref:Microsoft.Build.Utilities.ToolTask> 、 [Ilasm (IL アセンブラー)](~/docs/framework/tools/ilasm-exe-il-assembler.md)を実行するを作成します。 、 <xref:Microsoft.Build.Utilities.CommandLineBuilder> 、<xref:Microsoft.Build.Utilities.ToolLocationHelper>および<xref:Microsoft.Build.Utilities.TaskLoggingHelper>の各クラスは、タスクを実行するために必要な情報を生成するために使用されます。  
   
  [!code-csharp[msbuild_ToolTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_ToolTask/CS/ILAsm.cs#1)]
  [!code-vb[msbuild_ToolTask#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/msbuild_ToolTask/VB/ILAsm.vb#1)]  
@@ -560,12 +560,12 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの値を返します、<xref:Microsoft.Build.Utilities.ToolTask.ToolName%2A>プロパティ、ツールがシステム パスにある場合。  
+ このメソッドは、ツールがシステム<xref:Microsoft.Build.Utilities.ToolTask.ToolName%2A>パスに配置されている場合に、プロパティの値を返します。  
   
    
   
 ## Examples  
- 次の例では、作成、<xref:Microsoft.Build.Utilities.ToolTask>を実行する[Ilasm.exe (IL アセンブラー)](~/docs/framework/tools/ilasm-exe-il-assembler.md)します。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>、 <xref:Microsoft.Build.Utilities.ToolLocationHelper>、および<xref:Microsoft.Build.Utilities.TaskLoggingHelper>クラスを使用するタスクを実行するために必要な情報を生成します。  
+ 次の例では<xref:Microsoft.Build.Utilities.ToolTask> 、 [Ilasm (IL アセンブラー)](~/docs/framework/tools/ilasm-exe-il-assembler.md)を実行するを作成します。 、 <xref:Microsoft.Build.Utilities.CommandLineBuilder> 、<xref:Microsoft.Build.Utilities.ToolLocationHelper>および<xref:Microsoft.Build.Utilities.TaskLoggingHelper>の各クラスは、タスクを実行するために必要な情報を生成するために使用されます。  
   
  [!code-csharp[msbuild_ToolTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_ToolTask/CS/ILAsm.cs#1)]
  [!code-vb[msbuild_ToolTask#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/msbuild_ToolTask/VB/ILAsm.vb#1)]  
@@ -605,7 +605,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 後にこのメソッドが呼び出された<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>と<xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>します。  
+ このメソッドは、と<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A> <xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>の後に呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -674,9 +674,9 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合にのみ、このメソッドが呼び出す<xref:Microsoft.Build.Utilities.ToolTask.GenerateResponseFileCommands%2A>空でない文字列値を返します。  
+ このメソッドは、が空<xref:Microsoft.Build.Utilities.ToolTask.GenerateResponseFileCommands%2A>でない文字列値を返す場合にのみ呼び出されます。  
   
- 後にこのメソッドが呼び出された<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>、<xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>と<xref:Microsoft.Build.Utilities.ToolTask.GenerateResponseFileCommands%2A>します。  
+ このメソッドは、、 <xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>、 <xref:Microsoft.Build.Utilities.ToolTask.SkipTaskExecution%2A>および<xref:Microsoft.Build.Utilities.ToolTask.GenerateResponseFileCommands%2A>の後に呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -713,7 +713,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、WorkingDirectory のパブリック プロパティを公開する派生クラス (Exec) のようなことができ、2 つのプロパティに混乱を招くことができるように、プロパティではなくメソッドです。  
+ これは、派生クラス (Exec など) がパブリック WorkingDirectory プロパティを公開することを選択できるように、プロパティではなくメソッドであり、2つのプロパティがあると混乱します。  
   
  ]]></format>
         </remarks>
@@ -750,7 +750,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実行可能ファイルが 0 以外の終了コードを返す場合にのみ、このメソッドが呼び出されます。  
+ このメソッドは、実行可能ファイルがゼロ以外の終了コードを返す場合にのみ呼び出されます。  
   
  このメソッドの戻り値は、タスクの戻り値として使用されます。  
   
@@ -971,7 +971,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- エンコードは<xref:System.Text.Encoding.UTF8%2A>既定。  
+ エンコーディングは<xref:System.Text.Encoding.UTF8%2A> 、既定ではです。  
   
  ]]></format>
         </remarks>
@@ -1033,7 +1033,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 後にこのメソッドが呼び出された<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>します。  
+ このメソッドは、の<xref:Microsoft.Build.Utilities.ToolTask.ValidateParameters%2A>後に呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -1069,7 +1069,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コンソール ベースの出力は、既定では、現在のシステムの OEM コード ページを使用します。 使用しないように Console.OutputEncoding ここでプロセスを実行しなくても、コンソール ウィンドウとはあまり (戻っても Console.OutputEncoding は OEM コード ページ MSBuild をホストする実行中のアプリケーションが、コンソールではない場合のために注意してください。アプリケーションの場合)。  
+ コンソールベースの出力では、既定で現在のシステムの OEM コードページが使用されます。 ここでは、実行するプロセスによってコンソールウィンドウを使用する必要はないので、ここでは、コンソールの OutputEncoding を使用しないことに注意してください。また、MSBuild をホストする実行中のアプリケーションがコンソールでない場合、OutputEncoding は OEM コードページを返しません。アプリケーション)。  
   
  ]]></format>
         </remarks>
@@ -1130,7 +1130,7 @@ abstract class CustomToolTask : ToolTask
       </ReturnValue>
       <Docs>
         <summary>標準のエラー メッセージをログに記録する実際の重要度を取得します。</summary>
-        <value>標準のエラー メッセージをログに記録する実際の重要度。</value>
+        <value>標準エラーメッセージをログに記録する実際の重要度。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1193,7 +1193,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コンソール ベースの出力は、既定では、現在のシステムの OEM コード ページを使用します。 使用しないように Console.OutputEncoding ここでプロセスを実行しなくても、コンソール ウィンドウとはあまり (戻っても Console.OutputEncoding は OEM コード ページ MSBuild をホストする実行中のアプリケーションが、コンソールではない場合のために注意してください。アプリケーションの場合)。  
+ コンソールベースの出力では、既定で現在のシステムの OEM コードページが使用されます。 ここでは、実行するプロセスによってコンソールウィンドウを使用する必要はないので、ここでは、コンソールの OutputEncoding を使用しないことに注意してください。また、MSBuild をホストする実行中のアプリケーションがコンソールでない場合、OutputEncoding は OEM コードページを返しません。アプリケーション)。  
   
  ]]></format>
         </remarks>
@@ -1254,7 +1254,7 @@ abstract class CustomToolTask : ToolTask
       </ReturnValue>
       <Docs>
         <summary>標準の出力メッセージをログに記録する実際の重要度を取得します。</summary>
-        <value>標準の出力メッセージをログに記録する実際の重要度。</value>
+        <value>標準出力メッセージをログに記録する実際の重要度。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1439,7 +1439,7 @@ abstract class CustomToolTask : ToolTask
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、作成、<xref:Microsoft.Build.Utilities.ToolTask>を実行する[Ilasm.exe (IL アセンブラー)](~/docs/framework/tools/ilasm-exe-il-assembler.md)します。 <xref:Microsoft.Build.Utilities.CommandLineBuilder>、 <xref:Microsoft.Build.Utilities.ToolLocationHelper>、および<xref:Microsoft.Build.Utilities.TaskLoggingHelper>クラスを使用するタスクを実行するために必要な情報を生成します。  
+ 次の例では<xref:Microsoft.Build.Utilities.ToolTask> 、 [Ilasm (IL アセンブラー)](~/docs/framework/tools/ilasm-exe-il-assembler.md)を実行するを作成します。 、 <xref:Microsoft.Build.Utilities.CommandLineBuilder> 、<xref:Microsoft.Build.Utilities.ToolLocationHelper>および<xref:Microsoft.Build.Utilities.TaskLoggingHelper>の各クラスは、タスクを実行するために必要な情報を生成するために使用されます。  
   
  [!code-csharp[msbuild_ToolTask#1](~/samples/snippets/csharp/VS_Snippets_Misc/msbuild_ToolTask/CS/ILAsm.cs#1)]
  [!code-vb[msbuild_ToolTask#1](~/samples/snippets/visualbasic/VS_Snippets_Misc/msbuild_ToolTask/VB/ILAsm.vb#1)]  
@@ -1510,7 +1510,7 @@ abstract class CustomToolTask : ToolTask
       </ReturnValue>
       <Docs>
         <summary>ツール タスクで直接コマンドを実行する代わりに、コマンド ラインのバッチ ファイルを作成し、そのファイルをコマンド プロセッサを使用して実行するかどうかを示す値を取得または設定します。</summary>
-        <value><see langword="true" /> ツール タスクはコマンドラインのバッチ ファイルが作成され、実行コマンド プロセッサを使用している場合<see langword="false" />ツール タスクがコマンドを直接実行する場合。</value>
+        <value><see langword="true" />ツールタスクでコマンドラインのバッチファイルを作成し、コマンドプロセッサを使用して実行する場合は、<see langword="false" />ツールタスクがコマンドを直接実行する場合は。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1569,7 +1569,7 @@ abstract class CustomToolTask : ToolTask
       </ReturnValue>
       <Docs>
         <summary>タスクがツールの実行中にノードを生成するかどうかを示す値を取得または設定します。</summary>
-        <value><see langword="true" /> タスクがツールの実行中にノードを生成する場合それ以外の場合、<see langword="false" />します。</value>
+        <value><see langword="true" />ツールの実行中にタスクがノードを生成する場合は、それ以外<see langword="false" />の場合は。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
