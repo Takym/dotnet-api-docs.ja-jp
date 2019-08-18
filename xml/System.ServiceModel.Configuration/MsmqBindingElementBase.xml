@@ -1,5 +1,5 @@
 <Type Name="MsmqBindingElementBase" FullName="System.ServiceModel.Configuration.MsmqBindingElementBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6801645420417b2fd7423bc5d1c123ba4ae743ba" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55307257" /></Metadata><TypeSignature Language="C#" Value="public abstract class MsmqBindingElementBase : System.ServiceModel.Configuration.StandardBindingElement" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b98fbeb8fd666e61ab7e3170976ac162ce58871b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69105099" /></Metadata><TypeSignature Language="C#" Value="public abstract class MsmqBindingElementBase : System.ServiceModel.Configuration.StandardBindingElement" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit MsmqBindingElementBase extends System.ServiceModel.Configuration.StandardBindingElement" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Configuration.MsmqBindingElementBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class MsmqBindingElementBase&#xA;Inherits StandardBindingElement" />
@@ -113,7 +113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A*配信不能キュー*配信または有効期限が切れたに失敗したメッセージを格納する送信元アプリケーションのキュー マネージャーによって管理されるキューです。 `CustomDeadLetterQueue` プロパティでは、既定のシステム全体の配信不能キューを使用する代わりにカスタムの配信不能キューを指定できます。  
+ *配信不能キュー*は、送信元アプリケーションのキューマネージャーによって管理されるキューであり、配信に失敗したメッセージや期限切れのメッセージを格納します。 `CustomDeadLetterQueue` プロパティでは、既定のシステム全体の配信不能キューを使用する代わりにカスタムの配信不能キューを指定できます。  
   
  <xref:System.ServiceModel.Configuration.MsmqBindingElementBase.CustomDeadLetterQueue%2A> によって指定される URI は、net.msmq スキームを使用する必要があります。  
   
@@ -151,7 +151,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- *配信不能キュー*配信または有効期限が切れたに失敗したメッセージを格納する送信元アプリケーションのキュー マネージャーによって管理されるキューです。 メッセージが受信側のアプリケーションに到達できなかった理由としては、次のようなものがあります。  
+ *配信不能キュー*は、送信元アプリケーションのキューマネージャーによって管理されるキューであり、配信に失敗したメッセージや期限切れのメッセージを格納します。 メッセージが受信側のアプリケーションに到達できなかった理由としては、次のようなものがあります。  
   
 -   トランザクション メッセージが、非トランザクション キューに送信されています。  
   
@@ -165,7 +165,7 @@
   
 -   ターゲット コンピューターのメッセージ ストレージ クォータ、または送信先のキューのストレージ クォータを超えているか、メッセージが到達したときにターゲット コンピューターに使用可能なストレージ スペースがありませんでした。  
   
--   送信者が、[アクセス権](https://go.microsoft.com/fwlink/?LinkID=96167)送信先キューにメッセージを配置するために必要です。  
+-   送信元には、送信先キューにメッセージを配置するために必要な[アクセス権](https://go.microsoft.com/fwlink/?LinkID=96167)がありません。  
   
 -   メッセージに結び付けられているデジタル署名が無効です。  
   
@@ -239,7 +239,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ExactlyOnce%2A>、に設定すると`true`、ことをメッセージ キュー (MSMQ とも呼ばれます) が保証 1 回だけ受信メッセージ キューに送信されたメッセージが配信されたことを示します。 に応じて配信不能キューにメッセージを送信する配信に失敗した場合、`DeadLetterQueue`プロパティの設定。 <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ExactlyOnce%2A> を `true` に設定する場合は、キューがトランザクション キューでなければなりません。  
+ <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ExactlyOnce%2A>は、に`true`設定すると、メッセージキュー (MSMQ とも呼ばれる) によって、送信されたメッセージが受信メッセージキューに1回だけ配信されることを示します。 配信に失敗すると、 `DeadLetterQueue`プロパティの設定に応じてメッセージが配信不能キューに送信されます。 <xref:System.ServiceModel.Channels.MsmqBindingElementBase.ExactlyOnce%2A> を `true` に設定する場合は、キューがトランザクション キューでなければなりません。  
   
  ]]></format>
         </remarks>
@@ -337,7 +337,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A*再試行サイクル*が再試行キューからアプリケーションに配信するアプリケーション キューにメッセージが転送されるとき。 メッセージは、<xref:System.ServiceModel.Configuration.MsmqBindingElementBase.ReceiveRetryCount%2A> で指定された回数の即時再試行に失敗した後、再試行キューに置かれます。 <xref:System.ServiceModel.Configuration.MsmqBindingElementBase.MaxRetryCycles%2A> は、再試行サイクル数を指定します。これには、メッセージの初回の送信試行は含まれません。 メッセージの配信試行は、最大で (1 + MaxRetryCycles) * (ReceiveRetryCount + 1) 回実行されます。 たとえば、ReceiveRetryCount = 0 で、MaxRetryCycles が 1 の場合、メッセージの配信試行は最大 2 回になります。 このプロパティは、[!INCLUDE[wv](~/includes/wv-md.md)] 以降のオペレーティング システムで使用できます。  
+ *再試行サイクル*とは、アプリケーションへの配信を試行するために、メッセージが再試行キューからアプリケーションキューに転送されるときのことです。 メッセージは、<xref:System.ServiceModel.Configuration.MsmqBindingElementBase.ReceiveRetryCount%2A> で指定された回数の即時再試行に失敗した後、再試行キューに置かれます。 <xref:System.ServiceModel.Configuration.MsmqBindingElementBase.MaxRetryCycles%2A> は、再試行サイクル数を指定します。これには、メッセージの初回の送信試行は含まれません。 メッセージの配信試行は、最大で (1 + MaxRetryCycles) * (ReceiveRetryCount + 1) 回実行されます。 たとえば、ReceiveRetryCount = 0 で、MaxRetryCycles が 1 の場合、メッセージの配信試行は最大 2 回になります。 このプロパティは、[!INCLUDE[wv](~/includes/wv-md.md)] 以降のオペレーティング システムで使用できます。  
   
  ]]></format>
         </remarks>
@@ -416,7 +416,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これを有効にすると、サービスことができます「ピーク」処理を開始するには、キューにメッセージして、キューに残ります問題が発生した場合、例外がスローされます。 サービスできますもメッセージを「ロック」時刻で、後で処理を再試行するためにします。 ReceiveContext は、メッセージを「完了」キューから削除するために 1 回処理するためのメカニズムを提供します。 メッセージは、ネットワーク経由で読み取りおよびに再書き込みキューを不要になったされていると、個々 のメッセージは処理中にさまざまなサービス インスタンス間でバウンスします。  
+ これを有効にすると、サービスはキューにあるメッセージを "ピーク" して処理を開始することができます。問題が発生して例外がスローされた場合は、キューに残ります。 また、サービスは、後で処理を再試行するためにメッセージを "ロック" することもできます。 ReceiveContext には、処理されたメッセージを "完了" してキューから削除できるようにするメカニズムが用意されています。 ネットワーク上のキューへのメッセージの読み取りと再書き込みは行われなくなり、個々のメッセージは処理中に異なるサービスインスタンス間でバウンスされることはありません。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="UrlAuthorizationModule" FullName="System.Web.Security.UrlAuthorizationModule">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b31c9000ea3a28631def57041b1ab86c2bcf6ac6" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58552346" /></Metadata><TypeSignature Language="C#" Value="public sealed class UrlAuthorizationModule : System.Web.IHttpModule" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ed01323e110e41ad84e3ffa4b645cda904515b1b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69135037" /></Metadata><TypeSignature Language="C#" Value="public sealed class UrlAuthorizationModule : System.Web.IHttpModule" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit UrlAuthorizationModule extends System.Object implements class System.Web.IHttpModule" />
   <TypeSignature Language="DocId" Value="T:System.Web.Security.UrlAuthorizationModule" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class UrlAuthorizationModule&#xA;Implements IHttpModule" />
@@ -25,9 +25,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.UrlAuthorizationModule>ユーザーに基づいて、要求された URL に、現在のユーザーがアクセスを許可されるかどうかを判断<xref:System.Security.Principal.IIdentity.Name%2A>またはのメンバーであるユーザー ロールの一覧。 ユーザー名を決定する方法については、次を参照してください。 [ASP.NET 認証](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))します。 ユーザー ロールを管理する方法については、次を参照してください。[承認を使用してロールの管理](https://msdn.microsoft.com/library/01954ce4-39a2-487f-8153-a69f6f6f3195)します。  
+ は<xref:System.Web.Security.UrlAuthorizationModule> 、ユーザー <xref:System.Security.Principal.IIdentity.Name%2A>またはユーザーがメンバーであるロールの一覧に基づいて、要求された URL へのアクセスが現在のユーザーに許可されているかどうかを判断します。 ユーザー名の決定方法については、「 [ASP.NET Authentication](https://msdn.microsoft.com/library/fc10b0ef-4ce4-4a7f-9174-886325221ee1(v=vs.100))」を参照してください。 ユーザーロールを管理する方法の詳細については、「[ロールを使用した承認の管理](https://msdn.microsoft.com/library/01954ce4-39a2-487f-8153-a69f6f6f3195)」を参照してください。  
   
- 使用して、ユーザーまたはロールの承認を管理、[承認](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/8d82143t(v%3dvs.100))構成要素。 許可または拒否をユーザーまたはロールを使用して、`allow`または`deny`サブ要素には、それぞれします。 `allow`と`deny`サブ要素は、構成に表示される順序で解釈されます。 要素は、アクセスが許可または拒否されたことを指定します。 いったん、<xref:System.Web.Security.UrlAuthorizationModule>の承認チェックを完了します。 たとえば、Web.config ファイルから次のセクションでは、ユーザー (匿名ユーザーを拒否)、してログオンする必要がありにアクセスするための管理者ロールにユーザーにのみを許可します。 管理者ロールに属していないユーザーは拒否されます。  
+ ユーザーまたはロールの承認は、 [authorization](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/8d82143t(v%3dvs.100))構成要素を使用して管理されます。 `allow`または`deny`サブ要素を使用して、ユーザーまたはロールを許可または拒否することができます。 サブ`allow`要素`deny`とサブ要素は、構成に表示される順序で解釈されます。 要素は、アクセスが許可されるか拒否される<xref:System.Web.Security.UrlAuthorizationModule>かを指定すると、承認チェックを完了します。 たとえば、web.config ファイルの次のセクションでは、ユーザーがログオンする必要があり (匿名ユーザーを拒否することによって)、管理者ロールのユーザーのみがアクセスできるようにする必要があります。 管理者ロールに含まれていないユーザーは拒否されます。  
   
 ```  
 <authorization>  
@@ -37,12 +37,12 @@
 </authorization>  
 ```  
   
- ユーザーまたはロールは、URL にユーザーまたはロールのアクセスを拒否するのには具体的には拒否する必要があります。 つまり、前の例が指定されていない場合、`<deny users="*" />`要素、し、認証されたすべてのユーザーが許可されているどのようなロールのメンバーにいるかに関係なく、要求された URL へのアクセス。  
+ URL に対するユーザーまたはロールのアクセス許可を拒否するには、ユーザーまたはロールが明示的に拒否されている必要があります。 つまり、前の例で要素が`<deny users="*" />`指定されていない場合、認証されたすべてのユーザーは、メンバーであるロールに関係なく、要求された URL へのアクセスが許可されています。  
   
    
   
 ## Examples  
- 次のコード例では、John とすべての匿名ユーザーを拒否するときに、Kim と、管理者ロールのメンバーにアクセスを付与します。  
+ 次のコード例では、佐藤さんと管理者ロールのメンバーへのアクセスを許可し、John とすべての匿名ユーザーに対して拒否します。  
   
 ```  
 <authorization>  
@@ -55,7 +55,7 @@
   
  ]]></format>
     </remarks>
-    <related type="Article" href="https://msdn.microsoft.com/library/ba7c17d4-f709-4501-8441-2340e2d6db05">ASP.NET の承認</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/ba7c17d4-f709-4501-8441-2340e2d6db05">ASP.NET 承認</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -83,13 +83,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターは、アプリケーション コードから呼び出すためのものではありません。  
+ このコンストラクターは、アプリケーションコードから呼び出すためのものではありません。  
   
- ASP.NET のインスタンスを作成するこのコンス トラクターを呼び出し、<xref:System.Web.Security.UrlAuthorizationModule>クラス。 コンス トラクターを呼び出す、<xref:System.Web.Security.UrlAuthorizationModule.Init%2A>新しい初期化<xref:System.Web.Security.UrlAuthorizationModule>オブジェクト。  
+ ASP.NET は、このコンストラクターを呼び出して<xref:System.Web.Security.UrlAuthorizationModule>クラスのインスタンスを作成します。 コンストラクターを呼び出すと、メソッドが<xref:System.Web.Security.UrlAuthorizationModule.Init%2A>呼び出され、新しい<xref:System.Web.Security.UrlAuthorizationModule>オブジェクトが初期化されます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/ba7c17d4-f709-4501-8441-2340e2d6db05">ASP.NET の承認</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/ba7c17d4-f709-4501-8441-2340e2d6db05">ASP.NET 承認</related>
       </Docs>
     </Member>
     <Member MemberName="CheckUrlAccessForPrincipal">
@@ -123,11 +123,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Security.UrlAuthorizationModule.CheckUrlAccessForPrincipal%2A>メソッドは、現在のユーザーがアプリケーションの Web.config ファイルで要求されたファイルへのアクセスを付与するかどうかを確認します。  
+ メソッド<xref:System.Web.Security.UrlAuthorizationModule.CheckUrlAccessForPrincipal%2A>は、アプリケーションの web.config ファイルで、要求されたファイルへのアクセスが現在のユーザーに許可されているかどうかを確認します。  
   
- かどうか、要求に使用される HTTP 動詞は`GET`、 `POST`、または`HEAD`、<xref:System.Web.Security.UrlAuthorizationModule.CheckUrlAccessForPrincipal%2A>メソッドは、ファイルへの読み取りアクセスを確認します。 その他の動詞を使用する場合、<xref:System.Web.Security.UrlAuthorizationModule.CheckUrlAccessForPrincipal%2A>ファイルへの読み取り/書き込みアクセスを確認します。  
+ 要求を行うために使用された HTTP `GET`動詞`POST`が、 `HEAD`、また<xref:System.Web.Security.UrlAuthorizationModule.CheckUrlAccessForPrincipal%2A>はの場合、メソッドはファイルへの読み取りアクセスを確認します。 他の動詞が使用されて<xref:System.Web.Security.UrlAuthorizationModule.CheckUrlAccessForPrincipal%2A>いる場合、はそのファイルへの読み取り/書き込みアクセスを確認します。  
   
- 詳細については、Web.config ファイルの例を参照してください、<xref:System.Web.Security.UrlAuthorizationModule>クラスのドキュメント。  
+ 詳細および web.config ファイルの例については、 <xref:System.Web.Security.UrlAuthorizationModule>クラスのドキュメントを参照してください。  
   
  ]]></format>
         </remarks>
@@ -168,11 +168,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アプリケーション コードから呼び出すためのものではありません。  
+ このメソッドは、アプリケーションコードから呼び出すためのものではありません。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/ba7c17d4-f709-4501-8441-2340e2d6db05">ASP.NET の承認</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/ba7c17d4-f709-4501-8441-2340e2d6db05">ASP.NET 承認</related>
       </Docs>
     </Member>
     <Member MemberName="Init">
@@ -205,13 +205,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アプリケーション コードから呼び出すためのものではありません。  
+ このメソッドは、アプリケーションコードから呼び出すためのものではありません。  
   
- <xref:System.Web.Security.UrlAuthorizationModule.Init%2A>メソッドにより、<xref:System.Web.Security.UrlAuthorizationModule>の処理に含まれている、<xref:System.Web.HttpApplication.AuthorizeRequest>イベント。  
+ メソッド<xref:System.Web.Security.UrlAuthorizationModule.Init%2A>は、 <xref:System.Web.Security.UrlAuthorizationModule> <xref:System.Web.HttpApplication.AuthorizeRequest>イベントの処理にが確実に含まれるようにします。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/ba7c17d4-f709-4501-8441-2340e2d6db05">ASP.NET の承認</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/ba7c17d4-f709-4501-8441-2340e2d6db05">ASP.NET 承認</related>
       </Docs>
     </Member>
   </Members>

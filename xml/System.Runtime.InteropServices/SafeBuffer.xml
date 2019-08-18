@@ -1,5 +1,5 @@
 <Type Name="SafeBuffer" FullName="System.Runtime.InteropServices.SafeBuffer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="161b0716eaeda14a15288164577a8e7f548e32c6" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58736453" /></Metadata><TypeSignature Language="C#" Value="public abstract class SafeBuffer : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8f110222d0c1f472263053ecaf9d6ec5dd52091d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69269379" /></Metadata><TypeSignature Language="C#" Value="public abstract class SafeBuffer : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SafeBuffer extends Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.SafeBuffer" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SafeBuffer&#xA;Inherits SafeHandleZeroOrMinusOneIsInvalid" />
@@ -51,18 +51,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す必要があります、<xref:System.Runtime.InteropServices.SafeBuffer.Initialize%2A?displayProperty=nameWithType>メソッドの任意のインスタンスを使用する前に<xref:System.Runtime.InteropServices.SafeBuffer>します。 インスタンスを格納すると、競合を回避するために、<xref:System.Runtime.InteropServices.SafeBuffer>オブジェクト、静的変数を次の方法のいずれかを使用する必要があります。  
+ <xref:System.Runtime.InteropServices.SafeBuffer.Initialize%2A?displayProperty=nameWithType> の<xref:System.Runtime.InteropServices.SafeBuffer>インスタンスを使用する前に、メソッドを呼び出す必要があります。 <xref:System.Runtime.InteropServices.SafeBuffer>オブジェクトのインスタンスを静的変数に格納するときの競合を回避するには、次のいずれかの方法を使用する必要があります。  
   
--   発行するときにロックを作成、<xref:System.Runtime.InteropServices.SafeBuffer>します。  
+-   を<xref:System.Runtime.InteropServices.SafeBuffer>公開するときにロックを作成します。  
   
--   ローカル変数の初期化を作成、 <xref:System.Runtime.InteropServices.SafeBuffer>、割り当てる、<xref:System.Runtime.InteropServices.SafeBuffer>を静的変数に、たとえばを使用して、<xref:System.Threading.Interlocked.CompareExchange%2A?displayProperty=nameWithType>メソッド。  
+-   ローカル変数を作成し、 <xref:System.Runtime.InteropServices.SafeBuffer>を初期化してから、を静的変数<xref:System.Runtime.InteropServices.SafeBuffer>に割り当てます。 <xref:System.Threading.Interlocked.CompareExchange%2A?displayProperty=nameWithType>たとえば、メソッドを使用します。  
   
 > [!NOTE]
->  静的クラス コンス トラクターでの割り当ては暗黙的にロックされています。  
+>  静的クラスコンストラクターでの代入は、暗黙的にロックされます。  
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+    <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -100,7 +100,7 @@
         <param name="ownsHandle">終了処理中にハンドルを確実にリリースする場合は <see langword="true" />。信頼性の高いリリースを実行しない場合は <see langword="false" /> (お勧めしません)。</param>
         <summary><see cref="T:System.Runtime.InteropServices.SafeBuffer" /> クラスの新しいインスタンスを作成し、バッファー ハンドルを安全に解放するかどうかを指定します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="AcquirePointer">
@@ -151,11 +151,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ときに<xref:System.Runtime.InteropServices.SafeBuffer.AcquirePointer%2A>返します、境界のことを確認してチェックを実行する必要があります、`pointer`パラメーターが`null`します。 ない場合`null`、呼び出す必要があります、<xref:System.Runtime.InteropServices.SafeBuffer.ReleasePointer%2A?displayProperty=nameWithType>制約された実行領 (域 CER) 内のメソッド。  
+ が<xref:System.Runtime.InteropServices.SafeBuffer.AcquirePointer%2A>を返す場合は、 `pointer`パラメーターが`null`であることを確認して、範囲チェックを実行する必要があります。 そうでない`null`場合は、制約され<xref:System.Runtime.InteropServices.SafeBuffer.ReleasePointer%2A?displayProperty=nameWithType>た実行領域 (CER) でメソッドを呼び出す必要があります。  
   
- <xref:System.Runtime.InteropServices.SafeBuffer.AcquirePointer%2A> 呼び出し、<xref:System.Runtime.InteropServices.SafeHandle.DangerousAddRef%2A?displayProperty=nameWithType>メソッドと、ポインターを公開します。 異なり、<xref:System.Runtime.InteropServices.SafeBuffer.Read%2A>メソッド、ポインターの現在の位置は変わりません。  
+ <xref:System.Runtime.InteropServices.SafeBuffer.AcquirePointer%2A><xref:System.Runtime.InteropServices.SafeHandle.DangerousAddRef%2A?displayProperty=nameWithType>メソッドを呼び出し、ポインターを公開します。 <xref:System.Runtime.InteropServices.SafeBuffer.Read%2A>メソッドとは異なり、ポインターの現在位置は変更されません。  
   
- 次の例では、使用する方法、<xref:System.Runtime.InteropServices.SafeBuffer.AcquirePointer%2A>メソッド。  
+ 次の例は、メソッドの<xref:System.Runtime.InteropServices.SafeBuffer.AcquirePointer%2A>使用方法を示しています。  
   
 ```  
 byte* pointer = null;  
@@ -170,9 +170,9 @@ finally {
     }  
 ```  
   
- キャストする場合`pointer`(これは、バイトへのポインター) としてさまざまな型 (T *) へのポインター、ポインターのアライメントの問題があります。  
+ (バイトへ`pointer`のポインター) を別の型 (T *) へのポインターとしてキャストした場合、ポインターのアラインメントの問題が発生する可能性があります。  
   
- すべての範囲をこのポインターにチェックのための責任を行う必要があります。  
+ このポインターを使用してすべての境界確認を行う必要があります。  
   
  ]]></format>
         </remarks>
@@ -336,7 +336,7 @@ finally {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、各要素のサイズを乗算する配列内の要素の数とメモリ領域の必要なサイズを定義します。  
+ このメソッドは、配列内の要素の数に各要素のサイズを乗算した値として、メモリ領域の必要なサイズを定義します。  
   
  ]]></format>
         </remarks>
@@ -345,7 +345,7 @@ finally {
 または 
  <paramref name="sizeOfEachElement" /> が 0 未満です。  
   
-または 
+- または - 
  <paramref name="numElements" /> に <paramref name="sizeOfEachElement" /> を乗算した値が、利用できるアドレス空間を超えています。</exception>
       </Docs>
     </Member>
@@ -404,7 +404,7 @@ finally {
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="numElements" /> が 0 未満です。  
   
-または 
+- または - 
  <paramref name="numElements" /> と各要素のサイズを乗算した値が、利用できるアドレス空間を超えています。</exception>
       </Docs>
     </Member>
@@ -564,7 +564,7 @@ finally {
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> が 0 未満です。  
   
-または 
+- または - 
  <paramref name="count" /> が 0 未満です。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="array" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException">配列の長さからインデックスを減算した値が <paramref name="count" /> 未満です。</exception>
@@ -615,7 +615,7 @@ finally {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドが返された後に、ポインターは使用できません。  
+ このメソッドから制御が戻った後、ポインターを使用することはできません。  
   
  ]]></format>
         </remarks>
@@ -683,7 +683,7 @@ finally {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、次のコードと同等です。  
+ このメソッドは、次のコードと同じです。  
   
 ```  
 *(T*)(bytePtr + byteOffset) = value;  
@@ -760,7 +760,7 @@ finally {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 入力配列内の各要素は、クラスのジェネリックな値型で構成されます。  
+ 入力配列の各要素は、クラスのジェネリック値型で構成されます。  
   
  ]]></format>
         </remarks>

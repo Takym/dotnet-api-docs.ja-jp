@@ -1,5 +1,5 @@
 <Type Name="MemoryMarshal" FullName="System.Runtime.InteropServices.MemoryMarshal">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="10291d94526466a6a071d4ad6764465616a0532c" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68542993" /></Metadata><TypeSignature Language="C#" Value="public static class MemoryMarshal" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="061fde1ad6b10337c3320608dcc3a5dd94f4c8dc" /><Meta Name="ms.sourcegitcommit" Value="cb4d218ffd5a459a5f921fe1d945c682d1e09aca" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/16/2019" /><Meta Name="ms.locfileid" Value="69540071" /></Metadata><TypeSignature Language="C#" Value="public static class MemoryMarshal" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit MemoryMarshal extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.MemoryMarshal" />
   <TypeSignature Language="VB.NET" Value="Public Class MemoryMarshal" />
@@ -380,7 +380,11 @@
 
 とのどちらにも、ポインターまたは参照`TFrom` を含めることはできません。`TTo` `TFrom`と`TTo`は、タイプセーフを維持するために実行時にチェックされます。  
 
-キャストは unchecked コンテキストで発生します。 の`TTo`範囲がの`TFrom`範囲よりも小さい場合、データ損失が発生する可能性があります。 たとえば、が<xref:System.Int64>の`TFrom`場合、いずれかの`ReadOnlySpan<Int32>`値が`TTo` 0x100001111110f0f で、が<xref:System.Int32>の場合、結果の値は11110f0f になります。
+2つの型のサイズが異なる場合、キャストは値を結合または分割して、長さの変化につながります。
+
+たとえば、が<xref:System.Int64>の`TFrom`場合、に`ReadOnlySpan<Int64>`は1つの値`TTo` 0x0100001111110f0f が含まれ<xref:System.Int32>、はで`ReadOnlySpan<Int32>`あり、結果には2つの値が含まれます。 値は、x86 など、リトルエンディアンアーキテクチャの0x11110F0F および0x01000011 です。 ビッグエンディアンアーキテクチャでは、2つの値の順序が逆になります。つまり、0x01000011 の後に0x11110F0F が続きます。
+
+別の例とし`TFrom`て<xref:System.Int32>、が`ReadOnlySpan<Int32>`の場合、には1、2、3の値<xref:System.Int64>が含まれ`ReadOnlySpan<Int64>` 、はであり、結果と`TTo`して1つの値が含まれます。リトルエンディアンアーキテクチャでは0x0000000200000001、ビッグエンディアンアーキテクチャでは0x0000000100000002。
 
 このメソッドは、メモリアクセスの不整合をサポートするプラットフォームでのみサポートされています。また、メモリブロックが他の方法でアラインされている場合にのみサポートされます。
 
@@ -423,7 +427,7 @@
         <param name="start">メモリ ブロックの開始位置を示す <paramref name="array" /> のインデックス。</param>
         <param name="length">メモリ ブロックに含める項目の数。</param>
         <summary><paramref name="start" /> インデックスで始まり <paramref name="length" /> 個の項目で構成される、事前にピン留めされたターゲット配列の一部に対する、新しいメモリ バッファーを作成します。</summary>
-        <returns>指定した <paramref name="array" /> の要素に対するメモリのブロック。 <paramref name="array" /> が <see langword="null" /> の場合、または <paramref name="start" /> と <paramref name="length" /> が 0 である場合、メソッドは <see cref="System.Memory`1.Length" /> 0 のインスタンス <see cref="T:System.Memory`1" /> を返します。</returns>
+        <returns>指定した <paramref name="array" /> の要素に対するメモリのブロック。 <paramref name="array" /> が <see langword="null" /> の場合、または <paramref name="start" /> と <paramref name="length" /> が 0 である場合、メソッドは <see cref="P:System.Memory`1.Length" /> 0 のインスタンス <see cref="T:System.Memory`1" /> を返します。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
