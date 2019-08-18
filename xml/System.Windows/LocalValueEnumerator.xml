@@ -1,5 +1,5 @@
 <Type Name="LocalValueEnumerator" FullName="System.Windows.LocalValueEnumerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="87419407c964ec6edfc3c1c4babfb741dcb7db0b" /><Meta Name="ms.sourcegitcommit" Value="9dda17222b9f7d3edf130133bfb1370d5b410a4b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/22/2018" /><Meta Name="ms.locfileid" Value="46677314" /></Metadata><TypeSignature Language="C#" Value="public struct LocalValueEnumerator : System.Collections.IEnumerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e1ed5f9b05127d84bdfb01cea080c34f044d9b60" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69444439" /></Metadata><TypeSignature Language="C#" Value="public struct LocalValueEnumerator : System.Collections.IEnumerator" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit LocalValueEnumerator extends System.ValueType implements class System.Collections.IEnumerator" />
   <TypeSignature Language="DocId" Value="T:System.Windows.LocalValueEnumerator" />
   <TypeSignature Language="VB.NET" Value="Public Structure LocalValueEnumerator&#xA;Implements IEnumerator" />
@@ -24,13 +24,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A*ローカル値*、依存関係プロパティを直接呼び出すことによって設定された依存関係プロパティの値は、 <xref:System.Windows.DependencyObject.SetValue%2A>、またはの set アクセサーを使用して多くの場合、[!INCLUDE[TLA2#tla_clr](~/includes/tla2sharptla-clr-md.md)]プロパティ ラッパーを呼び出す<xref:System.Windows.DependencyObject.SetValue%2A>内部的にします。 ローカル値のないその他のプロパティのシステムの行列式には、スタイル、を介して設定された値または依存関係プロパティの既定値があります。 詳細については、「[依存関係プロパティ値の優先順位](~/docs/framework/wpf/advanced/dependency-property-value-precedence.md)」を参照してください。  
+ *ローカル値*は、依存関係プロパティに直接設定された依存関係プロパティの値です。を<xref:System.Windows.DependencyObject.SetValue%2A>呼び出すことによって、またはを呼び出すことによっ<xref:System.Windows.DependencyObject.SetValue%2A>て、内部的にを呼び出す[!INCLUDE[TLA2#tla_clr](~/includes/tla2sharptla-clr-md.md)]プロパティラッパーの set アクセサーを使用することが一般的です。 ローカル値ではないその他のプロパティシステム要因の例としては、スタイルを使用して設定される値や、依存関係プロパティの既定値があります。 詳細については、「[依存関係プロパティ値の優先順位](~/docs/framework/wpf/advanced/dependency-property-value-precedence.md)」を参照してください。  
   
- A<xref:System.Windows.LocalValueEnumerator>によって返される、<xref:System.Windows.DependencyObject.GetLocalValueEnumerator%2A>メソッドを実装、<xref:System.Collections.IEnumerator>インターフェイス。 パブリック<xref:System.Windows.LocalValueEnumerator>コンス トラクターが存在しません。 そのため、呼び出す必要がある<xref:System.Windows.DependencyObject.GetLocalValueEnumerator%2A>このクラスのインスタンスを取得します。  
+ は、 <xref:System.Windows.DependencyObject.GetLocalValueEnumerator%2A>メソッドによって返され、 <xref:System.Collections.IEnumerator>インターフェイスを実装します。 <xref:System.Windows.LocalValueEnumerator> パブリック<xref:System.Windows.LocalValueEnumerator>コンストラクターが存在しません。したがって、この<xref:System.Windows.DependencyObject.GetLocalValueEnumerator%2A>クラスのインスタンスを取得するには、を呼び出す必要があります。  
   
- ローカル値を変更しないでください (呼び出して<xref:System.Windows.DependencyObject.SetValue%2A>または<xref:System.Windows.DependencyObject.ClearValue%2A>) ローカル値を列挙中にします。 変更するかクリアのプロパティの値は、列挙子によって返されるプロパティに基づいた変更またはクリア操作は無効、列挙子のコレクションの多くの場合と同様<xref:System.Collections.IEnumerator>実装します。 また、列挙子のビューは、スナップショットです。 コレクションへの変更がないスレッド セーフであることが保証され、ロックは適用されません。 他のスレッドは、列挙子以外のコンテキストから無料でアクセスをローカル値もあります。  
+ ローカル値の列挙中に (また<xref:System.Windows.DependencyObject.SetValue%2A>は<xref:System.Windows.DependencyObject.ClearValue%2A>を呼び出すことによって) ローカル値を変更しないでください。 列挙子によって返されるプロパティに基づいてプロパティ値を変更またはクリアした場合、多く<xref:System.Collections.IEnumerator>の実装の場合と同様に、変更または消去操作で列挙子のコレクションが無効になることはありません。 また、列挙子ビューはスナップショットです。 コレクションへの変更は、スレッドセーフであるとは限りません。また、ロックは適用されません。 他のスレッドは、列挙子以外のコンテキストからローカル値に無料でアクセスできます。  
   
- この種類を使用、クラス内の操作がある場合はローカル値からプロパティの値が付属しているかどうかを把握しておく場所。 たとえば、この型を使用、<xref:System.Windows.DependencyObject.OnPropertyChanged%2A>実装、またはローカルのすべてのメタデータを照会するプロパティを設定します。  
+ クラスに操作があり、プロパティの値がローカル値からのものであるかどうかを確認する必要がある場合は、この型を使用します。 たとえば、この型は、の<xref:System.Windows.DependencyObject.OnPropertyChanged%2A>実装で、またはローカルに設定されているすべてのプロパティのメタデータをクエリする場所で使用します。  
   
  ]]></format>
     </remarks>
@@ -65,7 +65,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの定義済みのメンバーでない<xref:System.Collections.IEnumerator>利便性のために用意されています。  
+ このプロパティは、の<xref:System.Collections.IEnumerator>定義されたメンバーではありませんが、便宜的に提供されています。  
   
  ]]></format>
         </remarks>
@@ -94,11 +94,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この一般にアクセス可能なバージョンのプロパティは、作成時に取得するコレクションのスナップショットに依存します。  
+ 一般にアクセス可能なこのバージョンのプロパティは、作成時に取得されるコレクションのスナップショットに依存します。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.5/ms749010(v=vs.90)">方法: 依存関係プロパティの既定値の復元</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.5/ms749010(v=vs.90)">方法: 依存関係プロパティの既定値を復元する</related>
       </Docs>
     </Member>
     <Member MemberName="Equals">
@@ -128,7 +128,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この実装では、参照の等価性のみをサポートします。  
+ この実装では、参照の等価性のみがサポートされます。  
   
  ]]></format>
         </remarks>
@@ -212,7 +212,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この実装では、参照の等価性のみをサポートします。  
+ この実装では、参照の等価性のみがサポートされます。  
   
  ]]></format>
         </remarks>
@@ -247,7 +247,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この実装では、参照の等価性のみをサポートします。  
+ この実装では、参照の等価性のみがサポートされます。  
   
  ]]></format>
         </remarks>

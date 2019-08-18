@@ -1,5 +1,5 @@
 <Type Name="HMAC" FullName="System.Security.Cryptography.HMAC">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="edd09a05f4067de8ace8b6add31d24dedfac36b5" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58712193" /></Metadata><TypeSignature Language="C#" Value="public abstract class HMAC : System.Security.Cryptography.KeyedHashAlgorithm" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="28dd83c4c1d2bbacc8d9741007a728aead64d692" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69352617" /></Metadata><TypeSignature Language="C#" Value="public abstract class HMAC : System.Security.Cryptography.KeyedHashAlgorithm" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit HMAC extends System.Security.Cryptography.KeyedHashAlgorithm" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.HMAC" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class HMAC&#xA;Inherits KeyedHashAlgorithm" />
@@ -37,11 +37,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 送信者と受信者の共有シークレット キーを使用すると、安全でないチャネル経由で送信されたメッセージを改ざんするかどうかを判断するハッシュ ベース メッセージ認証コード (HMAC) を使用できます。 送信者は、元のデータのハッシュ値を計算し、1 つのメッセージとして、元のデータと、HMAC の両方を送信します。 受信アダプターは受信メッセージのハッシュ値を再計算し、計算されたハッシュ値が送信されたハッシュ値と一致することを確認します。  
+ 送信側と受信側が秘密キーを共有している場合、セキュリティで保護されていないチャネルを介して送信されたメッセージが改ざんされているかどうかを判断するために、ハッシュベースのメッセージ認証コード (HMAC) を使用できます。 送信側は元のデータのハッシュ値を計算し、元のデータと HMAC の両方を1つのメッセージとして送信します。 受信側は、受信したメッセージのハッシュ値を計算し、計算されたハッシュ値が送信されたハッシュ値と一致することを確認します。  
   
- HMAC は、反復的な暗号化ハッシュ関数と、MD5 または sha-1 などの秘密の共有キーと組み合わせて使用できます。 HMAC 暗号の強度は、基になるハッシュ関数のプロパティに依存します。  
+ HMAC は、MD5 や SHA-1 などの反復的な暗号ハッシュ関数と共に、秘密の共有キーと組み合わせて使用できます。 HMAC の暗号強度は、基になるハッシュ関数のプロパティによって異なります。  
   
- メッセージを変更し、適切なハッシュ値を再現する秘密キーの知識が必要なために、データや、ハッシュ値を変更の結果は一致しません場合。 そのため、元と計算されたハッシュ値が一致したメッセージが認証されます。  
+ データまたはハッシュ値を変更した場合、メッセージを変更し、正しいハッシュ値を再現するために秘密鍵の知識が必要になるため、不一致が発生します。 したがって、元のハッシュ値と計算されたハッシュ値が一致する場合、メッセージは認証されます。  
   
  ]]></format>
     </remarks>
@@ -112,7 +112,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ハッシュ ベース メッセージ認証コード (HMAC) は、ハッシュ関数を使用して、データ ブロックの基本的な圧縮関数を反復処理するデータはハッシュされています。 <xref:System.Security.Cryptography.HMAC.BlockSizeValue%2A> このようなブロックのバイト サイズです。 その値は、64 バイトです。  
+ ハッシュベースのメッセージ認証コード (HMAC) は、データのブロックに対して基本的な圧縮関数を反復処理することで、データがハッシュされるハッシュ関数を使用します。 <xref:System.Security.Cryptography.HMAC.BlockSizeValue%2A>は、このようなブロックのバイトサイズです。 値は64バイトです。  
   
  ]]></format>
         </remarks>
@@ -168,7 +168,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定では、このオーバー ロードは、HMAC の sha-1 の実装を使用します。 別の実装を指定する場合を使用して、<xref:System.Security.Cryptography.HMAC.Create%28System.String%29>オーバー ロードを代わりに、アルゴリズムの名前を指定することができます。  
+ 既定では、このオーバーロードは HMAC の SHA-1 実装を使用します。 別の実装を指定する場合は、代わりにアルゴリズム<xref:System.Security.Cryptography.HMAC.Create%28System.String%29>名を指定できるオーバーロードを使用します。  
   
  ]]></format>
         </remarks>
@@ -237,7 +237,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- HMAC は、数など、MD5、sha-1、sha-256、および RIPEMD160 のハッシュ アルゴリズムをサポートします。 完全な一覧で、サポートされている値を参照してください、`algorithmName`パラメーター。  
+ HMAC では、MD5、SHA-1、SHA-256、RIPEMD160 など、多数のハッシュアルゴリズムがサポートされています。 完全な一覧については、 `algorithmName`パラメーターでサポートされている値を参照してください。  
   
  ]]></format>
         </remarks>
@@ -281,16 +281,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose()`メソッドと`Finalize`メソッド。 `Dispose()` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 `Finalize` 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック`Dispose()`メソッド`Finalize`とメソッドによって呼び出されます。 `Dispose()``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 `Finalize`をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.Security.Cryptography.HMAC> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 オーバーライドするときに<see langword="Dispose(Boolean)" />を以前の呼び出しで破棄されたオブジェクトを参照しないように注意、<see langword="Dispose" />します。 実装する方法についての詳細は<see langword="Dispose(Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 をオーバーライド<see langword="Dispose(Boolean)" />する場合は、以前にを<see langword="Dispose" />呼び出したときに破棄されたオブジェクトを参照しないように注意してください。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see langword="Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)します。</para></block>
+<see langword="Dispose" /> および<see langword="Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。</para></block>
       </Docs>
     </Member>
     <Member MemberName="HashCore">
@@ -366,9 +366,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アプリケーション コードでは呼び出されません。  
+ このメソッドは、アプリケーションコードによって呼び出されません。  
   
- この抽象メソッドでは、ハッシュ計算を実行します。 暗号ストリーム オブジェクトに対するすべての書き込みは、この方法でデータを渡します。 データのブロックごとに、このメソッドは、データ ストリームの末尾に適切なハッシュ値が返されるようにハッシュ オブジェクトの状態を更新します。  
+ この抽象メソッドは、ハッシュ計算を実行します。 暗号化ストリームオブジェクトへのすべての書き込みは、このメソッドを使用してデータを渡します。 データのブロックごとに、このメソッドはハッシュオブジェクトの状態を更新して、正しいハッシュ値がデータストリームの末尾に返されるようにします。  
   
  ]]></format>
         </remarks>
@@ -412,7 +412,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アプリケーション コードでは呼び出されません。 このメソッドは、任意の部分計算を終了し、データ ストリームの適切なハッシュ値を返します。  
+ このメソッドは、アプリケーションコードによって呼び出されません。 このメソッドは、部分計算を終了し、データストリームの正しいハッシュ値を返します。  
   
  ]]></format>
         </remarks>
@@ -494,11 +494,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 送信者と受信者の共有シークレット キーを使用すると、安全でないチャネル経由で送信されたメッセージを改ざんするかどうかを判断するハッシュ ベース メッセージ認証コード (HMAC) を使用できます。 送信者は、元のデータのハッシュ値を計算し、1 つのメッセージとして、元のデータと、HMAC の両方を送信します。 受信アダプターは受信メッセージのハッシュ値を再計算し、計算されたハッシュ値が送信されたハッシュ値と一致することを確認します。  
+ 送信側と受信側が秘密キーを共有している場合、セキュリティで保護されていないチャネルを介して送信されたメッセージが改ざんされているかどうかを判断するために、ハッシュベースのメッセージ認証コード (HMAC) を使用できます。 送信側は元のデータのハッシュ値を計算し、元のデータと HMAC の両方を1つのメッセージとして送信します。 受信側は、受信したメッセージのハッシュ値を計算し、計算されたハッシュ値が送信されたハッシュ値と一致することを確認します。  
   
- HMAC は、反復的な暗号化ハッシュ関数と、MD5 または sha-1 などの秘密の共有キーと組み合わせて使用できます。 HMAC 暗号の強度は、基になるハッシュ関数のプロパティに依存します。  
+ HMAC は、MD5 や SHA-1 などの反復的な暗号ハッシュ関数と共に、秘密の共有キーと組み合わせて使用できます。 HMAC の暗号強度は、基になるハッシュ関数のプロパティによって異なります。  
   
- メッセージを変更し、適切なハッシュ値を再現する秘密キーの知識が必要なために、データや、ハッシュ値の変更は一致しない場合になります。 そのため、元と計算されたハッシュ値が一致したメッセージが認証されます。  
+ データまたはハッシュ値を変更した場合、メッセージを変更し、正しいハッシュ値を再現するために秘密鍵の知識が必要になるため、不一致が発生します。 したがって、元のハッシュ値と計算されたハッシュ値が一致する場合、メッセージは認証されます。  
   
  ]]></format>
         </remarks>
@@ -539,13 +539,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、キー付きハッシュ アルゴリズムのキーです。  
+ このプロパティは、キー付きハッシュアルゴリズムのキーです。  
   
- 送信者と受信者の共有シークレット キーを使用すると、安全でないチャネル経由で送信されたメッセージを改ざんするかどうかを判断するハッシュ ベース メッセージ認証コード (HMAC) を使用できます。 送信者は、元のデータのハッシュ値を計算し、1 つのメッセージとして、元のデータと、HMAC の両方を送信します。 受信アダプターは受信メッセージのハッシュ値を再計算し、計算されたハッシュ値が送信されたハッシュ値と一致することを確認します。  
+ 送信側と受信側が秘密キーを共有している場合、セキュリティで保護されていないチャネルを介して送信されたメッセージが改ざんされているかどうかを判断するために、ハッシュベースのメッセージ認証コード (HMAC) を使用できます。 送信側は元のデータのハッシュ値を計算し、元のデータと HMAC の両方を1つのメッセージとして送信します。 受信側は、受信したメッセージのハッシュ値を計算し、計算されたハッシュ値が送信されたハッシュ値と一致することを確認します。  
   
- HMAC は、反復的な暗号化ハッシュ関数と、MD5 または sha-1 などの秘密の共有キーと組み合わせて使用できます。 HMAC 暗号の強度は、基になるハッシュ関数のプロパティに依存します。  
+ HMAC は、MD5 や SHA-1 などの反復的な暗号ハッシュ関数と共に、秘密の共有キーと組み合わせて使用できます。 HMAC の暗号強度は、基になるハッシュ関数のプロパティによって異なります。  
   
- メッセージを変更し、適切なハッシュ値を再現する秘密キーの知識が必要なために、データや、ハッシュ値を変更の結果は一致しません場合。 そのため、元と計算されたハッシュ値が一致したメッセージが認証されます。  
+ データまたはハッシュ値を変更した場合、メッセージを変更し、正しいハッシュ値を再現するために秘密鍵の知識が必要になるため、不一致が発生します。 したがって、元のハッシュ値と計算されたハッシュ値が一致する場合、メッセージは認証されます。  
   
  ]]></format>
         </remarks>

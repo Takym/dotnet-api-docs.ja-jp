@@ -1,5 +1,5 @@
 <Type Name="EncoderFallback" FullName="System.Text.EncoderFallback">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d3210b00d0c4bf4cc264c98a97fc960e96d0eaca" /><Meta Name="ms.sourcegitcommit" Value="c0c07dbd19cd7017243f9ac36915755f79bc8da6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/27/2018" /><Meta Name="ms.locfileid" Value="52379116" /></Metadata><TypeSignature Language="C#" Value="public abstract class EncoderFallback" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e694bb6e74b76274afe163c73b121890a2814dca" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230588" /></Metadata><TypeSignature Language="C#" Value="public abstract class EncoderFallback" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit EncoderFallback extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Text.EncoderFallback" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class EncoderFallback" />
@@ -18,6 +18,7 @@
   <AssemblyInfo>
     <AssemblyName>netstandard</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Runtime</AssemblyName>
@@ -39,27 +40,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- エンコーディング Unicode 文字をエンコード済みバイト シーケンスにマップします。 派生した型で表される、特定のエンコード、<xref:System.Text.Encoding>クラス。 エンコードの種類を呼び出すことで、文字をバイト シーケンスにエンコードが具体的には、<xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>呼び出すことによって、メソッド、およびバイト シーケンス文字配列または文字列にデコードされたが、<xref:System.Text.Encoding.GetChars%2A?displayProperty=nameWithType>または<xref:System.Text.Encoding.GetString%2A?displayProperty=nameWithType>メソッド。  
+ エンコーディングは、Unicode 文字をエンコードされたバイトシーケンスにマップします。 特定のエンコーディングは、 <xref:System.Text.Encoding>クラスから派生した型によって表されます。 具体的には、文字はエンコーディングの型の<xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>メソッドを呼び出すことによってバイトシーケンスにエンコードされ、バイトシーケンスはメソッド<xref:System.Text.Encoding.GetChars%2A?displayProperty=nameWithType>または<xref:System.Text.Encoding.GetString%2A?displayProperty=nameWithType>メソッドを呼び出すことによって、文字配列または文字列にデコードされます。  
   
- エンコード操作は、そのエンコードが入力文字を表すことができない場合に失敗します。 たとえば、<xref:System.Text.ASCIIEncoding>オブジェクトは Unicode コード ポイント値が範囲外 u+0000 U + 007F ~ 文字をエンコードことはできません。  
+ エンコーディングで入力文字を表現できない場合、エンコーディング操作が失敗することがあります。 たとえば、 <xref:System.Text.ASCIIEncoding>オブジェクトは、Unicode コードポイント値が u + 0000 ~ u + 007f の範囲外にある文字をエンコードすることはできません。  
   
- エンコーディングの変換を実行できないときに、.NET Framework は、フォールバックと呼ばれるエラー処理メカニズムを提供します。 アプリケーションで使用して定義済みの .NET Framework のエンコーダー フォールバック、またはから派生したカスタムのエンコーダー フォールバックを作成することができます、<xref:System.Text.EncoderFallback>と<xref:System.Text.EncoderFallbackBuffer>クラス。  
+ エンコード変換を実行できない場合、.NET Framework はフォールバックと呼ばれるエラー処理機構を提供します。 アプリケーションでは、定義済みの .NET Framework エンコーダーフォールバックを使用することも、クラス<xref:System.Text.EncoderFallback>および<xref:System.Text.EncoderFallbackBuffer>クラスから派生したカスタムエンコーダーフォールバックを作成することもできます。  
   
- <xref:System.Text.EncoderFallback> <xref:System.Text.EncoderFallbackBuffer>すべてに対する基底クラスは、.NET Framework でのフォールバック ハンドラーをエンコードします。 次の 3 種類フォールバック処理機構のサポートします。  
+ <xref:System.Text.EncoderFallback>と<xref:System.Text.EncoderFallbackBuffer>は、.NET Framework 内のすべてのエンコードフォールバックハンドラーの基本クラスです。 次の3種類のフォールバック処理機構がサポートされています。  
   
--   最適フォールバック、ほぼ同等のものをエンコードできない有効な Unicode 文字をマップします。 最適フォールバック ハンドラーなど、<xref:System.Text.ASCIIEncoding>クラスは AE (u+0041 + u+0045) に Æ (U +) をマップする場合があります。 最適フォールバック ハンドラー可能性があります実装することもあるキリル文字) などの 1 つのアルファベット別 (ラテン、ローマなど)。 .NET Framework では、任意のパブリック最適フォールバック実装は提供されません。  
+-   最適フォールバック。エンコードできない有効な Unicode 文字を、ほぼ同等のものにマップします。 たとえば、 <xref:System.Text.ASCIIEncoding>クラスの最適フォールバックハンドラーは、Æ (u + 00c6) を AE (u + 0041 という + u + 0045) にマップする場合があります。 最適フォールバックハンドラーは、1つのアルファベット (キリル文字など) を翻字に実装することもできます (ラテンやローマなど)。 .NET Framework では、パブリックに最適なフォールバック実装は提供されません。  
   
--   定義済みの文字列で置換フォールバックの文字の各後継をエンコードすることはできません。 .NET Framework は、定義済みの置換フォールバック ハンドラーを提供します。 <xref:System.Text.EncoderReplacementFallback>クラスが疑問符文字で各デコードできないバイト シーケンスを置き換えます ("?"、または U + 003F) または REPLACEMENT CHARACTER (U+FFFD)。 呼び出しで代替を指定して置換文字列をカスタマイズすることができます、<xref:System.Text.EncoderReplacementFallback.%23ctor%28System.String%29?displayProperty=nameWithType>コンス トラクター。 代替文字列が出力されると、残りの入力を変換する、エンコード処理が続行されます。  
+-   置換フォールバック。事前に定義された文字列でエンコードできない各文字を置き換えます。 .NET Framework には、定義済みの置換フォールバックハンドラーが用意されています。 クラス<xref:System.Text.EncoderReplacementFallback>は、デコードできない各バイトシーケンスを疑問符文字 ("?"、u + 003f)、または置換文字 (u + fffd) で置き換えます。 置換文字列をカスタマイズするには、コンストラクターの<xref:System.Text.EncoderReplacementFallback.%23ctor%28System.String%29?displayProperty=nameWithType>呼び出しで代替文字列を指定します。 代替文字列が生成された後、エンコーディング操作で残りの入力の変換が続行されます。  
   
--   例外フォールバック文字をエンコードできないときに例外をスローします。 .NET Framework は、定義済み例外フォールバック ハンドラーを提供します。 <xref:System.Text.EncoderExceptionFallback>クラスがスローされます、<xref:System.Text.EncoderFallbackException>ときに、無効な文字が発生しましたし、エンコード処理を終了します。  
+-   例外フォールバック。文字をエンコードできない場合に例外をスローします。 .NET Framework には、定義済みの例外フォールバックハンドラーが用意されています。 クラス<xref:System.Text.EncoderExceptionFallback>は、無効<xref:System.Text.EncoderFallbackException>な文字が見つかったときにをスローし、エンコーディング操作を終了します。  
   
- カスタム ソリューションを実装する場合は、次の抽象メンバーをオーバーライドする必要があります、<xref:System.Text.EncoderFallback>クラス。  
+ カスタムソリューションを実装する場合は、 <xref:System.Text.EncoderFallback>クラスの次の抽象メンバーをオーバーライドする必要があります。  
   
--   <xref:System.Text.EncoderFallback.CreateFallbackBuffer%2A>から派生したクラスのインスタンスを返すメソッド<xref:System.Text.EncoderFallbackBuffer>します。 開発すると、フォールバック ハンドラーの種類に応じて、<xref:System.Text.EncoderFallbackBuffer>実装は、マッピングまたは代わりを実行するため、または例外をスローするためです。  
+-   メソッド。から<xref:System.Text.EncoderFallbackBuffer>派生したクラスのインスタンスを返します。 <xref:System.Text.EncoderFallback.CreateFallbackBuffer%2A> 開発しているフォールバックハンドラーの種類に応じて、の<xref:System.Text.EncoderFallbackBuffer>実装は、マッピングや置換を実行したり、例外をスローしたりする役割を担います。  
   
--   <xref:System.Text.EncoderFallback.MaxCharCount%2A>プロパティで、フォールバックの実装を返すことのできる文字の最大数を返します。 例外フォールバック ハンドラーの場合、その値は 0 にする必要があります。  
+-   <xref:System.Text.EncoderFallback.MaxCharCount%2A>プロパティ。フォールバック実装が返すことができる最大文字数を返します。 例外フォールバックハンドラーの場合、その値は0にする必要があります。  
   
- エンコード、デコード、およびフォールバック ストラテジの詳細については、次を参照してください。 [.NET Framework における文字エンコーディング](~/docs/standard/base-types/character-encoding.md)します。  
+ エンコード、デコード、フォールバック戦略の詳細については、「 [.NET Framework の文字エンコード](~/docs/standard/base-types/character-encoding.md)」を参照してください。  
   
  ]]></format>
     </remarks>
@@ -67,7 +68,7 @@
     <altmember cref="T:System.Text.EncoderReplacementFallback" />
     <altmember cref="T:System.Text.EncoderExceptionFallback" />
     <related type="Article" href="~/docs/standard/base-types/character-encoding.md">.NET Framework における文字エンコーディング</related>
-    <related type="ExternalDocumentation" href="https://code.msdn.microsoft.com/Cyrillic-to-Roman-f7e88b29">ローマ音訳ユーティリティへのサンプル: キリル語</related>
+    <related type="ExternalDocumentation" href="https://code.msdn.microsoft.com/Cyrillic-to-Roman-f7e88b29">サンプル:キリル ~ ローマ翻字ユーティリティ</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -90,6 +91,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
@@ -123,6 +125,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
@@ -140,9 +143,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドから派生したオブジェクトを返します<xref:System.Text.EncoderFallbackBuffer>フォールバック操作を実行する責任を負いますです。 たとえば、定義済みの<xref:System.Text.EncoderFallback>、.NET Framework での実装、<xref:System.Text.EncoderReplacementFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>メソッドを返します。、<xref:System.Text.EncoderReplacementFallbackBuffer>オブジェクト、と<xref:System.Text.EncoderExceptionFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>メソッドを返します。、<xref:System.Text.EncoderExceptionFallbackBuffer>オブジェクト。  
+ このメソッドは、フォールバック操作の<xref:System.Text.EncoderFallbackBuffer>実行を担当するから派生したオブジェクトを返します。 たとえば、.NET Framework の定義済み<xref:System.Text.EncoderFallback>の実装の場合、メソッド<xref:System.Text.EncoderReplacementFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>は<xref:System.Text.EncoderReplacementFallbackBuffer>オブジェクトを返し、メソッドは<xref:System.Text.EncoderExceptionFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType> <xref:System.Text.EncoderExceptionFallbackBuffer>オブジェクトを返します。  
   
- <xref:System.Text.EncoderFallback.CreateFallbackBuffer%2A>メソッドは、エンコードできない最初の文字を見つけたときに、エンコーダーによって呼び出されます。 <xref:System.Text.EncoderFallbackBuffer>このメソッドによって返されるオブジェクトを選択し、フォールバックの実装を提供しますが文字またはエンコードできない文字を置換するバイト配列が返されます。  
+ メソッド<xref:System.Text.EncoderFallback.CreateFallbackBuffer%2A>は、エンコードできない最初の文字が検出されたときに、エンコーダーによって呼び出されます。 この<xref:System.Text.EncoderFallbackBuffer>メソッドによって返されるオブジェクトは、フォールバックの実装を提供し、エンコードできなかった文字を置き換えるバイト配列を返す役割を担います。  
   
  ]]></format>
         </remarks>
@@ -171,6 +174,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
@@ -207,6 +211,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
@@ -223,7 +228,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 例外フォールバック ハンドラーの場合、このプロパティは 0 を返すはずです。  
+ 例外フォールバックハンドラーの場合、このプロパティは0を返します。  
   
  ]]></format>
         </remarks>
@@ -250,6 +255,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>

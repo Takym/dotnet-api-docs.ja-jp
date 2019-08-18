@@ -1,5 +1,5 @@
 <Type Name="IDesignerLoaderService" FullName="System.ComponentModel.Design.Serialization.IDesignerLoaderService">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fec085c20104231eb2ef57a4ab1990c8b0a52caa" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63903584" /></Metadata><TypeSignature Language="C#" Value="public interface IDesignerLoaderService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f4438738ad95585cb9d89ec4584de592177ebe65" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69350188" /></Metadata><TypeSignature Language="C#" Value="public interface IDesignerLoaderService" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDesignerLoaderService" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.Serialization.IDesignerLoaderService" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDesignerLoaderService" />
@@ -29,9 +29,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.ComponentModel.Design.Serialization.DesignerLoader>外部コンポーネントは、デザイナーの読み込みを管理するには、このインターフェイスを実装できます。 このインターフェイスでは、外部コンポーネントを呼び出して、デザイン画面の再読み込みを開始することもできます<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.Reload%2A>します。 デザイナー ローダーは、非同期読み込みのサポートが不要な場合は、このインターフェイスを実装する必要はありません。  
+ は<xref:System.ComponentModel.Design.Serialization.DesignerLoader> 、このインターフェイスを実装して、外部コンポーネントを含むデザイナーの読み込みを管理できます。 このインターフェイスでは、を呼び出す<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.Reload%2A>ことによって、外部コンポーネントがデザインサーフェイスの再読み込みを開始することもできます。 非同期読み込みのサポートを必要としない場合、デザイナーローダーはこのインターフェイスを実装する必要はありません。  
   
- デザイナーのカスタム実装を使用して読み込み、<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService>さまざまな方法で発生することができます。 読み込みプロセスでも外部コンポーネントが関連します。 外部依存関係の読み込みを容易には、デザイナー ローダー サービスのインターフェイスは、読み込みが完了し、により、各部分の読み込みが完了したことを通知するを決定するメカニズムを提供します。 <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService>通常の読み込みが完了すると残りの読み込み依存関係の数を追跡するカウンターをテストして判断します。 各部分の読み込みが完了したら、<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>を呼び出すと、サービスをデクリメントし、カウンター。 依存読み込みプロセスの数を設定するには、呼び出す<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>を呼び出すロード プロセスごとに 1 回<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>の読み込みが完了するとします。 最終の読み込みが完了すると、サービス呼び出し<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderHost.EndLoad%2A>ローダー ホスト。  
+ のカスタム実装<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService>を使用したデザイナーの読み込みは、さまざまな方法で行うことができます。 外部コンポーネントが読み込みプロセスに含まれることがあります。 外部依存関係を使用した読み込みを容易にするために、デザイナーローダーサービスインターフェイスには、読み込みが完了したことを判断し、読み込みの各部分が完了したことを通知するメカニズムが用意されています。 は<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService> 、通常、読み込みが完了するタイミングを決定します。そのためには、残りの負荷依存関係の数を追跡するカウンターをテストします。 読み込みの各部分<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>が完了すると、が呼び出され、サービスによってカウンターが減少します。 依存する読み込みプロセスの数を設定するに<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>は、読み込みが完了した<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>ときにを呼び出す読み込みプロセスごとに1回呼び出します。 最後の読み込みが完了すると、サービスは<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderHost.EndLoad%2A>ローダーホストでを呼び出します。  
   
  ]]></format>
     </remarks>
@@ -72,7 +72,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>読み込みプロセスに参加している外部オブジェクトごとに 1 回です。 <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> 読み込みプロセスの作業が終わったときに呼び出されます。  
+ 読み込み<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>プロセスに参加している外部オブジェクトごとに1回を呼び出します。 <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>は、読み込みプロセスの作業が完了したときに呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -118,9 +118,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、依存読み込み操作が完了したことを通知します。 呼び出す<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>呼び出すことによって登録されたすべてのプロセスに対して 1 回<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>、既に完了しています。  
+ このメソッドは、依存読み込み操作が完了したことを通知するために呼び出されます。 は<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> 、既に完了しているを呼び出し<xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>て登録されたすべてのプロセスに対して1回呼び出します。  
   
- 依存読み込みが成功したかどうか、呼び出し元のセット、`successful`パラメーターを`true`し、空のコレクションを渡しますまたは`null`を`errorCollection`パラメーター。 依存読み込みでエラーが発生した場合、呼び出し元の設定、`successful`パラメーターを`false`理由またはへのエラーの理由を示す例外のコレクションを渡すと、`errorCollection`パラメーター。  
+ 依存読み込みが成功した場合、呼び出し元`successful`はパラメーター `true`をに設定し、空の`null` `errorCollection`コレクションまたはパラメーターに渡します。 依存する読み込みでエラーが発生した場合、 `successful`呼び出し元`false`はパラメーターをに設定し、 `errorCollection`パラメーターに失敗した理由または理由を示す例外のコレクションを渡します。  
   
  ]]></format>
         </remarks>
@@ -162,9 +162,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 任意のオブジェクトは、ローダーの再読み込みデザイン ドキュメントを要求するには、このメソッドを呼び出すことができます。 デザイナー ローダーが返すことができるかどうかローダーは再読み込みをサポートし、再読み込みに準拠している、`true`します。 それ以外を返します`false`、再読み込みが発生しないことを示します。 呼び出し元が再読み込みをすぐに; に依存できません。デザイナー ローダー、他の時間をスケジュールするか、すぐに再読み込みを試みることができます。  
+ どのオブジェクトでも、このメソッドを呼び出して、ローダーがデザインドキュメントを再読み込みするように要求できます。 ローダーが再読み込みをサポートし、リロードに準拠している場合、 `true`デザイナーローダーはを返すことができます。 それ以外の場合`false`は、を返します。再読み込みが行われないことを示します。 呼び出し元は、直ちに再読み込みを行うことはできません。デザイナーローダーは、これを他の時間に対してスケジュールすることも、一度に再読み込みを試みることもできます。  
   
- デザイナーを再読み込みできない場合、呼び出し元ユーザーにメッセージを表示できます。  
+ デザイナーを再度読み込むことができない場合、呼び出し元はユーザーにメッセージを表示できます。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="IAsyncErrorNotify" FullName="System.EnterpriseServices.IAsyncErrorNotify">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="48524f4f6d98162fd7b8df6e7b485b18a15bc580" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55393465" /></Metadata><TypeSignature Language="C#" Value="public interface IAsyncErrorNotify" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f2b170b8fe6bf676b06d49f56a0f733eade95ee9" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69358590" /></Metadata><TypeSignature Language="C#" Value="public interface IAsyncErrorNotify" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IAsyncErrorNotify" />
   <TypeSignature Language="DocId" Value="T:System.EnterpriseServices.IAsyncErrorNotify" />
   <TypeSignature Language="VB.NET" Value="Public Interface IAsyncErrorNotify" />
@@ -26,9 +26,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.EnterpriseServices.IAsyncErrorNotify> によって送信される非同期バッチ作業のエラー トラッピングを実装するため、<xref:System.EnterpriseServices.Activity>オブジェクト。 このインターフェイスへの呼び出しで渡されるオブジェクトに実装<xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>上、<xref:System.EnterpriseServices.Activity>オブジェクト。 <xref:System.EnterpriseServices.Activity.AsynchronousCall%2A> 非同期的に実行されているバッチ作業でエラーが発生したかを判断します。 このインターフェイスでは、非同期バッチ作業で発生したエラーを通知することができ、プロセスは、回復不能なエラー (failfast) を終了します。  
+ <xref:System.EnterpriseServices.IAsyncErrorNotify>は、 <xref:System.EnterpriseServices.Activity>オブジェクトによって送信される非同期バッチ作業にエラートラップを実装するために使用されます。 <xref:System.EnterpriseServices.Activity>オブジェクトのへ<xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>の呼び出しで渡されるオブジェクトに対して、このインターフェイスを実装します。 <xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>非同期的に実行されているバッチ処理でエラーが発生したかどうかを確認します。 このインターフェイスを使用すると、非同期バッチ処理で発生したエラーを通知することができ、回復不能なエラーが発生した場合にプロセスが終了 (failfast) されます。  
   
- フェイルファーストの詳細については、MSDN のプラットフォーム SDK の「フォールトの分離と Failfast ポリシー」のトピックを参照してください。  
+ Failfast の詳細については、MSDN のプラットフォーム SDK の「Fault 分離と Failfast ポリシー」を参照してください。  
   
  ]]></format>
     </remarks>
@@ -61,9 +61,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、バッチ作業を非同期的に実行しているときに発生するエラーを適切に処理を実装する必要があります。 プロセスでは、回復不能なエラー (failfast) が終了するため、このメソッドはありません非同期バッチ作業では、エラーが発生した場合を知る方法。 プロセスは、このメソッドは、その戻り値としてエラーを返す場合にも終了します。 バッチ作業自体が実装された<xref:System.EnterpriseServices.IServiceCall.OnCall%2A>、非同期的に呼び出すことによって実行されると<xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>します。  
+ このメソッドは、バッチ処理が非同期的に実行されているときに発生するエラーを適切に処理するために実装する必要があります。 この方法を使用しないと、プロセスは回復不能なエラーによって終了 (failfast) されるので、非同期バッチ処理でエラーが発生したときにそのことを知る方法はありません。 また、このメソッドが戻り値としてエラーを返す場合も、プロセスは終了します。 バッチ作業自体はに<xref:System.EnterpriseServices.IServiceCall.OnCall%2A>実装され、を呼び出す<xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>ことによって非同期的に実行されます。  
   
- このメソッドは、標準の戻り値をサポートしている`E_FAIL`、 `E_INVALIDARG`、および`E_OUTOFMEMORY`、だけでなく`S_OK`メソッドの呼び出しが正常に返されたを示します。  
+ このメソッドは、標準の戻り`E_FAIL`値`E_INVALIDARG`である`E_OUTOFMEMORY`、、 `S_OK`およびをサポートします。これは、メソッドの呼び出しが正常に返されたことを示します。  
   
  ]]></format>
         </remarks>
