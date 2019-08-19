@@ -1,5 +1,5 @@
 <Type Name="Graphics+DrawImageAbort" FullName="System.Drawing.Graphics+DrawImageAbort">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="32b7da5b1dd1abc559cb9769b54c47f9c310e841" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56766682" /></Metadata><TypeSignature Language="C#" Value="public delegate bool Graphics.DrawImageAbort(IntPtr callbackdata);" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="897738808f3fec2c7d9699cff736ff2dea3df00a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69360236" /></Metadata><TypeSignature Language="C#" Value="public delegate bool Graphics.DrawImageAbort(IntPtr callbackdata);" />
   <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed Graphics/DrawImageAbort extends System.MulticastDelegate" />
   <TypeSignature Language="DocId" Value="T:System.Drawing.Graphics.DrawImageAbort" />
   <TypeSignature Language="VB.NET" Value="Public Delegate Function Graphics.DrawImageAbort(callbackdata As IntPtr) As Boolean " />
@@ -39,18 +39,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを組み合わせて使用、<xref:System.Drawing.Graphics.DrawImage%2A>のメソッド、<xref:System.Drawing.Graphics>クラス。 特定のオーバー ロード、<xref:System.Drawing.Graphics.DrawImage%2A>メソッドがオーバー ロードが停止するか実行を続けるかどうか、確認するには、この種類のアプリケーション定義のコールバック メソッドを呼び出します。  
+ このメソッドは、 <xref:System.Drawing.Graphics.DrawImage%2A> <xref:System.Drawing.Graphics>クラスのメソッドと共に使用されます。 <xref:System.Drawing.Graphics.DrawImage%2A>メソッドの特定のオーバーロードは、この型のアプリケーション定義のコールバックメソッドを呼び出して、オーバーロードが実行を停止するか続行するかを確認します。  
   
- 関連する、実行中に<xref:System.Drawing.Graphics.DrawImage%2A>オーバー ロードが頻繁に、指定されたイメージの描画が終了するか、イメージを描画する必要がありますが引き続き確認するには、このコールバック メソッドを呼び出します。 <xref:System.Drawing.Graphics.DrawImageAbort>コールバック メソッドは、続行するかどうかを判断できますまたはしてここパラメーターでが含まれて、選択したアルゴリズムに基づいていない、必要に応じて、データを使用して渡されました。 たとえば、アルゴリズムをイメージが画面に表示されていないかを判断し、に、キャンセルの信号可能性があります、<xref:System.Drawing.Graphics.DrawImage%2A>描画を中止するメソッド。  
+ 実行中、関連<xref:System.Drawing.Graphics.DrawImage%2A>するオーバーロードは、指定されたイメージの描画を停止する必要があるかどうか、またはイメージの描画を継続する必要があるかどうかを確認するために、このコールバックメソッドを頻繁に呼び出します。 コール<xref:System.Drawing.Graphics.DrawImageAbort>バックメソッドは、それに含まれる選択されたアルゴリズムに基づいて続行するかどうかを決定できます。オプションで、callback data パラメーターで渡されたデータを使用します。 たとえば、アルゴリズムでは、イメージが画面の外にスクロールされたかどうかを判断<xref:System.Drawing.Graphics.DrawImage%2A>し、描画を停止するためにメソッドに取り消しを通知する場合があります。  
   
- このイベント処理メソッドのユーザーの宣言と同じパラメーターをいる必要があります、<xref:System.Drawing.Graphics.DrawImageAbort>宣言を委任します。  
+ このイベント処理メソッドのユーザー宣言は、 <xref:System.Drawing.Graphics.DrawImageAbort>デリゲート宣言と同じパラメーターを持っている必要があります。  
   
    
   
 ## Examples  
- この例は単純な実装の<xref:System.Drawing.Graphics.DrawImageAbort>を委任します。 だけをチェックする場合、<xref:System.Drawing.Graphics.DrawImage%2A>メソッドに成功しましたここパラメーターを使用してデータ。 (一部<xref:System.Drawing.Graphics.DrawImage%2A>オーバー ロードがのみ、`DrawImageAbort`パラメーターとデータが渡されない一部のオーバー ロード両方`DrawImageAbort`と`callbackdata`パラメーター データを渡すことができます。)。返すかどうかデータが渡されなかった、 `true` 、呼び出し元に通知する<xref:System.Drawing.Graphics.DrawImage%2A>メソッドは、描画を中止しなければならないことです。 返すかどうかは、データが渡された、`false`図面を続行することを通知します。  
+ この例は、 <xref:System.Drawing.Graphics.DrawImageAbort>デリゲートの単純な実装です。 このメソッドは<xref:System.Drawing.Graphics.DrawImage%2A> 、メソッドが、使用しているデータが、このデータパラメーターを使用して渡されたかどうかを確認するだけです。 (一部<xref:System.Drawing.Graphics.DrawImage%2A>のオーバーロードは、パラメーターのみを持ち、データを渡しません`DrawImageAbort` 。 `callbackdata`一部のオーバーロードには、パラメーターとパラメーターの`DrawImageAbort`両方があり、データを渡すことができます)。データが渡されなかった場合は`true` 、を返して、 <xref:System.Drawing.Graphics.DrawImage%2A>描画をキャンセルする呼び出し元のメソッドにシグナルを送信します。 データが渡された場合は`false` 、を返して、描画を続行することを通知します。  
   
- このコールバックの現実的な実装は、実際の精査を取り消すか、実行を継続するいくつかの条件の必要があります。  
+ このコールバックを現実的に実装するには、実行をキャンセルまたは続行するための条件を実際に調査する必要があります。  
   
 ```vb  
 Private Function DrawImageCallback(callBackData As IntPtr) As Boolean  

@@ -1,5 +1,5 @@
 <Type Name="IProvideCustomContentState" FullName="System.Windows.Navigation.IProvideCustomContentState">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="2afd191868158ff5b61500b06543e396244658fa" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64192696" /></Metadata><TypeSignature Language="C#" Value="public interface IProvideCustomContentState" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4ad75c206f5a7317dd4e35ed96bcac1b0e64cf0d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69446204" /></Metadata><TypeSignature Language="C#" Value="public interface IProvideCustomContentState" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IProvideCustomContentState" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Navigation.IProvideCustomContentState" />
   <TypeSignature Language="VB.NET" Value="Public Interface IProvideCustomContentState" />
@@ -17,11 +17,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Navigation.IProvideCustomContentState> カスタムとして実装されるカスタムの状態の一部を関連付けることができます<xref:System.Windows.Navigation.CustomContentState>クラスのインスタンスから外部にナビゲートされたコンテンツのナビゲーション履歴エントリとします。  
+ <xref:System.Windows.Navigation.IProvideCustomContentState>カスタム<xref:System.Windows.Navigation.CustomContentState>クラスとして実装されているカスタム状態の一部を、移動先のコンテンツのナビゲーション履歴エントリと関連付けることができます。  
   
- カスタム状態は、次を使用してこの方法でも関連付けられます。  
+ 次のようにして、カスタム状態をこの方法で関連付けることもできます。  
   
--   呼び出す**ため**:  
+-   **Addbackentry**を呼び出しています:  
   
     -   <xref:System.Windows.Navigation.NavigationService.AddBackEntry%2A?displayProperty=nameWithType>  
   
@@ -29,7 +29,7 @@
   
     -   <xref:System.Windows.Controls.Frame.AddBackEntry%2A?displayProperty=nameWithType>。  
   
--   設定<xref:System.Windows.Navigation.NavigatingCancelEventArgs.Content%2A?displayProperty=nameWithType>次のイベントのいずれかが発生した場合。  
+-   次<xref:System.Windows.Navigation.NavigatingCancelEventArgs.Content%2A?displayProperty=nameWithType>のいずれかのイベントが発生したときに設定します。  
   
     -   <xref:System.Windows.Navigation.NavigationService.Navigating?displayProperty=nameWithType>  
   
@@ -39,20 +39,20 @@
   
     -   <xref:System.Windows.Navigation.NavigationWindow.Navigating?displayProperty=nameWithType>  
   
- 実装する必要があります<xref:System.Windows.Navigation.IProvideCustomContentState>追加するとカスタム状態をナビゲーション履歴に呼び出して**ため**、それ以外の場合、ナビゲーション履歴が正常に機能しない; 次の手順を検討してください。  
+ <xref:System.Windows.Navigation.IProvideCustomContentState> **Addbackentry**を呼び出してナビゲーション履歴にカスタム状態を追加する場合は、を実装する必要があります。そうしないと、ナビゲーション履歴は正常に機能しません。次の手順を検討してください。  
   
-1.  **ため**カスタム状態を現在のコンテンツに関連付けるために呼び出されます。  
+1.  **Addbackentry**は、カスタム状態を現在のコンテンツに関連付けるために呼び出されます。  
   
-2.  ナビゲーション履歴エントリを移動して、<xref:System.Windows.Navigation.CustomContentState.Replay%2A>カスタム状態のメソッドが呼び出され、状態は、コンテンツに適用されます。  
+2.  ナビゲーション履歴エントリはに<xref:System.Windows.Navigation.CustomContentState.Replay%2A>戻り、カスタム状態のメソッドが呼び出され、状態がコンテンツに適用されます。  
   
-3.  前のコンテンツは、"進む"ナビゲーション履歴に移動します。  
+3.  前のコンテンツは、進むナビゲーション履歴に移動します。  
   
-4.  ナビゲーション履歴エントリを移動するが、前回に関連付けられたナビゲーション履歴エントリに移動した後、カスタムの状態が保持されていません。  
+4.  ナビゲーション履歴エントリはに戻りますが、関連付けられたナビゲーション履歴エントリが最後に移動されてから、カスタム状態が保持されていません。  
   
- これは、ナビゲーション履歴に追加された後に最初にカスタム状態で記録された状態を変更する可能性がありますので、既定の動作です。 カスタム状態オブジェクトに移動すると、その状態が適用される、いくつかの側面について、状態が変化する前に、ナビゲーション履歴にエントリをナビゲートする前に状態の変更に反映できませんカスタム状態オブジェクト。 さらに、<xref:System.Windows.Navigation.NavigationService.AddBackEntry%2A>状態変更を反映する新しいカスタム状態オブジェクトを追加する明示的に呼び出すことはできません。 その結果、現在のことを確認する特定のナビゲーションの状態は常にナビゲーション履歴に格納、<xref:System.Windows.Navigation.IProvideCustomContentState.GetContentState%2A>が呼び出されます。  
+ これは既定の動作です。最初にカスタム状態で記録される状態は、ナビゲーション履歴に追加された後で変更される可能性があるためです。 カスタム状態オブジェクトがに戻り、その状態が適用されている場合、ナビゲーション履歴のエントリがナビゲートされる前に状態の変化に関するいくつかの側面が変更される前に、状態の変更をカスタム状態オブジェクトに反映させることはできません。 さらに<xref:System.Windows.Navigation.NavigationService.AddBackEntry%2A> 、を明示的に呼び出して、状態の変更を反映する新しいカスタム状態オブジェクトを追加することはできません。 その結果、特定のナビゲーションの現在の状態が常にナビゲーション履歴に格納さ<xref:System.Windows.Navigation.IProvideCustomContentState.GetContentState%2A>れるようにするために、が呼び出されます。  
   
 > [!IMPORTANT]
->  カスタム コンテンツ状態の情報を保存するときに、状態を記憶するページのインスタンスへの参照を格納することはできません。 これにより、[!INCLUDE[TLA2#tla_wpf](~/includes/tla2sharptla-wpf-md.md)]を既定のナビゲーション履歴の動作の目的は、ページのインスタンスとララェホを解放します。 これを行う場合は、使用を検討する可能性があります<xref:System.Windows.Controls.Page.KeepAlive%2A>代わりにします。  
+>  カスタムコンテンツの状態に情報を格納する場合、状態を記憶しているページのインスタンスへの参照を保存することはできません。 これに[!INCLUDE[TLA2#tla_wpf](~/includes/tla2sharptla-wpf-md.md)]より、がページインスタンスを解放するのを防ぎ、ナビゲーション履歴の既定の動作の目的を損なうことがなくなります。 この操作を行う必要がある場合は、 <xref:System.Windows.Controls.Page.KeepAlive%2A>代わりにを使用することを検討してください。  
   
  ]]></format>
     </remarks>

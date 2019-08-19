@@ -1,5 +1,5 @@
 <Type Name="DecoderFallback" FullName="System.Text.DecoderFallback">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ce11820edf2c16dc7a5705d3da38c85a10d9bac9" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58681514" /></Metadata><TypeSignature Language="C#" Value="public abstract class DecoderFallback" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="87d680dfe23f7b265cd6b810adbfb731b4baf463" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230629" /></Metadata><TypeSignature Language="C#" Value="public abstract class DecoderFallback" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit DecoderFallback extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Text.DecoderFallback" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DecoderFallback" />
@@ -40,27 +40,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- エンコーディング Unicode 文字をエンコード済みバイト シーケンスにマップします。 派生した型で表される、特定のエンコード、<xref:System.Text.Encoding>クラス。 エンコードの種類を呼び出すことで、文字をバイト シーケンスにエンコードが具体的には、<xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>呼び出すことによって、メソッド、およびバイト シーケンス文字配列または文字列にデコードされたが、<xref:System.Text.Encoding.GetChars%2A?displayProperty=nameWithType>または<xref:System.Text.Encoding.GetString%2A?displayProperty=nameWithType>メソッド。  
+ エンコーディングは、Unicode 文字をエンコードされたバイトシーケンスにマップします。 特定のエンコーディングは、 <xref:System.Text.Encoding>クラスから派生した型によって表されます。 具体的には、文字はエンコーディングの型の<xref:System.Text.Encoding.GetBytes%2A?displayProperty=nameWithType>メソッドを呼び出すことによってバイトシーケンスにエンコードされ、バイトシーケンスはメソッド<xref:System.Text.Encoding.GetChars%2A?displayProperty=nameWithType>または<xref:System.Text.Encoding.GetString%2A?displayProperty=nameWithType>メソッドを呼び出すことによって、文字配列または文字列にデコードされます。  
   
- デコード演算は、入力バイト シーケンスは、エンコードすることによってマップできない場合に失敗します。 たとえば、<xref:System.Text.ASCIIEncoding>そのシーケンスは u+0000 U + 007F ~ が範囲外のコード ポイント値を持つ文字を表している場合、オブジェクトはバイト シーケンスをデコードできません。  
+ 入力バイトシーケンスをエンコーディングによってマップできない場合、デコード操作は失敗する可能性があります。 たとえば、オブジェクトは<xref:System.Text.ASCIIEncoding> 、u + 0000 から u + 007f の範囲外のコードポイント値を持つ文字を表す場合、バイトシーケンスをデコードできません。  
   
- デコード変換を実行することはできません、.NET Framework は、フォールバックと呼ばれるエラー処理メカニズムを提供します。 アプリケーションで使用して定義済みの .NET Framework のデコーダー フォールバック、またはから派生したカスタムのデコーダー フォールバックを作成することができます、<xref:System.Text.DecoderFallback>と<xref:System.Text.DecoderFallbackBuffer>クラス。  
+ デコード変換を実行できない場合、.NET Framework はフォールバックと呼ばれるエラー処理機構を提供します。 アプリケーションでは、定義済みの .NET Framework デコーダーフォールバックを使用することも、クラス<xref:System.Text.DecoderFallback>および<xref:System.Text.DecoderFallbackBuffer>クラスから派生したカスタムデコーダーフォールバックを作成することもできます。  
   
- <xref:System.Text.DecoderFallback> <xref:System.Text.DecoderFallbackBuffer>すべてに対する基底クラスは、.NET Framework でのフォールバックのハンドラーをデコードします。 次の 3 種類フォールバック処理機構のサポートします。  
+ <xref:System.Text.DecoderFallback>と<xref:System.Text.DecoderFallbackBuffer>は、.NET Framework 内のすべてのフォールバックハンドラーをデコードするための基本クラスです。 次の3種類のフォールバック処理機構がサポートされています。  
   
--   最適フォールバック、ほぼ同等のものをデコードできない有効な Unicode 文字をマップします。 最適フォールバック ハンドラーなど、<xref:System.Text.ASCIIEncoding>クラスは AE (u+0041 + u+0045) に Æ (U +) をマップする場合があります。 最適フォールバック ハンドラー可能性があります実装することもあるキリル文字) などの 1 つのアルファベット別 (ラテン、ローマなど)。 .NET Framework では、任意のパブリック最適フォールバック実装は提供されません。  
+-   最適フォールバック。これにより、デコードできない有効な Unicode 文字が、ほぼ同等のものにマップされます。 たとえば、 <xref:System.Text.ASCIIEncoding>クラスの最適フォールバックハンドラーは、Æ (u + 00c6) を AE (u + 0041 という + u + 0045) にマップする場合があります。 最適フォールバックハンドラーは、1つのアルファベット (キリル文字など) を翻字に実装することもできます (ラテンやローマなど)。 .NET Framework では、パブリックに最適なフォールバック実装は提供されません。  
   
--   置換フォールバックの文字の各後継は、定義済みの文字列をデコードできません。 .NET Framework は、定義済みの置換フォールバック ハンドラーを提供します。 <xref:System.Text.DecoderReplacementFallback>クラスが疑問符文字で各デコードできないバイト シーケンスを置き換えます ("?"、または U + 003F) または REPLACEMENT CHARACTER (U+FFFD)。 呼び出しで代替を指定して置換文字列をカスタマイズすることができます、<xref:System.Text.DecoderReplacementFallback.%23ctor%28System.String%29?displayProperty=nameWithType>コンス トラクター。 代替文字列が出力されると、残りの入力を変換するデコードの処理が続行されます。  
+-   置換フォールバック。事前に定義された文字列でデコードできない各文字を置き換えます。 .NET Framework には、定義済みの置換フォールバックハンドラーが用意されています。 クラス<xref:System.Text.DecoderReplacementFallback>は、デコードできない各バイトシーケンスを疑問符文字 ("?"、u + 003f)、または置換文字 (u + fffd) で置き換えます。 置換文字列をカスタマイズするには、コンストラクターの<xref:System.Text.DecoderReplacementFallback.%23ctor%28System.String%29?displayProperty=nameWithType>呼び出しで代替文字列を指定します。 代替文字列が生成された後は、デコード操作によって入力の残りの部分の変換が続行されます。  
   
--   例外フォールバックにおいて、バイト シーケンスをデコードできないときに例外をスローします。 .NET Framework は、定義済み例外フォールバック ハンドラーを提供します。 <xref:System.Text.DecoderExceptionFallback>クラスがスローされます、<xref:System.Text.DecoderFallbackException>ときに、無効なバイト シーケンスが発生したし、デコード操作を終了します。  
+-   例外フォールバック。バイトシーケンスをデコードできない場合に例外をスローします。 .NET Framework には、定義済みの例外フォールバックハンドラーが用意されています。 クラス<xref:System.Text.DecoderExceptionFallback>は、無効<xref:System.Text.DecoderFallbackException>なバイトシーケンスが検出され、デコード操作が終了したときにをスローします。  
   
- カスタム ソリューションを実装する場合は、次の抽象メンバーをオーバーライドする必要があります、<xref:System.Text.DecoderFallback>クラス。  
+ カスタムソリューションを実装する場合は、 <xref:System.Text.DecoderFallback>クラスの次の抽象メンバーをオーバーライドする必要があります。  
   
--   <xref:System.Text.DecoderFallback.CreateFallbackBuffer%2A>から派生したクラスのインスタンスを返すメソッド<xref:System.Text.DecoderFallbackBuffer>します。 開発すると、フォールバック ハンドラーの種類に応じて、<xref:System.Text.DecoderFallbackBuffer>実装は、マッピングまたは代わりを実行するため、または例外をスローするためです。  
+-   メソッド。から<xref:System.Text.DecoderFallbackBuffer>派生したクラスのインスタンスを返します。 <xref:System.Text.DecoderFallback.CreateFallbackBuffer%2A> 開発しているフォールバックハンドラーの種類に応じて、の<xref:System.Text.DecoderFallbackBuffer>実装は、マッピングや置換を実行したり、例外をスローしたりする役割を担います。  
   
--   <xref:System.Text.DecoderFallback.MaxCharCount%2A>プロパティで、フォールバックの実装を返すことのできる文字の最大数を返します。 例外フォールバック ハンドラーの場合、その値は 0 にする必要があります。  
+-   <xref:System.Text.DecoderFallback.MaxCharCount%2A>プロパティ。フォールバック実装が返すことができる最大文字数を返します。 例外フォールバックハンドラーの場合、その値は0にする必要があります。  
   
- エンコード、デコード、およびフォールバック ストラテジの詳細については、次を参照してください。 [.NET Framework における文字エンコーディング](~/docs/standard/base-types/character-encoding.md)します。  
+ エンコード、デコード、フォールバック戦略の詳細については、「 [.NET Framework の文字エンコード](~/docs/standard/base-types/character-encoding.md)」を参照してください。  
   
  ]]></format>
     </remarks>
@@ -142,9 +142,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドから派生したオブジェクトを返します<xref:System.Text.DecoderFallbackBuffer>フォールバック操作を実行する責任を負いますです。 などの定義済み<xref:System.Text.DecoderFallback>、.NET Framework での実装、<xref:System.Text.DecoderReplacementFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>メソッドを返します。 を<xref:System.Text.DecoderReplacementFallbackBuffer>オブジェクト、および<xref:System.Text.DecoderExceptionFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>メソッドを返します。 を<xref:System.Text.DecoderExceptionFallbackBuffer>オブジェクト。  
+ このメソッドは、フォールバック操作の<xref:System.Text.DecoderFallbackBuffer>実行を担当するから派生したオブジェクトを返します。 たとえば、.NET Framework の定義済み<xref:System.Text.DecoderFallback>の実装の場合、メソッド<xref:System.Text.DecoderReplacementFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType>は<xref:System.Text.DecoderReplacementFallbackBuffer>オブジェクトを返し、メソッドは<xref:System.Text.DecoderExceptionFallback.CreateFallbackBuffer%2A?displayProperty=nameWithType> <xref:System.Text.DecoderExceptionFallbackBuffer>オブジェクトを返します。  
   
- <xref:System.Text.DecoderFallback.CreateFallbackBuffer%2A>メソッドは、デコードできない最初のバイトを見つけたときに、デコーダーによって呼び出されます。 <xref:System.Text.DecoderFallbackBuffer>このメソッドによって返されるオブジェクトを選択し、フォールバックの実装を提供しますがバイトまたはデコードできないバイトを置換する文字列が返されます。  
+ メソッド<xref:System.Text.DecoderFallback.CreateFallbackBuffer%2A>は、デコードできない最初のバイトが検出されたときにデコーダーによって呼び出されます。 この<xref:System.Text.DecoderFallbackBuffer>メソッドによって返されるオブジェクトは、フォールバックの実装を提供し、デコードできなかったバイト数を置き換える文字列を返す役割を担います。  
   
  ]]></format>
         </remarks>
@@ -227,7 +227,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 例外フォールバック ハンドラーの場合、このプロパティは 0 を返すはずです。  
+ 例外フォールバックハンドラーの場合、このプロパティは0を返します。  
   
  ]]></format>
         </remarks>
