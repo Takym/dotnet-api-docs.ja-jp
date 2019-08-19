@@ -1,5 +1,5 @@
 <Type Name="WriteOnlyArrayAttribute" FullName="System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="339314bda23fecfc8fd075766661ee08528577ed" /><Meta Name="ms.sourcegitcommit" Value="8e213bb5e6801f6e29861ba72664978ad00e34fa" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/18/2019" /><Meta Name="ms.locfileid" Value="56373938" /></Metadata><TypeSignature Language="C#" Value="public sealed class WriteOnlyArrayAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d5c4419c81fb9bdfc879b13da590771eaed6b295" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69064907" /></Metadata><TypeSignature Language="C#" Value="public sealed class WriteOnlyArrayAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit WriteOnlyArrayAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class WriteOnlyArrayAttribute&#xA;Inherits Attribute" />
@@ -30,20 +30,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 配列パラメーターの場合、[!INCLUDE[wrt](~/includes/wrt-md.md)]コンポーネントは、値によって渡される (`ByVal` Visual Basic で) を次の属性のいずれかを適用する必要があります。  
+ [!INCLUDE[wrt](~/includes/wrt-md.md)]コンポーネントの配列パラメーターが値 (`ByVal` Visual Basic) で渡される場合は、次の属性のいずれかを適用する必要があります。  
   
--   適用、<xref:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute>属性が入力のみに使用する配列の内容をする場合。  
+-   配列の<xref:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute>内容が入力のみに使用されるようにする場合は、属性を適用します。  
   
--   適用、<xref:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute>属性の出力のみに使用する配列の内容をする場合 (つまり、メソッド、配列の内容を設定に読み取られない)。  
+-   配列の<xref:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute>内容が出力のみに使用されるようにする場合は、属性を適用します (つまり、メソッドは配列の内容を設定しますが、読み取ることはできません)。  
   
- パラメーターに両方の属性を適用すると、エラーが発生します。 詳細については、配列を変更するは、標準的なパターンを含む、次を参照してください。 [Windows ランタイム コンポーネントへの配列の引き渡し](https://go.microsoft.com/fwlink/?LinkId=251026)、Windows デベロッパー センターでします。  
+ パラメーターに両方の属性を適用すると、エラーが発生します。 配列を変更するための標準パターンを含む詳細については、Windows デベロッパーセンターの「 [Windows ランタイムコンポーネントへの配列の引き渡し](https://go.microsoft.com/fwlink/?LinkId=251026)」を参照してください。  
   
 > [!IMPORTANT]
->  パラメーターを持つ、<xref:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute>属性動作は、呼び出し元がネイティブ コードまたはマネージ コードで記述されたかどうかによって異なります。 呼び出し元がネイティブ コード (JavaScript または Visual C コンポーネント拡張) の場合、呼び出されたメソッドは、元の配列の内容に関する想定をことはできません。 たとえば、メソッドが受け取る配列が初期化されていなかったり、既定の値が入っていたりする可能性があります。 メソッドには、配列内のすべての要素の値を設定することが期待されます。  
+>  属性を持つパラメーター <xref:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute>の動作は、呼び出し元がネイティブコードとマネージコードのどちらで記述されているかによって異なります。 呼び出し元がネイティブコード (JavaScript または Visual C++ component extension) である場合、呼び出されたメソッドは、元の配列の内容についての想定を行うことができません。 たとえば、メソッドが受け取る配列が初期化されていなかったり、既定の値が入っていたりする可能性があります。 メソッドには、配列内のすべての要素の値を設定することが期待されます。  
 >   
->  呼び出し元が管理されている場合のコード、呼び出し元の元の配列は、.NET Framework でのメソッド呼び出しであるかのよう呼び出されたメソッドに渡されます。 メソッドの読み取りし、それらの値を変更できる選択的に配列の内容は、マネージ コードの変更可能です。 これは [!INCLUDE[wrt](~/includes/wrt-md.md)] コンポーネントに対して作成される単体テストに影響を与えるので、忘れずに覚えておいてください。 マネージ コードでは、テストが記述された場合、は、テスト中に、変更可能にする配列の内容が表示され、結果は、後で、メソッドがネイティブ コードから呼び出された場合は、異なるする可能性があります。  
+>  呼び出し元がマネージコードの場合は、呼び出し元の配列が呼び出されたメソッドに渡されます。これは、.NET Framework のメソッド呼び出しの場合と同様です。 配列の内容はマネージコードで変更可能であるため、メソッドはその値を選択的に読み取り、変更できます。 これは [!INCLUDE[wrt](~/includes/wrt-md.md)] コンポーネントに対して作成される単体テストに影響を与えるので、忘れずに覚えておいてください。 テストがマネージコードで記述されている場合は、テスト中に配列の内容が変更可能であるように見えるため、後でメソッドがネイティブコードから呼び出された場合、結果は異なる可能性があります。  
   
- この属性を適用すること、`out`パラメーターまたはパラメーターを持つ、<xref:System.Runtime.InteropServices.InAttribute>属性とモジュールがエクスポートするときにエラーが発生します。 属性を持つパラメーターを適用、<xref:System.Runtime.InteropServices.OutAttribute>属性パラメーターは、Visual Basic もがあるない限り、エラーが発生`ByRef`修飾子。 その場合は、属性は、重複しますですが、許可されています。  
+ この属性を`out`パラメーターに適用するか、 <xref:System.Runtime.InteropServices.InAttribute>属性を持つパラメーターに適用すると、モジュールのエクスポート時にエラーが発生します。 属性を持つ<xref:System.Runtime.InteropServices.OutAttribute>パラメーターに属性を適用すると、パラメーターにも Visual Basic `ByRef`修飾子がある場合を除き、エラーが発生します。 この場合、属性は冗長ですが、許可されます。  
   
  ]]></format>
     </remarks>

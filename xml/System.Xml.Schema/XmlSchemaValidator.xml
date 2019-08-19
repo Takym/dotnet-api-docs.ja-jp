@@ -1,5 +1,5 @@
 <Type Name="XmlSchemaValidator" FullName="System.Xml.Schema.XmlSchemaValidator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="04cf63d5e450e18e75c2f5a14c2218402603f8be" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58744667" /></Metadata><TypeSignature Language="C#" Value="public sealed class XmlSchemaValidator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fc12cfc523da976a78abb9032b92b71add9d9d02" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69441103" /></Metadata><TypeSignature Language="C#" Value="public sealed class XmlSchemaValidator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit XmlSchemaValidator extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Xml.Schema.XmlSchemaValidator" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class XmlSchemaValidator" />
@@ -33,19 +33,19 @@
 ## Remarks  
   
 > [!IMPORTANT]
-> - 不明または信頼できないソースまたは場所からのスキーマを使用しないでください。 これは、コードのセキュリティが低下します。
-> - (インライン スキーマを含む) XML スキーマが本質的に、サービス拒否攻撃; に対する脆弱性信頼されていないシナリオでに受け付けられません。
-> - スキーマ検証エラー メッセージと例外は、コンテンツ モデルまたはスキーマ ファイルの URI のパスに関する機密情報を公開できます。 信頼されていない呼び出し元にこの情報を公開しないように注意します。
+> - 不明または信頼できないソースまたは場所のスキーマは使用しないでください。 そうすることで、コードのセキュリティが損なわれます。
+> - XML スキーマ (インラインスキーマを含む) は、サービス拒否攻撃に対して本質的に脆弱です。信頼されていないシナリオでは受け入れないでください。
+> - スキーマ検証エラーメッセージと例外によって、コンテンツモデルまたはスキーマファイルへの URI パスに関する機密情報が公開される場合があります。 この情報を信頼されていない呼び出し元に公開しないように注意してください。
   
- <xref:System.Xml.Schema.XmlSchemaValidator> は、プッシュ ベース方式で、XML スキーマを基準として XML データを検証する、効率的かつ高性能なしくみを提供します。 たとえば、<xref:System.Xml.Schema.XmlSchemaValidator> クラスでは、XML 情報セットを XML ドキュメントにシリアル化してから検証型 XML リーダーを使用してドキュメントを再解析する必要なしに、情報セットをそのまま検証することができます。 <xref:System.Xml.Schema.XmlSchemaValidator>クラスがカスタムの XML データ ソース全体に対して、または、検証型 XML ライターを構築する方法として、検証エンジンを構築することもできます。  
+ <xref:System.Xml.Schema.XmlSchemaValidator> は、プッシュ ベース方式で、XML スキーマを基準として XML データを検証する、効率的かつ高性能なしくみを提供します。 たとえば、<xref:System.Xml.Schema.XmlSchemaValidator> クラスでは、XML 情報セットを XML ドキュメントにシリアル化してから検証型 XML リーダーを使用してドキュメントを再解析する必要なしに、情報セットをそのまま検証することができます。 クラス<xref:System.Xml.Schema.XmlSchemaValidator>を使用して、カスタム xml データソースに対して検証エンジンを構築したり、検証 xml ライターを構築したりすることもできます。  
   
- 詳細については、<xref:System.Xml.Schema.XmlSchemaValidator>クラスを参照してください、 [XmlSchemaValidator のプッシュ ベースの検証](~/docs/standard/data/xml/xmlschemavalidator-push-based-validation.md)トピック。  
+ クラスの<xref:System.Xml.Schema.XmlSchemaValidator>詳細については、 [XmlSchemaValidator のプッシュベースの検証](~/docs/standard/data/xml/xmlschemavalidator-push-based-validation.md)に関するトピックを参照してください。  
   
 > [!IMPORTANT]
-> <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema>と<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation>の検証フラグを<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトでないセットを既定にします。 さらに、<xref:System.Xml.Schema.XmlSchemaValidator.XmlResolver%2A>のプロパティ、<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトが`null`既定。 その結果で参照されている外部のスキーマは、インポート、または再定義要素は解決されません既定では。   
+> オブジェクトの<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation> <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema> および検証フラグは、既定値に設定されていません<xref:System.Xml.Schema.XmlSchemaValidator> 。 また、 <xref:System.Xml.Schema.XmlSchemaValidator.XmlResolver%2A> <xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトのプロパティは`null`既定でになります。 その結果、include、imports、または redefine 要素で参照されている外部スキーマは、既定では解決されません。   
   
 ## Examples  
- 次の例では、検証、`contosoBooks.xml`ファイルに対して、`contosoBooks.xsd`スキーマ。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
+ 次の例では`contosoBooks.xml` 、 `contosoBooks.xsd`スキーマに対してファイルを検証します。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
   
  [!code-csharp[XmlSchemaValidatorExamples#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlSchemaValidatorExamples/CS/XmlSchemaValidatorExamples.cs#1)]
  [!code-vb[XmlSchemaValidatorExamples#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlSchemaValidatorExamples/VB/XmlSchemaValidatorExamples.vb#1)]  
@@ -104,21 +104,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.%23ctor%2A>コンス トラクター。  
+ <xref:System.Xml.Schema.XmlSchemaValidator.%23ctor%2A>コンストラクターを使用する際に考慮する必要がある重要な注意事項を次に示します。  
   
--   内容、<xref:System.Xml.Schema.XmlSchemaSet>パラメーターは、内部にコピーされます<xref:System.Xml.Schema.XmlSchemaSet>オブジェクトと、<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema>または<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation>検証オプションを設定します。 その結果、入力に変更<xref:System.Xml.Schema.XmlSchemaSet>検証中にオブジェクトの検証の結果には影響しません。  
+-   または<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation>検証オプション<xref:System.Xml.Schema.XmlSchemaSet>が設定されている<xref:System.Xml.Schema.XmlSchemaSet>場合、パラメーターの内容は内部オブジェクトにコピーされます。 <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema> その結果、検証中に入力<xref:System.Xml.Schema.XmlSchemaSet>オブジェクトを変更しても、検証の結果には影響しません。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaSet>指定されたパラメーターがコンパイルされていないその<xref:System.Xml.Schema.XmlSchemaSet.Compile%2A>メソッドが呼び出されます。  
+-   指定された<xref:System.Xml.Schema.XmlSchemaSet.Compile%2A> パラメーターがコンパイルされていない場合は、そのメソッドが呼び出されます。<xref:System.Xml.Schema.XmlSchemaSet>  
   
--   <xref:System.Xml.IXmlNamespaceResolver>パラメーターを検証するために特に重要ですが`xs:QName`型。 <xref:System.Xml.Schema.XmlSchemaValidator>クラスからのスコープ内名前空間はコピーされません、<xref:System.Xml.IXmlNamespaceResolver>オブジェクトが、代わりにへの参照を保持します。 これによりに追加する新しい名前空間、<xref:System.Xml.IXmlNamespaceResolver>検証プロセス中にオブジェクト。  
+-   パラメーター <xref:System.Xml.IXmlNamespaceResolver>は、型を検証`xs:QName`する場合に特に重要です。 クラス<xref:System.Xml.Schema.XmlSchemaValidator>は、 <xref:System.Xml.IXmlNamespaceResolver>オブジェクトのスコープ内の名前空間をコピーするのではなく、オブジェクトへの参照を保持します。 これにより、検証プロセス中に<xref:System.Xml.IXmlNamespaceResolver>オブジェクトに新しい名前空間を追加できます。  
   
 > [!IMPORTANT]
->  <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema>と<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation>の検証フラグを<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトでないセットを既定にします。 さらに、<xref:System.Xml.Schema.XmlSchemaValidator.XmlResolver%2A>のプロパティ、<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトが`null`既定。 その結果で参照されている外部のスキーマは、インポート、または再定義要素は解決されません既定では。  
+>  オブジェクトの<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation> <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema> および検証フラグは、既定値に設定されていません<xref:System.Xml.Schema.XmlSchemaValidator> 。 また、 <xref:System.Xml.Schema.XmlSchemaValidator.XmlResolver%2A> <xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトのプロパティは`null`既定でになります。 その結果、include、imports、または redefine 要素で参照されている外部スキーマは、既定では解決されません。  
   
    
   
 ## Examples  
- 例については、<xref:System.Xml.Schema.XmlSchemaValidator.%23ctor%2A>コンス トラクターを参照してください、<xref:System.Xml.Schema.XmlSchemaValidator>クラスのリファレンス トピック。  
+ <xref:System.Xml.Schema.XmlSchemaValidator.%23ctor%2A>コンストラクターの例につい<xref:System.Xml.Schema.XmlSchemaValidator>ては、クラスのリファレンストピックを参照してください。  
   
  ]]></format>
         </remarks>
@@ -167,13 +167,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.AddSchema%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.AddSchema%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   <xref:System.Xml.Schema.XmlSchemaValidator.AddSchema%2A>メソッドを検証する XML ドキュメント内のインライン XML スキーマの検出の効果をシミュレートするために使用できます。  
+-   <xref:System.Xml.Schema.XmlSchemaValidator.AddSchema%2A>メソッドを使用すると、xml ドキュメント内でインライン xml スキーマが検出された場合の結果をシミュレートできます。  
   
 -   <xref:System.Xml.Schema.XmlSchema> パラメーターの対象名前空間は、<xref:System.Xml.Schema.XmlSchemaValidator> オブジェクトが既に遭遇したすべての要素と属性の名前空間と一致してはなりません。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema>検証オプションが設定されていない、<xref:System.Xml.Schema.XmlSchemaValidator.AddSchema%2A>メソッドは何も行いません。  
+-   検証オプションが設定されていない<xref:System.Xml.Schema.XmlSchemaValidator.AddSchema%2A>場合、メソッドは何も行いません。 <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema>  
   
  ]]></format>
         </remarks>
@@ -219,7 +219,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.Schema.XmlSchemaValidator.EndValidation%2A>メソッドは、検証を終了し、XML ドキュメント全体に対して id 制約をチェックする場合、<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints>検証オプションを設定します。  
+ 検証オプションが設定されて<xref:System.Xml.Schema.XmlSchemaValidator.EndValidation%2A>いる場合、メソッドは検証を終了し、XML ドキュメント全体の id 制約をチェックします。 <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints>  
   
  ]]></format>
         </remarks>
@@ -263,11 +263,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.GetExpectedAttributes%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.GetExpectedAttributes%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaValidator.GetExpectedAttributes%2A>後すぐにメソッドが呼び出された、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateElement%2A>メソッド、XML ドキュメントに表示されるすべての属性が返されます。  
+-   メソッドの直後に<xref:System.Xml.Schema.XmlSchemaValidator.ValidateElement%2A> メソッドが呼び出されると、XMLドキュメントに表示される可能性のあるすべての属性が返されます。<xref:System.Xml.Schema.XmlSchemaValidator.GetExpectedAttributes%2A>  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaValidator.GetExpectedAttributes%2A>メソッドが 1 つまたは複数の呼び出し後に呼び出される、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッド、現在の要素のまだ検証されていない属性が返されます。  
+-   メソッドを1回以上呼び出した後にメソッドを呼び出すと、現在の要素に対してまだ検証されていない属性が返されます。<xref:System.Xml.Schema.XmlSchemaValidator.GetExpectedAttributes%2A> <xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>  
   
  ]]></format>
         </remarks>
@@ -492,7 +492,7 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A>で現在の要素のすべての属性を検証した後、メソッドを呼び出す必要があります、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッド。 <xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A> メソッドは、検証中の XML ドキュメントに挿入される既定の属性を決定するために使用します。  
+ メソッド<xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A> を<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>使用して、現在の要素のすべての属性を検証した後に、メソッドを呼び出す必要があります。 <xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A> メソッドは、検証中の XML ドキュメントに挿入される既定の属性を決定するために使用します。  
   
  ]]></format>
         </remarks>
@@ -544,12 +544,12 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.Schema.XmlSchemaValidator.Initialize%2A>の構築の直後後に呼び出される場合に有効なメソッドは、<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトまたは呼び出しの後に<xref:System.Xml.Schema.XmlSchemaValidator.EndValidation%2A>します。  
+ メソッド<xref:System.Xml.Schema.XmlSchemaValidator.Initialize%2A>は、 <xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトの構築の直後、 <xref:System.Xml.Schema.XmlSchemaValidator.EndValidation%2A>またはの呼び出しの後に呼び出された場合にのみ有効です。  
   
    
   
 ## Examples  
- 次の例では、検証、`contosoBooks.xml`ファイルに対して、`contosoBooks.xsd`スキーマ。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
+ 次の例では`contosoBooks.xml` 、 `contosoBooks.xsd`スキーマに対してファイルを検証します。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
   
  [!code-csharp[XmlSchemaValidatorExamples#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlSchemaValidatorExamples/CS/XmlSchemaValidatorExamples.cs#1)]
  [!code-vb[XmlSchemaValidatorExamples#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlSchemaValidatorExamples/VB/XmlSchemaValidatorExamples.vb#1)]  
@@ -705,9 +705,9 @@ validator.ValidateEndElement(null);
   
 ## Remarks  
   
--   行情報がいずれかによって報告された<xref:System.Xml.Schema.XmlSchemaValidationException>検証プロセス中にスローされます。  
+-   行情報は、検証プロセス<xref:System.Xml.Schema.XmlSchemaValidationException>中にスローされたによって報告されます。  
   
--   既定の<xref:System.Xml.IXmlLineInfo>によって返されるオブジェクト、<xref:System.Xml.Schema.XmlSchemaValidator.LineInfoProvider%2A>プロパティに 0 を返します、<xref:System.Xml.IXmlLineInfo.LineNumber%2A>と<xref:System.Xml.IXmlLineInfo.LinePosition%2A>プロパティ。  
+-   プロパティに<xref:System.Xml.IXmlLineInfo> よって<xref:System.Xml.IXmlLineInfo.LinePosition%2A>返される既定のオブジェクトは、プロパティとプロパティに対して0を返します。<xref:System.Xml.IXmlLineInfo.LineNumber%2A> <xref:System.Xml.Schema.XmlSchemaValidator.LineInfoProvider%2A>  
   
  ]]></format>
         </remarks>
@@ -752,14 +752,14 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.SkipToEndElement%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.SkipToEndElement%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   <xref:System.Xml.Schema.XmlSchemaValidator.SkipToEndElement%2A>メソッドが現在の要素のコンテンツの検証をスキップし、準備、<xref:System.Xml.Schema.XmlSchemaValidator>親要素のコンテキストでコンテンツを検証するオブジェクトこれは、現在の要素のすべての子の検証をスキップに相当し、。呼び出す、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッド。  
+-   メソッド<xref:System.Xml.Schema.XmlSchemaValidator.SkipToEndElement%2A>は、現在の要素の内容の検証をスキップ<xref:System.Xml.Schema.XmlSchemaValidator>し、親要素のコンテキストでコンテンツを検証するようにオブジェクトを準備します。これは、現在の要素のすべての子の検証をスキップしてから、メソッドを<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>呼び出しています。  
   
--   現在の要素のコンテンツが正常にスキップされた場合、<xref:System.Xml.Schema.XmlSchemaInfo>オブジェクトの指定) であれば<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティに設定されて<xref:System.Xml.Schema.XmlSchemaValidity.NotKnown>します。  
+-   現在の要素の内容が正常にスキップさ<xref:System.Xml.Schema.XmlSchemaInfo>れた場合は、オブジェクト<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>の (指定さ<xref:System.Xml.Schema.XmlSchemaValidity.NotKnown>れている場合) プロパティがに設定されます。  
   
 > [!NOTE]
->  スキップされたコンテンツの検証エラーは報告されません。  
+>  スキップされたコンテンツに対して検証エラーは報告されません。  
   
  ]]></format>
         </remarks>
@@ -807,9 +807,9 @@ validator.ValidateEndElement(null);
   
 ## Remarks  
   
--   URI がいずれかによって報告されたソース<xref:System.Xml.Schema.XmlSchemaValidationException>検証プロセス中にスローされます。  
+-   ソース URI は、検証プロセス中<xref:System.Xml.Schema.XmlSchemaValidationException>にスローされたによって報告されます。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaValidator.SourceUri%2A>プロパティが設定されていない、XML ドキュメントのファイル名は<xref:System.String.Empty>で検証エラー メッセージ。  
+-   プロパティが設定されていない場合、XML ドキュメントのファイル名<xref:System.String.Empty>は検証エラーメッセージに含まれます。 <xref:System.Xml.Schema.XmlSchemaValidator.SourceUri%2A>  
   
  ]]></format>
         </remarks>
@@ -870,18 +870,18 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   <xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A>で現在の要素のすべての属性を検証した後、メソッドを呼び出す必要があります、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッド。  
+-   メソッド<xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A> を<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>使用して、現在の要素のすべての属性を検証した後に、メソッドを呼び出す必要があります。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaAttribute>にオブジェクトが渡された、<xref:System.Xml.Schema.XmlSchemaValidator.Initialize%2A>メソッド、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッドは、属性に対して、検証、<xref:System.Xml.Schema.XmlSchemaAttribute>オブジェクト。  
+-   オブジェクトが<xref:System.Xml.Schema.XmlSchemaValidator.Initialize%2A>メソッドに渡された場合、メソッド<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>は<xref:System.Xml.Schema.XmlSchemaAttribute>オブジェクトに対して属性を検証します。 <xref:System.Xml.Schema.XmlSchemaAttribute>  
   
--   属性の現在の要素コンテキストで検証が成功した場合、<xref:System.Xml.Schema.XmlSchemaInfo>オブジェクトの指定) であれば<xref:System.Xml.Schema.XmlSchemaInfo.SchemaAttribute%2A>、 <xref:System.Xml.Schema.XmlSchemaInfo.SchemaType%2A>、<xref:System.Xml.Schema.XmlSchemaInfo.MemberType%2A>と<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティは、検証の結果に設定されます。  
+-   属性が現在の要素<xref:System.Xml.Schema.XmlSchemaInfo>コンテキストで正常に検証されている場合、オブジェクトの (指定されている場合<xref:System.Xml.Schema.XmlSchemaInfo.SchemaType%2A>) <xref:System.Xml.Schema.XmlSchemaInfo.SchemaAttribute%2A> <xref:System.Xml.Schema.XmlSchemaInfo.MemberType%2A>、、、および<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>の各プロパティは、検証の結果と共に設定されます。  
   
    
   
 ## Examples  
- 次の例では、検証、`contosoBooks.xml`ファイルに対して、`contosoBooks.xsd`スキーマ。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
+ 次の例では`contosoBooks.xml` 、 `contosoBooks.xsd`スキーマに対してファイルを検証します。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
   
  [!code-csharp[XmlSchemaValidatorExamples#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlSchemaValidatorExamples/CS/XmlSchemaValidatorExamples.cs#1)]
  [!code-vb[XmlSchemaValidatorExamples#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlSchemaValidatorExamples/VB/XmlSchemaValidatorExamples.vb#1)]  
@@ -946,18 +946,18 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   <xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A>で現在の要素のすべての属性を検証した後、メソッドを呼び出す必要があります、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッド。  
+-   メソッド<xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A> を<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>使用して、現在の要素のすべての属性を検証した後に、メソッドを呼び出す必要があります。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaAttribute>にオブジェクトが渡された、<xref:System.Xml.Schema.XmlSchemaValidator.Initialize%2A>メソッド、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>メソッドは、属性に対して、検証、<xref:System.Xml.Schema.XmlSchemaAttribute>オブジェクト。  
+-   オブジェクトが<xref:System.Xml.Schema.XmlSchemaValidator.Initialize%2A>メソッドに渡された場合、メソッド<xref:System.Xml.Schema.XmlSchemaValidator.ValidateAttribute%2A>は<xref:System.Xml.Schema.XmlSchemaAttribute>オブジェクトに対して属性を検証します。 <xref:System.Xml.Schema.XmlSchemaAttribute>  
   
--   属性の現在の要素コンテキストで検証が成功した場合、<xref:System.Xml.Schema.XmlSchemaInfo>オブジェクトの指定) であれば<xref:System.Xml.Schema.XmlSchemaInfo.SchemaAttribute%2A>、 <xref:System.Xml.Schema.XmlSchemaInfo.SchemaType%2A>、<xref:System.Xml.Schema.XmlSchemaInfo.MemberType%2A>と<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティは、検証の結果に設定されます。  
+-   属性が現在の要素<xref:System.Xml.Schema.XmlSchemaInfo>コンテキストで正常に検証されている場合、オブジェクトの (指定されている場合<xref:System.Xml.Schema.XmlSchemaInfo.SchemaType%2A>) <xref:System.Xml.Schema.XmlSchemaInfo.SchemaAttribute%2A> <xref:System.Xml.Schema.XmlSchemaInfo.MemberType%2A>、、、および<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>の各プロパティは、検証の結果と共に設定されます。  
   
    
   
 ## Examples  
- 次の例では、検証、`contosoBooks.xml`ファイルに対して、`contosoBooks.xsd`スキーマ。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
+ 次の例では`contosoBooks.xml` 、 `contosoBooks.xsd`スキーマに対してファイルを検証します。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
   
  [!code-csharp[XmlSchemaValidatorExamples#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlSchemaValidatorExamples/CS/XmlSchemaValidatorExamples.cs#1)]
  [!code-vb[XmlSchemaValidatorExamples#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlSchemaValidatorExamples/VB/XmlSchemaValidatorExamples.vb#1)]  
@@ -1035,16 +1035,16 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateElement%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateElement%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   要素名は、現在のコンテキストで検証が成功した場合、<xref:System.Xml.Schema.XmlSchemaInfo>オブジェクトの指定) であれば<xref:System.Xml.Schema.XmlSchemaInfo.IsNil%2A>、 <xref:System.Xml.Schema.XmlSchemaInfo.SchemaType%2A>、<xref:System.Xml.Schema.XmlSchemaInfo.SchemaElement%2A>と<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティは、検証の結果に設定されます。  
+-   現在のコンテキスト<xref:System.Xml.Schema.XmlSchemaInfo>で要素名が正常に検証されている場合、オブジェクトの (指定されて<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>いる場合<xref:System.Xml.Schema.XmlSchemaInfo.SchemaType%2A>) <xref:System.Xml.Schema.XmlSchemaInfo.IsNil%2A> <xref:System.Xml.Schema.XmlSchemaInfo.SchemaElement%2A>、、、およびの各プロパティは、検証の結果で設定されます。  
   
--   要素名またはその任意の属性が有効でない場合、現在のコンテキスト、<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティに設定されて<xref:System.Xml.Schema.XmlSchemaValidity.Invalid>。 そうしないと、<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティに設定されて<xref:System.Xml.Schema.XmlSchemaValidity.NotKnown>します。  
+-   要素名またはその属性のいずれかが現在のコンテキストで無効な<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>場合、プロパティは<xref:System.Xml.Schema.XmlSchemaValidity.Invalid>に設定さ<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>れます。それ<xref:System.Xml.Schema.XmlSchemaValidity.NotKnown>以外の場合は、プロパティがに設定されます。  
   
    
   
 ## Examples  
- 次の例では、検証、`contosoBooks.xml`ファイルに対して、`contosoBooks.xsd`スキーマ。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
+ 次の例では`contosoBooks.xml` 、 `contosoBooks.xsd`スキーマに対してファイルを検証します。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
   
  [!code-csharp[XmlSchemaValidatorExamples#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlSchemaValidatorExamples/CS/XmlSchemaValidatorExamples.cs#1)]
  [!code-vb[XmlSchemaValidatorExamples#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlSchemaValidatorExamples/VB/XmlSchemaValidatorExamples.vb#1)]  
@@ -1114,13 +1114,13 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateElement%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateElement%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   要素名は、現在のコンテキストで検証が成功した場合、<xref:System.Xml.Schema.XmlSchemaInfo>オブジェクトの指定) であれば<xref:System.Xml.Schema.XmlSchemaInfo.IsNil%2A>、 <xref:System.Xml.Schema.XmlSchemaInfo.SchemaType%2A>、<xref:System.Xml.Schema.XmlSchemaInfo.SchemaElement%2A>と<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティは、検証の結果に設定されます。  
+-   現在のコンテキスト<xref:System.Xml.Schema.XmlSchemaInfo>で要素名が正常に検証されている場合、オブジェクトの (指定されて<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>いる場合<xref:System.Xml.Schema.XmlSchemaInfo.SchemaType%2A>) <xref:System.Xml.Schema.XmlSchemaInfo.IsNil%2A> <xref:System.Xml.Schema.XmlSchemaInfo.SchemaElement%2A>、、、およびの各プロパティは、検証の結果で設定されます。  
   
--   要素名またはその属性のいずれかが現在のコンテキストで有効な場合は、<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティに設定されて<xref:System.Xml.Schema.XmlSchemaValidity.Invalid>。 そうしないと、<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティに設定されて<xref:System.Xml.Schema.XmlSchemaValidity.NotKnown>します。  
+-   現在のコンテキストで要素名またはその属性のいずれかが無効である<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>場合、プロパティは<xref:System.Xml.Schema.XmlSchemaValidity.Invalid>に設定さ<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>れます。それ<xref:System.Xml.Schema.XmlSchemaValidity.NotKnown>以外の場合は、プロパティがに設定されます。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation>へのパラメーターとして値が渡されませんでした、<xref:System.Xml.Schema.XmlSchemaValidator.%23ctor%2A>コンス トラクター、`xsi:SchemaLocation`と`xsi:NoNamespaceSchemaLocation`属性の値は無視されます。  
+-   値がパラメーターとして<xref:System.Xml.Schema.XmlSchemaValidator.%23ctor%2A>コンストラクターに渡されなかった場合`xsi:SchemaLocation` 、 `xsi:NoNamespaceSchemaLocation`属性値は無視されます。 <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation>  
   
  ]]></format>
         </remarks>
@@ -1184,17 +1184,17 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   単純コンテンツの要素に対して、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>要素のテキストの内容がそのデータ型に従って有効なし、解析済みの型指定された値を返しますメソッドを確認します。 要素のテキストの内容が前の呼び出しの結果から取得した<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>します。  
+-   単純コンテンツを持つ要素の場合<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A> 、メソッドは、要素のテキストコンテンツがそのデータ型に対して有効であることを検証し、解析された型指定された値を返します。 要素のテキストコンテンツは、の前回の呼び出し<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>の結果から取得されます。  
   
--   複合コンテンツは、要素の<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドでは、現在の要素のコンテンツは完了を確認します。  
+-   複合コンテンツを含む要素の場合<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A> 、メソッドは、現在の要素の内容が完全であるかどうかを検証します。  
   
--   返される要素の既定値が、値、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドは、要素の既定値。  
+-   要素に既定値がある場合、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドから返される値は要素の既定値になります。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトが構築した、<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints>値をパラメーターとして、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>要素に適用されるメソッドのチェック、id 制約規則 (ある場合)。  
+-   オブジェクトがパラメーターとして<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints>値を使用して構築さ<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>れた場合、メソッドは、要素に適用される id 制約規則 (存在する場合) をチェックします。 <xref:System.Xml.Schema.XmlSchemaValidator>  
   
--   要素の現在のコンテキストで検証が成功した場合、<xref:System.Xml.Schema.XmlSchemaInfo>オブジェクトの指定) であれば<xref:System.Xml.Schema.XmlSchemaInfo.IsDefault%2A>、<xref:System.Xml.Schema.XmlSchemaInfo.MemberType%2A>と<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティは、検証の結果に設定されます。  
+-   <xref:System.Xml.Schema.XmlSchemaInfo>現在のコンテキストで要素が正常に検証されている場合、オブジェクトの (指定され<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>ている場合<xref:System.Xml.Schema.XmlSchemaInfo.MemberType%2A>) <xref:System.Xml.Schema.XmlSchemaInfo.IsDefault%2A>、、およびの各プロパティは、検証の結果と共に設定されます。  
   
  ]]></format>
         </remarks>
@@ -1245,24 +1245,24 @@ validator.ValidateEndElement(null);
 ## Remarks  
   
 > [!IMPORTANT]
->  に対して検証する場合、 `xs:key`、 `xs:keyref`、または`xs:unique`id の制約は使用しないでください、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドのオーバー ロードします。 代わりに、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッドを要素の値を渡します。 呼び出して、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッド オーバー ロードでは、<xref:System.Xml.Schema.XmlSchemaInfo>要素のテキストの内容がそのデータ型に従った有効であることを確認して、引数として。  
+>  、 `xs:key` <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A> 、または`xs:unique`の各 id 制約に対して検証する場合は、メソッドオーバーロードを使用しないでください。 `xs:keyref` 代わりに、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッドを呼び出して、要素の値を渡します。 次に、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>引数としてを<xref:System.Xml.Schema.XmlSchemaInfo>受け取るメソッドオーバーロードを呼び出して、要素のテキストコンテンツがデータ型に従って有効であることを確認します。  
   
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   単純コンテンツの要素に対して、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A?displayProperty=nameWithType>要素のテキストの内容がそのデータ型に従って有効なし、解析済みの型指定された値を返しますメソッドを確認します。 要素のテキストの内容は、パラメーターとして渡された型指定されたコンテンツから取得されます。  
+-   単純コンテンツを持つ要素の場合<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A?displayProperty=nameWithType> 、メソッドは、要素のテキストコンテンツがそのデータ型に対して有効であることを検証し、解析された型指定された値を返します。 要素のテキストコンテンツは、パラメーターとして渡される型指定されたコンテンツから取得されます。  
   
--   場合に呼び出し、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッドが以前実行された、<xref:System.InvalidOperationException>がスローされます。  
+-   メソッドの<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>呼び出しが既に行わ<xref:System.InvalidOperationException>れている場合は、がスローされます。  
   
--   要素が複合コンテンツを<xref:System.InvalidOperationException>がスローされます。  
+-   要素に複合コンテンツがある場合<xref:System.InvalidOperationException>は、がスローされます。  
   
--   場合、<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトが構築した、<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints>値をパラメーターとして、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>要素に適用されるメソッドのチェック、id 制約規則 (ある場合)。  
+-   オブジェクトがパラメーターとして<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessIdentityConstraints>値を使用して構築さ<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>れた場合、メソッドは、要素に適用される id 制約規則 (存在する場合) をチェックします。 <xref:System.Xml.Schema.XmlSchemaValidator>  
   
--   要素の現在のコンテキストで検証が成功した場合、<xref:System.Xml.Schema.XmlSchemaInfo>オブジェクトの指定) であれば<xref:System.Xml.Schema.XmlSchemaInfo.IsDefault%2A>、<xref:System.Xml.Schema.XmlSchemaInfo.MemberType%2A>と<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティは、検証の結果に設定されます。  
+-   <xref:System.Xml.Schema.XmlSchemaInfo>現在のコンテキストで要素が正常に検証されている場合、オブジェクトの (指定され<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>ている場合<xref:System.Xml.Schema.XmlSchemaInfo.MemberType%2A>) <xref:System.Xml.Schema.XmlSchemaInfo.IsDefault%2A>、、およびの各プロパティは、検証の結果と共に設定されます。  
   
    
   
 ## Examples  
- 次の例では、検証、`contosoBooks.xml`ファイルに対して、`contosoBooks.xsd`スキーマ。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
+ 次の例では`contosoBooks.xml` 、 `contosoBooks.xsd`スキーマに対してファイルを検証します。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
   
  [!code-csharp[XmlSchemaValidatorExamples#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlSchemaValidatorExamples/CS/XmlSchemaValidatorExamples.cs#1)]
  [!code-vb[XmlSchemaValidatorExamples#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlSchemaValidatorExamples/VB/XmlSchemaValidatorExamples.vb#1)]  
@@ -1320,18 +1320,18 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndOfAttributes%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndOfAttributes%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   <xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A>メソッドは、前に常に呼び出す必要があります<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndOfAttributes%2A>します。  
+-   メソッド<xref:System.Xml.Schema.XmlSchemaValidator.GetUnspecifiedDefaultAttributes%2A>は、常にの前<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndOfAttributes%2A>に呼び出す必要があります。  
   
--   <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndOfAttributes%2A>要素のコンテンツの検証を進める前にメソッドを呼び出す必要があります。  
+-   要素<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndOfAttributes%2A>のコンテンツの検証を続行する前に、メソッドを呼び出す必要があります。  
   
--   要素コンテキストで必要なすべての属性が存在する場合、<xref:System.Xml.Schema.XmlSchemaInfo>オブジェクトの指定) であれば<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>プロパティに設定されて<xref:System.Xml.Schema.XmlSchemaValidity.Valid>します。  
+-   要素コンテキストで必要なすべての属性が存在する場合は<xref:System.Xml.Schema.XmlSchemaInfo> 、オブジェクトの (指定さ<xref:System.Xml.Schema.XmlSchemaInfo.Validity%2A>れている場合<xref:System.Xml.Schema.XmlSchemaValidity.Valid>) プロパティがに設定されます。  
   
    
   
 ## Examples  
- 次の例では、検証、`contosoBooks.xml`ファイルに対して、`contosoBooks.xsd`スキーマ。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
+ 次の例では`contosoBooks.xml` 、 `contosoBooks.xsd`スキーマに対してファイルを検証します。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
   
  [!code-csharp[XmlSchemaValidatorExamples#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlSchemaValidatorExamples/CS/XmlSchemaValidatorExamples.cs#1)]
  [!code-vb[XmlSchemaValidatorExamples#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlSchemaValidatorExamples/VB/XmlSchemaValidatorExamples.vb#1)]  
@@ -1399,11 +1399,11 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   要素が単純な内容をテキスト`string`指定を呼び出すたびに連結されて、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッドまで、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドが呼び出されます。 ときに、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドが呼び出されると、すべてのテキストを検証します。  
+-   要素に単純コンテンツがある場合、指定`string`されたテキストは、メソッドが<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>呼び出されるまで<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A> 、メソッドを呼び出すたびに連結されます。 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドが呼び出されると、すべてのテキストが検証されます。  
   
--   要素に複雑なコンテンツがない場合は、テキスト連結演算子は行われません。  
+-   要素に複合コンテンツが含まれている場合、テキスト連結は行われません。  
   
  ]]></format>
         </remarks>
@@ -1449,11 +1449,11 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合に考慮すべき重要な注意事項を次に、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッド。  
+ ここでは、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッドを使用する際に考慮する必要がある重要な注意事項について説明します。  
   
--   要素が単純な内容をテキスト`string`指定を呼び出すたびに連結されて、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>メソッドまで、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドが呼び出されます。 ときに、<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドが呼び出されると、すべてのテキストを検証します。  
+-   要素に単純コンテンツがある場合、指定`string`されたテキストは、メソッドが<xref:System.Xml.Schema.XmlSchemaValidator.ValidateText%2A>呼び出されるまで<xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A> 、メソッドを呼び出すたびに連結されます。 <xref:System.Xml.Schema.XmlSchemaValidator.ValidateEndElement%2A>メソッドが呼び出されると、すべてのテキストが検証されます。  
   
--   要素に複雑なコンテンツがない場合は、テキスト連結演算子は行われません。  
+-   要素に複合コンテンツが含まれている場合、テキスト連結は行われません。  
   
  ]]></format>
         </remarks>
@@ -1582,12 +1582,12 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ない場合は<xref:System.Xml.Schema.ValidationEventHandler>が指定されている、<xref:System.Xml.Schema.XmlSchemaValidationException>すべてスキーマ検証エラーに対してスローされる、<xref:System.Xml.Schema.XmlSeverityType>の値<xref:System.Xml.Schema.XmlSeverityType.Error>します。 <xref:System.Xml.Schema.XmlSchemaValidationException>と検証の警告がスローされない、 <xref:System.Xml.Schema.XmlSeverityType> @property<xref:System.Xml.Schema.XmlSeverityType.Warning>します。  
+ が指定さ<xref:System.Xml.Schema.XmlSchemaValidationException>れていない場合は、の<xref:System.Xml.Schema.XmlSeverityType> <xref:System.Xml.Schema.XmlSeverityType.Error>値を持つすべてのスキーマ検証エラーに対してがスローされます。 <xref:System.Xml.Schema.ValidationEventHandler> 値がである検証警告の場合、 <xref:System.Xml.Schema.XmlSchemaValidationException>はスローされません。 <xref:System.Xml.Schema.XmlSeverityType.Warning> <xref:System.Xml.Schema.XmlSeverityType>  
   
    
   
 ## Examples  
- 次の例では、検証、`contosoBooks.xml`ファイルに対して、`contosoBooks.xsd`スキーマ。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
+ 次の例では`contosoBooks.xml` 、 `contosoBooks.xsd`スキーマに対してファイルを検証します。 この例では、<xref:System.Xml.Serialization.XmlSerializer> クラスを使用して、`contosoBooks.xml` ファイルを逆シリアル化し、ノードの値を <xref:System.Xml.Schema.XmlSchemaValidator> クラスのメソッドに渡します。  
   
  [!code-csharp[XmlSchemaValidatorExamples#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlSchemaValidatorExamples/CS/XmlSchemaValidatorExamples.cs#1)]
  [!code-vb[XmlSchemaValidatorExamples#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlSchemaValidatorExamples/VB/XmlSchemaValidatorExamples.vb#1)]  
@@ -1648,7 +1648,7 @@ validator.ValidateEndElement(null);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 検証イベントの例は、次を参照してください。、<xref:System.Xml.Schema.XmlSchemaValidator.ValidationEventHandler>イベント。  
+ 検証イベントの例については、 <xref:System.Xml.Schema.XmlSchemaValidator.ValidationEventHandler>イベントを参照してください。  
   
  ]]></format>
         </remarks>
@@ -1696,7 +1696,7 @@ validator.ValidateEndElement(null);
 ## Remarks  
   
 > [!IMPORTANT]
->  <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema>と<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation>の検証フラグを<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトでないセットを既定にします。 さらに、<xref:System.Xml.Schema.XmlSchemaValidator.XmlResolver%2A>のプロパティ、<xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトが`null`既定。 その結果で参照されている外部のスキーマは、インポート、または再定義要素は解決されません既定では。  
+>  オブジェクトの<xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation> <xref:System.Xml.Schema.XmlSchemaValidationFlags.ProcessInlineSchema> および検証フラグは、既定値に設定されていません<xref:System.Xml.Schema.XmlSchemaValidator> 。 また、 <xref:System.Xml.Schema.XmlSchemaValidator.XmlResolver%2A> <xref:System.Xml.Schema.XmlSchemaValidator>オブジェクトのプロパティは`null`既定でになります。 その結果、include、imports、または redefine 要素で参照されている外部スキーマは、既定では解決されません。  
   
  ]]></format>
         </remarks>

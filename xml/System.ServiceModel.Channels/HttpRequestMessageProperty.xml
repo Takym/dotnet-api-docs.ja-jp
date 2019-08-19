@@ -1,5 +1,5 @@
 <Type Name="HttpRequestMessageProperty" FullName="System.ServiceModel.Channels.HttpRequestMessageProperty">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0fb81e1e73bc4ba6dd810caf0e1630b8f6d224cc" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58549131" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpRequestMessageProperty : System.ServiceModel.Channels.IMessageProperty" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2c14268961e679bd0ffe695498803b9b33445854" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69156373" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpRequestMessageProperty : System.ServiceModel.Channels.IMessageProperty" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit HttpRequestMessageProperty extends System.Object implements class System.ServiceModel.Channels.IMessageProperty" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.HttpRequestMessageProperty" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class HttpRequestMessageProperty&#xA;Implements IMessageProperty" />
@@ -150,7 +150,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 状況によっては、このプロパティが使用できず、アクセスしようとすると例外が発生する場合があります。 これは、WCF が HTTP 要求が完了すると、特に、応答を送信メッセージが利用可能になる前に、一方向のシナリオで、IIS でホストされている場合に発生します。  
+ 状況によっては、このプロパティが使用できず、アクセスしようとすると例外が発生する場合があります。 これは、WCF が IIS でホストされ、HTTP 要求が完了した後で、特に、メッセージが使用可能になる前に返信が返送される一方向のシナリオで、発生する可能性があります。  
   
    
   
@@ -202,7 +202,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定では、WCF は、HTTP メッセージの POST 動詞を使用します。 GET 動詞は、ServiceHost のベース アドレスにアクセスするときに、ヘルプ情報を表示する、WCF によって使用されます。 これは、Web ブラウザーを使用する場合、WCF サービスがアクティブかどうかを確認するために役立ちます。 によって定義されたその他のメソッド、 [HTTP RFC](https://go.microsoft.com/fwlink/?LinkId=96616)は、PUT、DELETE、HEAD、オプション、トレース、および接続します。 他のサービスとの相互運用時に、これらのメソッドは特殊な動作を示します。  
+ 既定では、WCF は HTTP メッセージに POST 動詞を使用します。 GET 動詞は、ServiceHost のベースアドレスにアクセスするときにヘルプ情報を表示するために、WCF によって使用されます。 これは、Web ブラウザーを使用しているときに、WCF サービスがアクティブであるかどうかを確認する場合に便利です。 [HTTP RFC](https://go.microsoft.com/fwlink/?LinkId=96616)で定義されているその他のメソッドは、PUT、DELETE、HEAD、OPTIONS、TRACE、および CONNECT です。 他のサービスとの相互運用時に、これらのメソッドは特殊な動作を示します。  
   
    
   
@@ -337,7 +337,7 @@
 ## Remarks  
  このプロパティは、空のメッセージ要求に使用します。たとえば、メッセージ本文のない GET 要求を受け付けるサービスなどです。 このような場合は、応答メッセージに対する <xref:System.ServiceModel.Channels.HttpRequestMessageProperty> オブジェクトを作成するときに、<xref:System.ServiceModel.Channels.HttpRequestMessageProperty.SuppressEntityBody%2A> プロパティを `true` に設定します。  
   
- WCF 以外のサービスとの相互運用、ことが重要です。 標準の HTTP に従ってメッセージ本文を含めることが特定の動詞が予想されることに注意してください。PUT や POST が含まれます。 他の動詞は、メッセージ本文が抑制されるものと想定されています。たとえば、GET や HEAD などです。  
+ WCF 以外のサービスと相互運用する場合は、特定の動詞に HTTP 標準に従ってメッセージ本文を含めることが想定されていることに注意することが重要です。これには、PUT および POST が含まれます。 他の動詞は、メッセージ本文が抑制されるものと想定されています。たとえば、GET や HEAD などです。  
   
    
   
