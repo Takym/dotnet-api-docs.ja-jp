@@ -1,5 +1,5 @@
 <Type Name="IComponentInitializer" FullName="System.ComponentModel.Design.IComponentInitializer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ba8890f5ed397c8545d4d1db1ce41106e36b2082" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63899001" /></Metadata><TypeSignature Language="C#" Value="public interface IComponentInitializer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bfdd037822502e4415c159d3115eaa446418be7f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69348969" /></Metadata><TypeSignature Language="C#" Value="public interface IComponentInitializer" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IComponentInitializer" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.IComponentInitializer" />
   <TypeSignature Language="VB.NET" Value="Public Interface IComponentInitializer" />
@@ -28,11 +28,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.IComponentInitializer>も実装するコンポーネントであるすべてのデザイナーによってインターフェイスを実装できます<xref:System.ComponentModel.Design.IDesigner>がデザインしているコンポーネントの既定値の推奨セットを受信します。 <xref:System.ComponentModel.Design.IComponentInitializer> 新しいコンポーネントの作成時に照会します。 コンポーネントのプロパティの推奨される既定値は、ディクショナリの名前/値ペアとして渡されます。  
+ インターフェイス<xref:System.ComponentModel.Design.IComponentInitializer>は、デザイナーによって実装できます。これは、デザイン中<xref:System.ComponentModel.Design.IDesigner>のコンポーネントに対して推奨される既定値のセットを受け取る、も実装するコンポーネントです。 <xref:System.ComponentModel.Design.IComponentInitializer>新しいコンポーネントの作成中にクエリが実行されます。 コンポーネントのプロパティに推奨される既定値は、ディクショナリ内の名前と値のペアとして渡されます。  
   
- この設計は、2 つのカスタマイズ ポイントを提供します。 カスタム アクションを提供するコンポーネントのデザイナーを変更することができます、または、ツールボックス項目自体は交換またはカスタム アクションを実行する変更できます。 実装するデザイナー <xref:System.ComponentModel.Design.IComponentInitializer> - そのメソッドのいずれかに依存しないように<xref:System.ComponentModel.Design.IComponentInitializer.InitializeNewComponent%2A>または<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>-ツールボックスの項目が義務をこれらのメソッドを呼び出すため、呼び出されます。  
+ この設計には、2つのカスタマイズポイントが用意されています。ツールボックス項目自体を置換または変更してカスタム動作を実行することも、コンポーネントのデザイナーを変更してカスタム動作を提供することもできます。 を実装<xref:System.ComponentModel.Design.IComponentInitializer>するデザイナーは、 <xref:System.ComponentModel.Design.IComponentInitializer.InitializeNewComponent%2A>メソッドまたは<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>呼び出されたメソッドのいずれかに依存しないようにする必要があります。これは、ツールボックス項目がこれらのメソッドを呼び出す必要がないためです。  
   
- コンポーネントのデザインの作成の概要については、次を参照してください。[デザイン時サポートの拡張](https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2010/37899azc(v=vs.100))します。  
+ デザインコンポーネントの作成の概要については、「[デザイン時サポートの拡張](https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2010/37899azc(v=vs.100))」を参照してください。  
   
  ]]></format>
     </remarks>
@@ -79,10 +79,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>デザイナーの既存のコンポーネントを再初期化するときに、メソッドが呼び出されます。 たとえば、<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>ドラッグ アンド ドロップ操作の完了後は、一般と呼ばれます。 `defaultValues`パラメーターが関連付けられているコンポーネントのプロパティに適用される既定値の名前/値ペアを含むディクショナリ。 このディクショナリにあります`null`既定値が指定されていない場合。  
+ メソッド<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A>は、デザイナーが既存のコンポーネントを再初期化するときに呼び出されます。 たとえば、は<xref:System.ComponentModel.Design.IComponentInitializer.InitializeExistingComponent%2A> 、通常、ドラッグアンドドロップ操作の後に呼び出されます。 `defaultValues`パラメーターは、関連付けられたコンポーネントのプロパティに適用される既定値の名前と値のペアを含むディクショナリです。 既定値が指定`null`されていない場合、このディクショナリはになる可能性があります。  
   
 > [!CAUTION]
->  このメソッドを実装するときに一般的にする必要がありますいないプロパティを変更するコンポーネント外にある推奨`defaultValue`します。 既存のコンポーネントが既にお持ち、プロパティ、ユーザーまたは他のデザイン時のコードで設定します。  
+>  通常、このメソッドを実装する場合は、「」に`defaultValue`記載されている推奨事項以外のコンポーネントのプロパティを変更しないでください。 既存のコンポーネントには、ユーザーまたはその他のデザイン時コードによってプロパティが設定されている場合があります。  
   
  ]]></format>
         </remarks>
@@ -127,9 +127,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.IComponentInitializer.InitializeNewComponent%2A>新しいコンポーネントを作成した後、メソッドが呼び出されます。 ツールボックス項目自体によって呼び出され、コンポーネントの既定値を構成するために使用します。  
+ メソッド<xref:System.ComponentModel.Design.IComponentInitializer.InitializeNewComponent%2A>は、新しいコンポーネントが作成された後に呼び出されます。 これは通常、ツールボックス項目自体によって呼び出され、コンポーネントの既定値を構成するために使用されます。  
   
- このディクショナリにあります`null`既定値が指定されていない場合。 ディクショナリが場合`null`、暗黙的な既定の状態で、コンポーネントのプロパティを残しておく必要があります。  
+ 既定値が指定`null`されていない場合、この辞書はになる可能性があります。 ディクショナリがの場合`null`、コンポーネントのプロパティは、暗黙的な既定の状態のままにしておく必要があります。  
   
  ]]></format>
         </remarks>

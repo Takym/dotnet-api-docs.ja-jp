@@ -1,5 +1,5 @@
 <Type Name="DependencyAttribute" FullName="System.Runtime.CompilerServices.DependencyAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="dcef45931ffee43530cbec1b11706ab2dd90060f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58719423" /></Metadata><TypeSignature Language="C#" Value="public sealed class DependencyAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8e42e6e45dc3df64422023c92601b1d6aa9140fa" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69274811" /></Metadata><TypeSignature Language="C#" Value="public sealed class DependencyAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit DependencyAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.CompilerServices.DependencyAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DependencyAttribute&#xA;Inherits Attribute" />
@@ -39,16 +39,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この属性を使用して、 [Ngen.exe (ネイティブ イメージ ジェネレーター)](~/docs/framework/tools/ngen-exe-native-image-generator.md)アセンブリのネイティブ イメージを生成します。  
+ この属性は、ネイティブアセンブリイメージを生成するために[ngen.exe (ネイティブイメージジェネレーター)](~/docs/framework/tools/ngen-exe-native-image-generator.md)によって使用されます。  
   
- 適用、<xref:System.Runtime.CompilerServices.DependencyAttribute>属性の値に依存アセンブリを<xref:System.Runtime.CompilerServices.LoadHint>依存関係を読み込めない場合、参照元のアセンブリを指定する列挙体。  
+ 参照元のアセンブリが依存関係を読み込むタイミングを指定<xref:System.Runtime.CompilerServices.LoadHint>するには、列挙体の値を使用して依存アセンブリに属性を適用します。<xref:System.Runtime.CompilerServices.DependencyAttribute>  
   
- 読み込まれる可能性がある依存関係 (<xref:System.Runtime.CompilerServices.LoadHint.Always>) により、Ngen.exe にその依存関係にバインドします。  このヒントを使用すると、ワーキング セットを縮小とスループットの向上が常に親アセンブリが読み込まれるときに、依存関係の読み込みを犠牲となるコードを生成する Ngen.exe ができます。  
+ 読み込まれる可能性のある依存関係 (<xref:System.Runtime.CompilerServices.LoadHint.Always>) によって、ngen.exe がその依存関係にバインドされます。  このヒントを使用すると、Ngen.exe は、ワーキングセットとスループットの向上につながるコードを生成できますが、親アセンブリが読み込まれるときに依存関係が常に読み込まれるという代償があります。  
   
    
   
 ## Examples  
- 次の例では、常にネイティブ イメージ生成サービスにバインドしますかを指定します。`AssemblyA`にバインドすることがありますと`AssemblyB`します。  
+ 次の例では、ネイティブイメージ生成サービスが常に`AssemblyA`にバインドされ`AssemblyB`、場合によってはにバインドされることを指定します。  
   
  [!code-csharp[Runtime.CompilerServices.DependencyAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR/Runtime.CompilerServices.DependencyAttribute/cs/example.cs#1)]
  [!code-vb[Runtime.CompilerServices.DependencyAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Runtime.CompilerServices.DependencyAttribute/vb/example.vb#1)]  
@@ -96,12 +96,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.CompilerServices.DependencyAttribute>属性は、依存関係にバインドするには、密接にについて、共通言語ランタイムのヒントを説明します。 ランタイムでは、これらのヒントを使用して、依存関係の遅延読み込みと依存関係に効率的なバインドの間のトレードオフの解決を支援します。 たとえば、ハード バインディングにより、ワーキング セットを削減につながります依存のネイティブ イメージへのポインターをエンコードするランタイム。 この属性は、これらを決定することで、ランタイムをガイドします。  
+ <xref:System.Runtime.CompilerServices.DependencyAttribute>属性を使用すると、共通言語ランタイムのヒントに依存関係への密なバインド方法が示されます。 ランタイムはこれらのヒントを使用して、レイジー依存関係の読み込みと依存関係への効率的なバインドとの間のトレードオフを解決します。 たとえば、ハードバインディングを使用すると、ランタイムは依存するネイティブイメージへのポインターをエンコードできます。これにより、ワーキングセットが小さくなります。 この属性は、これらの決定を行うときにランタイムに指示します。  
   
    
   
 ## Examples  
- 次の例では、常にネイティブ イメージ生成サービスにバインドしますかを指定します。`AssemblyA`にバインドすることがありますと`AssemblyB`します。  
+ 次の例では、ネイティブイメージ生成サービスが常に`AssemblyA`にバインドされ`AssemblyB`、場合によってはにバインドされることを指定します。  
   
  [!code-csharp[Runtime.CompilerServices.DependencyAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR/Runtime.CompilerServices.DependencyAttribute/cs/example.cs#1)]
  [!code-vb[Runtime.CompilerServices.DependencyAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/Runtime.CompilerServices.DependencyAttribute/vb/example.vb#1)]  
@@ -144,7 +144,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを使用して、ネイティブ イメージ生成サービスにバインドするアセンブリの名前を返します。  
+ このプロパティを使用して、ネイティブイメージ生成サービスがバインドされているアセンブリの名前を返します。  
   
  ]]></format>
         </remarks>
@@ -179,12 +179,12 @@
       </ReturnValue>
       <Docs>
         <summary>どのような場合にアセンブリが依存関係を読み込むかを示す <see cref="T:System.Runtime.CompilerServices.LoadHint" /> 値を取得します。</summary>
-        <value><see cref="T:System.Runtime.CompilerServices.LoadHint" /> 値のいずれか。</value>
+        <value><see cref="T:System.Runtime.CompilerServices.LoadHint" /> 値のいずれか 1 つ。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの値を返しますを使用して、<xref:System.Runtime.CompilerServices.LoadHint>によって使用される列挙体、<xref:System.Runtime.CompilerServices.DependencyAttribute>属性。  
+ このプロパティを使用し<xref:System.Runtime.CompilerServices.LoadHint> <xref:System.Runtime.CompilerServices.DependencyAttribute>て、属性によって使用される列挙体の値を返します。  
   
  ]]></format>
         </remarks>

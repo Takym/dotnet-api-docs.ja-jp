@@ -1,5 +1,5 @@
 <Type Name="MessageQueueEnumerator" FullName="System.Messaging.MessageQueueEnumerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="2b7a2308828eebb55255004efdc87a3f4fddda86" /><Meta Name="ms.sourcegitcommit" Value="0e1f030650a307c745ee84ed547ef858acaea587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/29/2018" /><Meta Name="ms.locfileid" Value="52600632" /></Metadata><TypeSignature Language="C#" Value="public class MessageQueueEnumerator : MarshalByRefObject, IDisposable, System.Collections.IEnumerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="744ed7e99161f6cb01b915cd9bba30ccb941dd93" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69382567" /></Metadata><TypeSignature Language="C#" Value="public class MessageQueueEnumerator : MarshalByRefObject, IDisposable, System.Collections.IEnumerator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit MessageQueueEnumerator extends System.MarshalByRefObject implements class System.Collections.IEnumerator, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Messaging.MessageQueueEnumerator" />
   <TypeSignature Language="VB.NET" Value="Public Class MessageQueueEnumerator&#xA;Inherits MarshalByRefObject&#xA;Implements IDisposable, IEnumerator" />
@@ -23,21 +23,21 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>メッセージ キュー内のメッセージを列挙するための順方向専用カーソルを提供します。</summary>
+    <summary>メッセージ キュー内のメッセージを列挙するための前方向カーソルを提供します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:System.Messaging.MessageQueueEnumerator>の動的な対話をネットワーク上のキュー。 メソッドで使用できる、<xref:System.Messaging.MessageQueue>クラスは、いずれかを返すことができます、<xref:System.Messaging.MessageQueueEnumerator>キュー、または時にキューのコレクションのスナップショットを格納する配列の動的リストを含む指定されたメソッドが呼び出されました。  
+ ネットワーク<xref:System.Messaging.MessageQueueEnumerator>上のキューとの動的な対話に使用します。 <xref:System.Messaging.MessageQueue>クラスを介して使用できるメソッドは、 <xref:System.Messaging.MessageQueueEnumerator>キューの動的リストを含むを返すことができます。また、指定したメソッドが呼び出されたときのキューコレクションのスナップショットを含む配列を返すこともできます。  
   
- ネットワークでのキューの順序は定義はありません。 たとえば、コンピューター、ラベル、パブリックまたはプライベートの状態を順序付けられた、またはその他のユーザーがアクセスできる条件ではありません。 A<xref:System.Messaging.MessageQueueEnumerator>カーソル、動的なリストの先頭に初期化します。 列挙体の最初のキューにカーソルを移動するには呼び出すことによって<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>します。 使用することができます、列挙子が初期化された後<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>残りのキューにします。  
+ ネットワークにキューの順序が定義されていません。 たとえば、コンピューター、ラベル、パブリックまたはプライベートの状態、またはその他のユーザーがアクセスできる条件によって順序付けされることはありません。 はカーソルで、動的リストの先頭に初期化されます。<xref:System.Messaging.MessageQueueEnumerator> を呼び出す<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>ことによって、カーソルを列挙の最初のキューに移動できます。 列挙子が初期化されたら、を使用<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>して残りのキューを段階的に進めることができます。  
   
- 前に戻ることはできません、<xref:System.Messaging.MessageQueueEnumerator>します。 カーソルは、キューの列挙を前方への移動を許可するだけです。 ただし、呼び出す<xref:System.Messaging.MessageQueueEnumerator.Reset%2A>列挙体をリセットし、リストの先頭にカーソルを置きます。 列挙子は動的であるために、カーソルの現在の位置より後に追加するキューは、列挙子でアクセスできます。 カーソルの現在位置の前に挿入されているキューは、最初の reset を呼び出すアクセスできません。  
+ で戻ることはできません<xref:System.Messaging.MessageQueueEnumerator>。 カーソルは、キュー列挙体を経由した順方向の移動のみを許可します。 ただし、を呼び出し<xref:System.Messaging.MessageQueueEnumerator.Reset%2A>て、列挙をリセットし、リストの先頭に再びカーソルを置くことができます。 列挙子は動的であるため、カーソルの現在の位置を超えて追加されたキューには、列挙子がアクセスできます。 カーソルの現在位置の前に挿入されたキューは、最初に Reset を呼び出さないとアクセスできません。  
   
    
   
 ## Examples  
- 次のコード例は、ネットワーク内のすべてのメッセージ キューを反復処理し、各キューのパスを検査します。 最後に、ネットワーク上のパブリック キューの数が表示されます。  
+ 次のコード例では、ネットワーク内のすべてのメッセージキューを反復処理し、各キューのパスを調べます。 最後に、ネットワーク上のパブリックキューの数が表示されます。  
   
  [!code-cpp[MessageQueue.GetMessageQueueEnumerator_noparms#1](~/samples/snippets/cpp/VS_Snippets_Remoting/MessageQueue.GetMessageQueueEnumerator_noparms/CPP/mqgetmessagequeueenumerator.cpp#1)]
  [!code-csharp[MessageQueue.GetMessageQueueEnumerator_noparms#1](~/samples/snippets/csharp/VS_Snippets_Remoting/MessageQueue.GetMessageQueueEnumerator_noparms/CS/mqgetmessagequeueenumerator.cs#1)]
@@ -73,7 +73,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オペレーティング システムは、開いているハンドルを保持<xref:System.Messaging.MessageQueueEnumerator.LocatorHandle%2A>カーソルの有効期間中にキューの列挙子にします。 列挙子の操作が完了したら、呼び出す<xref:System.Messaging.MessageQueueEnumerator.Close%2A>ハンドルに関連付けられたリソースを解放します。  
+ オペレーティングシステムは、カーソルの有効期間<xref:System.Messaging.MessageQueueEnumerator.LocatorHandle%2A>中、開いているハンドルをキュー列挙子に保持します。 列挙子の操作が終了したら、 <xref:System.Messaging.MessageQueueEnumerator.Close%2A>を呼び出して、ハンドルに関連付けられているリソースを解放します。  
   
  ]]></format>
         </remarks>
@@ -104,15 +104,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 列挙子が作成されると、それを指していない、何もため<xref:System.Messaging.MessageQueueEnumerator.Current%2A>が無効であり、アクセスする場合、例外がスローされます。 呼び出す必要があります<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>に列挙体の最初のキューにカーソルを移動します。  
+ 列挙子が作成されると、それは何も<xref:System.Messaging.MessageQueueEnumerator.Current%2A>指していないので、は無効であり、アクセスされた場合は例外をスローします。 列挙体の<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>最初のキューにカーソルを置くには、を呼び出す必要があります。  
   
- 複数回呼び出す<xref:System.Messaging.MessageQueueEnumerator.Current%2A>なしの介在する呼び出しを<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>は同じを返します<xref:System.Messaging.MessageQueue>オブジェクト。  
+ を<xref:System.Messaging.MessageQueueEnumerator.Current%2A> 呼び出して<xref:System.Messaging.MessageQueue>を複数回呼び出しても、同じオブジェクトが返されます。<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">最初に <see cref="P:System.Messaging.MessageQueueEnumerator.Current" /> を呼び出す前に <see cref="M:System.Messaging.MessageQueueEnumerator.MoveNext" /> を呼び出しました。 カーソルは、列挙体の中の最初のキューより前に位置しています。  
   
-- または - 
+または 
 <see cref="P:System.Messaging.MessageQueueEnumerator.Current" /> の呼び出しにより false (列挙体の中の最後のキューよりも後にカーソルが位置していることを示す) が返された後に <see cref="M:System.Messaging.MessageQueueEnumerator.MoveNext" /> を呼び出しました。</exception>
         <altmember cref="M:System.Messaging.MessageQueueEnumerator.MoveNext" />
         <altmember cref="M:System.Messaging.MessageQueueEnumerator.Reset" />
@@ -154,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す<xref:System.Messaging.MessageQueueEnumerator.Dispose%2A>によって使用されるリソースの使用、<xref:System.Messaging.MessageQueueEnumerator>他の目的で再割り当てします。 詳細については<xref:System.Messaging.MessageQueueEnumerator.Dispose%2A>を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)します。  
+ を<xref:System.Messaging.MessageQueueEnumerator.Dispose%2A>呼び出すと、 <xref:System.Messaging.MessageQueueEnumerator>によって使用されるリソースを他の目的で再割り当てできます。 の詳細<xref:System.Messaging.MessageQueueEnumerator.Dispose%2A>については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -188,16 +188,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック<xref:System.Messaging.MessageQueueEnumerator.Dispose%2A>メソッドと<xref:System.Object.Finalize%2A>メソッド。 `Dispose` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 <xref:System.Object.Finalize%2A> 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック<xref:System.Messaging.MessageQueueEnumerator.Dispose%2A>メソッド<xref:System.Object.Finalize%2A>とメソッドによって呼び出されます。 `Dispose``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 <xref:System.Object.Finalize%2A>をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.Messaging.MessageQueueEnumerator> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの `Dispose` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 <see langword="Dispose(Boolean)" /> をオーバーライドする場合は、以前に <see langword="Dispose" /> を呼び出したときに破棄されたオブジェクトを参照しないように注意する必要があります。 実装する方法についての詳細は<see langword="Dispose" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 <see langword="Dispose(Boolean)" /> をオーバーライドする場合は、以前に <see langword="Dispose" /> を呼び出したときに破棄されたオブジェクトを参照しないように注意する必要があります。 を実装<see langword="Dispose" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see langword="Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)と[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。</para></block>
+<see langword="Dispose" /> および<see langword="Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」と「 [Finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。</para></block>
         <related type="Article" href="~/docs/standard/garbage-collection/implementing-dispose.md">Dispose メソッドの実装</related>
         <related type="Article" href="~/docs/standard/garbage-collection/unmanaged.md">アンマネージ リソースのクリーンアップ</related>
       </Docs>
@@ -225,9 +225,9 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-このメソッドは、<xref:System.Object.Finalize> をオーバーライドします。 アプリケーション コードは、このメソッドを呼び出さないでください。呼び出して、ガベージ コレクターによって終了処理が無効になっている場合を除き、ガベージ コレクション中にオブジェクトの Finalize メソッドが自動的に起動、<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>メソッド。
+このメソッドは、<xref:System.Object.Finalize> をオーバーライドします。 アプリケーションコードはこのメソッドを呼び出すことはできません。オブジェクトの Finalize メソッドは、ガベージコレクションの実行中に、メソッドの<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>呼び出しによってガベージコレクターによる終了が無効にされていない限り、自動的に呼び出されます。
 
-詳細については、次を参照してください。 [Finalize メソッドおよびデストラクター](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/0s71x931(v=vs.100))、[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)、および[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。
+詳細については、「 [Finalize メソッドとデストラクター](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/0s71x931(v=vs.100))」、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」、および「 [finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。
 
 ]]></format>
         </remarks>
@@ -257,7 +257,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ときに不要になったこの<xref:System.Messaging.MessageQueueEnumerator>インスタンスを呼び出す<xref:System.Messaging.MessageQueueEnumerator.Close%2A>リソースには、このハンドルを解放します。  
+ この<xref:System.Messaging.MessageQueueEnumerator>インスタンスが不要になった場合は<xref:System.Messaging.MessageQueueEnumerator.Close%2A> 、を呼び出して、リソースへのこのハンドルを解放します。  
   
  ]]></format>
         </remarks>
@@ -294,11 +294,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A> 返します`false`列挙体に関連付けられているキューがない場合にすぐにします。  
+ <xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>列挙`false`に関連付けられているキューがない場合は、すぐにを返します。  
   
- <xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A> 戻ります`true`コレクションの末尾に達するまでです。 その`false`連続した呼び出しごとにします。 ただし 1 回<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>が返される`false`へのアクセス、<xref:System.Messaging.MessageQueueEnumerator.Current%2A>プロパティは例外をスローします。  
+ <xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>は、 `true`コレクションの末尾に達するまでを返します。 その後、後続`false`の各呼び出しに対してが返されます。 ただし、 <xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>が返さ`false`れると、 <xref:System.Messaging.MessageQueueEnumerator.Current%2A>プロパティにアクセスしたときに例外がスローされます。  
   
- 作成時に、列挙子は、概念的には 1 つ目の前に配置<xref:System.Messaging.MessageQueue>列挙体、および最初の呼び出しの<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>ビューには列挙体の最初のキューが表示されます。  
+ 作成時に、列挙子は概念的に列挙の<xref:System.Messaging.MessageQueue>最初の前に配置され、の<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>最初の呼び出しによって列挙の最初のキューがビューになります。  
   
  ]]></format>
         </remarks>
@@ -335,9 +335,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 列挙子は、順方向専用の方向に移動します。 キューの列挙体の先頭に戻るには、このメソッドを使用します。  
+ 列挙子は順方向専用に移動します。 このメソッドを使用して、キューの列挙の先頭に戻ります。  
   
- <xref:System.Messaging.MessageQueueEnumerator.Reset%2A> 一覧で最初のキューには、カーソルを位置付けます。 呼び出す必要はありません<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A>呼び出した後<xref:System.Messaging.MessageQueueEnumerator.Reset%2A>列挙体の最初のキューにカーソルを移動します。  
+ <xref:System.Messaging.MessageQueueEnumerator.Reset%2A>リスト内の最初のキューにカーソルを置きます。 を呼び出し<xref:System.Messaging.MessageQueueEnumerator.MoveNext%2A> <xref:System.Messaging.MessageQueueEnumerator.Reset%2A>た後にを呼び出して、列挙体の最初のキューにカーソルを移動する必要はありません。  
   
  ]]></format>
         </remarks>

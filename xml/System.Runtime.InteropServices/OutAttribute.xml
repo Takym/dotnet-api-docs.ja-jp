@@ -1,5 +1,5 @@
 <Type Name="OutAttribute" FullName="System.Runtime.InteropServices.OutAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="cb70984c1ab905b8c9d9c1abb2c14c0445d449ab" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58728847" /></Metadata><TypeSignature Language="C#" Value="public sealed class OutAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2b9d778dabdac78db05ad4cd28b6596da8712163" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69269669" /></Metadata><TypeSignature Language="C#" Value="public sealed class OutAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit OutAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.OutAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class OutAttribute&#xA;Inherits Attribute" />
@@ -44,20 +44,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パラメーターには、この属性を適用できます。  
+ この属性は、パラメーターに適用できます。  
   
- <xref:System.Runtime.InteropServices.OutAttribute>は省略可能です。 COM 相互運用属性はサポートされており、プラットフォーム呼び出しのみです。 明示的な設定がない場合は、相互運用マーシャラーは、ルールは、型、パラメーターが渡される参照渡しまたは値渡しかどうかと、型は、blittable または blittable でないかどうか、パラメーターに基づくものとします。 たとえば、<xref:System.Text.StringBuilder>クラスが入力/出力を常と見なされ、値によって渡された文字列の配列にあると想定します。  
+ <xref:System.Runtime.InteropServices.OutAttribute>は省略可能です。 属性は、COM 相互運用機能とプラットフォーム呼び出しでのみサポートされています。 明示的な設定がない場合、相互運用マーシャラーは、パラメーターの型、パラメーターが参照または値によって渡されるかどうか、および型が blittable であるか非 blittable であるかに基づいて、ルールを前提とします。 たとえば、 <xref:System.Text.StringBuilder>クラスは常に in/Out と見なされ、値渡しされる文字列の配列はに含まれると見なされます。  
   
- アウトのみの動作は、既定のパラメーターの動作をマーシャ リングではありません。 適用することができます、<xref:System.Runtime.InteropServices.OutAttribute>を使用すると、アウトのみの動作に入力/出力の動作を変更する参照によって渡される値と参照型に、`out`キーワード (C#)。 たとえば、Out のみには、既定では、内のみのパラメーターとしてマーシャ リングの値によって渡された配列を変更できます。 ただし、動作は提供されない必要なセマンティクス、種類がすべて blittable 型の要素が含まれる場合や、相互運用マーシャラーは、ピン留めを使用するためのフィールドします。 呼び出し先にデータを渡すことはしない場合は、アウトのみがマーシャ リングと非 blittable 型のパフォーマンス向上を提供できます。  
+ Out のみの動作は、パラメーターの既定のマーシャリング動作ではありません。 参照渡しの値<xref:System.Runtime.InteropServices.OutAttribute>型と参照型を適用して、参照渡しの動作を out のみに変更することができます。これは`out` 、でC#キーワードを使用するのと同じです。 たとえば、値によって渡される配列は、既定ではイン専用パラメーターとしてマーシャリングされ、Out のみに変更できます。 ただし、相互運用マーシャラーがピン留めを使用しているため、型にすべての blittable 要素またはフィールドが含まれている場合、この動作は常に予期されるセマンティクスを提供するとは限りません。 呼び出し先にデータを渡す必要がない場合は、アウトのみのマーシャリングによって非 blittable 型のパフォーマンスが向上します。  
   
- 結合、<xref:System.Runtime.InteropServices.InAttribute>と<xref:System.Runtime.InteropServices.OutAttribute>は場合に特に便利ですが配列に適用され、非 blittable 型を書式設定します。 呼び出し元は、呼び出し先は、両方の属性を適用する場合にのみこれらの型が加える変更を参照してください。 これらの型では、マーシャ リング中にコピーする必要があるために、使用できます<xref:System.Runtime.InteropServices.InAttribute>と<xref:System.Runtime.InteropServices.OutAttribute>不要なコピーを削減します。  
+ <xref:System.Runtime.InteropServices.InAttribute> と<xref:System.Runtime.InteropServices.OutAttribute>を組み合わせて使用すると、配列や、書式設定された非 blittable 型に適用する場合に特に便利です。 呼び出し元は、両方の属性を適用した場合にのみ、呼び出し先がこれらの型に対して行った変更を参照します。 これらの型はマーシャリング中にコピーする必要が<xref:System.Runtime.InteropServices.InAttribute>ある<xref:System.Runtime.InteropServices.OutAttribute>ため、およびを使用して、不要なコピーを減らすことができます。  
   
- 効果の詳細については<xref:System.Runtime.InteropServices.OutAttribute>マーシャ リング動作を参照してください。[方向属性](https://msdn.microsoft.com/library/241ac5b5-928e-4969-8f58-1dbc048f9ea2)します。  
+ マーシャリング動作の効果<xref:System.Runtime.InteropServices.OutAttribute>の詳細については、「[方向属性](https://msdn.microsoft.com/library/241ac5b5-928e-4969-8f58-1dbc048f9ea2)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、適用する方法を示しています、<xref:System.Runtime.InteropServices.InAttribute>と<xref:System.Runtime.InteropServices.OutAttribute>プラットフォーム呼び出しのプロトタイプをパラメーターとして配列を渡します。 方向属性の組み合わせにより、呼び出し元が、呼び出し先によって行われた変更を確認します。  
+ 次の例は、 <xref:System.Runtime.InteropServices.InAttribute>配列をパラメーターとして渡すプラットフォーム呼び出しプロトタイプに、および<xref:System.Runtime.InteropServices.OutAttribute>を適用する方法を示しています。 方向属性の組み合わせを使用すると、呼び出し先によって行われた変更を呼び出し元が確認できます。  
   
  [!code-cpp[Interop InOutParameters#1](~/samples/snippets/cpp/VS_Snippets_CLR/Interop InOutParameters/CPP/inout.cpp#1)]
  [!code-csharp[Interop InOutParameters#1](~/samples/snippets/csharp/VS_Snippets_CLR/Interop InOutParameters/CS/inout.cs#1)]
