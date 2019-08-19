@@ -1,5 +1,5 @@
 <Type Name="LingerOption" FullName="System.Net.Sockets.LingerOption">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d3be57a7c3dc02f48b97bbc0844b2ec708eac020" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58703122" /></Metadata><TypeSignature Language="C#" Value="public class LingerOption" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cb8ae307f2beeee884316616773a1e30713d0a21" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69072611" /></Metadata><TypeSignature Language="C#" Value="public class LingerOption" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit LingerOption extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Net.Sockets.LingerOption" />
   <TypeSignature Language="VB.NET" Value="Public Class LingerOption" />
@@ -33,14 +33,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- できる場合もありますデータ送信のネットワーク バッファーで使用可能なアプリケーションを呼び出してから、<xref:System.Net.Sockets.Socket>または<xref:System.Net.Sockets.TcpClient>メソッド。 量を指定する場合の時間を<xref:System.Net.Sockets.Socket>は終了タグの後の未送信のデータの転送を作成しよう、<xref:System.Net.Sockets.LingerOption>で、`enable`パラメーターに設定`true`、および`seconds`パラメーターが必要な時間数に設定. `seconds`パラメーターを使用するようにはどのくらいの期間を示す、<xref:System.Net.Sockets.Socket>タイムアウトになるまで接続を維持します。たくない場合、<xref:System.Net.Sockets.Socket>一定の期間終了後に接続したまま、作成、<xref:System.Net.Sockets.LingerOption>インスタンス、`enable`パラメーターに設定`true`と`seconds`パラメーター 0 に設定します。 ここで、<xref:System.Net.Sockets.Socket>は直ちに終了し、未送信のすべてのデータは失われます。 作成されたら、渡す、<xref:System.Net.Sockets.LingerOption>を<xref:System.Net.Sockets.Socket.SetSocketOption%2A?displayProperty=nameWithType>メソッド。 使用してデータを送受信する場合、<xref:System.Net.Sockets.TcpClient>を設定し、<xref:System.Net.Sockets.LingerOption>インスタンス、<xref:System.Net.Sockets.TcpClient.LingerState%2A?displayProperty=nameWithType>プロパティ。  
+ アプリケーションがメソッドまたは<xref:System.Net.Sockets.Socket> <xref:System.Net.Sockets.TcpClient>メソッドを呼び出した後も、送信ネットワークバッファーにデータが残っている可能性があります。 終了後にが未送信データの送信を試行<xref:System.Net.Sockets.Socket>する時間を指定する場合は、 `enable`パラメーターをに<xref:System.Net.Sockets.LingerOption> `true`設定してを作成し`seconds` 、パラメーターを目的の時間に設定します。 パラメーターを使用して、が<xref:System.Net.Sockets.Socket>タイムアウトする前に接続を維持する期間を指定します。 `seconds``enable` <xref:System.Net.Sockets.LingerOption> `seconds` `true`を閉じた後も常に接続状態を維持しない場合は、パラメーターをに設定し、パラメーターを0に設定してインスタンスを作成します。 <xref:System.Net.Sockets.Socket> この場合、はすぐ<xref:System.Net.Sockets.Socket>に終了し、未送信のデータは失われます。 作成したら、を<xref:System.Net.Sockets.LingerOption> <xref:System.Net.Sockets.Socket.SetSocketOption%2A?displayProperty=nameWithType>メソッドに渡します。 を使用して<xref:System.Net.Sockets.TcpClient>データを送受信する場合は、 <xref:System.Net.Sockets.TcpClient.LingerState%2A?displayProperty=nameWithType>プロパティで<xref:System.Net.Sockets.LingerOption>インスタンスを設定します。  
   
- IP スタックは、接続の往復時間に基づいて使用する既定の IP プロトコルのタイムアウト期間を計算します。 ほとんどの場合は、スタックによって計算されたタイムアウトは、アプリケーションで定義された 1 つ以上です。 既定の動作は、これを<xref:System.Net.Sockets.Socket>ときに、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティが設定されていないと、<xref:System.Net.Sockets.TcpClient>ときに、<xref:System.Net.Sockets.TcpClient.LingerState%2A>プロパティが設定されていません。  
+ IP スタックは、接続のラウンドトリップ時間に基づいて、使用する既定の IP プロトコルタイムアウト期間を計算します。 ほとんどの場合、スタックによって計算されるタイムアウトは、アプリケーションで定義されているものよりも関連性が高くなります。 これは、プロパティ<xref:System.Net.Sockets.Socket>が設定<xref:System.Net.Sockets.TcpClient>されて<xref:System.Net.Sockets.Socket.LingerState%2A>いない場合は、 <xref:System.Net.Sockets.TcpClient.LingerState%2A>プロパティが設定されていない場合のの既定の動作です。  
   
    
   
 ## Examples  
- 次の例では、設定、以前に作成した<xref:System.Net.Sockets.Socket>呼び出した後、1 秒間の待機、<xref:System.Net.Sockets.Socket.Close%2A>メソッド。  
+ 次の例では、 <xref:System.Net.Sockets.Socket> <xref:System.Net.Sockets.Socket.Close%2A>メソッドを呼び出した後も1秒間待機するように、以前に作成したを設定しています。  
   
  [!code-cpp[Classic LingerOption Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/Classic LingerOption Example/CPP/source.cpp#1)]
  [!code-csharp[Classic LingerOption Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/Classic LingerOption Example/CS/source.cs#1)]
@@ -88,24 +88,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- できる場合もありますデータ送信のネットワーク バッファーで使用できるを閉じた後、<xref:System.Net.Sockets.Socket>します。 使用して、`enable`かどうかを指定するパラメーター、 <xref:System.Net.Sockets.Socket> close メソッドが呼び出された後、未送信のデータの転送を続行します。 使用して、`seconds`パラメーターを示すようにはどのくらいの期間、<xref:System.Net.Sockets.Socket>タイムアウトするまでに未送信のデータ転送を試行します。指定した場合`true`の`enable`パラメーターとの場合は 0、`seconds`パラメーター、<xref:System.Net.Sockets.Socket>は出力方向のネットワーク バッファーにデータの左側がなくなるまで、データを送信ましょう。 指定した場合`false`の`enable`パラメーター、<xref:System.Net.Sockets.Socket>は直ちに終了し、未送信のすべてのデータは失われます。  
+ を<xref:System.Net.Sockets.Socket>閉じた後も、送信ネットワークバッファーにデータが残っている可能性があります。 Close メソッドが呼び出された後も、未<xref:System.Net.Sockets.Socket>送信データの転送を続行するかどうかを指定するには、パラメーターを使用します。`enable` パラメーターを使用して、がタイムアウト前に送信<xref:System.Net.Sockets.Socket>されていないデータの転送を試行する時間を指定します。 `seconds`パラメーターにを`true`指定し`enable` 、 `seconds`パラメーターに0を指定した<xref:System.Net.Sockets.Socket>場合、は、送信ネットワークバッファーにデータが残っていない状態になるまでデータの送信を試みます。 パラメーターにを`false`指定すると、は<xref:System.Net.Sockets.Socket>直ちに終了し、未送信のデータは失われます。 `enable`  
   
- 次の表で、動作を示します、<xref:System.Net.Sockets.Socket.Close%2A?displayProperty=nameWithType>と<xref:System.Net.Sockets.TcpClient.Close%2A?displayProperty=nameWithType>メソッドは、可能な値に基づく、`enable`と`seconds`閉じてインスタンスが作成され、で設定するときにパラメーター<xref:System.Net.Sockets.Socket.LingerState%2A?displayProperty=nameWithType>または<xref:System.Net.Sockets.TcpClient.LingerState%2A?displayProperty=nameWithType>プロパティ。  
+ 次の表では、T:System.Net.Sockets.LingerOption インスタンス<xref:System.Net.Sockets.Socket.Close%2A?displayProperty=nameWithType>が<xref:System.Net.Sockets.TcpClient.Close%2A?displayProperty=nameWithType>作成され、 `enable` `seconds` に設定されている場合に、パラメーターとパラメーターの使用可能な値に基づいてメソッドとメソッドの動作について説明します。<xref:System.Net.Sockets.Socket.LingerState%2A?displayProperty=nameWithType>または<xref:System.Net.Sockets.TcpClient.LingerState%2A?displayProperty=nameWithType>プロパティ。  
   
 |`enable`|`seconds`|動作|  
 |--------------|---------------|--------------|  
-|`false` (無効)、既定値|タイムアウトが適用可能で、ない (既定値)。|既定値まで IP プロトコル タイムアウト保留中の接続指向のソケット (たとえば、TCP) のデータ送信を試みます期限が切れます。|  
-|`true` (有効)|0 以外のタイムアウト|指定したタイムアウトが経過すると、失敗した場合、Winsock 接続をリセットするまで、保留中のデータ送信を試行します。|  
-|`true` (有効)|0 のタイムアウト。|保留中のデータを破棄します。 接続志向ソケット (たとえば、TCP) の場合は、Winsock は接続をリセットします。|  
+|`false`(無効)、既定値|タイムアウトは適用されません (既定)。|既定の IP プロトコルのタイムアウトが経過するまで、接続指向のソケット (TCP など) の保留中のデータを送信しようとします。|  
+|`true`enabled|0以外のタイムアウト|指定したタイムアウトが経過するまで保留中のデータを送信しようとします。失敗した場合は、Winsock によって接続がリセットされます。|  
+|`true`enabled|ゼロタイムアウト。|保留中のデータを破棄します。 接続指向のソケット (TCP など) の場合、Winsock によって接続がリセットされます。|  
   
- IP スタックは、接続の往復時間に基づいて使用する既定の IP プロトコルのタイムアウト期間を計算します。 ほとんどの場合は、スタックによって計算されたタイムアウトは、アプリケーションで定義された 1 つ以上です。 これは、ソケットの既定の動作と、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティは設定されません。  
+ IP スタックは、接続のラウンドトリップ時間に基づいて、使用する既定の IP プロトコルタイムアウト期間を計算します。 ほとんどの場合、スタックによって計算されるタイムアウトは、アプリケーションで定義されているものよりも関連性が高くなります。 これは、 <xref:System.Net.Sockets.Socket.LingerState%2A>プロパティが設定されていない場合のソケットの既定の動作です。  
   
- ときに、<xref:System.Net.Sockets.LingerOption.LingerTime%2A>にプロパティが格納されている、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティは、既定の IP プロトコル タイムアウトよりも大きい設定は、既定の IP プロトコル タイムアウトの表示およびオーバーライドはまだ適用されます。  
+ プロパティに格納されているプロパティが既定のipプロトコルタイムアウトよりも大きい値に設定されている場合でも、既定のipプロトコルタイムアウトが適用され、上書きされます。<xref:System.Net.Sockets.LingerOption.LingerTime%2A> <xref:System.Net.Sockets.Socket.LingerState%2A>  
   
    
   
 ## Examples  
- 次の例では、設定、以前に作成した<xref:System.Net.Sockets.Socket>呼び出した後、1 秒間の待機、<xref:System.Net.Sockets.Socket.Close%2A>メソッド。  
+ 次の例では、 <xref:System.Net.Sockets.Socket> <xref:System.Net.Sockets.Socket.Close%2A>メソッドを呼び出した後も1秒間待機するように、以前に作成したを設定しています。  
   
  [!code-cpp[Classic LingerOption Example#1](~/samples/snippets/cpp/VS_Snippets_Remoting/Classic LingerOption Example/CPP/source.cpp#1)]
  [!code-csharp[Classic LingerOption Example#1](~/samples/snippets/csharp/VS_Snippets_Remoting/Classic LingerOption Example/CS/source.cs#1)]
@@ -159,19 +159,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用することができます、<xref:System.Net.Sockets.LingerOption.Enabled%2A>プロパティを確認するかどうか、<xref:System.Net.Sockets.Socket>終了タグの後の待機は。 この値に変更`true`または`false`させ、変更された<xref:System.Net.Sockets.LingerOption>を<xref:System.Net.Sockets.Socket.SetSocketOption%2A>メソッドまたはセット、<xref:System.Net.Sockets.TcpClient.LingerState%2A>または<xref:System.Net.Sockets.Socket.LingerState%2A>property.to が残留を有効または無効にします。  
+ <xref:System.Net.Sockets.LingerOption.Enabled%2A>プロパティを使用して、 <xref:System.Net.Sockets.Socket>を閉じた後もを終了するかどうかを決定できます。 この値をまた`true`は`false`に変更し、 <xref:System.Net.Sockets.LingerOption>変更を<xref:System.Net.Sockets.Socket.SetSocketOption%2A>メソッドに渡すか<xref:System.Net.Sockets.TcpClient.LingerState%2A> 、 <xref:System.Net.Sockets.Socket.LingerState%2A>または property.to を無効にするか、残留を有効にします。  
   
- 次の表に、可能な値の動作、<xref:System.Net.Sockets.LingerOption.Enabled%2A>プロパティおよび<xref:System.Net.Sockets.LingerOption.LingerTime%2A>にプロパティが格納されている、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティ。  
+ 次の表では、プロパティの<xref:System.Net.Sockets.LingerOption.Enabled%2A>使用可能な値の動作<xref:System.Net.Sockets.LingerOption.LingerTime%2A>と、プロパティに<xref:System.Net.Sockets.Socket.LingerState%2A>格納されているプロパティについて説明します。  
   
 |`enable`|`seconds`|動作|  
 |--------------|---------------|--------------|  
-|`false` (無効)、既定値|タイムアウトが適用可能で、ない (既定値)。|既定値まで IP プロトコル タイムアウト保留中の接続指向のソケット (たとえば、TCP) のデータ送信を試みます期限が切れます。|  
-|`true` (有効)|0 以外のタイムアウト|指定したタイムアウトが経過すると、失敗した場合、Winsock 接続をリセットするまで、保留中のデータ送信を試行します。|  
-|`true` (有効)|0 のタイムアウト。|保留中のデータを破棄します。 接続志向ソケット (たとえば、TCP) の場合は、Winsock は接続をリセットします。|  
+|`false`(無効)、既定値|タイムアウトは適用されません (既定)。|既定の IP プロトコルのタイムアウトが経過するまで、接続指向のソケット (TCP など) の保留中のデータを送信しようとします。|  
+|`true`enabled|0以外のタイムアウト|指定したタイムアウトが経過するまで保留中のデータを送信しようとします。失敗した場合は、Winsock によって接続がリセットされます。|  
+|`true`enabled|ゼロタイムアウト。|保留中のデータを破棄します。 接続指向のソケット (TCP など) の場合、Winsock によって接続がリセットされます。|  
   
- IP スタックは、接続の往復時間に基づいて使用する既定の IP プロトコルのタイムアウト期間を計算します。 ほとんどの場合は、スタックによって計算されたタイムアウトは、アプリケーションで定義された 1 つ以上です。 これは、ソケットの既定の動作と、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティは設定されません。  
+ IP スタックは、接続のラウンドトリップ時間に基づいて、使用する既定の IP プロトコルタイムアウト期間を計算します。 ほとんどの場合、スタックによって計算されるタイムアウトは、アプリケーションで定義されているものよりも関連性が高くなります。 これは、 <xref:System.Net.Sockets.Socket.LingerState%2A>プロパティが設定されていない場合のソケットの既定の動作です。  
   
- ときに、<xref:System.Net.Sockets.LingerOption.LingerTime%2A>にプロパティが格納されている、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティは、既定の IP プロトコル タイムアウトよりも大きい設定は、既定の IP プロトコル タイムアウトの表示およびオーバーライドはまだ適用されます。  
+ プロパティに格納されているプロパティが既定のipプロトコルタイムアウトよりも大きい値に設定されている場合でも、既定のipプロトコルタイムアウトが適用され、上書きされます。<xref:System.Net.Sockets.LingerOption.LingerTime%2A> <xref:System.Net.Sockets.Socket.LingerState%2A>  
   
  ]]></format>
         </remarks>
@@ -221,26 +221,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 長時間閉じた方法を決定する場合にこの値を使用して<xref:System.Net.Sockets.Socket>タイムアウトするまでに未送信のデータ転送を試みます。この値は秒単位で、目的のタイムアウト期間に設定することもできます。  
+ 閉じ<xref:System.Net.Sockets.Socket>たが、タイムアウトしたデータの転送を試行する時間を指定する場合は、この値を使用します。この値は、必要なタイムアウト期間 (秒単位) に設定することもできます。  
   
- 場合、<xref:System.Net.Sockets.LingerOption.Enabled%2A>プロパティは`true`、設定して<xref:System.Net.Sockets.LingerOption.LingerTime%2A>を 0 に、<xref:System.Net.Sockets.Socket>保留中の送信のネットワーク バッファーに送信するデータがすべて破棄します。 変更、渡す必要がある場合、この値を変更すると、<xref:System.Net.Sockets.LingerOption>インスタンスを<xref:System.Net.Sockets.Socket.SetSocketOption%2A>メソッドまたはセット、<xref:System.Net.Sockets.TcpClient.LingerState%2A>または<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティ。  
+ プロパティがで、 `true`が0に設定<xref:System.Net.Sockets.LingerOption.LingerTime%2A>されている<xref:System.Net.Sockets.Socket>場合、は送信ネットワークバッファーで送信する保留中のデータを破棄します。 <xref:System.Net.Sockets.LingerOption.Enabled%2A> この値を変更する場合は、変更され<xref:System.Net.Sockets.LingerOption>たインスタンスを<xref:System.Net.Sockets.Socket.SetSocketOption%2A>メソッドに渡すか<xref:System.Net.Sockets.TcpClient.LingerState%2A> 、 <xref:System.Net.Sockets.Socket.LingerState%2A>またはプロパティを設定する必要があります。  
   
- 次の表に、可能な値の動作、<xref:System.Net.Sockets.LingerOption.Enabled%2A>プロパティおよび<xref:System.Net.Sockets.LingerOption.LingerTime%2A>にプロパティが格納されている、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティ。  
+ 次の表では、プロパティの<xref:System.Net.Sockets.LingerOption.Enabled%2A>使用可能な値の動作<xref:System.Net.Sockets.LingerOption.LingerTime%2A>と、プロパティに<xref:System.Net.Sockets.Socket.LingerState%2A>格納されているプロパティについて説明します。  
   
 |`enable`|`seconds`|動作|  
 |--------------|---------------|--------------|  
-|`false` (無効)、既定値|タイムアウトが適用可能で、ない (既定値)。|既定値まで IP プロトコル タイムアウト保留中の接続指向のソケット (たとえば、TCP) のデータ送信を試みます期限が切れます。|  
-|`true` (有効)|0 以外のタイムアウト|指定したタイムアウトが経過すると、失敗した場合、Winsock 接続をリセットするまで、保留中のデータ送信を試行します。|  
-|`true` (有効)|0 のタイムアウト。|保留中のデータを破棄します。 接続志向ソケット (たとえば、TCP) の場合は、Winsock は接続をリセットします。|  
+|`false`(無効)、既定値|タイムアウトは適用されません (既定)。|既定の IP プロトコルのタイムアウトが経過するまで、接続指向のソケット (TCP など) の保留中のデータを送信しようとします。|  
+|`true`enabled|0以外のタイムアウト|指定したタイムアウトが経過するまで保留中のデータを送信しようとします。失敗した場合は、Winsock によって接続がリセットされます。|  
+|`true`enabled|ゼロタイムアウト。|保留中のデータを破棄します。 接続指向のソケット (TCP など) の場合、Winsock によって接続がリセットされます。|  
   
- IP スタックは、接続の往復時間に基づいて使用する既定の IP プロトコルのタイムアウト期間を計算します。 ほとんどの場合は、スタックによって計算されたタイムアウトは、アプリケーションで定義された 1 つ以上です。 これは、ソケットの既定の動作と、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティは設定されません。  
+ IP スタックは、接続のラウンドトリップ時間に基づいて、使用する既定の IP プロトコルタイムアウト期間を計算します。 ほとんどの場合、スタックによって計算されるタイムアウトは、アプリケーションで定義されているものよりも関連性が高くなります。 これは、 <xref:System.Net.Sockets.Socket.LingerState%2A>プロパティが設定されていない場合のソケットの既定の動作です。  
   
- ときに、<xref:System.Net.Sockets.LingerOption.LingerTime%2A>にプロパティが格納されている、<xref:System.Net.Sockets.Socket.LingerState%2A>プロパティは、既定の IP プロトコル タイムアウトよりも大きい設定は、既定の IP プロトコル タイムアウトの表示およびオーバーライドはまだ適用されます。  
+ プロパティに格納されているプロパティが既定のipプロトコルタイムアウトよりも大きい値に設定されている場合でも、既定のipプロトコルタイムアウトが適用され、上書きされます。<xref:System.Net.Sockets.LingerOption.LingerTime%2A> <xref:System.Net.Sockets.Socket.LingerState%2A>  
   
    
   
 ## Examples  
- 次の例では、このプロパティの値が表示されます。  
+ 次の例では、このプロパティの値を表示します。  
   
  [!code-cpp[Socket_Socket_Options#2](~/samples/snippets/cpp/VS_Snippets_Remoting/Socket_Socket_Options/CPP/source.cpp#2)]
  [!code-csharp[Socket_Socket_Options#2](~/samples/snippets/csharp/VS_Snippets_Remoting/Socket_Socket_Options/CS/source.cs#2)]
