@@ -1,5 +1,5 @@
 <Type Name="MuxLogger" FullName="Microsoft.Build.Utilities.MuxLogger">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4d26f3df7bd22314896c660b52443518560ca8be" /><Meta Name="ms.sourcegitcommit" Value="662f143e6be46d519ff8ab4451d543d91e651478" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/18/2018" /><Meta Name="ms.locfileid" Value="53564224" /></Metadata><TypeSignature Language="C#" Value="public class MuxLogger : Microsoft.Build.Framework.INodeLogger" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f0c1bac8025c518b15c3a4195610e83185d7213e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69298570" /></Metadata><TypeSignature Language="C#" Value="public class MuxLogger : Microsoft.Build.Framework.INodeLogger" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit MuxLogger extends System.Object implements class Microsoft.Build.Framework.ILogger, class Microsoft.Build.Framework.INodeLogger" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Utilities.MuxLogger" />
   <TypeSignature Language="VB.NET" Value="Public Class MuxLogger&#xA;Implements INodeLogger" />
@@ -28,39 +28,39 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `MuxLogger`一般に次のように機能します。  
+ 一般的`MuxLogger`には、次のように機能します。  
   
--   `MuxLogger`ビルド マネージャーの開始ビルドの先頭に登録します。  
+-   は`MuxLogger` 、ビルドマネージャーの開始ビルドの開始時に登録されます。  
   
-     ビルド マネージャーは、ビルドを開始する前に登録されているすべての logger と同時にビルド開始イベントの取得、`MuxLogger`します。  
+     ビルドマネージャーがビルドを開始する前に登録されている logger は、 `MuxLogger`と同時にビルド開始イベントを取得します。  
   
-     ビルド マネージャーが、ビルドが開始した後に登録されている任意のロガーは、合成のビルドが開始されたイベントを取得します。 イベントが作成されたときに登録されているロガーに正しくないビルド時間のイベントをキャッシュできるようになります - ビルドが開始されたイベントのタイムスタンプが決定されるため、イベントをキャッシュすることはできません、`MuxLogger`します。  
+     ビルドマネージャーがビルドを開始した後に登録された logger は、合成ビルド開始イベントを取得します。 イベントが作成されるときにビルド開始イベントのタイムスタンプが決定されるため、イベントをキャッシュできません。また、イベントをキャッシュすると、 `MuxLogger`に登録されている logger でのビルド時間が正しくなくなります。  
   
--   `MuxLogger`ビルド マネージャーによって初期化されます  
+-   は`MuxLogger`ビルドマネージャーによって初期化されます。  
   
-     `MuxLogger`ビルド マネージャーからイベント ソースのすべてのイベントをリッスンし、イベントを正しく登録されているロガーにルーティングします。  
+     は`MuxLogger` 、ビルドマネージャーからイベントソースのすべてのイベントをリッスンし、登録されている logger にイベントを正しくルーティングします。  
   
--   `MuxLogger`シャット ダウンは、最後のビルドでビルドが完了するとします。 この時点では、それにアタッチされている任意のロガーを登録解除します。  
+-   ビルド`MuxLogger`が終了ビルドで終了すると、がシャットダウンします。 この時点で、アタッチされているすべての logger が登録解除されます。  
   
--   `MuxLogger`各 logger の最初のプロジェクト開始イベントのプロジェクト完了イベントが表示されるときに、ビルドが終了したイベント ログに記録します。  
+-   は`MuxLogger` 、最初のプロジェクト開始イベントのプロジェクト完了イベントが logger ごとに表示されたときに、ビルド完了イベントをログに記録します。  
   
- `MuxLogger`次のようにロガーを登録します。  
+ は`MuxLogger` 、次の方法で logger を登録します。  
   
-1.  ロガーに渡される、`MuxLogger.RegisterLogger`メソッドとそのロガーにメッセージをルーティングに使用される送信 ID。  
+1.  Logger は、メッセージをその`MuxLogger.RegisterLogger` logger にルーティングするために使用される送信 ID と共にメソッドに渡されます。  
   
-2.  `MuxLogger`にロガーを登録、`MuxLogger`イベント ソース。  
+2.  は`MuxLogger` 、logger を`MuxLogger`イベントソースに登録します。  
   
-3.  ビルド開始イベントが既にログインしてされている場合、`MuxLogger`新しいビルドが開始されたイベントを作成して、ロガーのイベント ソースに送信します。  
+3.  ビルド開始イベントが既にログに記録されて`MuxLogger`いる場合、は新しいビルド開始イベントを作成し、それを logger のイベントソースに送信します。  
   
- `MuxLogger`次のようにロガーを登録解除します。  
+ Logger `MuxLogger`の登録を解除するには、次の方法があります。  
   
-1.  ビルド送信が完了したときに、`MuxLogger.UnregisterLogger`ロガーの送信 ID を持つメソッドが呼び出されます。  
+1.  ビルドの送信が完了すると、 `MuxLogger.UnregisterLogger`メソッドはロガーの送信 ID を使用して呼び出されます。  
   
-2.  `MuxLogger`送信 ID のプロジェクトの終了イベントの成功の状態を検索し、logger にビルドが終了したイベント ログに記録します。  
+2.  は`MuxLogger` 、送信 ID のプロジェクト完了イベントの成功状態を検索し、ビルド完了イベントを logger に記録します。  
   
-3.  `MuxLogger`イベント ソースをクリーンアップします。  
+3.  は`MuxLogger` 、イベントソースをクリーンアップします。  
   
-     ログ スレッド以外のスレッドから、登録解除には、そのイベント ログに記録するときに、登録解除が呼び出された場合、同期の問題が発生する可能性がありますに注意してください。  
+     登録解除はログに記録されたスレッド以外のスレッドからのものであり、イベントのログ記録中に登録解除が呼び出されると、同期の問題が発生する可能性があることに注意してください。  
   
  ]]></format>
     </remarks>
@@ -168,7 +168,7 @@
       </ReturnValue>
       <Docs>
         <summary><see langword="ILogger" /> インターフェイスで必要な Parameters 属性を取得または設定します。</summary>
-        <value>パラメーターの属性です。</value>
+        <value>Parameters 属性。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -267,7 +267,7 @@
       </ReturnValue>
       <Docs>
         <summary><see langword="ILogger" /> インターフェイスで必要な Verbosity 属性を取得または設定します。</summary>
-        <value>Verbosity 属性。</value>
+        <value>詳細属性。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

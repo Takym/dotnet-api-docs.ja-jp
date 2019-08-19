@@ -1,5 +1,5 @@
 <Type Name="DispatchOperation" FullName="System.ServiceModel.Dispatcher.DispatchOperation">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c06a89a5ff8ac93419beb278ec31a0a55fe0683f" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58557695" /></Metadata><TypeSignature Language="C#" Value="public sealed class DispatchOperation" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9bcfde225df47d3ecf7ea65b4aa8daf1ae9ab5d4" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69236080" /></Metadata><TypeSignature Language="C#" Value="public sealed class DispatchOperation" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit DispatchOperation extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Dispatcher.DispatchOperation" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DispatchOperation" />
@@ -30,7 +30,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.DispatchOperation> クラスは、1 つのサービス操作のスコープ内だけに適用されるカスタムの拡張を実現するために、ランタイムに対して変更または挿入を行う場所です  (コントラクト中のすべてのメッセージに対するサービスのランタイム動作を変更するには、<xref:System.ServiceModel.Dispatcher.DispatchRuntime> クラスを使用します)。  
+ <xref:System.ServiceModel.Dispatcher.DispatchOperation> クラスは、1 つのサービス操作のスコープ内だけに適用されるカスタムの拡張を実現するために、ランタイムに対して変更または挿入を行う場所です (コントラクト中のすべてのメッセージに対するサービスのランタイム動作を変更するには、<xref:System.ServiceModel.Dispatcher.DispatchRuntime> クラスを使用します)。  
   
  コントラクト全体の操作を変更するため、カスタム操作の動作オブジェクトまたはより大きいスコープの動作を使用して、<xref:System.ServiceModel.Dispatcher.DispatchOperation> の変更をインストールします。  
   
@@ -308,7 +308,7 @@
 ## Remarks  
  <xref:System.ServiceModel.Dispatcher.DispatchOperation.DeserializeRequest%2A> プロパティは、フォーマッタが受信メッセージからの戻り値を逆シリアル化するか、または受信メッセージをそのまま戻り値として返すかを制御するために使用します。  
   
--   **注**場合`false`、戻り値の型は型でなければなりません<xref:System.ServiceModel.Channels.Message>あります out パラメーターとまたは<xref:System.InvalidCastException>が実行時にスローされます。  
+-   **メモ**の`false`場合、戻り値の型は型<xref:System.ServiceModel.Channels.Message>である必要があり、out パラメーターを<xref:System.InvalidCastException>使用できないか、実行時にがスローされることがあります。  
   
  ]]></format>
         </remarks>
@@ -385,7 +385,7 @@
 ## Remarks  
  <xref:System.ServiceModel.Dispatcher.DispatchOperation.Formatter%2A> プロパティは、特定の操作用に <xref:System.ServiceModel.Dispatcher.IDispatchMessageFormatter> のカスタムの実装を挿入したり、現在のフォーマッタを変更するために使用します。 厳密に型指定されたメッセージ操作の場合、フォーマッタの使用は、<xref:System.ServiceModel.Dispatcher.DispatchOperation.SerializeReply%2A> プロパティと <xref:System.ServiceModel.Dispatcher.DispatchOperation.DeserializeRequest%2A> プロパティで制御できます。  
   
- <xref:System.ServiceModel.Dispatcher.IDispatchMessageFormatter>インターフェイスを定義、<xref:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.SerializeReply%2A>と<xref:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.DeserializeRequest%2A>メソッドに変換する一連のオブジェクトのパラメーター、戻り値のセットへのメッセージの送受信メッセージにそれぞれ使用します。  
+ インターフェイス<xref:System.ServiceModel.Dispatcher.IDispatchMessageFormatter>では、 <xref:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.SerializeReply%2A>メソッド<xref:System.ServiceModel.Dispatcher.IDispatchMessageFormatter.DeserializeRequest%2A>とメソッドを定義します。これらのメソッドは、オブジェクトパラメーターのセットをメッセージに変換し、メッセージから一連の戻り値に変換するために使用されます。  
   
  ]]></format>
         </remarks>
@@ -417,7 +417,7 @@
       </ReturnValue>
       <Docs>
         <summary>操作で必要な偽装のレベルを示す値を取得または設定します。</summary>
-        <value><see cref="T:System.ServiceModel.ImpersonationOption" /> 値のいずれか。</value>
+        <value><see cref="T:System.ServiceModel.ImpersonationOption" /> 値のいずれか 1 つ。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -863,7 +863,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.ServiceModel.Dispatcher.DispatchOperation.TransactionRequired%2A>プロパティは`true`、WCF メッセージが表示される場合は、トランザクション処理されたトランスポート; を使用するために使用するトランザクションに現在のトランザクションの設定や、メッセージがトランザクションがある場合、チャネル経由で流れてくるトランザクションまたは、ディスパッチャーが新しいを作成します。  
+ <xref:System.ServiceModel.Dispatcher.DispatchOperation.TransactionRequired%2A>プロパティが`true`の場合、トランザクショントランスポートを使用している場合は、メッセージの受信に使用されるトランザクションに現在のトランザクションが設定されます。または、メッセージにトランザクションがある場合はチャネル上でトランザクションがフローされます。または、ディスパッチャーが新しいものを作成します。  
   
  ]]></format>
         </remarks>

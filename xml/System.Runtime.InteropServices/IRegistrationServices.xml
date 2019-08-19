@@ -1,5 +1,5 @@
 <Type Name="IRegistrationServices" FullName="System.Runtime.InteropServices.IRegistrationServices">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ba7ce2f03f84bb321aa221f5ac6b075c5d8aa7f0" /><Meta Name="ms.sourcegitcommit" Value="9e06b87bcfa4347dbbaaa4b3cc36b43b93b5badb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/20/2018" /><Meta Name="ms.locfileid" Value="52205461" /></Metadata><TypeSignature Language="C#" Value="public interface IRegistrationServices" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e3576256e7f75ed37cc8e5697314a0834e9a2d06" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69269978" /></Metadata><TypeSignature Language="C#" Value="public interface IRegistrationServices" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IRegistrationServices" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.IRegistrationServices" />
   <TypeSignature Language="VB.NET" Value="Public Interface IRegistrationServices" />
@@ -27,7 +27,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アセンブリ内のオブジェクトを COM クライアントによって使用されているときに、登録が必要です。  
+ アセンブリ内のオブジェクトが COM クライアントによって使用されている場合は、登録が必要です。  
   
  ]]></format>
     </remarks>
@@ -88,7 +88,7 @@
         <summary>指定した型の COM ProgID を取得します。</summary>
         <returns>指定した型の ProgID。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="GetRegistrableTypesInAssembly">
@@ -121,7 +121,7 @@
         <summary><see cref="M:System.Runtime.InteropServices.IRegistrationServices.RegisterAssembly(System.Reflection.Assembly,System.Runtime.InteropServices.AssemblyRegistrationFlags)" /> への呼び出しによって登録されるアセンブリ内のクラスの一覧を取得します。</summary>
         <returns><paramref name="assembly" /> 内のクラスの一覧を格納している <see cref="T:System.Type" /> 配列。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="RegisterAssembly">
@@ -159,24 +159,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `RegisterAssembly` 指定したアセンブリで型の適切なレジストリ エントリを追加します。 このメソッドは、アセンブリ内に、登録関数も呼び出します。  
+ `RegisterAssembly`指定したアセンブリ内の型に対して適切なレジストリエントリを追加します。 このメソッドは、アセンブリ内で見つかったすべての登録関数も呼び出します。  
   
- 使用<xref:System.Reflection.Assembly.Load%2A?displayProperty=nameWithType>アセンブリを取得します。  
+ アセンブリ<xref:System.Reflection.Assembly.Load%2A?displayProperty=nameWithType>を取得するには、を使用します。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="assembly" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="assembly" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="assembly" /> の完全名が <see langword="null" /> です。  
   
-- または - 
+または 
 <see cref="T:System.Runtime.InteropServices.ComRegisterFunctionAttribute" /> でマークされたメソッドが <see langword="static" /> ではありません。  
   
-- または - 
+または 
 階層の特定のレベルに、<see cref="T:System.Runtime.InteropServices.ComRegisterFunctionAttribute" /> でマークされた複数のメソッドがあります。  
   
 - または - 
 <see cref="T:System.Runtime.InteropServices.ComRegisterFunctionAttribute" /> でマークされたメソッドのシグネチャが有効ではありません。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="RegisterTypeForComClients">
@@ -213,11 +213,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを呼び出すことは`CoRegisterClassObject`com  
+ このメソッドは、COM で`CoRegisterClassObject`を呼び出すことと同じです。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="TypeRepresentsComType">
@@ -277,7 +277,7 @@
         <summary>指定した型が登録を要求するかどうかを確認します。</summary>
         <returns>COM から使用するために型を登録する必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="UnregisterAssembly">
@@ -313,11 +313,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `UnregisterAssembly` 以前に追加した指定したアセンブリで型のレジストリ エントリを削除します。<xref:System.Runtime.InteropServices.IRegistrationServices.RegisterAssembly%2A>します。 このメソッドは、アセンブリ内で見つかったすべての登録解除関数も呼び出します。  
+ `UnregisterAssembly`によって<xref:System.Runtime.InteropServices.IRegistrationServices.RegisterAssembly%2A>以前に追加された、指定したアセンブリ内の型のレジストリエントリを削除します。 このメソッドは、アセンブリ内で見つかった登録解除関数も呼び出します。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="assembly" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="assembly" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="assembly" /> の完全名が <see langword="null" /> です。  
   
 - または - 
@@ -328,7 +328,7 @@
   
 - または - 
 <see cref="T:System.Runtime.InteropServices.ComUnregisterFunctionAttribute" /> でマークされたメソッドのシグネチャが有効ではありません。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
   </Members>
