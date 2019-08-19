@@ -1,5 +1,5 @@
 <Type Name="DbCommandBuilder" FullName="System.Data.Common.DbCommandBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="79cd56e72e2d68088c27db5cc47590a674d809e2" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58722288" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbCommandBuilder : System.ComponentModel.Component" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f4184647e60d4d2bc3636e893f4731753989246d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69078811" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbCommandBuilder : System.ComponentModel.Component" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbCommandBuilder extends System.ComponentModel.Component" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbCommandBuilder" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbCommandBuilder&#xA;Inherits Component" />
@@ -31,23 +31,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DbCommandBuilder>クラスは、独自のコマンド ビルダーを作成するプロバイダーの作成者の便宜上提供されています。 このクラスから継承することによって、開発者は、独自のコードでプロバイダー固有の動作を実装できます。  
+ <xref:System.Data.Common.DbCommandBuilder>クラスは、プロバイダーの作成者が独自のコマンドビルダーを作成するために用意されています。 このクラスから継承することにより、開発者は独自のコードでプロバイダー固有の動作を実装できます。  
   
- <xref:System.Data.Common.DbDataAdapter>に加えられた変更を調整するために必要な SQL ステートメントを自動的に生成しない、<xref:System.Data.DataSet>と関連付けられているデータ ソース。 ただし、作成することができます、<xref:System.Data.Common.DbCommandBuilder>設定した場合、SQL ステートメントの単一テーブルの更新プログラムを自動的に生成するオブジェクト、<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>のプロパティ、<xref:System.Data.Common.DbDataAdapter>します。 次に、設定しない追加の SQL ステートメントがによって生成される、<xref:System.Data.Common.DbCommandBuilder>します。  
+ は、関連付けられたデータソースを<xref:System.Data.DataSet>使用してに加えられた変更を調整するために必要な SQL ステートメントを自動的に生成しません。 <xref:System.Data.Common.DbDataAdapter> ただし、の<xref:System.Data.Common.DbCommandBuilder> プロパティを<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>設定した場合は、単一テーブルの更新の SQL ステートメントを自動的に生成するオブジェクトを作成できます。<xref:System.Data.Common.DbDataAdapter> その後、設定しない追加の SQL ステートメントは、 <xref:System.Data.Common.DbCommandBuilder>によって生成されます。  
   
- <xref:System.Data.Common.DbCommandBuilder>のリスナーとして自身を登録<xref:System.Data.OleDb.OleDbDataAdapter.RowUpdating>イベントを設定するたびに、<xref:System.Data.Common.DbCommandBuilder.DataAdapter%2A>プロパティ。 関連付けることができますのみ<xref:System.Data.Common.DbDataAdapter>または<xref:System.Data.Common.DbCommandBuilder>相互オブジェクトは一度に 1 つ。  
+ は<xref:System.Data.Common.DbCommandBuilder> 、 <xref:System.Data.Common.DbCommandBuilder.DataAdapter%2A>プロパティを設定するたび<xref:System.Data.OleDb.OleDbDataAdapter.RowUpdating>に、イベントのリスナーとして自身を登録します。 1つ<xref:System.Data.Common.DbDataAdapter>または<xref:System.Data.Common.DbCommandBuilder>複数のオブジェクトを同時に関連付けることができます。  
   
- INSERT、UPDATE、または DELETE のステートメントを生成する、<xref:System.Data.Common.DbCommandBuilder>を使用して、<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>プロパティを自動的に必要な一連のメタデータを取得します。 変更した場合、<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>を呼び出す必要があります (たとえば、最初の更新後、メタデータの取得が完了した後、<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>メタデータを更新するメソッド。  
+ INSERT、UPDATE、または DELETE ステートメントを生成する<xref:System.Data.Common.DbCommandBuilder>ために<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A> 、はプロパティを使用して、必要なメタデータのセットを自動的に取得します。 メタデータが取得<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>された後 (たとえば、最初の更新後) にを変更した場合は、 <xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>メソッドを呼び出してメタデータを更新する必要があります。  
   
- `SelectCommand` は少なくとも 1 つの主キーまたは一意の列を返す必要があります。 存在しない場合、<xref:System.InvalidOperationException>例外が生成され、コマンドは生成されません。  
+ `SelectCommand` は少なくとも 1 つの主キーまたは一意の列を返す必要があります。 存在し<xref:System.InvalidOperationException>ない場合は、例外が生成され、コマンドは生成されません。  
   
- <xref:System.Data.Common.DbCommandBuilder>を使用しても、 <xref:System.Data.Common.DbCommand.Connection%2A>、 <xref:System.Data.Common.DbCommand.CommandTimeout%2A>、および<xref:System.Data.Common.DbCommand.Transaction%2A>プロパティによって参照される、<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>します。 ユーザーが呼び出す必要があります<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>場合またはこれらのプロパティが変更された場合、<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>自体が置き換えられます。 それ以外の場合、 <xref:System.Data.Common.DbDataAdapter.InsertCommand%2A>、 <xref:System.Data.Common.DbDataAdapter.UpdateCommand%2A>、および<xref:System.Data.Common.DbDataAdapter.DeleteCommand%2A>プロパティは、以前の値を保持します。  
+ は<xref:System.Data.Common.DbCommandBuilder> 、によっ<xref:System.Data.Common.DbCommand.Connection%2A>て<xref:System.Data.Common.DbCommand.CommandTimeout%2A>参照さ<xref:System.Data.Common.DbCommand.Transaction%2A>れる、、およびの各プロパティも使用します。<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A> これらのプロパティの<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>いずれかが変更された場合、または<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>それ自体が置換された場合は、を呼び出す必要があります。 それ以外<xref:System.Data.Common.DbDataAdapter.InsertCommand%2A>の<xref:System.Data.Common.DbDataAdapter.UpdateCommand%2A>場合、 <xref:System.Data.Common.DbDataAdapter.DeleteCommand%2A> 、、およびの各プロパティは、前の値を保持します。  
   
- 呼び出す場合<xref:System.ComponentModel.Component.Dispose%2A>、<xref:System.Data.Common.DbCommandBuilder>関連付けが解除され、 <xref:System.Data.Common.DbDataAdapter>、生成されたコマンドが使用できなくします。  
+ を呼び出す<xref:System.ComponentModel.Component.Dispose%2A> <xref:System.Data.Common.DbCommandBuilder>と、はとの関連付け<xref:System.Data.Common.DbDataAdapter>が解除され、生成されたコマンドは使用されなくなります。  
   
  ]]></format>
     </remarks>
-    <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
     <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
   </Docs>
   <Members>
@@ -78,7 +78,7 @@
       <Docs>
         <summary><see cref="T:System.Data.Common.DbCommandBuilder" /> クラスから継承するクラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -124,11 +124,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの実装を使用する、<xref:System.Data.Common.DbCommandBuilder>プロバイダーに固有のパラメーターのプロパティを処理するクラス。  
+ このメソッドを使用すると、 <xref:System.Data.Common.DbCommandBuilder>クラスの実装で、プロバイダー固有のパラメータープロパティを処理できます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -168,7 +168,7 @@
         <summary><see cref="T:System.Data.Common.CatalogLocation" /> クラスのインスタンスの <see cref="T:System.Data.Common.DbCommandBuilder" /> を設定または取得します。</summary>
         <value><see cref="T:System.Data.Common.CatalogLocation" /> オブジェクト。</value>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -208,7 +208,7 @@
         <summary><see cref="T:System.Data.Common.DbCommandBuilder" /> クラスのインスタンスのカタログの区切り記号として使用する文字列を設定または取得します。</summary>
         <value><see cref="T:System.Data.Common.DbCommandBuilder" /> クラスのインスタンスで使用するカタログの区切り記号を示す文字列。</value>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -248,7 +248,7 @@
         <summary><see cref="T:System.Data.ConflictOption" /> で使用する <see cref="T:System.Data.Common.DbCommandBuilder" /> を指定します。</summary>
         <value>この <see cref="T:System.Data.ConflictOption" /> の動作を説明する <see cref="T:System.Data.Common.DbCommandBuilder" /> 値の 1 つを返します。</value>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -294,13 +294,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DbCommandBuilder>のリスナーとして自身を登録<xref:System.Data.OleDb.OleDbDataAdapter.RowUpdating>によって生成されるイベント、<xref:System.Data.Common.DbDataAdapter>このプロパティで指定します。  
+ は<xref:System.Data.Common.DbCommandBuilder> 、このプロパティで<xref:System.Data.Common.DbDataAdapter>指定さ<xref:System.Data.OleDb.OleDbDataAdapter.RowUpdating>れたによって生成されるイベントのリスナーとして自身を登録します。  
   
- 新しいインスタンスを作成するときに<xref:System.Data.Common.DbCommandBuilder>、既存のすべての<xref:System.Data.Common.DbCommandBuilder>これに関連付けられている<xref:System.Data.Common.DbDataAdapter>解放されます。  
+ の<xref:System.Data.Common.DbCommandBuilder>新しいインスタンスを作成すると、この<xref:System.Data.Common.DbDataAdapter>に<xref:System.Data.Common.DbCommandBuilder>関連付けられている既存のが解放されます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -341,17 +341,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック<xref:System.Data.Common.DbCommandBuilder.Dispose%2A>メソッドと`Finalize`メソッド。 <xref:System.Data.Common.DbCommandBuilder.Dispose%2A> 保護された起動<xref:System.Data.Common.DbCommandBuilder.Dispose%2A>メソッドは、disposing パラメーターを設定して`true`。 `Finalize` 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック<xref:System.Data.Common.DbCommandBuilder.Dispose%2A>メソッド`Finalize`とメソッドによって呼び出されます。 <xref:System.Data.Common.DbCommandBuilder.Dispose%2A>disposing パラメーターを<xref:System.Data.Common.DbCommandBuilder.Dispose%2A>に`true`設定して、保護されたメソッドを呼び出します。 `Finalize`をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.Data.Common.DbCommandBuilder> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの <xref:System.Data.Common.DbCommandBuilder.Dispose%2A> メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see cref="Overload:System.Data.Common.DbCommandBuilder.Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 <see cref="M:System.Data.Common.DbCommandBuilder.Dispose(System.Boolean)" /> をオーバーライドする場合は、以前に <see cref="Overload:System.Data.Common.DbCommandBuilder.Dispose" /> を呼び出したときに破棄されたオブジェクトを参照しないように注意する必要があります。 実装する方法についての詳細は<see cref="M:System.Data.Common.DbCommandBuilder.Dispose(System.Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see cref="Overload:System.Data.Common.DbCommandBuilder.Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 <see cref="M:System.Data.Common.DbCommandBuilder.Dispose(System.Boolean)" /> をオーバーライドする場合は、以前に <see cref="Overload:System.Data.Common.DbCommandBuilder.Dispose" /> を呼び出したときに破棄されたオブジェクトを参照しないように注意する必要があります。 を実装<see cref="M:System.Data.Common.DbCommandBuilder.Dispose(System.Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see langword="Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)と[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。</para></block>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+<see langword="Dispose" /> および<see langword="Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」と「 [Finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。</para></block>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -367,17 +367,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>および関連付けられているコマンドのテキストを変更し、に明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、関連するコマンドテキスト<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>を呼び出して変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>を呼び出すと、最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 場合のオーバー ロードされたバージョン<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>生成できます、ブール値を指定してこの動作を指定することができます、<xref:System.Data.Common.DbCommandBuilder>を渡すことによって代わりに列名に基づいたパラメーターを生成する`True`します。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 の<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>オーバーロードされたバージョンで、ブール値を指定してこの動作を指定できる場合は<xref:System.Data.Common.DbCommandBuilder> 、を渡す`True`のではなく、によって列名に基づいてパラメーターが生成されます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </MemberGroup>
@@ -416,15 +416,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>、コマンド テキストを変更し、しに明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、コマンドテキストを呼び出し<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>て変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>を呼び出すと、最初に生成されます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -466,23 +466,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>、コマンド テキストを変更し、しに明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、コマンドテキストを呼び出し<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>て変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetDeleteCommand%2A>を呼び出すと、最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 渡す`true`の`useColumnsForParameterNames`パラメーターを使用すると、強制的に、<xref:System.Data.Common.DbCommandBuilder>を代わりに列名に基づいたパラメーターを生成します。 これが成功すると、次の条件が満たされた場合にのみ。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 パラメーターにを渡す`true`と、では<xref:System.Data.Common.DbCommandBuilder>なく列名に基づいてパラメーターを生成するように強制できます。 `useColumnsForParameterNames` これは、次の条件が満たされた場合にのみ成功します。  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>が指定されている、生成されたパラメーター名以上の長さ。  
+-   が<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>指定されていますが、その長さが生成されたパラメーター名と同じか、それより大きい値です。  
   
--   生成されたパラメーター名で指定した条件を満たしている、<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正規表現。  
+-   生成されたパラメーター名は、 <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正規表現で指定された条件を満たしています。  
   
--   A<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>を指定します。  
+-   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>が指定されています。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -498,17 +498,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>メソッド情報やトラブルシューティングの目的のテキストを返すため、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトのテキストを返すため、情報またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>コマンドのテキストを変更し、しに明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、コマンドテキストを呼び出し<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>て変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>を呼び出すと、最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 場合のオーバー ロードされたバージョン<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>この動作を指定することができます、発生することができます、<xref:System.Data.Common.DbCommandBuilder>を代わりに列名に基づいたパラメーターを生成します。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 の<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>オーバーロードされたバージョンでこの動作を指定できる場合、では<xref:System.Data.Common.DbCommandBuilder>なく列名に基づいてパラメーターが生成されるようになります。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </MemberGroup>
@@ -547,15 +547,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>メソッド情報やトラブルシューティングの目的のテキストを返すため、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトのテキストを返すため、情報またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>、コマンド テキストを変更し、しに明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、コマンドテキストを呼び出し<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>て変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>を呼び出すと、最初に生成されます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -597,23 +597,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>メソッド情報やトラブルシューティングの目的のテキストを返すため、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトのテキストを返すため、情報またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>、コマンド テキストを変更し、しに明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、コマンドテキストを呼び出し<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>て変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetInsertCommand%2A>を呼び出すと、最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 渡す`true`の`useColumnsForParameterNames`パラメーターを使用すると、強制的に、<xref:System.Data.Common.DbCommandBuilder>を代わりに列名に基づいたパラメーターを生成します。 列名に基づくパラメーターの生成が成功したは、次の条件が満たされた場合にのみ。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 パラメーターにを渡す`true`と、では<xref:System.Data.Common.DbCommandBuilder>なく列名に基づいてパラメーターを生成するように強制できます。 `useColumnsForParameterNames` 列名に基づくパラメーターの生成は、次の条件が満たされている場合にのみ成功します。  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>が指定されている、生成されたパラメーター名以上の長さ。  
+-   が<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>指定されていますが、その長さが生成されたパラメーター名と同じか、それより大きい値です。  
   
--   生成されたパラメーター名で指定した条件を満たしている、<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正規表現。  
+-   生成されたパラメーター名は、 <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正規表現で指定された条件を満たしています。  
   
--   A<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>を指定します。  
+-   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>が指定されています。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -663,7 +663,7 @@
         <summary>指定したパラメーターの名前を、<c>@p#</c> の形式で返します。 カスタムのコマンド ビルダーを作成する場合に使用します。</summary>
         <returns>パラメーター名の一部として追加された、指定した数を含むパラメーターの名前。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -702,7 +702,7 @@
         <summary>部分的なパラメーター名を指定して、完全なパラメーター名を返します。</summary>
         <returns>要求された部分的なパラメーター名に対応する完全なパラメーター名。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -744,11 +744,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、プロバイダーの作成者がカスタム コマンド ビルダーを使用するものです。  
+ このメソッドは、カスタムコマンドビルダーを構築するプロバイダーの作成者が使用するためのものです。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -790,11 +790,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、プロバイダーの作成者がカスタム コマンド ビルダーを使用するものです。  
+ このメソッドは、カスタムコマンドビルダーを構築するプロバイダーの作成者が使用するためのものです。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -810,17 +810,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>、コマンド テキストを変更し、しに明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、コマンドテキストを呼び出し<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>て変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>を呼び出すと、最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 場合のオーバー ロードされたバージョン<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>この動作を指定することができます、発生することができます、<xref:System.Data.Common.DbCommandBuilder>を代わりに列名に基づいたパラメーターを生成します。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 の<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>オーバーロードされたバージョンでこの動作を指定できる場合、では<xref:System.Data.Common.DbCommandBuilder>なく列名に基づいてパラメーターが生成されるようになります。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </MemberGroup>
@@ -859,15 +859,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>、コマンド テキストを変更し、しに明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、コマンドテキストを呼び出し<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>て変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>を呼び出すと、最初に生成されます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -909,23 +909,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.Common.DbCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>する<xref:System.Data.Common.DbCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>変更コマンドの基礎として。 たとえばを呼び出す<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>コマンドのテキストを変更し、しに明示的に設定する、<xref:System.Data.Common.DbDataAdapter>します。  
+ また、を変更<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、コマンドテキストを呼び出し<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>て変更し、 <xref:System.Data.Common.DbDataAdapter>で明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントが最初に、アプリケーションを呼び出すときに生成するか<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションがまたは<xref:System.Data.Common.DbDataAdapter.Update%2A> <xref:System.Data.Common.DbCommandBuilder.GetUpdateCommand%2A>を呼び出すと、最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 渡す`true`の`useColumnsForParameterNames`パラメーターを使用すると、強制的に、<xref:System.Data.Common.DbCommandBuilder>を代わりに列名に基づいたパラメーターを生成します。 列名に基づくパラメーターの生成が成功したは、次の条件が満たされた場合にのみ。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 パラメーターにを渡す`true`と、では<xref:System.Data.Common.DbCommandBuilder>なく列名に基づいてパラメーターを生成するように強制できます。 `useColumnsForParameterNames` 列名に基づくパラメーターの生成は、次の条件が満たされている場合にのみ成功します。  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>が指定されている、生成されたパラメーター名以上の長さ。  
+-   が<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>指定されていますが、その長さが生成されたパラメーター名と同じか、それより大きい値です。  
   
--   生成されたパラメーター名で指定した条件を満たしている、<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正規表現。  
+-   生成されたパラメーター名は、 <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>正規表現で指定された条件を満たしています。  
   
--   A<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>を指定します。  
+-   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>が指定されています。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -967,11 +967,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、プロバイダーの作成者がカスタム コマンド ビルダーを使用するものです。  
+ このメソッドは、カスタムコマンドビルダーを構築するプロバイダーの作成者が使用するためのものです。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1010,7 +1010,7 @@
         <summary>大文字と小文字を正しく区別したカタログ内の、引用符で囲まれていない ID が指定されると、その ID を引用符で囲まれた正しい形式で返します。ID 内に埋め込まれている引用符はすべて適切にエスケープされます。</summary>
         <returns>引用符で囲まれたバージョンの ID。 ID 内に埋め込まれている引用符は適切にエスケープされます。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1053,15 +1053,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一部のデータ ソースには、スペース、コンマ、セミコロンなどの文字を含むことのできるオブジェクトがあります。 この機能を対応するために使用して、<xref:System.Data.Common.DbCommandBuilder.QuotePrefix%2A>と<xref:System.Data.Common.DbCommandBuilder.QuoteSuffix%2A>左角かっことオブジェクト名をカプセル化する右の角かっこなどの区切り記号を指定するプロパティ。  
+ 一部のデータソースには、スペース、コンマ、セミコロンなどの文字を含むことができるオブジェクトが含まれている場合があります。 この機能に対応するには<xref:System.Data.Common.DbCommandBuilder.QuotePrefix%2A> 、 <xref:System.Data.Common.DbCommandBuilder.QuoteSuffix%2A>プロパティとプロパティを使用して、オブジェクト名をカプセル化する左かっこや右角かっこなどの区切り記号を指定します。  
   
 > [!NOTE]
->  変更することはできません、<xref:System.Data.Common.DbCommandBuilder.QuotePrefix%2A>または<xref:System.Data.Common.DbCommandBuilder.QuoteSuffix%2A>プロパティの後、insert、update、または delete コマンドが生成されて、その設定を変更するには呼び出した後、`Update`のメソッド、 <xref:System.Data.Common.DbDataAdapter>。  
+>  Insert、update、また<xref:System.Data.Common.DbCommandBuilder.QuotePrefix%2A>は<xref:System.Data.Common.DbCommandBuilder.QuoteSuffix%2A> delete コマンドが生成された後でプロパティまたはプロパティを変更することはできませんが`Update` 、のメソッド<xref:System.Data.Common.DbDataAdapter>を呼び出した後で設定を変更することはできます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">このプロパティは、挿入、更新、または削除コマンドの生成後には変更できません。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1104,14 +1104,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一部のデータ ソースには、スペース、コンマ、セミコロンなどの文字を含むことのできるオブジェクトがあります。 この機能を対応するために使用して、<xref:System.Data.Common.DbCommandBuilder.QuotePrefix%2A>と<xref:System.Data.Common.DbCommandBuilder.QuoteSuffix%2A>左角かっことオブジェクト名をカプセル化する右の角かっこなどの区切り記号を指定するプロパティ。  
+ 一部のデータソースには、スペース、コンマ、セミコロンなどの文字を含むことができるオブジェクトが含まれている場合があります。 この機能に対応するには<xref:System.Data.Common.DbCommandBuilder.QuotePrefix%2A> 、 <xref:System.Data.Common.DbCommandBuilder.QuoteSuffix%2A>プロパティとプロパティを使用して、オブジェクト名をカプセル化する左かっこや右角かっこなどの区切り記号を指定します。  
   
 > [!NOTE]
->  変更することはできません、<xref:System.Data.Common.DbCommandBuilder.QuotePrefix%2A>または<xref:System.Data.Common.DbCommandBuilder.QuoteSuffix%2A>プロパティの後、insert、update、または delete コマンドが生成されて、その設定を変更するには呼び出した後、`Update`のメソッド、 <xref:System.Data.Common.DbDataAdapter>。  
+>  Insert、update、また<xref:System.Data.Common.DbCommandBuilder.QuotePrefix%2A>は<xref:System.Data.Common.DbCommandBuilder.QuoteSuffix%2A> delete コマンドが生成された後でプロパティまたはプロパティを変更することはできませんが`Update` 、のメソッド<xref:System.Data.Common.DbDataAdapter>を呼び出した後で設定を変更することはできます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1149,17 +1149,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す、<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>メソッドは実質的にすべてを削除、<xref:System.Data.Common.DbCommand>によって参照されるオブジェクト、 <xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>、  
+ メソッドを呼び出すと、に<xref:System.Data.Common.DbCommand>よって<xref:System.Data.Common.DbDataAdapter.SelectCommand%2A>参照されるすべてのオブジェクトが実質的に削除されます。 <xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>  
   
  <xref:System.Data.Common.DbDataAdapter.UpdateCommand%2A>、  
   
  <xref:System.Data.Common.DbDataAdapter.DeleteCommand%2A>、および  
   
- <xref:System.Data.Common.DbDataAdapter.InsertCommand%2A> プロパティ。  
+ <xref:System.Data.Common.DbDataAdapter.InsertCommand%2A>属性.  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1197,7 +1197,7 @@
         <param name="rowUpdatingEvent">イベントの情報が格納されている <see cref="T:System.Data.Common.RowUpdatingEventArgs" /> インスタンス。</param>
         <summary><see cref="E:System.Data.OleDb.OleDbDataAdapter.RowUpdating" /> イベントのイベント ハンドラーを追加します。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1240,11 +1240,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一般に、データベース サーバーは、いくつかの文字を持つ id からスキーマ名を分離することで、識別子のスキーマを示します。 たとえば、SQL Server を使用して、コロンなどの完全な識別子を作成する**Person: CustomerName**"Person"はスキーマ名、"CustomerName"は識別子です。 このプロパティを設定すると、この動作を変更する開発者ができます。  
+ 一般に、データベースサーバーは、識別子のスキーマ名をいくつかの文字で区切ることによって、識別子のスキーマを示します。 たとえば、SQL Server はコロンを使用し、 **person: 様**などの完全な識別子を作成します。ここで、"person" はスキーマ名、"様" は識別子です。 このプロパティを設定すると、開発者はこの動作を変更できます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1287,11 +1287,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって生成される UPDATE ステートメント、<xref:System.Data.Common.DbCommandBuilder>更新については、すべての列を含めることができますかに関する情報のみを持つ値が変更された列を含めることができます。 設定、<xref:System.Data.Common.DbCommandBuilder.SetAllValues%2A>プロパティを`true`かどうかの値が変更されたかどうか、すべての列を含める生成される UPDATE ステートメントをによりします。  
+ によって<xref:System.Data.Common.DbCommandBuilder>生成される update ステートメントには、すべての列に関する更新情報を含めることができます。また、値が変更された列に関する情報のみを含めることもできます。 プロパティをに設定`true`すると、生成された UPDATE ステートメントに、その値が変更されたかどうかにかかわらず、すべての列が含まれるようになります。 <xref:System.Data.Common.DbCommandBuilder.SetAllValues%2A>  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1332,11 +1332,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、プロバイダーの作成者がカスタム コマンド ビルダーを使用するものです。 新しい<xref:System.Data.Common.DbDataAdapter>に追加されます、 <xref:System.Data.Common.DbCommandBuilder>、DbDataAdapter の用に登録されている**RowUpdating**イベント。 このメソッドが同じで再び呼び出された場合<xref:System.Data.Common.DbDataAdapter>、<xref:System.Data.Common.DbCommandBuilder>が再度登録解除**RowUpdating**イベント。  
+ このメソッドは、カスタムコマンドビルダーを構築するプロバイダーの作成者が使用するためのものです。 新しい<xref:System.Data.Common.DbDataAdapter>が<xref:System.Data.Common.DbCommandBuilder>に追加されると、dbdataadapter の**RowUpdating**イベントに登録されます。 同じ<xref:System.Data.Common.DbDataAdapter>**を使用**してこのメソッドが再度呼び出されると、その dbdataadapter の RowUpdating イベントに対してが登録解除されます。<xref:System.Data.Common.DbCommandBuilder>  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1375,7 +1375,7 @@
         <summary>引用符で囲まれた ID が指定されると、その ID を引用符で囲まれない正しい形式で返します。ID 内に埋め込まれている引用符はすべて適切にエスケープ解除されます。</summary>
         <returns>引用符で囲まれない ID。埋め込まれていた引用符は適切にエスケープ解除されます。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドを自動的に生成します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6e3fb8b5-373b-4f9e-ab03-a22693df8e91">コマンドの自動生成</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>

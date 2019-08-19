@@ -1,5 +1,5 @@
 <Type Name="ExecutionContext" FullName="System.Threading.ExecutionContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5ab168a3023913d0d90c21cca19a49894ab29a9d" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58723199" /></Metadata><TypeSignature Language="C#" Value="public sealed class ExecutionContext : IDisposable, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="88f594dfbf7efd8dde4764251e3490cf81ca6425" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69144185" /></Metadata><TypeSignature Language="C#" Value="public sealed class ExecutionContext : IDisposable, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit ExecutionContext extends System.Object implements class System.IDisposable, class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.ExecutionContext" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ExecutionContext&#xA;Implements IDisposable, ISerializable" />
@@ -44,15 +44,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ExecutionContext>クラスは、実行の論理スレッドに関連するすべての情報の 1 つのコンテナーを提供します。 これには、セキュリティ コンテキストや、呼び出しのコンテキストの同期コンテキストが含まれます。  
+ クラス<xref:System.Threading.ExecutionContext>は、実行の論理スレッドに関連するすべての情報に対して1つのコンテナーを提供します。 これには、セキュリティコンテキスト、呼び出しコンテキスト、および同期コンテキストが含まれます。  
   
- <xref:System.Threading.ExecutionContext>クラスには、ユーザー コードをキャプチャし、ユーザー定義の非同期ポイント間で、このコンテキストを転送するための機能が用意されています。 共通言語ランタイムにより、<xref:System.Threading.ExecutionContext>マネージ プロセス内ランタイム定義の非同期ポイント間で一貫して転送します。  
+ クラス<xref:System.Threading.ExecutionContext>は、ユーザーコードがユーザー定義の非同期ポイント間でこのコンテキストをキャプチャして転送するための機能を提供します。 共通言語ランタイムでは、マネージ<xref:System.Threading.ExecutionContext>プロセス内の実行時に定義された非同期ポイント間で、が一貫して転送されます。  
   
- 実行コンテキストは、COM アパートメントに対応するマネージです。 アプリケーション ドメイン内でスレッドを転送するたびに、全体の実行コンテキストを転送する必要があります。 による転送中にこのような状況が発生した、<xref:System.Threading.Thread.Start%2A?displayProperty=nameWithType>メソッド、ほとんどのスレッド プールの操作、および Windows フォームのスレッドでの Windows メッセージ ポンプをマーシャ リングします。 安全でないスレッド プールの操作では発生しません (など、<xref:System.Threading.ThreadPool.UnsafeQueueUserWorkItem%2A>メソッド)、圧縮スタックは転送されません。 圧縮スタックは、次のフロー、どこにも管理対象のプリンシパル、同期、ロケール、およびユーザーのコンテキストもフローします。 <xref:System.Threading.ExecutionContext>クラスを提供します、<xref:System.Threading.ExecutionContext.Capture%2A>と<xref:System.Threading.ExecutionContext.CreateCopy%2A>実行コンテキストを取得するメソッドと<xref:System.Threading.ExecutionContext.Run%2A>現在のスレッドの実行コンテキストを設定します。  
+ 実行コンテキストは、COM アパートメントに相当するマネージマネージ型です。 アプリケーションドメイン内では、スレッドが転送されるたびに、実行コンテキスト全体を転送する必要があります。 このような状況は<xref:System.Threading.Thread.Start%2A?displayProperty=nameWithType> 、メソッドによる転送中、ほとんどのスレッドプール操作、および Windows メッセージポンプを介したスレッドマーシャリングの Windows フォームに発生します。 これは、アンセーフスレッドプール操作 ( <xref:System.Threading.ThreadPool.UnsafeQueueUserWorkItem%2A>メソッドなど) では発生しません。これは、圧縮スタックを転送しません。 圧縮されたスタックがどこにある場合でも、マネージプリンシパル、同期、ロケール、およびユーザーコンテキストもフローします。 クラス<xref:System.Threading.ExecutionContext>には、実行<xref:System.Threading.ExecutionContext.CreateCopy%2A>コンテキストを取得するメソッドと<xref:System.Threading.ExecutionContext.Run%2A>メソッド、および現在のスレッドの実行コンテキストを設定するメソッドが<xref:System.Threading.ExecutionContext.Capture%2A>用意されています。  
   
- <xref:System.Threading.ExecutionContext>関連付けられているスレッドでは、別のスレッドで設定できません。 これを行うにしようとすると、例外がスローが発生します。 反映されるまで、<xref:System.Threading.ExecutionContext>別に 1 つのスレッドからのコピーを作成、<xref:System.Threading.ExecutionContext>します。  
+ <xref:System.Threading.ExecutionContext>スレッドに関連付けられているを別のスレッドで設定することはできません。 これを行おうとすると、例外がスローされます。 をあるスレッド<xref:System.Threading.ExecutionContext>から別のスレッドに伝達するには、 <xref:System.Threading.ExecutionContext>のコピーを作成します。  
   
- 内部的には、<xref:System.Threading.ExecutionContext>に関連付けられているすべてのデータを格納、<xref:System.Runtime.Remoting.Messaging.LogicalCallContext>します。 これにより、<xref:System.Runtime.Remoting.Messaging.LogicalCallContext>にいつ反映されるデータ、<xref:System.Threading.ExecutionContext>がコピーされ、転送します。  
+ 内部的に<xref:System.Threading.ExecutionContext>は、に関連付けら<xref:System.Runtime.Remoting.Messaging.LogicalCallContext>れているすべてのデータが格納されます。 これにより<xref:System.Runtime.Remoting.Messaging.LogicalCallContext> 、 <xref:System.Threading.ExecutionContext>をコピーして転送するときに、データを伝達できます。  
   
  ]]></format>
     </remarks>
@@ -99,7 +99,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- キャプチャされた実行コンテキストとして使用できます、`executionContext`のパラメーター、<xref:System.Threading.ExecutionContext.Run%2A>メソッド。  
+ キャプチャされた実行コンテキストは、 `executionContext` <xref:System.Threading.ExecutionContext.Run%2A>メソッドのパラメーターとして使用できます。  
   
  ]]></format>
         </remarks>
@@ -145,7 +145,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、1 つのスレッドから別の実行コンテキストを伝達するために便利です。  
+ このメソッドは、あるスレッドから別のスレッドに実行コンテキストを伝達する場合に便利です。  
   
  ]]></format>
         </remarks>
@@ -252,14 +252,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ExecutionContext.GetObjectData%2A> 設定、<xref:System.Runtime.Serialization.SerializationInfo>論理呼び出しコンテキスト情報。 逆シリアル化中に実行コンテキストのオブジェクトが再構成されます、<xref:System.Runtime.Serialization.SerializationInfo>ストリームで送信します。  
+ <xref:System.Threading.ExecutionContext.GetObjectData%2A>論理呼び出し<xref:System.Runtime.Serialization.SerializationInfo>コンテキスト情報を使用して、を設定します。 逆シリアル化中に、実行コンテキストオブジェクトは、 <xref:System.Runtime.Serialization.SerializationInfo>ストリームで送信されたから再構成されます。  
   
  詳細については、「<xref:System.Runtime.Serialization.SerializationInfo>」を参照してください。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> は <see langword="null" />です。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> が <see langword="null" /> です。</exception>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
         <altmember cref="T:System.Runtime.Serialization.SerializationInfo" />
         <related type="Article" href="~/docs/standard/serialization/xml-and-soap-serialization.md">XML シリアル化および SOAP シリアル化</related>
       </Docs>
@@ -299,7 +299,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ExecutionContext.IsFlowSuppressed%2A>メソッドは、転送するかどうかを判断するインフラストラクチャ コンポーネントによって使用されます、<xref:System.Threading.ExecutionContext>非同期操作中にします。  
+ メソッドは、 <xref:System.Threading.ExecutionContext>非同期操作中にを転送するかどうかを決定するために、インフラストラクチャコンポーネントによって使用されます。 <xref:System.Threading.ExecutionContext.IsFlowSuppressed%2A>  
   
  ]]></format>
         </remarks>
@@ -344,9 +344,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.ExecutionContext.RestoreFlow%2A> 前の効果を反転<xref:System.Threading.ExecutionContext.SuppressFlow%2A>メソッドの呼び出し。  
+ <xref:System.Threading.ExecutionContext.RestoreFlow%2A>前<xref:System.Threading.ExecutionContext.SuppressFlow%2A>のメソッド呼び出しの効果を反転させます。  
   
- このメソッドを呼び出して、<xref:System.Threading.AsyncFlowControl.Undo%2A>のメソッド、<xref:System.Threading.AsyncFlowControl>によって返される構造体、<xref:System.Threading.ExecutionContext.SuppressFlow%2A>メソッド。  使用する必要があります、<xref:System.Threading.AsyncFlowControl.Undo%2A>いない実行コンテキストのフローを復元する方法、<xref:System.Threading.ExecutionContext.RestoreFlow%2A>メソッド。  
+ このメソッドは、 <xref:System.Threading.AsyncFlowControl.Undo%2A> <xref:System.Threading.ExecutionContext.SuppressFlow%2A>メソッドによって返さ<xref:System.Threading.AsyncFlowControl>れる構造体のメソッドによって呼び出されます。  メソッドを使用<xref:System.Threading.AsyncFlowControl.Undo%2A>して、 <xref:System.Threading.ExecutionContext.RestoreFlow%2A>メソッドではなく、実行コンテキストのフローを復元する必要があります。  
   
  ]]></format>
         </remarks>
@@ -399,18 +399,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドが完了すると、以前の状態、実行コンテキストが返されます。  
+ メソッドが完了すると、実行コンテキストが以前の状態に戻ります。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException"><paramref name="executionContext" /> は <see langword="null" />です。  
   
-または 
+- または - 
  キャプチャ操作で <paramref name="executionContext" /> が取得されませんでした。  
   
-または 
+- または - 
  <paramref name="executionContext" /> は、<see cref="M:System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext,System.Threading.ContextCallback,System.Object)" /> 呼び出しの引数として既に使用されています。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="SuppressFlow">
@@ -453,16 +453,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- フローを抑制するには、このメソッドを使用して、<xref:System.Threading.ExecutionContext>現在のスレッドにします。  
+ このメソッドを使用して、 <xref:System.Threading.ExecutionContext>現在のスレッドでのフローを抑制します。  
   
- 使用する必要があります、<xref:System.Threading.AsyncFlowControl.Undo%2A>メソッドで返された<xref:System.Threading.AsyncFlowControl>のフローを復元する構造体、<xref:System.Threading.ExecutionContext>します。  
+ のフローを<xref:System.Threading.AsyncFlowControl.Undo%2A> 復元する<xref:System.Threading.AsyncFlowControl>には、返された構造体に対してメソッドを使用する必要があります。<xref:System.Threading.ExecutionContext>  
   
- このメソッドがで保護されている、<xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType>の<xref:System.Security.Permissions.SecurityPermissionFlag.Infrastructure?displayProperty=nameWithType>権限。 完全に信頼されたコンポーネントのフローを抑制するには、このメソッドを呼び出すことができます、<xref:System.Threading.ExecutionContext>非同期呼び出し中にします。 フローを中止すると中、<xref:System.Security.SecurityContext.Capture%2A>メソッドを返します。`null`します。  
+ このメソッドは、 <xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType>アクセス許可のに対し<xref:System.Security.Permissions.SecurityPermissionFlag.Infrastructure?displayProperty=nameWithType>て保護されています。 完全に信頼されたコンポーネントは、このメソッドを呼び出して<xref:System.Threading.ExecutionContext> 、非同期呼び出し中にのフローを抑制できます。 フローが抑制されている<xref:System.Security.SecurityContext.Capture%2A>間、 `null`メソッドはを返します。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">コンテキストのフローは既に抑制されています。</exception>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
         <altmember cref="T:System.Threading.AsyncFlowControl" />
       </Docs>
     </Member>

@@ -1,5 +1,5 @@
 <Type Name="HttpApplication" FullName="System.Web.HttpApplication">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="67795f620c8c7e6191205122f59bd26be4562ff6" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57955102" /></Metadata><TypeSignature Language="C#" Value="public class HttpApplication : IDisposable, System.ComponentModel.IComponent, System.Web.IHttpAsyncHandler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="416ac6b7f9f3d6f26257f0c13014a9cb3004cfbb" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69386133" /></Metadata><TypeSignature Language="C#" Value="public class HttpApplication : IDisposable, System.ComponentModel.IComponent, System.Web.IHttpAsyncHandler" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HttpApplication extends System.Object implements class System.ComponentModel.IComponent, class System.IDisposable, class System.Web.IHttpAsyncHandler, class System.Web.IHttpHandler" />
   <TypeSignature Language="DocId" Value="T:System.Web.HttpApplication" />
   <TypeSignature Language="VB.NET" Value="Public Class HttpApplication&#xA;Implements IComponent, IDisposable, IHttpAsyncHandler" />
@@ -39,16 +39,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンス、<xref:System.Web.HttpApplication>クラスは、ユーザーを直接ではなく、ASP.NET インフラストラクチャで作成されます。 1 つのインスタンス、<xref:System.Web.HttpApplication>クラスがその有効期間で多くの要求を処理するために使用します。 ただし、一度に 1 つの要求を処理できます。 したがって、メンバー変数は、要求ごとのデータの格納に使用できます。  
+ <xref:System.Web.HttpApplication>クラスのインスタンスは、ユーザーではなく、ASP.NET インフラストラクチャ内に作成されます。 クラスの1つ<xref:System.Web.HttpApplication>のインスタンスを使用して、その有効期間内の多くの要求を処理します。 ただし、一度に処理できる要求は1つだけです。 したがって、メンバー変数は、要求ごとのデータを格納するために使用できます。  
   
- アプリケーションを実装するカスタム モジュールで処理できるイベントを発生させる、<xref:System.Web.IHttpModule>インターフェイスか、Global.asax で定義されているイベント ハンドラーのコード ファイルします。 カスタム モジュールを実装する、 <xref:System.Web.IHttpModule> App_Code フォルダーまたは Bin フォルダー内の DLL にインターフェイスを配置することができます。  
+ アプリケーションは、 <xref:System.Web.IHttpModule>インターフェイスを実装するカスタムモジュールや、global.asax ファイルで定義されているイベントハンドラーコードによって処理できるイベントを発生させます。 <xref:System.Web.IHttpModule>インターフェイスを実装するカスタムモジュールは、App_Code フォルダーまたは Bin フォルダー内の DLL に配置できます。  
   
- <xref:System.Web.HttpApplication> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
 > [!NOTE]
->  統合モードでは、IIS 7.0 を実行するとき、Bin フォルダーまたは App_Code フォルダーにカスタム モジュールは、要求パイプライン内のすべての要求に適用されます。 Global.asax ファイル内のイベント ハンドラーのコードは、ASP.NET ハンドラーにマップされている要求のみに適用されます。  
+>  IIS 7.0 を統合モードで実行すると、App_Code フォルダーまたは Bin フォルダー内のカスタムモジュールが、要求パイプライン内のすべての要求に適用されます。 Global.asax ファイルのイベントハンドラーコードは、ASP.NET ハンドラーにマップされている要求にのみ適用されます。  
   
- 次の順序では、アプリケーションのイベントが発生します。  
+ アプリケーションイベントは、次の順序で発生します。  
   
 1.  <xref:System.Web.HttpApplication.BeginRequest>  
   
@@ -64,7 +64,7 @@
   
 7.  <xref:System.Web.HttpApplication.PostResolveRequestCache>  
   
-     後に、<xref:System.Web.HttpApplication.PostResolveRequestCache>イベント前に、<xref:System.Web.HttpApplication.PostMapRequestHandler>イベント、イベント ハンドラー (つまり、要求 URL に対応するページ) が作成されました。 ときに、サーバーが実行されている IIS 7.0 統合モードでは、最小の .NET Framework version 3.0 では、<xref:System.Web.HttpApplication.MapRequestHandler>イベントが発生します。 サーバーは、IIS 7.0 を実行中、クラシック モードまたは IIS の以前のバージョンでは、このイベントを処理することはできません。  
+     イベントの<xref:System.Web.HttpApplication.PostResolveRequestCache>後、およびイベント<xref:System.Web.HttpApplication.PostMapRequestHandler>の前に、イベントハンドラー (要求 URL に対応するページ) が作成されます。 サーバーが統合モードで IIS 7.0 を実行していて、少なくとも .NET Framework バージョン<xref:System.Web.HttpApplication.MapRequestHandler> 3.0 の場合、イベントが発生します。 サーバーがクラシックモードまたは以前のバージョンの IIS で IIS 7.0 を実行している場合、このイベントを処理することはできません。  
   
 8.  <xref:System.Web.HttpApplication.PostMapRequestHandler>  
   
@@ -74,7 +74,7 @@
   
 11. <xref:System.Web.HttpApplication.PreRequestHandlerExecute>  
   
-     イベント ハンドラーが実行されます。  
+     イベントハンドラーが実行されます。  
   
 12. <xref:System.Web.HttpApplication.PostRequestHandlerExecute>  
   
@@ -82,7 +82,7 @@
   
 14. <xref:System.Web.HttpApplication.PostReleaseRequestState>  
   
-     後に、<xref:System.Web.HttpApplication.PostReleaseRequestState>イベントは、既存の応答フィルターは出力をフィルター処理します。  
+     イベントが<xref:System.Web.HttpApplication.PostReleaseRequestState>発生すると、既存の応答フィルターによって出力がフィルター処理されます。  
   
 15. <xref:System.Web.HttpApplication.UpdateRequestCache>  
   
@@ -90,25 +90,25 @@
   
 17. <xref:System.Web.HttpApplication.LogRequest>。  
   
-     IIS 7.0 の Integrated モードでこのイベントはサポートされており、最小の .NET Framework 3.0  
+     このイベントは、IIS 7.0 統合モードで、少なくとも .NET Framework 3.0 でサポートされています。  
   
 18. <xref:System.Web.HttpApplication.PostLogRequest>  
   
-     このイベントは、IIS 7.0 の Integrated モードのサポートされていると、少なくとも .NET Framework 3.0  
+     このイベントは、IIS 7.0 統合モードで、少なくとも .NET Framework 3.0 でサポートされています。  
   
 19. <xref:System.Web.HttpApplication.EndRequest>  
   
    
   
 ## Examples  
- 次の 2 つの例は、使用する方法を示します、<xref:System.Web.HttpApplication>クラスとそのイベント。 最初の例では、カスタム HTTP モジュールを作成し、イベントを接続する方法を示します。 2 番目の例では、Web.config ファイルを変更する方法を示します。  
+ 次の2つの例は、クラス<xref:System.Web.HttpApplication>とそのイベントの使用方法を示しています。 最初の例では、カスタム HTTP モジュールを作成し、イベントをそれに接続する方法を示します。 2番目の例では、web.config ファイルを変更する方法を示します。  
   
- 次の例では、カスタム HTTP モジュールを作成し、接続する方法、 <xref:System.Web.HttpApplication.AcquireRequestState> HTTP モジュールにイベント。 HTTP モジュールは、クライアント要求をフィルター処理することにより、Web アプリケーションのリソースへの各要求をインターセプトします。 サブスクライブする任意の HTTP モジュール、<xref:System.Web.HttpApplication>イベントを実装する必要があります、<xref:System.Web.IHttpModule>インターフェイス。  
+ 次の例は、カスタム http モジュールを作成し、 <xref:System.Web.HttpApplication.AcquireRequestState>イベントを http モジュールに接続する方法を示しています。 HTTP モジュールは Web アプリケーションリソースに対して各要求をインターセプトするため、クライアントの要求をフィルター処理できます。 <xref:System.Web.HttpApplication>イベントをサブスクライブするすべての HTTP モジュールは、インターフェイス<xref:System.Web.IHttpModule>を実装する必要があります。  
   
  [!code-csharp[System.Web.HttpApplication1#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.HttpApplication1/cs/source.cs#1)]
  [!code-vb[System.Web.HttpApplication1#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.HttpApplication1/vb/source.vb#1)]  
   
- カスタム HTTP モジュール内のイベントが発生することが、前に、HTTP モジュールを ASP.NET に通知する Web.config ファイルで構成設定を変更する必要があります。 次の例では、適切な構成の設定、 `httpModules` Web.config ファイルのセクション。 次の設定は、IIS 7.0 のクラシック モードと IIS の以前のバージョンに適用されます。  
+ カスタム HTTP モジュールのイベントが発生する前に、web.config ファイルの構成設定を変更して、HTTP モジュールに関する ASP.NET に通知する必要があります。 次の例は、web.config ファイルの`httpModules`セクションの適切な構成設定を示しています。 次の設定は、IIS 7.0 クラシックモードと以前のバージョンの IIS に適用されます。  
   
 ```csharp  
 <configuration>  
@@ -132,7 +132,7 @@
 </configuration>  
 ```  
   
- 次の設定は、IIS 7.0 の Integrated モードに適用されます。  
+ 次の設定は、IIS 7.0 統合モードに適用されます。  
   
 ```csharp  
 <configuration>  
@@ -205,14 +205,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AcquireRequestState>イベント ハンドラーを作成した後にイベントが発生します。  
+ <xref:System.Web.HttpApplication.AcquireRequestState>イベントは、イベントハンドラーが作成された後に発生します。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
    
   
 ## Examples  
- 処理の例については、<xref:System.Web.HttpApplication.AcquireRequestState>イベントを参照してください、<xref:System.Web.HttpApplication>概要トピックです。  
+ <xref:System.Web.HttpApplication.AcquireRequestState>イベントの処理の例につい<xref:System.Web.HttpApplication>ては、「概要」トピックを参照してください。  
   
  ]]></format>
         </remarks>
@@ -585,7 +585,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AddOnLogRequestAsync%2A> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.AddOnLogRequestAsync%2A>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -619,7 +619,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AddOnLogRequestAsync%2A> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.AddOnLogRequestAsync%2A>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -665,7 +665,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AddOnMapRequestHandlerAsync%2A> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.AddOnMapRequestHandlerAsync%2A>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -699,7 +699,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AddOnMapRequestHandlerAsync%2A> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.AddOnMapRequestHandlerAsync%2A>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -955,7 +955,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AddOnPostLogRequestAsync%2A> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.AddOnPostLogRequestAsync%2A>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -989,7 +989,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AddOnPostLogRequestAsync%2A> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.AddOnPostLogRequestAsync%2A>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1694,7 +1694,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションの現在の状態は、.NET Framework のオブジェクトと複数のクライアントから複数の Web 要求に関連付けられているスカラー値の両方を格納するのに使用できるアプリケーション全体のオブジェクトのキー/値のディクショナリで構成されます。  
+ アプリケーションの現在の状態は、複数のクライアントからの複数の Web 要求に関連する .NET Framework オブジェクトとスカラー値の両方を格納するために使用できる、アプリケーション全体のオブジェクトのキー/値ディクショナリで構成されます。  
   
  ]]></format>
         </remarks>
@@ -1723,7 +1723,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AuthenticateRequest>イベントは、構成された認証メカニズムが現在の要求を認証されたことを通知します。 購読、<xref:System.Web.HttpApplication.AuthenticateRequest>イベントにより、要求は、アタッチされたモジュールまたはイベント ハンドラーを処理する前に認証されます。  
+ イベント<xref:System.Web.HttpApplication.AuthenticateRequest>は、構成された認証メカニズムが現在の要求を認証したことを通知します。 <xref:System.Web.HttpApplication.AuthenticateRequest>イベントをサブスクライブすると、アタッチされているモジュールまたはイベントハンドラーを処理する前に、要求が認証されるようになります。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
@@ -1755,7 +1755,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.AuthorizeRequest> ASP.NET が現在の要求を承認されているイベントを通知します。 購読、<xref:System.Web.HttpApplication.AuthorizeRequest>イベントにより、要求は認証され、接続されているモジュールまたはイベント ハンドラーを処理する前に承認されています。  
+ イベント<xref:System.Web.HttpApplication.AuthorizeRequest>は、ASP.NET が現在の要求を承認したことを通知します。 <xref:System.Web.HttpApplication.AuthorizeRequest>イベントをサブスクライブすると、アタッチされているモジュールまたはイベントハンドラーを処理する前に、要求が認証され、承認されます。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
@@ -1787,16 +1787,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.BeginRequest>イベントは、指定された新しい要求の作成を通知します。 このイベントは、常に発生し、要求の処理中に発生した最初のイベントは、常に。  
+ イベント<xref:System.Web.HttpApplication.BeginRequest>は、指定された新しい要求の作成を通知します。 このイベントは常に発生し、要求の処理中に最初に発生するイベントです。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
  ]]></format>
         </remarks>
         <altmember cref="E:System.Web.HttpApplication.EndRequest" />
-        <related type="Article" href="https://msdn.microsoft.com/library/93d42673-5ef2-4fa0-aa6e-71e8a5ebf836">方法: 実装し、カスタムの ASP.NET 状態監視イベントを発生させる</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/7787d5be-40a4-4072-9075-c2b767428453">チュートリアル: 作成して、カスタム HTTP モジュールを登録します。</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/bbb1c959-e6e4-42b2-be62-49b7ca5ab72c">方法: 正常性の監視のカスタム プロバイダーの例を実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/93d42673-5ef2-4fa0-aa6e-71e8a5ebf836">方法: カスタム ASP.NET 正常性監視イベントの実装と発生</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/7787d5be-40a4-4072-9075-c2b767428453">チュートリアル: カスタム HTTP モジュールの作成と登録</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/bbb1c959-e6e4-42b2-be62-49b7ca5ab72c">方法: 正常性監視カスタムプロバイダーの例を実装する</related>
       </Docs>
     </Member>
     <Member MemberName="CompleteRequest">
@@ -1880,13 +1880,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.Request%2A>、 <xref:System.Web.HttpApplication.Response%2A>、 <xref:System.Web.HttpApplication.Session%2A>、および<xref:System.Web.HttpApplication.Application%2A>プロパティは使用できません使用する場合、<xref:System.Web.HttpApplication.Dispose%2A>メソッドを実行します。  
+ <xref:System.Web.HttpApplication.Request%2A> <xref:System.Web.HttpApplication.Dispose%2A> 、、、および<xref:System.Web.HttpApplication.Application%2A>の各プロパティは、メソッドの実行時には使用できません。 <xref:System.Web.HttpApplication.Session%2A> <xref:System.Web.HttpApplication.Response%2A>  
   
- <xref:System.Web.HttpApplication.Dispose%2A>メソッドの呼び出し、<xref:System.Web.IHttpModule.Dispose%2A>メソッドを登録済みの各<xref:System.Web.Configuration.SystemWebSectionGroup.HttpModules%2A>アプリケーション インスタンスで発生させ、<xref:System.Web.HttpApplication.Disposed>イベント。  
+ メソッド<xref:System.Web.HttpApplication.Dispose%2A>は、アプリケーション<xref:System.Web.IHttpModule.Dispose%2A>インスタンスに登録されて<xref:System.Web.Configuration.SystemWebSectionGroup.HttpModules%2A>いる各でメソッドを呼び出し、 <xref:System.Web.HttpApplication.Disposed>イベントを発生させます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>オーバーライドするときに<see cref="M:System.Web.HttpApplication.Dispose" />派生クラスで基底クラスを呼び出すことを確認<see cref="M:System.Web.HttpApplication.Dispose" />デリゲートを登録するためのメソッドがイベントを受信します。</para></block>
+        <block subset="none" type="overrides"><para>派生クラス<see cref="M:System.Web.HttpApplication.Dispose" />でをオーバーライドする場合は、登録されているデリゲート<see cref="M:System.Web.HttpApplication.Dispose" />がイベントを受け取るように、基本クラスのメソッドを呼び出す必要があります。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Disposed">
@@ -1915,7 +1915,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.Disposed> デリゲートを作成する場合は、イベントを処理するメソッドを指定します。 インスタンスを追加、イベント ハンドラーでイベントを関連付けるには、<xref:System.Web.HttpApplication.Disposed>イベントにデリゲートします。 イベント ハンドラーは、その削除しない限り、イベントが発生するたびに呼び出される、<xref:System.Web.HttpApplication.Disposed>を委任します。  
+ <xref:System.Web.HttpApplication.Disposed> デリゲートを作成する場合は、イベントを処理するメソッドを指定します。 イベントをイベントハンドラーに関連付けるには、 <xref:System.Web.HttpApplication.Disposed>デリゲートのインスタンスをイベントに追加します。 イベントハンドラーは、 <xref:System.Web.HttpApplication.Disposed>デリゲートを削除しない限り、イベントが発生するたびに呼び出されます。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
@@ -1946,16 +1946,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.EndRequest>イベントは常に場合に発生します、<xref:System.Web.HttpApplication.CompleteRequest%2A>メソッドが呼び出されます。  
+ イベントは、 <xref:System.Web.HttpApplication.CompleteRequest%2A>メソッドが呼び出されたときに常に発生します。 <xref:System.Web.HttpApplication.EndRequest>  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
  ]]></format>
         </remarks>
         <altmember cref="E:System.Web.HttpApplication.BeginRequest" />
-        <related type="Article" href="https://msdn.microsoft.com/library/93d42673-5ef2-4fa0-aa6e-71e8a5ebf836">方法: 実装し、カスタムの ASP.NET 状態監視イベントを発生させる</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/7787d5be-40a4-4072-9075-c2b767428453">チュートリアル: 作成して、カスタム HTTP モジュールを登録します。</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/bbb1c959-e6e4-42b2-be62-49b7ca5ab72c">方法: 正常性の監視のカスタム プロバイダーの例を実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/93d42673-5ef2-4fa0-aa6e-71e8a5ebf836">方法: カスタム ASP.NET 正常性監視イベントの実装と発生</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/7787d5be-40a4-4072-9075-c2b767428453">チュートリアル: カスタム HTTP モジュールの作成と登録</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/bbb1c959-e6e4-42b2-be62-49b7ca5ab72c">方法: 正常性監視カスタムプロバイダーの例を実装する</related>
       </Docs>
     </Member>
     <Member MemberName="Error">
@@ -1981,16 +1981,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 例外を発生させる、<xref:System.Web.HttpApplication.Error>イベントへの呼び出しによってアクセスできる、<xref:System.Web.HttpServerUtility.GetLastError%2A>メソッド。 アプリケーションでは、カスタムのエラー出力を生成する場合への呼び出しによって、ASP.NET によって生成される既定のエラー メッセージを抑制する、<xref:System.Web.HttpServerUtility.ClearError%2A>メソッド。  
+ <xref:System.Web.HttpApplication.Error>イベントを発生させる例外は、メソッドの<xref:System.Web.HttpServerUtility.GetLastError%2A>呼び出しによってアクセスできます。 アプリケーションでカスタムエラー出力が生成される場合は、メソッドの<xref:System.Web.HttpServerUtility.ClearError%2A>呼び出しによって ASP.NET によって生成される既定のエラーメッセージを抑制します。  
   
 > [!NOTE]
->  使用することはできませんが、Web アプリケーションに XML Web サービスが含まれている場合、<xref:System.Web.HttpApplication.Error>これらのサービスのグローバル例外処理のためのイベント。 XML Web サービスで発生し、前に SOAP エラーに変換する例外を使用する XML Web サービスの HTTP ハンドラー、<xref:System.Web.HttpApplication.Error>が呼び出されます。 XML Web サービスの例外を処理するには、カスタムのグローバル例外ハンドラーで Web サービスの例外を処理する SOAP 拡張機能を構築します。  
+>  Web アプリケーションに XML web サービスが含まれている場合、 <xref:System.Web.HttpApplication.Error>イベントを使用してこれらのサービスのグローバルな例外処理を行うことはできません。 Xml web サービスの HTTP ハンドラーは、xml web サービスで発生するすべての例外を使用して、 <xref:System.Web.HttpApplication.Error>が呼び出される前に SOAP エラーに変換します。 XML Web サービスの例外を処理するには、カスタムグローバル例外ハンドラーで Web サービスの例外を処理するための SOAP 拡張機能を構築します。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/6f70ac33-6e11-4e98-ab7d-bae9c0e7eefa">方法: 安全なエラー メッセージを表示します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/6f70ac33-6e11-4e98-ab7d-bae9c0e7eefa">方法: 安全なエラーメッセージを表示する</related>
       </Docs>
     </Member>
     <Member MemberName="Events">
@@ -2042,23 +2042,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをオーバーライドし、Web サイト用に構成された任意の出力キャッシュ プロバイダーの名前を返すに使用できます。 ASP.NET では、名前付きプロバイダーへの参照を取得し、現在実行中の要求の出力キャッシュ データの格納に使用します。  
+ このメソッドをオーバーライドし、Web サイト用に構成されている出力キャッシュプロバイダーの名前を返すために使用できます。 ASP.NET は、指定されたプロバイダーへの参照を取得し、それを使用して現在実行中の要求の出力キャッシュデータを格納します。  
   
- ASP.NET では、既定では、ページ、およびコントロールに表示されるすべての HTTP 応答は、メモリ内の出力キャッシュを使用します。 Web アプリケーションの別のプロバイダー名を指定することによって使用される既定の出力キャッシュ プロバイダーを変更する`defaultProvider`します。  
+ 既定では、ASP.NET では、すべての HTTP 応答、表示ページ、およびコントロールは、メモリ内の出力キャッシュを使用します。 に別の`defaultProvider`プロバイダー名を指定することで、Web アプリケーションに使用される既定の出力キャッシュプロバイダーを変更できます。  
   
- さらに、個々 のコントロールと個々 の要求の別の出力キャッシュ プロバイダーを選択できます。 別の Web ユーザー コントロールの別の出力キャッシュ プロバイダーを選択する最も簡単な方法は、new を使用して、宣言を行う、`providerName`ページまたはコントロール ディレクティブでは、次の例に示すように属性します。  
+ さらに、個別のコントロールと個々の要求に対して、異なる出力キャッシュプロバイダーを選択することもできます。 さまざまな Web ユーザーコントロールに対して別の出力キャッシュプロバイダーを選択する最も簡単な方法は、次の例`providerName`に示すように、ページまたはコントロールディレクティブで新しい属性を使用することによって宣言的に実行することです。  
   
 ```  
 <%@ OutputCache Duration="60" VaryByParam="None"   
     providerName="DiskCache" %>  
 ```  
   
- HTTP 要求の別の出力キャッシュ プロバイダーを指定するには、プログラムによって特定の要求を使用するプロバイダーを指定する、Global.asax ファイルには、このメソッドをオーバーライドします。 詳細については、「[ASP.NET のキャッシュの概要](https://msdn.microsoft.com/library/5ec28012-4972-4dc3-b3e8-9d20401fe11d)」を参照してください。  
+ HTTP 要求に対して別の出力キャッシュプロバイダーを指定するには、global.asax ファイルでこのメソッドをオーバーライドして、特定の要求に対して使用するプロバイダーをプログラムで指定します。 詳細については、「[ASP.NET のキャッシュの概要](https://msdn.microsoft.com/library/5ec28012-4972-4dc3-b3e8-9d20401fe11d)」を参照してください。  
   
    
   
 ## Examples  
- 次の例は、プログラムによってという名前のキャッシュ プロバイダーを指定する方法を示します`DiskCache`Advanced.aspx ページに移動する任意の HTTP 要求。  
+ 次の例は、.aspx ページに移動する任意の`DiskCache` HTTP 要求に対して、という名前のキャッシュプロバイダーをプログラムで指定する方法を示しています。  
 
 ```csharp  
 public override string GetOutputCacheProviderName(HttpContext context)  
@@ -2116,11 +2116,11 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オーバーライドできます<xref:System.Web.HttpApplication.GetVaryByCustomString%2A>現在の要求に基づくカスタム別値を計算するための新しいメソッドを追加します。 実装は、認識されないカスタム値の基本クラスを呼び出す必要があります。 詳細については、「[方法 :バージョンのカスタム文字列を使用してページ キャッシュ](https://msdn.microsoft.com/library/b6c73735-a3cd-4d19-ba4d-0431881b0db0)します。  
+ をオーバーライド<xref:System.Web.HttpApplication.GetVaryByCustomString%2A>すると、現在の要求に基づいて、カスタムの値に基づく値を計算するための新しいメソッドを追加できます。 実装では、認識しないカスタム値の基底クラスを呼び出す必要があります。 詳細については、「[方法 :カスタム文字列](https://msdn.microsoft.com/library/b6c73735-a3cd-4d19-ba4d-0431881b0db0)を使用して、ページのバージョンをキャッシュします。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/b6c73735-a3cd-4d19-ba4d-0431881b0db0">方法: カスタム文字列を使用してページのキャッシュ バージョン</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/b6c73735-a3cd-4d19-ba4d-0431881b0db0">方法: カスタム文字列を使用してページのバージョンをキャッシュする</related>
       </Docs>
     </Member>
     <Member MemberName="Init">
@@ -2147,7 +2147,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生クラスでオーバーライドすることができます、 <xref:System.Web.HttpApplication.Init%2A> one-time initialization をカスタム コードを追加するメソッド。  
+ 派生クラスでは、メソッドをオーバーライドし<xref:System.Web.HttpApplication.Init%2A>て、カスタムの1回限りの初期化コードを追加できます。  
   
  ]]></format>
         </remarks>
@@ -2175,16 +2175,16 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.LogRequest>エラーが発生した場合でも、イベントが発生します。 イベント ハンドラーを行うことができます、<xref:System.Web.HttpApplication.LogRequest>要求のカスタム ログを提供するイベントです。  
+ <xref:System.Web.HttpApplication.LogRequest>イベントは、エラーが発生した場合でも発生します。 <xref:System.Web.HttpApplication.LogRequest>イベントのイベントハンドラーを指定して、要求のカスタムログを提供できます。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
- <xref:System.Web.HttpApplication.LogRequest> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.LogRequest>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、イベント ハンドラーを提供する方法、<xref:System.Web.HttpApplication.LogRequest>イベント。 イベント ハンドラーでは、その他のいくつかのイベントも処理します。 そのため、<xref:System.Web.HttpContext.CurrentNotification%2A>と<xref:System.Web.HttpContext.IsPostNotification%2A>を実行するコードを判別するプロパティを使用します。  
+ 次の例は、 <xref:System.Web.HttpApplication.LogRequest>イベントのイベントハンドラーを指定する方法を示しています。 イベントハンドラーは、他のいくつかのイベントも処理します。 したがって、プロパティ<xref:System.Web.HttpContext.IsPostNotification%2A> とプロパティを使用して、実行するコードを決定します。<xref:System.Web.HttpContext.CurrentNotification%2A>  
   
  [!code-csharp[System.Web.HttpResponse.IsPostNotification#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.HttpResponse.IsPostNotification/CS/App_Code/TestModule.cs#1)]
  [!code-vb[System.Web.HttpResponse.IsPostNotification#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.HttpResponse.IsPostNotification/VB/App_Code/TestModule.vb#1)]  
@@ -2216,11 +2216,11 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.MapRequestHandler>イベントは、現在の要求の要求ハンドラーを決定する、ASP.NET インフラストラクチャによって使用されます。 詳細については、「[方法 :HTTP ハンドラーを登録](https://msdn.microsoft.com/library/d5633f9a-03fb-4ccc-a799-dc67d656fa60)します。  
+ <xref:System.Web.HttpApplication.MapRequestHandler>イベントは、現在の要求の要求ハンドラーを決定するために ASP.NET インフラストラクチャによって使用されます。 詳細については、「[方法 :HTTP ハンドラー](https://msdn.microsoft.com/library/d5633f9a-03fb-4ccc-a799-dc67d656fa60)を登録します。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
- <xref:System.Web.HttpApplication.MapRequestHandler> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.MapRequestHandler>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -2284,7 +2284,7 @@ End Sub
   
 ## Remarks  
 
-このメソッドがアンビエント コンテキストのシナリオで機能を実装して、ASP.NET 実行フローを考慮するライブラリをビルドする開発者向けが簡単に ASP.NET パイプラインを拡張性を提供します (たとえば、トレース、プロファイリング、診断、およびトランザクションの場合)。
+このメソッドは、ASP.NET パイプラインの機能拡張を提供します。これにより、開発者は、ASP.NET 実行フロー (トレース、プロファイル、診断など) を考慮した環境コンテキストシナリオとビルドライブラリを簡単に実装できるようになります。トランザクション)。
   
  ]]></format>
         </remarks>
@@ -2312,7 +2312,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.PostAcquireRequestState>イベントが発生した後、<xref:System.Web.HttpApplication.AcquireRequestState>イベントが発生しました。 サブスクライブする機能、<xref:System.Web.HttpApplication.AcquireRequestState>イベントによって処理されるすべてのデータにアクセスできます、<xref:System.Web.HttpApplication.PostAcquireRequestState>します。  
+ イベントは、 <xref:System.Web.HttpApplication.AcquireRequestState>イベントが発生した後に発生します。 <xref:System.Web.HttpApplication.PostAcquireRequestState> <xref:System.Web.HttpApplication.AcquireRequestState>イベントにサブスクライブする機能は、 <xref:System.Web.HttpApplication.PostAcquireRequestState>によって処理されるすべてのデータにアクセスできます。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
@@ -2343,7 +2343,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.PostAuthenticateRequest>イベントが発生した後、<xref:System.Web.HttpApplication.AuthenticateRequest>イベントが発生しました。 サブスクライブする機能、<xref:System.Web.HttpApplication.PostAuthenticateRequest>イベントによって処理されるすべてのデータにアクセスできます、<xref:System.Web.HttpApplication.PostAuthenticateRequest>します。  
+ イベントは、 <xref:System.Web.HttpApplication.AuthenticateRequest>イベントが発生した後に発生します。 <xref:System.Web.HttpApplication.PostAuthenticateRequest> <xref:System.Web.HttpApplication.PostAuthenticateRequest>イベントにサブスクライブする機能は、 <xref:System.Web.HttpApplication.PostAuthenticateRequest>によって処理されるすべてのデータにアクセスできます。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
@@ -2374,7 +2374,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.PostAuthorizeRequest> ASP.NET が現在の要求を承認されているイベントを通知します。 購読、<xref:System.Web.HttpApplication.PostAuthorizeRequest>イベントにより、認証と接続されているモジュールまたはイベント ハンドラーを処理する前に、要求の承認。  
+ イベント<xref:System.Web.HttpApplication.PostAuthorizeRequest>は、ASP.NET が現在の要求を承認したことを通知します。 <xref:System.Web.HttpApplication.PostAuthorizeRequest>イベントをサブスクライブすると、アタッチされているモジュールまたはイベントハンドラーを処理する前に、要求の認証と承認が確実に行われます。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
@@ -2407,7 +2407,7 @@ End Sub
 ## Remarks  
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
- <xref:System.Web.HttpApplication.PostLogRequest> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Web.HttpApplication.PostLogRequest>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -2553,7 +2553,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.PostUpdateRequestCache>イベントが発生した後、<xref:System.Web.HttpApplication.UpdateRequestCache>イベントが発生しました。 ときに、<xref:System.Web.HttpApplication.PostUpdateRequestCache>が発生すると、ASP.NET には、コードの処理が完了したし、キャッシュの内容を確定します。  
+ イベントは、 <xref:System.Web.HttpApplication.UpdateRequestCache>イベントが発生した後に発生します。 <xref:System.Web.HttpApplication.PostUpdateRequestCache> <xref:System.Web.HttpApplication.PostUpdateRequestCache>が発生すると、ASP.NET がコードの処理を完了し、キャッシュの内容が終了します。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
@@ -2615,11 +2615,11 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.PreSendRequestContent>イベントが複数回発生する可能性があります。  
+ イベント<xref:System.Web.HttpApplication.PreSendRequestContent>は複数回発生する可能性があります。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
  > [!WARNING]
- > 使用しない`PreSendRequestContent`を実装するマネージ モジュールで`IHttpModule`します。 これらのプロパティを設定すると、非同期要求で問題が発生することができます。 アプリケーション要求ルーティング処理 (ARR) と websocket の組み合わせは、w3wp クラッシュを引き起こす可能性のあるアクセス違反例外に生じる可能性があります。 たとえば、iiscore!W3_CONTEXT_BASE::GetIsLastNotification + iiscore.dll で 68 では、アクセス違反例外 (0xC0000005) が原因です。
+ > を実装`PreSendRequestContent` `IHttpModule`するマネージモジュールでは、を使用しないでください。 これらのプロパティを設定すると、非同期要求に関する問題が発生する可能性があります。 アプリケーションで要求されたルーティング (ARR) と websocket を組み合わせると、w3wp.exe がクラッシュする原因となるアクセス違反例外が発生する可能性があります。 たとえば、iiscore のようになります。Iiscore .dll の W3_CONTEXT_BASE:: GetIsLastNotification + 68 によってアクセス違反例外 (0xC0000005) が発生しました。
  ]]></format>
         </remarks>
         <altmember cref="E:System.Web.HttpApplication.PreSendRequestHeaders" />
@@ -2650,7 +2650,7 @@ End Sub
 ## Remarks  
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
  > [!WARNING]
- > 使用しない`PreSendRequestHeaders`を実装するマネージ モジュールで`IHttpModule`します。 これらのプロパティを設定すると、非同期要求で問題が発生することができます。 アプリケーション要求ルーティング処理 (ARR) と websocket の組み合わせは、w3wp クラッシュを引き起こす可能性のあるアクセス違反例外に生じる可能性があります。 たとえば、iiscore!W3_CONTEXT_BASE::GetIsLastNotification + iiscore.dll で 68 では、アクセス違反例外 (0xC0000005) が原因です。
+ > を実装`PreSendRequestHeaders` `IHttpModule`するマネージモジュールでは、を使用しないでください。 これらのプロパティを設定すると、非同期要求に関する問題が発生する可能性があります。 アプリケーションで要求されたルーティング (ARR) と websocket を組み合わせると、w3wp.exe がクラッシュする原因となるアクセス違反例外が発生する可能性があります。 たとえば、iiscore のようになります。Iiscore .dll の W3_CONTEXT_BASE:: GetIsLastNotification + 68 によってアクセス違反例外 (0xC0000005) が発生しました。
  ]]></format>
         </remarks>
         <altmember cref="E:System.Web.HttpApplication.PreSendRequestContent" />
@@ -2703,7 +2703,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ときに、<xref:System.Web.HttpApplication.ReleaseRequestState>イベントが発生した、アプリケーションを終了して、要求と共に、要求の状態を格納する ASP.NET がシグナル状態とします。  
+ <xref:System.Web.HttpApplication.ReleaseRequestState>イベントが発生すると、アプリケーションは要求で終了し、ASP.NET は要求の状態を格納するように通知されます。  
   
  イベントを処理する方法の詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
   
@@ -2765,7 +2765,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.HttpApplication.RequestCompleted>イベントがすべてのマネージ モジュールの後に呼び出され、ASP.NET パイプライン内のハンドラーが呼び出されています。 モジュールが実行した後は、すべてのマネージ モジュールとハンドラーのリソースをクリーンアップできます。 要求中に作成したマネージ リソースを明示的に破棄する特定の時間を必要とする場合は、このイベントを使用します。  
+ <xref:System.Web.HttpApplication.RequestCompleted>イベントは、ASP.NET パイプライン内のすべてのマネージモジュールとハンドラーが呼び出された後に呼び出されます。 これにより、すべてのマネージモジュールとハンドラーが実行された後にモジュールがリソースをクリーンアップできるようになります。 このイベントは、要求中に作成したマネージリソースを明示的に破棄するために特定の時間を必要とする場合に使用します。  
   
  ]]></format>
         </remarks>
@@ -2998,7 +2998,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用することができます、<xref:System.Web.HttpApplication.System%23Web%23IHttpAsyncHandler%23EndProcessRequest%2A>は非同期処理中にキャッチする例外を発生させるメソッド。  
+ <xref:System.Web.HttpApplication.System%23Web%23IHttpAsyncHandler%23EndProcessRequest%2A>メソッドを使用すると、非同期処理中にキャッチされた例外を発生させることができます。  
   
  ]]></format>
         </remarks>
@@ -3030,7 +3030,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 明示的に設定する、`IsReusable`プロパティを`true`または`false`、オーバーライドするコードを提供、`IsReusable`プロパティ アクセサー。  
+ プロパティを明示的にまた`true`は`false`に設定`IsReusable`するには、プロパティアクセサーをオーバーライドするコードを指定します。 `IsReusable`  
   
  ]]></format>
         </remarks>
@@ -3065,7 +3065,7 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 継承するクラス、<xref:System.Web.IHttpModule>と<xref:System.Web.IHttpHandler>への参照としてインターフェイスが提供されている、<xref:System.Web.HttpContext>の現在の HTTP 要求オブジェクト。 オブジェクトは、組み込みへのアクセスを提供します。 `Request`、 `Response`、および`Server`要求オブジェクト。  
+ インターフェイス<xref:System.Web.IHttpModule> <xref:System.Web.HttpContext>および<xref:System.Web.IHttpHandler>インターフェイスを継承するクラスは、現在の HTTP 要求に対するオブジェクトへの参照として提供されます。 オブジェクトは、要求の組み込み`Request`の、 `Response`、および`Server`オブジェクトへのアクセスを提供します。  
   
  ]]></format>
         </remarks>

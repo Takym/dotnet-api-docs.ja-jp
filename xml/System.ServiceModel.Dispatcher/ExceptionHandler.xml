@@ -1,5 +1,5 @@
 <Type Name="ExceptionHandler" FullName="System.ServiceModel.Dispatcher.ExceptionHandler">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="81cae302b043c2c5b7ae7da44a0923e222599f47" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55394587" /></Metadata><TypeSignature Language="C#" Value="public abstract class ExceptionHandler" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b6758fd54457d488016fa7cf41a05dfe4c50490f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69235996" /></Metadata><TypeSignature Language="C#" Value="public abstract class ExceptionHandler" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ExceptionHandler extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Dispatcher.ExceptionHandler" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ExceptionHandler" />
@@ -20,7 +20,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.ExceptionHandler> クラスを拡張し、<xref:System.ServiceModel.Dispatcher.ExceptionHandler.HandleException%2A> メソッドをオーバーライドして、例外によりアプリケーションを修了する必要があるかどうかを判定します。 カスタムの新しいインスタンスを作成し<xref:System.ServiceModel.Dispatcher.ExceptionHandler>クラスし、静的に割り当てる<xref:System.ServiceModel.Dispatcher.ExceptionHandler.AsynchronousThreadExceptionHandler%2A>または<xref:System.ServiceModel.Dispatcher.ExceptionHandler.TransportExceptionHandler%2A>WCF クライアントまたはサービスを作成する前にプロパティ。  
+ <xref:System.ServiceModel.Dispatcher.ExceptionHandler> クラスを拡張し、<xref:System.ServiceModel.Dispatcher.ExceptionHandler.HandleException%2A> メソッドをオーバーライドして、例外によりアプリケーションを修了する必要があるかどうかを判定します。 次に、カスタム<xref:System.ServiceModel.Dispatcher.ExceptionHandler>クラスの新しいインスタンスを作成し、WCF クライアントまたはサービスを作成する前に<xref:System.ServiceModel.Dispatcher.ExceptionHandler.TransportExceptionHandler%2A>静的<xref:System.ServiceModel.Dispatcher.ExceptionHandler.AsynchronousThreadExceptionHandler%2A>プロパティまたはプロパティに割り当てます。  
   
    
   
@@ -30,7 +30,7 @@
  [!code-csharp[S_UEExceptionHandler#0](~/samples/snippets/csharp/VS_Snippets_CFX/s_ueexceptionhandler/cs/program.cs#0)]
  [!code-vb[S_UEExceptionHandler#0](~/samples/snippets/visualbasic/VS_Snippets_CFX/s_ueexceptionhandler/vb/module1.vb#0)]  
   
- 次のコード例は、ユーザー設定を有効にする方法を示しています。 `MyExceptionHandler` WCF ランタイム内で発生する未処理の例外。  
+ 次のコード例は、WCF ランタイム内で`MyExceptionHandler`発生する未処理の例外に対してカスタムを有効にする方法を示しています。  
   
  [!code-csharp[S_UEExceptionHandler#1](~/samples/snippets/csharp/VS_Snippets_CFX/s_ueexceptionhandler/cs/program.cs#1)]
  [!code-vb[S_UEExceptionHandler#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/s_ueexceptionhandler/vb/module1.vb#1)]  
@@ -127,14 +127,14 @@
       </ReturnValue>
       <Docs>
         <summary>アプリケーション ドメインの現在の <see cref="T:System.ServiceModel.Dispatcher.ExceptionHandler" /> の実装を取得または設定します。</summary>
-        <value>割り当てるカスタム<see cref="T:System.ServiceModel.Dispatcher.ExceptionHandler" />を受け取るオブジェクトには、Windows Communication Foundation (WCF) の非同期のスレッドで発生する例外がハンドルされていません。</value>
+        <value>非同期 Windows Communication Foundation ( <see cref="T:System.ServiceModel.Dispatcher.ExceptionHandler" /> WCF) スレッドで発生するハンドルされない例外を受け取るカスタムオブジェクトを割り当てます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定で、<xref:System.ServiceModel.Dispatcher.ExceptionHandler.AsynchronousThreadExceptionHandler%2A>プロパティは`null`、および WCF の非同期のスレッドで未処理の例外がアプリケーションを終了します。  このような例外を受け取って対応するには、このプロパティに <xref:System.ServiceModel.Dispatcher.ExceptionHandler> オブジェクトを設定します。  
+ 既定<xref:System.ServiceModel.Dispatcher.ExceptionHandler.AsynchronousThreadExceptionHandler%2A>では、プロパティは`null`であり、非同期 WCF スレッドでハンドルされない例外がアプリケーションを終了します。  このような例外を受け取って対応するには、このプロパティに <xref:System.ServiceModel.Dispatcher.ExceptionHandler> オブジェクトを設定します。  
   
- ハンドルされない例外が非同期の WCF スレッドで発生します、このハンドラーに到達した場合は、アプリケーション ドメインの状態が侵害される可能性があります。  <xref:System.ServiceModel.Dispatcher.ExceptionHandler.HandleException%2A> 返す必要がありますいない`true`のこれらの例外。  
+ 非同期 WCF スレッドでハンドルされない例外が発生し、このハンドラーに到達した場合、アプリケーションドメインの状態が損なわれる可能性があります。  <xref:System.ServiceModel.Dispatcher.ExceptionHandler.HandleException%2A>は、これら`true`の例外に対してを返すことはできません。  
   
  ]]></format>
         </remarks>
@@ -175,7 +175,7 @@
   
   
   
- 次のコード例は、ユーザー設定を有効にする方法を示しています。 `MyExceptionHandler` WCF ランタイム内で発生する未処理の例外。  
+ 次のコード例は、WCF ランタイム内で`MyExceptionHandler`発生する未処理の例外に対してカスタムを有効にする方法を示しています。  
   
   
   
@@ -209,14 +209,14 @@
       </ReturnValue>
       <Docs>
         <summary>アプリケーション ドメインの現在のトランスポート <see cref="T:System.ServiceModel.Dispatcher.ExceptionHandler" /> の実装を取得または設定します。</summary>
-        <value>カスタム<see cref="T:System.ServiceModel.Dispatcher.ExceptionHandler" />未処理のグローバルの Windows Communication Foundation (WCF) トランスポート内で発生する例外を受け取るオブジェクト。</value>
+        <value>グローバル Windows Communication Foundation <see cref="T:System.ServiceModel.Dispatcher.ExceptionHandler" /> (WCF) トランスポート内で発生する未処理の例外を受け取るカスタムオブジェクト。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定で、<xref:System.ServiceModel.Dispatcher.ExceptionHandler.TransportExceptionHandler%2A>の値に設定されて<xref:System.ServiceModel.Dispatcher.ExceptionHandler.AlwaysHandle%2A>、無視する WCF トランスポート内で未処理の例外します。  このような例外を受け取って対応するには、このプロパティに <xref:System.ServiceModel.Dispatcher.ExceptionHandler> のインスタンスを設定します。  
+ 既定<xref:System.ServiceModel.Dispatcher.ExceptionHandler.TransportExceptionHandler%2A>では、プロパティはの<xref:System.ServiceModel.Dispatcher.ExceptionHandler.AlwaysHandle%2A>値に設定されているため、WCF トランスポート内の未処理の例外は無視されます。  このような例外を受け取って対応するには、このプロパティに <xref:System.ServiceModel.Dispatcher.ExceptionHandler> のインスタンスを設定します。  
   
- 場合は、未処理の例外は、グローバルの WCF トランスポート内で発生し、このハンドラーに到達した、アプリケーション ドメインの状態が損なわれる可能性があります。 <xref:System.ServiceModel.Dispatcher.ExceptionHandler.HandleException%2A> 返すことができます`false`のような例外によりアプリケーションを終了します。  
+ グローバル WCF トランスポート内でハンドルされない例外が発生し、このハンドラーに到達した場合、アプリケーションドメインの状態が侵害される可能性があります。 <xref:System.ServiceModel.Dispatcher.ExceptionHandler.HandleException%2A>は、 `false`これらの例外に対してを返すことで、アプリケーションを終了させることができます。  
   
  ]]></format>
         </remarks>

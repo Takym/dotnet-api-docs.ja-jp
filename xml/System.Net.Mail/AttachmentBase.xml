@@ -1,5 +1,5 @@
 <Type Name="AttachmentBase" FullName="System.Net.Mail.AttachmentBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9c59f701c826df430837a6097ee9132e6b1e624e" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58692933" /></Metadata><TypeSignature Language="C#" Value="public abstract class AttachmentBase : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a59855e2248b4852590d882f3dd2642b1ef71f60" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69115082" /></Metadata><TypeSignature Language="C#" Value="public abstract class AttachmentBase : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit AttachmentBase extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Net.Mail.AttachmentBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class AttachmentBase&#xA;Implements IDisposable" />
@@ -109,7 +109,7 @@
         <param name="fileName">この添付ファイルのコンテンツを保持しているファイル名。</param>
         <summary>指定したファイル名を使用して、<see cref="T:System.Net.Mail.AttachmentBase" /> をインスタンス化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="fileName" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="fileName" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -144,7 +144,7 @@
         <param name="contentType">コンテンツのタイプ。</param>
         <summary>指定した <see cref="T:System.IO.Stream" /> および <see cref="T:System.Net.Mime.ContentType" /> を使用して、<see cref="T:System.Net.Mail.AttachmentBase" /> をインスタンス化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="contentStream" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="contentStream" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException"><paramref name="contentType" /> は有効な値ではありません。</exception>
       </Docs>
     </Member>
@@ -217,7 +217,7 @@
         <param name="contentType">コンテンツのタイプ。</param>
         <summary>指定したファイル名およびコンテンツ タイプを使用して、<see cref="T:System.Net.Mail.AttachmentBase" /> をインスタンス化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="fileName" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="fileName" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException"><paramref name="contentType" /> は有効な値ではありません。</exception>
       </Docs>
     </Member>
@@ -412,7 +412,7 @@
 ## Remarks  
  <xref:System.Net.Mail.AttachmentBase> を使い終わったら、<xref:System.Net.Mail.AttachmentBase.Dispose%2A>を呼び出します。 <xref:System.Net.Mail.AttachmentBase.Dispose%2A>メソッドによって、<xref:System.Net.Mail.AttachmentBase> は使用不可の状態になります。 <xref:System.Net.Mail.AttachmentBase.Dispose%2A>呼び出し後は、<xref:System.Net.Mail.AttachmentBase>によって占有されていたメモリをガベージ コレクターがクリアできるよう、<xref:System.Net.Mail.AttachmentBase> へのすべての参照を解放する必要があります。 詳細については、[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)および[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)を参照してください。  
   
- **注**常に呼び出し<xref:System.Net.Mail.AttachmentBase.Dispose%2A>への参照を解放する前に、<xref:System.Net.Mail.AttachmentBase>します。 そうしないと、ガベージ コレクターが <xref:System.Net.Mail.AttachmentBase> オブジェクトの `Finalize` メソッドを呼び出すまで、使用されているリソースは解放されません。  
+ **メモ**への<xref:System.Net.Mail.AttachmentBase.Dispose%2A>最後の参照を解放する前に<xref:System.Net.Mail.AttachmentBase>、必ずを呼び出してください。 そうしないと、ガベージ コレクターが <xref:System.Net.Mail.AttachmentBase> オブジェクトの `Finalize` メソッドを呼び出すまで、使用されているリソースは解放されません。  
   
  ]]></format>
         </remarks>
@@ -455,16 +455,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose()`メソッドと<xref:System.Object.Finalize%2A>メソッド。 `Dispose()` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 <xref:System.Object.Finalize%2A> 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック`Dispose()`メソッド<xref:System.Object.Finalize%2A>とメソッドによって呼び出されます。 `Dispose()``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 <xref:System.Object.Finalize%2A>をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
- ときに、`disposing`パラメーターが true の場合、このメソッドは、すべてのマネージ オブジェクトによって保持されているすべてのリソースを解放します。 この<xref:System.Net.Mail.AttachmentBase>参照。 このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
+ パラメーターが true の場合、このメソッドは、この<xref:System.Net.Mail.AttachmentBase>が参照するすべてのマネージオブジェクトによって保持されているすべてのリソースを解放します。 `disposing` このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 オーバーライドするときに<see langword="Dispose(Boolean)" />の事前に呼び出したで以前破棄されたオブジェクトを参照しないように注意する<see langword="Dispose" />します。 実装する方法についての詳細は<see langword="Dispose(Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 をオーバーライド<see langword="Dispose(Boolean)" />する場合は、以前にを<see langword="Dispose" />呼び出したときに破棄されたオブジェクトを参照しないように注意してください。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see cref="M:System.Object.Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)と[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。</para></block>
+<see langword="Dispose" /> および<see cref="M:System.Object.Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」と「 [Finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。</para></block>
       </Docs>
     </Member>
     <Member MemberName="TransferEncoding">

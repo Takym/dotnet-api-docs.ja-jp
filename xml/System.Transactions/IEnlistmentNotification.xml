@@ -1,5 +1,5 @@
 <Type Name="IEnlistmentNotification" FullName="System.Transactions.IEnlistmentNotification">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0dcde52862800efd6574c0aa26e24371b65d56c6" /><Meta Name="ms.sourcegitcommit" Value="2dd0eede6edd6dd3d2aa8f79010848658b967609" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/18/2019" /><Meta Name="ms.locfileid" Value="59744304" /></Metadata><TypeSignature Language="C#" Value="public interface IEnlistmentNotification" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="36a329fa5a579cd92ba234295630238f8883f58d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69143475" /></Metadata><TypeSignature Language="C#" Value="public interface IEnlistmentNotification" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IEnlistmentNotification" />
   <TypeSignature Language="DocId" Value="T:System.Transactions.IEnlistmentNotification" />
   <TypeSignature Language="VB.NET" Value="Public Interface IEnlistmentNotification" />
@@ -28,26 +28,26 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- リソース マネージャーをトランザクションに参加するためには、トランザクション マネージャーを介してトランザクションに参加にする必要があります。 <xref:System.Transactions.Transaction> クラスは、この機能を提供する一連のメソッドを定義しています。これらのメソッドの名前は `Enlist` で始まります。 さまざまな `Enlist` メソッドは、リソース マネージャーが持つ各種の参加リストにそれぞれ対応しています。  
+ リソースマネージャーをトランザクションに参加させるには、トランザクションマネージャーを使用してトランザクションに参加する必要があります。 <xref:System.Transactions.Transaction> クラスは、この機能を提供する一連のメソッドを定義しています。これらのメソッドの名前は `Enlist` で始まります。 さまざまな `Enlist` メソッドは、リソース マネージャーが持つ各種の参加リストにそれぞれ対応しています。  
   
- このクラスには、リソース マネージャーが参加の登録時にトランザクション マネージャーに対して 2 フェーズ コミット通知コールバックを提供するために実装する必要がありますインターフェイスについて説明します。 各リソース マネージャーの実装については、<xref:System.Transactions.IEnlistmentNotification>インターフェイス、する必要がありますを参加させるを使用して、<xref:System.Transactions.Transaction.EnlistVolatile%2A>メソッドまたは<xref:System.Transactions.Transaction.EnlistDurable%2A>のメソッド、<xref:System.Transactions.Transaction>クラスで、リソースは、揮発性または持続性のあるかどうか。 参加リストと 2 pc の詳細については、次を参照してください。[トランザクションの参加者として参加リソース](~/docs/framework/data/transactions/enlisting-resources-as-participants-in-a-transaction.md)と[単一フェースおよび複数フェーズでトランザクションをコミットする](~/docs/framework/data/transactions/committing-a-transaction-in-single-phase-and-multi-phase.md)それぞれします。  
+ このクラスは、参加の登録時にトランザクションマネージャーに対して2フェーズコミット通知コールバックを提供するために、リソースマネージャーが実装する必要のあるインターフェイスを表します。 リソースマネージャー <xref:System.Transactions.IEnlistmentNotification>がインターフェイスを実装するたびに、リソースが揮発性であるか永続であるかに応じ<xref:System.Transactions.Transaction>て、クラスの<xref:System.Transactions.Transaction.EnlistVolatile%2A>メソッドまたは<xref:System.Transactions.Transaction.EnlistDurable%2A>メソッドを使用して、そのインターフェイスを参加させる必要があります。 参加リストと2PC の詳細については、「[トランザクション内の参加要素としてのリソースの参加](~/docs/framework/data/transactions/enlisting-resources-as-participants-in-a-transaction.md)」と「[単一フェーズと複数フェーズでのトランザクションのコミット](~/docs/framework/data/transactions/committing-a-transaction-in-single-phase-and-multi-phase.md)」を参照してください。  
   
- トランザクション マネージャーは、次の方法で、2 フェーズ コミット プロトコルのさまざまなフェーズに参加しているオブジェクトを通知します。  
+ トランザクションマネージャーは、次のメソッドによって、2フェーズコミットプロトコルの異なるフェーズで参加オブジェクトに通知します。  
   
 |メソッド|説明|  
 |------------|-----------------|  
-|<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>|参加しているオブジェクトのこのメソッドは、トランザクション マネージャーは、トランザクションをコミットできるかどうかの参加者が表示されたら、トランザクションの最初のフェーズ中にトランザクション マネージャーによってコールバックとして使用が。|  
-|<xref:System.Transactions.IEnlistmentNotification.Commit%2A>|参加しているオブジェクトのこのメソッドは、トランザクションがコミットされた場合、トランザクションの 2 番目のフェーズ中にトランザクション マネージャーによってコールバックとして使用が。|  
-|<xref:System.Transactions.IEnlistmentNotification.Rollback%2A>|参加しているオブジェクトのこのメソッドは、(つまり、ロールバックし)、トランザクションが中止された場合、2 番目のフェーズ、トランザクションのトランザクション マネージャーによってコールバックとして使用が。|  
-|<xref:System.Transactions.IEnlistmentNotification.InDoubt%2A>|参加しているオブジェクトのこのメソッドは、トランザクションの疑問がある場合、トランザクションの 2 番目のフェーズ中にトランザクション マネージャーによってコールバックとして使用が。|  
+|<xref:System.Transactions.IEnlistmentNotification.Prepare%2A>|参加しているオブジェクトのこのメソッドは、トランザクションの最初のフェーズでトランザクションマネージャーによってコールバックとして使用されます。トランザクションマネージャーは、トランザクションをコミットできるかどうかを参加者に要求します。|  
+|<xref:System.Transactions.IEnlistmentNotification.Commit%2A>|参加しているオブジェクトのこのメソッドは、トランザクションがコミットされた場合にトランザクションの2番目のフェーズでトランザクションマネージャーによってコールバックとして使用されます。|  
+|<xref:System.Transactions.IEnlistmentNotification.Rollback%2A>|参加しているオブジェクトのこのメソッドは、トランザクションが中止された場合 (ロールバックされた場合) に、トランザクションマネージャーによってトランザクションマネージャーによってコールバックとして使用されます。|  
+|<xref:System.Transactions.IEnlistmentNotification.InDoubt%2A>|参加しているオブジェクトのこのメソッドは、トランザクションがインダウトの場合、トランザクションの2番目のフェーズでトランザクションマネージャーによってコールバックとして使用されます。|  
   
 > [!NOTE]
->  順番に、または特定の順序では通知を送信しない場合がありますに注意する必要があります。  
+>  通知は、順番に、または特定の順序で送信されないことに注意してください。  
   
    
   
 ## Examples  
- 次の例では、このインターフェイスとを使用して、トランザクションの参加者として、オブジェクトへの参加の実装、<xref:System.Transactions.Transaction.EnlistVolatile%2A>メソッド。  
+ 次の例は、このインターフェイスの実装と、 <xref:System.Transactions.Transaction.EnlistVolatile%2A>メソッドを使用して、オブジェクトをトランザクションの参加要素として参加させる方法を示しています。  
   
  [!code-csharp[Tx_Enlist#1](~/samples/snippets/csharp/VS_Snippets_CFX/tx_enlist/cs/enlist.cs#1)]
  [!code-vb[Tx_Enlist#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/tx_enlist/vb/enlist.vb#1)]  
@@ -95,11 +95,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- トランザクション マネージャーは、ときに、すべての参加者トランザクションをコミットするように指示します、コミットの 2 番目のフェーズ中に参加しているオブジェクトのこのメソッドを呼び出します。  
+ トランザクションマネージャーは、コミットメントの2番目のフェーズで、すべての参加要素がトランザクションをコミットするように指示するときに、このメソッドを呼び出します。  
   
- リソース マネージャーがトランザクションを終了し、TM が呼び出すことによって完了したことを通知するために必要な作業を実行する必要があります、<xref:System.Transactions.Enlistment.Done%2A>メソッドを`enlistment`パラメーター。  
+ リソースマネージャーは、トランザクションを完了するために必要な作業を実行し、 <xref:System.Transactions.Enlistment.Done%2A> `enlistment`パラメーターに対してメソッドを呼び出すことによって、その処理が完了したことを TM に通知する必要があります。  
   
- リソース マネージャーが、永続的に参加しているかどうかが呼び出すことで応答しない<xref:System.Transactions.Enlistment.Done%2A>メソッドでは、トランザクション マネージャーは、リソース マネージャーが受信したことを確認しますが、<xref:System.Transactions.IEnlistmentNotification.Commit%2A>呼び出します。 そのため、トランザクション マネージャーは、応答を待機中は保持し、このトランザクションに関連する情報を保持します。  場合<xref:System.Transactions.Enlistment.Done%2A>は呼び出されず、この特定の情報が保持しておく無期限にメモリまたはシステム全体のリソース。 これにより、リソースの再利用することはできません。 分散トランザクションの場合これでした MSDTC プロセスが中断される MSDTC のログをいっぱいになってしまいます。 によって管理されるトランザクションの場合<xref:System.Transactions>、この結果、リソース マネージャーのプロセスのメモリ消費量が段階的なと継続的な増加します。 そのため、呼び出すことが重要です、<xref:System.Transactions.Enlistment.Done%2A>メソッドで、リソース マネージャーが完了したら、作業を準備します。  
+ リソースマネージャーが永続的にを参加させても、メソッドを呼び<xref:System.Transactions.Enlistment.Done%2A>出すことによって応答しない場合、トランザクションマネージャーは、 <xref:System.Transactions.IEnlistmentNotification.Commit%2A>リソースマネージャーが呼び出しを受信したことを認識できません。 そのため、トランザクションマネージャーは応答を待機し続け、このトランザクションに関連する情報を保持します。  が<xref:System.Transactions.Enlistment.Done%2A>呼び出されない場合、この情報はメモリ内またはシステム全体のリソース内で無期限に保持されます。 これにより、リソースを再利用できなくなります。 分散トランザクションの場合、msdtc ログが最終的にいっぱいになり、MSDTC プロセスが停止する可能性があります。 によって管理されるトランザクションの<xref:System.Transactions>場合、これにより、リソースマネージャーのプロセスのメモリ消費量が徐々に増加します。 したがって、リソースマネージャーで準備作業を<xref:System.Transactions.Enlistment.Done%2A>行った後に、メソッドを呼び出すことが重要です。  
   
  ]]></format>
         </remarks>
@@ -141,14 +141,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- トランザクション マネージャーには、1 つの持続性のあるリソースを単一フェーズ コミット操作が呼び出されて、持続性のあるリソースへの接続がトランザクションの結果を取得する前に失われた、ときに、揮発性リソースをこのメソッドが呼び出されます。 その時点では、トランザクションの結果に安全に判断できません。  
+ このメソッドは、トランザクションマネージャーが1つの永続リソースに対して単一フェーズコミット操作を呼び出し、その後、トランザクション結果を取得する前に、永続リソースへの接続が失われた場合に、揮発性リソースに対して呼び出されます。 その時点では、トランザクションの結果を安全に特定できません。  
   
- として<xref:System.Transactions.IEnlistmentNotification.InDoubt%2A>はトランザクションの最後の状態にあると、呼び出す必要はありません<xref:System.Transactions.IEnlistmentNotification.Commit%2A>または<xref:System.Transactions.IEnlistmentNotification.Rollback%2A>呼び出した後<xref:System.Transactions.IEnlistmentNotification.InDoubt%2A>します。  
+ はトランザクションの最終状態と見なされるため、を<xref:System.Transactions.IEnlistmentNotification.Rollback%2A>呼び出さ<xref:System.Transactions.IEnlistmentNotification.Commit%2A> <xref:System.Transactions.IEnlistmentNotification.InDoubt%2A>ないでください。 <xref:System.Transactions.IEnlistmentNotification.InDoubt%2A>  
   
 > [!NOTE]
->  揮発性リソースには、このメソッドの実装に影響を受けるデータを認識する任意の回復または含有操作を実行する必要があります。  呼び出す必要があります、<xref:System.Transactions.Enlistment.Done%2A>メソッドを上、`enlistment`パラメーターの処理が完了したら。  
+>  揮発性リソースに対してこのメソッドを実装する場合は、影響を受けるデータに対して認識されている回復またはコンテインメント操作を実行する必要があります。  また、 `enlistment`パラメーターの処理<xref:System.Transactions.Enlistment.Done%2A>が完了したら、でメソッドを呼び出す必要があります。  
   
- リソース マネージャーが、永続的に参加しているかどうかが呼び出すことで応答しない<xref:System.Transactions.Enlistment.Done%2A>メソッドでは、トランザクション マネージャーは、リソース マネージャーが受信したことを確認しますが、<xref:System.Transactions.IEnlistmentNotification.InDoubt%2A>呼び出します。 そのため、トランザクション マネージャーは、応答を待機中は保持し、このトランザクションに関連する情報を保持します。  場合<xref:System.Transactions.Enlistment.Done%2A>は呼び出されず、この特定の情報が保持しておく無期限にメモリまたはシステム全体のリソース。 これにより、リソースの再利用することはできません。 分散トランザクションの場合これでした MSDTC プロセスが中断される MSDTC のログをいっぱいになってしまいます。 によって管理されるトランザクションの場合<xref:System.Transactions>、この結果、リソース マネージャーのプロセスのメモリ消費量が段階的なと継続的な増加します。 そのため、呼び出すことが重要です、<xref:System.Transactions.Enlistment.Done%2A>メソッドで、リソース マネージャーが完了したら、作業を準備します。  
+ リソースマネージャーが永続的にを参加させても、メソッドを呼び<xref:System.Transactions.Enlistment.Done%2A>出すことによって応答しない場合、トランザクションマネージャーは、 <xref:System.Transactions.IEnlistmentNotification.InDoubt%2A>リソースマネージャーが呼び出しを受信したことを認識できません。 そのため、トランザクションマネージャーは応答を待機し続け、このトランザクションに関連する情報を保持します。  が<xref:System.Transactions.Enlistment.Done%2A>呼び出されない場合、この情報はメモリ内またはシステム全体のリソース内で無期限に保持されます。 これにより、リソースを再利用できなくなります。 分散トランザクションの場合、msdtc ログが最終的にいっぱいになり、MSDTC プロセスが停止する可能性があります。 によって管理されるトランザクションの<xref:System.Transactions>場合、これにより、リソースマネージャーのプロセスのメモリ消費量が徐々に増加します。 したがって、リソースマネージャーで準備作業を<xref:System.Transactions.Enlistment.Done%2A>行った後に、メソッドを呼び出すことが重要です。  
   
  ]]></format>
         </remarks>
@@ -190,15 +190,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- トランザクション マネージャーによっては、参加しているリソースのこのメソッドは、トランザクションをコミットできるかどうかの参加者に問い合わせる際、コミットのフェーズ 1 でマネージャー、  
+ トランザクションマネージャーは、コミットメントのフェーズ1で、トランザクションをコミットできるかどうかを参加者に確認するときに、参加しているリソースマネージャーのこのメソッドを呼び出します。  
   
- ログインする必要がある永続的リソース マネージャーを実装するとき、このフェーズ中にレコードを準備します。 レコードには、回復を実行するために必要なすべての情報を含める必要があります。 これが含まれています、<xref:System.Transactions.PreparingEnlistment.RecoveryInformation%2A>プロパティは、トランザクション マネージャーに渡される、<xref:System.Transactions.TransactionManager.Reenlist%2A>復旧中にメソッド。 回復の詳細については、次を参照してください。 [Performing Recovery](https://msdn.microsoft.com/library/d342c5c7-da64-4a4c-8e63-b52f4fbf2691)します。  
+ 持続性のあるリソースマネージャーを実装する場合は、このフェーズで準備レコードをログに記録する必要があります。 このレコードには、回復を実行するために必要なすべての情報が含まれている必要があります。 これには<xref:System.Transactions.PreparingEnlistment.RecoveryInformation%2A> 、復旧中に<xref:System.Transactions.TransactionManager.Reenlist%2A>メソッドのトランザクションマネージャーに渡されるプロパティが含まれます。 回復の詳細については、「[回復の実行](https://msdn.microsoft.com/library/d342c5c7-da64-4a4c-8e63-b52f4fbf2691)」を参照してください。  
   
- Resource manager を呼び出す前に完了するすべての作業を完了する必要があります、<xref:System.Transactions.PreparingEnlistment.Prepared%2A>のメソッド、`preparingEnlistment`コミットメント、賛成票を投じてを示します。 コミット、ロールバック、または状態が不明で、このような 2 フェーズ通知を受信する前にこれを行うことを確認する必要があります。 これは、フェーズ 2 の通知で、インラインを呼び出した同じスレッドで発生することがあるため、<xref:System.Transactions.PreparingEnlistment.Prepared%2A>フェーズ 1 でのメソッド。 このため、フェーズ 2 の通知を受け取る前に既に完了したと考えられる作業 (ロックの解除など) は、<xref:System.Transactions.PreparingEnlistment.Prepared%2A> 呼び出しの後には実行できません。  
+ リソースマネージャーは、コミットメントの投票を示すために、 <xref:System.Transactions.PreparingEnlistment.Prepared%2A> `preparingEnlistment`パラメーターのメソッドを呼び出す前に完了する必要があるすべての作業を完了する必要があります。 コミット、ロールバック、または不明なフェーズ2の通知を受け取る前に、これが確実に実行されるようにする必要があります。 フェーズ2の通知は、フェーズ1でメソッドを<xref:System.Transactions.PreparingEnlistment.Prepared%2A>呼び出したのと同じスレッドでインラインで発生する可能性があるためです。 このため、フェーズ 2 の通知を受け取る前に既に完了したと考えられる作業 (ロックの解除など) は、<xref:System.Transactions.PreparingEnlistment.Prepared%2A> 呼び出しの後には実行できません。  
   
- メソッドを呼び出すこともできます、`preparingEnlistment`ロールバックのための投票を示します。  
+ `preparingEnlistment`パラメーターのメソッドを呼び出して、ロールバックの投票を示すこともできます。  
   
- 呼び出す必要がありますが、このメソッドの実装に参加することがなく、単に確認し、トランザクションの進行状況に対応するオブジェクトが必要な場合、<xref:System.Transactions.Enlistment.Done%2A>のメソッド、`preparingEnlistment`作業が完了したらパラメーター。 これにより、リソース マネージャーではフェーズ 2 の通知は表示されません。  
+ オブジェクトがトランザクションの進行状況を確認し、それに関与せずに処理するようにするには、このメソッドの実装で、 <xref:System.Transactions.Enlistment.Done%2A>作業が完了`preparingEnlistment`したときにパラメーターのメソッドを呼び出す必要があります。 これにより、リソースマネージャーはフェーズ2の通知を受け取りません。  
   
  ]]></format>
         </remarks>
@@ -240,11 +240,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- トランザクション マネージャーは、トランザクションはロールバック中のトランザクションの参加要素を 1 つまたは複数のトランザクションをコミットできないのためには、(中止) ときに、参加しているオブジェクトのこのメソッドを呼び出します。  
+ トランザクションをコミットするのに1つ以上のトランザクションの参加要素がないためにトランザクションがロールバック (中止) されるときに、トランザクションマネージャーは、参加しているオブジェクトのこのメソッドを呼び出します。  
   
- リソース マネージャーがトランザクションを終了し、TM が呼び出すことによって完了したことを通知するために必要な作業を実行する必要があります、<xref:System.Transactions.Enlistment.Done%2A>メソッドを`enlistment`パラメーター。  
+ リソースマネージャーは、トランザクションを完了するために必要な作業を実行し、 <xref:System.Transactions.Enlistment.Done%2A> `enlistment`パラメーターに対してメソッドを呼び出すことによって、その処理が完了したことを TM に通知する必要があります。  
   
- リソース マネージャーが、永続的に参加しているかどうかが呼び出すことで応答しない<xref:System.Transactions.Enlistment.Done%2A>メソッドでは、トランザクション マネージャーは、リソース マネージャーが受信したことを確認しますが、<xref:System.Transactions.IEnlistmentNotification.Rollback%2A>呼び出します。 そのため、トランザクション マネージャーは、応答を待機中は保持し、このトランザクションに関連する情報を保持します。  場合<xref:System.Transactions.Enlistment.Done%2A>は呼び出されず、この特定の情報が保持しておく無期限にメモリまたはシステム全体のリソース。 これにより、リソースの再利用することはできません。 分散トランザクションの場合これでした MSDTC プロセスが中断される MSDTC のログをいっぱいになってしまいます。 によって管理されるトランザクションの場合<xref:System.Transactions>、この結果、リソース マネージャーのプロセスのメモリ消費量が段階的なと継続的な増加します。 そのため、呼び出すことが重要です、<xref:System.Transactions.Enlistment.Done%2A>メソッドで、リソース マネージャーが完了したら、作業を準備します。  
+ リソースマネージャーが永続的にを参加させても、メソッドを呼び<xref:System.Transactions.Enlistment.Done%2A>出すことによって応答しない場合、トランザクションマネージャーは、 <xref:System.Transactions.IEnlistmentNotification.Rollback%2A>リソースマネージャーが呼び出しを受信したことを認識できません。 そのため、トランザクションマネージャーは応答を待機し続け、このトランザクションに関連する情報を保持します。  が<xref:System.Transactions.Enlistment.Done%2A>呼び出されない場合、この情報はメモリ内またはシステム全体のリソース内で無期限に保持されます。 これにより、リソースを再利用できなくなります。 分散トランザクションの場合、msdtc ログが最終的にいっぱいになり、MSDTC プロセスが停止する可能性があります。 によって管理されるトランザクションの<xref:System.Transactions>場合、これにより、リソースマネージャーのプロセスのメモリ消費量が徐々に増加します。 したがって、リソースマネージャーで準備作業を<xref:System.Transactions.Enlistment.Done%2A>行った後に、メソッドを呼び出すことが重要です。  
   
  ]]></format>
         </remarks>
