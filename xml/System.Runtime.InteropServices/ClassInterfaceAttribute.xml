@@ -1,5 +1,5 @@
 <Type Name="ClassInterfaceAttribute" FullName="System.Runtime.InteropServices.ClassInterfaceAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5827cf109af27bb4c22409fbebad34cc110eb077" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58698700" /></Metadata><TypeSignature Language="C#" Value="public sealed class ClassInterfaceAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="58897d530a907007f382dd76d483fd0d77663f51" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69270758" /></Metadata><TypeSignature Language="C#" Value="public sealed class ClassInterfaceAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ClassInterfaceAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.ClassInterfaceAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ClassInterfaceAttribute&#xA;Inherits Attribute" />
@@ -47,18 +47,18 @@
 ## Remarks  
  この属性は、アセンブリまたはクラスに適用できます。  
   
- この属性は、タイプ ライブラリ エクスポーター (Tlbexp.exe) が、属性付きクラスのクラス インターフェイスを自動的に生成するかどうかを制御します。 クラス インターフェイス、クラス自体と同じ名前の実行が、名前のアンダー スコアが付きます。 クラス インターフェイスがすべて含まれています、公開されている場合、 `public`、非-`static`基底クラスから継承したメンバーを含むマネージ クラスのメンバー。 マネージ クラスは、クラス インターフェイスへのアクセスことはできません、クラス メンバーに直接アクセスすることがでく必要があります。 Tlbexp.exe は、クラス インターフェイスの一意のインターフェイス id (IID) を生成します。  
+ この属性は、タイプライブラリエクスポーター (Tlbexp.exe) が属性付きクラスのクラスインターフェイスを自動的に生成するかどうかを制御します。 クラスインターフェイスにはクラス自体と同じ名前が付けられますが、名前の先頭にはアンダースコアが付きます。 クラスインターフェイスが公開されると、その`public`基底クラスから`static`継承されたメンバーを含む、マネージクラスのすべての非メンバーが含まれます。 マネージクラスはクラスインターフェイスにアクセスできないため、クラスメンバーに直接アクセスできる必要はありません。 Tlbexp.exe は、クラスインターフェイスの一意のインターフェイス識別子 (IID) を生成します。  
   
- クラス インターフェイスは、デュアルまたはディスパッチ専用インターフェイスを指定できます。 必要に応じて、クラス インターフェイスの生成を抑制し、代わりにカスタム インターフェイスを提供できます。 公開または指定することで、クラス インターフェイスを抑制する、<xref:System.Runtime.InteropServices.ClassInterfaceType?displayProperty=nameWithType>列挙型のメンバー。 適用するときに<xref:System.Runtime.InteropServices.ClassInterfaceAttribute>アセンブリでは、属性に関連するアセンブリ内のすべてのクラスに個々 のクラスは、独自の属性で設定を上書きしない限り、します。  
+ クラスインターフェイスは、デュアルインターフェイスまたはディスパッチ専用インターフェイスにすることができます。 必要に応じて、クラスインターフェイスの生成を抑制し、代わりにカスタムインターフェイスを提供できます。 クラスインターフェイスを公開または非表示にする<xref:System.Runtime.InteropServices.ClassInterfaceType?displayProperty=nameWithType>には、列挙体メンバーを指定します。 アセンブリにを<xref:System.Runtime.InteropServices.ClassInterfaceAttribute>適用すると、個々のクラスがその設定を独自の属性でオーバーライドしない限り、属性はアセンブリ内のすべてのクラスに関連します。  
   
- クラス インターフェイスは、各クラスのインターフェイスを明示的に定義のタスクをなくすことが、実稼働アプリケーションでの使用が強くお勧めします。 デュアル クラス インターフェイスは、クラスの進化に伴って変更される可能性が特定のインターフェイスのレイアウトにバインドするクライアントを許可します。 たとえば、COM クライアントにクラス インターフェイスを公開するマネージ クラスを検討してください。 クラスの最初のバージョンには、メソッドが含まれています。`North`と`South`します。 アンマネージ クライアントが提供するクラスのインターフェイスにバインドできます`North`クラス インターフェイスとメソッドの最初のメソッドとして`South`2 番目のメソッドとして。 ここで、クラスは、新しいメソッドがあるは、次のバージョンを考えてみます`East`メソッド間で挿入された、`North`と`South`します。 メソッドを呼び出す最終的に古いクラス インターフェイスを通じて新しいクラスにバインドしようとするアンマネージ クライアント`East`メソッドを呼び出すときに、予定`South`メソッド、インターフェイス内の位置が変更されたため、します。 さらに、基底クラスのレイアウトの変更は、すべての派生クラスのクラス インターフェイスのレイアウトも影響します。 クライアントでは、バインドする直接クラスに示さないと同じバージョン管理の問題を管理します。 クラス インターフェイスを使用して特定のガイドラインについては、次を参照してください。 [COM 呼び出し可能ラッパー](~/docs/framework/interop/com-callable-wrapper.md)します。  
+ クラスインターフェイスでは、各クラスのインターフェイスを明示的に定義するタスクを排除しますが、実稼働アプリケーションでの使用は推奨されません。 デュアルクラスインターフェイスを使用すると、クライアントは、クラスの進化に伴って変更される可能性のある特定のインターフェイスレイアウトにバインドできます。 たとえば、COM クライアントに対してクラスインターフェイスを公開するマネージクラスについて考えてみます。 クラスの最初のバージョンには、 `North`メソッド`South`とが含まれています。 アンマネージクライアントは、クラスインターフェイスにバインドできます。 `North`これは、2番目のメソッドとし`South`て、クラスインターフェイスとメソッドの最初のメソッドとしてを提供します。 次のバージョンのクラスについて考えてみましょう。このクラス`East`には、メソッド`North`と`South`の間に新しいメソッドが挿入されています。 以前のクラスインターフェイスを介して新しいクラスにバインドしようとするアンマネージクライアントは、 `East`インターフェイス内のメソッドの位置`South`が変更されているため、メソッドを呼び出す必要があるときに呼び出しメソッドを終了します。 さらに、基底クラスのレイアウトを変更すると、すべての派生クラスのクラスインターフェイスのレイアウトにも影響します。 マネージクライアントは、クラスに直接バインドされるので、バージョン管理の問題が発生することはありません。 クラスインターフェイスの使用に関する具体的なガイドラインについては、「 [COM 呼び出し可能ラッパー](~/docs/framework/interop/com-callable-wrapper.md)」を参照してください。  
   
- [Tlbimp.exe (タイプ ライブラリ インポーター)](~/docs/framework/tools/tlbimp-exe-type-library-importer.md)常にインポートされたクラスに適用されます、<xref:System.Runtime.InteropServices.ClassInterfaceType.None?displayProperty=nameWithType>マネージ インターフェイスを既存の COM クラスを公開のしないことを示す列挙メンバー。  
+ [Tlbimp.exe (タイプライブラリインポーター)](~/docs/framework/tools/tlbimp-exe-type-library-importer.md)は、インポートされたクラスに常<xref:System.Runtime.InteropServices.ClassInterfaceType.None?displayProperty=nameWithType>に適用されます。列挙メンバーは、既存の COM クラスがマネージインターフェイスを公開しないことを示します。  
   
    
   
 ## Examples  
- 次の例では、適用する方法を示しています、<xref:System.Runtime.InteropServices.ClassInterfaceAttribute>で、<xref:System.Runtime.InteropServices.ClassInterfaceType>値<xref:System.Runtime.InteropServices.ClassInterfaceType.AutoDispatch>を生成する、`IDispatch`のためのインターフェイス`MyClass`します。  
+ 次<xref:System.Runtime.InteropServices.ClassInterfaceAttribute>の例は、の<xref:System.Runtime.InteropServices.ClassInterfaceType.AutoDispatch> <xref:System.Runtime.InteropServices.ClassInterfaceType> インターフェイスを`IDispatch`生成する値を使用してを適用する方法を示しています。 `MyClass`  
   
  [!code-cpp[Classic ClassInterfaceAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic ClassInterfaceAttribute Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ClassInterfaceAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic ClassInterfaceAttribute Example/CS/source.cs#1)]
@@ -125,7 +125,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターは、基になる 16 ビット符号付き整数を表す各<xref:System.Runtime.InteropServices.ClassInterfaceType>列挙型のメンバー。 [Tlbimp.exe (タイプ ライブラリ インポーター)](~/docs/framework/tools/tlbimp-exe-type-library-importer.md)このコンス トラクターを使用します。  
+ このコンストラクターは、各<xref:System.Runtime.InteropServices.ClassInterfaceType>列挙体メンバーを表す、基になる16ビット符号付き整数を受け取ります。 [Tlbimp.exe (タイプライブラリインポーター)](~/docs/framework/tools/tlbimp-exe-type-library-importer.md)は、このコンストラクターを使用します。  
   
  ]]></format>
         </remarks>
@@ -172,7 +172,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 読み取り可能のコードでエラーが発生しにくくなりましたが、常にこのコンス トラクターを使用します。  
+ エラーが発生しにくい読み取り可能なコードの場合は、常にこのコンストラクターを使用します。  
   
  ]]></format>
         </remarks>

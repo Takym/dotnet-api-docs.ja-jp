@@ -1,5 +1,5 @@
 <Type Name="BinaryClientFormatterSinkProvider" FullName="System.Runtime.Remoting.Channels.BinaryClientFormatterSinkProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5339c3443306c5e863a1e679af8e5032da22f694" /><Meta Name="ms.sourcegitcommit" Value="42a3c35677e9d87eeb503607ae50c9d39827d414" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2018" /><Meta Name="ms.locfileid" Value="53474971" /></Metadata><TypeSignature Language="C#" Value="public class BinaryClientFormatterSinkProvider : System.Runtime.Remoting.Channels.IClientFormatterSinkProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="104729bac9d68ee8ec616215608791e0289caaeb" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69267953" /></Metadata><TypeSignature Language="C#" Value="public class BinaryClientFormatterSinkProvider : System.Runtime.Remoting.Channels.IClientFormatterSinkProvider" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit BinaryClientFormatterSinkProvider extends System.Object implements class System.Runtime.Remoting.Channels.IClientChannelSinkProvider, class System.Runtime.Remoting.Channels.IClientFormatterSinkProvider" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Channels.BinaryClientFormatterSinkProvider" />
   <TypeSignature Language="VB.NET" Value="Public Class BinaryClientFormatterSinkProvider&#xA;Implements IClientFormatterSinkProvider" />
@@ -28,20 +28,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.Runtime.Remoting.Channels.BinaryClientFormatterSinkProvider>フォーマッタ シンクを使用するクライアントを作成し、<xref:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter>メッセージが流れているクライアント チャネルのメッセージをシリアル化します。  
+ は<xref:System.Runtime.Remoting.Channels.BinaryClientFormatterSinkProvider> 、<xref:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter>を使用して、リモート処理メッセージがフローするクライアントチャネルのメッセージをシリアル化するクライアントフォーマッタシンクを作成します。  
   
- フォーマッタ シンクは、必要なヘッダーを生成し、ストリームにメッセージをシリアル化する機能を持ちます。 フォーマッタ シンクの後に、<xref:System.Runtime.Remoting.Messaging.IMessage>を通じてチャネル シンク チェイン内のすべてのシンクに転送されます、<xref:System.Runtime.Remoting.Channels.IClientChannelSink.ProcessMessage%2A>または<xref:System.Runtime.Remoting.Channels.IClientChannelSink.AsyncProcessRequest%2A>呼び出し。 この段階では、メッセージは、既にシリアル化されており、情報としてだけ提供されます。 作成またはメッセージを変更する必要があるシンクは、フォーマッタの前に、シンク チェーンに配置する必要があります。 両方を実装することでこれを行う、<xref:System.Runtime.Remoting.Messaging.IMessageSink>と<xref:System.Runtime.Remoting.Channels.IClientChannelSink>インターフェイス。 フォーマッタ シンクはことができますシンク チェーンに後で配置するされます。  
+ フォーマッタ シンクは、必要なヘッダーを生成し、ストリームにメッセージをシリアル化する機能を持ちます。 フォーマッタシンクの後、は<xref:System.Runtime.Remoting.Messaging.IMessage> 、または<xref:System.Runtime.Remoting.Channels.IClientChannelSink.AsyncProcessRequest%2A>の<xref:System.Runtime.Remoting.Channels.IClientChannelSink.ProcessMessage%2A>呼び出しを通じて、チャネルシンクチェーン内のすべてのシンクに転送されます。 この段階では、メッセージは既にシリアル化され、情報としてのみ提供されます。 メッセージを作成または変更する必要があるシンクは、フォーマッタの前にシンクチェーンに配置する必要があります。 これを行うには、インターフェイスと<xref:System.Runtime.Remoting.Messaging.IMessageSink> <xref:System.Runtime.Remoting.Channels.IClientChannelSink>インターフェイスの両方を実装します。 フォーマッタシンクは、後でシンクチェーンに配置できます。  
   
- フォーマッタでは、使用シンク構成プロパティをシンクに実行時にチャネルを構成します。 構成ファイルまたはプログラムでは、内のシンクのプロパティで指定できます、<xref:System.Collections.IDictionary>します。 構成ファイルのすべての値が表現されますが、文字列でプロパティを作成するときに<xref:System.Collections.IDictionary>ネイティブ、値または文字列値型を指定できるプログラムでは、します。  
+ フォーマッタシンクは、シンクの構成プロパティを使用して、実行時にチャネルを構成します。 シンクプロパティは、構成ファイルで指定することも、の<xref:System.Collections.IDictionary>内部でプログラムで指定することもできます。 構成ファイルでは、すべての値は文字列によって表されます<xref:System.Collections.IDictionary>が、プログラムによってプロパティを構築する場合は、値型をネイティブ値または文字列で指定できます。  
   
- 次の表では、現在のシンク プロバイダーを指定できる構成プロパティ、シンクを示します。  
+ 次の表は、現在のシンクプロバイダーに指定できるシンク構成プロパティを示しています。  
   
 |プロパティ|説明|  
 |--------------|-----------------|  
-|`includeVersions`|フォーマッタがバージョン管理情報を含めるかどうかを指定します。 値は`true`または`false`します。|  
+|`includeVersions`|フォーマッタにバージョン情報を含めるかどうかを指定します。 値は`true`また`false`はです。|  
   
 > [!IMPORTANT]
->  セキュリティ上のリスクは、信頼されていないデータや、安全でないチャネル経由では、このオブジェクトのインスタンスを使用します。 信頼されたデータだけとセキュリティで保護されたチャネル経由では、このオブジェクトを使用します。 詳しくは、「[Data Validation](https://www.owasp.org/index.php/Data_Validation)」(データの入力規則) を参照してください。  
+>  信頼されていないデータまたはセキュリティで保護されていないチャネルを使用してこのオブジェクトのインスタンスを使用することは、セキュリティ上のリスクです。 このオブジェクトは、信頼できるデータおよびセキュリティで保護されたチャネルでのみ使用してください。 詳しくは、「[Data Validation](https://www.owasp.org/index.php/Data_Validation)」(データの入力規則) を参照してください。  
   
  ]]></format>
     </remarks>
@@ -138,7 +138,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ときに、<xref:System.Runtime.Remoting.Channels.IClientChannelSinkProvider.CreateSink%2A>メソッドが呼び出されると、転送、独自のチャネル シンクを作成、 <xref:System.Runtime.Remoting.Channels.IClientChannelSinkProvider.CreateSink%2A> (存在する場合)、チェーン内の次のシンク プロバイダーを呼び出すし、次のシンクと現在のセクションが一緒にリンクされていることを確認します。  
+ メソッドが呼び出されると、独自のチャネルシンクが作成され、 <xref:System.Runtime.Remoting.Channels.IClientChannelSinkProvider.CreateSink%2A>その呼び出しがチェーン内の次のシンクプロバイダー (存在する場合) に転送され、次のシンクと現在のシンクが一緒にリンクされるようになります。 <xref:System.Runtime.Remoting.Channels.IClientChannelSinkProvider.CreateSink%2A>  
   
  ]]></format>
         </remarks>

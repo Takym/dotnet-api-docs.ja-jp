@@ -1,5 +1,5 @@
 <Type Name="NestedContainer" FullName="System.ComponentModel.NestedContainer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f5ee87b39f8a62786e65518291887bb06160411b" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58749417" /></Metadata><TypeSignature Language="C#" Value="public class NestedContainer : System.ComponentModel.Container, IDisposable, System.ComponentModel.INestedContainer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="259a11dc91d42af380c9df884e33760df712603c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69327105" /></Metadata><TypeSignature Language="C#" Value="public class NestedContainer : System.ComponentModel.Container, IDisposable, System.ComponentModel.INestedContainer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit NestedContainer extends System.ComponentModel.Container implements class System.ComponentModel.IContainer, class System.ComponentModel.INestedContainer, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.NestedContainer" />
   <TypeSignature Language="VB.NET" Value="Public Class NestedContainer&#xA;Inherits Container&#xA;Implements IDisposable, INestedContainer" />
@@ -41,19 +41,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.NestedContainer>クラスは、単純な実装の<xref:System.ComponentModel.INestedContainer>を論理的に 0 個以上の他のコンポーネントが含まれていて、親コンポーネントが所有するコンポーネントを定義するインターフェイス。 入れ子になったコンテナーの動作は、標準によって異なります。<xref:System.ComponentModel.Container>さまざま方法で、次を含みます。  
+ クラスは、 <xref:System.ComponentModel.INestedContainer>インターフェイスの単純な実装であり、0個以上の他のコンポーネントを論理的に含んでおり、親コンポーネントによって所有されているコンポーネントを定義します。 <xref:System.ComponentModel.NestedContainer> 入れ子になったコンテナーの動作は、 <xref:System.ComponentModel.Container>次のようなさまざまな方法で標準と異なります。  
   
--   などの特性をサイト<xref:System.ComponentModel.Component.DesignMode%2A>と<xref:System.ComponentModel.Component.GetService%2A>所有しているコンポーネントのサイトを介してルーティングされます。  
+-   <xref:System.ComponentModel.Component.DesignMode%2A> や<xref:System.ComponentModel.Component.GetService%2A>などのサイトの特性は、所有しているコンポーネントのサイトを通じてルーティングされます。  
   
--   サイトの<xref:System.ComponentModel.ISite.Name%2A>プロパティは、所有しているコンポーネントの名の後にピリオド (.) と子コンポーネントの名前を含む修飾名。  
+-   サイトの<xref:System.ComponentModel.ISite.Name%2A>プロパティは修飾名であり、所有コンポーネントの名前の後にピリオド (.) と子コンポーネントの名前が続きます。  
   
--   <xref:System.ComponentModel.NestedContainer.GetService%2A> サポートを提供します、<xref:System.ComponentModel.INestedContainer>サービスとして。  
+-   <xref:System.ComponentModel.NestedContainer.GetService%2A>サービスとして<xref:System.ComponentModel.INestedContainer>ののサポートを提供します。  
   
--   所有しているコンポーネントが破棄されたときに、コンテナーも破棄されます。  
+-   所有コンポーネントが破棄されると、コンテナーも破棄されます。  
   
- さらに、デザイナーは入れ子になったコンテナーを異なる方法で処理します。 1 つのコンテナーのホストに関連付けられている 1 つはデザイナーのホストのみです。 そのため、コンポーネントの追加し、イベントを削除、コンポーネントを追加または入れ子になったコンテナーから削除されたときに発生しません。 ただし、サービスが入れ子になったコンテナーを通過するので、入れ子になったコンテナー内のコンポーネントが変更されたときにコンポーネントの変更イベントが発生します。  
+ また、デザイナーでは、入れ子になったコンテナーの扱いが異なります。 デザイナーホストは、1つのコンテナー (ホストに関連付けられているコンテナー) のみに関連しています。 そのため、入れ子になったコンテナーにコンポーネントを追加したり、入れ子になったコンテナーから削除したりしても、コンポーネントの追加と削除のイベントは発生しません。 ただし、入れ子になったコンテナーにサービスがフローするので、入れ子になったコンテナー内のコンポーネントが変更されると、コンポーネント変更イベントが発生します。  
   
- イベントの追跡にこのような違いは、シリアル化に密接に関連付けられている、元に戻す機能にも影響を与えます。 標準のアンドゥ エンジンを使用して<xref:System.ComponentModel.Design.IReferenceService>コンポーネントに加えられた変更を追跡するためにします。 アンドゥ エンジンが参照サービスを介して、コンポーネントの名前を識別できない場合、エンジンはそのコンポーネントに対する変更内容を無視します。 このサービスでは、その所有者に同じ名前のパブリックの読み取り専用プロパティとして公開されている場合にのみ含まれるコンポーネントへの変更が自動的に認識されます。 それ以外の場合、開発者は、所有者の役割のコンポーネントの変更イベントを渡す必要があります。 たとえば、入れ子になったコンポーネントの`Text`としてその所有コンポーネントのプロパティが示される、`Address`プロパティ、`Text`プロパティが変更された、プロパティの変更を対応するプログラムで行う必要があります`Address`変更するか、またはプロパティは、元に戻すによって追跡されません。  
+ イベント追跡のこの不一致は、シリアル化に密接に関連付けられている取り消し機能にも影響します。 標準の元に戻す<xref:System.ComponentModel.Design.IReferenceService>エンジンは、を使用して、コンポーネントに加えられた変更を追跡します。 元に戻すエンジンが参照サービスを介してコンポーネントの名前を識別できない場合、そのコンポーネントに対する変更はすべて無視されます。 このサービスは、含まれているコンポーネントへの変更を、所有者の同じ名前のパブリック読み取り専用プロパティとして公開する場合にのみ、自動的にそのコンポーネントに対する変更を認識します。 それ以外の場合、開発者はコンポーネントの変更イベントを所有者に渡す必要があります。 たとえば、入れ子になったコンポーネントの`Text`プロパティが`Address`プロパティとして所有コンポーネントで resurfaced されて`Text`いる場合、プロパティが変更されると、対応する`Address`に対してプロパティの変更がプログラムによって実行される必要があります。プロパティまたはその他の変更は、元に戻すことによって追跡されません。  
   
  ]]></format>
     </remarks>
@@ -97,7 +97,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターは、その所有者に参加<xref:System.ComponentModel.IComponent.Disposed>イベントように入れ子になったコンテナーの<xref:System.ComponentModel.NestedContainer.Dispose%2A>メソッドが自動的に呼び出されます。  
+ このコンストラクターは、入れ子になっ<xref:System.ComponentModel.IComponent.Disposed>たコンテナーの<xref:System.ComponentModel.NestedContainer.Dispose%2A>メソッドが自動的に呼び出されるように、その所有者のイベントに参加します。  
   
  ]]></format>
         </remarks>
@@ -145,11 +145,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、`name`パラメーターが`null`、<xref:System.ComponentModel.IComponent>識別名のない、入れ子になったコンテナーに追加されます。  
+ パラメーターが`null`の場合、は<xref:System.ComponentModel.IComponent> 、識別名なしで入れ子になったコンテナーに追加されます。 `name`  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="component" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="component" /> が <see langword="null" /> です。</exception>
         <altmember cref="M:System.ComponentModel.Container.CreateSite(System.ComponentModel.IComponent,System.String)" />
       </Docs>
     </Member>
@@ -190,16 +190,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose()`メソッドと<xref:System.Object.Finalize%2A>メソッド。 `Dispose()` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 <xref:System.Object.Finalize%2A> 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック`Dispose()`メソッド<xref:System.Object.Finalize%2A>とメソッドによって呼び出されます。 `Dispose()``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 <xref:System.Object.Finalize%2A>をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
- ときに、`disposing`パラメーターが true の場合、このメソッドは、すべてのマネージ オブジェクトによって保持されているすべてのリソースを解放します。 この<xref:System.ComponentModel.NestedContainer>参照。 このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
+ パラメーターが true の場合、このメソッドは、この<xref:System.ComponentModel.NestedContainer>が参照するすべてのマネージオブジェクトによって保持されているすべてのリソースを解放します。 `disposing` このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 オーバーライドするときに<see langword="Dispose(Boolean)" />の事前に呼び出したで以前破棄されたオブジェクトを参照しないように注意する<see langword="Dispose" />します。 実装する方法についての詳細は<see langword="Dispose(Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 をオーバーライド<see langword="Dispose(Boolean)" />する場合は、以前にを<see langword="Dispose" />呼び出したときに破棄されたオブジェクトを参照しないように注意してください。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see cref="M:System.Object.Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)と[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。</para></block>
+<see langword="Dispose" /> および<see cref="M:System.Object.Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」と「 [Finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。</para></block>
         <altmember cref="M:System.ComponentModel.NestedContainer.#ctor(System.ComponentModel.IComponent)" />
       </Docs>
     </Member>
@@ -241,7 +241,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、<xref:System.ComponentModel.Container.GetService%2A?displayProperty=nameWithType>メソッド。 この実装の要求を解決できるだけ、<xref:System.ComponentModel.INestedContainer>と<xref:System.ComponentModel.IContainer>サービス。  
+ このメソッドは、 <xref:System.ComponentModel.Container.GetService%2A?displayProperty=nameWithType>メソッドをオーバーライドします。 この実装は、 <xref:System.ComponentModel.INestedContainer>および<xref:System.ComponentModel.IContainer>サービスの要求のみを解決します。  
   
  ]]></format>
         </remarks>
@@ -291,7 +291,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 所有コンポーネントとは、通常のコンテナーの入れ子になったコンテナーを識別する特性です。  
+ 所有コンポーネントは、通常のコンテナーから入れ子になったコンテナーを区別する特性です。  
   
  ]]></format>
         </remarks>
@@ -334,7 +334,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、カスタムの所有者名を提供するオーバーライド可能性があります。 既定の実装の所有者のサイトを検索する<xref:System.ComponentModel.INestedSite>と呼び出し<xref:System.ComponentModel.INestedSite.FullName%2A>、または<xref:System.ComponentModel.ISite.Name%2A>入れ子になったサイトが存在しない場合。 このプロパティを返しますのかどうかも、使用可能な`null`します。  
+ このプロパティは、カスタム所有者名を指定するためにオーバーライドされる場合があります。 既定の実装では、所有者の<xref:System.ComponentModel.INestedSite>サイトで<xref:System.ComponentModel.INestedSite.FullName%2A>とが<xref:System.ComponentModel.ISite.Name%2A>検索され、入れ子になったサイトがない場合はが呼び出されます。 どちらも使用できない場合、この`null`プロパティはを返します。  
   
  ]]></format>
         </remarks>

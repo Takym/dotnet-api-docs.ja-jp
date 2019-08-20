@@ -1,5 +1,5 @@
 <Type Name="WeakEventManager+ListenerList" FullName="System.Windows.WeakEventManager+ListenerList">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="abfa8a8e75f10484b5998ca85474fa53c7d22a4c" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57961056" /></Metadata><TypeSignature Language="C#" Value="protected class WeakEventManager.ListenerList" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1491302f301779d2d4fb6aa34fa4e04a2352961f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69432624" /></Metadata><TypeSignature Language="C#" Value="protected class WeakEventManager.ListenerList" />
   <TypeSignature Language="ILAsm" Value=".class nested protected auto ansi beforefieldinit WeakEventManager/ListenerList extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Windows.WeakEventManager.ListenerList" />
   <TypeSignature Language="VB.NET" Value="Protected Class WeakEventManager.ListenerList" />
@@ -19,19 +19,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この一覧で定義されているようなメンバーが含まれますが<xref:System.Collections.IList>と<xref:System.Collections.ICollection>、インターフェイスのどちらにもこのクラスが実装と同様の機能を提供します。  
+ このリストには、 <xref:System.Collections.IList>および<xref:System.Collections.ICollection>で定義されたものと似たメンバーが含まれていますが、同様の機能を提供します。このクラスは、これらのインターフェイスのいずれも実装しません。  
   
- ほとんど<xref:System.Windows.WeakEventManager>派生クラスは、すべてのメンバーを使用する必要はありません<xref:System.Windows.WeakEventManager.ListenerList>します。 <xref:System.Windows.WeakEventManager>メソッド<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>と<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>、既定値を使用して、<xref:System.Windows.WeakEventManager.ListenerList>ごとに内部的には、1 つのリスト`source`します。  
+ ほとんど<xref:System.Windows.WeakEventManager>の派生クラスでは、の<xref:System.Windows.WeakEventManager.ListenerList>メンバーを使用する必要はありません。 メソッド<xref:System.Windows.WeakEventManager> と<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A> <xref:System.Windows.WeakEventManager.ListenerList> `source`は、内部的に既定値を1つずつ使用します。 <xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>  
   
- のみを呼び出す必要があります<xref:System.Windows.WeakEventManager.ListenerList>メソッド場合、<xref:System.Windows.WeakEventManager>クラスは、イベントのさまざまな状態のアカウントに作成した各リストで、同じイベント ソースの組み合わせを複数のリストを保持します。 使わない、この場合、<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>と<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>、代わりに実装`AddListener`または`RemoveListener`がリスナーに追加したパラメーターに基づいて、通常、内部リスナーのリストの 1 つだけに作用する`AddListener`または`RemoveListener`. また、生のイベントを受信するハンドラーの実装は呼び出すことはできませんだけ<xref:System.Windows.WeakEventManager.DeliverEvent%2A>; 代わりに、イベントの詳細を追跡し、適切なリストを使用して、のみイベントを配信する必要があります<xref:System.Windows.WeakEventManager.DeliverEventToList%2A>します。  
+ クラスが同じイベントソース<xref:System.Windows.WeakEventManager.ListenerList>の組み合わせに対して複数のリストを保持している場合にのみ、メソッドを呼び出す必要があります。各リストは、イベントのさまざまな条件を考慮して作成されます。 <xref:System.Windows.WeakEventManager> この場合<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A> 、と<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>を使用しないで、またはを`AddListener`実装`RemoveListener`して、内部リスナーリストの1つだけでリスナーを操作します。通常は、または`AddListener` に追加したパラメーターに基づきます`RemoveListener`。 また、未加工のイベントを受け取るハンドラーの実装では、 <xref:System.Windows.WeakEventManager.DeliverEvent%2A>単にを呼び出すことはできません。代わりに、イベントの詳細を追跡し、を使用<xref:System.Windows.WeakEventManager.DeliverEventToList%2A>して適切なリストにのみイベントを配信する必要があります。  
   
- さまざまなメソッド<xref:System.Windows.WeakEventManager.ListenerList>イベントの実際の配信中に、リストの変更を防止できるように、内部リストを使用した作業できるように用意されています。  
+ のさまざまな方法<xref:System.Windows.WeakEventManager.ListenerList>が用意されているので、内部リストを使用して、イベントの実際の配信時にリストが変更されないようにすることができます。  
   
- この実装方法を使用するクラスの例は、 <xref:System.ComponentModel.PropertyChangedEventManager>、個別のリスナーを維持するを一覧表示`PropertyChanged`変更されたプロパティに基づいて。  
+ この実装手法を使用するクラスの例<xref:System.ComponentModel.PropertyChangedEventManager>は、変更されたプロパティ`PropertyChanged`に基づいて、個別のリスナーリストを保持するです。  
   
 <a name="xamlTextUsage_ListenerList"></a>   
-## <a name="xaml-text-usage"></a>XAML テキストの使用状況  
- このクラスを使用することはできません[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]します。  
+## <a name="xaml-text-usage"></a>XAML テキストの使用  
+ で[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]このクラスを使用することはできません。  
   
  ]]></format>
     </remarks>
@@ -114,9 +114,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- リスナーである必要がありますを指定されたオブジェクトを<xref:System.Windows.DependencyObject>を実装する、<xref:System.Windows.IWeakEventListener>インターフェイス、したがってが動作し<xref:System.Windows.IWeakEventListener.ReceiveWeakEvent%2A>実装します。  
+ リスナーとして提供されるオブジェクト<xref:System.Windows.DependencyObject>は、 <xref:System.Windows.IWeakEventListener>インターフェイスを実装するである必要<xref:System.Windows.IWeakEventListener.ReceiveWeakEvent%2A>があります。したがって、動作する実装があります。  
   
- 常に呼び出す必要があります<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>内容の一覧表示を変更する前にします。 それ以外の場合、元がロックされているために、イベントを配信する処理中は、一覧があります。 呼び出す<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>入力を変更`list`クローンするように、<xref:System.Windows.WeakEventManager.ListenerList.Add%2A>呼び出し、複製で動作できます。 場合<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>返します`true`、任意のプライベート参照、コードの他の領域で管理されている一覧を更新する必要があります。  
+ リストの内容を<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>変更する前に、常にを呼び出す必要があります。 それ以外の場合は、リストがイベントの配信処理中であるため、元のがロックされている可能性があります。 を<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>呼び出すと`list` 、入力が複製<xref:System.Windows.WeakEventManager.ListenerList.Add%2A>として変更され、呼び出しが複製でも機能するようになります。 が<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>を`true`返す場合は、コードの他の領域で保持されているリストへのプライベート参照を更新する必要がある場合があります。  
   
  ]]></format>
         </remarks>
@@ -140,7 +140,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="handler" Type="System.Delegate" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="handler" Type="System.Delegate" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="handler"><see cref="T:System.Windows.WeakEventManager.ListenerList" /> に追加するイベント ハンドラー。</param>
@@ -172,7 +172,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.Windows.WeakEventManager>実装を呼び出す必要があります<xref:System.Windows.WeakEventManager.ListenerList.BeginUse%2A>前に、リスナーにイベントを配信するリストを反復処理して、呼び出す必要があります<xref:System.Windows.WeakEventManager.ListenerList.EndUse%2A>が完了するとします。 これは他の呼び出し元がイベントの配信のための反復処理が進行中は、リストを変更することを防ぎます。 この期間中に、リストが変更されると、リストが複製されます。 場合は、リストが複製<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>返します`true`、つまり、最後の配信に直近のリスナー変更が不足しています。  
+ 実装<xref:System.Windows.WeakEventManager>では、 <xref:System.Windows.WeakEventManager.ListenerList.BeginUse%2A>リストを反復処理してリスナーにイベントを配信する前にを呼び<xref:System.Windows.WeakEventManager.ListenerList.EndUse%2A>出す必要があります。また、完了時にを呼び出す必要があります。 これにより、イベント配信の反復処理が進行している間に、別の呼び出し元によってリストが変更されるのを防ぐことができます。 この期間中にリストが変更された場合は、一覧が複製されます。 リストが複製された場合<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A> 、 `true`はを返します。これは、前回の配信でリスナーの最近の変更が行われなかったことを意味します。  
   
  ]]></format>
         </remarks>
@@ -217,7 +217,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="newList" Type="System.Windows.WeakEventManager+ListenerList" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="newList" Type="System.Windows.WeakEventManager+ListenerList" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="newList">コピー先のオブジェクト。</param>
@@ -263,9 +263,9 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="sender" Type="System.Object" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="args" Type="System.EventArgs" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="managerType" Type="System.Type" Index="2" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="sender" Type="System.Object" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="args" Type="System.EventArgs" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="managerType" Type="System.Type" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="sender">イベントを発生させたオブジェクト。</param>
@@ -349,7 +349,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをチェックするかどうか、 <xref:System.Windows.WeakEventManager.ListenerList.Count%2A> 0 の場合は、一覧内の参照のいずれかが古いようになりましたかどうかは確認されません。 場合は、すべての参照がまだ有効であることを保証するには、呼び出して<xref:System.Windows.WeakEventManager.ListenerList.Purge%2A>一覧の空の状態を確認する前にします。  
+ このメソッドは、 <xref:System.Windows.WeakEventManager.ListenerList.Count%2A>がゼロかどうかをチェックするのと同じです。また、リスト内のいずれかの参照が古くなっているかどうかを確認しません。 すべての参照が引き続き有効であることを確認するに<xref:System.Windows.WeakEventManager.ListenerList.Purge%2A>は、リストの空の状態を確認する直前にを呼び出します。  
   
  ]]></format>
         </remarks>
@@ -408,11 +408,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを呼び出すことで、入力を置き換えますが、指定したリストが (つまり、イベントが配信されている現在) 使用されている場合`list`複製にします。  既存のユーザーには、新しいリストへの変更を競合することがなく、元のリストへのイベント配信が完了します。  
+ 指定されたリストが使用中である場合 (つまり、イベントが現在配信されていることを意味`list`します)、このメソッドを呼び出すと、入力が複製で置き換えられます。  既存のユーザーは、新しいリストに変更を加えることなく、元のリストへのイベントの配信を終了します。  
   
- メソッドを返す場合`true`、呼び出し元が指定されたリストが最新ではない可能性があるこのため、独自のデータ構造に新しいリストを挿入することがあります。  
+ メソッドがを返し`true`た場合、呼び出し元は、指定されたリストが最新ではなくなった可能性を示すために、独自のデータ構造に新しいリストを挿入することができます。  
   
- このメソッドを呼び出す<xref:System.Windows.WeakEventManager.ListenerList.BeginUse%2A>内部的にし、すぐに呼び出します<xref:System.Windows.WeakEventManager.ListenerList.EndUse%2A>します。 そのため<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>は自体は一覧のロックを導入します。 複製のコピーもは呼び出した後、セカンダリの操作として行われます<xref:System.Windows.WeakEventManager.ListenerList.EndUse%2A>します。  
+ このメソッドは<xref:System.Windows.WeakEventManager.ListenerList.BeginUse%2A> 、を内部で呼び出し<xref:System.Windows.WeakEventManager.ListenerList.EndUse%2A>た後、すぐにを呼び出します。 したがって<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A> 、を呼び出すと、リストがロックされません。 を呼び出し<xref:System.Windows.WeakEventManager.ListenerList.EndUse%2A>た後、複製コピーはセカンダリ操作としても実行されます。  
   
  ]]></format>
         </remarks>
@@ -469,7 +469,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 常に呼び出す必要があります<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>内容の一覧表示を変更する前にします。 それ以外の場合、元がロックされているために、イベントを配信する処理中は、一覧があります。 呼び出す<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>入力を変更`list`クローンするように、<xref:System.Windows.WeakEventManager.ListenerList.Remove%2A>呼び出し、複製で動作できます。 場合<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>返します`true`、任意のプライベート参照、コードの他の領域で管理されている一覧を更新する必要があります。  
+ リストの内容を<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>変更する前に、常にを呼び出す必要があります。 それ以外の場合は、リストがイベントの配信処理中であるため、元のがロックされている可能性があります。 を<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>呼び出すと`list` 、入力が複製<xref:System.Windows.WeakEventManager.ListenerList.Remove%2A>として変更され、呼び出しが複製でも機能するようになります。 が<xref:System.Windows.WeakEventManager.ListenerList.PrepareForWriting%2A>を`true`返す場合は、コードの他の領域で保持されているリストへのプライベート参照を更新する必要がある場合があります。  
   
  ]]></format>
         </remarks>
@@ -493,7 +493,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="handler" Type="System.Delegate" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="handler" Type="System.Delegate" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="handler"><see cref="T:System.Windows.WeakEventManager.ListenerList" /> から削除するイベント ハンドラー。</param>

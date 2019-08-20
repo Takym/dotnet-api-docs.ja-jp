@@ -1,5 +1,5 @@
 <Type Name="IAssemblyPostProcessor" FullName="System.Web.Compilation.IAssemblyPostProcessor">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ad9a75c0e2153f517afbada4d570c0a97f64f859" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64148092" /></Metadata><TypeSignature Language="C#" Value="public interface IAssemblyPostProcessor : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7f3ce5813903e751fff1b66168f7c9c44ae5525c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69096986" /></Metadata><TypeSignature Language="C#" Value="public interface IAssemblyPostProcessor : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IAssemblyPostProcessor implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Web.Compilation.IAssemblyPostProcessor" />
   <TypeSignature Language="VB.NET" Value="Public Interface IAssemblyPostProcessor&#xA;Implements IDisposable" />
@@ -21,27 +21,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このインターフェイスを実装するクラスがコンパイルされた後のアセンブリにアクセスできます。 <xref:System.Web.Compilation.AssemblyBuilder>クラスがアセンブリをコンパイルし、かを確認するかどうか、<xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイスは、Web 構成ファイルに登録されています。 そうである場合、<xref:System.Web.Compilation.AssemblyBuilder>呼び出しをインスタンス化、<xref:System.Web.Compilation.IAssemblyPostProcessor.PostProcessAssembly%2A>のメソッド、<xref:System.Web.Compilation.IAssemblyPostProcessor>コンパイルした後、アセンブリを読み込む前に操作を実行するインターフェイス。 たとえば、プロファイラー ツールは、アセンブリのプローブを確立するためには、このインターフェイスを実装する可能性があります。  
+ このインターフェイスを実装するクラスは、コンパイル後にアセンブリにアクセスできます。 クラス<xref:System.Web.Compilation.AssemblyBuilder>は、アセンブリをコンパイルし、Web 構成ファイル<xref:System.Web.Compilation.IAssemblyPostProcessor>にインターフェイスが登録されているかどうかを確認します。 その場合、インスタンス<xref:System.Web.Compilation.AssemblyBuilder>は、コンパイル<xref:System.Web.Compilation.IAssemblyPostProcessor.PostProcessAssembly%2A>後にアセンブリ<xref:System.Web.Compilation.IAssemblyPostProcessor>を読み込む前に、インターフェイスがメソッドを呼び出して、任意のアクションを実行します。 たとえば、プロファイラーツールは、このインターフェイスを実装して、アセンブリのプローブを確立できます。  
   
- ときに、<xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイスが登録されて、デバッグ モードで ASP.NET アプリケーションとそのアセンブリをコンパイルするが常にします。  
+ <xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイスが登録されると、ASP.NET アプリケーションとそのアセンブリは常にデバッグモードでコンパイルされます。  
   
    
   
 ## Examples  
- 次のコード例の実装を作成する方法を示します、<xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイス、および Web アプリケーションの Web.config ファイルに登録します。  
+ 次のコード例は、 <xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイスの実装を作成し、web アプリケーションの web.config ファイルに登録する方法を示しています。  
   
- コード例の最初の部分は、という名前のクラスを作成します。`Samples.Process.postProcessTest`を実装する、<xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイス。 このクラスは、ファイルの書き込みの単純なアクションを実行時に、<xref:System.Web.Compilation.IAssemblyPostProcessor.PostProcessAssembly%2A>メソッドが呼び出されます。  
+ コード例の最初の部分では、 `Samples.Process.postProcessTest` <xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイスを実装するという名前のクラスを作成します。 このクラスは、 <xref:System.Web.Compilation.IAssemblyPostProcessor.PostProcessAssembly%2A>メソッドが呼び出されたときにファイルを書き込むための単純なアクションを実行します。  
   
  [!code-csharp[System.Web.Compilation.IAssemblyPostProcessor#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Compilation.IAssemblyPostProcessor/CS/postProcessTest.cs#1)]
  [!code-vb[System.Web.Compilation.IAssemblyPostProcessor#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Compilation.IAssemblyPostProcessor/VB/postProcessTest.vb#1)]  
   
- コマンドを使用して、.dll ファイルにクラスをコンパイル`csc /target:library postProcessTest.cs`します。 ASP.NET アプリケーションの Bin フォルダーに生成された .dll ファイルを追加し、次のコードに示すように、Web.config ファイルに .dll を登録します。  
+ コマンド`csc /target:library postProcessTest.cs`を使用して、クラスを .dll ファイルにコンパイルします。 次のコードに示すように、生成された .dll ファイルを ASP.NET アプリケーションの Bin フォルダーに追加し、web.config ファイルに .dll を登録します。  
   
 ```  
 <compilation debug="true" assemblyPostProcessorType="Samples.Process.postProcessTest" />  
 ```  
   
- Web サイトにアクセスするユーザーと Web アプリケーションが動的にコンパイルされたファイルと、MyTest.txt は C:\compile に書き込まれます。  
+ ユーザーが Web サイトにアクセスすると、Web アプリケーションが動的にコンパイルされ、ファイル MyTest が C:\compile. に書き込まれます。  
   
  ]]></format>
     </remarks>
@@ -73,25 +73,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.Compilation.AssemblyBuilder>クラスは、アセンブリがコンパイルされた後にこのメソッドを呼び出します。 アセンブリを読み込む前に実行する任意の操作は、このメソッドに含めるか。  
+ クラス<xref:System.Web.Compilation.AssemblyBuilder>は、アセンブリがコンパイルされた後にこのメソッドを呼び出します。 アセンブリを読み込む前に実行するアクションは、このメソッドに含める必要があります。  
   
    
   
 ## Examples  
- 次のコード例の実装を作成する方法を示します、<xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイス、および Web アプリケーションの Web.config ファイルに登録します。  
+ 次のコード例は、 <xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイスの実装を作成し、web アプリケーションの web.config ファイルに登録する方法を示しています。  
   
- コード例の最初の部分は、という名前のクラスを作成します。`Samples.Process.postProcessTest`を実装する、<xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイス。 このクラスは、ファイルの書き込みの単純なアクションを実行時に、<xref:System.Web.Compilation.IAssemblyPostProcessor.PostProcessAssembly%2A>メソッドが呼び出されます。  
+ コード例の最初の部分では、 `Samples.Process.postProcessTest` <xref:System.Web.Compilation.IAssemblyPostProcessor>インターフェイスを実装するという名前のクラスを作成します。 このクラスは、 <xref:System.Web.Compilation.IAssemblyPostProcessor.PostProcessAssembly%2A>メソッドが呼び出されたときにファイルを書き込むための単純なアクションを実行します。  
   
  [!code-csharp[System.Web.Compilation.IAssemblyPostProcessor#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.Compilation.IAssemblyPostProcessor/CS/postProcessTest.cs#1)]
  [!code-vb[System.Web.Compilation.IAssemblyPostProcessor#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Web.Compilation.IAssemblyPostProcessor/VB/postProcessTest.vb#1)]  
   
- コマンドを使用して、.dll ファイルにクラスをコンパイル`csc /target:library postProcessTest.cs`します。 ASP.NET アプリケーションの Bin フォルダーに生成された .dll ファイルを追加し、次のコードに示すように、Web.config ファイルに .dll を登録します。  
+ コマンド`csc /target:library postProcessTest.cs`を使用して、クラスを .dll ファイルにコンパイルします。 次のコードに示すように、生成された .dll ファイルを ASP.NET アプリケーションの Bin フォルダーに追加し、web.config ファイルに .dll を登録します。  
   
 ```  
 <compilation debug="true" assemblyPostProcessorType="Samples.Process.postProcessTest" />  
 ```  
   
- Web サイトにアクセスするユーザーと Web アプリケーションが動的にコンパイルされたファイルと、MyTest.txt は C:\compile に書き込まれます。  
+ ユーザーが Web サイトにアクセスすると、Web アプリケーションが動的にコンパイルされ、ファイル MyTest が C:\compile. に書き込まれます。  
   
  ]]></format>
         </remarks>

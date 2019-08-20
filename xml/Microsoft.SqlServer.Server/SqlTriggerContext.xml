@@ -1,5 +1,5 @@
 <Type Name="SqlTriggerContext" FullName="Microsoft.SqlServer.Server.SqlTriggerContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="684df1a9a77b667e0f9697acd488cab5a35a8032" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="63949585" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlTriggerContext" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bbac181f84d245f3332012ab5580b5f07b87aa13" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69303513" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlTriggerContext" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlTriggerContext extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.SqlServer.Server.SqlTriggerContext" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlTriggerContext" />
@@ -21,14 +21,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 提供されるコンテキスト情報に変更された列で更新操作、およびの場合、データ定義言語 (DDL) トリガーで EventData を XML の構造体に、トリガーを発生させたアクションの種類が含まれています (を参照してください[Transact-SQL リファレンス](/sql/t-sql/language-reference))、トリガー操作をについて説明します。  
+ 表示されるコンテキスト情報には、トリガーが起動される原因となったアクションの種類、更新操作で変更された列、データ定義言語 (DDL) トリガーの場合は XML EventData 構造 (Transact-sql を参照) が含まれます。 [参照](/sql/t-sql/language-reference)) をトリガーする操作を記述します。  
   
- インスタンス<xref:Microsoft.SqlServer.Server.SqlTriggerContext>から利用できますが、<xref:Microsoft.SqlServer.Server.SqlContext>クラスは、コードの実行をトリガー内で、<xref:Microsoft.SqlServer.Server.SqlContext.TriggerContext%2A>プロパティ。  
+ の<xref:Microsoft.SqlServer.Server.SqlTriggerContext>インスタンスは、コードが<xref:Microsoft.SqlServer.Server.SqlContext.TriggerContext%2A>プロパティ<xref:Microsoft.SqlServer.Server.SqlContext>を通じてトリガー内で実行されている場合に、クラスから取得できます。  
   
    
   
 ## Examples  
- 次の例は、<xref:Microsoft.SqlServer.Server.SqlTriggerContext>かを判断するために使用されているオブジェクト、<xref:Microsoft.SqlServer.Server.TriggerAction.Insert>アクションが発生しました。 行が挿入された場合、`user`のテーブルでは、ユーザー名と実際の名前は、挿入された行から取得され、に追加し、 **UserNameAudit**テーブル。  
+ 次の例は、 <xref:Microsoft.SqlServer.Server.SqlTriggerContext> <xref:Microsoft.SqlServer.Server.TriggerAction.Insert>アクションが発生したかどうかを判断するために使用されるオブジェクトを示しています。 行が`user`のテーブルに挿入された場合は、挿入された行からユーザー名と実際の名前が取得され、 **UserNameAudit**テーブルに追加されます。  
   
  [!code-csharp[DataWorks SqlTriggerContext Sample#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlTriggerContext Sample/CS/source.cs#1)]
  [!code-vb[DataWorks SqlTriggerContext Sample#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlTriggerContext Sample/VB/source.vb#1)]  
@@ -61,7 +61,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.SqlServer.Server.SqlTriggerContext.ColumnCount%2A> プロパティは、最大の序数を確認すると役立つを<xref:Microsoft.SqlServer.Server.SqlTriggerContext.IsUpdatedColumn%2A>特定のトリガーの呼び出しでは、します。  
+ <xref:Microsoft.SqlServer.Server.SqlTriggerContext.ColumnCount%2A>プロパティは、特定のトリガー呼び出しに許可<xref:Microsoft.SqlServer.Server.SqlTriggerContext.IsUpdatedColumn%2A>される最大序数を決定するのに役立ちます。  
   
  ]]></format>
         </remarks>
@@ -91,7 +91,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この情報は、データ定義言語 (DDL) トリガーを使用できます。 データ操作言語 (DML) トリガーの場合は、このプロパティを介して情報はありません。  
+ この情報は、データ定義言語 (DDL) トリガーで使用できます。 データ操作言語 (DML) トリガーの場合、このプロパティを使用して情報を取得することはできません。  
   
  ]]></format>
         </remarks>
@@ -149,7 +149,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、監査のトリガーを示します。 場合、<xref:Microsoft.SqlServer.Server.TriggerAction.Insert>または<xref:Microsoft.SqlServer.Server.TriggerAction.Delete>アクションが発生しました、影響を受けた行が INSERTED および DELETED テーブルから取得されます。  
+ 次の例は、監査トリガーを示しています。 アクションまたは<xref:Microsoft.SqlServer.Server.TriggerAction.Delete>アクションが発生した場合、挿入および削除されたテーブルから影響を受ける行が取得されます。 <xref:Microsoft.SqlServer.Server.TriggerAction.Insert>  
   
  [!code-csharp[DataWorks SqlTriggerContext Sample#2](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlTriggerContext Sample/CS/source.cs#2)]
  [!code-vb[DataWorks SqlTriggerContext Sample#2](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlTriggerContext Sample/VB/source.vb#2)]  
