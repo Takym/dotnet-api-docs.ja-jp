@@ -1,5 +1,5 @@
 <Type Name="EncoderReplacementFallback" FullName="System.Text.EncoderReplacementFallback">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="757da58a3ac011597dad295eac879a38795d16a5" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58734143" /></Metadata><TypeSignature Language="C#" Value="public sealed class EncoderReplacementFallback : System.Text.EncoderFallback" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="02b83cb1f28067044ad4f1d8f8d655484daddb62" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69144554" /></Metadata><TypeSignature Language="C#" Value="public sealed class EncoderReplacementFallback : System.Text.EncoderFallback" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit EncoderReplacementFallback extends System.Text.EncoderFallback" />
   <TypeSignature Language="DocId" Value="T:System.Text.EncoderReplacementFallback" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class EncoderReplacementFallback&#xA;Inherits EncoderFallback" />
@@ -40,22 +40,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- エンコードまたはデコード操作の失敗の一般的な理由は、基になるエンコード クラスが、文字と等価なバイト シーケンス間のマッピングを提供しないかどうかです。 たとえば、<xref:System.Text.ASCIIEncoding>オブジェクトは、u+0000 U + 007F ~ が範囲外の Unicode コード ポイント値を持つ文字をエンコードことはできません。 入力文字を出力バイト シーケンスに変換できない場合、<xref:System.Text.EncoderReplacementFallback>オブジェクトには、元の入力文字の指定した置換文字列が置換されます。 変換プロセスでは、置換文字列をエンコードし、引き続き元の入力の残りの部分を処理します。  
+ エンコード操作またはデコード操作が失敗する一般的な理由は、基になるエンコーディングクラスが文字とそれに相当するバイトシーケンスとの間のマッピングを提供しない場合です。 たとえば、オブジェクトは<xref:System.Text.ASCIIEncoding> 、u + 0000 ~ u + 007f の範囲外の Unicode コードポイント値を持つ文字をエンコードすることはできません。 入力文字を出力バイトシーケンスに変換できない場合、オブジェクトは<xref:System.Text.EncoderReplacementFallback> 、元の入力文字に対して指定された置換文字列を置換します。 変換処理では、置換文字列をエンコードしてから、元の入力の残りの部分を処理し続けます。  
   
- 使用される置換文字列、<xref:System.Text.EncoderReplacementFallback>オブジェクトはそのクラス コンス トラクターの呼び出しによって決定されます。 2 つのオプションを使用できます。  
+ <xref:System.Text.EncoderReplacementFallback>オブジェクトによって使用される置換文字列は、そのクラスコンストラクターの呼び出しによって決定されます。 次の2つのオプションを使用できます。  
   
--   既定の文字で置換します。 呼び出す場合、<xref:System.Text.EncoderReplacementFallback.%23ctor>コンス トラクター、置換文字は、"?"(U + 003F)。  
+-   既定の文字に置き換えます。 <xref:System.Text.EncoderReplacementFallback.%23ctor>コンストラクターを呼び出すと、置換文字は "?" になります。(U + 003F)。  
   
--   任意の文字列で置換します。 呼び出す場合、<xref:System.Text.EncoderReplacementFallback.%23ctor%28System.String%29>コンス トラクター、置換文字列を提供します。  
+-   任意の文字列で置き換えます。 <xref:System.Text.EncoderReplacementFallback.%23ctor%28System.String%29>コンストラクターを呼び出す場合は、置換後の文字列を指定します。  
   
- このクラスで使用する代替文字列を選択する場合は、文字列がのターゲットのエンコードでエンコードできます文字だけで構成されることを確認します。 それ以外の場合、再帰的なフォールバックの結果、原因となる、<xref:System.ArgumentException>します。  
+ このクラスで使用するフォールバック文字列を選択する場合は、文字列が、ターゲットエンコードでエンコードできる文字だけで構成されていることを確認してください。 それ以外の場合は、再帰フォールバックの<xref:System.ArgumentException>結果としてが発生します。  
   
- このクラスは、エンコーディングの変換エラーを処理するための別のフォールバック ストラテジを実装する 2 つの .NET Framework クラスのいずれかです。 その他のクラスは、<xref:System.Text.EncoderExceptionFallback>クラス、どのがスローされます、<xref:System.Text.EncoderFallbackException>に無効な文字が発生したとき。  
+ このクラスは、エンコード変換エラーを処理するためのさまざまなフォールバックストラテジを実装する2つの .NET Framework クラスのうちの1つです。 もう1つのクラス<xref:System.Text.EncoderExceptionFallback>はクラスであり、 <xref:System.Text.EncoderFallbackException>無効な文字が検出された場合にをスローします。  
   
    
   
 ## Examples  
- 次の例で、<xref:System.Text.EncoderReplacementFallback>クラス。  
+ クラスの<xref:System.Text.EncoderReplacementFallback>例を次に示します。  
   
  [!code-cpp[sys.txt.fallbackEncRpl#1](~/samples/snippets/cpp/VS_Snippets_CLR/sys.txt.fallbackEncRpl/cpp/fallEncRpl.cpp#1)]
  [!code-csharp[sys.txt.fallbackEncRpl#1](~/samples/snippets/csharp/VS_Snippets_CLR/sys.txt.fallbackEncRpl/cs/fallEncRpl.cs#1)]
@@ -66,7 +66,7 @@
     <altmember cref="T:System.Text.EncoderReplacementFallbackBuffer" />
     <altmember cref="Overload:System.Text.EncoderReplacementFallback.#ctor" />
     <altmember cref="P:System.Text.EncoderReplacementFallback.DefaultString" />
-    <related type="Article" href="~/docs/standard/base-types/character-encoding.md">エンコーディングの理解</related>
+    <related type="Article" href="~/docs/standard/base-types/character-encoding.md">エンコーディングについて</related>
   </Docs>
   <Members>
     <MemberGroup MemberName=".ctor">
@@ -112,7 +112,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定では、文字列はこの値に置換<xref:System.Text.EncoderReplacementFallback>オブジェクトは、"?"。  
+ 既定では、この<xref:System.Text.EncoderReplacementFallback>オブジェクトの値である置換文字列は "?" です。  
   
  ]]></format>
         </remarks>
@@ -157,9 +157,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `replacement`パラメーターがこの値である置換文字列を初期化します<xref:System.Text.EncoderReplacementFallback>オブジェクト。 アプリケーションを提供する必要があります、`replacement`ターゲット エンコードでエンコードできる文字のみが含まれる値。 それ以外の場合、再帰的なフォールバックの結果、原因となる、<xref:System.ArgumentException>します。 指定されたフォールバックなど、<xref:System.Text.ASCIIEncoding>オブジェクトはその文字自体できないため、有効な ASCII 文字の文字「ダイアログ」(U + 00BF) を含めることはできません。  
+ パラメーター `replacement`は、この<xref:System.Text.EncoderReplacementFallback>オブジェクトの値である置換文字列を初期化します。 アプリケーションでは、ターゲット`replacement`エンコーディングでエンコードできる文字のみを含む値を指定する必要があります。 それ以外の場合は、再帰フォールバックの<xref:System.ArgumentException>結果としてが発生します。 たとえば、 <xref:System.Text.ASCIIEncoding>オブジェクトに指定されたフォールバックには、文字 "" "(U + 00bf) を含めることはできません。これは、その文字自体が有効な ASCII 文字ではないためです。  
   
- このため、U+FFFD、最適フォールバックの文字列である結果としての<xref:System.Text.DecoderExceptionFallback>、通常、このクラスに最適ではありません。 また、null 文字 (u+0000) フォールバックの文字列では使用できません。  
+ このため、U + fffd はの<xref:System.Text.DecoderExceptionFallback>フォールバック文字列に適していますが、このクラスでは通常、この方法は適していません。 また、null 文字 (U + 0000) をフォールバック文字列で使用することはできません。  
   
  ]]></format>
         </remarks>
@@ -292,7 +292,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 値を<xref:System.Text.EncoderReplacementFallback>オブジェクトの値は、その<xref:System.Text.EncoderReplacementFallback.DefaultString%2A>プロパティ。  
+ <xref:System.Text.EncoderReplacementFallback>オブジェクトの値は、その<xref:System.Text.EncoderReplacementFallback.DefaultString%2A>プロパティの値です。  
   
  ]]></format>
         </remarks>
@@ -337,7 +337,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 値を<xref:System.Text.EncoderReplacementFallback>オブジェクトの値は、その<xref:System.Text.EncoderReplacementFallback.DefaultString%2A>プロパティ。  
+ <xref:System.Text.EncoderReplacementFallback>オブジェクトの値は、その<xref:System.Text.EncoderReplacementFallback.DefaultString%2A>プロパティの値です。  
   
  ]]></format>
         </remarks>
