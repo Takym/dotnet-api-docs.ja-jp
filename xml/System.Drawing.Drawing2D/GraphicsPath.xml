@@ -1,5 +1,5 @@
 <Type Name="GraphicsPath" FullName="System.Drawing.Drawing2D.GraphicsPath">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d76b4f131ed0fb365205bcfc0d72419e1798de9f" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63882205" /></Metadata><TypeSignature Language="C#" Value="public sealed class GraphicsPath : MarshalByRefObject, ICloneable, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="09ff9fdc49146379087c70b61a84e3348f410789" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69249738" /></Metadata><TypeSignature Language="C#" Value="public sealed class GraphicsPath : MarshalByRefObject, ICloneable, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit GraphicsPath extends System.MarshalByRefObject implements class System.ICloneable, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Drawing.Drawing2D.GraphicsPath" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class GraphicsPath&#xA;Inherits MarshalByRefObject&#xA;Implements ICloneable, IDisposable" />
@@ -34,19 +34,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションでは、図形の輪郭を描画し、図形の内側の塗りつぶし、クリッピング領域を作成するパスを使用します。 グラフィックス エンジンは、ワールド座標空間内のパスに幾何学的図形の座標を保持します。  
+ アプリケーションでは、パスを使用して図形のアウトラインを描画し、図形の内部を塗りつぶし、クリッピング領域を作成します。 グラフィックスエンジンは、ワールド座標空間におけるパス内の幾何図形の座標を維持します。  
   
- パスは、任意の数の図形 (サブパス) で構成される可能性があります。 各図は、接続されている直線と曲線、またはプリミティブの幾何学図形のシーケンスのいずれかで構成されます。 図形の開始点は、接続された直線と曲線のシーケンスの最初のポイントです。 終了ポイントは、シーケンスの最後の点です。 プリミティブの幾何学図形の開始と終了ポイントは、プリミティブの仕様によって定義されます。  
+ パスは、任意の数の図形 (サブパス) で構成できます。 各図は、接続された直線と曲線のシーケンス、またはジオメトリック形状のプリミティブで構成されています。 図の開始点は、接続された直線と曲線のシーケンスの最初のポイントです。 終了点は、シーケンスの最後のポイントです。 ジオメトリック形状プリミティブの開始点と終了点は、プリミティブ仕様によって定義されます。  
   
- 接続されている行のシーケンスから成る図と曲線 (開始と終了点を持つは、一致する場合があります) は、開いている図では、明示的に閉じられていない場合です。 使用して、図を明示的に閉じることができます、<xref:System.Drawing.Drawing2D.GraphicsPath.CloseFigure%2A>メソッドで、終了位置から開始点を直線で接続する現在の図を閉じます。 幾何学図形プリミティブから成る図は、閉じた図です。  
+ 接続された一連の線と曲線 (始点と終点が一致している可能性があります) で構成される図は、明示的に閉じていない限り、開いている図形です。 図形は、メソッドを使用して明示的<xref:System.Drawing.Drawing2D.GraphicsPath.CloseFigure%2A>に閉じることができます。このメソッドは、終了点から開始点までの直線を接続して現在の図形を閉じます。 ジオメトリック形状プリミティブで構成される図は、閉じられた図です。  
   
- いっぱいになるとクリッピングの目的 (を使用して、パスが表示される場合など、 <xref:System.Drawing.Graphics.FillPath%2A>)、すべての開いている図形が図の最初のポイントからその最後のポイントに行を追加で閉じられています。  
+ 塗りつぶしやクリッピングを行う目的で (たとえば、を使用して<xref:System.Drawing.Graphics.FillPath%2A>パスをレンダリングする場合)、図形の最初のポイントから最後のポイントまでの線を追加することで、すべての開いている図形を閉じます。  
   
- パスが作成されるとき、または図が閉じられたときに新しい図形が暗黙的に開始されます。 ときに明示的に新しい図で作成されて、<xref:System.Drawing.Drawing2D.GraphicsPath.StartFigure%2A>メソッドが呼び出されます。  
+ 新しい図は、パスが作成されたとき、または図形が閉じられたときに暗黙的に開始されます。 <xref:System.Drawing.Drawing2D.GraphicsPath.StartFigure%2A>メソッドが呼び出されると、新しい図形が明示的に作成されます。  
   
- プリミティブの幾何学図形をパスに追加されると、幾何学図形を含む図形を追加し、新しい図が暗黙的に開始します。 その結果は常に現在の図形のパスです。 直線と曲線がパスに追加されると、新しい行と接続されている行のシーケンスを形成する曲線と曲線の開始点に現在の図形の終了点を接続するため、必要に応じて、暗黙的な行が追加されます。  
+ ジオメトリック形状プリミティブがパスに追加されると、幾何学図形を含む図形が追加され、新しい図形も暗黙的に開始されます。 その結果、常に現在の図形がパスに存在することになります。 直線と曲線がパスに追加されると、現在の図形の終点を新しい直線と曲線の開始点に接続して、接続された直線と曲線のシーケンスを形成するために、必要に応じて暗黙的な線が追加されます。  
   
- 図では、開始点と終点の間の直線と曲線のセグメントのトレース方法を説明する方向があります。 方向は、直線と曲線を図に追加されるかがプリミティブのジオメトリ シェイプによって定義されている順序で定義されます。 方向は、クリップの塗りつぶしのパスの内部の判定に使用されます。  
+ 図形には、開始点と終了点の間の直線および曲線セグメントのトレース方法を記述する方向があります。 方向は、直線と曲線が図形に追加される順序で定義されるか、またはジオメトリック形状プリミティブによって定義されます。 方向は、クリッピングと塗りつぶしのパスの内部を決定するために使用されます。  
   
  ]]></format>
     </remarks>
@@ -302,22 +302,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 前の行または図内の曲線がある場合は、円弧の始点に前のセグメントのエンドポイントを接続する行が追加されます。  
+ 図に前の線または曲線がある場合は、前のセグメントのエンドポイントを弧の先頭に接続する線が追加されます。  
   
- 指定した四角形で範囲指定された楕円の境界に沿って、円弧がトレースされます。 円弧の開始点は、開始角度で度数で (0 度の角度) にある省略記号の x 軸から時計回りに測定するによって決定されます。 掃引角度で度数で開始点から時計回りに測定することでは、エンドポイントがある同様にします。 掃引角度が 360 度または-360 度より小さいよりも大きい場合は、円弧はちょうど 360 度または-360 度によってそれぞれします。  
+ 円弧は、指定された四角形で囲まれた楕円の境界に沿ってトレースされます。 円弧の開始点は、楕円の x 軸 (0 度の角度) から、開始角度の角度で時計回りに測定することによって決定されます。 また、このエンドポイントは、開始点から、スイープ角度の度数だけ時計回りに測定することによっても同じです。 スイープ角度が360°を超える場合、または-360 度より小さい場合、それぞれの弧は、厳密に360度または-360 度ずつスイープされます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   元の円弧が定義されているし、四角形を作成します。  
+-   円弧が定義されている四角形を作成します。  
   
--   パス、作成`myPath`です。  
+-   パスを作成し`myPath`ます。  
   
--   180 度楕円の円弧が 180 度を 0 度からスイープし、パスに追加しますを定義します。  
+-   0度から180度にスイープし、パスに付加する、180度の楕円弧を定義します。  
   
--   画面へのパスを描画します。  
+-   画面にパスを描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#1](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#1)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#1](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#1)]
@@ -364,9 +364,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 前の行または図内の曲線がある場合は、円弧の始点に前のセグメントのエンドポイントを接続する行が追加されます。  
+ 図に前の線または曲線がある場合は、前のセグメントのエンドポイントを弧の先頭に接続する線が追加されます。  
   
- 指定した四角形で範囲指定された楕円の境界に沿って、円弧がトレースされます。 円弧の開始点は、開始角度で度数で (0 度の角度) にある省略記号の x 軸から時計回りに測定するによって決定されます。 掃引角度で度数で開始点から時計回りに測定することでは、エンドポイントがある同様にします。 掃引角度が 360 度または-360 度より小さいよりも大きい場合は、円弧はちょうど 360 度または-360 度によってそれぞれします。  
+ 円弧は、指定された四角形で囲まれた楕円の境界に沿ってトレースされます。 円弧の開始点は、楕円の x 軸 (0 度の角度) から、開始角度の角度で時計回りに測定することによって決定されます。 また、このエンドポイントは、開始点から、スイープ角度の度数だけ時計回りに測定することによっても同じです。 スイープ角度が360°を超える場合、または-360 度より小さい場合、それぞれの弧は、厳密に360度または-360 度ずつスイープされます。  
   
    
   
@@ -420,9 +420,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 前の行または図内の曲線がある場合は、円弧の始点に前のセグメントのエンドポイントを接続する行が追加されます。  
+ 図に前の線または曲線がある場合は、前のセグメントのエンドポイントを弧の先頭に接続する線が追加されます。  
   
- 指定した四角形で範囲指定された楕円の境界に沿って、円弧がトレースされます。 円弧の開始点は、開始角度で度数で (0 度の角度) にある省略記号の x 軸から時計回りに測定するによって決定されます。 掃引角度で度数で開始点から時計回りに測定することでは、エンドポイントがある同様にします。 掃引角度が 360 度または-360 度より小さいよりも大きい場合は、円弧はちょうど 360 度または-360 度によってそれぞれします。  
+ 円弧は、指定された四角形で囲まれた楕円の境界に沿ってトレースされます。 円弧の開始点は、楕円の x 軸 (0 度の角度) から、開始角度の角度で時計回りに測定することによって決定されます。 また、このエンドポイントは、開始点から、スイープ角度の度数だけ時計回りに測定することによっても同じです。 スイープ角度が360°を超える場合、または-360 度より小さい場合、それぞれの弧は、厳密に360度または-360 度ずつスイープされます。  
   
    
   
@@ -476,9 +476,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 前の行または図内の曲線がある場合は、円弧の始点に前のセグメントのエンドポイントを接続する行が追加されます。  
+ 図に前の線または曲線がある場合は、前のセグメントのエンドポイントを弧の先頭に接続する線が追加されます。  
   
- 指定した四角形で範囲指定された楕円の境界に沿って、円弧がトレースされます。 円弧の開始点は、開始角度で度数で (0 度の角度) にある省略記号の x 軸から時計回りに測定するによって決定されます。 掃引角度で度数で開始点から時計回りに測定することでは、エンドポイントがある同様にします。 掃引角度が 360 度または-360 度より小さいよりも大きい場合は、円弧はちょうど 360 度または-360 度によってそれぞれします。  
+ 円弧は、指定された四角形で囲まれた楕円の境界に沿ってトレースされます。 円弧の開始点は、楕円の x 軸 (0 度の角度) から、開始角度の角度で時計回りに測定することによって決定されます。 また、このエンドポイントは、開始点から、スイープ角度の度数だけ時計回りに測定することによっても同じです。 スイープ角度が360°を超える場合、または-360 度より小さい場合、それぞれの弧は、厳密に360度または-360 度ずつスイープされます。  
   
    
   
@@ -537,9 +537,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 三次曲線は、制御点として、2 番目と 3 番目のポイントを使用して、4 番目のポイントに最初のポイントから構築されます。  
+ 2番目と3番目の点を制御点として使用することで、3番目の曲線を最初の点から4番目の点まで構築します。  
   
- 前の行や曲線セグメントの図には、行は三次曲線の開始位置を前のセグメントのエンドポイントの接続に追加されます。  
+ 図に前の線または曲線のセグメントがある場合は、前のセグメントのエンドポイントを3次曲線の開始点に接続する線が追加されます。  
   
    
   
@@ -589,9 +589,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 三次曲線は、制御点として、2 番目と 3 番目のポイントを使用して、4 番目のポイントに最初のポイントから構築されます。  
+ 2番目と3番目の点を制御点として使用することで、3番目の曲線を最初の点から4番目の点まで構築します。  
   
- 前の行や曲線セグメントの図には、行は三次曲線の開始位置を前のセグメントのエンドポイントの接続に追加されます。  
+ 図に前の線または曲線のセグメントがある場合は、前のセグメントのエンドポイントを3次曲線の開始点に接続する線が追加されます。  
   
    
   
@@ -649,22 +649,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 三次曲線は、制御点として、2 番目と 3 番目のポイントを使用して、4 番目のポイントに最初のポイントから構築されます。  
+ 2番目と3番目の点を制御点として使用することで、3番目の曲線を最初の点から4番目の点まで構築します。  
   
- 前の行や曲線セグメントの図には、行は三次曲線の開始位置を前のセグメントのエンドポイントの接続に追加されます。  
+ 図に前の線または曲線のセグメントがある場合は、前のセグメントのエンドポイントを3次曲線の開始点に接続する線が追加されます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
--   点 (50, 50) で定義された 3 次ベジエ曲線を追加します (70, 0)、(100, 120) と (150, 50) をパスにします。  
+-   ポイント (50、50)、(70、0)、(100、120)、および (150、50) によって定義された3次ベジエ曲線をパスに追加します。  
   
 -   曲線を閉じます。  
   
--   画面へのパスを描画します。  
+-   画面にパスを描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#2](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#2)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#2](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#2)]
@@ -721,9 +721,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 三次曲線は、制御点として、2 番目と 3 番目のポイントを使用して、4 番目のポイントに最初のポイントから構築されます。  
+ 2番目と3番目の点を制御点として使用することで、3番目の曲線を最初の点から4番目の点まで構築します。  
   
- 前の行や曲線セグメントの図には、行は三次曲線の開始位置を前のセグメントのエンドポイントの接続に追加されます。  
+ 図に前の線または曲線のセグメントがある場合は、前のセグメントのエンドポイントを3次曲線の開始点に接続する線が追加されます。  
   
    
   
@@ -782,20 +782,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `points`パラメーターは、接続された曲線の制御点とエンドポイントの配列を指定します。 4 番目の点への最初のポイントから最初の曲線が構築された、`points`制御点として、2 番目と 3 番目のポイントを使用して配列。 各後続曲線シーケンス内だけでなく、前の曲線のエンドポイントには 3 つの点必要があります: シーケンス内の次の 2 つのポイントは制御点、および 3 番目は追加の曲線のエンドポイント。  
+ パラメーター `points`は、接続された曲線のエンドポイントと制御点の配列を指定します。 最初の曲線は、2番目と3番目の点を`points`制御点として使用することで、配列内の最初の点から4番目の点まで構築されます。 前の曲線のエンドポイントに加えて、シーケンス内の後続の各曲線には、さらに3つの点が必要です。シーケンス内の次の2つの点は制御点で、3番目は追加された曲線のエンドポイントです。  
   
- 前の行または図内の曲線がある場合は、シーケンスの最初の三次曲線の開始点に前のセグメントのエンドポイントを接続する行が追加されます。  
+ 図に前の線または曲線がある場合は、前のセグメントのエンドポイントをシーケンスの最初の3次曲線の開始点に接続する線が追加されます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   (接続された 2 つのベジエ曲線を表す) の 7 つの点の配列を作成します。  
+-   7つのポイントの配列を作成します (2 つの接続されたベジエ曲線を表します)。  
   
--   パスを作成し、パスにする一連のベジエ曲線の点を追加します。  
+-   パスを作成し、一連のベジエ曲線点をパスに追加します。  
   
--   画面へのパスを描画します。  
+-   画面にパスを描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#3](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#3)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#3](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#3)]
@@ -838,14 +838,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `points`パラメーターは、接続された曲線の制御点とエンドポイントの配列を指定します。 4 番目の点への最初のポイントから最初の曲線が構築された、`points`制御点として、2 番目と 3 番目のポイントを使用して配列。 各後続曲線シーケンス内だけでなく、前の曲線のエンドポイントには 3 つの点必要があります: シーケンス内の次の 2 つのポイントは制御点、および 3 番目は追加の曲線のエンドポイント。  
+ パラメーター `points`は、接続された曲線のエンドポイントと制御点の配列を指定します。 最初の曲線は、2番目と3番目の点を`points`制御点として使用することで、配列内の最初の点から4番目の点まで構築されます。 前の曲線のエンドポイントに加えて、シーケンス内の後続の各曲線には、さらに3つの点が必要です。シーケンス内の次の2つの点は制御点で、3番目は追加された曲線のエンドポイントです。  
   
- 前の行または図内の曲線がある場合は、シーケンスの最初の三次曲線の開始点に前のセグメントのエンドポイントを接続する行が追加されます。  
+ 図に前の線または曲線がある場合は、前のセグメントのエンドポイントをシーケンスの最初の3次曲線の開始点に接続する線が追加されます。  
   
    
   
 ## Examples  
- 例を参照してください。  
+ 例については、次を参照してください。  
   
  <xref:System.Drawing.Drawing2D.GraphicsPath.AddBeziers%28System.Drawing.Point%5B%5D%29>  
   
@@ -895,7 +895,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。 場合、最初のポイントとの最後の点、`points`で配列が同じポイントではありません。 これら 2 つの点を結ぶ曲線が閉じられます。 このメソッドでは、張力値を設定することはできません、既定値は 0.5 に相当する値。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。 `points`配列内の最初の点と最後の点が同じでない場合、曲線は、これらの2つの点を結ぶことによって閉じられます。 このメソッドにテンション値を設定することはできません。既定値は0.5 に相当します。  
   
    
   
@@ -939,7 +939,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。 場合、最初のポイントとの最後の点、`points`で配列が同じポイントではありません。 これら 2 つの点を結ぶ曲線が閉じられます。 このメソッドでは、張力値を設定することはできません、既定値は 0.5 に相当する値。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。 `points`配列内の最初の点と最後の点が同じでない場合、曲線は、これらの2つの点を結ぶことによって閉じられます。 このメソッドにテンション値を設定することはできません。既定値は0.5 に相当します。  
   
    
   
@@ -985,20 +985,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。 場合、最初のポイントとの最後の点、`points`で配列が同じポイントではありません。 これら 2 つの点を結ぶ曲線が閉じられます。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。 `points`配列内の最初の点と最後の点が同じでない場合、曲線は、これらの2つの点を結ぶことによって閉じられます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   6 つのポイント (カーディナル スプラインを表す) の配列を作成します。  
+-   6つのポイントの配列を作成します (カーディナルスプラインを表します)。  
   
--   パスを作成し、エンドポイントから開始点をクローズ パスに閉じたカーディナル スプライン曲線を追加します。  
+-   パスを作成し、閉じたカーディナルスプライン曲線をパス (エンドポイントから開始点まで) に追加します。  
   
--   画面へのパスを描画します。  
+-   画面にパスを描画します。  
   
- 0.5 のテンションを使用することに注意してください。  
+ 0.5 のテンションが使用されていることに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#4)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#4)]
@@ -1043,7 +1043,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。 場合、最初のポイントとの最後の点、`points`で配列が同じポイントではありません。 これら 2 つの点を結ぶ曲線が閉じられます。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。 `points`配列内の最初の点と最後の点が同じでない場合、曲線は、これらの2つの点を結ぶことによって閉じられます。  
   
    
   
@@ -1096,7 +1096,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。  
   
    
   
@@ -1140,7 +1140,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。  
   
    
   
@@ -1186,7 +1186,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。  
   
    
   
@@ -1232,7 +1232,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。  
   
    
   
@@ -1282,22 +1282,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。  
   
- 曲線の開始位置で指定された配列で、`offset`パラメーターで指定された点 (セグメント) の数を含めた`numberOfSegments`。  
+ 曲線は、 `offset`パラメーターによって指定された配列内の位置から開始し、で`numberOfSegments`指定された点 (セグメント) の数を含みます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   4 つのポイント (カーディナル スプラインを表す) の配列を作成します。  
+-   4つの点の配列を作成します (カーディナルスプラインを表します)。  
   
--   パスを作成し、パスに曲線を追加点の配列を使用します。  
+-   パスを作成し、ポイントの配列を使用して、曲線をパスに追加します。  
   
 -   画面へのパスを描画します。  
   
- 配列は、4 つのポイントを保持しているときにのみに 3 つのセグメントへの呼び出しの 3 番目の引数で指定した数値である<xref:System.Drawing.Drawing2D.GraphicsPath.AddCurve%2A>します。  
+ 配列には4つのポイントが保持され<xref:System.Drawing.Drawing2D.GraphicsPath.AddCurve%2A>ますが、の呼び出しの3番目の引数で指定された数のセグメントのみが存在することに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#5](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#5)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#5](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#5)]
@@ -1346,9 +1346,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。  
   
- 曲線の開始位置で指定された配列で`offset`、(セグメント) で指定された点の数を含めた`numberOfSegments`します。  
+ 曲線は、によっ`offset`て指定された配列の点から開始し、で`numberOfSegments`指定された点 (セグメント) の数を含みます。  
   
    
   
@@ -1401,13 +1401,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
  楕円を定義する外接する四角形を作成します。  
   
- パスを作成し、パスに楕円を追加します。  
+ パスを作成し、楕円をパスに追加します。  
   
- 画面へのパスを描画します。  
+ 画面にパスを描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#6](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#6)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#6](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#6)]
@@ -1590,7 +1590,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、これの末尾に指定した点によって定義される線分を追加します。<xref:System.Drawing.Drawing2D.GraphicsPath>します。 前の行または内の曲線がある場合、<xref:System.Drawing.Drawing2D.GraphicsPath>パスの最後の点を新しい直線セグメントでは、最初のポイントに接続する直線セグメントを描画します。  
+ このメソッドは、指定した点によって定義される線分を<xref:System.Drawing.Drawing2D.GraphicsPath>、このの末尾に追加します。 前の行または曲線がに<xref:System.Drawing.Drawing2D.GraphicsPath>ある場合、パスの最後の点を新しい線分の最初の点に接続するための直線セグメントが描画されます。  
   
    
   
@@ -1636,7 +1636,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、これの末尾に指定した点によって定義される線分を追加します。<xref:System.Drawing.Drawing2D.GraphicsPath>します。 前の行または内の曲線がある場合、<xref:System.Drawing.Drawing2D.GraphicsPath>パスの最後の点を新しい直線セグメントでは、最初のポイントに接続する直線セグメントを描画します。  
+ このメソッドは、指定した点によって定義される線分を<xref:System.Drawing.Drawing2D.GraphicsPath>、このの末尾に追加します。 前の行または曲線がに<xref:System.Drawing.Drawing2D.GraphicsPath>ある場合、パスの最後の点を新しい線分の最初の点に接続するための直線セグメントが描画されます。  
   
    
   
@@ -1686,12 +1686,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、現在の図形の末尾に指定した点によって定義される線分を追加します。 前の行または内の曲線がある場合、<xref:System.Drawing.Drawing2D.GraphicsPath>パスの最後の点を新しい直線セグメントでは、最初のポイントに接続する直線セグメントを描画します。  
+ このメソッドは、指定した点によって定義される線分を現在の図形の末尾に追加します。 前の行または曲線がに<xref:System.Drawing.Drawing2D.GraphicsPath>ある場合、パスの最後の点を新しい線分の最初の点に接続するための直線セグメントが描画されます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、パスを作成し、三角形を形成する 3 つの行を追加します、画面に、パスを描画します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 このコードでは、パスを作成し、三角形を形成する3本の線を追加して、画面にパスを描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#7](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#7)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#7](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#7)]
@@ -1740,7 +1740,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、これの末尾に指定した点によって定義される線分を追加します。<xref:System.Drawing.Drawing2D.GraphicsPath>します。 前の行または内の曲線がある場合、<xref:System.Drawing.Drawing2D.GraphicsPath>パスの最後の点を新しい直線セグメントでは、最初のポイントに接続する直線セグメントを描画します。  
+ このメソッドは、指定した点によって定義される線分を<xref:System.Drawing.Drawing2D.GraphicsPath>、このの末尾に追加します。 前の行または曲線がに<xref:System.Drawing.Drawing2D.GraphicsPath>ある場合、パスの最後の点を新しい線分の最初の点に接続するための直線セグメントが描画されます。  
   
    
   
@@ -1793,20 +1793,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 前の行または図内の曲線がある場合は、前のセグメントの行の開始点のエンドポイントを接続する行が追加されます。 `points`パラメーターは、エンドポイントの配列を指定します。 最初の 2 つは、最初の行を指定します。 追加の各ポイントでは、線分の開始点とするは、前の行のエンドポイントのエンドポイントを指定します。  
+ 図に前の線または曲線がある場合は、前のセグメントのエンドポイントを直線の開始点として接続する線が追加されます。 パラメーター `points`は、エンドポイントの配列を指定します。 最初の2つは最初の行を指定します。 各追加ポイントは、開始位置が前の行のエンドポイントである線分のエンドポイントを指定します。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   三角形を表す 4 つのポイントの配列を作成します。  
+-   三角形を表す4つのポイントの配列を作成します。  
   
 -   パスを作成し、行の配列を追加します。  
   
--   画面へのパスを描画します。  
+-   画面にパスを描画します。  
   
- 最初の時点より後の各行が、エンドポイントとしての開始点と新しいポイントとして前のポイントを使用することに注意してください。  
+ 最初の点の後の各行が、始点として前の点を、エンドポイントとして新しいポイントを使用していることに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#8](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#8)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#8](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#8)]
@@ -1849,7 +1849,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 前の行または図内の曲線がある場合は、前のセグメントの行の開始点のエンドポイントを接続する行が追加されます。 `points`パラメーターは、エンドポイントの配列を指定します。 最初の 2 つは、最初の行を指定します。 追加の各ポイントでは、線分の開始点とするは、前の行のエンドポイントのエンドポイントを指定します。  
+ 図に前の線または曲線がある場合は、前のセグメントのエンドポイントを直線の開始点として接続する線が追加されます。 パラメーター `points`は、エンドポイントの配列を指定します。 最初の2つは最初の行を指定します。 各追加ポイントは、開始位置が前の行のエンドポイントである線分のエンドポイントを指定します。  
   
    
   
@@ -1895,13 +1895,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   右上側三角形と他にある上下の三角形は、1 つの 2 つのパスを作成します。  
+-   右上の三角形と上下左右の三角形の2つのパスを作成します。  
   
--   最初に、2 番目のパスを追加します。  
+-   最初のに2番目のパスを追加します。  
   
--   画面に結果のパスを描画します。  
+-   結果のパスを画面に描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#9](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#9)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#9](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#9)]
@@ -1957,7 +1957,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 扇形の形状は、楕円、部分的なアウトラインのエンドポイントと交差する 2 つの放射状行の部分的なアウトラインによって定義されます。 部分的なアウトラインから始まります`startAngle`(x 軸から時計回りに測定した) で終わります`startAngle`  + `sweepAngle`します。  
+ 円グラフは、楕円の部分的な輪郭と、部分的なアウトラインのエンドポイントと交差する2つの放射状線によって定義されます。 部分アウトラインはから始まり`startAngle` (x 軸から時計回りに測定)、で`startAngle`  +  `sweepAngle`終了します。  
   
    
   
@@ -2011,12 +2011,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 扇形の形状は、楕円、部分的なアウトラインのエンドポイントと交差する 2 つの放射状行の部分的なアウトラインによって定義されます。 部分的なアウトラインから始まります`startAngle`(x 軸から時計回りに測定した) で終わります`startAngle`  + `sweepAngle`します。  
+ 円グラフは、楕円の部分的な輪郭と、部分的なアウトラインのエンドポイントと交差する2つの放射状線によって定義されます。 部分アウトラインはから始まり`startAngle` (x 軸から時計回りに測定)、で`startAngle`  +  `sweepAngle`終了します。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 このコードは、グラフィックス パスを作成、扇形の形状を追加し、画面に、パスを描画します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 このコードでは、グラフィックスパスを作成し、円図形を追加して、画面にパスを描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#10](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#10)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#10](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#10)]
@@ -2069,7 +2069,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 扇形の形状は、楕円、部分的なアウトラインのエンドポイントと交差する 2 つの放射状行の部分的なアウトラインによって定義されます。 部分的なアウトラインから始まります`startAngle`(x 軸から時計回りに測定した) で終わります`startAngle`  + `sweepAngle`します。  
+ 円グラフは、楕円の部分的な輪郭と、部分的なアウトラインのエンドポイントと交差する2つの放射状線によって定義されます。 部分アウトラインはから始まり`startAngle` (x 軸から時計回りに測定)、で`startAngle`  +  `sweepAngle`終了します。  
   
    
   
@@ -2122,16 +2122,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 内のポイント、`points`配列が多角形の頂点を指定します。 配列の最初の点でない場合、最後のポイントと同じでは、これら 2 つのポイントが多角形を閉じるに接続されます。  
+ `points`配列内の点は、多角形の頂点を指定します。 配列内の最初の点が最後の点と異なる場合、これらの2つの点は多角形を閉じるために接続されます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   多角形を定義するポイントの配列を作成します。  
+-   多角形を定義する点の配列を作成します。  
   
--   パスを作成し、パスに多角形を追加します。  
+-   パスを作成し、そのパスに多角形を追加します。  
   
 -   画面へのパスを描画します。  
   
@@ -2176,7 +2176,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 内のポイント、`points`配列が多角形の頂点を指定します。 配列の最初の点でない場合、最後のポイントと同じでは、これら 2 つのポイントが多角形を閉じるに接続されます。  
+ `points`配列内の点は、多角形の頂点を指定します。 配列内の最初の点が最後の点と異なる場合、これらの2つの点は多角形を閉じるために接続されます。  
   
    
   
@@ -2229,11 +2229,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
--   四角形を作成し、パスに四角形を追加します。  
+-   四角形を作成し、そのパスに四角形を追加します。  
   
 -   画面へのパスを描画します。  
   
@@ -2326,11 +2326,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
--   四角形の配列を作成し、パスに四角形を追加します。  
+-   四角形の配列を作成し、そのパスに四角形を追加します。  
   
 -   画面へのパスを描画します。  
   
@@ -2433,7 +2433,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
@@ -2443,7 +2443,7 @@
   
 -   文字列を画面に描画します。  
   
- 2 つの重要な点があります。最初に、注意、`fontStyle`引数は整数としてキャストされます。 <xref:System.Drawing.Drawing2D.GraphicsPath.AddString%2A>メソッド以上が必要なこの 2 つため<xref:System.Drawing.FontStyle>目的のフォント スタイルを作成するメンバーを組み合わせることができます (この場合、<xref:System.Drawing.FontStyle.Italic>と<xref:System.Drawing.FontStyle.Underline>)。 次に、注意、<xref:System.Drawing.Graphics.FillPath%2A>メソッドを使用してなく<xref:System.Drawing.Graphics.DrawPath%2A>メソッド。 場合<xref:System.Drawing.Graphics.FillPath%2A>を使用する一方、ソリッド テキストが表示される場合<xref:System.Drawing.Graphics.DrawPath%2A>が使用すると、テキストは、アウトラインのスタイルになります。  
+ 重要な点が2つあります。最初に、 `fontStyle`引数が整数としてキャストされていることに注意してください。 このメソッドで<xref:System.Drawing.FontStyle>は、2つ以上のメンバーを組み合わせて目的のフォントスタイル<xref:System.Drawing.FontStyle.Italic> (この場合はと<xref:System.Drawing.FontStyle.Underline>) を作成できるようにする必要があります。 <xref:System.Drawing.Drawing2D.GraphicsPath.AddString%2A> 2番目の方法<xref:System.Drawing.Graphics.FillPath%2A>として、メソッドではなく、メソッドが使用されていることに注意してください。 <xref:System.Drawing.Graphics.DrawPath%2A> が<xref:System.Drawing.Graphics.FillPath%2A>使用されている場合は、純色<xref:System.Drawing.Graphics.DrawPath%2A>がレンダリングされます。一方、を使用すると、テキストはアウトラインスタイルになります。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#14](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#14)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#14](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#14)]
@@ -2630,22 +2630,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用して、<xref:System.Drawing.Drawing2D.GraphicsPath.SetMarkers%2A>で現在の位置マーカーを作成する方法、<xref:System.Drawing.Drawing2D.GraphicsPath>します。 使用して、<xref:System.Drawing.Drawing2D.GraphicsPathIterator.NextMarker%2A>パス内の既存のマーカーを反復処理するメソッド。  
+ の現在の位置<xref:System.Drawing.Drawing2D.GraphicsPath>にマーカーを作成するには、メソッドを使用します。<xref:System.Drawing.Drawing2D.GraphicsPath.SetMarkers%2A> パス内<xref:System.Drawing.Drawing2D.GraphicsPathIterator.NextMarker%2A>の既存のマーカーを反復処理するには、メソッドを使用します。  
   
- マーカーは、個別のサブパスのグループに使用されます。 1 つまたは複数のサブパスは、2 つのマーカーの間に含まれていることができます。  
+ マーカーは、サブパスのグループを区切るために使用されます。 2つのマーカーの間には、1つまたは複数のサブパスを含めることができます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
--   パスには、いくつかのオブジェクトを追加します。  
+-   パスに複数のオブジェクトを追加します。  
   
 -   パスにマーカーを追加します。  
   
--   パスからすべてのマーカーを消去します。  
+-   パスからすべてのマーカーを削除します。  
   
 -   画面へのパスを描画します。  
   
@@ -2691,19 +2691,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
--   複数の図形をパスに追加します。  
+-   パスに複数の図形を追加します。  
   
 -   画面へのパスを描画します。  
   
--   パスのコピーを複製します。  
+-   そのパスのコピーを複製します。  
   
 -   画面に新しいパスを描画します。  
   
- 注意して呼び出し、<xref:System.Drawing.Drawing2D.GraphicsPath.Clone%2A>メソッドとしてキャストする必要があります、<xref:System.Drawing.Drawing2D.GraphicsPath>します。  
+ メソッドの<xref:System.Drawing.Drawing2D.GraphicsPath.Clone%2A>呼び出しは、 <xref:System.Drawing.Drawing2D.GraphicsPath>としてキャストする必要があることに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#16](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#16)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#16](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#16)]
@@ -2743,11 +2743,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
--   いくつかの開いている図形をパスに追加します。  
+-   パスに複数の開いている数値を追加します。  
   
 -   パス内のすべての図形を閉じます。  
   
@@ -2791,7 +2791,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、新しいパスを作成し、図を開始、図を交差する 2 つの行を追加する三角形を形成する図を閉じて三角形を作成します。 パスはし、画面に描画されます。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 このコードでは、新しいパスを作成し、図を開始し、交差する2本の線を図に追加してから、図形を閉じて三角形を形成することで三角形を作成します。 次に、パスが画面に描画されます。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#18](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#18)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#18](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#18)]
@@ -2834,7 +2834,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す<xref:System.Drawing.Drawing2D.GraphicsPath.Dispose%2A>により、これによって使用されるリソース<xref:System.Drawing.Drawing2D.GraphicsPath>他の目的で再割り当てします。  
+ を<xref:System.Drawing.Drawing2D.GraphicsPath.Dispose%2A>呼び出すと、この<xref:System.Drawing.Drawing2D.GraphicsPath>によって使用されるリソースを他の目的で再割り当てできます。  
   
  ]]></format>
         </remarks>
@@ -3025,19 +3025,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   グラフィックス パスと平行移動行列を作成します。  
+-   グラフィックスパスと平行移動行列を作成します。  
   
--   4 つのポイントを使用して、パスに曲線を追加します。  
+-   4つの点を使用して曲線をパスに追加します。  
   
--   黒のペンを使用して、画面には、(曲線) のパスを描画します。  
+-   黒いペンを使用して、パス (曲線) を画面に描画します。  
   
--   10 ピクセル下曲線をシフトし、それを平坦化します。  
+-   曲線を10ピクセル下へシフトし、フラット化します。  
   
--   赤のペンを使用して、画面に曲線を描画します。  
+-   赤いペンを使用して、曲線を画面に描画します。  
   
- 赤の曲線が点を結ぶ線をフラット化されたことに注意してください。  
+ 赤い曲線には、点をつなぐ平坦な線が付いています。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#19](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#19)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#19](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#19)]
@@ -3092,32 +3092,32 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返される外接する四角形のサイズは、端点キャップ、ペンの幅、およびペン マイタ制限値の型は影響を受け、そのため、境界付けられたパスに「疎合わせる」を生成します。 おおよその数式: ペンの幅で初期の外接する四角形を拡大しても、この結果がマイタ制限値といくつか追加の余白の終端のキャップの許可を乗算します。  
+ 返された外接する四角形のサイズは、端のキャップ、ペンの幅、およびペンのマイタ制限の種類によって影響を受けます。そのため、境界パスに "緩い収まり" が生成されます。 おおよその式は次のようになります。初期の外接する四角形は、ペンの幅によって拡大され、この結果にはマイタカットの制限が掛けられ、さらに、終端のキャップを使用できるように追加の余白が乗算されます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   グラフィックス パスを作成します。  
+-   グラフィックスパスを作成します。  
   
 -   楕円 (円) を追加し、画面に描画します。  
   
--   呼び出しで円に外接する四角形を取得します。<xref:System.Drawing.Drawing2D.GraphicsPath.GetBounds%2A>し、画面に四角形を描画します。  
+-   を<xref:System.Drawing.Drawing2D.GraphicsPath.GetBounds%2A>呼び出して円の外接する四角形を取得し、画面に四角形を描画します。  
   
--   2 番目のグラフィックス パスを作成します。  
+-   2番目のグラフィックスパスを作成します。  
   
--   円を追加し、幅 10 へのパスを拡大します。  
+-   円を追加し、パスの幅を10に拡大します。  
   
 -   画面へのパスを描画します。  
   
--   2 番目の円の外接する四角形を取得します。  
+-   2番目の円の外接する四角形を取得します。  
   
--   画面に外接する四角形を描画します。  
+-   外接する四角形を画面に描画します。  
   
--   ダイアログ ボックスで、四角形のサイズを表示します。  
+-   ダイアログボックスに四角形のサイズを表示します。  
   
- 右側の外接する四角形が (行の追加の幅のアカウント) に大きいことに注意してください。  
+ 右側の外接する四角形が大きいことに注意してください (線の追加の幅を考慮してください)。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#20](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#20)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#20](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#20)]
@@ -3165,7 +3165,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返される外接する四角形のサイズは、端点キャップ、ペンの幅、およびペン マイタ制限値の型は影響を受け、そのため、境界付けられたパスに「疎合わせる」を生成します。 おおよその数式: ペンの幅で初期の外接する四角形を拡大しても、この結果がマイタ制限値といくつか追加の余白の終端のキャップの許可を乗算します。  
+ 返された外接する四角形のサイズは、端のキャップ、ペンの幅、およびペンのマイタ制限の種類によって影響を受けます。そのため、境界パスに "緩い収まり" が生成されます。 おおよその式は次のようになります。初期の外接する四角形は、ペンの幅によって拡大され、この結果にはマイタカットの制限が掛けられ、さらに、終端のキャップを使用できるように追加の余白が乗算されます。  
   
    
   
@@ -3211,7 +3211,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返される外接する四角形のサイズは、端点キャップ、ペンの幅、およびペン マイタ制限値の型は影響を受け、そのため、境界付けられたパスに「疎合わせる」を生成します。 おおよその数式: ペンの幅で初期の外接する四角形を拡大しても、この結果がマイタ制限値といくつか追加の余白の終端のキャップの許可を乗算します。  
+ 返された外接する四角形のサイズは、端のキャップ、ペンの幅、およびペンのマイタ制限の種類によって影響を受けます。そのため、境界パスに "緩い収まり" が生成されます。 おおよその式は次のようになります。初期の外接する四角形は、ペンの幅によって拡大され、この結果にはマイタカットの制限が掛けられ、さらに、終端のキャップを使用できるように追加の余白が乗算されます。  
   
    
   
@@ -3253,7 +3253,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、パスを作成し、パスに行を追加、パスの最後の点を取得します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 このコードはパスを作成し、パスに行を追加して、パスの最後の点を取得します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#21](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#21)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#21](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#21)]
@@ -3312,7 +3312,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをテストするかどうかは、指定されたパスのアウトラインが指定したポイントに表示するにはレンダリングを参照してください。  
+ このメソッドは、指定されたパスのアウトラインが、指定したポイントに表示されるかどうかをテストします。  
   
    
   
@@ -3363,7 +3363,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをテストするかどうかは、指定されたパスのアウトラインが指定したポイントに表示するにはレンダリングを参照してください。  
+ このメソッドは、指定されたパスのアウトラインが、指定したポイントに表示されるかどうかをテストします。  
   
    
   
@@ -3411,7 +3411,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをテストするかどうかは、指定されたパスのアウトラインが指定したポイントに表示するにはレンダリングを参照してください。 テストする点の座標は、ワールド座標で与えられます。 変換行列`graphics`可視性をテストする前に一時的に適用されます。  
+ このメソッドは、指定されたパスのアウトラインが、指定したポイントに表示されるかどうかをテストします。 テストする点の座標は、ワールド座標で指定します。 の`graphics`変換行列は、可視性をテストする前に一時的に適用されます。  
   
    
   
@@ -3459,7 +3459,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをテストするかどうかは、指定されたパスのアウトラインが指定したポイントに表示するにはレンダリングを参照してください。 テストする点の座標は、ワールド座標で与えられます。 変換行列`graphics`可視性をテストする前に一時的に適用されます。  
+ このメソッドは、指定されたパスのアウトラインが、指定したポイントに表示されるかどうかをテストします。 テストする点の座標は、ワールド座標で指定します。 の`graphics`変換行列は、可視性をテストする前に一時的に適用されます。  
   
    
   
@@ -3507,7 +3507,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをテストするかどうかは、指定されたパスのアウトラインが指定したポイントに表示するにはレンダリングを参照してください。  
+ このメソッドは、指定されたパスのアウトラインが、指定したポイントに表示されるかどうかをテストします。  
   
    
   
@@ -3555,7 +3555,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをテストするかどうかは、指定されたパスのアウトラインが指定したポイントに表示するにはレンダリングを参照してください。  
+ このメソッドは、指定されたパスのアウトラインが、指定したポイントに表示されるかどうかをテストします。  
   
    
   
@@ -3605,22 +3605,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをテストするかどうかは、指定されたパスのアウトラインが指定したポイントに表示するにはレンダリングを参照してください。 テストする点の座標は、ワールド座標で与えられます。 変換行列`graphics`可視性をテストする前に一時的に適用されます。  
+ このメソッドは、指定されたパスのアウトラインが、指定したポイントに表示されるかどうかをテストします。 テストする点の座標は、ワールド座標で指定します。 の`graphics`変換行列は、可視性をテストする前に一時的に適用されます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントが必要`e`です。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
 -   パスに四角形を追加します。  
   
--   ワイド ペンを作成し、(わかりやすい例を作成する) ためのペンを使用して、パスを拡大  
+-   ワイドペンを作成し、そのペンでパスを拡大します (例をわかりやすくするため)。  
   
--   呼び出して四角形の辺の 1 つ () 内にあるそのかどうかに表示する点 (100, 50) をテスト<xref:System.Drawing.Drawing2D.GraphicsPath.IsOutlineVisible%2A>します。  
+-   ポイント (100, 50) をテストして、を呼び出す<xref:System.Drawing.Drawing2D.GraphicsPath.IsOutlineVisible%2A>ことにより、四角形のいずれかの境界内 (の下) にあるかどうかを確認します。  
   
- (この場合、true の場合)、メッセージ ボックスに、結果が表示されます。 つまり、エッジはその点の上に表示されます。  
+ 結果はメッセージボックス (この場合は true) に表示されます。 言い換えると、そのポイントの上にエッジがレンダリングされます。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#22](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#22)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#22](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#22)]
@@ -3669,7 +3669,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドをテストするかどうかは、指定されたパスのアウトラインが指定したポイントに表示するにはレンダリングを参照してください。 テストする点の座標は、ワールド座標で与えられます。 変換行列、`graphics`パラメーターは可視性をテストする前に一時的に適用します。  
+ このメソッドは、指定されたパスのアウトラインが、指定したポイントに表示されるかどうかをテストします。 テストする点の座標は、ワールド座標で指定します。 `graphics`パラメーターの変換行列は、可視性をテストする前に一時的に適用されます。  
   
    
   
@@ -3813,7 +3813,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- テストする点の座標は、ワールド座標で与えられます。 変換行列、`graphics`パラメーターは可視性をテストする前に一時的に適用します。  
+ テストする点の座標は、ワールド座標で指定します。 `graphics`パラメーターの変換行列は、可視性をテストする前に一時的に適用されます。  
   
    
   
@@ -3859,7 +3859,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- テストする点の座標は、ワールド座標で与えられます。 変換行列、`graphics`パラメーターは可視性をテストする前に一時的に適用します。  
+ テストする点の座標は、ワールド座標で指定します。 `graphics`パラメーターの変換行列は、可視性をテストする前に一時的に適用されます。  
   
    
   
@@ -3991,18 +3991,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- テストする点の座標は、ワールド座標で与えられます。 変換行列`graphics`可視性をテストする前に一時的に適用されます。  
+ テストする点の座標は、ワールド座標で指定します。 の`graphics`変換行列は、可視性をテストする前に一時的に適用されます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   パスを作成し、パスに楕円を追加します。  
+-   パスを作成し、そのパスに楕円を追加します。  
   
--   指定した点がパス内に含まれているかどうかをテストします。  
+-   指定したポイントがパス内に含まれているかどうかをテストします。  
   
--   ダイアログ ボックスで、結果を表示します。  
+-   ダイアログボックスに結果を表示します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#23](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#23)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#23](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#23)]
@@ -4049,7 +4049,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- テストする点の座標は、ワールド座標で与えられます。 変換行列、`graphics`パラメーターは可視性をテストする前に一時的に適用します。  
+ テストする点の座標は、ワールド座標で指定します。 `graphics`パラメーターの変換行列は、可視性をテストする前に一時的に適用されます。  
   
    
   
@@ -4153,16 +4153,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって返されたバイトの配列、<xref:System.Drawing.Drawing2D.GraphicsPath.PathTypes%2A>プロパティのパス ポイントの種類とデータ ポイントのフラグを指定します。 ポイントごとに、ビット 0 ~ 2 は、ポイントの種類を指定し、ビット 3 ~ 7 のポイントの属性を指定するフラグのセットを保持します。 次の表は、使用可能な値とその意味を示します。  
+ <xref:System.Drawing.Drawing2D.GraphicsPath.PathTypes%2A>プロパティによって返されるバイト配列は、パス内のデータポイントのポイントの種類とフラグを指定します。 各ポイントについて、ビット 0 ~ 2 はポイントの種類を示し、ビット 3 ~ 7 はポイントの属性を指定するフラグのセットを保持します。 次の表に、使用可能な値とその意味を示します。  
   
 |[値]|説明|  
 |-----------|-------------|  
-|0|ポイントが、図の先頭であることを示します。|  
-|1|ポイントが、行の 2 つのエンドポイントのいずれかであることを示します。|  
-|3|ポイントが、3 次ベジエ スプラインのエンドポイントまたはコントロール ポイントであることを示します。|  
-|0x7|次の 3 つの下位のビットは、ポイントの種類を示すを除くすべてのビットをマスクします。|  
-|0x20|点のマーカーでを指定します。|  
-|0x80|点が閉じているサブパス (図) の最後の点であることを指定します。|  
+|0|ポイントが図形の先頭であることを示します。|  
+|1|ポイントが直線の2つのエンドポイントのいずれかであることを示します。|  
+|3|ポイントが3次ベジエスプラインのエンドポイントまたは制御点であることを示します。|  
+|0x7|ポイントの種類を示す3つの下位ビットを除くすべてのビットをマスクします。|  
+|0x20|ポイントがマーカーであることを指定します。|  
+|0x80|ポイントが、閉じたサブパスの最後のポイントであることを指定します (図)。|  
   
  ]]></format>
         </remarks>
@@ -4227,21 +4227,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
--   これには、複数のプリミティブを追加します。  
+-   複数のプリミティブを追加します。  
   
--   パスのポイントの配列を画面に描画します。  
+-   パスのポイント配列を画面に描画します。  
   
 -   パスを空の状態にリセットします。  
   
--   再 (存在する) 場合は、ポイント配列を取得します。  
+-   ポイント配列 (存在する場合) を再度取得します。  
   
 -   配列を画面に描画します。  
   
- リセットの呼び出しに続いて配列見つからないことに注意してください。  
+ Reset 呼び出しの後に配列が検出されないことに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#24](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#24)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#24](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#24)]
@@ -4281,15 +4281,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   パスを作成し、パスに複数のプリミティブを追加します。  
+-   パスを作成し、複数のプリミティブをパスに追加します。  
   
--   パスのポイントの配列を画面に描画します。  
+-   パスのポイント配列を画面に描画します。  
   
 -   反転された点の配列を画面に描画します。  
   
- ポイントの 2 つ目のリストが逆の順序で、最初からのものに注目してください。  
+ 2番目の点の一覧は、最初の点から逆順になっています。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#25](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#25)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#25](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#25)]
@@ -4329,14 +4329,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パスのセクションを区切るために使用するパスにマーカーを作成します。 使用することができますし、<xref:System.Drawing.Drawing2D.GraphicsPathIterator.NextMarker%2A>パス内のマーカーを反復処理するメソッド。  
+ このメソッドは、パスのセクションを区切るために使用できるマーカーをパスに作成します。 その後、 <xref:System.Drawing.Drawing2D.GraphicsPathIterator.NextMarker%2A>メソッドを使用して、パス内のマーカーを反復処理できます。  
   
- マーカーは、個別のサブパスのグループに使用されます。 1 つまたは複数のサブパスは、パス内の 2 つのマーカーの間に含まれていることができます。  
+ マーカーは、サブパスのグループを区切るために使用されます。 パス内の2つのマーカーの間に1つ以上のサブパスを含めることができます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、パスを作成し、マーカーで区切られたパスに複数のプリミティブを追加しますと、画面にパスを描画します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 このコードはパスを作成し、複数のプリミティブをパスに追加してマーカーで区切り、パスを画面に描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#26](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#26)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#26](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#26)]
@@ -4376,22 +4376,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーは、必要な場合、元のポイントを保持する必要があります。 元の点が内部的に 3 次ベジエの制御点を変換、そのため、元の点を返すためのメカニズムはありません。  
+ ユーザーは、必要に応じて元のポイントを保持する必要があります。 元の点は、内部的に3次ベジエコントロールポイントに変換されるため、元の点を返す機構はありません。  
   
- このメソッドは、パスに新しいサブパスを開始します。 セクションにパスを分離し、使用することはサブパス、<xref:System.Drawing.Drawing2D.GraphicsPathIterator>サブパスを反復処理するクラス。  
+ このメソッドは、パス内の新しいサブパスを開始します。 サブパスを使用すると、パスをセクションに分割<xref:System.Drawing.Drawing2D.GraphicsPathIterator>し、クラスを使用してサブパスを反復処理することができます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成します。  
   
--   2 つの数値のセットを追加します。 図の最初のセットは、2 つの図に 4 つのプリミティブを結合します。 2 番目の数値のセットにまとめて同じ 4 つのプリミティブ (y 軸がオフセットされる) が 3 つの数値。  
+-   2つの数値のセットを追加します。 最初の一連の図形は、4つのプリミティブを2つの図形に結合します。 2番目の数値のセットは、同じ4つのプリミティブ (y 軸のオフセットである点を除く) を3つの数値に結合します。  
   
--   画面には、すべての図形を描画します。  
+-   すべての図形を画面に描画します。  
   
- 2 つの数値のセットの表示の違いに注意してください。  
+ 2つの数値セットの間の外観の違いに注目してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#27](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#27)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#27](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#27)]
@@ -4433,22 +4433,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 変換できる拡大縮小、変換、回転、または傾斜、<xref:System.Drawing.Drawing2D.GraphicsPath>します。  
+ 変換では、の<xref:System.Drawing.Drawing2D.GraphicsPath>スケール、平行移動、回転、または傾斜を行うことができます。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   パスを作成し、パスに楕円を追加します。  
+-   パスを作成し、そのパスに楕円を追加します。  
   
 -   画面へのパスを描画します。  
   
--   X 軸方向にパス 100 単位に変換する変換行列を作成します。  
+-   X 軸方向のパス100単位を平行移動する変換行列を作成します。  
   
--   変換されたパスは、画面に描画します。  
+-   変換されたパスを画面に描画します。  
   
- 黒で元の楕円が描画され、変換後の楕円が赤で描画されることに注意してください。  
+ 元の楕円が黒で描画され、変換された楕円が赤で描画されることに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#28](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#28)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#28](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#28)]
@@ -4649,15 +4649,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   パスを作成し、パスに四角形を追加します。  
   
--   黒の画面には、その四角形を描画します。  
+-   黒い画面に四角形を描画します。  
   
--   ワープ遠近ワープでは、パスを使用します。  
+-   パースペクティブワープでパスを変形します。  
   
--   赤の画面にゆがみ四角形の (パス) を描画します。  
+-   画面のワープ四角形 (パス) を赤で描画します。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#29](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#29)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#29](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#29)]
@@ -4708,7 +4708,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、これで、元の行のアウトラインを作成します。 <xref:System.Drawing.Drawing2D.GraphicsPath>、既存の行と新しいアウトラインの間の距離の幅を等しく、<xref:System.Drawing.Pen>への呼び出しで使用される<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>します。 使用する必要があります線間のスペースを入力する場合、<xref:System.Drawing.Graphics.FillPath%2A>ではなく、<xref:System.Drawing.Graphics.DrawPath%2A>します。  
+ このメソッドは、この<xref:System.Drawing.Drawing2D.GraphicsPath>内の元の行の周りにあるアウトラインを作成し<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>ます。既存の線と新しいアウトラインは、の呼び出しで<xref:System.Drawing.Pen>使用されるの幅と同じになります。 行の間にスペースを挿入する場合は、 <xref:System.Drawing.Graphics.FillPath%2A>ではなく<xref:System.Drawing.Graphics.DrawPath%2A>を使用する必要があります。  
   
    
   
@@ -4753,7 +4753,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、これで、元の行のアウトラインを作成します。 <xref:System.Drawing.Drawing2D.GraphicsPath>、既存の行と新しいアウトラインの間の距離の幅を等しく、<xref:System.Drawing.Pen>への呼び出しで使用される<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>します。 使用する必要があります線間のスペースを入力する場合、<xref:System.Drawing.Graphics.FillPath%2A>ではなく、<xref:System.Drawing.Graphics.DrawPath%2A>します。  
+ このメソッドは、この<xref:System.Drawing.Drawing2D.GraphicsPath>内の元の行の周りにあるアウトラインを作成し<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>ます。既存の線と新しいアウトラインは、の呼び出しで<xref:System.Drawing.Pen>使用されるの幅と同じになります。 行の間にスペースを挿入する場合は、 <xref:System.Drawing.Graphics.FillPath%2A>ではなく<xref:System.Drawing.Graphics.DrawPath%2A>を使用する必要があります。  
   
    
   
@@ -4800,22 +4800,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、これで、元の行のアウトラインを作成します。 <xref:System.Drawing.Drawing2D.GraphicsPath>、既存の行と新しいアウトラインの間の距離の幅を等しく、<xref:System.Drawing.Pen>への呼び出しで使用される<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>します。 使用する必要があります線間のスペースを入力する場合、<xref:System.Drawing.Graphics.FillPath%2A>ではなく、<xref:System.Drawing.Graphics.DrawPath%2A>します。  
+ このメソッドは、この<xref:System.Drawing.Drawing2D.GraphicsPath>内の元の行の周りにあるアウトラインを作成し<xref:System.Drawing.Drawing2D.GraphicsPath.Widen%2A>ます。既存の線と新しいアウトラインは、の呼び出しで<xref:System.Drawing.Pen>使用されるの幅と同じになります。 行の間にスペースを挿入する場合は、 <xref:System.Drawing.Graphics.FillPath%2A>ではなく<xref:System.Drawing.Graphics.DrawPath%2A>を使用する必要があります。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Form.OnPaint%2A>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Form.OnPaint%2A>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   パスを作成し、2 つの楕円をパスに追加します。  
+-   パスを作成し、2つの省略記号をパスに追加します。  
   
--   黒でパスを描画します。  
+-   パスを黒で描画します。  
   
--   パスの幅が広がります。  
+-   パスを拡大します。  
   
 -   パスを赤で描画します。  
   
- 2 番目のレンダリングを使用することを確認<xref:System.Drawing.Graphics.FillPath%2A>の代わりに<xref:System.Drawing.Graphics.DrawPath%2A>、レンダリングされた図持ちますアウトラインを入力します。  
+ 2番目のレンダリングで<xref:System.Drawing.Graphics.FillPath%2A>は、 <xref:System.Drawing.Graphics.DrawPath%2A>の代わりにが使用されるため、描画された図形にはアウトラインが塗りつぶされます。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#30](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CPP/form1.cpp#30)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicGraphicsPathExamples#30](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicGraphicsPathExamples/CS/form1.cs#30)]

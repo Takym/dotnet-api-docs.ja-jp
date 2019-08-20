@@ -1,5 +1,5 @@
 <Type Name="Clock" FullName="System.Windows.Media.Animation.Clock">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e66f738243341b972df8bd312909009691b91c73" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58719237" /></Metadata><TypeSignature Language="C#" Value="public class Clock : System.Windows.Threading.DispatcherObject" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e80d3b2ed065032c63a97c07659d4cae66335fcc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69165606" /></Metadata><TypeSignature Language="C#" Value="public class Clock : System.Windows.Threading.DispatcherObject" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Clock extends System.Windows.Threading.DispatcherObject" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Media.Animation.Clock" />
   <TypeSignature Language="VB.NET" Value="Public Class Clock&#xA;Inherits DispatcherObject" />
@@ -20,22 +20,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A <xref:System.Windows.Media.Animation.Timeline>、単独では実際に何も以外の時間のセグメントについて説明します。 タイムラインの<xref:System.Windows.Media.Animation.Clock>実際の処理を行うオブジェクト: タイムラインのタイミングに関連する実行時の状態を保持します。  
+ 自体<xref:System.Windows.Media.Animation.Timeline>では、時間のセグメントを記述する以外に、実際には何も実行しません。 これは、実際の<xref:System.Windows.Media.Animation.Clock>作業を行うタイムラインのオブジェクトです。タイムラインのタイミングに関連する実行時の状態を保持します。  
   
- ほとんどの場合は、タイムラインに対して、クロックが自動的に作成します。 使用してアニメーション化するときに、<xref:System.Windows.Media.Animation.Storyboard>または<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%2A>メソッド、クロックが自動的に、タイムラインとアニメーションの作成し、対象のプロパティに適用します。 たとえば、「[方法:ストーリー ボードを使用してプロパティをアニメーション化する](~/docs/framework/wpf/graphics-multimedia/how-to-animate-a-property-by-using-a-storyboard.md)と[方法。ストーリー ボードを使用せずにプロパティをアニメーション化する](~/docs/framework/wpf/graphics-multimedia/how-to-animate-a-property-without-using-a-storyboard.md)します。  
+ ほとんどの場合、タイムラインに対してクロックが自動的に作成されます。 <xref:System.Windows.Media.Animation.Storyboard> また<xref:System.Windows.Media.Animation.Animatable.BeginAnimation%2A>はメソッドを使用してアニメーションを行うと、タイムラインとアニメーションに対して時計が自動的に作成され、対象のプロパティに適用されます。 たとえば、「[方法:ストーリーボード](~/docs/framework/wpf/graphics-multimedia/how-to-animate-a-property-by-using-a-storyboard.md)を使用してプロパティを[アニメーション化し、次の操作を行います。ストーリーボード](~/docs/framework/wpf/graphics-multimedia/how-to-animate-a-property-without-using-a-storyboard.md)を使用せずにプロパティをアニメーション化します。  
   
- 作成することも、<xref:System.Windows.Media.Animation.Clock>を使用して明示的に、<xref:System.Windows.Media.Animation.Timeline.CreateClock%2A>メソッド。 多数の類似のオブジェクトをアニメーション化など、負荷の高いシナリオで管理独自<xref:System.Windows.Media.Animation.Clock>使用はパフォーマンス上の利点を提供できます。  
+ メソッドを使用して<xref:System.Windows.Media.Animation.Clock>を明示的に作成することもできます。 <xref:System.Windows.Media.Animation.Timeline.CreateClock%2A> 多数の類似オブジェクトをアニメーション化するなど、パフォーマンスを集中的に使用するシナリオで<xref:System.Windows.Media.Animation.Clock>は、独自の使用を管理することで、パフォーマンス上のメリットが得られます。  
   
- クロックはツリーの構造に合ったに並べ、<xref:System.Windows.Media.Animation.Timeline>オブジェクトのツリーから作成されます。 (一時停止、再開、停止、およびなど)、このようなタイミング ツリーのルート クロックを対話的に操作できることができますを取得してその<xref:System.Windows.Media.Animation.Clock.Controller%2A>します。 非ルート クロックを直接制御できません。  
+ クロックは、作成元の<xref:System.Windows.Media.Animation.Timeline>オブジェクトツリーの構造と一致するツリーに配置されます。 このようなタイミングツリーのルートクロックは、を取得<xref:System.Windows.Media.Animation.Clock.Controller%2A>することによって、対話的に操作 (一時停止、再開、停止など) できます。 非ルートクロックを直接制御することはできません。  
   
- いったん作成されると、時計を変更できません (ただし、操作することができます)。  
+ 作成された時計は変更できません (操作することはできます)。  
   
-## <a name="using-a-timeline-as-a-timer"></a>タイムラインを使用して、タイマーとして  
- タイムラインのクロックは、関連付けられているイベント ハンドラーがある場合にのみ実行または (の場合、<xref:System.Windows.Media.Animation.AnimationClock>オブジェクト) のプロパティに関連付けられています。 この理由 (および他のユーザー)、これは使用しないで使用すること、<xref:System.Windows.Media.Animation.Timeline>タイマーとして。  
+## <a name="using-a-timeline-as-a-timer"></a>タイムラインをタイマーとして使用する  
+ タイムラインのクロックは、関連付けられているイベントハンドラーがある場合、または ( <xref:System.Windows.Media.Animation.AnimationClock>オブジェクトの場合) プロパティに関連付けられている場合にのみ実行されます。 そのため、を<xref:System.Windows.Media.Animation.Timeline>タイマーとして使用することはお勧めしません。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>派生クラスで実装する必要があります<see cref="M:System.Windows.Media.Animation.Clock.GetCurrentTimeCore" />このクロックの時間の流れを変更する場合。 派生クラスは、クロックが繰り返されますをスキップします、シーク、開始、一時停止、再開すると、または停止時にオーバーライドすることで、追加の作業を行う可能、 <see cref="M:System.Windows.Media.Animation.Clock.DiscontinuousTimeMovement" />、 <see cref="M:System.Windows.Media.Animation.Clock.SpeedChanged" />、および<see cref="M:System.Windows.Media.Animation.Clock.Stopped" />メソッド。</para></block>
+    <block subset="none" type="overrides"><para>このクロックの時間<see cref="M:System.Windows.Media.Animation.Clock.GetCurrentTimeCore" />フローを変更する場合は、派生クラスにを実装する必要があります。 <see cref="M:System.Windows.Media.Animation.Clock.DiscontinuousTimeMovement" /> 、<see cref="M:System.Windows.Media.Animation.Clock.SpeedChanged" />、および<see cref="M:System.Windows.Media.Animation.Clock.Stopped" />の各メソッドをオーバーライドすることによって、クロックの繰り返し、スキップ、シーク、開始、一時停止、再開、または停止時に、追加の作業を行うために派生クラスを作成できます。</para></block>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -81,9 +81,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このクロックがクロック ツリーのルート クロックである場合は、(を繰り返しを含む)、アクティブな期間の末尾に達するし、そのすべての子はそれぞれのアクティブ期間の末尾に到達した後に再生が完了します。 このクロックが子クロックである場合は、再生が属するに達すると、クロック ツリーのルート クロックのアクティブな継続時間とそのすべての子クロックの終了したら、再生が完了したと見なされます。  
+ このクロックがクロックツリーのルートクロックである場合、アクティブな継続時間 (繰り返しを含む) の最後に到達し、すべての子がアクティブな期間の終了に達した後に再生が完了します。 このクロックが子クロックの場合は、そのクロックツリーが属するクロックツリーのルートクロックがアクティブな期間の終わりに達し、すべての子クロックが再生を終了したときに、再生が完全に完了したと見なされます。  
   
- クロックを停止、completed イベントは発生しませんが、塗りつぶし期間に進めるとは。  
+ クロックを停止しても完了イベントはトリガーされませんが、塗りつぶし期間に進められます。  
   
  ]]></format>
         </remarks>
@@ -112,7 +112,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ルート クロックのみを対話的に制御できます。  
+ 対話的に制御できるのは、ルートクロックだけです。  
   
  ]]></format>
         </remarks>
@@ -175,9 +175,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一時停止、再開、反転、加速、減速する場合に、シーク、停止、または時計を変更するの対話型を使用して高速化、<xref:System.Windows.Media.Animation.ClockController>このイベントをトリガーします。  
+ を使用してクロックの対話速度を一時停止、再開、逆、加速、減速、シーク、停止<xref:System.Windows.Media.Animation.ClockController> 、または変更すると、このイベントがトリガーされます。  
   
- このイベントが発生しますが、ときに、<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A>プロパティが変更されたプロパティは、必ずしもを無効になります。  
+ このイベントは<xref:System.Windows.Media.Animation.Clock.CurrentGlobalSpeed%2A> 、プロパティが無効になったときに発生しますが、プロパティが変更されたことを意味するわけではありません。  
   
  ]]></format>
         </remarks>
@@ -238,11 +238,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クロックの最初のイテレーションでは、1 の値を持ちます。  
+ クロックの最初の反復処理の値は1です。  
   
- このクロックのタイムラインがある場合、<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>設定`true`、順方向リバース ペアで構成全体の反復処理、セグメントだけでなく、これらのいずれか。  
+ このクロックのタイムラインの<xref:System.Windows.Media.Animation.Timeline.AutoReverse%2A>設定がの`true`場合、完全な反復は、これらのセグメントの1つではなく、前方逆方向のペアで構成されます。  
   
- 現在のイテレーションに関係なく、クロックを求めている、現在の反復を 1 に返します。 また、クロックを再起動するを 1 に、現在の反復も返します。  
+ 現在のイテレーションに関係なく、クロックをシークすると現在のイテレーションが1に戻ります。 クロックを再起動すると、現在のイテレーションも1に戻ります。  
   
  ]]></format>
         </remarks>
@@ -277,12 +277,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの値を示します、<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>で正規化された、<xref:System.Windows.Media.Animation.Timeline.Duration%2A>このクロックの<xref:System.Windows.Media.Animation.Clock.Timeline%2A>します。  
+ このプロパティの値は、この<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>クロック<xref:System.Windows.Media.Animation.Clock.Timeline%2A>のに<xref:System.Windows.Media.Animation.Timeline.Duration%2A>よって正規化されたを示します。  
   
- あるクロック<xref:System.Windows.Media.Animation.ClockState.Filling>が、 <xref:System.Windows.Media.Animation.Clock.CurrentProgress%2A> 1.0。  
+ が 1.0 <xref:System.Windows.Media.Animation.Clock.CurrentProgress%2A>のクロック<xref:System.Windows.Media.Animation.ClockState.Filling> 。  
   
-## <a name="using-a-timeline-as-a-timer"></a>タイムラインを使用して、タイマーとして  
- タイムラインのクロックは、関連付けられているイベント ハンドラーがある場合にのみ実行または (の場合、<xref:System.Windows.Media.Animation.AnimationClock>オブジェクト) のプロパティに関連付けられています。 この理由 (および他のユーザー)、これは使用しないで使用すること、<xref:System.Windows.Media.Animation.Timeline>タイマーとして。  
+## <a name="using-a-timeline-as-a-timer"></a>タイムラインをタイマーとして使用する  
+ タイムラインのクロックは、関連付けられているイベントハンドラーがある場合、または ( <xref:System.Windows.Media.Animation.AnimationClock>オブジェクトの場合) プロパティに関連付けられている場合にのみ実行されます。 そのため、を<xref:System.Windows.Media.Animation.Timeline>タイマーとして使用することはお勧めしません。  
   
  ]]></format>
         </remarks>
@@ -316,9 +316,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クロックに注意してください<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>プロパティかは示されませんが一時停止かどうか。 クロックが一時停止しているかどうかを調べるには、<xref:System.Windows.Media.Animation.Clock.IsPaused%2A>プロパティ。  
+ 時計の<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>プロパティは、一時停止されているかどうかを知らないことに注意してください。 クロックが一時停止されて<xref:System.Windows.Media.Animation.Clock.IsPaused%2A>いるかどうかを判断するには、プロパティを使用します。  
   
- <xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated>このプロパティの値が変わるたびに発生します。  
+ は<xref:System.Windows.Media.Animation.Clock.CurrentStateInvalidated> 、このプロパティの値が変更されるたびに発生します。  
   
  ]]></format>
         </remarks>
@@ -353,11 +353,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用して、<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>時計の起動時、ユーザーに通知するときにイベントを停止、または入力します。 <xref:System.Object>のパラメーター、<xref:System.EventHandler>イベント ハンドラーが、<xref:System.Windows.Media.Animation.Clock>状態は無効化されました。  
+ クロックが<xref:System.Windows.Media.Animation.Timeline.CurrentStateInvalidated>開始、停止、または塗りつぶされた場合に通知を受け取るには、イベントを使用します。 イベントハンドラーのパラメーターは、 <xref:System.Windows.Media.Animation.Clock>状態が無効になったです。 <xref:System.Object> <xref:System.EventHandler>  
   
- 一時停止、<xref:System.Windows.Media.Animation.Clock>変わらないその<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>します。 クロックが一時停止しているときに通知するを使用して、<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>イベント。  
+ を<xref:System.Windows.Media.Animation.Clock>一時停止<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>しても、は変更されません。 クロックが一時停止状態になったときに通知<xref:System.Windows.Media.Animation.Timeline.CurrentGlobalSpeedInvalidated>を受け取るには、イベントを使用します。  
   
- このイベントが発生しますが、ときに、<xref:System.Windows.Media.Animation.ClockState>は、必ずしもを無効になります、<xref:System.Windows.Media.Animation.ClockState>変更:<xref:System.Windows.Media.Animation.Clock>から切り替えること<xref:System.Windows.Media.Animation.ClockState.Active>に<xref:System.Windows.Media.Animation.ClockState.Filling>に戻ると<xref:System.Windows.Media.Animation.ClockState.Active>同じティックが発生このイベントが起動し、その<xref:System.Windows.Media.Animation.Clock.CurrentState%2A>プロパティが実際には変更されません。  
+ このイベント<xref:System.Windows.Media.Animation.ClockState>は、が無効になったときに発生しますが、必ずしも<xref:System.Windows.Media.Animation.ClockState>変更され<xref:System.Windows.Media.Animation.ClockState.Filling>たことを意味<xref:System.Windows.Media.Animation.ClockState.Active>するわけではありません。 <xref:System.Windows.Media.Animation.Clock>を同じティックに切り替えてから<xref:System.Windows.Media.Animation.ClockState.Active>に戻すと、このイベントは発生しますが<xref:System.Windows.Media.Animation.Clock.CurrentState%2A> 、プロパティは実際には変更されません。  
   
  ]]></format>
         </remarks>
@@ -395,8 +395,8 @@
   
 ## Remarks  
   
-## <a name="using-a-timeline-as-a-timer"></a>タイムラインを使用して、タイマーとして  
- タイムラインのクロックは、関連付けられているイベント ハンドラーがある場合にのみ実行または (の場合、<xref:System.Windows.Media.Animation.AnimationClock>オブジェクト) のプロパティに関連付けられています。 この理由 (および他のユーザー)、これは使用しないで使用すること、<xref:System.Windows.Media.Animation.Timeline>タイマーとして。  
+## <a name="using-a-timeline-as-a-timer"></a>タイムラインをタイマーとして使用する  
+ タイムラインのクロックは、関連付けられているイベントハンドラーがある場合、または ( <xref:System.Windows.Media.Animation.AnimationClock>オブジェクトの場合) プロパティに関連付けられている場合にのみ実行されます。 そのため、を<xref:System.Windows.Media.Animation.Timeline>タイマーとして使用することはお勧めしません。  
   
  ]]></format>
         </remarks>
@@ -425,7 +425,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クロックの<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>が無効になったときに、クロックが進行します。 次の対話型操作も CurrentTimeInvalidated イベントをトリガー: <xref:System.Windows.Media.Animation.ClockController.Begin%2A>、 <xref:System.Windows.Media.Animation.ClockController.SkipToFill%2A>、 <xref:System.Windows.Media.Animation.ClockController.Seek%2A>、 <xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>、および<xref:System.Windows.Media.Animation.ClockController.Stop%2A>します。  
+ クロックが進行<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>すると、クロックは無効になります。 次の対話型操作は、currenttimeinvalidated イベントもトリガー <xref:System.Windows.Media.Animation.ClockController.Begin%2A>し<xref:System.Windows.Media.Animation.ClockController.SkipToFill%2A>ます<xref:System.Windows.Media.Animation.ClockController.Seek%2A>: <xref:System.Windows.Media.Animation.ClockController.SeekAlignedToLastTick%2A>、、 <xref:System.Windows.Media.Animation.ClockController.Stop%2A>、、および。  
   
  ]]></format>
         </remarks>
@@ -477,7 +477,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メディアを使用して再生される<xref:System.Windows.Media.MediaTimeline>内で、<xref:System.Windows.Media.Animation.Storyboard>作成の例を示します、<xref:System.Windows.Media.Animation.Clock>外部タイム ソース (たとえばビデオ クリップ) 内の他のタイムラインとの同期を必要がありますがある、<xref:System.Windows.Media.Animation.Storyboard>します。 詳細については、「<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>」を参照してください。  
+ <xref:System.Windows.Media.MediaTimeline> <xref:System.Windows.Media.Animation.Clock>内で再生されるメディア<xref:System.Windows.Media.Animation.Storyboard>は、外部タイムソース (たとえばビデオクリップ) を持つを作成する例です。この場合、内の他のタイムラインとの同期が必要になることがあります。 <xref:System.Windows.Media.Animation.Storyboard> 詳細については、「<xref:System.Windows.Media.Animation.ParallelTimeline.SlipBehavior%2A>」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -507,11 +507,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実装では、このメソッドを使用してください。、<xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>メソッド コードから直接呼び出されない必要があります。  
+ このメソッドは、 <xref:System.Windows.Media.Animation.Clock.CurrentTime%2A>メソッドの実装で使用されます。コードから直接呼び出すことはできません。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生クラスは、現在の時刻を判断する方法を変更する場合は、このメソッドをオーバーライドする必要があります。</para></block>
+        <block subset="none" type="overrides"><para>派生クラスで現在の時刻を決定する方法を変更する場合は、このメソッドをオーバーライドする必要があります。</para></block>
         <altmember cref="P:System.Windows.Media.Animation.Clock.CurrentTime" />
       </Docs>
     </Member>
@@ -593,7 +593,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 自然な継続時間の詳細については、次を参照してください。、<xref:System.Windows.Media.Animation.Timeline.GetNaturalDuration%2A?displayProperty=nameWithType>メソッド。  
+ 自然な継続時間の詳細について<xref:System.Windows.Media.Animation.Timeline.GetNaturalDuration%2A?displayProperty=nameWithType>は、メソッドを参照してください。  
   
  ]]></format>
         </remarks>
@@ -715,7 +715,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クロックの変更<xref:System.Windows.Media.MediaTimeline>; 時計を更新できません新しいクロックを作成する必要がありますから、変更された<xref:System.Windows.Media.Animation.Timeline>します。  
+ 時計の<xref:System.Windows.Media.MediaTimeline>を変更しても時計は更新されません。変更<xref:System.Windows.Media.Animation.Timeline>されたから新しいクロックを作成する必要があります。  
   
  ]]></format>
         </remarks>
