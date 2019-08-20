@@ -1,5 +1,5 @@
 <Type Name="OracleBFile" FullName="System.Data.OracleClient.OracleBFile">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b62b47ebbd4288efc649a5d233361390eac84293" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63891526" /></Metadata><TypeSignature Language="C#" Value="public sealed class OracleBFile : System.IO.Stream, ICloneable, System.Data.SqlTypes.INullable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6b3d7212bbda2fb1701c68a8df0f7672991f93fc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69125724" /></Metadata><TypeSignature Language="C#" Value="public sealed class OracleBFile : System.IO.Stream, ICloneable, System.Data.SqlTypes.INullable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit OracleBFile extends System.IO.Stream implements class System.Data.SqlTypes.INullable, class System.ICloneable, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.OracleClient.OracleBFile" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class OracleBFile&#xA;Inherits Stream&#xA;Implements ICloneable, INullable" />
@@ -31,40 +31,40 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Oracle`BFILE`データ型は、Oracle `LOB` 4 ギガバイトの最大サイズのバイナリ データへの参照を含むデータ型。 Oracle`BFILE`他の Oracle とは異なります`LOB`データ型の代わりに、オペレーティング システムで、サーバー上の物理ファイル内のデータが格納されていることにします。 なお、`BFILE`データ型がデータに読み取り専用アクセスを提供します。 そのため、書き込み指向のメソッドが継承、<xref:System.IO.Stream>クラスがサポートされていません。  
+ Oracle `BFILE`データ型は、最大サイズ`LOB`が 4 gb のバイナリデータへの参照を含む oracle データ型です。 Oracle `BFILE`は、データがサーバー `LOB`上ではなくオペレーティングシステムの物理ファイルに格納されるという点で、他の oracle データ型とは異なります。 データ型で`BFILE`は、データへの読み取り専用アクセスが提供されることに注意してください。 そのため、クラスから継承された<xref:System.IO.Stream>書き込み指向のメソッドはサポートされていません。  
   
- その他の特性を`BFILE`から区別するためのデータ型、`LOB`データ型はできることです。  
+ データ型と区別`BFILE` `LOB`するデータ型のその他の特性は次のとおりです。  
   
 -   非構造化データの保持。  
   
 -   サーバー側チャンキングのサポート。  
   
--   参照コピーのセマンティクスの使用。 コピー操作を実行する場合など、 `BFILE`、のみ、 `BFILE` (つまり、ファイルへの参照) ロケーターをコピーします。 ファイル内のデータはコピーされません。  
+-   参照コピーのセマンティクスの使用。 たとえば、に対して`BFILE`コピー操作を実行すると、 `BFILE`ロケーター (ファイルへの参照) のみがコピーされます。 ファイル内のデータはコピーされません。  
   
- `BFILE`データ型は参照用として使用する必要があります`LOB`サイズが大きくなっているのため、データベースに格納する実用的ではありません。 使用するためのクライアント、サーバー、および通信のオーバーヘッドが、`BFILE`データ型と比較すると、`LOB`データ型。 アクセスする方が効率的です、`BFILE`のみ少量のデータを取得する必要がある場合。 Access データベースに常駐する方が効率的です`LOB`オブジェクト全体を取得する必要がある場合。  
+ このデータ型は、サイズが大きく`LOB`、データベースに格納するのが実用的ではないを参照するために使用する必要があります。 `BFILE` データ型と比較`BFILE` `LOB`した場合、クライアント、サーバー、および通信のオーバーヘッドが発生します。 少量のデータを取得するだけ`BFILE`でよい場合は、にアクセスする方が効率的です。 オブジェクト全体を取得する必要がある場合`LOB`は、データベースに常駐するにアクセスする方が効率的です。  
   
- 各 NULL でない<xref:System.Data.OracleClient.OracleBFile>オブジェクトが基になる物理ファイルの場所を定義する 2 つのエンティティに関連付けられています。  
+ NULL <xref:System.Data.OracleClient.OracleBFile>以外の各オブジェクトは、基になる物理ファイルの場所を定義する2つのエンティティに関連付けられています。  
   
 -   Oracle DIRECTORY オブジェクト。ファイル システムのディレクトリに対するデータベースのエイリアスです。  
   
 -   基になる物理ファイルのファイル名。このファイルは、DIRECTORY オブジェクトに関連付けられたディレクトリに配置されています。  
   
- 後に、`BFILE`が作成されるの形式では、そのロケーターを取得することができます、<xref:System.Data.OracleClient.OracleBFile>オブジェクトを使用して、<xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A>または<xref:System.Data.OracleClient.OracleCommand.ExecuteScalar%2A>メソッド。  
+ を`BFILE`作成した後<xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A>は、メソッドまたは<xref:System.Data.OracleClient.OracleCommand.ExecuteScalar%2A>メソッドを使用して<xref:System.Data.OracleClient.OracleBFile> 、オブジェクトの形式でロケーターを取得できます。  
   
- 取得する、<xref:System.Data.OracleClient.OracleBFile>オブジェクトを呼び出し、<xref:System.Data.OracleClient.OracleDataReader.GetOracleBFile%2A>メソッド。  
+ <xref:System.Data.OracleClient.OracleBFile>オブジェクトを取得するには、 <xref:System.Data.OracleClient.OracleDataReader.GetOracleBFile%2A>メソッドを呼び出します。  
   
- 物理ファイルを<xref:System.Data.OracleClient.OracleBFile>オブジェクトが関連付けられているとする必要はありませんがアクセスしようとするまで存在します。 アプリケーションがバインドできる、 <xref:System.Data.OracleClient.OracleBFile> 、存在しないファイルへの 予期された場所に物理ファイルを作成し、呼び出す<xref:System.Data.OracleClient.OracleBFile.Read%2A>します。  
+ <xref:System.Data.OracleClient.OracleBFile>オブジェクトが関連付けられている物理ファイルは、アクセスしようとするまで存在している必要はありません。 アプリケーションでは、が<xref:System.Data.OracleClient.OracleBFile>存在しないファイルにバインドし、必要な場所に物理ファイルを作成し<xref:System.Data.OracleClient.OracleBFile.Read%2A>て、を呼び出すことができます。  
   
- アクセスが閉じている試行<xref:System.Data.OracleClient.OracleBFile>を使用して、<xref:System.Data.OracleClient.OracleBFile.Read%2A>または<xref:System.Data.OracleClient.OracleBFile.Seek%2A>メソッド再度、<xref:System.Data.OracleClient.OracleBFile>自動的にストリーミングします。  
+ メソッド<xref:System.Data.OracleClient.OracleBFile> <xref:System.Data.OracleClient.OracleBFile.Read%2A>または<xref:System.Data.OracleClient.OracleBFile>メソッドを使用して閉じたにアクセスしようとすると、ストリームが自動的に開かれます。 <xref:System.Data.OracleClient.OracleBFile.Seek%2A>  
   
- C# の例を次に示しますを作成する方法、 `BFILE` 、Oracle のテーブル、およびの形式で取得し、<xref:System.Data.OracleClient.OracleBFile>オブジェクト。 使用例に示します、<xref:System.Data.OracleClient.OracleDataReader>オブジェクトと<xref:System.Data.OracleClient.OracleBFile><xref:System.Data.OracleClient.OracleBFile.Seek%2A>と<xref:System.Data.OracleClient.OracleBFile.Read%2A>メソッド。  
+ 次C#の例では、Oracle テーブルで`BFILE`を作成し、 <xref:System.Data.OracleClient.OracleBFile>オブジェクトの形式で取得する方法を示します。 この例では<xref:System.Data.OracleClient.OracleDataReader> 、オブジェクト<xref:System.Data.OracleClient.OracleBFile> <xref:System.Data.OracleClient.OracleBFile.Seek%2A>とメソッドおよび<xref:System.Data.OracleClient.OracleBFile.Read%2A>メソッドの使用方法を示します。  
   
  [!code-csharp[DataWorks OracleClient.BFile#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks OracleClient.BFile/CS/source.cs#1)]  
   
- 作成と、Oracle の使用の詳細については`BFILE`、適切な Oracle のマニュアルを参照してください。  
+ Oracle `BFILE`の作成と使用の詳細については、oracle のドキュメントの該当するトピックを参照してください。  
   
 > [!NOTE]
->  `BeginWrite`、 `EndWrite`、および`WriteByte`メソッドから継承されますが、`System.IO.Stream`クラス、ためにサポートされていません、`BFILE`データ型は読み取り専用です。  
+>  `BeginWrite` `EndWrite` `WriteByte`クラスから`BFILE`継承された、、およびの各メソッドは、データ型が読み取り専用であるため、サポートされていません。 `System.IO.Stream`  
   
  ]]></format>
     </remarks>
@@ -167,7 +167,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新しいプロパティ<xref:System.Data.OracleClient.OracleBFile>オブジェクトの最初に、元のオブジェクトのものと同じ値であります。 ただし後、<xref:System.Data.OracleClient.OracleBFile.Clone%2A>が完了したら、各<xref:System.Data.OracleClient.OracleBFile>オブジェクトは、他の依存しません。 値を変更するなど、<xref:System.Data.OracleClient.OracleBFile.Position%2A>元のプロパティ<xref:System.Data.OracleClient.OracleBFile>の値を変更することはありません<xref:System.Data.OracleClient.OracleBFile.Position%2A>コピーで。  
+ 新しい<xref:System.Data.OracleClient.OracleBFile>オブジェクトのプロパティは、最初は元のオブジェクトと同じ値になります。 ただし、 <xref:System.Data.OracleClient.OracleBFile.Clone%2A>が完了した後、 <xref:System.Data.OracleClient.OracleBFile>各オブジェクトは互いに独立しています。 たとえば、元<xref:System.Data.OracleClient.OracleBFile.Position%2A> <xref:System.Data.OracleClient.OracleBFile>ののプロパティの値を変更しても、コピーのの<xref:System.Data.OracleClient.OracleBFile.Position%2A>値は変更されません。  
   
  ]]></format>
         </remarks>
@@ -233,9 +233,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ソースの基になるデータ型<xref:System.Data.OracleClient.OracleBFile>と変換先<xref:System.Data.OracleClient.OracleLob>互換である必要があります。 たとえば、先にバイナリ データをコピーすることはできません<xref:System.Data.OracleClient.OracleLob>文字データ型を持ちます。  
+ 変換元<xref:System.Data.OracleClient.OracleBFile>と変換先<xref:System.Data.OracleClient.OracleLob>の基になるデータ型には互換性がある必要があります。 たとえば、文字データ型の変換先<xref:System.Data.OracleClient.OracleLob>にバイナリデータをコピーすることはできません。  
   
- 先に書き込みアクセス権が必要<xref:System.Data.OracleClient.OracleLob>の<xref:System.Data.OracleClient.OracleBFile.CopyTo%2A>操作が正常に実行します。  
+ 操作を正しく実行するには、 <xref:System.Data.OracleClient.OracleLob>転送先への書き込みアクセス許可が必要です。 <xref:System.Data.OracleClient.OracleBFile.CopyTo%2A>  
   
  ]]></format>
         </remarks>
@@ -277,9 +277,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ソースの基になるデータ型<xref:System.Data.OracleClient.OracleBFile>と変換先<xref:System.Data.OracleClient.OracleLob>互換である必要があります。 たとえば、先にバイナリ データをコピーすることはできません<xref:System.Data.OracleClient.OracleLob>文字データ型を持ちます。  
+ 変換元<xref:System.Data.OracleClient.OracleBFile>と変換先<xref:System.Data.OracleClient.OracleLob>の基になるデータ型には互換性がある必要があります。 たとえば、文字データ型の変換先<xref:System.Data.OracleClient.OracleLob>にバイナリデータをコピーすることはできません。  
   
- 先に書き込みアクセス権が必要<xref:System.Data.OracleClient.OracleLob>の<xref:System.Data.OracleClient.OracleBFile.CopyTo%2A>操作が正常に実行します。  
+ 操作を正しく実行するには、 <xref:System.Data.OracleClient.OracleLob>転送先への書き込みアクセス許可が必要です。 <xref:System.Data.OracleClient.OracleBFile.CopyTo%2A>  
   
  ]]></format>
         </remarks>
@@ -325,9 +325,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ソースの基になるデータ型<xref:System.Data.OracleClient.OracleBFile>と変換先<xref:System.Data.OracleClient.OracleLob>互換である必要があります。 たとえば、先にバイナリ データをコピーすることはできません<xref:System.Data.OracleClient.OracleLob>文字データ型を持ちます。  
+ 変換元<xref:System.Data.OracleClient.OracleBFile>と変換先<xref:System.Data.OracleClient.OracleLob>の基になるデータ型には互換性がある必要があります。 たとえば、文字データ型の変換先<xref:System.Data.OracleClient.OracleLob>にバイナリデータをコピーすることはできません。  
   
- 先に書き込みアクセス権が必要<xref:System.Data.OracleClient.OracleLob>の<xref:System.Data.OracleClient.OracleBFile.CopyTo%2A>操作が正常に実行します。  
+ 操作を正しく実行するには、 <xref:System.Data.OracleClient.OracleLob>転送先への書き込みアクセス許可が必要です。 <xref:System.Data.OracleClient.OracleBFile.CopyTo%2A>  
   
  ]]></format>
         </remarks>
@@ -335,7 +335,7 @@
         <exception cref="T:System.ArgumentNullException">コピー先の <see langword="OracleLob" /> は null オブジェクト参照です。</exception>
         <exception cref="T:System.InvalidOperationException">コピー先が null <see langword="OracleLob" /> です。  
   
-または 
+- または - 
 この <see langword="OracleBFile" /> が関連付けられている接続が閉じています。</exception>
         <exception cref="T:System.ObjectDisposedException"><see langword="OracleBFile" /> オブジェクトが閉じているか破棄されています。</exception>
       </Docs>
@@ -364,15 +364,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 各 NULL でない<xref:System.Data.OracleClient.OracleBFile>オブジェクトが基になる物理ファイルの場所を定義する 2 つのエンティティに関連付けられています。  
+ NULL <xref:System.Data.OracleClient.OracleBFile>以外の各オブジェクトは、基になる物理ファイルの場所を定義する2つのエンティティに関連付けられています。  
   
 -   Oracle DIRECTORY オブジェクト。ファイル システムのディレクトリに対するデータベースのエイリアスです。  
   
 -   基になる物理ファイルのファイル名。このファイルは、DIRECTORY オブジェクトに関連付けられたディレクトリに配置されています。  
   
- <xref:System.Data.OracleClient.OracleBFile.DirectoryName%2A>プロパティは、Oracle データベースからディレクトリ オブジェクトの名前を返します。  
+ プロパティ<xref:System.Data.OracleClient.OracleBFile.DirectoryName%2A>は、Oracle データベースからディレクトリオブジェクトの名前を返します。  
   
- 作成と、Oracle の使用の詳細については`BFILE`、適切な Oracle のマニュアルを参照してください。  
+ Oracle `BFILE`の作成と使用の詳細については、oracle のドキュメントの該当するトピックを参照してください。  
   
  ]]></format>
         </remarks>
@@ -477,7 +477,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.OracleClient.OracleBFile.Null>、空の文字列が返されます。  
+ で<xref:System.Data.OracleClient.OracleBFile.Null>は、空の文字列が返されます。  
   
  ]]></format>
         </remarks>
@@ -580,9 +580,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.OracleClient.OracleBFile.Null> 比較操作を実行する場合に役に立ちます、<xref:System.Data.OracleClient.OracleBFile>を null 値許容属性を確認します。  
+ <xref:System.Data.OracleClient.OracleBFile.Null>は、 <xref:System.Data.OracleClient.OracleBFile>の比較演算を実行して null 値を許容するかどうかを決定するときに役立ちます。  
   
- 読み取り操作を実行すると、<xref:System.Data.OracleClient.OracleBFile.Null>オブジェクトは成功しますが、データは返されません。 書き込み操作を実行すると、<xref:System.Data.OracleClient.OracleBFile.Null>オブジェクトには、例外が生成されます。 選択すると、 `BFILE` null 値を含む列を返します<xref:System.Data.OracleClient.OracleBFile.Null>します。  
+ <xref:System.Data.OracleClient.OracleBFile.Null>オブジェクトに対して読み取り操作を実行しようとしても成功しますが、データは返されません。 <xref:System.Data.OracleClient.OracleBFile.Null>オブジェクトに対して書き込み操作を実行しようとすると、例外が生成されます。 Null 値を含む<xref:System.Data.OracleClient.OracleBFile.Null>列を選択すると、が返されます。`BFILE`  
   
  ]]></format>
         </remarks>
@@ -612,9 +612,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ストリームの長さを超えた位置をシークはサポートされていません。  
+ ストリームの長さを超えた場所へのシークはサポートされていません。  
   
- `Position`プロパティがないの追跡が使用されている、スキップ、ストリーム、またはその両方からのバイト数。  
+ `Position`プロパティは、ストリームから取得されたバイト数 (使用、スキップ、またはその両方) を追跡しません。  
   
  ]]></format>
         </remarks>
@@ -654,17 +654,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.OracleClient.OracleBFile.Read%2A>メソッドの最大を読み取る`count`現在からのバイト ストリームし、格納に`buffer`から始まる`offset`します。 ストリーム内の現在位置が読み取り、バイト数で高度なただし、例外が発生する場合は、ストリーム内の現在の位置は変更されません。 <xref:System.Data.OracleClient.OracleBFile.Read%2A> 読み取られたバイト数を返します。 位置はストリームの最後に、現在の場合にのみ、戻り値は 0 を使用します。 <xref:System.Data.OracleClient.OracleBFile.Read%2A> データがないこと、少なくとも 1 バイトのデータを読み取ることができます、までにブロックされます。 <xref:System.Data.OracleClient.OracleBFile.Read%2A> ファイルの末尾に達している場合にのみ、0 を返します。 <xref:System.Data.OracleClient.OracleBFile.Read%2A> 無料で、ストリームの末尾に達していない場合でも、要求されたより少ないバイト数を返します。  
+ メソッド<xref:System.Data.OracleClient.OracleBFile.Read%2A>は、現在のストリーム`count`から最大バイトを読み取り、で始まるに`buffer` `offset`格納します。 ストリーム内の現在位置は、読み取ったバイト数だけ進んでいます。ただし、例外が発生した場合、ストリーム内の現在位置は変更されません。 <xref:System.Data.OracleClient.OracleBFile.Read%2A>読み取ったバイト数を返します。 位置が現在ストリームの末尾にある場合にのみ、戻り値は0です。 <xref:System.Data.OracleClient.OracleBFile.Read%2A>は、データが使用できない場合に、少なくとも1バイトのデータを読み取ることができるようになるまでブロックされます。 <xref:System.Data.OracleClient.OracleBFile.Read%2A>ファイルの末尾に到達した場合にのみ0を返します。 <xref:System.Data.OracleClient.OracleBFile.Read%2A>は、ストリームの末尾に到達していない場合でも、要求されたバイト数よりも小さい値を返すことができます。  
   
- アクセスが閉じている試行<xref:System.Data.OracleClient.OracleBFile>を使用して、<xref:System.Data.OracleClient.OracleBFile.Read%2A>または<xref:System.Data.OracleClient.OracleBFile.Seek%2A>メソッド再度、<xref:System.Data.OracleClient.OracleBFile>自動的にストリーミングします。  
+ メソッド<xref:System.Data.OracleClient.OracleBFile> <xref:System.Data.OracleClient.OracleBFile.Read%2A>または<xref:System.Data.OracleClient.OracleBFile>メソッドを使用して閉じたにアクセスしようとすると、ストリームが自動的に開かれます。 <xref:System.Data.OracleClient.OracleBFile.Seek%2A>  
   
- 次の c# の例では、Oracle テーブルには、このスキーマが前提とします。  
+ 次C#の例では、Oracle テーブルのこのスキーマを前提としています。  
   
 ```  
 (col1 number, col2 BFILE)  
 ```  
   
- この例で、<xref:System.Data.OracleClient.OracleBFile.Read%2A>と<xref:System.Data.OracleClient.OracleBFile.Seek%2A>にアクセスするメソッド、<xref:System.Data.OracleClient.OracleBFile>オブジェクト。  
+ この例では、 <xref:System.Data.OracleClient.OracleBFile.Read%2A>メソッド<xref:System.Data.OracleClient.OracleBFile.Seek%2A>とメソッドを使用<xref:System.Data.OracleClient.OracleBFile>してオブジェクトにアクセスする方法を示します。  
   
 ```csharp  
 byte[] buffer = new byte[100];  
@@ -720,19 +720,19 @@ using (dataReader) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合`offset`が負の場合、新しい位置が必要で指定した位置の前に`origin`で指定されたバイト数で`offset`します。 場合`offset`0 の場合は、新しい位置に指定した位置である必要は`origin`します。 場合`offset`が正の値を新しい位置は指定した位置に従う必要`origin`で指定されたバイト数で`offset`します。  
+ が`offset`負の値の場合、で`origin`指定した位置の前に、で指定したバイト`offset`数だけ新しい位置が必要になります。 が`offset` 0 の場合、新しい位置はで`origin`指定された位置である必要があります。 が`offset`正の値の`origin`場合、によって指定された位置に従うために、で指定されたバイト数だけ新しい位置が必要になります。`offset`  
   
- ストリームの長さを超えた位置をシークはサポートされていません。  
+ ストリームの長さを超えた場所へのシークはサポートされていません。  
   
- アクセスが閉じている試行<xref:System.Data.OracleClient.OracleBFile>を使用して、<xref:System.Data.OracleClient.OracleBFile.Read%2A>または<xref:System.Data.OracleClient.OracleBFile.Seek%2A>メソッド再度、<xref:System.Data.OracleClient.OracleBFile>自動的にストリーミングします。  
+ メソッド<xref:System.Data.OracleClient.OracleBFile> <xref:System.Data.OracleClient.OracleBFile.Read%2A>または<xref:System.Data.OracleClient.OracleBFile>メソッドを使用して閉じたにアクセスしようとすると、ストリームが自動的に開かれます。 <xref:System.Data.OracleClient.OracleBFile.Seek%2A>  
   
- 次の c# の例では、Oracle テーブルには、このスキーマが前提とします。  
+ 次C#の例では、Oracle テーブルのこのスキーマを前提としています。  
   
 ```  
 (col1 number, col2 BFILE)  
 ```  
   
- この例で、<xref:System.Data.OracleClient.OracleBFile.Read%2A>と<xref:System.Data.OracleClient.OracleBFile.Seek%2A>にアクセスするメソッド、<xref:System.Data.OracleClient.OracleBFile>オブジェクト。  
+ この例では、 <xref:System.Data.OracleClient.OracleBFile.Read%2A>メソッド<xref:System.Data.OracleClient.OracleBFile.Seek%2A>とメソッドを使用<xref:System.Data.OracleClient.OracleBFile>してオブジェクトにアクセスする方法を示します。  
   
 ```csharp  
 byte[] buffer = new byte[100];  
@@ -783,19 +783,19 @@ using (dataReader) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.OracleClient.OracleBFile.SetFileName%2A>操作が成功するトランザクション内である必要があります。 呼び出すだけ<xref:System.Data.OracleClient.OracleBFile.SetFileName%2A>上、`BFILE`関連付けます、<xref:System.Data.OracleClient.OracleBFile>オブジェクトと別のファイルは Oracle のテーブルは更新されません。 呼び出した後、Oracle のテーブルを更新する<xref:System.Data.OracleClient.OracleBFile.SetFileName%2A>、呼び出す必要があります、`Update`のメソッド、<xref:System.Data.OracleClient.OracleDataAdapter>し、トランザクションをコミットします。  
+ 操作<xref:System.Data.OracleClient.OracleBFile.SetFileName%2A>を成功させるには、トランザクション内でなければなりません。 で単<xref:System.Data.OracleClient.OracleBFile.SetFileName%2A>にを`BFILE`呼び出す<xref:System.Data.OracleClient.OracleBFile>と、オブジェクトは別のファイルに関連付けられますが、Oracle テーブルは更新されません。 を呼び出し<xref:System.Data.OracleClient.OracleBFile.SetFileName%2A>た後に Oracle テーブルを更新するには`Update` <xref:System.Data.OracleClient.OracleDataAdapter> 、のメソッドを呼び出してから、トランザクションをコミットする必要があります。  
   
- 取得した後、<xref:System.Data.OracleClient.OracleBFile.DirectoryName%2A>または<xref:System.Data.OracleClient.OracleBFile.FileName%2A>にキャッシュされるプロパティ、<xref:System.Data.OracleClient.OracleBFile>オブジェクトし、複製は、影響を受けません<xref:System.Data.OracleClient.OracleBFile>オブジェクトの呼び出しを<xref:System.Data.OracleClient.OracleBFile.SetFileName%2A>、またはを変更しても、`BFILE`データベースにします。 つまりの実際の値を表すことがない、`BFILE`サーバー内のオブジェクト。  
+ <xref:System.Data.OracleClient.OracleBFile.DirectoryName%2A>または<xref:System.Data.OracleClient.OracleBFile> <xref:System.Data.OracleClient.OracleBFile> <xref:System.Data.OracleClient.OracleBFile.SetFileName%2A> `BFILE`プロパティを取得すると、オブジェクトはオブジェクトにキャッシュされ、複製されたオブジェクトの呼び出し、またはデータベース内のへの変更によって影響を受けません。 <xref:System.Data.OracleClient.OracleBFile.FileName%2A> つまり、サーバー内の`BFILE`オブジェクトの実際の値を表していない可能性があります。  
   
- さらに、いずれかのプロパティを取得する (<xref:System.Data.OracleClient.OracleBFile.DirectoryName%2A>または<xref:System.Data.OracleClient.OracleBFile.FileName%2A>) により、サーバーから取得されでキャッシュを両方のプロパティ値、<xref:System.Data.OracleClient.OracleBFile>オブジェクト。  
+ さらに、いずれかの<xref:System.Data.OracleClient.OracleBFile.DirectoryName%2A>プロパティ<xref:System.Data.OracleClient.OracleBFile.FileName%2A>(または) を取得すると、両方のプロパティ値がサーバー <xref:System.Data.OracleClient.OracleBFile>から取得され、オブジェクトにキャッシュされます。  
   
- 次の c# の例では、Oracle テーブルには、このスキーマが前提とします。  
+ 次C#の例では、Oracle テーブルのこのスキーマを前提としています。  
   
 ```  
 (col1 number, col2 BFILE)  
 ```  
   
- この例で、 <xref:System.Data.OracleClient.OracleBFile.SetFileName%2A>、<xref:System.Data.OracleClient.OracleBFile.Read%2A>と<xref:System.Data.OracleClient.OracleBFile.Seek%2A>にアクセスするメソッド、<xref:System.Data.OracleClient.OracleBFile>オブジェクト。  
+ この例では、 <xref:System.Data.OracleClient.OracleBFile.SetFileName%2A> <xref:System.Data.OracleClient.OracleBFile.Read%2A>メソッド、 <xref:System.Data.OracleClient.OracleBFile.Seek%2A>メソッド、 <xref:System.Data.OracleClient.OracleBFile>およびメソッドを使用してオブジェクトにアクセスする方法を示します。  
   
 ```csharp  
 byte[] buffer = new byte[100];  
@@ -870,10 +870,10 @@ using (dataReader) {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.OracleClient.OracleBFile.Value%2A>プロパティには、全体が読み込まれる`BFILE`一度に 1 つ。  
+ プロパティ<xref:System.Data.OracleClient.OracleBFile.Value%2A>は、全体`BFILE`を一度に読み取ります。  
   
 > [!NOTE]
->  使用する利点`BFILE`大量のクライアント側のチャンク単位でデータを取得することができます。 ただし、使用<xref:System.Data.OracleClient.OracleBFile.Value%2A>アプリケーションのオーバーヘッドを大幅に向上させることができますが、1 つの連続したチャンクとして BFILE 列のすべてのデータを取得します。  
+>  S を使用`BFILE`する利点は、クライアントで大量のデータをチャンク単位で取得できることです。 ただし、を使用<xref:System.Data.OracleClient.OracleBFile.Value%2A>すると、BFILE 列のすべてのデータが1つの連続するチャンクとして取得されるため、アプリケーションのオーバーヘッドが大幅に増加する可能性があります。  
   
  ]]></format>
         </remarks>

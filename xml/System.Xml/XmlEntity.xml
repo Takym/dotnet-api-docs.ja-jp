@@ -1,5 +1,5 @@
 <Type Name="XmlEntity" FullName="System.Xml.XmlEntity">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="755883891a190dbabee047f73aefc6dc59f65f14" /><Meta Name="ms.sourcegitcommit" Value="10aa513a7461eb2abbf8d1e35d2a045d4e5a9be7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/09/2019" /><Meta Name="ms.locfileid" Value="67665648" /></Metadata><TypeSignature Language="C#" Value="public class XmlEntity : System.Xml.XmlNode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f5a001cdb0f213e76df4de482c383d0c35e138bb" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69422444" /></Metadata><TypeSignature Language="C#" Value="public class XmlEntity : System.Xml.XmlNode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit XmlEntity extends System.Xml.XmlNode" />
   <TypeSignature Language="DocId" Value="T:System.Xml.XmlEntity" />
   <TypeSignature Language="VB.NET" Value="Public Class XmlEntity&#xA;Inherits XmlNode" />
@@ -73,9 +73,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ネットワーク上の XML ドキュメントでは、さまざまな World Wide Web Consortium (W3C) 標準的な信頼メカニズムを使用して集計されたデータのチャンクはで構成され、したがって異なる場所から取得したノードが含まれます。 `BaseURI`からこれらのノードが付属していたかがわかります。  
+ ネットワークに接続された XML ドキュメントは、さまざまな World Wide Web コンソーシアム (W3C) 標準の包含機構を使用して集計されたデータのチャンクで構成されるため、さまざまな場所からのノードが含まれます。 は`BaseURI` 、これらのノードがどこから来たかを示します。  
   
- このプロパティの値は、ノードの種類によって異なります。 外部の EntityReference ノードの子であるノードでは、エンティティ自体の場所を返します。 たとえば、次の XML ドキュメントがあるとします。  
+ このプロパティの値は、ノードの種類によって異なります。 外部 EntityReference ノードの子であるノードは、エンティティ自体の位置を返します。 たとえば、次の XML ドキュメントについて考えてみます。  
   
 ```xml  
 <!DOCTYPE item [  
@@ -84,31 +84,31 @@
 <item num='123'>&xyz;</item>  
 ```  
   
- 外部エンティティ`a/b.xml`XML テキストを含む`<test>123</test>`します。  
+ 外部エンティティ`a/b.xml`に XML テキスト`<test>123</test>`が含まれています。  
   
- ドキュメントが読み込まれた場合`http://server/mydata.xml`、`BaseURI`は以下を返します。  
+ ドキュメントがから`http://server/mydata.xml`読み込まれている`BaseURI`場合、は次の値を返します。  
   
-|ノード型|名前|BaseURI|  
+|ノード型|name|BaseURI|  
 |--------------|----------|-------------|  
 |属性|num|`http://server/mydata.xml`|  
 |ドキュメント|#document|`http://server/mydata.xml`|  
-|DocumentType|item|`http://server/mydata.xml`|  
+|DocumentType|項目|`http://server/mydata.xml`|  
 |エンティティ|xyz|`http://server/mydata.xml`|  
-|要素|item|`http://server/mydata.xml`|  
+|要素|項目|`http://server/mydata.xml`|  
 |EntityReference|xyz|`http://server/mydata.xml`|  
 |要素|テスト|`http://server/a/b.xml`|  
 |テキスト|#text|`http://server/a/b.xml`|  
   
- `BaseURI` エンティティ参照の境界を次のエンティティが展開されている場合は、この情報は保持されませんし、このプロパティの場所を返します、`XmlDocument`のすべてのケース内のオブジェクト。  
+ `BaseURI`エンティティ参照の境界を検索します。そのため、エンティティが展開されている場合、この情報は保持`XmlDocument`されず、このプロパティは常にオブジェクトの場所を返します。  
   
- 2 番目の例としては、次の XML ドキュメントを考えてみます。  
+ 2番目の例として、次の XML ドキュメントがあるとします。  
   
 ```xml  
 <!DOCTYPE Mydata SYSTEM "http://localhost/doctype.dtd">  
 <baa>&xyz;</baa>  
 ```  
   
- 場所、ドキュメント型定義 (DTD) ファイルには、次が含まれています。  
+ ドキュメント型定義 (DTD) ファイルには、次のものが含まれています。  
   
 ```  
 <!ENTITY xyz "<E1>My Data</E1>">  
@@ -116,9 +116,9 @@
 <!ATTLIST baa attr1 "woof">  
 ```  
   
- XML ドキュメントが読み込まれた場合http://localhost/mydata.xml、`BaseURI`は以下の各ノードを返します。  
+ XML ドキュメントがからhttp://localhost/mydata.xml読み込まれている場合、 `BaseURI`は各ノードに対して次を返します。  
   
-|ノード型|Name|BaseURI|  
+|ノード型|name|BaseURI|  
 |--------------|----------|-------------|  
 |ドキュメント|#document|http://localhost/mydata.xml|  
 |DocumentType|Mydata|http://localhost/doctype.dtd|  
@@ -128,7 +128,7 @@
 |属性|woof|http://localhost/mydata.xml|  
   
 > [!NOTE]
->  既定の属性のベース URI は、所属する要素のベース URI の場合と同じです。  
+>  既定の属性のベース URI は、その属性が属する要素のベース URI と同じです。  
   
  このプロパティは、ドキュメント オブジェクト モデル (DOM) の Microsoft 拡張機能です。  
   
@@ -210,7 +210,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `XmlEntity` ノードは、読み取り専用です。 このプロパティの設定が例外をスローします。  
+ `XmlEntity`ノードは読み取り専用です。 このプロパティを設定すると、例外がスローされます。  
   
  このプロパティは、ドキュメント オブジェクト モデル (DOM) の Microsoft 拡張機能です。  
   
@@ -254,12 +254,12 @@
       </ReturnValue>
       <Docs>
         <summary>このノードの子を表すマークアップを取得します。</summary>
-        <value><see langword="XmlEntity" />ノード、String.Empty が返されます。</value>
+        <value><see langword="XmlEntity" /> ノードの場合は、String.Empty が返されます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `XmlEntity` ノードは、読み取り専用です。 このプロパティの設定が例外をスローします。  
+ `XmlEntity`ノードは読み取り専用です。 このプロパティを設定すると、例外がスローされます。  
   
  このプロパティは、ドキュメント オブジェクト モデル (DOM) の Microsoft 拡張機能です。  
   
@@ -298,14 +298,14 @@
       </ReturnValue>
       <Docs>
         <summary>ノードが読み取り専用かどうかを示す値を取得します。</summary>
-        <value><see langword="true" /> ノードが読み取り専用の場合それ以外の場合、<see langword="false" />します。  
+        <value><see langword="true" />ノードが読み取り専用の場合は。それ以外<see langword="false" />の場合は。  
   
-<see langword="XmlEntity" />ノードは、読み取り専用には、このプロパティはその常に返します<see langword="true" />します。</value>
+<see langword="XmlEntity" /> ノードは読み取り専用であるため、このプロパティは常に <see langword="true" /> を返します。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 読み取り専用ノードとは 1 つのプロパティ、属性、または子を変更することはできません。 読み取り専用のノードをツリーから削除し、他の場所に挿入できます。  
+ 読み取り専用ノードとは、プロパティ、属性、または子を変更できないノードのことです。 ツリーから読み取り専用ノードを削除し、別の場所に挿入することができます。  
   
  ]]></format>
         </remarks>
@@ -346,7 +346,7 @@
       </ReturnValue>
       <Docs>
         <summary>ノードの名前を名前空間プリフィックスを付けずに取得します。</summary>
-        <value><see langword="XmlEntity" />ノードの場合、このプロパティがエンティティの名前を返します。</value>
+        <value><see langword="XmlEntity" /> ノードの場合、このプロパティはエンティティの名前を返します。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -390,13 +390,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、XML ドキュメントで宣言されたエンティティ情報が表示されます。  
+ 次の例では、XML ドキュメントで宣言されたエンティティに関する情報を表示します。  
   
  [!code-cpp[XmlEntity#1](~/samples/snippets/cpp/VS_Snippets_Data/XmlEntity/CPP/entities.cpp#1)]
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- 例では、ファイルを使用して`doment.xml`として入力します。  
+ この例では、 `doment.xml`入力としてファイルを使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -435,18 +435,18 @@
       </ReturnValue>
       <Docs>
         <summary>ノードの種類を取得します。</summary>
-        <value>ノード型。 <see langword="XmlEntity" />ノードの場合、値は xmlnodetype.entity です。</value>
+        <value>ノード型。 <see langword="XmlEntity" /> ノードの場合、値は XmlNodeType.Entity です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、XML ドキュメントで宣言されたエンティティ情報が表示されます。  
+ 次の例では、XML ドキュメントで宣言されたエンティティに関する情報を表示します。  
   
  [!code-cpp[XmlEntity#1](~/samples/snippets/cpp/VS_Snippets_Data/XmlEntity/CPP/entities.cpp#1)]
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- 例では、ファイルを使用して`doment.xml`として入力します。  
+ この例では、 `doment.xml`入力としてファイルを使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -490,18 +490,18 @@
       </ReturnValue>
       <Docs>
         <summary>エンティティ宣言のオプションの NDATA 属性の名前を取得します。</summary>
-        <value>NDATA 属性の名前。 NDATA が存在しない場合<see langword="null" />が返されます。</value>
+        <value>NDATA 属性の名前。 NDATA がない場合は、<see langword="null" /> が返されます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、XML ドキュメントで宣言されたエンティティ情報が表示されます。  
+ 次の例では、XML ドキュメントで宣言されたエンティティに関する情報を表示します。  
   
  [!code-cpp[XmlEntity#1](~/samples/snippets/cpp/VS_Snippets_Data/XmlEntity/CPP/entities.cpp#1)]
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- 例では、ファイルを使用して`doment.xml`、入力として。  
+ この例では、ファイル`doment.xml`を入力として使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -545,7 +545,7 @@
       </ReturnValue>
       <Docs>
         <summary>このノードとそのすべての子を表すマークアップを取得します。</summary>
-        <value><see langword="XmlEntity" />ノード、String.Empty が返されます。</value>
+        <value><see langword="XmlEntity" /> ノードの場合は、String.Empty が返されます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -591,18 +591,18 @@
       </ReturnValue>
       <Docs>
         <summary>エンティティ宣言のパブリック ID の値を取得します。</summary>
-        <value>エンティティのパブリック id。 パブリック識別子がない場合<see langword="null" />が返されます。</value>
+        <value>エンティティのパブリック ID。 パブリック ID がない場合は、<see langword="null" /> が返されます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、XML ドキュメントで宣言されたエンティティ情報が表示されます。  
+ 次の例では、XML ドキュメントで宣言されたエンティティに関する情報を表示します。  
   
  [!code-cpp[XmlEntity#1](~/samples/snippets/cpp/VS_Snippets_Data/XmlEntity/CPP/entities.cpp#1)]
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- 例では、ファイルを使用して`doment.xml`、入力として。  
+ この例では、ファイル`doment.xml`を入力として使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -646,18 +646,18 @@
       </ReturnValue>
       <Docs>
         <summary>エンティティ宣言のシステム ID の値を取得します。</summary>
-        <value>エンティティのシステム id。 システムの識別子がない場合<see langword="null" />が返されます。</value>
+        <value>エンティティのシステム ID。 システム ID がない場合は、<see langword="null" /> が返されます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、XML ドキュメントで宣言されたエンティティ情報が表示されます。  
+ 次の例では、XML ドキュメントで宣言されたエンティティに関する情報を表示します。  
   
  [!code-cpp[XmlEntity#1](~/samples/snippets/cpp/VS_Snippets_Data/XmlEntity/CPP/entities.cpp#1)]
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- 例では、ファイルを使用して`doment.xml`として入力します。  
+ この例では、 `doment.xml`入力としてファイルを使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -704,7 +704,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、ドキュメント オブジェクト モデル (DOM) に Microsoft 拡張機能です。  
+ このメソッドは、ドキュメントオブジェクトモデル (DOM) の Microsoft 拡張機能です。  
   
  ]]></format>
         </remarks>
@@ -748,7 +748,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、ドキュメント オブジェクト モデル (DOM) に Microsoft 拡張機能です。  
+ このメソッドは、ドキュメントオブジェクトモデル (DOM) の Microsoft 拡張機能です。  
   
  ]]></format>
         </remarks>

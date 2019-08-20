@@ -1,5 +1,5 @@
 <Type Name="DependencyPropertyChangedEventArgs" FullName="System.Windows.DependencyPropertyChangedEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="437f11be4b842cf6fe5f1e6049b75308904d041d" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64187365" /></Metadata><TypeSignature Language="C#" Value="public struct DependencyPropertyChangedEventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5a33524a4df14c324a5fcdb2b10f7383c87f24c3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69445058" /></Metadata><TypeSignature Language="C#" Value="public struct DependencyPropertyChangedEventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit DependencyPropertyChangedEventArgs extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Windows.DependencyPropertyChangedEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public Structure DependencyPropertyChangedEventArgs" />
@@ -20,14 +20,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用するイベント、 <xref:System.Windows.DependencyPropertyChangedEventArgs> 、イベント データ クラスと<xref:System.Windows.DependencyPropertyChangedEventHandler>ハンドラーのメソッドの実装は、名前付けパターンを一般的に従います`Is*Changed`、として実装は一般に[!INCLUDE[TLA#tla_clr](~/includes/tlasharptla-clr-md.md)]イベントを<xref:System.Windows.RoutedEvent>バックアップ (ルーティング イベントではありません)。 それ以外の場合"handle"メソッドを処理するクラスのいくつかのように、プロパティ変更を通じて状態の変更をレポートするイベントを露出されていない<xref:System.Windows.Controls.Primitives.ButtonBase.OnIsPressedChanged%2A?displayProperty=nameWithType>、使用しても、<xref:System.Windows.DependencyPropertyChangedEventArgs>イベント データのクラス。  
+ イベントデータ<xref:System.Windows.DependencyPropertyChangedEventArgs>にクラスを使用するイベント`Is*Changed` <xref:System.Windows.DependencyPropertyChangedEventHandler>と、ハンドラーのメソッド実装は通常、名前付けパターンに従い、通常[!INCLUDE[TLA#tla_clr](~/includes/tlasharptla-clr-md.md)]は <xref:System.Windows.RoutedEvent>バッキング (ルーティングイベントではありません)。 クラス処理メソッドの中には、プロパティの変更によって状態の変更を報告する非公開イベント ( <xref:System.Windows.Controls.Primitives.ButtonBase.OnIsPressedChanged%2A?displayProperty=nameWithType>など) を " <xref:System.Windows.DependencyPropertyChangedEventArgs>処理" しているものがあります。たとえば、イベントデータにはクラスも使用されます。  
   
- シナリオは、<xref:System.Windows.PropertyChangedCallback>プロパティのプロパティ システムの評価から取得したレポートの新旧値の引数を使用することです。 新旧の値を処理するコールバックには、意味のないと思われる値の変更に応答しないように選択するなど、これらの値によって特別な処理こともできます。  
+ の<xref:System.Windows.PropertyChangedCallback>シナリオでは、引数を使用して、プロパティのプロパティシステムの評価から取得された古い値と新しい値を報告します。 古い値と新しい値を処理するコールバックでは、これらの値に応じて特別な処理が選択される場合があります。たとえば、重要でないと思われる値の変化に対応しないようにする場合などです。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Windows.DependencyPropertyChangedEventArgs>のコンテキストでクラスを<xref:System.Windows.PropertyChangedCallback>イベントも定義するカスタム クラスの特定のプロパティ。 コールバックは、以前の結果と、プロパティ システムから新しい値で受け渡される<xref:System.Windows.DependencyPropertyChangedEventArgs>、これらのさまざまなイベント引数クラスには、<xref:System.Windows.RoutedPropertyChangedEventArgs%601>します。 新しい引数は、"ValueChanged"のイベントによって定義され、カスタム クラスによって発生し、データとして使用されます。  
+ 次の例では<xref:System.Windows.DependencyPropertyChangedEventArgs> 、イベントも定義するカスタム<xref:System.Windows.PropertyChangedCallback>クラスの特定のプロパティについて、のコンテキストでクラスを使用します。 コールバックは、によって<xref:System.Windows.DependencyPropertyChangedEventArgs>伝達されるプロパティシステムから、古い値と新しい値の結果を受け取り、それらを別の events arguments クラス<xref:System.Windows.RoutedPropertyChangedEventArgs%601>に再パッケージ化します。 新しい引数は、カスタムクラスによって定義および発生した "ValueChanged" イベントのデータとして使用されます。  
   
  [!code-csharp[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/csharp/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/CSharp/NumericUpDown.cs#dependencypropertychangedeventargs)]
  [!code-vb[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/visualbasic/numericupdown.vb#dependencypropertychangedeventargs)]  
@@ -64,7 +64,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 依存関係プロパティの変更を報告するカスタム イベントの実装では、イベントが発生したときに、変更の詳細を使用してイベント データを設定するため、このコンス トラクターを使用する必要があります。  
+ 依存関係プロパティの変更を報告するカスタムイベントの実装では、イベントが発生したときの変更の詳細をイベントデータに設定するために、このコンストラクターを使用する必要があります。  
   
  ]]></format>
         </remarks>
@@ -191,12 +191,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定された値の型常に報告される依存関係プロパティの型にキャストできる場合があります。  
+ 指定された値の型は、常に、報告される依存関係プロパティの型に対してキャストである必要があります。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Windows.DependencyPropertyChangedEventArgs>のコンテキストでクラスを<xref:System.Windows.PropertyChangedCallback>イベントも定義するカスタム クラスの特定のプロパティ。 コールバックは、以前の結果と、プロパティ システムから新しい値で受け渡される<xref:System.Windows.DependencyPropertyChangedEventArgs>、これらのさまざまなイベント引数クラスには、<xref:System.Windows.RoutedPropertyChangedEventArgs%601>します。 新しい引数は、"ValueChanged"のイベントによって定義され、カスタム クラスによって発生し、データとして使用されます。  
+ 次の例では<xref:System.Windows.DependencyPropertyChangedEventArgs> 、イベントも定義するカスタム<xref:System.Windows.PropertyChangedCallback>クラスの特定のプロパティについて、のコンテキストでクラスを使用します。 コールバックは、によって<xref:System.Windows.DependencyPropertyChangedEventArgs>伝達されるプロパティシステムから、古い値と新しい値の結果を受け取り、それらを別の events arguments クラス<xref:System.Windows.RoutedPropertyChangedEventArgs%601>に再パッケージ化します。 新しい引数は、カスタムクラスによって定義および発生した "ValueChanged" イベントのデータとして使用されます。  
   
  [!code-csharp[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/csharp/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/CSharp/NumericUpDown.cs#dependencypropertychangedeventargs)]
  [!code-vb[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/visualbasic/numericupdown.vb#dependencypropertychangedeventargs)]  
@@ -228,12 +228,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定された値の型常に報告される依存関係プロパティの型にキャストできる場合があります。  
+ 指定された値の型は、常に、報告される依存関係プロパティの型に対してキャストである必要があります。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Windows.DependencyPropertyChangedEventArgs>のコンテキストでクラスを<xref:System.Windows.PropertyChangedCallback>イベントも定義するカスタム クラスの特定のプロパティ。 コールバックは、以前の結果と、プロパティ システムから新しい値で受け渡される<xref:System.Windows.DependencyPropertyChangedEventArgs>、これらのさまざまなイベント引数クラスには、<xref:System.Windows.RoutedPropertyChangedEventArgs%601>します。 新しい引数は、"ValueChanged"のイベントによって定義され、カスタム クラスによって発生し、データとして使用されます。  
+ 次の例では<xref:System.Windows.DependencyPropertyChangedEventArgs> 、イベントも定義するカスタム<xref:System.Windows.PropertyChangedCallback>クラスの特定のプロパティについて、のコンテキストでクラスを使用します。 コールバックは、によって<xref:System.Windows.DependencyPropertyChangedEventArgs>伝達されるプロパティシステムから、古い値と新しい値の結果を受け取り、それらを別の events arguments クラス<xref:System.Windows.RoutedPropertyChangedEventArgs%601>に再パッケージ化します。 新しい引数は、カスタムクラスによって定義および発生した "ValueChanged" イベントのデータとして使用されます。  
   
  [!code-csharp[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/csharp/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/CSharp/NumericUpDown.cs#dependencypropertychangedeventargs)]
  [!code-vb[CustomControlNumericUpDownOneProject#DependencyPropertyChangedEventArgs](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CustomControlNumericUpDownOneProject/visualbasic/numericupdown.vb#dependencypropertychangedeventargs)]  
@@ -271,7 +271,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実装と同じロジックを使用して<xref:System.Windows.DependencyPropertyChangedEventArgs.Equals%2A>します。  
+ 実装では、と<xref:System.Windows.DependencyPropertyChangedEventArgs.Equals%2A>同じロジックを使用します。  
   
  ]]></format>
         </remarks>
@@ -306,7 +306,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実装と同じロジックの否定を返します<xref:System.Windows.DependencyPropertyChangedEventArgs.Equals%2A>します。  
+ 実装は、と<xref:System.Windows.DependencyPropertyChangedEventArgs.Equals%2A>同じロジックの否定を返します。  
   
  ]]></format>
         </remarks>
@@ -340,7 +340,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、一般的な内で使用される場合に関連する<xref:System.Windows.PropertyChangedCallback>いくつかのプロパティが登録されていると、どのプロパティの変更には、コールバックが呼び出されるあいまいさを解消する必要があります。 <xref:System.Windows.DependencyPropertyChangedEventArgs.Property%2A> 通常、1 対 1 で対応プロパティとイベントのプロパティの変更を報告するためには、イベントを発生させるため、通常は関係ありません。 発生したイベント自体は、プロパティの変更を示す値です。  
+ このプロパティは、複数のプロパティに登録<xref:System.Windows.PropertyChangedCallback>されている共通ので使用される場合に関連します。また、コールバックを呼び出したプロパティ変更を明確にするために必要です。 <xref:System.Windows.DependencyPropertyChangedEventArgs.Property%2A>は、通常、プロパティの変更を報告するプロパティとイベントの間に1:1 の対応があるため、イベントの発生には関係ありません。 発生したイベント自体は、変更されたプロパティを示しています。  
   
  ]]></format>
         </remarks>

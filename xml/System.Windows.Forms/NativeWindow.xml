@@ -1,5 +1,5 @@
 <Type Name="NativeWindow" FullName="System.Windows.Forms.NativeWindow">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="71dc1294fdc41e7ab109521f05c37a384badb750" /><Meta Name="ms.sourcegitcommit" Value="2dd0eede6edd6dd3d2aa8f79010848658b967609" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/17/2019" /><Meta Name="ms.locfileid" Value="59676781" /></Metadata><TypeSignature Language="C#" Value="public class NativeWindow : MarshalByRefObject, System.Windows.Forms.IWin32Window" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b630f0b25c5228ede23f6c9148474edc66d269bd" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69183002" /></Metadata><TypeSignature Language="C#" Value="public class NativeWindow : MarshalByRefObject, System.Windows.Forms.IWin32Window" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi NativeWindow extends System.MarshalByRefObject implements class System.Windows.Forms.IWin32Window" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Forms.NativeWindow" />
   <TypeSignature Language="VB.NET" Value="Public Class NativeWindow&#xA;Inherits MarshalByRefObject&#xA;Implements IWin32Window" />
@@ -25,23 +25,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このクラスは、ウィンドウ クラスの作成と登録に自動的に管理します。  
+ このクラスは、ウィンドウクラスの作成と登録を自動的に管理します。  
   
- ウィンドウ ハンドルに関連付けられているときに、ウィンドウはガベージ コレクションの対象ではありません。 適切なガベージ コレクションのために、ハンドルする必要がありますか、破棄を使用して手動で<xref:System.Windows.Forms.NativeWindow.DestroyHandle%2A>を使用して解放または<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>します。  
+ ウィンドウは、ウィンドウハンドルに関連付けられている場合、ガベージコレクションの対象にはなりません。 適切なガベージコレクションを確実に行うには、を使用<xref:System.Windows.Forms.NativeWindow.DestroyHandle%2A>して手動<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>でハンドルを破棄するか、を使用して解放する必要があります。  
   
 > [!NOTE]
->  <xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>へのメッセージが処理されるときに、メソッドが呼び出されます。 つまり、どの場合では手動で呼び出す必要はない場合がある<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>が、これを行うことをお勧めします。  
+>  <xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>メソッドは、WM_NCDESTROY メッセージが処理されるときに呼び出されます。 つまり、手動でを呼び出す<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>必要がない場合には、これを行うことをお勧めします。  
   
- <xref:System.Windows.Forms.NativeWindow>クラスには、次のプロパティとハンドルを管理する方法が用意されています: <xref:System.Windows.Forms.NativeWindow.Handle%2A>、 <xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>、 <xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>、 <xref:System.Windows.Forms.NativeWindow.DestroyHandle%2A>、および<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>します。  
+ クラス<xref:System.Windows.Forms.NativeWindow>には<xref:System.Windows.Forms.NativeWindow.Handle%2A>、ハンドルを管理するための、 <xref:System.Windows.Forms.NativeWindow.DestroyHandle%2A> <xref:System.Windows.Forms.NativeWindow.CreateHandle%2A> <xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>、、、および<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>の各プロパティとメソッドが用意されています。  
   
    
   
 ## Examples  
- 次のコード例では、ウィンドウ プロシージャ、および特定のオペレーティング システムのウィンドウ クラス名でウィンドウを作成するオペレーティング システムのウィンドウ メッセージを受け取る方法を示します。 例では、2 つのクラスを継承するクラスを作成します<xref:System.Windows.Forms.NativeWindow>これを実現します。  
+ 次のコード例は、ウィンドウプロシージャでのオペレーティングシステムのメッセージの受信と、特定のオペレーティングシステムウィンドウのクラス名を持つウィンドウの作成を示しています。 この例では、これを実現<xref:System.Windows.Forms.NativeWindow>するを継承する2つのクラスを作成します。  
   
- `MyNativeWindowListener`クラス、コンス トラクターに渡されるフォームのウィンドウ プロシージャにフックし、上書き、<xref:System.Windows.Forms.NativeWindow.WndProc%2A>をインターセプトするメソッド、`WM_ACTIVATEAPP`ウィンドウ メッセージ。 クラスの使用を示して、<xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>と<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>ウィンドウ ハンドルを識別するメソッド、<xref:System.Windows.Forms.NativeWindow>が使用されます。 ハンドルが割り当てに基づいて、<xref:System.Windows.Forms.Control.HandleCreated?displayProperty=nameWithType>と<xref:System.Windows.Forms.Control.HandleDestroyed?displayProperty=nameWithType>イベント。 ときに、`WM_ACTIVATEAPP`ウィンドウ メッセージを受信すると、クラスの呼び出し、`form1.ApplicationActivated`メソッド。  
+ クラス`MyNativeWindowListener`は、コンストラクターに渡されるフォームのウィンドウプロシージャにフックし、 <xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドをオーバーライドして`WM_ACTIVATEAPP`ウィンドウメッセージをインターセプトします。 クラスは、メソッド<xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>と<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>メソッドを使用して、 <xref:System.Windows.Forms.NativeWindow>が使用するウィンドウハンドルを識別する方法を示します。 ハンドルは、イベントとイベントに<xref:System.Windows.Forms.Control.HandleCreated?displayProperty=nameWithType>基づい<xref:System.Windows.Forms.Control.HandleDestroyed?displayProperty=nameWithType>て割り当てられます。 ウィンドウメッセージを受信すると、クラスは`form1.ApplicationActivated`メソッドを呼び出します。 `WM_ACTIVATEAPP`  
   
- `MyNativeWindow`クラスの新しいウィンドウを作成する、<xref:System.Windows.Forms.CreateParams.ClassName%2A>設定`BUTTON`します。 クラスの使用方法を示します、<xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>メソッドとオーバーライドを行う、<xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドを受信するウィンドウ メッセージをインターセプトします。  
+ クラス`MyNativeWindow`は、をに`BUTTON`設定して<xref:System.Windows.Forms.CreateParams.ClassName%2A> 、新しいウィンドウを作成します。 クラスは、 <xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>メソッドを使用し、 <xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドをオーバーライドして、受信されたウィンドウメッセージをインターセプトする方法を示します。  
   
  [!code-cpp[NativeWindow#1](~/samples/snippets/cpp/VS_Snippets_Winforms/NativeWindow/CPP/form1.cpp#1)]
  [!code-csharp[NativeWindow#1](~/samples/snippets/csharp/VS_Snippets_Winforms/NativeWindow/CS/form1.cs#1)]
@@ -49,7 +49,7 @@
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージ コードを呼び出す直前の呼び出し元。 関連付けられた列挙体。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+    <permission cref="T:System.Security.Permissions.SecurityPermission">直前の呼び出し元がアンマネージコードを呼び出す場合は。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
     <altmember cref="T:System.IntPtr" />
     <altmember cref="T:System.Windows.Forms.Application" />
     <altmember cref="T:System.Windows.Forms.AxHost" />
@@ -79,7 +79,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、既定値<xref:System.Windows.Forms.NativeWindow.%23ctor%2A>コンパイラによって提供されるコンス トラクター。 <xref:System.Windows.Forms.NativeWindow>クラスにもアプリケーション ドメイン全体のメッセージ ハンドラーとハッシュ テーブルを初期化する静的コンス トラクターがあります。  
+ これは、コンパイラ<xref:System.Windows.Forms.NativeWindow.%23ctor%2A>によって提供される既定のコンストラクターです。 クラス<xref:System.Windows.Forms.NativeWindow>には、アプリケーションドメイン全体のメッセージハンドラーとハッシュテーブルを初期化する静的コンストラクターもあります。  
   
  ]]></format>
         </remarks>
@@ -119,21 +119,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.NativeWindow.WndProc%2A> 送信されたウィンドウ メッセージを途中受信、`handle`パラメーター。 使用<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>ハンドルのウィンドウ プロシージャを既定のウィンドウ プロシージャにリセットします。  
+ <xref:System.Windows.Forms.NativeWindow.WndProc%2A>パラメーターに送信された`handle`ウィンドウメッセージをインターセプトします。 ハンドル<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>のウィンドウプロシージャを既定のウィンドウプロシージャにリセットするには、を使用します。  
   
- <xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>メソッドの呼び出し、<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A>ことを示すメソッドの値、<xref:System.Windows.Forms.NativeWindow.Handle%2A>プロパティが変更されました。  
+ メソッドは、 <xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A>メソッドを呼び出して、 <xref:System.Windows.Forms.NativeWindow.Handle%2A>プロパティの値が変更されたことを示します。 <xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>  
   
 > [!NOTE]
->  ハンドルを割り当てるには、別のアプリケーション プロセスですることはできません。  
+>  割り当てるハンドルを別のアプリケーションプロセス内に配置することはできません。  
   
    
   
 ## Examples  
- 次のコード例では、ウィンドウ プロシージャでオペレーティング システムのウィンドウ メッセージを受け取る方法を示します。 継承するクラスを作成する例では、<xref:System.Windows.Forms.NativeWindow>これを実現します。  
+ 次のコード例は、ウィンドウプロシージャでオペレーティングシステムウィンドウメッセージを傍受する方法を示しています。 この例では、を<xref:System.Windows.Forms.NativeWindow>継承するクラスを作成して、これを実現します。  
   
- `MyNativeWindowListener`クラス、コンス トラクターに渡されるフォームのウィンドウ プロシージャにフックし、上書き、<xref:System.Windows.Forms.NativeWindow.WndProc%2A>インターセプトする方法、`WM_ACTIVATEAPP`ウィンドウ メッセージ。 クラスの使用を示します、<xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>と<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>どのウィンドウを識別するメソッドの処理、<xref:System.Windows.Forms.NativeWindow>が使用されます。 基に、ハンドルを割り当て、<xref:System.Windows.Forms.Control.HandleCreated?displayProperty=nameWithType>と<xref:System.Windows.Forms.Control.HandleDestroyed?displayProperty=nameWithType>イベント。 ときに、`WM_ACTIVATEAPP`ウィンドウ メッセージを受信すると、クラスの呼び出し、`form1.ApplicationActivated`メソッド。  
+ クラス`MyNativeWindowListener`は、コンストラクターに渡されるフォームのウィンドウプロシージャにフックし、 <xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドをオーバーライドして`WM_ACTIVATEAPP`ウィンドウメッセージをインターセプトします。 クラスは、メソッド<xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>と<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>メソッドを使用して、 <xref:System.Windows.Forms.NativeWindow>が使用するウィンドウハンドルを識別する方法を示しています。 ハンドルは、イベントと<xref:System.Windows.Forms.Control.HandleCreated?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.HandleDestroyed?displayProperty=nameWithType>イベントに基づいて割り当てられます。 ウィンドウメッセージを受信すると、クラスは`form1.ApplicationActivated`メソッドを呼び出します。 `WM_ACTIVATEAPP`  
   
- このコードは、抜粋の例に示すように、<xref:System.Windows.Forms.NativeWindow>クラスの概要。 いくつかのコードは、簡潔さを優先するためには表示されません。 参照してください<xref:System.Windows.Forms.NativeWindow>全体のコードの一覧。  
+ このコードは、 <xref:System.Windows.Forms.NativeWindow>クラスの概要に示されている例から抜粋したものです。 簡潔にするために、一部のコードは表示されません。 コード<xref:System.Windows.Forms.NativeWindow>全体の一覧については、「」を参照してください。  
   
  [!code-cpp[NativeWindow#2](~/samples/snippets/cpp/VS_Snippets_Winforms/NativeWindow/CPP/form1.cpp#2)]
  [!code-csharp[NativeWindow#2](~/samples/snippets/csharp/VS_Snippets_Winforms/NativeWindow/CS/form1.cs#2)]
@@ -178,24 +178,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `cp`ネイティブ Win32 に渡される値を指定するパラメーター`CreateWindowEx`ウィンドウとそのハンドルを作成します。  
+ パラメーター `cp`は、ウィンドウとそのハンドルを作成するために`CreateWindowEx`ネイティブの Win32 メソッドに渡される値を指定します。  
   
- ときに、<xref:System.Windows.Forms.CreateParams.ClassName%2A>フィールドがない`null`、新しく作成したウィンドウ ハンドルを指定したクラスから継承します。 たとえば場合、<xref:System.Windows.Forms.CreateParams.ClassName%2A>に設定されている`BUTTON`、新しく作成されたウィンドウは、Win32 に基づいて`BUTTON`ウィンドウ クラス。 <xref:System.Windows.Forms.CreateParams.Param%2A>のプロパティ、<xref:System.Windows.Forms.CreateParams.ClassName%2A>オブジェクトがある必要がありますか`null`または構造体として宣言されたクラスのインスタンスを参照します。  
+ フィールドがでない`null`場合、新しく作成されたウィンドウハンドルは、指定されたクラスを継承します。 <xref:System.Windows.Forms.CreateParams.ClassName%2A> たとえば、がに<xref:System.Windows.Forms.CreateParams.ClassName%2A> `BUTTON`設定されている場合、新しく作成されたウィンドウ`BUTTON`は Win32 ウィンドウクラスに基づきます。 オブジェクトのプロパティは、 <xref:System.Windows.Forms.CreateParams.Param%2A>構造体と`null`して宣言されたクラスのインスタンスを参照するか、参照する必要があります。 <xref:System.Windows.Forms.CreateParams.ClassName%2A>  
   
- このコードは、抜粋の例に示すように、<xref:System.Windows.Forms.NativeWindow>クラスの概要。 いくつかのコードは、簡潔さを優先するためには表示されません。 参照してください<xref:System.Windows.Forms.NativeWindow>全体のコードの一覧。  
+ このコードは、 <xref:System.Windows.Forms.NativeWindow>クラスの概要に示されている例から抜粋したものです。 簡潔にするために、一部のコードは表示されません。 コード<xref:System.Windows.Forms.NativeWindow>全体の一覧については、「」を参照してください。  
   
 > [!NOTE]
->  指定されたクラス名は、オペレーティング システムに登録されます。  
+>  指定されたクラス名は、オペレーティングシステムに登録されています。  
   
    
   
 ## Examples  
- 次のコード例では、特定のオペレーティング システムのウィンドウ クラス名でウィンドウの作成を示します。 継承するクラスを作成する例では、<xref:System.Windows.Forms.NativeWindow>これを実現します。  
+ 次のコード例は、特定のオペレーティングシステムウィンドウのクラス名を使用してウィンドウを作成する方法を示しています。 この例では、を<xref:System.Windows.Forms.NativeWindow>継承するクラスを作成して、これを実現します。  
   
- `MyNativeWindow`クラスの新しいウィンドウを作成する、<xref:System.Windows.Forms.CreateParams.ClassName%2A>設定`BUTTON`します。 これには、Win32 のボタン ウィンドウが作成されます。 追加のウィンドウ スタイルを指定すると、ボタンのサイズと場所に設定されます。 クラスは、使用する方法を示します、<xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>メソッドとオーバーライド、<xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドを受信するウィンドウ メッセージをインターセプトします。 WM_ACTIVATEAPP メッセージをこの例は、これで作成した型に対応するウィンドウ メッセージに実際のプログラムでに置き換えられますことができます。  
+ クラス`MyNativeWindow`は、をに`BUTTON`設定して<xref:System.Windows.Forms.CreateParams.ClassName%2A> 、新しいウィンドウを作成します。 これにより、Win32 ボタンウィンドウが作成されます。 ボタンの位置とサイズは、追加のウィンドウスタイルを指定することによって設定されます。 クラスは、 <xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>メソッドを使用し、 <xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドをオーバーライドして、受信されたウィンドウメッセージをインターセプトする方法を示します。 この例では WM_ACTIVATEAPP メッセージを検索しますが、実際のプログラムでは、作成された型に固有のウィンドウメッセージを置き換えることができます。  
   
 > [!NOTE]
->  コントロールの種類によっては、ウィンドウではなく、ウィンドウの親をウィンドウ メッセージを送信します。 詳細については、Windows プラットフォーム SDK を参照してください。  
+>  コントロールの種類によっては、ウィンドウではなくウィンドウの親にウィンドウメッセージが送信されます。 詳細については、Windows プラットフォーム SDK を参照してください。  
   
  [!code-cpp[NativeWindow#3](~/samples/snippets/cpp/VS_Snippets_Winforms/NativeWindow/CPP/form1.cpp#3)]
  [!code-csharp[NativeWindow#3](~/samples/snippets/csharp/VS_Snippets_Winforms/NativeWindow/CS/form1.cs#3)]
@@ -206,7 +206,7 @@
         <exception cref="T:System.OutOfMemoryException">ネイティブ ウィンドウを作成しようとしたときに、オペレーティング システムでリソース不足が発生しました。</exception>
         <exception cref="T:System.ComponentModel.Win32Exception">ネイティブ Windows API で指定されたウィンドウを作成できませんでした。</exception>
         <exception cref="T:System.InvalidOperationException">現在のネイティブ ウィンドウのハンドルが既に割り当てられています。つまり、<see cref="P:System.Windows.Forms.NativeWindow.Handle" /> プロパティが <see cref="F:System.IntPtr.Zero" /> ではありません。</exception>
-        <permission cref="T:System.Security.Permissions.UIPermission">最上位ウィンドウを作成します。 ウィンドウ スタイルが子ではない場合、またはウィンドウには、親がない場合にのみ、このアクセス許可が要求されます。 関連付けられた列挙体。 <see cref="F:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">トップレベルウィンドウを作成します。 このアクセス許可は、ウィンドウスタイルが子でない場合、またはウィンドウに親がない場合にのみ要求されます。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows" /></permission>
         <altmember cref="T:System.Windows.Forms.CreateParams" />
         <altmember cref="P:System.Windows.Forms.NativeWindow.Handle" />
         <altmember cref="M:System.Windows.Forms.NativeWindow.AssignHandle(System.IntPtr)" />
@@ -242,15 +242,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常、のみを呼び出す、<xref:System.Windows.Forms.NativeWindow.DefWndProc%2A>メソッド ウィンドウ メッセージを受け取り、メッセージを処理する既定のウィンドウ プロシージャを希望するとします。 <xref:System.Windows.Forms.NativeWindow.DefWndProc%2A> ウィンドウをウィンドウ メッセージを送信する呼び出すことはできません。Win32 呼び出し`SendMessage`関数を使用します。  
+ 通常、 <xref:System.Windows.Forms.NativeWindow.DefWndProc%2A>メソッドを呼び出すのは、ウィンドウメッセージを受信し、既定のウィンドウプロシージャでメッセージを処理する場合のみです。 <xref:System.Windows.Forms.NativeWindow.DefWndProc%2A>ウィンドウにウィンドウメッセージを送信するためにを呼び出すことはできません。代わりに Win32 `SendMessage`関数を呼び出してください。  
   
- 呼び出すとエラーが<xref:System.Windows.Forms.NativeWindow.DefWndProc%2A>ときに、<xref:System.Windows.Forms.NativeWindow.Handle%2A>プロパティは 0。  
+ プロパティが0の<xref:System.Windows.Forms.NativeWindow.DefWndProc%2A> <xref:System.Windows.Forms.NativeWindow.Handle%2A>ときにを呼び出すと、エラーになります。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>一般化されたカスタム メッセージの特定のネイティブ ウィンドウまたは .NET Windows フォームの処理を実装する派生クラスでは、このメソッドをオーバーライド<see cref="T:System.Windows.Forms.Control" />します。 前に、後、または、標準のメッセージの処理を実行します。 このメソッドの基本クラス実装への呼び出しではなく、カスタム処理を実行できます。  
+        <block subset="none" type="overrides"><para>派生クラスでこのメソッドをオーバーライドして、特定のネイティブウィンドウまたは .NET Windows フォーム<see cref="T:System.Windows.Forms.Control" />に対する一般化されたカスタムメッセージ処理を実装します。 カスタム処理は、このメソッドの基本クラスの実装を呼び出す前、後、またはその代わりに実行できます。これにより、標準のメッセージ処理が実行されます。  
   
-これに対し、カスタマイズした追加するメッセージ処理アプリケーションは行うことができます、<see cref="M:System.Windows.Forms.Application.AddMessageFilter(System.Windows.Forms.IMessageFilter)" />のメソッド、<see cref="T:System.Windows.Forms.Application" />クラス。</para></block>
+これに対して、アプリケーションに対してカスタマイズされたメッセージ処理<see cref="M:System.Windows.Forms.Application.AddMessageFilter(System.Windows.Forms.IMessageFilter)" />を追加する<see cref="T:System.Windows.Forms.Application" />には、クラスのメソッドを使用します。</para></block>
         <altmember cref="T:System.Windows.Forms.Message" />
         <altmember cref="M:System.Windows.Forms.Application.SetUnhandledExceptionMode(System.Windows.Forms.UnhandledExceptionMode)" />
         <altmember cref="M:System.Windows.Forms.Application.AddMessageFilter(System.Windows.Forms.IMessageFilter)" />
@@ -280,10 +280,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドに関連付けられているウィンドウの破棄、 <xref:System.Windows.Forms.NativeWindow.Handle%2A>、設定、<xref:System.Windows.Forms.NativeWindow.Handle%2A>プロパティを 0、および呼び出し、<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A>メソッドは、変更を反映するようにします。 通常、のみを呼び出す<xref:System.Windows.Forms.NativeWindow.DestroyHandle%2A>ネイティブ ウィンドウを完了したら。  
+ このメソッドは、 <xref:System.Windows.Forms.NativeWindow.Handle%2A>に関連付けられているウィンドウを破棄し、 <xref:System.Windows.Forms.NativeWindow.Handle%2A>プロパティを<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A> 0 に設定し、メソッドを呼び出して変更を反映します。 通常、を呼び出す<xref:System.Windows.Forms.NativeWindow.DestroyHandle%2A>のは、ネイティブウィンドウが終了したときだけです。  
   
 > [!NOTE]
->  <xref:System.Windows.Forms.NativeWindow>クラスに自動的には関連付けられているウィンドウを破棄し、WM_DESTROY メッセージへの応答でそのリソースを解放します。  
+>  クラス<xref:System.Windows.Forms.NativeWindow>は、関連付けられているウィンドウを自動的に破棄し、WM_DESTROY メッセージに応答してそのリソースを解放します。  
   
  ]]></format>
         </remarks>
@@ -319,7 +319,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Forms.NativeWindow.Finalize%2A>メソッドに現在関連付けられている Win32 の派生クラスを削除する<xref:System.Windows.Forms.NativeWindow>インスタンス ハンドルを解放する、WM_CLOSE メッセージ、関連付けられているウィンドウをポストします。  
+ メソッド<xref:System.Windows.Forms.NativeWindow.Finalize%2A>は、現在<xref:System.Windows.Forms.NativeWindow>のインスタンスに関連付けられている Win32 派生クラスを削除し、ハンドルを解放して、関連付けられているウィンドウに WM_CLOSE メッセージをポストします。  
   
  ]]></format>
         </remarks>
@@ -356,7 +356,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 別のメソッドからのハンドルを受信する場合は、ハンドルに関連付けられているウィンドウを取得するこのメソッドを使用します。 ハンドルは、別によって既に所有する必要があります<xref:System.Windows.Forms.NativeWindow>、現在のプロセス以外の場合、`null`が返されます。  
+ 別のメソッドからハンドルを受け取った場合は、このメソッドを使用して、ハンドルに関連付けられているウィンドウを取得します。 ハンドルは、現在のプロセス内の<xref:System.Windows.Forms.NativeWindow>別のによって既に`null`所有されている必要があります。それ以外の場合は、が返されます。  
   
  ]]></format>
         </remarks>
@@ -399,17 +399,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ウィンドウやコントロールのハンドルを必要とする Windows API のメソッドを呼び出すときに、このメソッドを使用します。  
+ ウィンドウまたはコントロールのハンドルを必要とする Windows API メソッドを呼び出すときに、このメソッドを使用します。  
   
    
   
 ## Examples  
- 次のコード例では、特定のオペレーティング システムのウィンドウ クラス名でウィンドウの作成を示します。 継承するクラスを作成する例では、<xref:System.Windows.Forms.NativeWindow>これを実現します。 オーバーライドも示します、<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A>時に通知がメソッド、<xref:System.Windows.Forms.NativeWindow.Handle%2A>変更します。  
+ 次のコード例は、特定のオペレーティングシステムウィンドウのクラス名を使用してウィンドウを作成する方法を示しています。 この例では、を<xref:System.Windows.Forms.NativeWindow>継承するクラスを作成して、これを実現します。 また、この例では<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A> 、が<xref:System.Windows.Forms.NativeWindow.Handle%2A>変更されたときに通知されるようにメソッドをオーバーライドする方法も示しています。  
   
- `MyNativeWindow`クラスの新しいウィンドウを作成する、<xref:System.Windows.Forms.CreateParams.ClassName%2A>ボタンに設定します。 これには、Win32 のボタン ウィンドウが作成されます。 追加のウィンドウ スタイルを指定すると、ボタンのサイズと場所に設定されます。 クラスは、使用する方法を示します、<xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>メソッドとオーバーライド、<xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドを受信するウィンドウ メッセージをインターセプトします。 WM_ACTIVATEAPP メッセージをこの例は、これで作成した型に対応するウィンドウ メッセージと実際のプログラムでに置き換えられます可能性があります。  
+ クラス`MyNativeWindow`は、 <xref:System.Windows.Forms.CreateParams.ClassName%2A> [設定] ボタンを使用して新しいウィンドウを作成します。 これにより、Win32 ボタンウィンドウが作成されます。 ボタンの位置とサイズは、追加のウィンドウスタイルを指定することによって設定されます。 クラスは、 <xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>メソッドを使用し、 <xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドをオーバーライドして、受信されたウィンドウメッセージをインターセプトする方法を示します。 この例では WM_ACTIVATEAPP メッセージを検索しますが、実際のプログラムでは、作成された型に固有のウィンドウメッセージを置き換えることができます。  
   
 > [!NOTE]
->  コントロールの種類によっては、ウィンドウではなく、ウィンドウの親をウィンドウ メッセージを送信します。 詳細については、Windows プラットフォーム SDK を参照してください。  
+>  コントロールの種類によっては、ウィンドウではなくウィンドウの親にウィンドウメッセージが送信されます。 詳細については、Windows プラットフォーム SDK を参照してください。  
   
  [!code-cpp[NativeWindow#3](~/samples/snippets/cpp/VS_Snippets_Winforms/NativeWindow/CPP/form1.cpp#3)]
  [!code-csharp[NativeWindow#3](~/samples/snippets/csharp/VS_Snippets_Winforms/NativeWindow/CS/form1.cs#3)]
@@ -448,19 +448,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドが呼び出されるときの値、<xref:System.Windows.Forms.NativeWindow.Handle%2A>プロパティが変更されました。  
+ このメソッドは、 <xref:System.Windows.Forms.NativeWindow.Handle%2A>プロパティの値が変更されたときに呼び出されます。  
   
    
   
 ## Examples  
- 次のコード例では、特定のオペレーティング システムのウィンドウ クラス名でウィンドウの作成を示します。 継承するクラスを作成する例では、<xref:System.Windows.Forms.NativeWindow>これを実現します。 オーバーライドも示します、<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A>時に通知がメソッド、<xref:System.Windows.Forms.NativeWindow.Handle%2A>変更します。  
+ 次のコード例は、特定のオペレーティングシステムウィンドウのクラス名を使用してウィンドウを作成する方法を示しています。 この例では、を<xref:System.Windows.Forms.NativeWindow>継承するクラスを作成して、これを実現します。 また、この例では<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A> 、が<xref:System.Windows.Forms.NativeWindow.Handle%2A>変更されたときに通知されるようにメソッドをオーバーライドする方法も示しています。  
   
- `MyNativeWindow`クラスの新しいウィンドウを作成する、<xref:System.Windows.Forms.CreateParams.ClassName%2A>設定`BUTTON`します。 これには、Win32 のボタン ウィンドウが作成されます。 追加のウィンドウ スタイルを指定すると、ボタンのサイズと場所に設定されます。 クラスは、使用する方法を示します、<xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>メソッドとオーバーライド、<xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドを受信するウィンドウ メッセージをインターセプトします。 WM_ACTIVATEAPP メッセージをこの例は、これで作成した型に対応するウィンドウ メッセージに実際のプログラムでに置き換えられますことができます。  
+ クラス`MyNativeWindow`は、をに`BUTTON`設定して<xref:System.Windows.Forms.CreateParams.ClassName%2A> 、新しいウィンドウを作成します。 これにより、Win32 ボタンウィンドウが作成されます。 ボタンの位置とサイズは、追加のウィンドウスタイルを指定することによって設定されます。 クラスは、 <xref:System.Windows.Forms.NativeWindow.CreateHandle%2A>メソッドを使用し、 <xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドをオーバーライドして、受信されたウィンドウメッセージをインターセプトする方法を示します。 この例では WM_ACTIVATEAPP メッセージを検索しますが、実際のプログラムでは、作成された型に固有のウィンドウメッセージを置き換えることができます。  
   
- このコードは、抜粋の例に示すように、<xref:System.Windows.Forms.NativeWindow>クラスの概要。 いくつかのコードは、簡潔さを優先するためには表示されません。 参照してください<xref:System.Windows.Forms.NativeWindow>全体のコードの一覧。  
+ このコードは、 <xref:System.Windows.Forms.NativeWindow>クラスの概要に示されている例から抜粋したものです。 簡潔にするために、一部のコードは表示されません。 コード<xref:System.Windows.Forms.NativeWindow>全体の一覧については、「」を参照してください。  
   
 > [!NOTE]
->  コントロールの種類によっては、ウィンドウではなく、ウィンドウの親をウィンドウ メッセージを送信します。 詳細については、Windows プラットフォーム SDK を参照してください。  
+>  コントロールの種類によっては、ウィンドウではなくウィンドウの親にウィンドウメッセージが送信されます。 詳細については、Windows プラットフォーム SDK を参照してください。  
   
  [!code-cpp[NativeWindow#3](~/samples/snippets/cpp/VS_Snippets_Winforms/NativeWindow/CPP/form1.cpp#3)]
  [!code-csharp[NativeWindow#3](~/samples/snippets/csharp/VS_Snippets_Winforms/NativeWindow/CS/form1.cs#3)]
@@ -468,7 +468,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>ウィンドウ ハンドルに加えられた変更を追跡するには、このメソッドをオーバーライドします。</para></block>
+        <block subset="none" type="overrides"><para>ウィンドウハンドルに加えられた変更を追跡するには、このメソッドをオーバーライドします。</para></block>
         <altmember cref="P:System.Windows.Forms.NativeWindow.Handle" />
         <altmember cref="M:System.Windows.Forms.NativeWindow.AssignHandle(System.IntPtr)" />
         <altmember cref="M:System.Windows.Forms.NativeWindow.CreateHandle(System.Windows.Forms.CreateParams)" />
@@ -504,7 +504,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常、<xref:System.Windows.Forms.Application.OnThreadException%2A>スレッドの例外のハンドル。  
+ 通常、 <xref:System.Windows.Forms.Application.OnThreadException%2A>はスレッドの例外を処理します。  
   
  ]]></format>
         </remarks>
@@ -546,18 +546,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、ウィンドウ ハンドルを破棄しません。 代わりに、ハンドルのウィンドウ プロシージャを既定のウィンドウ プロシージャに設定します。 設定、<xref:System.Windows.Forms.NativeWindow.Handle%2A>プロパティを 0 に呼び出し<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A>変更が反映されます。  
+ このメソッドは、ウィンドウハンドルを破棄しません。 代わりに、ハンドルのウィンドウプロシージャを既定のウィンドウプロシージャに設定します。 このメソッドは<xref:System.Windows.Forms.NativeWindow.Handle%2A> 、プロパティを0に<xref:System.Windows.Forms.NativeWindow.OnHandleChange%2A>設定し、を呼び出して変更を反映します。  
   
- Windows のハンドルが破棄されたことを示すネイティブの Win32 へメッセージを受信した場合、ウィンドウは自動的にこのメソッドを呼び出します。  
+ ウィンドウは、Windows がハンドルを破棄したことを示すネイティブ Win32 WM_NCDESTROY メッセージを受信すると、このメソッドを自動的に呼び出します。  
   
    
   
 ## Examples  
- 次のコード例では、ウィンドウ プロシージャでオペレーティング システムのウィンドウ メッセージを受け取る方法を示します。 継承するクラスを作成する例では、<xref:System.Windows.Forms.NativeWindow>これを実現します。  
+ 次のコード例は、ウィンドウプロシージャでオペレーティングシステムウィンドウメッセージを傍受する方法を示しています。 この例では、を<xref:System.Windows.Forms.NativeWindow>継承するクラスを作成して、これを実現します。  
   
- `MyNativeWindowListener`クラス、コンス トラクターに渡されるフォームのウィンドウ プロシージャにフックし、上書き、<xref:System.Windows.Forms.NativeWindow.WndProc%2A>インターセプトする方法、`WM_ACTIVATEAPP`ウィンドウ メッセージ。 クラスの使用を示します、<xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>と<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>ウィンドウ ハンドルを識別するメソッド、<xref:System.Windows.Forms.NativeWindow>が使用されます。 ハンドルが割り当てに基づいて、<xref:System.Windows.Forms.Control.HandleCreated?displayProperty=nameWithType>と<xref:System.Windows.Forms.Control.HandleDestroyed?displayProperty=nameWithType>イベント。 ときに、`WM_ACTIVATEAPP`ウィンドウ メッセージを受信すると、クラスの呼び出し、`form1.ApplicationActivated`メソッド。  
+ クラス`MyNativeWindowListener`は、コンストラクターに渡されるフォームのウィンドウプロシージャにフックし、 <xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドをオーバーライドして`WM_ACTIVATEAPP`ウィンドウメッセージをインターセプトします。 クラスは、メソッド<xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>と<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>メソッドを使用して、 <xref:System.Windows.Forms.NativeWindow>が使用するウィンドウハンドルを識別する方法を示しています。 ハンドルは、イベントとイベントに<xref:System.Windows.Forms.Control.HandleCreated?displayProperty=nameWithType>基づい<xref:System.Windows.Forms.Control.HandleDestroyed?displayProperty=nameWithType>て割り当てられます。 ウィンドウメッセージを受信すると、クラスは`form1.ApplicationActivated`メソッドを呼び出します。 `WM_ACTIVATEAPP`  
   
- このコードは、抜粋の例に示すように、<xref:System.Windows.Forms.NativeWindow>クラスの概要。 いくつかのコードは、簡潔さを優先するためには表示されません。 参照してください<xref:System.Windows.Forms.NativeWindow>全体のコードの一覧。  
+ このコードは、 <xref:System.Windows.Forms.NativeWindow>クラスの概要に示されている例から抜粋したものです。 簡潔にするために、一部のコードは表示されません。 コード<xref:System.Windows.Forms.NativeWindow>全体の一覧については、「」を参照してください。  
   
  [!code-cpp[NativeWindow#2](~/samples/snippets/cpp/VS_Snippets_Winforms/NativeWindow/CPP/form1.cpp#2)]
  [!code-csharp[NativeWindow#2](~/samples/snippets/csharp/VS_Snippets_Winforms/NativeWindow/CS/form1.cs#2)]
@@ -606,16 +606,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ウィンドウのハンドルをウィンドウ メッセージが送信されるときに、このメソッドが呼び出されます。  
+ このメソッドは、ウィンドウのハンドルにウィンドウメッセージが送信されるときに呼び出されます。  
   
    
   
 ## Examples  
- 次のコード例では、ウィンドウ プロシージャでオペレーティング システムのウィンドウ メッセージを受け取る方法を示します。 継承するクラスを作成する例では、<xref:System.Windows.Forms.NativeWindow>これを実現します。  
+ 次のコード例は、ウィンドウプロシージャでオペレーティングシステムウィンドウメッセージを傍受する方法を示しています。 この例では、を<xref:System.Windows.Forms.NativeWindow>継承するクラスを作成して、これを実現します。  
   
- `MyNativeWindowListener`クラス、コンス トラクターに渡されるフォームのウィンドウ プロシージャにフックし、上書き、<xref:System.Windows.Forms.NativeWindow.WndProc%2A>をインターセプトするメソッド、`WM_ACTIVATEAPP`ウィンドウ メッセージ。 クラスの使用を示します、<xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>と<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>ウィンドウ ハンドルを識別するメソッド、<xref:System.Windows.Forms.NativeWindow>が使用されます。 基に、ハンドルを割り当て、<xref:System.Windows.Forms.Control.HandleCreated?displayProperty=nameWithType>と<xref:System.Windows.Forms.Control.HandleDestroyed?displayProperty=nameWithType>イベント。 ときに、`WM_ACTIVATEAPP`ウィンドウ メッセージを受信すると、クラスの呼び出し、`form1.ApplicationActivated`メソッド。  
+ クラス`MyNativeWindowListener`は、コンストラクターに渡されるフォームのウィンドウプロシージャにフックし、 <xref:System.Windows.Forms.NativeWindow.WndProc%2A>メソッドをオーバーライドして`WM_ACTIVATEAPP`ウィンドウメッセージをインターセプトします。 クラスは、メソッド<xref:System.Windows.Forms.NativeWindow.AssignHandle%2A>と<xref:System.Windows.Forms.NativeWindow.ReleaseHandle%2A>メソッドを使用して、 <xref:System.Windows.Forms.NativeWindow>が使用するウィンドウハンドルを識別する方法を示しています。 ハンドルは、イベントと<xref:System.Windows.Forms.Control.HandleCreated?displayProperty=nameWithType> <xref:System.Windows.Forms.Control.HandleDestroyed?displayProperty=nameWithType>イベントに基づいて割り当てられます。 ウィンドウメッセージを受信すると、クラスは`form1.ApplicationActivated`メソッドを呼び出します。 `WM_ACTIVATEAPP`  
   
- このコードは、抜粋の例に示すように、<xref:System.Windows.Forms.NativeWindow>クラスの概要。 いくつかのコードは、簡潔さを優先するためには表示されません。 参照してください<xref:System.Windows.Forms.NativeWindow>全体のコードの一覧。  
+ このコードは、 <xref:System.Windows.Forms.NativeWindow>クラスの概要に示されている例から抜粋したものです。 簡潔にするために、一部のコードは表示されません。 コード<xref:System.Windows.Forms.NativeWindow>全体の一覧については、「」を参照してください。  
   
  [!code-cpp[NativeWindow#2](~/samples/snippets/cpp/VS_Snippets_Winforms/NativeWindow/CPP/form1.cpp#2)]
  [!code-csharp[NativeWindow#2](~/samples/snippets/csharp/VS_Snippets_Winforms/NativeWindow/CS/form1.cs#2)]
@@ -623,7 +623,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>特定のメッセージの処理を実装するには、このメソッドをオーバーライドします。 呼び出す<c>ベース。WndProc</c>未処理のメッセージ。</para></block>
+        <block subset="none" type="overrides"><para>特定のメッセージ処理を実装するには、このメソッドをオーバーライドします。 <c>Base を呼び出します。</c>処理されないメッセージの WndProc。</para></block>
         <altmember cref="P:System.Windows.Forms.NativeWindow.Handle" />
         <altmember cref="T:System.Windows.Forms.Message" />
         <altmember cref="M:System.Windows.Forms.Application.SetUnhandledExceptionMode(System.Windows.Forms.UnhandledExceptionMode)" />

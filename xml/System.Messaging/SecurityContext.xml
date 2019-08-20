@@ -1,5 +1,5 @@
 <Type Name="SecurityContext" FullName="System.Messaging.SecurityContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="07eceb3c5ff786756a2f704065e19d2f93499602" /><Meta Name="ms.sourcegitcommit" Value="0e1f030650a307c745ee84ed547ef858acaea587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/29/2018" /><Meta Name="ms.locfileid" Value="52598487" /></Metadata><TypeSignature Language="C#" Value="public sealed class SecurityContext : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="606b0f7492088e4785a8d9beb805a9a976740b95" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69382311" /></Metadata><TypeSignature Language="C#" Value="public sealed class SecurityContext : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SecurityContext extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Messaging.SecurityContext" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SecurityContext&#xA;Implements IDisposable" />
@@ -24,17 +24,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- セキュリティ コンテキストには、内部証明書など、対応する秘密キー、ユーザーの SID では、認証を要求するときに、証明書と送信者 id をメッセージに添付するために必要なキャッシュされたセキュリティ情報が含まれています。  
+ セキュリティコンテキストには、認証を要求するときに証明書と送信者 id をメッセージに添付するために必要な、内部証明書、対応する秘密キー、ユーザーの SID などのキャッシュされたセキュリティ情報が含まれています。  
   
- ASP.NET アプリケーションなどのクライアントは、キューにメッセージを送信するユーザーを偽装する場合、ユーザーの id は、キューへのアクセスに使用されます。 キューがリモートの場合は、これらの資格情報がキャッシュされ、その後、キューに送信されるメッセージに使用します。 そのため、後続のメッセージの SID は、最初に、キューにメッセージを送信したユーザーのキャッシュされた id になります。 最初に、キューにメッセージを送信したユーザーのキャッシュされた id は、それ以降のユーザーに使用されます。  
+ ASP.NET アプリケーションなどのクライアントがユーザーを偽装してキューにメッセージを送信する場合、そのユーザーの id がキューにアクセスするために使用されます。 キューがリモートの場合、これらの資格情報はキャッシュされ、その後キューに送信されるメッセージに使用されます。 そのため、後続のメッセージの SID は、キューにメッセージを送信した最初のユーザーのキャッシュされた id になります。 キューにメッセージを送信した最初のユーザーのキャッシュされた id は、後続のユーザーに使用されます。  
   
- この問題を解決するには、設定、セキュリティ コンテキストを使用して<xref:System.Messaging.Message.SecurityContext%2A>現在のユーザーの資格情報が、キューへのアクセスに使用されるようにするリモート キューにメッセージを送信する前にします。 ただし、推奨されるベスト プラクティスには。  
+ この問題を解決するには、メッセージを<xref:System.Messaging.Message.SecurityContext%2A>リモートキューに送信する前に、を使用してセキュリティコンテキストを設定し、現在のユーザーの資格情報を使用してキューにアクセスできるようにします。 ただし、推奨されるベストプラクティスは次のとおりです。  
   
-1.  認証済みのキューのキューを作成します。  
+1.  キューを認証済みキューにします。  
   
-2.  ASP.NET アプリケーション ドメイン id として実行をキューに書き込むには、そのアプリケーションを承認します。  
+2.  ドメイン id として ASP.NET アプリケーションを実行し、そのアプリケーションがキューに書き込むことを承認します。  
   
-3.  キューの使用時にユーザーを偽装しません。 代わりに、呼び出し元の id を取得し、いずれかの ASP.NET アプリケーションの承認チェックを実行またはメッセージの一部として呼び出し元の id を含めるし、受信側のアプリケーションの承認チェックを実行します。  
+3.  キューを使用する場合は、ユーザーの権限を借用しないでください。 代わりに、呼び出し元の id を取得し、ASP.NET アプリケーションで承認チェックを実行するか、メッセージの一部として呼び出し元の id を含め、受信側アプリケーションで承認チェックを実行します。  
   
  ]]></format>
     </remarks>

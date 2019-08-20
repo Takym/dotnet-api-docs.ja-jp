@@ -1,5 +1,5 @@
 <Type Name="WorkflowInstance" FullName="System.Activities.Hosting.WorkflowInstance">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d3f9599fb8a859242cf5b1b2a1ae36d9717ba339" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57936824" /></Metadata><TypeSignature Language="C#" Value="public abstract class WorkflowInstance" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fc28f05dc1d614b37de8e2d163b658a13b622888" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69308718" /></Metadata><TypeSignature Language="C#" Value="public abstract class WorkflowInstance" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract WorkflowInstance extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Activities.Hosting.WorkflowInstance" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class WorkflowInstance" />
@@ -21,7 +21,7 @@
 ## Remarks  
  <xref:System.Activities.Hosting.WorkflowInstance> は、単一スレッドであり、ホストがそのスレッドへのすべてのアクセスを同期化していることを前提としています。 複数の API を同時に呼び出すと、<xref:System.InvalidOperationException> がスローされます。  
   
- 内部的を<xref:System.Activities.Hosting.WorkflowInstance>が 2 つの状態。実行中、一時停止します。 ランタイムの状態を Paused から Running に遷移させる唯一の方法は、<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A> を呼び出すことです。 ランタイムが Paused の間は、すべてのアクション (Pause を除く) の取得のみを行うことができます。 ランタイムは、次の状況のときに、自然に Paused になります。  
+ 内部的に<xref:System.Activities.Hosting.WorkflowInstance>は、には次の2つの状態があります。実行中および一時停止中です。 ランタイムの状態を Paused から Running に遷移させる唯一の方法は、<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A> を呼び出すことです。 ランタイムが Paused の間は、すべてのアクション (Pause を除く) の取得のみを行うことができます。 ランタイムは、次の状況のときに、自然に Paused になります。  
   
 -   ランタイムに致命的なエラーが発生しました。 ホストは <xref:System.Activities.Hosting.WorkflowInstance.OnRequestAbort%2A> (Paused への遷移は通知しません) を介してシグナルを受信し、次に、<xref:System.Activities.Hosting.WorkflowInstance.OnNotifyPaused%2A> を介して通知を受けます。  
   
@@ -33,9 +33,9 @@
   
  <xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.RequestPause%2A> プロパティによって返された <xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl> インスタンスの <xref:System.Activities.Hosting.WorkflowInstance.Controller%2A> メソッドは、<xref:System.Activities.Hosting.WorkflowInstance> が Running 状態のときに呼び出すことができる唯一のメソッドです。 他のすべてのメソッドは、呼び出されると <xref:System.InvalidOperationException> をスローします。<xref:System.Activities.Hosting.WorkflowInstance> がある状態から別の状態へ遷移する方法のルールを考えると、Running および Paused の一般概念を次のように定義できます。  
   
--   実行中-への呼び出しの間で状態<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A>と、次の WorkflowInstance.OnNotify* します。  
+-   Running-の呼び出し<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A>と次の WorkflowInstance との間の状態。 onnotify *。  
   
--   一時停止の WorkflowInstance.OnNotify* と次の呼び出しの間で状態<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A>します。  
+-   一時停止-最後の WorkflowInstance. OnNotify * との次の呼び出し<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A>の間の状態。  
   
  ]]></format>
     </remarks>
@@ -343,12 +343,12 @@
       </ReturnValue>
       <Docs>
         <summary>ワークフロー インスタンスの引数および変数のルート環境を取得または設定します。</summary>
-        <value>ワークフロー インスタンスの引数と変数のルート環境。</value>
+        <value>ワークフローインスタンスの引数および変数のルート環境。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ワークフロー インスタンスが初期化された後に、このプロパティを設定かどうかと<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A>返します`true`、<xref:System.InvalidOperationException>がスローされます。  
+ ワークフローインスタンスが初期化されてからが返さ<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A> `true`れた後にこの<xref:System.InvalidOperationException>プロパティを設定すると、がスローされます。  
   
  ]]></format>
         </remarks>
@@ -826,7 +826,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 拡張機能は型によってキー指定され、拡張機能が提供されたホストは、存在する場合は常に使用されます。 <xref:System.Activities.Hosting.WorkflowInstanceExtensionManager.Add%2A> によって追加される拡張機能は、オブジェクトのランタイム型を型のキーとして使用します。 拡張機能のプロバイダーの追加を<xref:System.Activities.Hosting.WorkflowInstanceExtensionManager.Add%2A>、func & 型 T を使用して、\<T > 型のキーとして。 宣言された型に対してホストの拡張機能が存在する場合、または AddDefaultExtensionProvider を介して提供された広範な型が存在する場合、さまざまな *ActivityMetadata.AddDefaultExtensionProvider メソッドを介してアクティビティから提供された拡張機能のプロバイダーは破棄されます 場合 Func\<StreamWriter > が提供されていると Func\<TextWriter > が提供される、Func のみ\<StreamWriter > が保持されます)。 アクティビティ (*ActivityMetadata.RequireExtension を呼び出すことによって表される) によって要求されるコレクションに拡張機能が存在しない場合、<xref:System.Activities.ValidationException> がスローされます。  
+ 拡張機能は型によってキー指定され、拡張機能が提供されたホストは、存在する場合は常に使用されます。 <xref:System.Activities.Hosting.WorkflowInstanceExtensionManager.Add%2A> によって追加される拡張機能は、オブジェクトのランタイム型を型のキーとして使用します。 によって<xref:System.Activities.Hosting.WorkflowInstanceExtensionManager.Add%2A>追加された拡張機能プロバイダーは、Func\<t > の型 t を型キーとして使用します。 宣言された型に対してホストの拡張機能が存在する場合、または AddDefaultExtensionProvider を介して提供された広範な型が存在する場合、さまざまな *ActivityMetadata.AddDefaultExtensionProvider メソッドを介してアクティビティから提供された拡張機能のプロバイダーは破棄されます func\<streamwriter > が指定され、\<func TextWriter >\<が指定されている場合、func streamwriter > のみが保持されます)。 アクティビティ (*ActivityMetadata.RequireExtension を呼び出すことによって表される) によって要求されるコレクションに拡張機能が存在しない場合、<xref:System.Activities.ValidationException> がスローされます。  
   
  ]]></format>
         </remarks>
@@ -880,7 +880,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ワークフロー インスタンスが初期化された後に、このプロパティを設定かどうかと<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A>返します`true`、<xref:System.InvalidOperationException>がスローされます。  
+ ワークフローインスタンスが初期化されてからが返さ<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A> `true`れた後にこの<xref:System.InvalidOperationException>プロパティを設定すると、がスローされます。  
   
  ]]></format>
         </remarks>
@@ -908,7 +908,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A>返します`true`、<xref:System.InvalidOperationException>がスローされます。  
+ が<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A>を`true`返す<xref:System.InvalidOperationException>場合は、がスローされます。  
   
  ]]></format>
         </remarks>
