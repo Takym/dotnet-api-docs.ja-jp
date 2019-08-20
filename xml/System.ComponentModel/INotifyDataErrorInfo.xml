@@ -1,5 +1,5 @@
 <Type Name="INotifyDataErrorInfo" FullName="System.ComponentModel.INotifyDataErrorInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="926d589632045376021111f18378c7f8a8b8f34e" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57943896" /></Metadata><TypeSignature Language="C#" Value="public interface INotifyDataErrorInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="50a50044281e27c0e9c4001dfb228804e2ef282f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69346884" /></Metadata><TypeSignature Language="C#" Value="public interface INotifyDataErrorInfo" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract INotifyDataErrorInfo" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.INotifyDataErrorInfo" />
   <TypeSignature Language="VB.NET" Value="Public Interface INotifyDataErrorInfo" />
@@ -20,6 +20,7 @@
   <AssemblyInfo>
     <AssemblyName>netstandard</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Windows</AssemblyName>
@@ -31,7 +32,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このインターフェイスは、カスタム検証規則を実装し、検証結果を非同期的に公開するデータ エンティティ クラスを使用します。 このインターフェイスは、カスタム エラー オブジェクト、プロパティごとの複数のエラー、プロパティ間のエラー、およびエンティティ レベルのエラーもサポートします。 プロパティ間のエラーは、複数のプロパティに影響するエラーです。 1 つまたはすべての影響を受けるプロパティでは、これらのエラーを関連付けることができますか、エンティティ レベルのエラーとして扱うことができます。 エンティティ レベルのエラーは、複数のプロパティに影響を与えるまたはエンティティ全体を特定のプロパティに影響を与えずに影響するエラーです。  
+ このインターフェイスにより、データエンティティクラスはカスタム検証規則を実装し、検証結果を非同期的に公開できます。 このインターフェイスは、カスタム エラー オブジェクト、プロパティごとの複数のエラー、プロパティ間のエラー、およびエンティティ レベルのエラーもサポートします。 プロパティ間のエラーは、複数のプロパティに影響するエラーです。 これらのエラーは、影響を受けるプロパティの1つまたはすべてに関連付けることができます。また、エンティティレベルのエラーとして扱うこともできます。 エンティティレベルのエラーは、複数のプロパティに影響を与えたり、特定のプロパティに影響を与えずにエンティティ全体に影響を与えるエラーです。  
   
  ]]></format>
     </remarks>
@@ -60,6 +61,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Windows</AssemblyName>
@@ -73,7 +75,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実装するクラスは、ユーザー インターフェイスでは、このイベントを発生させるたびにスレッド、<xref:System.ComponentModel.INotifyDataErrorInfo.GetErrors%2A>戻り値を実装している場合でも、値の変更を返す<xref:System.Collections.Specialized.INotifyCollectionChanged>します。  
+ 実装クラスは、戻り値がを実装<xref:System.ComponentModel.INotifyDataErrorInfo.GetErrors%2A> <xref:System.Collections.Specialized.INotifyCollectionChanged>している場合でも、戻り値が変更されるたびに、ユーザーインターフェイススレッドでこのイベントを発生させる必要があります。  
   
  ]]></format>
         </remarks>
@@ -102,6 +104,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Windows</AssemblyName>
@@ -120,9 +123,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドが戻る、<xref:System.Collections.IEnumerable>非同期の検証規則が処理を完了に変更することができます。 これにより、バインディング エンジンは、エラーが追加、削除、または変更されたときに、ユーザー インターフェイスの検証からのフィードバックを自動的に更新できます。  
+ このメソッドは、 <xref:System.Collections.IEnumerable>非同期検証規則の処理が完了すると変化する可能性があるを返します。 これにより、バインドエンジンは、エラーが追加、削除、または変更されたときに、ユーザーインターフェイスの検証フィードバックを自動的に更新できます。  
   
- 戻り値は別に変更できます<xref:System.Collections.IEnumerable>、または以前に返された再利用できる<xref:System.Collections.IEnumerable>その内容を変更します。 戻り値に変更を発生させる、<xref:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged>イベント、戻り値を実装する場合でも<xref:System.Collections.Specialized.INotifyCollectionChanged>します。  
+ 戻り値は別<xref:System.Collections.IEnumerable>の値に変更することも、以前に返され<xref:System.Collections.IEnumerable>たを再利用してその内容を変更することもできます。 戻り値を変更すると、戻り値<xref:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged>がを実装<xref:System.Collections.Specialized.INotifyCollectionChanged>している場合でも、イベントが発生します。  
   
  ]]></format>
         </remarks>
@@ -151,6 +154,7 @@
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Windows</AssemblyName>
@@ -165,7 +169,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを返します`false`は、アクセス時に、エンティティの既知のエンティティ レベルまたはプロパティ レベルの検証エラーがないかどうか。 ただし、なんらかの検証規則がまだ実行中の非同期的に説明した、<xref:System.ComponentModel.INotifyDataErrorInfo.GetErrors%2A>メソッド。  
+ このプロパティは`false` 、アクセス時にエンティティに対して既知のエンティティレベルまたはプロパティレベルの検証エラーがない場合にを返します。 ただし、 <xref:System.ComponentModel.INotifyDataErrorInfo.GetErrors%2A>メソッドの説明に従って、一部の検証規則は非同期的に実行される場合があります。  
   
  ]]></format>
         </remarks>

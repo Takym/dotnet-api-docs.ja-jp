@@ -1,5 +1,5 @@
 <Type Name="ServiceHealthBehavior" FullName="System.ServiceModel.Description.ServiceHealthBehavior">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f271c2ffc9f93a8538410d3afa402d68f462fe90" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58704151" /></Metadata><TypeSignature Language="C#" Value="public class ServiceHealthBehavior : System.ServiceModel.Description.ServiceHealthBehaviorBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a964e2fd25bfb9ecc66b550f0538d62fefe1d57e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69151959" /></Metadata><TypeSignature Language="C#" Value="public class ServiceHealthBehavior : System.ServiceModel.Description.ServiceHealthBehaviorBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ServiceHealthBehavior extends System.ServiceModel.Description.ServiceHealthBehaviorBase" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Description.ServiceHealthBehavior" />
   <TypeSignature Language="VB.NET" Value="Public Class ServiceHealthBehavior&#xA;Inherits ServiceHealthBehaviorBase" />
@@ -20,25 +20,25 @@
 
 ## Remarks
 
-正常性エンドポイントを使用して、コンポーネントの正常性を評価する正常性チェックを実行できます。 正常性エンドポイントを使用できます。
+正常性エンドポイントは、コンポーネントの正常性を評価する正常性チェックを実行するために使用されます。 正常性エンドポイントは、次の場合に使用できます。
 
-- オーケストレーション ツールの重要な正常性チェックが失敗しているプロセスを強制終了を通知します。 
+- 重大な正常性チェックに失敗したプロセスを強制終了するように、オーケストレーションツールに通知します。 
 
-- 追跡し、可用性とサービスのパフォーマンスに関するアラートを提供する監視ツールの早期問題インジケーターとして機能します。
+- サービスの可用性とパフォーマンスに関するアラートを追跡して提供することで、監視ツールの早期問題インジケーターとして機能します。
 
-`ServiceHealthBehavior` IServiceBehavior を拡張しから派生する WCF サービスの動作は、<xref:System.ServiceModel.Description.ServiceHealthBehaviorBase>します。  追加、`ServiceHealthBehavior`インスタンスを<xref:System.ServiceModel.Description.ServiceDescription.Behaviors?displayProperty=nameWithType>コレクションは、次を使用します。
+`ServiceHealthBehavior`は、IServiceBehavior を拡張し、から<xref:System.ServiceModel.Description.ServiceHealthBehaviorBase>派生する WCF サービスの動作です。  インスタンスを`ServiceHealthBehavior` <xref:System.ServiceModel.Description.ServiceDescription.Behaviors?displayProperty=nameWithType>コレクションに追加すると、次のことが可能になります。
 
--   **サービスのヘルスのパブリケーション:** サービスの状態、スロットルの数などのサービスに固有の詳細し、で HTTP GET 要求を使用して容量を表示できる、`?health`クエリ文字列。 理解し、簡単に表示される情報にアクセスすることがきわめて重要不適切な動作の WCF サービスのトラブルシューティングを行うです。
+-   **Service Health のパブリケーション:** サービスの状態、スロットル数、容量などのサービス固有の詳細情報は、 `?health`クエリ文字列と共に HTTP/GET 要求を使用して表示できます。 不適切な WCF サービスのトラブルシューティングを行うときは、表示される情報へのアクセス権を把握しておくことが非常に重要です。
 
--   **HTTP 応答コードが返されました。** HTTP/GET 正常性プローブ要求の HTTP ステータス コードをクエリ文字列で指定いずれかのことができます。
+-   **HTTP 応答コードを返します。** クエリ文字列で http/GET health probe 要求の HTTP ステータスコードを指定できます。
 
-正常性エンドポイントでは、コンポーネントの正常性の監視のコンテキストで意味のあるのみです。 ないその他の意味や目的。 そのため、正常性は、コンポーネントの正常性へのコンジットが。 クライアント*が*正常性エンドポイントによって返される HTTP 応答コードがコンポーネント全体に適用できることを前提としています。 これは、ロード バランサー、サービスの検出、およびその他のユーザーなどの正常性チェックを使用する現在のインフラストラクチャのツールで想定される動作との互換性。
+正常性エンドポイントは、正常性を監視するコンポーネントのコンテキストでのみ意味があります。 それ以外の意味や目的はありません。 そのため、正常性はコンポーネントの正常性の経路です。 クライアントは、正常性エンドポイントから返された HTTP 応答コードがコンポーネント全体に適用可能であると想定*する必要があり*ます。 これは、ロードバランサー、サービス検出などの正常性チェックを利用する、現在のインフラストラクチャツールで想定される動作と互換性があります。
 
-### <a name="enable-a-health-endpoint"></a>正常性エンドポイントを有効にします。
+### <a name="enable-a-health-endpoint"></a>正常性エンドポイントを有効にする
 
-正常性エンドポイントを公開して、WCF サービスの正常性の情報を発行する方法を指定する 2 つの方法はあります。
+正常性エンドポイントを公開し、WCF サービスの正常性情報を公開する方法を指定するには、次の2つの方法があります。
 
-- 構成ファイルを使用します。 次に例を示します。
+- 構成ファイルの使用。 次に例を示します。
 
    ```xml
    <behaviors>
@@ -50,7 +50,7 @@
    </behaviors>
    ```
 
-- プログラムを使用します。 次のコード フラグメントを使用してC#正常性エンドポイントを公開します。
+- おける. 次のコード片でC#は、を使用して正常性エンドポイントを公開しています。
 
     ```csharp
     ServiceHost host = new ServiceHost(typeof(Service1),
@@ -112,7 +112,7 @@
         <param name="isXml">メッセージに書き込む <see langWord="ContentType" /> ヘッダーの種類を定義します。 <see langword="true" /> の場合、<see langWord="ContentType" /> は <see langword="text/xml" />コンテンツ タイプです。それ以外の場合、<see langWord="ContentType" /> は <see langword="text/sml" /> です。</param>
         <summary>応答メッセージのコンテンツ タイプと HTTP 状態コードを設定します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="message" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="message" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="EnsureHttpStatusCode">
@@ -191,7 +191,7 @@
         <summary><see cref="T:System.ServiceModel.Description.ServiceHealthBehavior" /> に定義されている <see cref="T:System.ServiceModel.Description.ServiceHealthSection" /> オブジェクトのコレクションを取得します。</summary>
         <returns><see cref="T:System.ServiceModel.Description.ServiceHealthBehavior" /> に定義されている <see cref="T:System.ServiceModel.Description.ServiceHealthSection" /> オブジェクトのコレクション。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="serviceHost" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="serviceHost" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetXmlDocument">
@@ -217,7 +217,7 @@
         <summary>指定された <paramref name="serviceHost" /> に関連付けられた <see cref="T:System.ServiceModel.Description.ServiceHealthModel" /> オブジェクトをシリアル化して、それを XML 形式で返します。</summary>
         <returns>シリアル化された <see cref="T:System.ServiceModel.Description.ServiceHealthModel" /> オブジェクトに対応する XML ドキュメント。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="serviceHost" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="serviceHost" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="HandleHealthRequest">
@@ -250,19 +250,19 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-このメソッドは、<xref:System.ServiceModel.Description.ServiceHealthBehaviorBase>インスタンスし、応答メッセージを正常性エンドポイントの作成を担当します。
+このメソッドは、 <xref:System.ServiceModel.Description.ServiceHealthBehaviorBase>インスタンスによって呼び出され、正常性エンドポイントへの応答メッセージの構築を行います。
 
          ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="serviceHost" /> は <see langword="null" />です。
+        <exception cref="T:System.ArgumentNullException"><paramref name="serviceHost" /> が <see langword="null" /> です。
 
-または
+- または -
 
 <paramref name="httpGetRequest" /> は <see langword="null" /> です
 
 または
 
-<paramref name="queries" /> は <see langword="null" />です。</exception>
+<paramref name="queries" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="HasXmlSupport">
@@ -282,7 +282,7 @@
       </ReturnValue>
       <Docs>
         <summary>XML 応答メッセージがサポートされているかどうかを示す値を取得します。</summary>
-        <value>派生クラスでオーバーライドしない限り、このメソッドは常に返します<see langword="true" />します。</value>
+        <value>派生クラスでオーバーライドされない限り、このメソッドは常<see langword="true" />にを返します。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -317,7 +317,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-メソッドを返します`true`フィールドの値が正常に解析して、<xref:System.Boolean.TryParse%2A?displayProperty=nameWithType>メソッド。
+メソッドに`true` <xref:System.Boolean.TryParse%2A?displayProperty=nameWithType>よってフィールドの値が正常に解析された場合、メソッドはを返します。
 
          ]]></format>
         </remarks>

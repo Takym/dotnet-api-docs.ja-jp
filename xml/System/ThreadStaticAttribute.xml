@@ -1,5 +1,5 @@
 <Type Name="ThreadStaticAttribute" FullName="System.ThreadStaticAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ba7f6c207809025b013b88d46ad82761ef60cc87" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58721079" /></Metadata><TypeSignature Language="C#" Value="public class ThreadStaticAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e81be9c1815291ab9511fff2c31612aa676379c1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69404914" /></Metadata><TypeSignature Language="C#" Value="public class ThreadStaticAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit ThreadStaticAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ThreadStaticAttribute" />
   <TypeSignature Language="VB.NET" Value="Public Class ThreadStaticAttribute&#xA;Inherits Attribute" />
@@ -47,28 +47,28 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A`static`でマークされたフィールド<xref:System.ThreadStaticAttribute>はスレッド間で共有されていません。 各実行中のスレッドは、フィールドの個別のインスタンスがおよびとは独立して設定し、そのフィールドの値を取得します。 別のスレッドで、フィールドにアクセスした場合は、別の値が格納されます。  
+ `static` で<xref:System.ThreadStaticAttribute>マークされたフィールドは、スレッド間で共有されません。 実行中の各スレッドには、フィールドの個別のインスタンスがあり、そのフィールドの値を個別に設定して取得します。 フィールドに別のスレッドでアクセスした場合は、別の値が格納されます。  
   
- 適用するだけでなく、<xref:System.ThreadStaticAttribute>属性、フィールドにする必要がありますも定義するように、`static`フィールド (C#) または`Shared`(Visual Basic) でフィールド。  
+ フィールドに<xref:System.ThreadStaticAttribute>属性を適用するだけでなく、 `Shared`フィールド (でC#は) またはフィールド ( `static` Visual Basic) としても定義する必要があることに注意してください。  
   
 > [!NOTE]
->  マークされたフィールドの初期値を指定しない`ThreadStaticAttribute`に 1 回だけ、クラス コンス トラクターが実行され 1 つのスレッドに影響を与えるため、このような初期化が行われるため、します。 初期値を指定しない場合は、値の型である場合またはその既定値に初期化されるフィールドに依存することができます`null`参照型である場合。  
+>  で`ThreadStaticAttribute`マークされたフィールドに初期値を指定しないでください。この初期化は、クラスコンストラクターが実行されるときに1回だけ行われるため、1つのスレッドにしか影響しません。 初期値を指定しない場合は、値の型である場合、または参照型である`null`場合は、既定値に初期化されているフィールドに依存できます。  
   
- これは、この属性を使用して、そこから派生していないとします。  
+ この属性はそのように使用し、派生させません。  
   
- 属性の使用方法の詳細については、次を参照してください。[属性](~/docs/standard/attributes/index.md)します。  
+ 属性の使用方法の詳細については、「[属性](~/docs/standard/attributes/index.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、乱数ジェネレーターのインスタンスを作成、10 個のスレッドだけでなく、メイン スレッドを作成し、各スレッドで 200万の乱数を生成します。 使用して、<xref:System.ThreadStaticAttribute>合計とスレッドあたりのランダムな数字の数を計算する属性。 2 つのスレッドごとの追加フィールドも定義されています。`previous`と`abnormal`、乱数ジェネレーターの破損を検出することができるようにします。  
+ 次の例では、乱数ジェネレーターをインスタンス化し、メインスレッドに加えて10個のスレッドを作成した後、各スレッドで200万の乱数を生成します。 <xref:System.ThreadStaticAttribute>属性を使用して、合計と、スレッドあたりの乱数の数を計算します。 また、スレッドごとの追加のフィールド`previous`とという2つのフィールドを定義して、乱数ジェネレーターの破損を検出できるようにし`abnormal`ます。  
   
  [!code-csharp[System.ThreadStaticAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threadstaticattribute/cs/threadsafe2a.cs#1)]
  [!code-vb[System.ThreadStaticAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threadstaticattribute/vb/threadsafe2a.vb#1)]  
   
- この例では、 `lock` (C#) ステートメント、`SyncLock`乱数ジェネレーターへのアクセスを同期する Visual Basic で作成します。 これは、乱数ジェネレーター、後続のすべての呼び出しにゼロの値が返されるが通常の破損を防止します。  
+ この例では`lock` 、のC#ステートメントと`SyncLock` Visual Basic の構造体を使用して、乱数ジェネレーターへのアクセスを同期します。 これにより、乱数ジェネレーターが破損するのを防ぐことができます。通常は、後続のすべての呼び出しで値0が返されます。  
   
- また、例では、<xref:System.Threading.CountdownEvent>クラスを各スレッドの呼び出しの合計数を表示する前に乱数の生成が完了したことを確認します。 それ以外の場合、メイン スレッドには、追加のスレッドを生成する前に実行が完了すると、メソッド呼び出しの合計数が不正確な値が表示されます。  
+ また、この例で<xref:System.Threading.CountdownEvent>は、クラスを使用して、呼び出しの合計数を表示する前に、各スレッドが乱数の生成を完了したことを確認します。 それ以外の場合、メインスレッドが生成する追加スレッドの前に実行が完了すると、メソッド呼び出しの合計数に対して不正確な値が表示されます。  
   
  ]]></format>
     </remarks>
