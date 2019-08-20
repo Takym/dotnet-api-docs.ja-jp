@@ -1,5 +1,5 @@
 <Type Name="SystemEvents" FullName="Microsoft.Win32.SystemEvents">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="dd45507d5d46be055639d11abca2cb74dd3a6975" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56786533" /></Metadata><TypeSignature Language="C#" Value="public sealed class SystemEvents" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f5ad823f9e2ab0333d38c1e7e64f3e87d6c6bf88" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69313775" /></Metadata><TypeSignature Language="C#" Value="public sealed class SystemEvents" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SystemEvents extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Win32.SystemEvents" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SystemEvents" />
@@ -26,24 +26,24 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.Win32.SystemEvents>クラスには、特定の種類のシステム イベントに応答する機能が用意されています。  
+ クラス<xref:Microsoft.Win32.SystemEvents>は、特定の種類のシステムイベントに応答する機能を提供します。  
   
- システム イベントを発生すると、システムのイベントを監視するスレッドを使用して、イベントにアタッチされている任意のデリゲートが呼び出されます。 そのためから、イベント ハンドラーのスレッド セーフの呼び出しをする必要があります。 使用することができますが、このクラスのメンバーとして公開されているシステム イベントを呼び出す必要がある場合、<xref:Microsoft.Win32.SystemEvents.InvokeOnEventsThread%2A>メソッド。  
+ システムイベントが発生すると、イベントに関連付けられているデリゲートは、システムイベントを監視するスレッドを使用して呼び出されます。 したがって、イベントハンドラーからスレッドセーフな呼び出しを行う必要があります。 このクラスのメンバーとして公開されていないシステムイベントを呼び出す必要がある場合は<xref:Microsoft.Win32.SystemEvents.InvokeOnEventsThread%2A> 、メソッドを使用できます。  
   
 > [!CAUTION]
->  他のアプリケーションが機能しないことがありますので、システムのイベント ハンドラーを発生させるスレッドでは、時間のかかる処理を実行しません。  
+>  システムイベントハンドラーを発生させるスレッドでは、他のアプリケーションが機能しなくなる可能性があるため、時間のかかる処理を実行しないでください。  
   
 > [!NOTE]
->  一部のシステム イベントが発生しない[!INCLUDE[windowsver](~/includes/windowsver-md.md)]します。 アプリケーションがで期待どおりに動作することを確認してください[!INCLUDE[windowsver](~/includes/windowsver-md.md)]します。  
+>  では、一部の[!INCLUDE[windowsver](~/includes/windowsver-md.md)]システムイベントが発生しない可能性があります。 アプリケーションがで期待どおりに[!INCLUDE[windowsver](~/includes/windowsver-md.md)]動作することを確認してください。  
   
    
   
 ## Examples  
- このセクションには、2 つの例が含まれています。 最初の例では、通常のアプリケーションでシステム イベントを使用する方法と、2 番目の例は、Windows サービスでシステム イベントを使用する方法を示します。  
+ このセクションには、2つの例が含まれています。 最初の例は、通常のアプリケーションでシステムイベントを使用する方法を示しています。2番目の例は、Windows サービスでシステムイベントを使用する方法を示しています。  
   
  **例 1**  
   
- 次のコード例では、一部のシステム イベントに関心を登録し、それらのイベントが発生するのいずれかを待機します。 ような出力には、ユーザーは、ディスプレイの解像度を変更した場合に発生します。  
+ 次のコード例では、一部のシステムイベントに関心を登録し、そのイベントが発生するまで待機します。 表示される出力は、ユーザーがディスプレイの解像度を変更した場合に発生します。  
   
  [!code-cpp[SystemEvents#1](~/samples/snippets/cpp/VS_Snippets_Winforms/SystemEvents/cpp/SystemEvents.cpp#1)]
  [!code-csharp[SystemEvents#1](~/samples/snippets/csharp/VS_Snippets_Winforms/SystemEvents/CS/SystemEvents.cs#1)]
@@ -51,38 +51,38 @@
   
  **例 2**  
   
- 処理する非常に単純な Windows サービスのコード例を次に示します、<xref:Microsoft.Win32.SystemEvents.TimeChanged>と<xref:Microsoft.Win32.SystemEvents.UserPreferenceChanged>イベント。 例では、という名前のサービスが含まれています`SimpleService`、という名前のフォーム`HiddenForm`、およびインストーラー。 フォームは、システム イベントに必要なメッセージ ループを提供します。  
+ 次のコード例は、イベント<xref:Microsoft.Win32.SystemEvents.TimeChanged>と<xref:Microsoft.Win32.SystemEvents.UserPreferenceChanged>イベントを処理する非常に単純な Windows サービスを示しています。 この例には、と`SimpleService`いう名前のサービス`HiddenForm`、という名前のフォーム、およびインストーラーが含まれています。 フォームには、システムイベントに必要なメッセージループが用意されています。  
   
 > [!NOTE]
->  サービスは、デスクトップとの対話が許可されている場合を除き、メッセージ ループがありません。 メッセージ ループが非表示のフォームで指定しない場合、この例のように、ローカル システム アカウントでサービスを実行する必要があり、デスクトップとの対話を有効にする手動による介入が必要です。 つまり、管理者を確認する必要があります手動で、**デスクトップと対話をサービスに許可**チェック ボックスをオン、**ログオン**サービスのプロパティ ダイアログ ボックスのタブ。 その場合は、メッセージ ループが自動的に提供します。 このオプションは、サービスがローカル システム アカウントで実行する場合にのみ使用します。 デスクトップとの対話は、プログラムで有効にすることはできません。  
+>  サービスには、デスクトップとの対話が許可されている場合を除き、メッセージループがありません。 この例のように、メッセージループが非表示のフォームによって提供されない場合は、サービスをローカルシステムアカウントで実行する必要があります。また、デスクトップとの対話を可能にするには、手動による介入が必要です。 つまり、管理者は、サービスのプロパティ ダイアログボックスの **ログオン** タブにある **デスクトップとの対話をサービスに許可する** チェックボックスを手動でオンにする必要があります。 この場合、メッセージループが自動的に提供されます。 このオプションは、サービスがローカルシステムアカウントで実行されている場合にのみ使用できます。 デスクトップとの対話をプログラムで有効にすることはできません。  
   
- この例では、サービスのインスタンスを実行するスレッドが開始`HiddenForm`します。 イベントをフックされ、形式で処理します。 イベントは、フォームが最初は完全に読み込まれるが確認する、フォームの load イベントでフックする必要があります。それ以外の場合、イベントは発生しません。  
+ この例のサービスでは、の`HiddenForm`インスタンスを実行するスレッドが開始されます。 イベントは、フォームでフックおよび処理されます。 フォームが最初に完全に読み込まれるようにするには、フォームの読み込みイベントでイベントをフックする必要があります。それ以外の場合、イベントは発生しません。  
   
 > [!NOTE]
->  この例では、必要なすべてのコードを通常 Visual Studio デザイナーで生成されるフォームの初期化コードを含むを提供します。 Visual Studio で、サービスを開発している場合、2 番目の部分クラスを省略して使用することができます、**プロパティ**をゼロに境界線スタイルを非表示のフォームの幅と高さを設定するウィンドウ<xref:System.Windows.Forms.FormBorderStyle.None?displayProperty=nameWithType>とに、ウィンドウの状態<xref:System.Windows.Forms.FormWindowState.Minimized?displayProperty=nameWithType>.  
+>  この例では、Visual Studio デザイナーによって通常生成されるフォーム初期化コードを含む、必要なすべてのコードを提供しています。 Visual Studio でサービスを開発している場合は、2番目の部分クラスを省略し、**[プロパティ]** ウィンドウを使用して、非表示のフォームの高さと幅<xref:System.Windows.Forms.FormBorderStyle.None?displayProperty=nameWithType>を0に、境界線<xref:System.Windows.Forms.FormWindowState.Minimized?displayProperty=nameWithType>のスタイルをに、ウィンドウの状態をに設定します。  
   
- 例を実行します。  
+ 例を実行するには、次のようにします。  
   
-1.  コマンドラインからコードをコンパイルします。 ソース ファイルを使用する名前は重要ではありません。  
+1.  コマンドラインからコードをコンパイルします。 ソースファイルに使用する名前は重要ではありません。  
   
-2.  使用して、コマンドラインから、サービスをインストール、 [Installutil.exe (インストーラー ツール)](~/docs/framework/tools/installutil-exe-installer-tool.md)ユーティリティ。 たとえば、`InstallUtil example.exe`場合は、ソース ファイルの名前は`example.cs`または`example.vb`します。 サービスをインストールする管理者である必要があります。  
+2.  [Installutil.exe (インストーラーツール)](~/docs/framework/tools/installutil-exe-installer-tool.md)ユーティリティを使用して、コマンドラインからサービスをインストールします。 たとえば、 `InstallUtil example.exe`ソースファイル名が`example.cs`または`example.vb`の場合です。 サービスをインストールするには、管理者である必要があります。  
   
-3.  サービス コンソールを使用して、サービスを開始します。  
+3.  サービスを開始するには、サービスコンソールを使用します。  
   
 4.  システム時刻を変更するか、マウスのプロパティなどのユーザー設定を変更します。  
   
-5.  内のメッセージを表示、**アプリケーション**イベント ビューアーのカテゴリ。  
+5.  イベントビューアーの**アプリケーション**カテゴリのメッセージを表示します。  
   
-6.  サービス コンソールを使用して、サービスを停止します。  
+6.  サービスを停止するには、サービスコンソールを使用します。  
   
-7.  使用して、コマンドラインからサービスをアンインストール、`/u`オプション。 たとえば、`InstallUtil /u example.exe` のようにします。  
+7.  `/u`オプションを使用して、コマンドラインからサービスをアンインストールします。 たとえば、`InstallUtil /u example.exe` のようにします。  
   
  [!code-csharp[ManagedWindowsService#1](~/samples/snippets/csharp/VS_Snippets_CLR/ManagedWindowsService/cs/source.cs#1)]
  [!code-vb[ManagedWindowsService#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/ManagedWindowsService/VB/source.vb#1)]  
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.NamedPermissionSet">システム リソースへのフル アクセス。 値を要求:<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />します。 関連付けられた状態。</permission>
+    <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:。 関連付けられた状態:</permission>
     <altmember cref="T:Microsoft.Win32.PowerModeChangedEventHandler" />
     <altmember cref="T:Microsoft.Win32.SessionEndedEventHandler" />
     <altmember cref="T:Microsoft.Win32.SessionEndingEventHandler" />
@@ -162,12 +162,12 @@
 ## Remarks  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
    
   
 ## Examples  
- 次のコード例は、監視する方法を示します、<xref:Microsoft.Win32.SystemEvents.DisplaySettingsChanged>イベント。 このコード例が示されている例の一部、<xref:Microsoft.Win32.SystemEvents>クラス。  
+ <xref:Microsoft.Win32.SystemEvents.DisplaySettingsChanged>イベントを監視する方法を次のコード例に示します。 このコード例は、 <xref:Microsoft.Win32.SystemEvents>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[SystemEvents#2](~/samples/snippets/cpp/VS_Snippets_Winforms/SystemEvents/cpp/SystemEvents.cpp#2)]
  [!code-csharp[SystemEvents#2](~/samples/snippets/csharp/VS_Snippets_Winforms/SystemEvents/CS/SystemEvents.cs#2)]
@@ -214,7 +214,7 @@
 ## Remarks  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -256,10 +256,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- システム イベントを待機するスレッドが終了すると、このイベントが発生します。 システムのイベントを待機するスレッドを使用してシステム イベントのデリゲートが呼び出されます。  
+ このイベントは、システムイベントをリッスンするスレッドが終了されようとしているときに発生します。 システムイベントデリゲートは、システムイベントをリッスンするスレッドを使用して呼び出されます。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -302,7 +302,7 @@
 ## Remarks  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -347,9 +347,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを使用すると、必ずシステム イベントを処理する必要のあるによってそれ以外の場合に公開されませんが、<xref:Microsoft.Win32.SystemEvents>クラス。  
+ このメソッドは、 <xref:Microsoft.Win32.SystemEvents>クラスによって公開されていないシステムイベントを処理する必要がある場合にいつでも使用できます。  
   
- このメソッドを呼び出すときに、指定したデリゲートは、アプリケーションが使用してシステム イベントを処理するスレッドによって呼び出されます。  
+ このメソッドを呼び出すと、アプリケーションがシステムイベントを処理するために使用しているスレッドによって、指定されたデリゲートが呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -422,10 +422,10 @@
         <Attribute FrameworkAlternate="xamarinmac-3.0">
           <AttributeName>System.Obsolete("")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;dotnet-plat-ext-2.2;netcore-3.0">
+        <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;dotnet-plat-ext-2.2">
           <AttributeName>System.Obsolete("This event has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="dotnet-plat-ext-3.0;netcore-3.0">
           <AttributeName>System.Obsolete("This event has been deprecated. https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
@@ -438,19 +438,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このイベントは、WM_COMPACTING メッセージをラップします。 このメッセージは、メモリを圧縮する時間が 30、60 秒間隔でシステム時刻の 12.5% 以上のシステムを検出したときに、すべての最上位ウィンドウに送信されます。 これは、システム メモリが不足していることを示します。  
+ このイベントは、WM_COMPACTING メッセージをラップします。 このメッセージは、システムが 30 ~ 60 秒間に 12.5% を超えるシステム時間を検出した場合に、すべてのトップレベルのウィンドウに送信されます。 これは、システムメモリが不足していることを示します。  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">システム イベント通知は、現在のコンテキストではサポートされていません。 たとえば、サーバー プロセスがグローバル システム イベント通知をサポートしていない可能性があります。</exception>
         <exception cref="T:System.Runtime.InteropServices.ExternalException">システム イベント ウィンドウ スレッドの作成が成功しませんでした。</exception>
-        <block subset="none" type="usage"><para>このメッセージは、16 ビットの Windows ベースのアプリケーションとの互換性にのみ提供されます。</para></block>
+        <block subset="none" type="usage"><para>このメッセージは、16ビットの Windows ベースのアプリケーションとの互換性のためだけに提供されています。</para></block>
       </Docs>
     </Member>
     <Member MemberName="PaletteChanged">
@@ -488,15 +488,15 @@
 ## Remarks  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
    
   
 ## Examples  
- 次のコード例は、監視する方法を示します、<xref:Microsoft.Win32.SystemEvents.PaletteChanged>イベント。 このコード例が示されている例の一部、<xref:Microsoft.Win32.SystemEvents>クラス。  
+ <xref:Microsoft.Win32.SystemEvents.PaletteChanged>イベントを監視する方法を次のコード例に示します。 このコード例は、 <xref:Microsoft.Win32.SystemEvents>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[SystemEvents#2](~/samples/snippets/cpp/VS_Snippets_Winforms/SystemEvents/cpp/SystemEvents.cpp#2)]
  [!code-csharp[SystemEvents#2](~/samples/snippets/csharp/VS_Snippets_Winforms/SystemEvents/CS/SystemEvents.cs#2)]
@@ -543,10 +543,10 @@
 ## Remarks  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -592,10 +592,10 @@
 ## Remarks  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -639,11 +639,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、キャンセルできるイベントです。 設定、<xref:Microsoft.Win32.SessionEndingEventArgs.Cancel%2A>プロパティを`true`セッションが引き続き実行を要求します。 セッションは終了しません保証ではありません。  
+ これはキャンセル可能なイベントです。 プロパティをに設定`true`すると、セッションの実行を続行するように要求されます。 <xref:Microsoft.Win32.SessionEndingEventArgs.Cancel%2A> セッションが終了しないという保証はありません。  
   
- 使用する場合<xref:Microsoft.Win32.SystemEvents.SessionEnding>、システムのログオフまたは再起動を検出するために Windows フォームでは、確定的な方法を決定するはないかどうか、<xref:System.Windows.Forms.Form.Closing>イベントは、このイベントの前に発生します。  
+ Windows フォームでを<xref:Microsoft.Win32.SystemEvents.SessionEnding>使用してシステムのログオフまたは再起動を検出した場合、このイベントの<xref:System.Windows.Forms.Form.Closing>前にイベントが発生するかどうかを決定する決定的な方法はありません。  
   
- 前にいくつかの特別なタスクを実行したい場合<xref:System.Windows.Forms.Form.Closing>はことを確認する必要があります、<xref:Microsoft.Win32.SystemEvents.SessionEnding>に先に発生<xref:System.Windows.Forms.Form.Closing>。 これを行うには、トラップする必要があります、`WM_QUERYENDSESSION`オーバーライドすることで、フォームで、`WndProc`関数。  この例では、これを行う方法を示します。  
+ を起動する前に<xref:System.Windows.Forms.Form.Closing>特別なタスクを実行する場合は、が起動される<xref:Microsoft.Win32.SystemEvents.SessionEnding> <xref:System.Windows.Forms.Form.Closing>ようにする必要があります。 これを行うには、 `WM_QUERYENDSESSION` `WndProc`関数をオーバーライドして、フォームのをトラップする必要があります。  この例では、この方法を示します。  
   
 ```vb  
 Private Shared WM_QUERYENDSESSION As Integer = &H11  
@@ -712,13 +712,13 @@ private void Form1_Closing(
 ```  
   
 > [!IMPORTANT]
->  コンソール アプリケーションを発生させません、<xref:Microsoft.Win32.SystemEvents.SessionEnding>イベント。  
+>  コンソールアプリケーションでは、イベント<xref:Microsoft.Win32.SystemEvents.SessionEnding>は発生しません。  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -763,10 +763,10 @@ private void Form1_Closing(
 ## Remarks  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -810,10 +810,10 @@ private void Form1_Closing(
 ## Remarks  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -852,10 +852,10 @@ private void Form1_Closing(
 ## Remarks  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -900,10 +900,10 @@ private void Form1_Closing(
 ## Remarks  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
  ]]></format>
         </remarks>
@@ -949,15 +949,15 @@ private void Form1_Closing(
 ## Remarks  
   
 > [!NOTE]
->  このイベントは、メッセージ ポンプが実行されている場合にだけ発生します。 Windows サービスで非表示フォームを使用してまたはメッセージ ポンプが手動で開始された場合を除き、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステム イベントを処理する方法を示すコード例については、<xref:Microsoft.Win32.SystemEvents>クラス。  
+>  このイベントは、メッセージポンプが実行されている場合にのみ発生します。 Windows サービスでは、非表示のフォームが使用されているか、メッセージポンプが手動で開始されていない限り、このイベントは発生しません。 Windows サービスで非表示のフォームを使用してシステムイベントを処理する方法を示すコード例につい<xref:Microsoft.Win32.SystemEvents>ては、クラスを参照してください。  
   
 > [!CAUTION]
->  静的イベントであるため、アプリケーションが破棄されると、またはメモリ リークが発生するとき、イベント ハンドラーをデタッチする必要があります。  
+>  これは静的イベントなので、アプリケーションが破棄されるときにイベントハンドラーをデタッチする必要があります。これを行わないと、メモリリークが発生します。  
   
    
   
 ## Examples  
- 次のコード例は、監視する方法を示します、<xref:Microsoft.Win32.SystemEvents.UserPreferenceChanging>イベント。 このコード例が示されている例の一部、<xref:Microsoft.Win32.SystemEvents>クラス。  
+ <xref:Microsoft.Win32.SystemEvents.UserPreferenceChanging>イベントを監視する方法を次のコード例に示します。 このコード例は、 <xref:Microsoft.Win32.SystemEvents>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[SystemEvents#2](~/samples/snippets/cpp/VS_Snippets_Winforms/SystemEvents/cpp/SystemEvents.cpp#2)]
  [!code-csharp[SystemEvents#2](~/samples/snippets/csharp/VS_Snippets_Winforms/SystemEvents/CS/SystemEvents.cs#2)]

@@ -1,5 +1,5 @@
 <Type Name="IMemoryOwner&lt;T&gt;" FullName="System.Buffers.IMemoryOwner&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c65114bc31d595b318fd8b25e11e92583234d593" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63913646" /></Metadata><TypeSignature Language="C#" Value="public interface IMemoryOwner&lt;T&gt; : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f62bb14ced0459c31e83f6244e48dc89a2305565" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342340" /></Metadata><TypeSignature Language="C#" Value="public interface IMemoryOwner&lt;T&gt; : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IMemoryOwner`1&lt;T&gt; implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Buffers.IMemoryOwner`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface IMemoryOwner(Of T)&#xA;Implements IDisposable" />
@@ -30,17 +30,17 @@
     <remarks>
       <format type="text/markdown"><![CDATA[  
 
-`IMemoryOwner<T>`の有効期間管理を担当する所有者を定義するインターフェイスを使用する<xref:System.Memory%601>バッファー。 インスタンス、`IMemoryOwner<T>`インターフェイスがによって返される、<xref:System.Buffers.MemoryPool%601.Rent%2A?displayProperty=nameWithType>メソッド。 
+インターフェイスは、 <xref:System.Memory%601>バッファーの有効期間管理を担当する所有者を定義するために使用されます。 `IMemoryOwner<T>` `IMemoryOwner<T>`インターフェイスのインスタンスは、 <xref:System.Buffers.MemoryPool%601.Rent%2A?displayProperty=nameWithType>メソッドによって返されます。 
 
-バッファーには、複数のコンシューマーはありますが、一度に 1 人の所有者のみができます。 所有者は次のとおりです。
+バッファーは複数のコンシューマーを持つことができますが、特定の時点で所有者を1人だけ持つことができます。 所有者は次のことができます。
 
-- 直接またはファクトリ メソッドを呼び出すことにより、バッファーを作成します。
+- 直接、またはファクトリメソッドを呼び出すことによって、バッファーを作成します。
 
-- 所有権を別のコンシューマーに転送します。 この場合は、以前の所有者でする必要があります、バッファーは使用できません。
+- 所有権を別のコンシューマーに譲渡します。 この場合、以前の所有者はバッファーを使用しなくなります。
 
-- 使用中になったときにバッファーを破棄します。
+- バッファーが使用されなくなったときに破棄します。
 
-`IMemoryOwner<T>`オブジェクトの実装、<xref:System.IDisposable>インターフェイスを呼び出す必要があります、<xref:System.IDisposable.Dispose%2A>メソッド メモリ バッファーが不要になったが破棄後にのみです。 必要があります*いない*の破棄、`IMemoryOwner<T>`そのメモリへの参照が利用できるオブジェクトします。 つまり、型を`IMemoryOwner<T>`が宣言されている必要はありません、<xref:System.Object.Finalize%2A>メソッド。
+オブジェクトは`IMemoryOwner<T>` <xref:System.IDisposable>インターフェイスを実装するため、その<xref:System.IDisposable.Dispose%2A>メソッドを呼び出す必要があります。これは、メモリバッファーが不要になり、破棄された場合のみです。 メモリへ** の参照が使用`IMemoryOwner<T>`可能な場合は、オブジェクトを破棄しないでください。 これは、 `IMemoryOwner<T>`が宣言されている型に<xref:System.Object.Finalize%2A>メソッドが含まれていないことを意味します。
 
    ]]></format>
     </remarks>

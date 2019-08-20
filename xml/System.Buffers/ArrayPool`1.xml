@@ -1,5 +1,5 @@
 <Type Name="ArrayPool&lt;T&gt;" FullName="System.Buffers.ArrayPool&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0cd4416c419b70f301ca33ef17107cf4f059b502" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63913744" /></Metadata><TypeSignature Language="C#" Value="public abstract class ArrayPool&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fafd52a0ba343a68dd9b94796a3e5fb07dc81928" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342438" /></Metadata><TypeSignature Language="C#" Value="public abstract class ArrayPool&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ArrayPool`1&lt;T&gt; extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Buffers.ArrayPool`1" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ArrayPool(Of T)" />
@@ -24,18 +24,18 @@
   </Base>
   <Interfaces />
   <Docs>
-    <typeparam name="T">リソース プールに含まれるオブジェクトの型。</typeparam>
+    <typeparam name="T">リソースプール内のオブジェクトの型。</typeparam>
     <summary><see cref="T:T[]" /> 型のインスタンスを再利用できるようにするリソース プールを提供します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
   
- 使用して、<xref:System.Buffers.ArrayPool%601>レンタルしてバッファーを返すクラス (を使用して、<xref:System.Buffers.ArrayPool%601.Rent%2A>と<xref:System.Buffers.ArrayPool%601.Return%2A>メソッド) 配列の作成し、破棄を頻繁に場所の状況でパフォーマンスを向上させることができます、その結果、ガベージの大量のメモリ不足コレクターです。
+ クラスを使用してバッファーをレンタルして返す<xref:System.Buffers.ArrayPool%601.Rent%2A> ( <xref:System.Buffers.ArrayPool%601.Return%2A>およびメソッドを使用) と、配列が頻繁に作成および破棄される場合にパフォーマンスが向上し、その結果、ガベージメモリの負荷が大きくなります。 <xref:System.Buffers.ArrayPool%601>収集.
   
  ]]></format>
     </remarks>
-    <threadsafe>このクラスは、スレッド セーフです。 すべてのメンバーは複数のスレッドによって同時に使用することがあります。</threadsafe>
+    <threadsafe>このクラスはスレッドセーフです。 すべてのメンバーは、同時に複数のスレッドによって使用される場合があります。</threadsafe>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -64,7 +64,7 @@
   
 ## Remarks  
   
-このコンス トラクターが保護されているに注意してください。派生したクラスによってのみ呼び出すことができます、<xref:System.Buffers.ArrayPool%601>クラス。 
+このコンストラクターは保護されていることに注意してください。このクラスは、クラスから派生した<xref:System.Buffers.ArrayPool%601>クラスによってのみ呼び出すことができます。 
  ]]></format>
         </remarks>
       </Docs>
@@ -134,7 +134,7 @@
   
 ## Remarks  
   
-インスタンス、<xref:System.Buffers.ArrayPool%601>このメソッドによって作成されたクラスは、配列をグループ化なしでのバケットには複数の`maxArraysPerBucket`を超過していないこれらの配列を使用して、各バケットで`maxArrayLength`の長さ。
+このメソッドによっ<xref:System.Buffers.ArrayPool%601>て作成されたクラスのインスタンスは、配列をバケットにグループ`maxArraysPerBucket`化します。各バケットにはを含め`maxArrayLength`ず、その配列は長さを超えないようにします。
  ]]></format>
         </remarks>
       </Docs>
@@ -173,7 +173,7 @@
   
 ## Remarks  
 
-このバッファーは、呼び出し元に貸与し、を使用して同じプールに返される必要があります、<xref:System.Buffers.ArrayPool%601.Return%2A>メソッド、その it は、後続の呼び出しで再利用できるように、<xref:System.Buffers.ArrayPool%601.Rent%2A>メソッド。 借りたバッファーが返されるエラーは致命的なエラーではありません。 ただし、なる可能性がある低下アプリケーションのパフォーマンスをするように、プールが失われるものを置換する新しいバッファーを作成する必要があります。
+このバッファーは呼び出し元に貸与され、 <xref:System.Buffers.ArrayPool%601.Return%2A>メソッドを使用して同じプールに返される必要があります。これにより、メソッドの<xref:System.Buffers.ArrayPool%601.Rent%2A>後続の呼び出しで再利用できるようになります。 レンタルバッファーを返せなかったことは、致命的なエラーではありません。 ただし、プールでは、失われたものを置き換えるために新しいバッファーを作成する必要があるため、アプリケーションのパフォーマンスが低下する可能性があります。
  ]]></format>
         </remarks>
       </Docs>
@@ -212,7 +212,7 @@
   
 ## Remarks  
 
-バッファーがプールに返された、呼び出し元はバッファーのすべての所有権を放棄し、使用する必要があります。 特定の呼び出しからの参照が返される、<xref:System.Buffers.ArrayPool%601.Rent%2A>メソッドは、使用して返されるだけする必要があります、<xref:System.Buffers.ArrayPool%601.Return%2A>メソッドを 1 回です。 既定の<xref:System.Buffers.ArrayPool%601>が返されたバッファーにするために保持レンタル プールが既に格納されているのに十分なバッファーを持っていると判断された場合は、もう一度、またはそれから返されたバッファーに解放することがあります。
+バッファーがプールに返されると、呼び出し元はバッファーのすべての所有権を取得し、それを使用することはできません。 <xref:System.Buffers.ArrayPool%601.Rent%2A>メソッドへの特定の呼び出しから返される参照は、 <xref:System.Buffers.ArrayPool%601.Return%2A>メソッドを使用して1回だけ返す必要があります。 既定値<xref:System.Buffers.ArrayPool%601>は、返されたバッファーに保持されるため、再度レンタルすることができます。また、プールに十分なバッファーが格納されていることがわかった場合は、返されたバッファーを解放することもできます。
  ]]></format>
         </remarks>
       </Docs>
@@ -247,7 +247,7 @@
   
 ## Remarks  
 
-共有プールの既定の実装を提供する、<xref:System.Buffers.ArrayPool%601>一般的な適用性が想定されているクラス。 共有クラスは、複数のサイズの配列を保持し、実際に要求したより大きな配列を送り返すことがありますが、そのは決して送り返すが要求されたよりも小さい配列をします。 使用して、共有クラスからのバッファーをレンタル、<xref:System.Buffers.ArrayPool%601.Rent%2A>メソッドは、適切なバッファーが使用または新しいバッファーの場合は、1 つに割り当てられている使用できない場合に、プールから取得されている既存のバッファーになります。
+共有プールは、一般的な適用性を<xref:System.Buffers.ArrayPool%601>目的としたクラスの既定の実装を提供します。 共有クラスは、複数のサイズの配列を保持し、実際に要求されたよりも大きな配列を渡すことができますが、要求された数よりも小さい配列は戻されません。 レンタル<xref:System.Buffers.ArrayPool%601.Rent%2A>メソッドを使用して共有クラスからバッファーを取得すると、適切なバッファーが使用可能な場合、または新しいバッファーに割り当てられている場合は、既存のバッファーがプールから取得されます。
  ]]></format>
         </remarks>
       </Docs>

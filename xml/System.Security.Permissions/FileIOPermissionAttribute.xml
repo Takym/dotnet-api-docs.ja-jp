@@ -1,5 +1,5 @@
 <Type Name="FileIOPermissionAttribute" FullName="System.Security.Permissions.FileIOPermissionAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b599a9ea377f44e725a5d0687451309213796809" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67246764" /></Metadata><TypeSignature Language="C#" Value="public sealed class FileIOPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="060a4acca3cebd3156660d18e7eec75baccda584" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69058217" /></Metadata><TypeSignature Language="C#" Value="public sealed class FileIOPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit FileIOPermissionAttribute extends System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.FileIOPermissionAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class FileIOPermissionAttribute&#xA;Inherits CodeAccessSecurityAttribute" />
@@ -37,30 +37,30 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>宣言セキュリティを使用して、<see cref="T:System.Security.Permissions.FileIOPermission" /> のセキュリティ アクションをコードに適用できるようにします。 このクラスは継承できません。</summary>
+    <summary><see cref="T:System.Security.Permissions.FileIOPermission" /> のセキュリティ アクションを、宣言セキュリティを使用してコードに適用できるようにします。 このクラスは継承できません。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ファイルとディレクトリは、絶対パスを使用して指定されます。 ファイルにアクセスするときに、ファイルを作成または開くときにセキュリティ チェックが実行されます。 ファイルを閉じてから再度開く場合を除き、セキュリティ チェックは再度行われません。 読み取りと書き込みが複数回を実行中に 1 回だけが行われるファイルを開くために、セキュリティ チェックがアプリケーションのパフォーマンスの影響を最小化、ファイルが初回アクセス時に、アクセス許可を確認します。  
+ ファイルとディレクトリは、絶対パスを使用して指定します。 ファイルにアクセスすると、ファイルが作成または開かれたときにセキュリティチェックが実行されます。 ファイルを閉じて再度開いた場合を除き、セキュリティチェックは行われません。 ファイルを最初にアクセスしたときにアクセス許可を確認すると、アプリケーションのパフォーマンスに対するセキュリティチェックの影響が最小限に抑えられます。これは、読み取りと書き込みが何度も発生する可能性があるためです。  
   
- 許可されている宣言のスコープによって異なります、<xref:System.Security.Permissions.SecurityAction>のために使用します。  
+ 許可される宣言のスコープは、 <xref:System.Security.Permissions.SecurityAction>使用されているによって異なります。  
   
- セキュリティ属性で宣言されているセキュリティ情報は、属性のターゲットのメタデータに格納され、実行時に、システムによってアクセスされます。 セキュリティ属性は、宣言型セキュリティに対してのみ使用されます。 強制セキュリティは、対応するアクセス許可クラスを使用します。  
+ セキュリティ属性によって宣言されたセキュリティ情報は、属性ターゲットのメタデータに格納され、実行時にシステムによってアクセスされます。 セキュリティ属性は、宣言セキュリティに対してのみ使用されます。 命令型のセキュリティについては、対応するアクセス許可クラスを使用します。  
   
 > [!CAUTION]
->  `Unrestricted` <xref:System.Security.Permissions.FileIOPermission> 単一の特定のファイルへのアクセスに使用できる複数のパス名を含む、ファイル システム内のすべてのパスのアクセス許可を付与します。 <xref:System.Security.CodeAccessPermission.Deny%2A>へのアクセスをファイルにする必要があります`Deny`ファイルへのすべての有効なパス。 たとえば場合、 \\\server\share がネットワーク ドライブの X にマップされている`Deny`へのアクセスを\\必要があります、\server\share\file `Deny` \\\server\share\file、X:\file および使用できるその他の任意のパスにアクセスする、ファイルです。  
+>  `Unrestricted`<xref:System.Security.Permissions.FileIOPermission>ファイルシステム内のすべてのパスに対するアクセス許可を付与します。1つの特定のファイルにアクセスするために使用できる複数のパス名を含みます。 ファイル<xref:System.Security.CodeAccessPermission.Deny%2A>にアクセスするには、ファイル`Deny`へのパスがすべて使用可能である必要があります。 たとえば、\ \ \\\ (共有 \) がネットワークドライブ X にマップさ`Deny`れて\\いる場合、\server\share\file `Deny` \\にアクセスするには、\server\share\file、X:\file、およびその他のパスを使用して、拡張子.  
   
    
   
 ## Examples  
- 次のコード例は、要求する方法を示します<xref:System.Security.Permissions.FileIOPermission>を使用して、<xref:System.Security.Permissions.FileIOPermissionAttribute>コードに付与するだけの権限を示すクラス。  
+ 次のコード例は、 <xref:System.Security.Permissions.FileIOPermission> <xref:System.Security.Permissions.FileIOPermissionAttribute>クラスを使用して要求する方法を示しています。これは、コードに付与される唯一のアクセス許可を示しています。  
   
  [!code-cpp[Classic FileIOPermissionAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/CPP/source.cpp#1)]
  [!code-csharp[Classic FileIOPermissionAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/CS/source.cs#1)]
  [!code-vb[Classic FileIOPermissionAttribute Example#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/VB/source.vb#1)]  
   
- 次の例は、呼び出し元のコードが無制限になっていることを要求する方法を示しています。<xref:System.Security.Permissions.FileIOPermission>します。 通常、マネージ ライブラリ (Dll) メソッドまたはクラスを有害なコードから保護するためでは、要求を行います。  
+ 次の例は、呼び出し元のコードが無制限<xref:System.Security.Permissions.FileIOPermission>であることを要求する方法を示しています。 通常は、マネージライブラリ (Dll) に要求を作成して、有害な可能性のあるコードからメソッドまたはクラスを保護します。  
   
  [!code-cpp[Classic FileIOPermissionAttribute Example#2](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/CPP/source.cpp#2)]
  [!code-csharp[Classic FileIOPermissionAttribute Example#2](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic FileIOPermissionAttribute Example/CS/source.cs#2)]
@@ -104,7 +104,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例の複数のインスタンスを作成し、<xref:System.Security.Permissions.FileIOPermissionAttribute>さまざまなレベルのファイル I/O アクセス許可を設定するクラス。  
+ 次のコード例では、クラスの<xref:System.Security.Permissions.FileIOPermissionAttribute>複数のインスタンスを作成して、さまざまなレベルのファイル i/o アクセス許可を設定します。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#1)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#1)]
@@ -157,12 +157,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、1 つのファイルまたはディレクトリへのアクセスを設定します。 追加の属性を使用すると、追加のファイルおよびディレクトリを指定します。  
+ このプロパティは、1つのファイルまたはディレクトリに対するアクセスを設定します。 追加のファイルおよびディレクトリを指定するには、追加の属性を使用します。  
   
    
   
 ## Examples  
- 次のコード例のセット、<xref:System.Security.Permissions.FileIOPermissionAttribute.All%2A>プロパティを指定されたディレクトリへのフル アクセスを付与します。  
+ 次のコード例では<xref:System.Security.Permissions.FileIOPermissionAttribute.All%2A> 、プロパティを設定して、指定したディレクトリへのフルアクセスを許可します。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#6)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#6)]
@@ -203,9 +203,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを取得またはローカル コンピューターとネットワーク ドライブ上のすべてのファイルへのアクセス許可を設定します。  
+ このプロパティは、ローカルコンピューターおよびネットワークドライブ上のすべてのファイルに対して許可されているアクセスを取得または設定します。  
   
- 個人<xref:System.Security.Permissions.FileIOPermissionAccess>をビット単位で値を決定できます`AND`操作。  
+ 個々<xref:System.Security.Permissions.FileIOPermissionAccess>の値は、ビットごと`AND`の演算を使用して決定できます。  
   
  ]]></format>
         </remarks>
@@ -241,9 +241,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ローカル ファイルは、ローカル コンピューター上に含まれているファイルです。 ネットワーク ドライブからアクセスされないすべてのファイルは、ローカル ファイルです。  
+ ローカルファイルは、ローカルコンピューターに格納されているファイルです。 ネットワークドライブを介してアクセスされないファイルは、ローカルファイルです。  
   
- 個人<xref:System.Security.Permissions.FileIOPermissionAccess>をビット単位で値を決定できます`AND`操作。  
+ 個々<xref:System.Security.Permissions.FileIOPermissionAccess>の値は、ビットごと`AND`の演算を使用して決定できます。  
   
  ]]></format>
         </remarks>
@@ -280,12 +280,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、1 つのファイルまたはディレクトリへのアクセスを設定します。 追加の属性を使用すると、追加のファイルおよびディレクトリを指定します。  
+ このプロパティは、1つのファイルまたはディレクトリに対するアクセスを設定します。 追加のファイルおよびディレクトリを指定するには、追加の属性を使用します。  
   
    
   
 ## Examples  
- 次のコード例のセット、<xref:System.Security.Permissions.FileIOPermissionAttribute.Append%2A>プロパティを付与する<xref:System.Security.Permissions.FileIOPermissionAccess.Append>指定したディレクトリ内のファイルへのアクセス。  
+ 次のコード例では<xref:System.Security.Permissions.FileIOPermissionAttribute.Append%2A> 、プロパティを<xref:System.Security.Permissions.FileIOPermissionAccess.Append>設定して、指定したディレクトリ内のファイルへのアクセスを許可します。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#4)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#4)]
@@ -325,10 +325,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを取得または 1 つのファイルまたはディレクトリへのアクセスを設定します。 使用して追加<xref:System.Security.Permissions.FileIOPermissionAttribute>追加のファイルおよびディレクトリを指定する属性。  
+ このプロパティは、1つのファイルまたはディレクトリに対するアクセス権を取得または設定します。 追加の<xref:System.Security.Permissions.FileIOPermissionAttribute>ファイルおよびディレクトリを指定するには、追加の属性を使用します。  
   
 > [!IMPORTANT]
->  アクセス制御リスト (ACL) には、個人またはグループがある、または権限がない、特定のファイルとそのプロパティに特定のアクションをユーザーがについて説明します。  ACL を変更することは重要なアクセス許可し、慎重に付与する必要があります。  
+>  アクセス制御リスト (ACL) は、指定されたファイルとそのプロパティに対する特定のアクションに対する権限を持つ個人またはグループを表します。  ACL を変更する機能は重要なアクセス許可であり、十分に注意して付与する必要があります。  
   
  ]]></format>
         </remarks>
@@ -366,9 +366,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アプリケーション コードからではなく、セキュリティ システムによってのみ呼び出す必要があります。  
+ このメソッドは、アプリケーションコードではなく、セキュリティシステムによってのみ呼び出される必要があります。  
   
- コンパイル時に、属性は、セキュリティ宣言をメタデータにシリアル化された形式に変換されます。 メタデータの宣言型セキュリティ データは、この属性に対応するこのメソッドから返される権限から作成されます。  
+ コンパイル時に、属性はセキュリティ宣言をメタデータ内のシリアル化された形式に変換します。 メタデータの宣言型セキュリティデータは、このメソッドが返すアクセス許可から、この属性に対応するように作成されます。  
   
  ]]></format>
         </remarks>
@@ -406,17 +406,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パスの検出では、パス自体の情報へのアクセスを制御します。 これにより、ユーザー名などのパス中の機密情報だけではなく、パスによって判明するディレクトリ構造についての情報も保護されます。 この値は、パスによって表されたファイルまたはフォルダーへのアクセスを与えません。  
+ パス検出は、パス自体の情報へのアクセスを制御します。 これにより、ユーザー名などのパス中の機密情報だけではなく、パスによって判明するディレクトリ構造についての情報も保護されます。 この値は、パスによって表されたファイルまたはフォルダーへのアクセスを与えません。  
   
 > [!NOTE]
->  パフォーマンス上の理由から、<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>しないファイルへのディレクトリにのみ付与する必要があります。 たとえば、 <xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A> C:\test C:\test などのパスにアクセス許可を付与\\、C:\test\example.txt などのファイルにありません。  
+>  パフォーマンス上の理由<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>から、は、ファイルではなく、ディレクトリのみに付与する必要があります。 たとえば、 <xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A> C:\test\example.txt. などのファイルではなく、c:\test や c:\test\\などのパスにアクセス許可を付与する必要があります。  
   
- このプロパティは、1 つのファイルまたはディレクトリへのアクセスを設定します。 追加の属性を使用すると、追加のファイルおよびディレクトリを指定します。  
+ このプロパティは、1つのファイルまたはディレクトリに対するアクセスを設定します。 追加のファイルおよびディレクトリを指定するには、追加の属性を使用します。  
   
    
   
 ## Examples  
- 次のコード例のセット、<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>プロパティを付与する<xref:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery>指定したディレクトリ内のファイルへのアクセス。  
+ 次のコード例では<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A> 、プロパティを<xref:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery>設定して、指定したディレクトリ内のファイルへのアクセスを許可します。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#3)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#3)]
@@ -457,12 +457,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、1 つのファイルまたはディレクトリへのアクセスを設定します。 追加の属性を使用すると、追加のファイルおよびディレクトリを指定します。  
+ このプロパティは、1つのファイルまたはディレクトリに対するアクセスを設定します。 追加のファイルおよびディレクトリを指定するには、追加の属性を使用します。  
   
    
   
 ## Examples  
- 次の例のセット、<xref:System.Security.Permissions.FileIOPermissionAttribute.Read%2A>プロパティを付与する<xref:System.Security.Permissions.FileIOPermissionAccess.Read>指定したディレクトリ内のファイルへのアクセス。  
+ 次の例では<xref:System.Security.Permissions.FileIOPermissionAttribute.Read%2A> 、プロパティを<xref:System.Security.Permissions.FileIOPermissionAccess.Read>設定して、指定したディレクトリ内のファイルへのアクセスを許可します。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#2)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#2)]
@@ -502,10 +502,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを取得または 1 つのファイルまたはディレクトリへのアクセスを設定します。 使用して追加<xref:System.Security.Permissions.FileIOPermissionAttribute>追加のファイルおよびディレクトリを指定する属性。  
+ このプロパティは、1つのファイルまたはディレクトリに対するアクセス権を取得または設定します。 追加の<xref:System.Security.Permissions.FileIOPermissionAttribute>ファイルおよびディレクトリを指定するには、追加の属性を使用します。  
   
 > [!IMPORTANT]
->  アクセス制御リスト (ACL) には、個人またはグループがある、または権限がない、特定のファイルとそのプロパティに特定のアクションをユーザーがについて説明します。  ACL を表示する機能は、重要なアクセス許可し、慎重に付与する必要があります。  
+>  アクセス制御リスト (ACL) は、指定されたファイルとそのプロパティに対する特定のアクションに対する権限を持つ個人またはグループを表します。  ACL を表示する機能は、重要なアクセス許可であり、慎重に付与する必要があります。  
   
  ]]></format>
         </remarks>
@@ -541,10 +541,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの設定、 <xref:System.Security.Permissions.FileIOPermissionAttribute.Append%2A>、 <xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A>、 <xref:System.Security.Permissions.FileIOPermissionAttribute.Read%2A>、および<xref:System.Security.Permissions.FileIOPermissionAttribute.Write%2A>1 つのファイルまたはディレクトリのプロパティ。 使用して追加<xref:System.Security.Permissions.FileIOPermissionAttribute>追加のファイルおよびディレクトリを指定する属性。 アクセス権は、ファイルのデータだけです。アクセス コントロールのプロパティを含めない<xref:System.Security.Permissions.FileIOPermissionAttribute.ViewAccessControl%2A>と<xref:System.Security.Permissions.FileIOPermissionAttribute.ChangeAccessControl%2A>します。  
+ この<xref:System.Security.Permissions.FileIOPermissionAttribute.Append%2A>プロパティは<xref:System.Security.Permissions.FileIOPermissionAttribute.PathDiscovery%2A> 、1つの<xref:System.Security.Permissions.FileIOPermissionAttribute.Write%2A>ファイルまたはディレクトリの、、 、の各プロパティを設定します。<xref:System.Security.Permissions.FileIOPermissionAttribute.Read%2A> 追加の<xref:System.Security.Permissions.FileIOPermissionAttribute>ファイルおよびディレクトリを指定するには、追加の属性を使用します。 アクセス権は、ファイルデータのみを対象としています。これらには、アクセス制御プロパティ<xref:System.Security.Permissions.FileIOPermissionAttribute.ViewAccessControl%2A>と<xref:System.Security.Permissions.FileIOPermissionAttribute.ChangeAccessControl%2A>が含まれていません。  
   
 > [!NOTE]
->  `get`アクセサーでは、c# コンパイラとの互換性が提供されます。 C# コンパイラでは、属性のプロパティを読み取り/書き込みが必要です。  
+>  アクセサー `get`は、コンパイラのC#互換性のために用意されています。 コンパイラC#では、属性プロパティが読み取り/書き込み可能である必要があります。  
   
  ]]></format>
         </remarks>
@@ -582,12 +582,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、1 つのファイルまたはディレクトリへのアクセスを設定します。 追加の属性を使用すると、追加のファイルおよびディレクトリを指定します。  
+ このプロパティは、1つのファイルまたはディレクトリに対するアクセスを設定します。 追加のファイルおよびディレクトリを指定するには、追加の属性を使用します。  
   
    
   
 ## Examples  
- 次の例のセット、<xref:System.Security.Permissions.FileIOPermissionAttribute.Write%2A>プロパティを付与する<xref:System.Security.Permissions.FileIOPermissionAccess.Write>指定したディレクトリ内のファイルへのアクセス。  
+ 次の例では<xref:System.Security.Permissions.FileIOPermissionAttribute.Write%2A> 、プロパティを<xref:System.Security.Permissions.FileIOPermissionAccess.Write>設定して、指定したディレクトリ内のファイルへのアクセスを許可します。  
   
  [!code-cpp[System.Security.Permissions.FileIOPermissionAttribute#5](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CPP/fileiopermissionattribute.cpp#5)]
  [!code-csharp[System.Security.Permissions.FileIOPermissionAttribute#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.FileIOPermissionAttribute/CS/fileiopermissionattribute.cs#5)]
