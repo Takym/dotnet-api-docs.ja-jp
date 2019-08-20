@@ -1,5 +1,5 @@
 <Type Name="SqlCommandBuilder" FullName="System.Data.SqlClient.SqlCommandBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0f53b5aa8d1732440f4fb531b4288186be22c27f" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57958534" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlCommandBuilder : System.Data.Common.DbCommandBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c73e1f310be857a9d1632ca6c3cd57f39415883c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69369223" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlCommandBuilder : System.Data.Common.DbCommandBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlCommandBuilder extends System.Data.Common.DbCommandBuilder" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlCommandBuilder" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlCommandBuilder&#xA;Inherits DbCommandBuilder" />
@@ -29,23 +29,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlDataAdapter>に加えられた変更を調整するために必要な TRANSACT-SQL ステートメントを自動的に生成しない、<xref:System.Data.DataSet>関連付けられている SQL Server のインスタンス。 ただし、作成することができます、<xref:System.Data.SqlClient.SqlCommandBuilder>設定した場合、TRANSACT-SQL ステートメントの単一テーブルの更新プログラムを自動的に生成するオブジェクト、<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>のプロパティ、<xref:System.Data.SqlClient.SqlDataAdapter>します。 次に、設定のしない追加の TRANSACT-SQL ステートメントがによって生成される、<xref:System.Data.SqlClient.SqlCommandBuilder>します。  
+ は、に関連付けられた SQL Server のインスタンスを使用してに加えられた変更を調整するために必要なtransact-sqlステートメントを自動的に生成しません。<xref:System.Data.DataSet> <xref:System.Data.SqlClient.SqlDataAdapter> ただし、の<xref:System.Data.SqlClient.SqlCommandBuilder> プロパティを<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>設定した場合は、単一テーブルの更新に対して transact-sql ステートメントを自動的に生成するオブジェクトを作成できます。<xref:System.Data.SqlClient.SqlDataAdapter> その後、設定していない追加の Transact-sql ステートメントは、 <xref:System.Data.SqlClient.SqlCommandBuilder>によって生成されます。  
   
- <xref:System.Data.SqlClient.SqlCommandBuilder>のリスナーとして自身を登録<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>イベントを設定するたびに、<xref:System.Data.SqlClient.SqlCommandBuilder.DataAdapter%2A>プロパティ。 関連付けることができますのみ<xref:System.Data.SqlClient.SqlDataAdapter>または<xref:System.Data.SqlClient.SqlCommandBuilder>相互オブジェクトは一度に 1 つ。  
+ は<xref:System.Data.SqlClient.SqlCommandBuilder> 、 <xref:System.Data.SqlClient.SqlCommandBuilder.DataAdapter%2A>プロパティを設定するたび<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>に、イベントのリスナーとして自身を登録します。 1つ<xref:System.Data.SqlClient.SqlDataAdapter>または<xref:System.Data.SqlClient.SqlCommandBuilder>複数のオブジェクトを同時に関連付けることができます。  
   
- INSERT、UPDATE、または DELETE のステートメントを生成する、<xref:System.Data.SqlClient.SqlCommandBuilder>を使用して、<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>プロパティを自動的に必要な一連のメタデータを取得します。 変更した場合、<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>呼び出す必要があります最初の更新後など、メタデータが取得された後、<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>メタデータを更新するメソッド。  
+ INSERT、UPDATE、または DELETE ステートメントを生成する<xref:System.Data.SqlClient.SqlCommandBuilder>ために<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A> 、はプロパティを使用して、必要なメタデータのセットを自動的に取得します。 最初の更新の<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>後など、メタデータが取得された後にを変更する場合は、 <xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>メソッドを呼び出してメタデータを更新する必要があります。  
   
- 
-  `SelectCommand` は少なくとも 1 つの主キーまたは一意の列を返す必要があります。 存在しない場合、 **InvalidOperation**例外が生成され、コマンドは生成されません。  
+ `SelectCommand` は少なくとも 1 つの主キーまたは一意の列を返す必要があります。 存在しない場合は、 **InvalidOperation**例外が生成され、コマンドは生成されません。  
   
- <xref:System.Data.SqlClient.SqlCommandBuilder>を使用しても、 <xref:System.Data.SqlClient.SqlCommand.Connection%2A>、 <xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>、および<xref:System.Data.SqlClient.SqlCommand.Transaction%2A>プロパティによって参照される、<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>します。 ユーザーが呼び出す必要があります<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>場合または 1 つ以上のこれらのプロパティが変更された場合、<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>自体が置き換えられます。 それ以外の場合、 <xref:System.Data.SqlClient.SqlDataAdapter.InsertCommand%2A>、 <xref:System.Data.SqlClient.SqlDataAdapter.UpdateCommand%2A>、および<xref:System.Data.SqlClient.SqlDataAdapter.DeleteCommand%2A>プロパティは、以前の値を保持します。  
+ は<xref:System.Data.SqlClient.SqlCommandBuilder> 、によっ<xref:System.Data.SqlClient.SqlCommand.Connection%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>参照さ<xref:System.Data.SqlClient.SqlCommand.Transaction%2A>れる、、およびの各プロパティも使用します。<xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A> ユーザーは、これら<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>のプロパティの1つ以上が変更された場合、 <xref:System.Data.SqlClient.SqlDataAdapter.SelectCommand%2A>またはそれ自体が置換された場合は、を呼び出す必要があります。 それ以外<xref:System.Data.SqlClient.SqlDataAdapter.InsertCommand%2A>の<xref:System.Data.SqlClient.SqlDataAdapter.UpdateCommand%2A>場合、 <xref:System.Data.SqlClient.SqlDataAdapter.DeleteCommand%2A> 、、およびの各プロパティは、前の値を保持します。  
   
- 呼び出す場合<xref:System.ComponentModel.Component.Dispose%2A>、<xref:System.Data.SqlClient.SqlCommandBuilder>関連付けが解除され、 <xref:System.Data.SqlClient.SqlDataAdapter>、生成されたコマンドが使用できなくします。  
+ を呼び出す<xref:System.ComponentModel.Component.Dispose%2A> <xref:System.Data.SqlClient.SqlCommandBuilder>と、はとの関連付け<xref:System.Data.SqlClient.SqlDataAdapter>が解除され、生成されたコマンドは使用されなくなります。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Data.SqlClient.SqlCommand>と共に、<xref:System.Data.SqlClient.SqlDataAdapter>と<xref:System.Data.SqlClient.SqlConnection>、データ ソースから行を選択します。 この例には、接続文字列では、TRANSACT-SQL SELECT ステートメントでは、クエリ文字列、データベース テーブルの名前を指定する文字列が渡されます。 作成し、<xref:System.Data.SqlClient.SqlCommandBuilder>します。  
+ 次の例では<xref:System.Data.SqlClient.SqlCommand>、 <xref:System.Data.SqlClient.SqlDataAdapter>と<xref:System.Data.SqlClient.SqlConnection>を使用して、データソースから行を選択します。 この例では、接続文字列、Transact-sql SELECT ステートメントであるクエリ文字列、およびデータベーステーブルの名前を文字列として渡しています。 この例では、 <xref:System.Data.SqlClient.SqlCommandBuilder>を作成します。  
   
  [!code-csharp[Classic WebData SqlCommandBuilder#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlCommandBuilder/CS/Source.cs#1)]
  [!code-vb[Classic WebData SqlCommandBuilder#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlCommandBuilder/VB/Source.vb#1)]  
@@ -126,14 +125,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlCommandBuilder>のリスナーとして自身を登録<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>によって生成されるイベント、<xref:System.Data.SqlClient.SqlDataAdapter>このプロパティで指定します。  
+ は<xref:System.Data.SqlClient.SqlCommandBuilder> 、このプロパティで<xref:System.Data.SqlClient.SqlDataAdapter>指定さ<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>れたによって生成されるイベントのリスナーとして自身を登録します。  
   
- 新しいインスタンスを作成するときに<xref:System.Data.SqlClient.SqlCommandBuilder>、既存のすべての<xref:System.Data.SqlClient.SqlCommandBuilder>これに関連付けられている<xref:System.Data.SqlClient.SqlDataAdapter>解放されます。  
+ の<xref:System.Data.SqlClient.SqlCommandBuilder>新しいインスタンスを作成すると、この<xref:System.Data.SqlClient.SqlDataAdapter>に<xref:System.Data.SqlClient.SqlCommandBuilder>関連付けられている既存のが解放されます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -212,8 +211,8 @@
         <summary><see cref="T:System.Data.Common.CatalogLocation" /> クラスのインスタンスの <see cref="T:System.Data.SqlClient.SqlCommandBuilder" /> を設定または取得します。</summary>
         <value><see cref="T:System.Data.Common.CatalogLocation" /> オブジェクト。</value>
         <remarks>To be added.</remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -255,8 +254,8 @@
         <summary><see cref="T:System.Data.SqlClient.SqlCommandBuilder" /> クラスのインスタンスのカタログの区切り記号として使用する文字列を設定または取得します。</summary>
         <value><see cref="T:System.Data.SqlClient.SqlCommandBuilder" /> クラスのインスタンスで使用するカタログ区切り記号を示す文字列。</value>
         <remarks>To be added.</remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -299,14 +298,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlCommandBuilder>のリスナーとして自身を登録<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>によって生成されるイベント、<xref:System.Data.SqlClient.SqlDataAdapter>このプロパティで指定します。  
+ は<xref:System.Data.SqlClient.SqlCommandBuilder> 、このプロパティで<xref:System.Data.SqlClient.SqlDataAdapter>指定さ<xref:System.Data.SqlClient.SqlDataAdapter.RowUpdating>れたによって生成されるイベントのリスナーとして自身を登録します。  
   
- 新しいインスタンスを作成するときに<xref:System.Data.SqlClient.SqlCommandBuilder>、既存のすべての<xref:System.Data.SqlClient.SqlCommandBuilder>これに関連付けられている<xref:System.Data.SqlClient.SqlDataAdapter>解放されます。  
+ の<xref:System.Data.SqlClient.SqlCommandBuilder>新しいインスタンスを作成すると、この<xref:System.Data.SqlClient.SqlDataAdapter>に<xref:System.Data.SqlClient.SqlCommandBuilder>関連付けられている既存のが解放されます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -344,19 +343,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `DeriveParameters` 既存のパラメーター情報を上書き、`SqlDbCommand`します。  
+ `DeriveParameters`の既存のパラメーター情報を`SqlDbCommand`上書きします。  
   
- `DeriveParameters` 情報を取得するデータベースに追加の呼び出しが必要です。 パラメーター情報が事前にわかっている場合は、情報を明示的に設定するパラメーター コレクションを設定する方が効率的です。  
+ `DeriveParameters`情報を取得するには、データベースへの追加の呼び出しが必要です。 パラメーター情報が事前にわかっている場合は、情報を明示的に設定することにより、パラメーターコレクションを設定する方が効率的です。  
   
- 使用できるだけ`DeriveParameters`ストアド プロシージャを使用します。 使用することはできません`DeriveParameters`拡張ストアド プロシージャを使用します。 使用することはできません`DeriveParameters`を設定する、<xref:System.Data.SqlClient.SqlParameterCollection>パラメーター化された SELECT ステートメントなどの任意の TRANSACT-SQL ステートメントでします。  
+ は、ストアドプロシージャ`DeriveParameters`でのみ使用できます。 を拡張ストアド`DeriveParameters`プロシージャと共に使用することはできません。 を使用`DeriveParameters`して、パラメーター <xref:System.Data.SqlClient.SqlParameterCollection>化された SELECT ステートメントなど、任意の transact-sql ステートメントをに設定することはできません。  
   
- 詳細については、次を参照してください。[構成パラメーターとパラメーターのデータ型](~/docs/framework/data/adonet/configuring-parameters-and-parameter-data-types.md)します。  
+ 詳細については、「[パラメーターおよびパラメーターデータ型の構成](~/docs/framework/data/adonet/configuring-parameters-and-parameter-data-types.md)」を参照してください。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">コマンド テキストが有効なストアド プロシージャ名ではありません。</exception>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -399,18 +398,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>を呼び出すときに最初に生成されます。  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </MemberGroup>
@@ -446,18 +445,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>を呼び出すときに最初に生成されます。  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -495,26 +494,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります、SQL ステートメントが生成した後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>します。  
+ SQL ステートメントが最初に生成された後、アプリケーションは<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>ステートメントを何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 SQL ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetDeleteCommand%2A>を呼び出すときに最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 渡す`true`の`useColumnsForParameterNames`パラメーターさせることができます、<xref:System.Data.OleDb.OleDbCommandBuilder>を代わりに列名に基づいたパラメーターを生成します。 これが成功すると、次の条件が満たされた場合にのみ。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 パラメーターにを渡す`true`と、では<xref:System.Data.OleDb.OleDbCommandBuilder>なく列名に基づいてパラメーターを生成するように強制できます。 `useColumnsForParameterNames` これは、次の条件が満たされた場合にのみ成功します。  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>コレクションが指定されており、その長さが生成されたパラメーター名以上。  
+-   GetSchema メソッドの呼び出し**** から<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> 返され、コレクション内で見つかったが指定されましたが、その長さが生成されたパラメーター名以上です。<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>  
   
--   生成されたパラメーター名で指定した条件を満たしている、<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>正規表現のコレクション。  
+-   生成されたパラメーター名は、 **GetSchema**メソッド<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>の呼び出しから返されたで指定され<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>た条件を満たし、コレクションの正規表現に含まれています。  
   
--   A<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>コレクションを指定します。  
+-   GetSchema メソッドの呼び出し**** から<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> 返されたが、コレクションに指定されています。<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -530,18 +529,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります: TRANSACT-SQL ステートメントを生成後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 TRANSACT-SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>します。  
+ Transact-sql ステートメントが最初に生成された後、アプリケーションはステートメントを<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 Transact-sql ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>を呼び出すときに最初に生成されます。  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </MemberGroup>
@@ -577,18 +576,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります: TRANSACT-SQL ステートメントを生成後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 TRANSACT-SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>します。  
+ Transact-sql ステートメントが最初に生成された後、アプリケーションはステートメントを<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 Transact-sql ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>を呼び出すときに最初に生成されます。  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -626,26 +625,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります: TRANSACT-SQL ステートメントを生成後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 TRANSACT-SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>します。  
+ Transact-sql ステートメントが最初に生成された後、アプリケーションはステートメントを<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 Transact-sql ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetInsertCommand%2A>を呼び出すときに最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 渡す`true`の`useColumnsForParameterNames`パラメーターさせることができます、<xref:System.Data.OleDb.OleDbCommandBuilder>を代わりに列名に基づいたパラメーターを生成します。 これが成功すると、次の条件が満たされた場合にのみ。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 パラメーターにを渡す`true`と、では<xref:System.Data.OleDb.OleDbCommandBuilder>なく列名に基づいてパラメーターを生成するように強制できます。 `useColumnsForParameterNames` これは、次の条件が満たされた場合にのみ成功します。  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>コレクションが指定されており、その長さが生成されたパラメーター名以上。  
+-   GetSchema メソッドの呼び出し**** から<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> 返され、コレクション内で見つかったが指定されましたが、その長さが生成されたパラメーター名以上です。<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>  
   
--   生成されたパラメーター名で指定した条件を満たしている、<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>正規表現のコレクション。  
+-   生成されたパラメーター名は、 **GetSchema**メソッド<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>の呼び出しから返されたで指定され<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>た条件を満たし、コレクションの正規表現に含まれています。  
   
--   A<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>コレクションを指定します。  
+-   GetSchema メソッドの呼び出し**** から<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> 返されたが、コレクションに指定されています。<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -793,13 +792,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります: TRANSACT-SQL ステートメントを生成後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 TRANSACT-SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>します。  
+ Transact-sql ステートメントが最初に生成された後、アプリケーションはステートメントを<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 Transact-sql ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>を呼び出すときに最初に生成されます。  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -837,18 +836,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります: TRANSACT-SQL ステートメントを生成後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 TRANSACT-SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>します。  
+ Transact-sql ステートメントが最初に生成された後、アプリケーションはステートメントを<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 Transact-sql ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>を呼び出すときに最初に生成されます。  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -886,26 +885,26 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用できます、<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>返すため、メソッドの情報やトラブルシューティングを目的として、<xref:System.Data.SqlClient.SqlCommand>実行対象のオブジェクト。  
+ アプリケーションでは、実行<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>する<xref:System.Data.SqlClient.SqlCommand>オブジェクトを返すため、情報提供またはトラブルシューティングの目的でメソッドを使用できます。  
   
- 使用することも<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>変更コマンドの基礎として。 などを呼び出す<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>し、変更、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値に設定して、しに明示的に設定する、<xref:System.Data.SqlClient.SqlDataAdapter>します。  
+ また、を変更<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>したコマンドのベースとして使用することもできます。 たとえば、とを呼び出し<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>て<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A>値を変更し、で<xref:System.Data.SqlClient.SqlDataAdapter>明示的に設定することができます。  
   
- アプリケーションが明示的に呼び出す必要があります: TRANSACT-SQL ステートメントを生成後<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で、ステートメントが変更された場合。 それ以外の場合、<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>前のステートメントは、正しくない可能性がありますからの情報が使用されます。 TRANSACT-SQL ステートメントは、アプリケーションがいずれかを呼び出すときに生成された最初<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>します。  
+ Transact-sql ステートメントが最初に生成された後、アプリケーションはステートメントを<xref:System.Data.Common.DbCommandBuilder.RefreshSchema%2A>何らかの方法で変更した場合は、明示的にを呼び出す必要があります。 それ以外の<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>場合、は、前のステートメントの情報を使用しますが、正しくない可能性があります。 Transact-sql ステートメントは、アプリケーションが<xref:System.Data.Common.DbDataAdapter.Update%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.GetUpdateCommand%2A>を呼び出すときに最初に生成されます。  
   
- パラメーター名を生成するときに、既定の動作は、使用することです。 `@p1`、 `@p2`、さまざまなパラメーターです。 渡す`true`の`useColumnsForParameterNames`パラメーターさせることができます、<xref:System.Data.OleDb.OleDbCommandBuilder>を代わりに列名に基づいたパラメーターを生成します。 これが成功すると、次の条件が満たされた場合にのみ。  
+ パラメーター名を生成するときの既定の動作では`@p1`、 `@p2`さまざまなパラメーターに対して、、などを使用します。 パラメーターにを渡す`true`と、では<xref:System.Data.OleDb.OleDbCommandBuilder>なく列名に基づいてパラメーターを生成するように強制できます。 `useColumnsForParameterNames` これは、次の条件が満たされた場合にのみ成功します。  
   
--   <xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>コレクションが指定されており、その長さが生成されたパラメーター名以上。  
+-   GetSchema メソッドの呼び出し**** から<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> 返され、コレクション内で見つかったが指定されましたが、その長さが生成されたパラメーター名以上です。<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNameMaxLength>  
   
--   生成されたパラメーター名で指定した条件を満たしている、<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>正規表現のコレクション。  
+-   生成されたパラメーター名は、 **GetSchema**メソッド<xref:System.Data.Common.DbMetaDataColumnNames.ParameterNamePattern>の呼び出しから返されたで指定され<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>た条件を満たし、コレクションの正規表現に含まれています。  
   
--   A<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>から返される、 **GetSchema**メソッドを呼び出すしで見つかった、<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation>コレクションを指定します。  
+-   GetSchema メソッドの呼び出し**** から<xref:System.Data.Common.DbMetaDataCollectionNames.DataSourceInformation> 返されたが、コレクションに指定されています。<xref:System.Data.Common.DbMetaDataColumnNames.ParameterMarkerFormat>  
   
- 詳細については、次を参照してください。 [Commandbuilder でのコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)します。  
+ 詳細については、「 [CommandBuilders を使用したコマンドの生成](~/docs/framework/data/adonet/generating-commands-with-commandbuilders.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -973,8 +972,8 @@
         <summary>カタログの大文字小文字を正しく区別して引用符で囲まれていない ID を指定し、正しく引用符で囲まれた形式でその ID を返します。 ID に埋め込まれている引用符は、正しくエスケープされます。</summary>
         <returns>引用符で囲まれたバージョンの ID。 ID 内に埋め込まれている引用符は、正しくエスケープされます。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1025,13 +1024,13 @@
 ## Remarks  
   
 > [!NOTE]
->  変更することはできません、<xref:System.Data.SqlClient.SqlCommandBuilder.QuotePrefix%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.QuoteSuffix%2A>プロパティの後、insert、update、または delete コマンドが生成されて、その設定を変更するには呼び出した後、 `Update` DataAdapter のメソッド。  
+>  Insert、update、また<xref:System.Data.SqlClient.SqlCommandBuilder.QuotePrefix%2A>は<xref:System.Data.SqlClient.SqlCommandBuilder.QuoteSuffix%2A> delete コマンドが生成された後でプロパティまたはプロパティを変更することはできませんが`Update` 、DataAdapter のメソッドを呼び出した後で設定を変更することはできます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">このプロパティは、INSERT、UPDATE、または DELETE の各コマンドの生成後には変更できません。</exception>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1082,13 +1081,13 @@
 ## Remarks  
   
 > [!NOTE]
->  変更することはできません、<xref:System.Data.SqlClient.SqlCommandBuilder.QuotePrefix%2A>または<xref:System.Data.SqlClient.SqlCommandBuilder.QuoteSuffix%2A>、挿入後のプロパティは、更新、または削除操作が生成されて、その設定を変更するには呼び出した後、 `Update` DataAdapter のメソッド。  
+>  挿入、更新、また<xref:System.Data.SqlClient.SqlCommandBuilder.QuotePrefix%2A>は<xref:System.Data.SqlClient.SqlCommandBuilder.QuoteSuffix%2A>削除の各操作が生成された後に、プロパティまたはプロパティを変更することはでき`Update`ませんが、DataAdapter のメソッドを呼び出した後で設定を変更することはできます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">このプロパティは、挿入、更新、または削除コマンドの生成後には変更できません。</exception>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1157,12 +1156,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一般に、データベース サーバーは、いくつかの文字を持つ id からスキーマ名を分離することで、識別子のスキーマを示します。 たとえば、SQL Server は、ピリオド、Person.CustomerName、"Person"がスキーマの名前で、"CustomerName"は、識別子などの完全な識別子を作成します。 このプロパティの設定には、開発者がこの動作を変更することができます。  
+ 一般に、データベースサーバーは、識別子のスキーマ名をいくつかの文字で区切ることによって、識別子のスキーマを示します。 たとえば、SQL Server ではピリオドが使用され、Person などの完全な識別子が作成されます。ここで、"Person" はスキーマ名、"様" は識別子です。 このプロパティを設定すると、開発者はこの動作を変更できます。  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1229,8 +1228,8 @@
         <summary>引用符で囲まれた ID を指定して、引用符で囲まれていない正しい形式の ID を返します。 ID に埋め込まれている引用符は、正しくエスケープ解除されます。</summary>
         <returns>埋め込まれていた引用符が適切にエスケープ解除された、引用符で囲まれていない ID。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">接続および ADO.NET でのデータの取得</related>
-        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">For SQL Server、.NET Framework Data Provider を使用</related>
+        <related type="Article" href="~/docs/framework/data/adonet/retrieving-and-modifying-data.md">ADO.NET でのデータの接続と取得</related>
+        <related type="Article" href="~/docs/framework/data/adonet/sql/index.md">SQL Server に .NET Framework Data Provider を使用する</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>

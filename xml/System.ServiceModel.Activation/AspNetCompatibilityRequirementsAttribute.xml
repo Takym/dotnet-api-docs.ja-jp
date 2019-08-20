@@ -1,5 +1,5 @@
 <Type Name="AspNetCompatibilityRequirementsAttribute" FullName="System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="373d2a30edfcf49f184e0e113389b4ca2b176f08" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58744304" /></Metadata><TypeSignature Language="C#" Value="public sealed class AspNetCompatibilityRequirementsAttribute : Attribute, System.ServiceModel.Description.IServiceBehavior" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1fcc333a222ca3c4c0317a26d95df85d5933cc9f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69160937" /></Metadata><TypeSignature Language="C#" Value="public sealed class AspNetCompatibilityRequirementsAttribute : Attribute, System.ServiceModel.Description.IServiceBehavior" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit AspNetCompatibilityRequirementsAttribute extends System.Attribute implements class System.ServiceModel.Description.IServiceBehavior" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class AspNetCompatibilityRequirementsAttribute&#xA;Inherits Attribute&#xA;Implements IServiceBehavior" />
@@ -31,11 +31,11 @@
 ## Remarks  
  サービス実装クラスに適用した場合、この属性は、このサービスがホスト アプリケーション ドメイン (AppDomain) に対して [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] 互換モードを有効にする必要があるかどうか、またはそのモードをサポートする必要があるかどうかを指示します。  
   
- WCF サービスをホストする Appdomain は、2 つの異なるホスト モードで実行できます。  
+ WCF サービスをホストする AppDomains は、次の2つの異なるホスティングモードで実行できます。  
   
--   混合トランスポート モード (既定値):このモードでの WCF サービスに参加していない、 [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] HTTP パイプライン。 これにより、WCF サービスに、一貫した動作するホスティング環境やトランスポートに依存しません。  
+-   混合トランスポートモード (既定):このモードでは、WCF サービスは[!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] HTTP パイプラインに参加しません。 これにより、ホスティング環境やトランスポートとは無関係に、WCF サービスが一貫して動作することが保証されます。  
   
--   [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] 互換モード:このモードでの WCF サービスの参加で、 [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] ASMX サービスと同様の方法で HTTP パイプライン。 [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] ファイルの承認、UrlAuthorization、および HTTP セッション状態などの機能は、このモードで実行されている WCF サービスに適用されます。  
+-   [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)]互換モード:このモードでは、WCF サービスは ASMX [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)]サービスと同様の方法で HTTP パイプラインに参加します。 [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)]このモードで実行される WCF サービスには、ファイル承認、UrlAuthorization、HTTP セッション状態などの機能が適用されます。  
   
  ホスト モードは、アプリケーション レベルの構成フラグである `aspNetCompatibilityEnabled` によって制御されます。  
   
@@ -45,16 +45,16 @@
   
  `</system.serviceModel>`  
   
- このフラグは`false`で既定および WCF サービスで実行は混合トランスポート モードを明示的に選択する場合を除き、[!INCLUDE[vstecasp](~/includes/vstecasp-md.md)]互換モード。  
+ このフラグは`false`既定ではです。そのため、 [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)]互換性モードを明示的に選択しない限り、WCF サービスは混合トランスポートモードで実行されます。  
   
- ASP.NET 互換モードの詳細については、次を参照してください。 [ &lt;serviceHostingEnvironment&gt;](~/docs/framework/configure-apps/file-schema/wcf/servicehostingenvironment.md)します。  
+ ASP.NET 互換モードの詳細については[ &lt;、&gt;serviceHostingEnvironment](~/docs/framework/configure-apps/file-schema/wcf/servicehostingenvironment.md)を参照してください。  
   
  これを行うには、<xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.RequirementsMode%2A> プロパティを使用します。 実行時、アプリケーションは、静的プロパティ [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] の値を確認することにより、<xref:System.ServiceModel.ServiceHostingEnvironment.AspNetCompatibilityEnabled%2A> 互換モードが有効であるかどうかを検出できます。  
   
    
   
 ## Examples  
- サービス開発者が、サービスが設定して実行 ASP.NET 互換モードでのみを確認することができます、<xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.RequirementsMode%2A>プロパティを<xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute>に<xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Required>次の例に示すように  
+ サービス開発者は、次の例に示すように、の<xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.RequirementsMode%2A>プロパティをに設定する<xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Required>こと<xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute>によって、サービスが ASP.NET 互換モードでのみ実行されるようにすることができます。  
   
  [!code-csharp[S_AspNetCompatibility#1](~/samples/snippets/csharp/VS_Snippets_CFX/s_aspnetcompatibility/cs/service.cs#1)]
  [!code-vb[S_AspNetCompatibility#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/s_aspnetcompatibility/vb/service.vb#1)]  
@@ -117,7 +117,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.RequirementsMode%2A> プロパティを使用して、コード内にホスト モードを設定します。 これは、アプリケーション レベルの構成フラグである `aspNetCompatibilityEnabled` を設定することでも実行できます。 詳細については、次を参照してください。 [ &lt;serviceHostingEnvironment&gt;](~/docs/framework/configure-apps/file-schema/wcf/servicehostingenvironment.md)します。  
+ <xref:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute.RequirementsMode%2A> プロパティを使用して、コード内にホスト モードを設定します。 これは、アプリケーション レベルの構成フラグである `aspNetCompatibilityEnabled` を設定することでも実行できます。 詳細については、「 [ &lt;serviceHostingEnvironment&gt;](~/docs/framework/configure-apps/file-schema/wcf/servicehostingenvironment.md)」を参照してください。  
   
  実行時、アプリケーションは、静的プロパティ [!INCLUDE[vstecasp](~/includes/vstecasp-md.md)] の値を確認することにより、<xref:System.ServiceModel.ServiceHostingEnvironment.AspNetCompatibilityEnabled%2A> 互換モードが有効であるかどうかを検出できます。  
   
@@ -165,7 +165,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、WCF インフラストラクチャをサポートし、コードから直接使用するものではありません。  
+ このメソッドは、WCF インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。  
   
  ]]></format>
         </remarks>
@@ -200,7 +200,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、WCF インフラストラクチャをサポートし、コードから直接使用するものではありません。  
+ このメソッドは、WCF インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。  
   
  ]]></format>
         </remarks>
@@ -237,7 +237,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、WCF インフラストラクチャをサポートし、コードから直接使用するものではありません。  
+ このメソッドは、WCF インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。  
   
  ]]></format>
         </remarks>

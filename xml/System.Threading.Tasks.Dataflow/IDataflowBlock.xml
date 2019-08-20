@@ -1,5 +1,5 @@
 <Type Name="IDataflowBlock" FullName="System.Threading.Tasks.Dataflow.IDataflowBlock">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f93664f38a2b1309ca4ebb43f549e6e4a57847d" /><Meta Name="ms.sourcegitcommit" Value="8e213bb5e6801f6e29861ba72664978ad00e34fa" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/18/2019" /><Meta Name="ms.locfileid" Value="56345997" /></Metadata><TypeSignature Language="C#" Value="public interface IDataflowBlock" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="922e51c4535f569d191ae9d794114b2b515e0aa2" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230153" /></Metadata><TypeSignature Language="C#" Value="public interface IDataflowBlock" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDataflowBlock" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.Dataflow.IDataflowBlock" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDataflowBlock" />
@@ -55,7 +55,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 後<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Complete%2A>されたデータフロー ブロックで呼び出されると、そのブロックは完了し、その<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>以前に使用可能なすべてのデータを処理した後、タスクは最終的な状態に入ります。 <xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Complete%2A> 発生すると、完了の待機をブロックしませんではなく、要求が開始されますが、発生すると、完了するまで待って、<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>タスクを使用することがあります。  
+ データフローブロックで<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A> が呼び出されると、そのブロックは完了し、そのタスクは、以前に使用可能なすべてのデータを処理した後に、最終的な状態になります。<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Complete%2A> <xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Complete%2A>は、完了するのを待っている間はブロックしませんが、要求を開始します。完了する<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>まで待機するには、タスクを使用することができます。  
   
  ]]></format>
         </remarks>
@@ -88,7 +88,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- データ フロー ブロックは、現在処理していないメッセージと、これ以上メッセージを処理しないことを保証がされているときに、完了と見なされます。 返された<xref:System.Threading.Tasks.Task>関連するブロックが完了したときに完了した状態に遷移が。 移行、 <xref:System.Threading.Tasks.TaskStatus> <xref:System.Threading.Tasks.TaskStatus.RanToCompletion>ブロックには、データ フロー ブロックのに従って正常にその処理が完了するときの状態は、セマンティクスを定義します。 移行、 <xref:System.Threading.Tasks.TaskStatus> <xref:System.Threading.Tasks.TaskStatus.Faulted>データフロー ブロックが未処理の例外によって途中で処理を完了しからへの移行時の状態、 <xref:System.Threading.Tasks.TaskStatus> <xref:System.Threading.Tasks.TaskStatus.Canceled>データフロー ブロックが完了したときの状態取り消し要求を受け取ったため途中で処理します。 タスクが完了した場合、<xref:System.Threading.Tasks.TaskStatus.Faulted>状態、その`Exception`プロパティは、<xref:System.AggregateException>ブロックが失敗する原因となった 1 つまたは複数の例外を格納しています。  
+ データフローブロックは、現在メッセージを処理しておらず、それ以上メッセージを処理しないことが保証されている場合に、完了したと見なされます。 関連付けら<xref:System.Threading.Tasks.Task>れたブロックが完了すると、返されるは完了状態に遷移します。 データフローブロックの定義<xref:System.Threading.Tasks.TaskStatus>されたセマンティクスに従ってブロックが正常に処理を完了すると、 <xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態に遷移します。 <xref:System.Threading.Tasks.TaskStatus>このメソッドは、 <xref:System.Threading.Tasks.TaskStatus.Faulted>処理されない例外が原因でデータフローブロックが途中で処理を完了したときの状態<xref:System.Threading.Tasks.TaskStatus>に遷移し、データフローブロックの完了時に<xref:System.Threading.Tasks.TaskStatus.Canceled>状態に遷移します。キャンセル要求を受け取ったため、処理が途中で完了します。 タスクが<xref:System.Threading.Tasks.TaskStatus.Faulted>状態で完了した場合、 `Exception`そのプロパティは、 <xref:System.AggregateException>ブロックが失敗する原因となった1つ以上の例外を含むを返します。  
   
  ]]></format>
         </remarks>
@@ -123,7 +123,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 後<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Fault%2A>されたデータフロー ブロックで呼び出されると、そのブロックは完了し、その<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A>タスクが最終的な状態を入力します。 ブロックをエラーとしてでブロックをキャンセルすると、バッファー内のメッセージ (未処理の入力メッセージと unoffered 出力メッセージ) が失われる。  
+ データフローブロックで<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Completion%2A> が呼び出されると、そのブロックは完了し、タスクは最終的な状態になります。<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Fault%2A> ブロックのキャンセルと同様にブロックがエラーになると、バッファー内のメッセージ (未処理の入力メッセージと unoffered 出力メッセージ) が失われます。  
   
  ]]></format>
         </remarks>

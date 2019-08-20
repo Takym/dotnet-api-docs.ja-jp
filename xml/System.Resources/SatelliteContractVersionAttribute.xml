@@ -1,5 +1,5 @@
 <Type Name="SatelliteContractVersionAttribute" FullName="System.Resources.SatelliteContractVersionAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="082a31cb7e917c8a5d26f74235ffef63e5f48086" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58725167" /></Metadata><TypeSignature Language="C#" Value="public sealed class SatelliteContractVersionAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="17b1cd6d83fa9bb268fffcdf58be4721909e74af" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69066857" /></Metadata><TypeSignature Language="C#" Value="public sealed class SatelliteContractVersionAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SatelliteContractVersionAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Resources.SatelliteContractVersionAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SatelliteContractVersionAttribute&#xA;Inherits Attribute" />
@@ -48,17 +48,17 @@
   
 ## Remarks  
   
-## <a name="desktop-apps"></a>デスクトップ アプリ  
- デスクトップ アプリ、<xref:System.Resources.SatelliteContractVersionAttribute>属性は、メイン アセンブリとそのすべてのサテライト間のコントラクトを確立します。 この属性は、メインのアセンブリに適用しのメイン アセンブリには、このバージョンで動作するサテライト アセンブリのバージョン番号を渡すことです。 ときに、リソース マネージャー (<xref:System.Resources.ResourceManager>オブジェクト) リソースを検索、明示的に読み込むメイン アセンブリでは、この属性で指定されたバージョンのサテライトします。  
+## <a name="desktop-apps"></a>デスクトップアプリ  
+ デスクトップアプリでは、 <xref:System.Resources.SatelliteContractVersionAttribute>属性によって、メインアセンブリとそのすべてのサテライトとの間にコントラクトが設定されます。 この属性をメインアセンブリに適用し、このバージョンのメインアセンブリと連携するサテライトアセンブリのバージョン番号を渡します。 リソースマネージャー (<xref:System.Resources.ResourceManager>オブジェクト) がリソースを検索すると、この属性で指定されたサテライトバージョンがメインアセンブリに明示的に読み込まれます。  
   
- メイン アセンブリを更新するときに、そのアセンブリのバージョン番号をインクリメントします。 ただし、既存のアプリと互換性がある場合、サテライト アセンブリの新しいコピーを発送しない可能性があります。 この場合は、メイン アセンブリのバージョン番号をインクリメントが、サテライト コントラクト バージョン番号は同じままにします。 リソース マネージャーでは、既存のサテライト アセンブリを使用します。  
+ メインアセンブリを更新すると、アセンブリのバージョン番号がインクリメントされます。 ただし、既存のものがアプリと互換性がある場合は、サテライトアセンブリの新しいコピーを配布しないことがあります。 この場合は、メインアセンブリのバージョン番号をインクリメントしますが、サテライトコントラクトバージョン番号は同じままにします。 リソースマネージャーは、既存のサテライトアセンブリを使用します。  
   
- メイン アセンブリではなく、サテライト アセンブリを変更する場合、サテライトのバージョン番号をインクリメントします。 この場合、サテライト アセンブリ、新しいサテライト アセンブリが古いサテライト アセンブリとの下位互換性を持つことを示すと共に、発行者ポリシー アセンブリを出荷してください。 リソース マネージャーはに基づいて、メイン アセンブリに書き込まれた古い契約番号を使用しても、<xref:System.Resources.SatelliteContractVersionAttribute>属性。 ただし、ローダーは、ポリシー アセンブリで指定されたサテライト アセンブリのバージョンにバインドされます。  
+ サテライトアセンブリを変更するが、メインアセンブリを変更しない場合は、サテライトのバージョン番号をインクリメントします。 この場合は、新しいサテライトアセンブリが古いサテライトアセンブリとの下位互換性があることを示す、発行者ポリシーアセンブリをサテライトアセンブリと共に配布します。 リソースマネージャーは、 <xref:System.Resources.SatelliteContractVersionAttribute>属性に基づいてメインアセンブリに書き込まれた古いコントラクト番号を引き続き使用しますが、ローダーは、ポリシーアセンブリによって指定されたサテライトアセンブリのバージョンにバインドします。  
   
- 共有コンポーネントのベンダーでは、発行者ポリシー アセンブリを使用して、特定のバージョンのリリースのアセンブリについて互換性ステートメントを加えます。 発行者ポリシー アセンブリが厳密な名前付きのアセンブリの形式で名前を持つ`policy.<major>.<minor>.<ComponentAssemblyName>`に登録されていると、します。 発行元ポリシーが XML 構成ファイルから生成された (を参照してください、) を使用して、 [Al.exe (アセンブリ リンカー)](~/docs/framework/tools/al-exe-assembly-linker.md)ツール。 アセンブリ リンカーを併用、 `/link` XML 構成ファイルをグローバル アセンブリ キャッシュに格納し、マニフェストのアセンブリにリンクするオプション。 仕入先にバグの修正を含むメンテナンス リリース (サービス パック) が付属して とき、発行者ポリシー アセンブリを使用できます。  
+ 共有コンポーネントのベンダーは、発行元ポリシーアセンブリを使用して、リリースされたアセンブリの特定のバージョンに関する互換性ステートメントを作成します。 発行者ポリシーアセンブリは、厳密に名前が付けられたアセンブリで`policy.<major>.<minor>.<ComponentAssemblyName>`あり、という形式の名前を持ち、に登録されています。 発行者ポリシーは、 [al.exe (アセンブリリンカー)](~/docs/framework/tools/al-exe-assembly-linker.md)ツールを使用して、XML 構成ファイルから生成されます (「」を参照してください)。 アセンブリリンカーは、XML 構成ファイル`/link`をマニフェストアセンブリにリンクするオプションと共に使用され、その後、グローバルアセンブリキャッシュに格納されます。 発行者ポリシーアセンブリは、バグ修正が含まれているメンテナンスリリース (Service Pack) をベンダーが提供する場合に使用できます。  
   
-## <a name="includewin8appnamelongincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
- この属性は無視されます[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]、アプリ パッケージ リソース インデックス (PRI) ファイルにはバージョン管理の意味があるないためです。 さらに、[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]パッケージ モデルがサテライト アセンブリまたは PRI ファイルを再デプロイの可能性がない、同じパッケージに付属するすべてのリソースが必要です。  
+## <a name="includewin8_appname_longincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
+ パッケージリソースインデックス (PRI [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] ) ファイルにはバージョン管理のセマンティクスがないため、この属性はアプリでは無視されます。 また、 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]パッケージモデルでは、すべてのリソースを同じパッケージに発送する必要があります。サテライトアセンブリや PRI ファイルを再配置することはできません。  
   
  ]]></format>
     </remarks>
@@ -100,7 +100,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターの初期化、<xref:System.Resources.SatelliteContractVersionAttribute.Version%2A>プロパティを`version`パラメーター。  
+ このコンストラクターは、 <xref:System.Resources.SatelliteContractVersionAttribute.Version%2A> `version`パラメーターを使用してプロパティを初期化します。  
   
  ]]></format>
         </remarks>
@@ -143,7 +143,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在のプロパティは、メイン アセンブリと共に使用される、サテライト アセンブリのバージョンは、この属性でマークされたことを示します。  
+ 現在のプロパティは、この属性でマークされたメインアセンブリで使用されるサテライトアセンブリのバージョンを示します。  
   
  ]]></format>
         </remarks>
