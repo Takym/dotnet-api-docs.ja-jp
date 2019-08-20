@@ -1,5 +1,5 @@
 <Type Name="IBinarySerialize" FullName="Microsoft.SqlServer.Server.IBinarySerialize">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0328f2b4183c8d17f811a579d33cf2ee708180df" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56770856" /></Metadata><TypeSignature Language="C#" Value="public interface IBinarySerialize" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ef8c011695a45cf43197dda699d3ad988ba9a430" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69303751" /></Metadata><TypeSignature Language="C#" Value="public interface IBinarySerialize" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IBinarySerialize" />
   <TypeSignature Language="DocId" Value="T:Microsoft.SqlServer.Server.IBinarySerialize" />
   <TypeSignature Language="VB.NET" Value="Public Interface IBinarySerialize" />
@@ -24,11 +24,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザー定義型 (Udt) とユーザー定義集計が指定されるストレージ形式を定義する必要な<xref:Microsoft.SqlServer.Server.Format>します。`Native` または<xref:Microsoft.SqlServer.Server.Format>.`UserDefined`します。  
+ ストレージ形式を定義するには、ユーザー定義型 (Udt) とユーザー定義集計を使用<xref:Microsoft.SqlServer.Server.Format>する必要があります。`Native` また<xref:Microsoft.SqlServer.Server.Format>は`UserDefined`..  
   
- <xref:Microsoft.SqlServer.Server.Format>.`Native` シリアル化を処理し、自動的に逆シリアル化する SQL Server が、形式が処理できる型の種類に制限します。 <xref:Microsoft.SqlServer.Server.Format>.`UserDefined` 独自のシリアル化を処理するには、ユーザー定義型と集計を使用できます。 ユーザー定義型および集計をと共に設定されなければなりません<xref:Microsoft.SqlServer.Server.Format>します。`UserDefined` `SqlUserDefinedType`または`SqlUserDefinedAggregate`属性、および実装する必要があります、<xref:Microsoft.SqlServer.Server.IBinarySerialize>インターフェイス。  
+ <xref:Microsoft.SqlServer.Server.Format>.`Native` SQL Server によるシリアル化と逆シリアル化の自動的な処理を可能にします。ただし、形式には、処理できる型の種類に関する制限があります。 <xref:Microsoft.SqlServer.Server.Format>.`UserDefined` ユーザー定義型および集計が独自のシリアル化を処理できるようにします。 ユーザー定義型および集計は、で<xref:Microsoft.SqlServer.Server.Format>マークする必要があります。`UserDefined` 属性または`SqlUserDefinedAggregate`属性では<xref:Microsoft.SqlServer.Server.IBinarySerialize> 、およびはインターフェイスを実装する必要があります。 `SqlUserDefinedType`  
   
- カスタムのシリアル化を使用しても各インスタンスの合計サイズは 8,000 バイトを現在の制限を許可する最大ある必要がありますに注意してください。  
+ カスタムシリアル化を使用している場合でも、各インスタンスの合計サイズは、最大許容制限 (現在は8000バイト) 未満である必要があることに注意してください。  
   
  ]]></format>
     </remarks>
@@ -67,12 +67,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>メソッドは、によって書き込まれた情報を使用して、オブジェクトを再構成する必要があります、<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A>メソッド。  
+ メソッド<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>は、 <xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A>メソッドによって記述された情報を使用して、オブジェクトを再構築する必要があります。  
   
    
   
 ## Examples  
- 次の例の実装を示しています、<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>を使用して、UDT のメソッド、<xref:System.IO.BinaryReader>に保持されていた UDT を逆シリアル化できません。 この例では、UDT が 2 つのデータ プロパティを持つ:`StringValue`と`DoubleValue`します。  
+ 次の例は、を<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A> <xref:System.IO.BinaryReader>使用して以前に保存された udt を逆シリアル化する udt のメソッドの実装を示しています。 この例では、UDT に`StringValue`とと`DoubleValue`いう2つのデータプロパティがあることを前提としています。  
   
  [!code-csharp[DataWorks IBinarySerialize Samples#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks IBinarySerialize Samples/CS/source.cs#1)]
  [!code-vb[DataWorks IBinarySerialize Samples#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks IBinarySerialize Samples/VB/source.vb#1)]  
@@ -114,12 +114,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 十分な情報を許可するバイナリ ストリームに書き込む、 <xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A> UDT またはユーザー定義集計を再構築するためのメソッド。  
+ バイナリストリームに十分な情報を書き込んで、 <xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A>メソッドが UDT またはユーザー定義集計を再構築できるようにします。  
   
    
   
 ## Examples  
- 次の例の実装を示しています、<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A>を使用して、UDT のメソッド、<xref:System.IO.BinaryWriter>ユーザー定義のバイナリ形式で UDT をシリアル化します。 Null 文字の埋め込みの目的は、文字列のバイト文字列のバイト数と比較されます、double 型に 2 バイトを比較する TRANSACT-SQL コード内の別の 1 つの UDT が比較できるように文字列値が完全に double 型の値から分離することを確認するにはバイト数。  
+ 次の例は、udt の<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A>メソッドの実装を示しています。これは、を<xref:System.IO.BinaryWriter>使用して、ユーザー定義のバイナリ形式で udt をシリアル化します。 Null 文字の埋め込みの目的は、文字列値が double 値と完全に分離されるようにすることです。これにより、1つの UDT が Transact-sql コード内の別の UDT と比較され、文字列バイトが文字列バイトと比較され、double バイトが double と比較されます。メモリ.  
   
  [!code-csharp[DataWorks IBinarySerialize Samples#2](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks IBinarySerialize Samples/CS/source.cs#2)]
  [!code-vb[DataWorks IBinarySerialize Samples#2](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks IBinarySerialize Samples/VB/source.vb#2)]  

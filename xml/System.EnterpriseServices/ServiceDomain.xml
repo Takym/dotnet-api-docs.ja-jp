@@ -1,5 +1,5 @@
 <Type Name="ServiceDomain" FullName="System.EnterpriseServices.ServiceDomain">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6a6482a91b25c488cd887c3c518b835a5bc3f63e" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55333630" /></Metadata><TypeSignature Language="C#" Value="public sealed class ServiceDomain" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2a7cfa3ec1ad84703ed8d079fb526192db554f0a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69358036" /></Metadata><TypeSignature Language="C#" Value="public sealed class ServiceDomain" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ServiceDomain extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.EnterpriseServices.ServiceDomain" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ServiceDomain" />
@@ -26,7 +26,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.EnterpriseServices.ServiceDomain.Enter%2A>と<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>メソッドが COM + サービスを使用し、コードを囲むペアで使用されます。 呼び出しの間で囲まれたコード<xref:System.EnterpriseServices.ServiceDomain.Enter%2A>と<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>は独自のコンテキストで実行され、コンテキスト内で作成されたオブジェクトに対して呼び出されたメソッドの場合と同様に動作します。 <xref:System.EnterpriseServices.ServiceDomain.Enter%2A>と<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>のペアを入れ子にすることができます。 呼び出しのペアを調整するかどうかを確認するには、ユーザーの責任はようにすべての呼び出しに<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>以前の呼び出しと一致する<xref:System.EnterpriseServices.ServiceDomain.Enter%2A>します。  
+ <xref:System.EnterpriseServices.ServiceDomain.Enter%2A> および<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>メソッドは、com + サービスを使用できるコードを囲むためにペアで使用されます。 <xref:System.EnterpriseServices.ServiceDomain.Enter%2A>との呼び出しの間に囲まれ<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>たコードは、独自のコンテキストで実行され、コンテキスト内で作成されたオブジェクトに対して呼び出されるメソッドであるかのように動作します。 <xref:System.EnterpriseServices.ServiceDomain.Enter%2A> と<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>のペアは入れ子にすることができます。 のすべての呼び出し<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>がの前の<xref:System.EnterpriseServices.ServiceDomain.Enter%2A>呼び出しと一致するように、呼び出しのペアが均衡されていることを確認する必要があります。  
   
  ]]></format>
     </remarks>
@@ -59,7 +59,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.EnterpriseServices.ServiceDomain.Enter%2A> 最初に構成で指定されたコンテキストを作成、<xref:System.EnterpriseServices.ServiceConfig>オブジェクトとして渡される、`cfg`パラメーター。 クライアントとサーバーの両方の側でのポリシーは、メソッド呼び出しが行われたかのように、トリガーされます。 新しいコンテキストでは、し、コンテキスト スタックにプッシュされ、現在のコンテキストになります。 効率的な設計のため、スレッドにマーシャ リングが使用する必要がない、<xref:System.EnterpriseServices.ServiceDomain.Enter%2A>と<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>では、同等のメソッド呼び出しと比較してオーバーヘッドを大幅に削減します。  
+ <xref:System.EnterpriseServices.ServiceDomain.Enter%2A>は、 <xref:System.EnterpriseServices.ServiceConfig> `cfg`パラメーターとして渡されるオブジェクトによって指定されたとおりに構成されたコンテキストを作成します。 クライアント側とサーバー側の両方のポリシーは、メソッドの呼び出しが発生したかのようにトリガーされます。 次に、新しいコンテキストがコンテキストスタックにプッシュされ、現在のコンテキストになります。 これは効率的な設計であり、スレッドのマーシャリングは関係し<xref:System.EnterpriseServices.ServiceDomain.Enter%2A>ない<xref:System.EnterpriseServices.ServiceDomain.Leave%2A>ため、とを使用すると、同等のメソッド呼び出しと比較してオーバーヘッドが大幅に削減されます。  
   
  ]]></format>
         </remarks>
@@ -86,7 +86,7 @@
       <Parameters />
       <Docs>
         <summary>メソッド呼び出しが返された場合のように、サーバー側のポリシーを発生した後、クライアント側のポリシーを発生します。 次に、現在のコンテキストがコンテキスト スタックからポップされ、<see cref="M:System.EnterpriseServices.ServiceDomain.Enter(System.EnterpriseServices.ServiceConfig)" /> を呼び出したときに実行中だったコンテキストが現在のコンテキストになります。</summary>
-        <returns><see cref="T:System.EnterpriseServices.TransactionStatus" /> 値のいずれか。</returns>
+        <returns><see cref="T:System.EnterpriseServices.TransactionStatus" /> 値のいずれか 1 つ。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.PlatformNotSupportedException"><see cref="T:System.EnterpriseServices.ServiceConfig" /> は、現在のプラットフォームではサポートされていません。</exception>
       </Docs>

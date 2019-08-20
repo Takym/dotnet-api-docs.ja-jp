@@ -1,5 +1,5 @@
 <Type Name="OrderablePartitioner&lt;TSource&gt;" FullName="System.Collections.Concurrent.OrderablePartitioner&lt;TSource&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4295a3693c36941120b6d7f8ca16a522af93939a" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63908911" /></Metadata><TypeSignature Language="C#" Value="public abstract class OrderablePartitioner&lt;TSource&gt; : System.Collections.Concurrent.Partitioner&lt;TSource&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="77c1a068739a2583efc6a074f3fac42fb6deea13" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69335109" /></Metadata><TypeSignature Language="C#" Value="public abstract class OrderablePartitioner&lt;TSource&gt; : System.Collections.Concurrent.Partitioner&lt;TSource&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit OrderablePartitioner`1&lt;TSource&gt; extends System.Collections.Concurrent.Partitioner`1&lt;!TSource&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Collections.Concurrent.OrderablePartitioner`1" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class OrderablePartitioner(Of TSource)&#xA;Inherits Partitioner(Of TSource)" />
@@ -38,19 +38,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生クラスの実装は、適切な方法でキーと値のペアに要素を順序付けします。 詳細については、「[Custom Partitioners for PLINQ and TPL (PLINQ および TPL 用のカスタム パーティショナー)](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)」を参照してください。  
+ 派生クラスの実装は、適切な方法で要素をキーと値のペアに並べ替える役割を担います。 詳細については、「[Custom Partitioners for PLINQ and TPL (PLINQ および TPL 用のカスタム パーティショナー)](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、一度に 1 つの要素が返す順序付け可能のパーティショナーを実装する方法を示します。  
+ 次の例は、一度に1つの要素を返す順序付け可能なパーティショナーを実装する方法を示しています。  
   
  [!code-csharp[System.Collections.Concurrent.OrderablePartitioner#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.concurrent.orderablepartitioner/cs/orderablepartitioner.cs#1)]
  [!code-vb[System.Collections.Concurrent.OrderablePartitioner#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.concurrent.orderablepartitioner/vb/orderablepartitioner.vb#1)]  
   
  ]]></format>
     </remarks>
-    <threadsafe>すべてのパブリック メンバー<see cref="T:System.Collections.Concurrent.OrderablePartitioner`1" />スレッド セーフでは、複数のスレッドから同時に呼び出すことができます。</threadsafe>
+    <threadsafe>のすべてのパブリック<see cref="T:System.Collections.Concurrent.OrderablePartitioner`1" />メンバーはスレッドセーフであり、複数のスレッドから同時に呼び出すことができます。</threadsafe>
     <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">方法: 小さいループ本体を高速化する</related>
     <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">方法: 動的パーティションを実装する</related>
   </Docs>
@@ -99,7 +99,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ および TPL 用のカスタム パーティショナー</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">方法: 小さいループ本体を高速化する</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: パーティション数が静的パーティショナーを実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: 静的な数のパーティションを持つパーティショナーを実装する</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">方法: 動的パーティションを実装する</related>
       </Docs>
     </Member>
@@ -138,11 +138,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返されるオブジェクトの実装、<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>インターフェイス。 呼び出す<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>オブジェクトのシーケンスを別のパーティションを作成します。  
+ 返されるオブジェクトは、 <xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>インターフェイスを実装します。 オブジェクト<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>でを呼び出すと、シーケンスに対して別のパーティションが作成されます。  
   
- 既定の実装と同じ動作を提供する<xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderableDynamicPartitions%2A>返された一連のパーティションは、要素のキーを提供していない点が異なります。  
+ 既定の実装では、返される<xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderableDynamicPartitions%2A>パーティションのセットが要素のキーを提供しない点を除いて、と同じ動作が提供されます。  
   
- <xref:System.Collections.Concurrent.OrderablePartitioner%601.GetDynamicPartitions%2A>メソッドが場合にのみサポートされている、<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>プロパティが true を返します。  
+ メソッドは、 <xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>プロパティが true を返す場合にのみサポートされます。 <xref:System.Collections.Concurrent.OrderablePartitioner%601.GetDynamicPartitions%2A>  
   
  詳細については、「[Custom Partitioners for PLINQ and TPL (PLINQ および TPL 用のカスタム パーティショナー)](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)」を参照してください。  
   
@@ -151,7 +151,7 @@
         <exception cref="T:System.NotSupportedException">動的パーティションは、基本クラスでサポートされていません。 派生クラスで実装されている必要があります。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ および TPL 用のカスタム パーティショナー</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">方法: 小さいループ本体を高速化する</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: パーティション数が静的パーティショナーを実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: 静的な数のパーティションを持つパーティショナーを実装する</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">方法: 動的パーティションを実装する</related>
       </Docs>
     </Member>
@@ -190,11 +190,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返されるオブジェクトの実装、<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>インターフェイス。 呼び出す<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>オブジェクトのシーケンスを別のパーティションを作成します。  
+ 返されるオブジェクトは、 <xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>インターフェイスを実装します。 オブジェクト<xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>でを呼び出すと、シーケンスに対して別のパーティションが作成されます。  
   
- 各パーティションは、キーと値のペアを列挙子として表されます。 ペアの値は、要素自体と、キーは、その他の要素に対しては、この要素の相対順序を決定する整数。  
+ 各パーティションは、キーと値のペアに対する列挙子として表されます。 ペアの値は要素自体で、キーは、この要素と他の要素との相対的な順序を決定する整数です。  
   
- <xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderableDynamicPartitions%2A>メソッドが場合にのみサポートされている、<xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>プロパティが true を返します。  
+ メソッドは、 <xref:System.Collections.Concurrent.Partitioner%601.SupportsDynamicPartitions%2A>プロパティが true を返す場合にのみサポートされます。 <xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderableDynamicPartitions%2A>  
   
  詳細については、「[Custom Partitioners for PLINQ and TPL (PLINQ および TPL 用のカスタム パーティショナー)](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)」を参照してください。  
   
@@ -203,7 +203,7 @@
         <exception cref="T:System.NotSupportedException">動的パーティションは、このパーティショナーでサポートされていません。</exception>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ および TPL 用のカスタム パーティショナー</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">方法: 小さいループ本体を高速化する</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: パーティション数が静的パーティショナーを実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: 静的な数のパーティションを持つパーティショナーを実装する</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">方法: 動的パーティションを実装する</related>
       </Docs>
     </Member>
@@ -245,9 +245,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 各パーティションは、キーと値のペアを列挙子として表されます。  
+ 各パーティションは、キーと値のペアに対する列挙子として表されます。  
   
- ペアの値は、要素自体と、キーは、データ ソース内の他の要素に対しては、この要素の相対順序を決定する整数。  
+ ペアの値は要素自体で、キーは、データソース内の他の要素に対するこの要素の相対的な順序を決定する整数です。  
   
  詳細については、「[Custom Partitioners for PLINQ and TPL (PLINQ および TPL 用のカスタム パーティショナー)](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)」を参照してください。  
   
@@ -255,7 +255,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ および TPL 用のカスタム パーティショナー</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">方法: 小さいループ本体を高速化する</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: パーティション数が静的パーティショナーを実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: 静的な数のパーティションを持つパーティショナーを実装する</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">方法: 動的パーティションを実装する</related>
       </Docs>
     </Member>
@@ -297,7 +297,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定の実装と同じ動作を提供する<xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderablePartitions%2A>返された一連のパーティションは、要素のキーを提供していない点が異なります。  
+ 既定の実装では、返される<xref:System.Collections.Concurrent.OrderablePartitioner%601.GetOrderablePartitions%2A>パーティションのセットが要素のキーを提供しない点を除いて、と同じ動作が提供されます。  
   
  詳細については、「[Custom Partitioners for PLINQ and TPL (PLINQ および TPL 用のカスタム パーティショナー)](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)」を参照してください。  
   
@@ -305,7 +305,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ および TPL 用のカスタム パーティショナー</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">方法: 小さいループ本体を高速化する</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: パーティション数が静的パーティショナーを実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: 静的な数のパーティションを持つパーティショナーを実装する</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">方法: 動的パーティションを実装する</related>
       </Docs>
     </Member>
@@ -338,12 +338,12 @@
       </ReturnValue>
       <Docs>
         <summary>順序キーが正規化されるかどうかを取得します。</summary>
-        <value><see langword="true" /> 場合は、キーが正規化されます。それ以外の場合、<see langword="false" />します。</value>
+        <value><see langword="true" />キーが正規化されている場合は。それ以外<see langword="false" />の場合は。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合<xref:System.Collections.Concurrent.OrderablePartitioner%601.KeysNormalized%2A>すべて順序キーは範囲 [0] に true を返します。 numberOfElements-1] の範囲内の一意の整数になります。 プロパティが false の場合、順序キーがまだ必要がありますが、一意であるによって返されるが、相対的な順序と見なされますの絶対パス値のみです。  
+ が<xref:System.Collections.Concurrent.OrderablePartitioner%601.KeysNormalized%2A> true を返した場合、すべての order キーは [0.. numberOfElements-1] の範囲内の一意の整数になります。 プロパティが false を返す場合、順序キーは一意である必要がありますが、相対的な順序だけが考慮され、それらの絶対値は考慮されません。  
   
  詳細については、「[Custom Partitioners for PLINQ and TPL (PLINQ および TPL 用のカスタム パーティショナー)](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)」を参照してください。  
   
@@ -380,12 +380,12 @@
       </ReturnValue>
       <Docs>
         <summary>前にあるパーティション内の要素の順序が、後にあるパーティション内の要素よりも常に前になるかどうかを取得します。</summary>
-        <value><see langword="true" /> 以前のパーティション内の要素が後にあるパーティション内の要素の前に常に場合それ以外の場合、<see langword="false" />します。</value>
+        <value><see langword="true" />前のパーティションの要素が、後のパーティションの要素の前にある場合は。それ以外<see langword="false" />の場合は。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合<xref:System.Collections.Concurrent.OrderablePartitioner%601.KeysOrderedAcrossPartitions%2A>0 のパーティション内の各要素は、パーティション 1、パーティション 1 内の各要素の任意の要素がある、パーティション 2 では、どの要素よりも小さい順序キーよりも小さい順序キーを持つ true が返されます。  
+ が<xref:System.Collections.Concurrent.OrderablePartitioner%601.KeysOrderedAcrossPartitions%2A> true を返した場合、パーティション0の各要素は、パーティション1のどの要素よりも小さい順序キーを持っています。パーティション1の各要素は、パーティション2のどの要素よりも小さい順序キーを持っています。  
   
  詳細については、「[Custom Partitioners for PLINQ and TPL (PLINQ および TPL 用のカスタム パーティショナー)](~/docs/standard/parallel-programming/custom-partitioners-for-plinq-and-tpl.md)」を参照してください。  
   
@@ -393,7 +393,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ および TPL 用のカスタム パーティショナー</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">方法: 小さいループ本体を高速化する</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: パーティション数が静的パーティショナーを実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: 静的な数のパーティションを持つパーティショナーを実装する</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">方法: 動的パーティションを実装する</related>
       </Docs>
     </Member>
@@ -426,7 +426,7 @@
       </ReturnValue>
       <Docs>
         <summary>各パーティション内の要素のキーが昇順になるかどうかを取得します。</summary>
-        <value><see langword="true" /> 各パーティション内の要素はキーが昇順になる場合それ以外の場合、<see langword="false" />します。</value>
+        <value><see langword="true" />各パーティション内の要素が、キーを増やす順序で生成される場合は。それ以外<see langword="false" />の場合は。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -437,7 +437,7 @@
         </remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/96153688-9a01-47c4-8430-909cee9a2887">PLINQ および TPL 用のカスタム パーティショナー</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c7a66677-cb59-4cbf-969a-d2e8fc61a6ce">方法: 小さいループ本体を高速化する</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: パーティション数が静的パーティショナーを実装します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/f4410508-cac6-4ba7-bef1-c5e68b2794f3">方法: 静的な数のパーティションを持つパーティショナーを実装する</related>
         <related type="Article" href="https://msdn.microsoft.com/library/c875ad12-a161-43e6-ad1c-3d6927c536a7">方法: 動的パーティションを実装する</related>
       </Docs>
     </Member>
