@@ -1,5 +1,5 @@
 <Type Name="SerializationBinder" FullName="System.Runtime.Serialization.SerializationBinder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6faecbfa74d14a27d001e858efcad3255b9c6b72" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58727637" /></Metadata><TypeSignature Language="C#" Value="public abstract class SerializationBinder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="77962a7a3c6d54043585e0f5740f8573d28d9ba3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69265942" /></Metadata><TypeSignature Language="C#" Value="public abstract class SerializationBinder" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit SerializationBinder extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.SerializationBinder" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SerializationBinder" />
@@ -40,14 +40,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- シリアル化中に、フォーマッタは、正しい型およびバージョンのオブジェクトのインスタンスを作成するために必要な情報を送信します。 通常、この情報には、オブジェクトの完全な型名および完全なアセンブリ名が含まれます。 アセンブリ名には、名前、バージョン、および厳密な名前が含まれています (を参照してください[厳密な名前付きアセンブリ](~/docs/framework/app-domains/strong-named-assemblies.md)) アセンブリのハッシュ。 既定では、逆シリアル化でこの情報を使用して、同一のオブジェクトのインスタンスを作成します。セキュリティ ポリシーで制限されるアセンブリの読み込みの場合は例外です。 クラスがアセンブリ間を移動したためか、異なるバージョンのクラスがサーバー上およびクライアント上で必要であるためのいずれかの理由で、一部のユーザーはどのクラスを読み込むかを制御する必要があります。  
+ シリアル化中に、フォーマッタは、正しい型およびバージョンのオブジェクトのインスタンスを作成するために必要な情報を送信します。 通常、この情報には、オブジェクトの完全な型名および完全なアセンブリ名が含まれます。 アセンブリ名には、アセンブリの名前、バージョン、および厳密な名前 ([厳密な名前付きアセンブリ](~/docs/framework/app-domains/strong-named-assemblies.md)を参照) が含まれています。 既定では、逆シリアル化でこの情報を使用して、同一のオブジェクトのインスタンスを作成します。セキュリティ ポリシーで制限されるアセンブリの読み込みの場合は例外です。 クラスがアセンブリ間を移動したためか、異なるバージョンのクラスがサーバー上およびクライアント上で必要であるためのいずれかの理由で、一部のユーザーはどのクラスを読み込むかを制御する必要があります。  
   
- <xref:System.Runtime.Serialization.SerializationBinder> セキュリティのためにも使用できます。 信頼できないソースから一部のデータを逆シリアル化しようとしているいくつかのセキュリティ攻撃があります。 バインダーでは、どのような種類が、アプリケーション ドメインに読み込まれているかを検査する機会を提供します。 拒否の種類の一覧または許可されている型のリストを維持し、制限の種類が読み込まれているか、し、インスタンス化されたとします。 さらにおく必要がある、ネットワーク上で配置はどのような情報に注意してください (使用してトランスポートまたはメッセージ セキュリティ) をセキュリティで保護する場合は、ネットワーク上で型の名前またはその他のデータを送信するときにします。  
+ <xref:System.Runtime.Serialization.SerializationBinder>セキュリティにも使用できます。 信頼されていないソースから一部のデータを逆シリアル化しようとすると、セキュリティ上の弱点が生じる可能性があります。 バインダーを使用すると、アプリケーションドメインに読み込まれている型を調べることができます。 次に、拒否された型のリストまたは許可される型の一覧を保持し、読み込まれてインスタンス化される型を制限します。 また、ネットワーク上でどのような情報が送信されているのかを考慮する必要があります。また、ネットワーク上の型名やその他のデータを送信するときに、(トランスポートまたはメッセージセキュリティを使用して) セキュリティで保護することもできます。  
   
 > [!WARNING]
->  のみを使用して、<xref:System.Runtime.Serialization.SerializationBinder>場合は、どのような情報がシリアル化されるは完全に確認します。 悪意のある予期しない動作が発生することができます。  
+>  シリアル化<xref:System.Runtime.Serialization.SerializationBinder>されている情報が完全にわかっている場合にのみ、を使用します。 悪意のある型が予期しない動作をする可能性があります。  
   
- これは抽象基本クラスです。 すべてのバインダーでは、このクラスを拡張します。  
+ これは抽象基本クラスです。 すべてのバインダーがこのクラスを拡張します。  
   
    
   
@@ -172,11 +172,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- SerializationBinder 例 1  
+ SerializationBinder の例 # 1  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生クラスでは、現在のメソッドを実装する必要があります。</para></block>
+        <block subset="none" type="overrides"><para>現在のメソッドは、派生クラスで実装する必要があります。</para></block>
       </Docs>
     </Member>
   </Members>

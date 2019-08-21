@@ -1,5 +1,5 @@
 <Type Name="IsolatedStorageContainment" FullName="System.Security.Permissions.IsolatedStorageContainment">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="882732e6d909123ce42925ec2942d79021d98707" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56765304" /></Metadata><TypeSignature Language="C#" Value="public enum IsolatedStorageContainment" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7388f89b804c949f73004edbdb7d8214a269ea45" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69081841" /></Metadata><TypeSignature Language="C#" Value="public enum IsolatedStorageContainment" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed IsolatedStorageContainment extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.IsolatedStorageContainment" />
   <TypeSignature Language="VB.NET" Value="Public Enum IsolatedStorageContainment" />
@@ -35,32 +35,32 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 分離ストレージでは、証拠を使用して、アプリケーションまたはコンポーネントで使用するための一意のストレージ領域を判断します。 アセンブリの id は、そのアセンブリで使用するための仮想ファイル システムのルートを一意に決定します。 そのため、多くのアプリケーションやファイル システムまたはレジストリなどの一般的なリソースの共有コンポーネントではなく、本質的に割り当てられた独自のファイル領域それぞれあります。  
+ 分離ストレージでは、証拠を使用して、アプリケーションまたはコンポーネントで使用するための一意のストレージ領域を決定します。 アセンブリの id によって、そのアセンブリで使用する仮想ファイルシステムのルートが一意に決定されます。 そのため、ファイルシステムやレジストリなどの共通リソースを共有する多くのアプリケーションやコンポーネントではなく、それぞれに独自のファイル領域が割り当てられています。  
   
- 次の 4 つの基本的な分離スコープは、分離ストレージを割り当てるときに使用されます。  
+ 分離ストレージを割り当てるときは、4つの基本的な分離スコープが使用されます。  
   
--   `User` コードは、に従って、現在のユーザー スコープは常にです。 別のユーザーによって実行されるときに、同じアセンブリは別のストアを受け取ります。  
+-   `User`-Code は、常に現在のユーザーに基づいてスコープが設定されます。 同じアセンブリが異なるユーザーによって実行されると、異なるストアを受け取ります。  
   
--   `Machine` コードは、マシンに従って常に制限されます。 同じコンピューター上の別のユーザーによって実行されるときに、同じアセンブリは同じストアに表示されます。  
+-   `Machine`-Code は常にコンピューターによってスコープが設定されます。 同じアセンブリは、同じコンピューター上の異なるユーザーによって実行されるときに同じストアを受け取ります。  
   
--   `Assembly` コード (に基づいて公開キー)、発行元によって、厳密な名前 (たとえば、Microsoft.Office.* または Microsoft.Office.Word) で URL では、暗号識別 (たとえば、http://www.fourthcoffee.com/process/grind.htm)サイト、またはゾーンです。  
+-   `Assembly`-コードは、厳密な名前 (たとえば、microsoft. office. * または microsoft office Word) によって、(公開キーに基づく) 発行者によって、URL ( http://www.fourthcoffee.com/process/grind.htm)サイトごと、ゾーン別など) によって識別されます。  
   
--   `Domain` アプリケーション ドメインに関連付けられた証拠に基づいてコードが識別されます。 サイトの URL から、または Web ページの URL、サイト、またはゾーンで、web アプリケーションの id が派生します。 コードのローカル id は、アプリケーション ディレクトリのパスに基づきます。  
+-   `Domain`-コードは、アプリケーションドメインに関連付けられている証拠に基づいて識別されます。 Web アプリケーション id は、サイトの URL、または Web ページの URL、サイト、またはゾーンから派生します。 ローカルコード id は、アプリケーションディレクトリパスに基づいています。  
   
- URL、サイト、およびゾーンの定義は、次を参照してください。 <xref:System.Security.Permissions.UrlIdentityPermission>、 <xref:System.Security.Permissions.SiteIdentityPermission>、および<xref:System.Security.Permissions.ZoneIdentityPermission>します。  
+ URL、サイト、およびゾーンの定義について<xref:System.Security.Permissions.UrlIdentityPermission>は<xref:System.Security.Permissions.SiteIdentityPermission>、「 <xref:System.Security.Permissions.ZoneIdentityPermission>」、「」、および「」を参照してください。  
   
- これらの id が一緒にグループ化、後者 id は、1 つずつまで適用目的の分離ストレージを作成します。 有効なグループは、ユーザー + アセンブリおよびユーザー + アセンブリ + ドメインです。 このユーザーのグループ化は、さまざまなアプリケーションで役立ちます。  
+ これらの id はグループ化されています。この場合、id は、目的の分離ストレージが作成されるまで、1つずつ適用されます。 有効なグループは、User + Assembly と User + Assembly + Domain です。 この id のグループ化は、多くの異なるアプリケーションで役立ちます。  
   
- データがドメイン、ユーザー、およびアセンブリが格納されている場合、データの値はデータにアクセスできるアセンブリにコードだけではプライベートです。 データ ストアは、アセンブリが他のアプリケーションにデータを公開することで、潜在的なリークを表していないように実行されている、アプリケーションによっても分離されます。  
+ データがドメイン、ユーザー、およびアセンブリによって格納されている場合、データはプライベートであり、そのアセンブリ内のコードのみがデータにアクセスできます。 また、データストアは、実行されるアプリケーションによって分離されるので、他のアプリケーションにデータを公開することによって、アセンブリが潜在的なリークを表すことはありません。  
   
- 複数のアプリケーションで適用されるユーザー データのアセンブリおよびユーザー別の分離を使用できます。たとえば、ライセンスの情報、またはユーザーの個人情報 (名前や認証資格情報) のアプリケーションから独立しています。  
+ アセンブリとユーザーによる分離は、複数のアプリケーションに適用されるユーザーデータに使用できます。たとえば、アプリケーションに依存しないライセンス情報、ユーザーの個人情報 (名前、認証資格情報など) です。  
   
- <xref:System.Security.Permissions.IsolatedStorageContainment> アプリケーションが分離ストレージを使用できるかどうかを決定するフラグを公開して、それを使用する identity 組み合わせが、許可された場合。 また、アプリケーションがユーザー (Windows 移動ユーザー プロファイルやフォルダ リダイレクトを構成する必要があります) に移動する場所に情報を格納できるかどうかも決定します。  
+ <xref:System.Security.Permissions.IsolatedStorageContainment>アプリケーションが分離ストレージの使用を許可されているかどうかを決定するフラグを公開します。その場合は、使用を許可する id の組み合わせを指定します。 また、ユーザーとローミングできる場所にアプリケーションが情報を格納できるかどうかも判断します (Windows 移動ユーザープロファイルまたはフォルダーリダイレクトを構成する必要があります)。  
   
    
   
 ## Examples  
- この例は、このアセンブリ内のコードが必要である、CLR に通知する方法を示しています、<xref:System.Security.Permissions.IsolatedStoragePermission>分離ストレージを読み書きする方法も示しています。  
+ この例では、 <xref:System.Security.Permissions.IsolatedStoragePermission>このアセンブリ内のコードにが必要であることを CLR に通知する方法と、分離ストレージの書き込みと読み取りを行う方法についても示します。  
   
  [!code-cpp[IsolatedStoragePermissionAttribute#1](~/samples/snippets/cpp/VS_Snippets_CLR/IsolatedStoragePermissionAttribute/cpp/IsolatedStoragePermissionAttribute.cpp#1)]
  [!code-csharp[IsolatedStoragePermissionAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR/IsolatedStoragePermissionAttribute/CS/IsolatedStoragePermissionAttribute.cs#1)]
