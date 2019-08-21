@@ -1,5 +1,5 @@
 <Type Name="ValidationError" FullName="System.Windows.Controls.ValidationError">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="363313fe0cef39d3f3ac4728e430f9684a03db6c" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64221466" /></Metadata><TypeSignature Language="C#" Value="public class ValidationError" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9b2fe807bd6c3f0122134ea4233e783dcb1454b1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69211895" /></Metadata><TypeSignature Language="C#" Value="public class ValidationError" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ValidationError extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Controls.ValidationError" />
   <TypeSignature Language="VB.NET" Value="Public Class ValidationError" />
@@ -20,24 +20,24 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]データ バインディング モデルで検証規則を関連付けることができます、<xref:System.Windows.Data.Binding>オブジェクト。 コンバーターが呼び出される前に、ターゲットからソース値の転送中に検証が行われます。 次に、検証プロセスについて説明します。  
+ データバインディングモデルを使用すると、検証規則<xref:System.Windows.Data.Binding>をオブジェクトに関連付けることができます。 [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)] 検証は、コンバーターが呼び出される前に、ターゲットからソースへの値の転送中に発生します。 次に、検証プロセスについて説明します。  
   
-1.  値は、ソース プロパティに、ターゲット プロパティから転送されているが、ときに、データ バインディング エンジン最初に削除<xref:System.Windows.Controls.ValidationError>に追加されている可能性があります、<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>バインドされた要素のプロパティをアタッチします。 そのため、任意のカスタム検証規則が定義されているかどうかがチェックされます<xref:System.Windows.Data.Binding>が呼び出す場合、<xref:System.Windows.Controls.ValidationRule.Validate%2A>各<xref:System.Windows.Controls.ValidationRule>までが失敗したのいずれかまたはまでそれらのすべてに合格します。  
+1.  ターゲットプロパティからソースプロパティに値が転送されるとき、データバインディングエンジンは、バインドされた<xref:System.Windows.Controls.ValidationError>要素の<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>添付プロパティに追加された可能性があるを最初に削除します。 次に<xref:System.Windows.Data.Binding>、カスタム検証規則が定義されているかどうかを確認します。この場合<xref:System.Windows.Controls.ValidationRule> 、いずれかのエラーが発生するか、すべてのメソッドが成功するまで、それぞれのメソッドが<xref:System.Windows.Controls.ValidationRule.Validate%2A>呼び出されます。  
   
-2.  合格しないカスタム ルールがある場合、バインディング エンジンは、作成、<xref:System.Windows.Controls.ValidationError>オブジェクトし、それを追加、<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>バインドされた要素のコレクション。 ときに<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>空ではない、<xref:System.Windows.Controls.Validation.HasError%2A?displayProperty=nameWithType>要素の添付プロパティに設定されて`true`します。 また場合、<xref:System.Windows.Data.Binding.NotifyOnValidationError%2A>のプロパティ、<xref:System.Windows.Data.Binding>に設定されている`true`、バインディング エンジンが発生し、<xref:System.Windows.Controls.Validation.Error?displayProperty=nameWithType>要素にイベントをアタッチします。  
+2.  に渡されないカスタムルールがある場合、バインドエンジンはオブジェクトを<xref:System.Windows.Controls.ValidationError>作成し、バインドされた要素の<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>コレクションに追加します。 が<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>空でない`true`場合、要素の添付プロパティはに設定されます。<xref:System.Windows.Controls.Validation.HasError%2A?displayProperty=nameWithType> また、 <xref:System.Windows.Data.Binding.NotifyOnValidationError%2A> `true`のプロパティ<xref:System.Windows.Controls.Validation.Error?displayProperty=nameWithType>がに設定されている場合、バインディングエンジンは要素の添付イベントを発生させます。 <xref:System.Windows.Data.Binding>  
   
-3.  このオプションを場合は、すべてのルールを渡すと、1 つが存在する場合にし、バインディング エンジンは、コンバーターを呼び出します。  
+3.  すべての規則が成功した場合、バインディングエンジンはコンバーターを呼び出します (存在する場合)。  
   
-4.  コンバーターが成功した場合、バインディング エンジンは、ソース プロパティの set アクセス操作子を呼び出します。  
+4.  コンバーターがを渡した場合、バインディングエンジンはソースプロパティの setter を呼び出します。  
   
-5.  バインディングがある場合、<xref:System.Windows.Controls.ExceptionValidationRule>関連付けられていると、バインディング エンジンがあるかどうかをチェック 3 または 4 のステップ中に例外がスローされた、<xref:System.Windows.Data.Binding.UpdateSourceExceptionFilter%2A>します。 使用することができます、<xref:System.Windows.Data.Binding.UpdateSourceExceptionFilter%2A>例外を処理するためのカスタム ハンドラーを提供するコールバック。 場合、<xref:System.Windows.Data.Binding.UpdateSourceExceptionFilter%2A>がで指定されていない、 <xref:System.Windows.Data.Binding>、バインディング エンジンが作成されます、<xref:System.Windows.Controls.ValidationError>例外に追加します、<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>バインドされた要素のコレクション。  
+5.  バインドにが<xref:System.Windows.Controls.ExceptionValidationRule>関連付けられていて、手順3または4で例外がスローされた場合、バインディングエンジンは<xref:System.Windows.Data.Binding.UpdateSourceExceptionFilter%2A>があるかどうかを確認します。 <xref:System.Windows.Data.Binding.UpdateSourceExceptionFilter%2A>コールバックを使用して、例外を処理するためのカスタムハンドラーを提供できます。 がに指定されていない<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>場合<xref:System.Windows.Controls.ValidationError> 、バインディングエンジンは例外を使用してを作成し、バインドされた要素のコレクションに<xref:System.Windows.Data.Binding>追加 <xref:System.Windows.Data.Binding.UpdateSourceExceptionFilter%2A>します。  
   
- どちらの方向 (ターゲットからソースまたはターゲットをソース) に有効な値の転送がクリアされます、<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>添付プロパティ。  
+ いずれかの方向 (ターゲットからソースまたはソースからターゲット) への有効な値<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>転送では、添付プロパティがクリアされます。  
   
    
   
 ## Examples  
- 次の例は、スタイルのトリガーを作成する、<xref:System.Windows.Controls.ToolTip>検証エラー メッセージを報告します。 <xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>添付プロパティのコレクションを返します<xref:System.Windows.Controls.ValidationError>オブジェクトがバインドされている要素。  
+ 次の例は、検証エラーメッセージを報告<xref:System.Windows.Controls.ToolTip>するを作成するスタイルトリガーを示しています。 添付<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>プロパティは、バインドされ<xref:System.Windows.Controls.ValidationError>た要素のオブジェクトのコレクションを返します。  
   
  [!code-xaml[DataBindingLab#14](~/samples/snippets/csharp/VS_Snippets_Wpf/DataBindingLab/CSharp/DataBindingLabApp.xaml#14)]  
   
@@ -173,13 +173,13 @@
 ## Remarks  
   
 <a name="xamlTextUsage_ErrorContent"></a>   
-## <a name="xaml-text-usage"></a>XAML テキストの使用状況  
- 例については、例を参照してください。  
+## <a name="xaml-text-usage"></a>XAML テキストの使用  
+ 例については、「例」を参照してください。  
   
    
   
 ## Examples  
- 次の例は、スタイルのトリガーを作成する、<xref:System.Windows.Controls.ToolTip>検証エラー メッセージを報告します。 <xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>添付プロパティのコレクションを返します<xref:System.Windows.Controls.ValidationError>オブジェクトがバインドされている要素。  
+ 次の例は、検証エラーメッセージを報告<xref:System.Windows.Controls.ToolTip>するを作成するスタイルトリガーを示しています。 添付<xref:System.Windows.Controls.Validation.Errors%2A?displayProperty=nameWithType>プロパティは、バインドされ<xref:System.Windows.Controls.ValidationError>た要素のオブジェクトのコレクションを返します。  
   
  [!code-xaml[DataBindingLab#14](~/samples/snippets/csharp/VS_Snippets_Wpf/DataBindingLab/CSharp/DataBindingLabApp.xaml#14)]  
   

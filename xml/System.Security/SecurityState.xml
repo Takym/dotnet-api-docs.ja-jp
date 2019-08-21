@@ -1,5 +1,5 @@
 <Type Name="SecurityState" FullName="System.Security.SecurityState">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ee39c9b8a439f9d4ac3e5db71f457bb3bc1b6de9" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56781190" /></Metadata><TypeSignature Language="C#" Value="public abstract class SecurityState" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="011df8cd5a661c18666906f987afb474f35269bc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69161285" /></Metadata><TypeSignature Language="C#" Value="public abstract class SecurityState" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SecurityState extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.SecurityState" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SecurityState" />
@@ -32,9 +32,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実行するセキュリティに影響するアクションを指定するプロパティを含むクラスを提供するには、このクラスから継承する必要があります。 <xref:System.Security.SecurityState>に派生クラスからインスタンス化されるオブジェクトが渡される、<xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType>ホストにより、そのアクションを実行するかどうかを判断するメソッド。 既定の実装、<xref:System.AppDomainManager.CheckSecuritySettings%2A>メソッドは常に返します`false`します。  許可される操作を検出するメソッドをオーバーライドする必要があります。  
+ 実行するセキュリティを重視したアクションを指定するプロパティを含むクラスを提供するには、このクラスから継承する必要があります。 派生クラスからインスタンス化された<xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType> オブジェクトは、そのアクションの実行をホストで許可するかどうかを判断するためにメソッドに渡されます。<xref:System.Security.SecurityState> <xref:System.AppDomainManager.CheckSecuritySettings%2A>メソッドの既定の実装は、常`false`にを返します。  許可されているアクションを検出するには、メソッドをオーバーライドする必要があります。  
   
- たとえば、ライブラリ コードで Web カメラにアクセスする場合は作成する、`WebcamSecurityState`オブジェクトと呼び出し、<xref:System.Security.SecurityState.EnsureState%2A>次の例に示すように、ホストで Web カメラへのアクセスを許可するかどうかを判断するメソッド。  (のコードを検索する`WebcamSecurityState`「例」セクションでします。)  
+ たとえば、ライブラリコード内の web カメラにアクセスする場合は、オブジェクトを`WebcamSecurityState`作成し、 <xref:System.Security.SecurityState.EnsureState%2A>メソッドを呼び出して、次の例に示すように、ホストが web カメラへのアクセスを許可しているかどうかを判断します。  (のコードについ`WebcamSecurityState`ては、「例」を参照してください)。  
   
 ```  
 WebcamSecurityState securityState = new WebcamSecurityState("Safe access to Webcam", WebcamSecurityOptions.SafeAccess);  
@@ -50,7 +50,7 @@ catch (ApplicationException e)
 }  
 ```  
   
- 呼び出しを処理する、<xref:System.AppDomainManager>の認識する必要がありますにできる`WebcamSecurityState`の上書きすることによって、<xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType>メソッドを次の例に示すようにします。  
+ この呼び出しを処理する<xref:System.AppDomainManager>には、次の`WebcamSecurityState`例に示すように<xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType> 、メソッドのオーバーライドによってが認識されている必要があります。  
   
 ```  
 [SecurityCritical]  
@@ -83,7 +83,7 @@ private bool PromptUser(string text)
    
   
 ## Examples  
- 次の例は、オーバーライドする方法を示します、<xref:System.Security.SecurityState>クラス。  
+ <xref:System.Security.SecurityState>クラスをオーバーライドする方法を次の例に示します。  
   
 ```  
 [SecurityCritical]  
@@ -113,8 +113,8 @@ public class WebcamSecurityState : SecurityState
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このクラスは、部分的に信頼されたまたは透過的なコードでは使用できません。</permission>
-    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このクラスを継承できません。</permission>
+    <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このクラスは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
+    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このクラスを、部分的に信頼されているコードが継承することはできません。</permission>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -140,7 +140,7 @@ public class WebcamSecurityState : SecurityState
       <Docs>
         <summary><see cref="T:System.Security.SecurityState" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
     <Member MemberName="EnsureState">
@@ -224,13 +224,13 @@ public override void EnsureState()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.SecurityState.IsStateAvailable%2A> 呼び出し、<xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType>メソッドをこのクラスで表される状態が、ホストで使用できるかどうかを判断します。  
+ <xref:System.Security.SecurityState.IsStateAvailable%2A><xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType>メソッドを呼び出して、このクラスによって表される状態がホストで使用可能かどうかを確認します。  
   
- 参照してください、<xref:System.Security.SecurityState>クラスの実装例については、<xref:System.AppDomainManager.CheckSecuritySettings%2A>メソッド。  
+ メソッドの実装例については、 <xref:System.Security.SecurityState>クラスを参照してください。 <xref:System.AppDomainManager.CheckSecuritySettings%2A>  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に対する完全な信頼が必要です。 このメンバーは、部分的に信頼されたまたは透過的なコードで使用することはできません。</permission>
+        <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
   </Members>

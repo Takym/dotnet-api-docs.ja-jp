@@ -1,5 +1,5 @@
 <Type Name="AsyncStateMachineAttribute" FullName="System.Runtime.CompilerServices.AsyncStateMachineAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9d398fac60370da6b8f821cf03733011a0e2ec2a" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58734009" /></Metadata><TypeSignature Language="C#" Value="public sealed class AsyncStateMachineAttribute : System.Runtime.CompilerServices.StateMachineAttribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7dc41cbbfcbf51a2c904b4b7a552e10a3084c051" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69275388" /></Metadata><TypeSignature Language="C#" Value="public sealed class AsyncStateMachineAttribute : System.Runtime.CompilerServices.StateMachineAttribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit AsyncStateMachineAttribute extends System.Runtime.CompilerServices.StateMachineAttribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.CompilerServices.AsyncStateMachineAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class AsyncStateMachineAttribute&#xA;Inherits StateMachineAttribute" />
@@ -42,22 +42,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 適用することはできません、`AsyncStateMachine`属性をコード内のメソッドにします。 Async 修飾子を持つメソッドの場合、コンパイラが適用されます、`AsyncStateMachine`コンパイラは、生成した IL の属性。  
+ コード内のメソッド`AsyncStateMachine`に属性を適用することはできません。 Async 修飾子を持つメソッドの場合、コンパイラは、コンパイラに`AsyncStateMachine`よって出力される IL に属性を適用します。  
   
- メソッドが、(*MethodName*)、Async を持っているか、async 修飾子、コンパイラは、ステート マシンの構造体を含む IL を生成します。 この構造体には、メソッドのコードが含まれています。 IL がスタブ メソッドにはも含まれている (*MethodName*) を呼び出すには、ステート マシン。 コンパイラは追加、`AsyncStateMachine`ツールは、対応するステート マシンを識別できるように、スタブ メソッドに属性します。 生成された IL の詳細については、将来のコンパイラのリリースで変更可能性があります。  
+ メソッド (*MethodName*) に async または async 修飾子がある場合、コンパイラはステートマシン構造を含む IL を出力します。 この構造体には、メソッドのコードが含まれています。 この IL には、ステートマシンを呼び出すスタブメソッド (*MethodName*) も含まれています。 コンパイラは、対応`AsyncStateMachine`するステートマシンをツールが識別できるように、スタブメソッドに属性を追加します。 生成された IL の詳細は、コンパイラの将来のリリースで変更される可能性があります。  
   
- 非同期機能について詳しくは、次を参照してください。 [Async および Await を使用した非同期プログラミング](https://msdn.microsoft.com/library/db854f91-ccef-4035-ae4d-0911fde808c7)します。  
+ 非同期機能の詳細については、「 [async および Await を使用した非同期プログラミング](https://msdn.microsoft.com/library/db854f91-ccef-4035-ae4d-0911fde808c7)」を参照してください。  
   
    
   
 ## Examples  
- 次の例に示すように、メソッドが設定されているかどうかを判断できます[Async](~/docs/visual-basic/language-reference/modifiers/async.md)または[async](~/docs/csharp/language-reference/keywords/async.md)修飾子。 例では、`IsAsyncMethod`は、次の手順を実行します。  
+ 次の例に示すように、メソッドが[async](~/docs/visual-basic/language-reference/modifiers/async.md)または[async](~/docs/csharp/language-reference/keywords/async.md)修飾子でマークされているかどうかを確認できます。 この例では`IsAsyncMethod` 、は次の手順を実行します。  
   
--   取得、<xref:System.Reflection.MethodInfo>オブジェクトを使用して、メソッド名の<xref:System.Type.GetMethod%2A?displayProperty=nameWithType>します。  
+-   を使用<xref:System.Reflection.MethodInfo> <xref:System.Type.GetMethod%2A?displayProperty=nameWithType>して、メソッド名のオブジェクトを取得します。  
   
--   取得、<xref:System.Type>オブジェクトを使用して属性の[GetType 演算子](~/docs/visual-basic/language-reference/operators/gettype-operator.md)または[typeof](~/docs/csharp/language-reference/keywords/typeof.md)します。  
+-   <xref:System.Type> [GetType Operator](~/docs/visual-basic/language-reference/operators/gettype-operator.md)または[typeof](~/docs/csharp/language-reference/keywords/typeof.md)を使用して、属性のオブジェクトを取得します。  
   
--   使用して、メソッドと属性の種類の属性オブジェクトを取得します。`MethodInfo.GetCustomAttribute`します。 場合`GetCustomAttribute`返します`Nothing`(Visual Basic) または`null`(C#)、メソッドが含まれていない属性には。  
+-   を使用`MethodInfo.GetCustomAttribute`して、メソッドおよび属性型の属性オブジェクトを取得します。 が`GetCustomAttribute` ( `Nothing` Visual Basic) または`null` (C#) を返した場合、メソッドには属性が含まれていません。  
   
  [!code-csharp[Runtime.CompilerServices.AsyncStateMachineAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR/runtime.compilerservices.asyncstatemachineattribute/cs/program.cs#1)]
  [!code-vb[Runtime.CompilerServices.AsyncStateMachineAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/runtime.compilerservices.asyncstatemachineattribute/vb/module1.vb#1)]  
