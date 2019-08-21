@@ -1,5 +1,5 @@
 <Type Name="IPartitionResolver" FullName="System.Web.IPartitionResolver">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9ff16a351e188e14453c04c53a825d74bc2b7185" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51893415" /></Metadata><TypeSignature Language="C#" Value="public interface IPartitionResolver" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ae4164430978e78dd5687db62a401f92ea8ab299" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69385537" /></Metadata><TypeSignature Language="C#" Value="public interface IPartitionResolver" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IPartitionResolver" />
   <TypeSignature Language="DocId" Value="T:System.Web.IPartitionResolver" />
   <TypeSignature Language="VB.NET" Value="Public Interface IPartitionResolver" />
@@ -17,11 +17,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実装、<xref:System.Web.IPartitionResolver>インターフェイスと<xref:System.Web.IPartitionResolver.Initialize%2A>と<xref:System.Web.IPartitionResolver.ResolvePartition%2A>を提供するカスタム パーティション解決セッション状態データの複数のバックエンド ノードに SQL または状態サーバー モードの場合はメソッドです。  
+ SQL または状態サーバー <xref:System.Web.IPartitionResolver.Initialize%2A>モード<xref:System.Web.IPartitionResolver.ResolvePartition%2A>で、複数のバックエンドノード間でセッション状態データのカスタムパーティション解決を提供する場合は、インターフェイスおよびメソッドとメソッドを実装します。<xref:System.Web.IPartitionResolver>  
   
- セッション状態の管理情報を構成することができます、 [sessionState 要素 (ASP.NET 設定スキーマ)](https://msdn.microsoft.com/library/bda6fb8c-0076-43e3-9ce2-8cf1f8bdaa7d)構成ファイルの`partitionResolverType`属性。 値が指定されている場合、`partitionResolverType`属性、`sqlConnectionString`と`stateConnectionString`属性は無視されます。  
+ セッション状態管理情報は、構成ファイルの[sessionState 要素 (ASP.NET 設定スキーマ)](https://msdn.microsoft.com/library/bda6fb8c-0076-43e3-9ce2-8cf1f8bdaa7d)で`partitionResolverType`属性を使用して構成できます。 `partitionResolverType`属性に値が指定されている場合`sqlConnectionString` 、 `stateConnectionString`属性と属性は無視されます。  
   
- 使用してプログラムでパーティション解決の構成を設定することも、<xref:System.Web.Configuration.SessionStateSection.PartitionResolverType%2A>プロパティ。 場合、<xref:System.Web.Configuration.SessionStateSection.PartitionResolverType%2A>プロパティが指定されて、<xref:System.Web.Configuration.SessionStateSection.SqlConnectionString%2A>と<xref:System.Web.Configuration.SessionStateSection.StateConnectionString%2A>プロパティは無視されます。  
+ パーティションの解決構成は、 <xref:System.Web.Configuration.SessionStateSection.PartitionResolverType%2A>プロパティを使用してプログラムで設定することもできます。 プロパティが指定<xref:System.Web.Configuration.SessionStateSection.SqlConnectionString%2A>されている場合<xref:System.Web.Configuration.SessionStateSection.StateConnectionString%2A> 、プロパティとプロパティは無視されます。 <xref:System.Web.Configuration.SessionStateSection.PartitionResolverType%2A>  
   
  ]]></format>
     </remarks>
@@ -52,7 +52,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用して、<xref:System.Web.IPartitionResolver.Initialize%2A>カスタムのパーティション解決のために必要なすべての初期化コードを提供するメソッド。 <xref:System.Web.SessionState.SessionStateModule>実装する型を作成、<xref:System.Web.IPartitionResolver>インターフェイスを呼び出し、<xref:System.Web.IPartitionResolver.Initialize%2A>メソッド (インスタンス)、ごとの初期化を ASP.NET 状態サービスまたは SQL Server プロバイダーが使用されているパーティション分割し、渡しますに指示し、プロバイダーに競合回避モジュール インスタンス。  
+ <xref:System.Web.IPartitionResolver.Initialize%2A>メソッドを使用して、カスタムパーティションの解決に必要な初期化コードを指定します。 は<xref:System.Web.SessionState.SessionStateModule> 、 <xref:System.Web.IPartitionResolver>インターフェイスを実装する型を作成し<xref:System.Web.IPartitionResolver.Initialize%2A> 、メソッドを呼び出して初期化します (インスタンスごとに1回)。次に、ASP.NET state service または SQL Server プロバイダーに対して、パーティション分割が使用されていることを示します。プロバイダーに対するリゾルバーインスタンス。  
   
  ]]></format>
         </remarks>
@@ -86,7 +86,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `key`のパラメーター、<xref:System.Web.IPartitionResolver.ResolvePartition%2A>メソッドは、<xref:System.Web.SessionState.HttpSessionState.SessionID%2A>プロパティ。 <xref:System.Web.SessionState.HttpSessionState.SessionID%2A>プロパティは、サーバー上のセッション データと、ブラウザーを一意に識別します。  
+ メソッドのパラメーターは、 <xref:System.Web.SessionState.HttpSessionState.SessionID%2A>プロパティです。 `key` <xref:System.Web.IPartitionResolver.ResolvePartition%2A> プロパティ<xref:System.Web.SessionState.HttpSessionState.SessionID%2A>は、サーバー上のセッションデータを使用してブラウザーを一意に識別します。  
   
  ]]></format>
         </remarks>

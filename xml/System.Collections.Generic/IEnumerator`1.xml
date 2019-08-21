@@ -1,5 +1,5 @@
 <Type Name="IEnumerator&lt;T&gt;" FullName="System.Collections.Generic.IEnumerator&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ee84b88599b532484e038d634a585401c9d8131b" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63908770" /></Metadata><TypeSignature Language="C#" Value="public interface IEnumerator&lt;out T&gt; : IDisposable, System.Collections.IEnumerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7e4479c1651fa72e0392b7b806525ef6bb955034" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69340305" /></Metadata><TypeSignature Language="C#" Value="public interface IEnumerator&lt;out T&gt; : IDisposable, System.Collections.IEnumerator" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IEnumerator`1&lt;+ T&gt; implements class System.Collections.IEnumerator, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Collections.Generic.IEnumerator`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface IEnumerator(Of Out T)&#xA;Implements IDisposable, IEnumerator" />
@@ -47,9 +47,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.Generic.IEnumerator%601> すべてのジェネリック列挙子は、基本インターフェイスです。  
+ <xref:System.Collections.Generic.IEnumerator%601>は、すべての汎用列挙子の基本インターフェイスです。  
   
- `foreach` C# 言語のステートメント (`for each` C++ では、 `For Each` Visual basic) 列挙子の複雑さが隠されています。  したがって、列挙子を直接操作するのではなく、`foreach` を使用することをお勧めします。  
+ C# 言語の `foreach` ステートメント (C++ では `for each`、Visual Basic では `For Each`) では、列挙子の複雑さが隠されています。  したがって、列挙子を直接操作するのではなく、`foreach` を使用することをお勧めします。  
   
  列挙子を使用すると、コレクション内のデータを読み取ることができますが、基になるコレクションを変更することはできません。  
   
@@ -57,29 +57,29 @@
   
  <xref:System.Collections.Generic.IEnumerator%601.Current%2A> は、<xref:System.Collections.IEnumerator.MoveNext%2A> が呼び出されるまでは同じオブジェクトを返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> は、<xref:System.Collections.Generic.IEnumerator%601.Current%2A> を次の要素に設定します。  
   
- 場合<xref:System.Collections.IEnumerator.MoveNext%2A>列挙子、コレクションの末尾がコレクション内の最後の要素の後に配置されているパスと<xref:System.Collections.IEnumerator.MoveNext%2A>返します`false`します。 この位置では、後続の呼び出しで列挙子の場合<xref:System.Collections.IEnumerator.MoveNext%2A>を返すことも`false`します。 最後の呼び出し場合<xref:System.Collections.IEnumerator.MoveNext%2A>返される`false`、<xref:System.Collections.Generic.IEnumerator%601.Current%2A>が定義されていません。 <xref:System.Collections.Generic.IEnumerator%601.Current%2A> を、再度、コレクションの最初の要素に設定することはできません。列挙子の新しいインスタンスを作成する必要があります。  
+ <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、後続の <xref:System.Collections.IEnumerator.MoveNext%2A> 呼び出しも `false` を返します。 の最後の呼び出し<xref:System.Collections.IEnumerator.MoveNext%2A>が返さ`false`れた場合、 <xref:System.Collections.Generic.IEnumerator%601.Current%2A>が未定義になります。 <xref:System.Collections.Generic.IEnumerator%601.Current%2A> を、再度、コレクションの最初の要素に設定することはできません。列挙子の新しいインスタンスを作成する必要があります。  
   
- <xref:System.Collections.IEnumerator.Reset%2A>メソッドが COM 相互運用性を提供します。 実装する。 必ずしも必要はありません。代わりに、実装者をスローする可能性を<xref:System.NotSupportedException>します。 ただし、これを行う場合は、する必要がありますに呼び出し元は依存しないことを確認して、<xref:System.Collections.IEnumerator.Reset%2A>機能します。  
+ メソッド<xref:System.Collections.IEnumerator.Reset%2A>は、COM 相互運用性のために用意されています。 必ずしも実装する必要はありません。代わりに、実装者はを<xref:System.NotSupportedException>スローするだけで済みます。 ただし、この方法を選択した場合は、その<xref:System.Collections.IEnumerator.Reset%2A>機能に依存している呼び出し元がないことを確認する必要があります。  
   
- 追加、変更、または、要素を削除するなど、コレクションに変更された場合、列挙子の動作は未定義です。  
+ 要素の追加、変更、削除などの変更がコレクションに対して行われた場合、列挙子の動作は未定義になります。  
   
- 列挙子にはコレクションへの排他アクセス権限はないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。 列挙処理でスレッド セーフを確保するには、列挙処理が終わるまでコレクションをロックできます。 コレクションに対し複数のスレッドがアクセスして読み取りや書き込みを行うことができるようにするには、独自に同期化を実装する必要があります。  
+ 列挙子にはコレクションへの排他アクセス権限はないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。 列挙処理でスレッド セーフを確保するために、列挙処理が終わるまでコレクションをロックできます。 コレクションに対し複数のスレッドがアクセスして読み取りや書き込みを行うことができるようにするには、独自に同期化を実装する必要があります。  
   
  <xref:System.Collections.Generic?displayProperty=nameWithType> 名前空間のコレクションの既定の実装は同期されません。  
   
    
   
 ## Examples  
- 次の例の実装を示しています、<xref:System.Collections.Generic.IEnumerator%601>カスタム オブジェクトのコレクション クラスのインターフェイス。 カスタム オブジェクトは、型のインスタンス`Box`、コレクション クラスは、`BoxCollection`します。 このコード例が示されている例の一部、<xref:System.Collections.Generic.ICollection%601>インターフェイス。  
+ 次の例は、カスタムオブジェクトの<xref:System.Collections.Generic.IEnumerator%601>コレクションクラスのインターフェイスの実装を示しています。 カスタムオブジェクトは型`Box`のインスタンスで`BoxCollection`あり、コレクションクラスはです。 このコード例は、 <xref:System.Collections.Generic.ICollection%601>インターフェイス用に用意されている大規模な例の一部です。  
   
  [!code-csharp[System.Collections.Generic.BoxExamples#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.generic.boxexamples/cs/program.cs#3)]
  [!code-vb[System.Collections.Generic.BoxExamples#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.collections.generic.boxexamples/vb/program.vb#3)]  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>このインターフェイスを実装するには、非ジェネリックを実装する必要があります<see cref="T:System.Collections.IEnumerator" />インターフェイス。 <see cref="M:System.Collections.IEnumerator.MoveNext" />と<see cref="M:System.Collections.IEnumerator.Reset" />メソッドに依存しない<typeparamref name="T" />、非ジェネリック インターフェイスにのみ表示されます。 <see cref="P:System.Collections.Generic.IEnumerator`1.Current" />プロパティの両方のインターフェイスに表示し、異なる戻り値の型を持ちます。 非ジェネリック実装<see cref="P:System.Collections.IEnumerator.Current" />プロパティとして明示的なインターフェイスの実装。 これにより、ジェネリック インターフェイスを使用する、非ジェネリック インターフェイスのすべてのコンシューマーができます。  
+    <block subset="none" type="overrides"><para>このインターフェイスを実装するには<see cref="T:System.Collections.IEnumerator" /> 、非ジェネリックインターフェイスを実装する必要があります。 メソッド<see cref="M:System.Collections.IEnumerator.MoveNext" />と<see cref="M:System.Collections.IEnumerator.Reset" />メソッドはに<typeparamref name="T" />依存せず、非ジェネリックインターフェイスにのみ表示されます。 プロパティ<see cref="P:System.Collections.Generic.IEnumerator`1.Current" />は、両方のインターフェイスに表示されます。戻り値の型は異なります。 明示的な<see cref="P:System.Collections.IEnumerator.Current" />インターフェイスの実装として、非ジェネリックプロパティを実装します。 これにより、非ジェネリックインターフェイスのすべてのコンシューマーが、ジェネリックインターフェイスを使用できるようになります。  
   
-さらに、<see cref="T:System.Collections.Generic.IEnumerator`1" />実装<see cref="T:System.IDisposable" />、実装する必要がある、<see cref="M:System.IDisposable.Dispose" />メソッド。 これにより、データベース接続を閉じるか、その他のリソースを使用する場合は、ファイル ハンドルや同様の操作をリリースすることができます。 その他のリソースを破棄しない場合は、提供、空<see cref="M:System.IDisposable.Dispose" />実装します。</para></block>
+さらに、 <see cref="T:System.Collections.Generic.IEnumerator`1" />は<see cref="T:System.IDisposable" />を実装します。これに<see cref="M:System.IDisposable.Dispose" />は、メソッドを実装する必要があります。 これにより、他のリソースを使用する場合に、データベース接続を終了したり、ファイルハンドルを解放したり、同様の操作を実行したりできます。 破棄するリソースが他にない場合は、空<see cref="M:System.IDisposable.Dispose" />の実装を指定します。</para></block>
     <altmember cref="T:System.Collections.Generic.IEnumerable`1" />
     <altmember cref="T:System.Collections.Generic.ICollection`1" />
     <altmember cref="N:System.Collections" />
@@ -123,19 +123,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.Generic.IEnumerator%601.Current%2A> 次の条件のいずれかは未定義です。  
+ <xref:System.Collections.Generic.IEnumerator%601.Current%2A>は、次のいずれかの条件下では未定義です。  
   
--   列挙子の作成後すぐに、列挙子は、コレクション内の最初の要素の前に位置します。   <xref:System.Collections.IEnumerator.MoveNext%2A> 値を読み取る前に、コレクションの最初の要素を列挙子を進めるに呼び出す必要がある<xref:System.Collections.Generic.IEnumerator%601.Current%2A>します。  
+-   列挙子は、列挙子が作成された直後に、コレクション内の最初の要素の前に配置されます。   <xref:System.Collections.IEnumerator.MoveNext%2A>の<xref:System.Collections.Generic.IEnumerator%601.Current%2A>値を読み取る前に、列挙子をコレクションの最初の要素に進めるには、を呼び出す必要があります。  
   
--   最後の呼び出し<xref:System.Collections.IEnumerator.MoveNext%2A>返される`false`コレクションの末尾を示します。  
+-   コレクションの末尾を<xref:System.Collections.IEnumerator.MoveNext%2A>示す`false`、返されたの最後の呼び出し。  
   
--   列挙子は追加、変更、または削除する要素など、コレクションで行われた変更が原因で無効になります。  
+-   コレクションに加えられた変更 (要素の追加、変更、削除など) が原因で、列挙子が無効になります。  
   
  <xref:System.Collections.Generic.IEnumerator%601.Current%2A> は、<xref:System.Collections.IEnumerator.MoveNext%2A> が呼び出されるまでは同じオブジェクトを返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> は、<xref:System.Collections.Generic.IEnumerator%601.Current%2A> を次の要素に設定します。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>このインターフェイスを実装するには、非ジェネリックを実装する必要があります<see cref="T:System.Collections.IEnumerator" />インターフェイス。 <see cref="P:System.Collections.Generic.IEnumerator`1.Current" />プロパティの両方のインターフェイスに表示し、異なる戻り値の型を持ちます。 非ジェネリック実装<see cref="P:System.Collections.IEnumerator.Current" />プロパティとして明示的なインターフェイスの実装。 これにより、ジェネリック インターフェイスを使用する、非ジェネリック インターフェイスのすべてのコンシューマーができます。</para></block>
+        <block subset="none" type="overrides"><para>このインターフェイスを実装するには<see cref="T:System.Collections.IEnumerator" /> 、非ジェネリックインターフェイスを実装する必要があります。 プロパティ<see cref="P:System.Collections.Generic.IEnumerator`1.Current" />は、両方のインターフェイスに表示されます。戻り値の型は異なります。 明示的な<see cref="P:System.Collections.IEnumerator.Current" />インターフェイスの実装として、非ジェネリックプロパティを実装します。 これにより、非ジェネリックインターフェイスのすべてのコンシューマーが、ジェネリックインターフェイスを使用できるようになります。</para></block>
         <altmember cref="P:System.Collections.IEnumerator.Current" />
         <altmember cref="M:System.Collections.IEnumerator.MoveNext" />
       </Docs>

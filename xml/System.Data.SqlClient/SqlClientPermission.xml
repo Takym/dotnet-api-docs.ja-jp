@@ -1,5 +1,5 @@
 <Type Name="SqlClientPermission" FullName="System.Data.SqlClient.SqlClientPermission">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="af7d47104c44c1acd034ba332db560881754f06f" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56766175" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlClientPermission : System.Data.Common.DBDataPermission" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="203c2cd48918998a51c5f162c4904a1bcbad90cf" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69369363" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlClientPermission : System.Data.Common.DBDataPermission" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit SqlClientPermission extends System.Data.Common.DBDataPermission" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlClientPermission" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlClientPermission&#xA;Inherits DBDataPermission" />
@@ -33,10 +33,10 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Common.DBDataPermission.IsUnrestricted%2A>プロパティよりも優先、<xref:System.Data.Common.DBDataPermission.AllowBlankPassword%2A>プロパティ。 そのため、設定した場合<xref:System.Data.Common.DBDataPermission.AllowBlankPassword%2A>に`false`も設定する必要があります<xref:System.Data.Common.DBDataPermission.IsUnrestricted%2A>に`false`をユーザーが空白のパスワードを使用して接続を確立することを防ぐためにします。  
+ プロパティは、 <xref:System.Data.Common.DBDataPermission.AllowBlankPassword%2A>プロパティよりも優先されます。 <xref:System.Data.Common.DBDataPermission.IsUnrestricted%2A> したがって、をに<xref:System.Data.Common.DBDataPermission.AllowBlankPassword%2A> `false`設定した場合は、 <xref:System.Data.Common.DBDataPermission.IsUnrestricted%2A>を`false`に設定して、ユーザーが空白のパスワードを使用して接続を確立できないようにする必要もあります。  
   
 > [!NOTE]
->  ADO.NET のコード アクセス セキュリティ アクセス許可を使用する場合は、最も制限の厳しいケース (権限なし) から開始して、コードが実行する必要がある特定のタスクのために必要な特定のアクセス許可を追加するが正しいパターン。 以降では、すべてのアクセス許可と特定のアクセス許可を拒否して、逆のパターンは、同じ接続文字列を表現する方法はたくさんありますので、安全ではありません。 たとえば、すべての権限を与えた後で接続文字列 "server=someserver" の使用を拒否しても、"server=someserver.mycompany.com" という接続文字列は使用可能です。 常に権限をまったく与えない状態から開始することで、権限セットのセキュリティ ホールを減らすことができます。  
+>  ADO.NET に対してコードアクセスセキュリティのアクセス許可を使用する場合、適切なパターンは、最も制限の厳しいケース (アクセス許可なし) で開始し、コードが実行する必要のある特定のタスクに必要な特定のアクセス許可を追加することです。 同じ接続文字列を表現する方法が多数あるため、逆のパターン (すべてのアクセス許可で始まり、特定のアクセス許可の拒否) はセキュリティで保護されていません。 たとえば、すべての権限を与えた後で接続文字列 "server=someserver" の使用を拒否しても、"server=someserver.mycompany.com" という接続文字列は使用可能です。 常に権限をまったく与えない状態から開始することで、権限セットのセキュリティ ホールを減らすことができます。  
   
  ]]></format>
     </remarks>
@@ -115,7 +115,7 @@
         <Parameter Name="state" Type="System.Security.Permissions.PermissionState" />
       </Parameters>
       <Docs>
-        <param name="state"><see cref="T:System.Security.Permissions.PermissionState" /> 値のいずれか。</param>
+        <param name="state"><see cref="T:System.Security.Permissions.PermissionState" /> 値のいずれか 1 つ。</param>
         <summary><see cref="T:System.Data.SqlClient.SqlClientPermission" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
         <related type="Article" href="https://msdn.microsoft.com/library/93e099eb-daa1-4f1e-b031-c1e10a996f88">コード アクセス セキュリティと ADO.NET</related>
@@ -156,14 +156,14 @@
         <Parameter Name="allowBlankPassword" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="state"><see cref="T:System.Security.Permissions.PermissionState" /> 値のいずれか。</param>
+        <param name="state"><see cref="T:System.Security.Permissions.PermissionState" /> 値のいずれか 1 つ。</param>
         <param name="allowBlankPassword">空白のパスワードを許可するかどうかを示します。</param>
         <summary><see cref="T:System.Data.SqlClient.SqlClientPermission" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Permissions.PermissionState>列挙型よりも優先、<xref:System.Data.Common.DBDataPermission.AllowBlankPassword%2A>プロパティ。 そのため、設定した場合<xref:System.Data.Common.DBDataPermission.AllowBlankPassword%2A>に`false`も設定する必要があります<xref:System.Security.Permissions.PermissionState>に`None`をユーザーが空白のパスワードを使用して接続を確立することを防ぐためにします。 セキュリティ確認要求を使用する方法を示す例では、次を参照してください。[コード アクセス セキュリティと ADO.NET](~/docs/framework/data/adonet/code-access-security.md)します。  
+ 列挙<xref:System.Security.Permissions.PermissionState>は、 <xref:System.Data.Common.DBDataPermission.AllowBlankPassword%2A>プロパティよりも優先されます。 したがって、をに<xref:System.Data.Common.DBDataPermission.AllowBlankPassword%2A> `false`設定した場合は、 <xref:System.Security.Permissions.PermissionState>を`None`に設定して、ユーザーが空白のパスワードを使用して接続を確立できないようにする必要もあります。 セキュリティ要求の使用方法を示す例については、「[コードアクセスセキュリティと ADO.NET](~/docs/framework/data/adonet/code-access-security.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -209,20 +209,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを使用すると、特定のアクセス許可オブジェクトで許可される接続文字列を構成できます。 たとえば、のみで特定の接続文字列およびその他に何も許可する場合は、次のコード フラグメントを使用します。  
+ このメソッドは、特定のアクセス許可オブジェクトによって許可される接続文字列を構成するために使用します。 たとえば、特定の接続文字列だけを許可する場合は、次のコードフラグメントを使用します。  
   
  `permission.Add("server=MyServer; database=MyDatabase; Integrated Security=true", "", KeyRestrictionBehavior.AllowOnly)`  
   
- 次の例では、接続文字列を任意のデータベースを使用して、任意のユーザー名とパスワードの組み合わせと他の接続文字列キーワードが含まれていない名前を MyServer サーバーにのみは使用できます。  
+ 次の例では、任意のデータベースを使用する接続文字列を許可します。ただし、ユーザーとパスワードの組み合わせを使用し、他の接続文字列キーワードを含まない、MyServer という名前のサーバー上でのみ使用できます。  
   
  `permission.Add("server=MyServer;", "database=; user id=; password=;", KeyRestrictionBehavior.AllowOnly)`  
   
- 次の例では、上記と同じのシナリオを使用していますが、フェールオーバー パートナーをミラーリング用に構成サーバーに接続するときに使用できるは。  
+ 次の例では、上記と同じシナリオを使用しますが、ミラーリング用に構成されたサーバーに接続するときに使用できるフェールオーバーパートナーを指定できます。  
   
  `permission.Add("server=MyServer; failover partner=MyMirrorServer", "database=; user id=; password=;", KeyRestrictionBehavior.AllowOnly)`  
   
 > [!NOTE]
->  ADO.NET のコード アクセス セキュリティ アクセス許可を使用する場合は、最も制限の厳しいケース (権限なし) から開始して、コードが実行する必要がある特定のタスクのために必要な特定のアクセス許可を追加するが正しいパターン。 以降では、すべてのアクセス許可と特定のアクセス許可の拒否しよう、逆のパターンは、同じ接続文字列を表現する方法はたくさんありますので、安全ではありません。 たとえば、すべての権限を与えた後で接続文字列 "server=someserver" の使用を拒否しても、"server=someserver.mycompany.com" という接続文字列は使用可能です。 常に権限をまったく与えない状態から開始することで、権限セットのセキュリティ ホールを減らすことができます。  
+>  ADO.NET に対してコードアクセスセキュリティのアクセス許可を使用する場合、適切なパターンは、最も制限の厳しいケース (アクセス許可なし) で開始し、コードが実行する必要のある特定のタスクに必要な特定のアクセス許可を追加することです。 逆のパターンでは、すべてのアクセス許可から始まり、特定のアクセス許可を拒否しようとしても、安全ではありません。これは、同じ接続文字列を表現する方法が多数あるためです。 たとえば、すべての権限を与えた後で接続文字列 "server=someserver" の使用を拒否しても、"server=someserver.mycompany.com" という接続文字列は使用可能です。 常に権限をまったく与えない状態から開始することで、権限セットのセキュリティ ホールを減らすことができます。  
   
  ]]></format>
         </remarks>
