@@ -1,5 +1,5 @@
 <Type Name="ILease" FullName="System.Runtime.Remoting.Lifetime.ILease">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="03b1c106b34acd9b0bf000ddda1760ed525fb1e2" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51861890" /></Metadata><TypeSignature Language="C#" Value="public interface ILease" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4cc9ac93fe0fa4a304787f17734b0a6fb6d0240a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69061444" /></Metadata><TypeSignature Language="C#" Value="public interface ILease" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ILease" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Lifetime.ILease" />
   <TypeSignature Language="VB.NET" Value="Public Interface ILease" />
@@ -24,15 +24,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- サーバー アプリケーションを削除する場合は、ガベージ コレクションの制御を分散します。 これまでは、分散ガベージ コレクションは、参照カウントとコントロールの ping を使用します。 これは、オブジェクトごとのいくつかのクライアントがある場合に適していますが、何千もの各オブジェクトごとのクライアントがある場合に機能しません。 クライアントの数が増えた場合にも、有効期間サービスは従来の分散ガベージ コレクターの関数を想定できます。  
+ サーバーアプリケーションを削除できる場合は、分散ガベージコレクションを制御します。 従来、分散ガベージコレクションでは、制御のために参照カウントと ping が使用されていました。 これは、オブジェクトごとに数千のクライアントがある場合に適していますが、各オブジェクトに数千のクライアントがある場合はうまく機能しません。 有効期間サービスは、従来の分散ガベージコレクターの機能を引き受けることができ、クライアントの数が増えると適切にスケールされます。  
   
- 有効期間サービスは、リースをリモートでアクティブ化された各オブジェクトに関連付けます。 リースの期限が切れると、オブジェクトが削除されます。 オブジェクトに無期限の有効期間リースを指定できます。  
+ 有効期間サービスは、リモートでアクティブ化される各オブジェクトにリースを関連付けます。 リースが期限切れになると、オブジェクトは削除されます。 リースでは、オブジェクトの有効期間が無期限であることを指定できます。  
   
- 各<xref:System.AppDomain>ドメインのリースを管理するリース マネージャーが含まれています。 リース マネージャーは、定期的にリースの有効期限をチェックします。 リースの有効期限が切れている場合する、リースへの参照を削除することによって取り消されたか、リースのスポンサーの 1 つ以上の呼び出しによって更新されます。  
+ 各<xref:System.AppDomain>には、ドメイン内のリースを管理するリースマネージャーが含まれています。 リースマネージャーは、時間の有効期限についてリースを定期的に調べます。 リースの有効期限が切れている場合は、リースへの参照を削除するか、1つまたは複数のリーススポンサを呼び出して更新することにより、リースを取り消すことができます。  
   
- リースには、リース期間を更新する、ポリシーを決定するプロパティとメソッドが含まれています。 リースを公開、<xref:System.Runtime.Remoting.Lifetime.ILease>インターフェイス。  
+ リースには、そのポリシーを決定するプロパティと、リース時間を更新するメソッドが含まれています。 リースは、インターフェイス<xref:System.Runtime.Remoting.Lifetime.ILease>を公開します。  
   
- 使用する方法を示す例については、<xref:System.Runtime.Remoting.Lifetime.ILease>インターフェイスを参照してください[の有効期間](https://msdn.microsoft.com/library/334a30e5-33cb-4f0f-a38a-ed4abc5560fa)します。  
+ インターフェイスの使用方法を示す例に<xref:System.Runtime.Remoting.Lifetime.ILease>ついては、「[有効期間](https://msdn.microsoft.com/library/334a30e5-33cb-4f0f-a38a-ed4abc5560fa)」を参照してください。  
   
  ]]></format>
     </remarks>
@@ -66,7 +66,7 @@
         <value>リースの残り時間。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="CurrentState">
@@ -97,7 +97,7 @@
         <value>リースの現在の <see cref="T:System.Runtime.Remoting.Lifetime.LeaseState" />。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
         <altmember cref="T:System.Runtime.Remoting.Lifetime.LeaseState" />
       </Docs>
     </Member>
@@ -134,12 +134,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.Runtime.Remoting.Lifetime.ILease.InitialLeaseTime%2A>プロパティに設定されて<xref:System.TimeSpan.Zero?displayProperty=nameWithType>リースがタイムアウトしないおよび関連付けられているオブジェクトが無期限の有効期間が必要があります。  
+ プロパティがに<xref:System.TimeSpan.Zero?displayProperty=nameWithType>設定されている場合、リースはタイムアウトせず、関連付けられているオブジェクトに無期限の有効期間が設定されます。 <xref:System.Runtime.Remoting.Lifetime.ILease.InitialLeaseTime%2A>  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="Register">
@@ -185,12 +185,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スポンサーが現在のメソッドに登録された場合、リースは更新されません。  
+ スポンサーが現在のメソッドに登録されている場合、リースは更新されません。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="Register">
@@ -226,7 +226,7 @@
         <summary>リースのスポンサを登録し、指定した <see cref="T:System.TimeSpan" /> で更新します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="Renew">
@@ -263,12 +263,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- リース時間の最大値に設定されます、<xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A>または現在の時刻と更新時間。  
+ リース時間は、 <xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A>の最大値または現在の時刻に更新時間を加えた値に設定されます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="RenewOnCallTime">
@@ -304,12 +304,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- リモート オブジェクトへの呼び出しを行った場合に、有効期間サービスを追加、<xref:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime%2A>を<xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A>場合にのみ、<xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A>が下回って、<xref:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime%2A>します。 連続した呼び出しが増加しないため、<xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A>バインドなし。 代わりに、任意の呼び出しの直後後、<xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A>ことが保証されて、<xref:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime%2A>以上。  
+ リモートオブジェクトへの呼び出しを行う<xref:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime%2A>と、 <xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A>がの下<xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A> <xref:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime%2A>にドロップした場合にのみ、有効期間サービスによってがに追加されます。 したがって、順次呼び出しでは<xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A> 、バインドされていないが増加することはありません。 代わりに、任意の呼び出し<xref:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime%2A>の直後に、が<xref:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime%2A>以上であることが保証されます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="SponsorshipTimeout">
@@ -345,14 +345,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.Runtime.Remoting.Lifetime.ILease.SponsorshipTimeout%2A>は<xref:System.TimeSpan.Zero?displayProperty=nameWithType>、このリースはスポンサーになりません。  
+ <xref:System.Runtime.Remoting.Lifetime.ILease.SponsorshipTimeout%2A> が<xref:System.TimeSpan.Zero?displayProperty=nameWithType>の場合、このリースはスポンサーを受け取りません。  
   
- スポンサーがリースの更新のタイムアウト期間内への呼び出しに応答しない場合は配信不能と見なされ、現在のリースのスポンサーの一覧から削除されます。  
+ スポンサが、タイムアウト期間内にリースを更新するための呼び出しに応答しない場合、そのスポンサは配信不能と見なされ、現在のリースのスポンサの一覧から削除されます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="Unregister">
@@ -386,7 +386,7 @@
         <summary>スポンサ リストからスポンサを削除します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
   </Members>

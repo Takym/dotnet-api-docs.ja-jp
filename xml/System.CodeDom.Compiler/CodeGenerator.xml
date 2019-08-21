@@ -1,5 +1,5 @@
 <Type Name="CodeGenerator" FullName="System.CodeDom.Compiler.CodeGenerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d1280f12ead009303f4ba8472f559a1723d224ac" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63913082" /></Metadata><TypeSignature Language="C#" Value="public abstract class CodeGenerator : System.CodeDom.Compiler.ICodeGenerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ebdbdef641a15ce830e81587b8cf8e23524a6a23" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342141" /></Metadata><TypeSignature Language="C#" Value="public abstract class CodeGenerator : System.CodeDom.Compiler.ICodeGenerator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CodeGenerator extends System.Object implements class System.CodeDom.Compiler.ICodeGenerator" />
   <TypeSignature Language="DocId" Value="T:System.CodeDom.Compiler.CodeGenerator" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CodeGenerator&#xA;Implements ICodeGenerator" />
@@ -31,15 +31,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、基本クラスから派生するコード ジェネレーターのです。 コード ジェネレーターは、Code Document Object Model (CodeDOM) のグラフの構造に従って特定の言語でソース コードを表示できます。 このクラスは、多くの関数および CodeDOM グラフから特定の種類のコードを生成するメソッドを提供します。  
+ これは、コードジェネレーターが派生するのに便利な基本クラスです。 コードジェネレーターは、Code Document Object Model (CodeDOM) グラフの構造に従って、特定の言語でソースコードを表示できます。 このクラスには、CodeDOM グラフから特定の種類のコードを生成するための多数の関数とメソッドが用意されています。  
   
 > [!NOTE]
->  このクラスには、リンク確認要求と、すべてのメンバーに適用されるクラス レベルの継承確認要求が含まれています。 直接の呼び出し元か派生クラスのいずれかに完全信頼アクセス許可がない場合、<xref:System.Security.SecurityException> がスローされます。 セキュリティ要求の詳細については、次を参照してください。[リンク確認要求](~/docs/framework/misc/link-demands.md)と[継承確認要求](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/x4yx82e6(v=vs.100))します。  
+>  このクラスには、リンク確認要求と、すべてのメンバーに適用されるクラス レベルの継承確認要求が含まれています。 直接の呼び出し元か派生クラスのいずれかに完全信頼アクセス許可がない場合、<xref:System.Security.SecurityException> がスローされます。 セキュリティ要求の詳細については、「[リンク](~/docs/framework/misc/link-demands.md)確認要求と[継承の要求](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/x4yx82e6(v=vs.100))」を参照してください。  
   
  ]]></format>
     </remarks>
-    <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このクラスは、部分的に信頼されたコードでは使用できません。</permission>
-    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このクラスを継承できません。</permission>
+    <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このクラスは、部分的に信頼されているコードから使用することはできません。</permission>
+    <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このクラスを、部分的に信頼されているコードが継承することはできません。</permission>
     <altmember cref="T:System.CodeDom.Compiler.ICodeGenerator" />
     <altmember cref="T:System.CodeDom.Compiler.CodeCompiler" />
   </Docs>
@@ -72,7 +72,7 @@
       <Docs>
         <summary><see cref="T:System.CodeDom.Compiler.CodeGenerator" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このクラスは、部分的に信頼されたコードでは使用できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このクラスは、部分的に信頼されているコードから使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="ContinueOnNewLine">
@@ -105,7 +105,7 @@
         <param name="st">新しい行に書き込まれる文字列。</param>
         <summary>行連結文字を生成し、指定した文字列を新しい行に出力します。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>行連結文字 (たとえば、Visual Basic) をサポートする言語のコード ジェネレーターを実装する場合、このメソッドは改行文字を出力する前に行連結文字を出力する必要があります。</para></block>
+        <block subset="none" type="overrides"><para>行連結文字 (Visual Basic など) をサポートする言語のコードジェネレーターを実装する場合、このメソッドは改行文字を出力する前に行連結文字を出力する必要があります。</para></block>
       </Docs>
     </Member>
     <Member MemberName="CreateEscapedIdentifier">
@@ -145,10 +145,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.CodeDom.Compiler.CodeGenerator.CreateEscapedIdentifier%2A> 識別子は予約済みと競合するかどうかをテストまたは言語キーワード、そうである場合は、言語固有のエスケープ コードの書式設定と同じ名前を返します。 返される名前は、エスケープされた識別子で参照されます。 エスケープされた識別子を含む同じ`value`エスケープ コードが競合するキーワードを区別するために書式しますが、含まれます。 たとえば、`value`続く可能性があります、アット マーク ("@") または角かっこで区切られます ("["と"]") エスケープされた識別子を作成します。  
+ <xref:System.CodeDom.Compiler.CodeGenerator.CreateEscapedIdentifier%2A>識別子が予約語または言語キーワードと競合しているかどうかをテストします。存在する場合は、言語固有のエスケープコード書式を使用して同等の名前を返します。 返された名前は、エスケープされた識別子と呼ばれます。 エスケープされた識別子は`value`同じものですが、競合するキーワードと区別するためにエスケープコードの書式が含まれています。 たとえば、の`value`前にアットマーク ("@") を付けるか、角かっこ ("[" および "]") で区切り、エスケープされた識別子を作成することができます。  
   
 > [!NOTE]
->  このメソッドの既定の実装では、何も行われません。  
+>  このメソッドの既定の実装では、何も実行されません。  
   
  ]]></format>
         </remarks>
@@ -192,10 +192,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.CodeDom.Compiler.CodeGenerator.CreateValidIdentifier%2A> 識別子は予約済みと競合するかどうかをテストまたは言語キーワード、そうである場合は、競合しないように、有効な識別子名を返します。 返される識別子を含む同じ`value`エスケープ コードが競合するキーワードを区別するために書式しますが、含まれます。 通常、値に変更が必要な場合はアンダー スコア「_」前が。  
+ <xref:System.CodeDom.Compiler.CodeGenerator.CreateValidIdentifier%2A>識別子が予約キーワードまたは言語キーワードと競合しているかどうかをテストします。存在する場合は、競合しない有効な識別子名を返します。 返される識別子には同じ`value`ものが含まれますが、競合するキーワードと区別するためにエスケープコードの書式が含まれています。 通常、値の変更が必要な場合は、その前にアンダースコア "_" が付きます。  
   
 > [!NOTE]
->  このメソッドの既定の実装では、何も行われません。  
+>  このメソッドの既定の実装では、何も実行されません。  
   
  ]]></format>
         </remarks>
@@ -623,7 +623,7 @@
         <param name="e">コード生成の対象となる式を示す <see cref="T:System.CodeDom.CodeBinaryOperatorExpression" />。</param>
         <summary>指定した二項演算式のコードを生成します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="e" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="e" /> が <see langword="null" /> です。</exception>
         <altmember cref="T:System.CodeDom.CodeBinaryOperatorExpression" />
       </Docs>
     </Member>
@@ -696,7 +696,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メンバーのコードは、コンテキストに応じて異なる方法で生成されます。 たとえば、インターフェイスのメソッドまたは列挙体のフィールドのコードから生成されますが異なるコード クラスで同じメンバーの。 この実装では、クラス コンテキストに応じて、メンバーが生成されることを前提としています。  
+ メンバーのコードは、コンテキストによって異なる方法で生成されます。 たとえば、インターフェイスまたは列挙型のフィールドのメソッドのコードは、クラスの同じメンバーのコードとは異なる方法で生成されます。 この実装では、クラスコンテキストに対してメンバーが生成されていることを前提としています。  
   
  ]]></format>
         </remarks>
@@ -938,7 +938,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ほとんどの言語では、このメソッドがコードを生成、`if`ステートメント。  
+ ほとんどの言語では、このメソッドは`if`ステートメントのコードを生成します。  
   
  ]]></format>
         </remarks>
@@ -1544,7 +1544,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ほとんどの言語では、このメソッドがコードを生成、`for`ループまたは`while`ループします。  
+ ほとんどの言語では、このメソッドは`for`ループ`while`またはループのコードを生成します。  
   
  ]]></format>
         </remarks>
@@ -2888,7 +2888,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コードのセグメントはよく認識の容易さのインデントされます。  
+ 一般的に、コードのセグメントは、認識しやすいようにインデントされます。  
   
  ]]></format>
         </remarks>
@@ -3114,11 +3114,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、識別子フィールドのエスケープに使用できる特定の文字が含まれていないことを確認する指定した文字列を確認します。 <xref:System.CodeDom.Compiler.CodeGenerator.ValidateIdentifiers%2A>メソッドは、文字列の検証を実行するには、このメソッドを呼び出します。 呼び出す、<xref:System.CodeDom.Compiler.CodeGenerator.ValidateIdentifiers%2A>メソッドと受け渡しを<xref:System.CodeDom.CodeCompileUnit>前に、そこからコードを生成する識別子フィールド内の非表示のコードを追加する特定の文字シーケンスの使用を防ぐことができます。  
+ このメソッドは、指定された文字列をチェックして、識別子フィールドをエスケープするために使用できる特定の文字が含まれていないことを確認します。 メソッド<xref:System.CodeDom.Compiler.CodeGenerator.ValidateIdentifiers%2A>は、このメソッドを呼び出して文字列の検証を実行します。 メソッドを呼び出してからコード<xref:System.CodeDom.CodeCompileUnit>を生成する前にを渡すと、特定の文字シーケンスを使用して、識別子フィールド内に非表示のコードを含めることができなくなる可能性があります。 <xref:System.CodeDom.Compiler.CodeGenerator.ValidateIdentifiers%2A>  
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
         <altmember cref="M:System.CodeDom.Compiler.CodeGenerator.ValidateIdentifiers(System.CodeDom.CodeObject)" />
       </Docs>
     </Member>
@@ -3735,7 +3735,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、コードのエスケープ文字付き書式設定されたが、指定した文字列の変更済みバージョンを返します。 たとえば、`/"`を表すために使用する可能性があります`"`します。 これらのエスケープ コードは、言語の構文と矛盾する可能性がありますを指定した文字列の要素を置換に使用されます。  
+ このメソッドは、エスケープコード文字で書式設定された、指定された文字列の変更後のバージョンを返します。 たとえば、 `/"`はを表す`"`ために使用される場合があります。 これらのエスケープコードを使用して、言語の構文と競合する可能性がある、指定した文字列の要素を置換します。  
   
  ]]></format>
         </remarks>
@@ -4281,16 +4281,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 識別子フィールドの可能性が<xref:System.CodeDom.CodeObject>エスケープ文字のフィールドおよびセキュリティ違反のことができるように非表示のコードを格納するオブジェクト。 このメソッドは、それぞれのリテラル フィールドをチェックします<xref:System.CodeDom.CodeObject>で、<xref:System.CodeDom>ツリーの文字が、コードを非表示に使用可能であり、識別子フィールドに無効な文字が含まれている場合に例外をスローします。  
+ オブジェクトの<xref:System.CodeDom.CodeObject>識別子フィールドに、セキュリティ違反を許容するフィールドエスケープ文字と非表示コードを含めることができます。 このメソッドは、 <xref:System.CodeDom.CodeObject> <xref:System.CodeDom>ツリー内の各のリテラルフィールドで、コードを非表示にするために使用できる文字を確認し、識別子フィールドに無効な文字が含まれている場合は例外をスローします。  
   
- このメソッドは、 <xref:System.CodeDom.Compiler.CodeGenerator.IsValidLanguageIndependentIdentifier%2A> 、指定した各識別子を検証するメソッドを<xref:System.CodeDom.CodeObject>または<xref:System.CodeDom>ツリー、および識別子が無効であるか、無効な文字が含まれている場合に例外をスローします。  
+ このメソッドは<xref:System.CodeDom.Compiler.CodeGenerator.IsValidLanguageIndependentIdentifier%2A> 、メソッドを呼び出して、指定さ<xref:System.CodeDom.CodeObject>れた<xref:System.CodeDom>またはツリー内の各識別子を検証し、識別子が無効であるか、または無効な文字を含んでいる場合に例外をスローします。  
   
- このメソッドを呼び出してを渡して、<xref:System.CodeDom.CodeCompileUnit>識別子フィールド内の非表示のコードを含めるために使用できる特定の文字シーケンスの使用をブロックするためのコードを生成する前に生成するコードのグラフを格納しています。 このメソッドは、コード生成メソッドでは自動的に呼び出されません。  
+ このメソッドを呼び出し、識別子フィールド<xref:System.CodeDom.CodeCompileUnit>内に非表示のコードを含めるために使用できる特定の文字シーケンスの使用をブロックするコードを生成する前に、生成するコードグラフを格納するを渡します。 このメソッドは、コード生成メソッドによって自動的に呼び出されるわけではありません。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException">指定した <see cref="T:System.CodeDom.CodeObject" /> に無効な識別子が含まれています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
         <altmember cref="M:System.CodeDom.Compiler.CodeGenerator.IsValidLanguageIndependentIdentifier(System.String)" />
       </Docs>
     </Member>

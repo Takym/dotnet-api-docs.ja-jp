@@ -1,5 +1,5 @@
 <Type Name="CommunicationState" FullName="System.ServiceModel.CommunicationState">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1d7d43462488abec74b329da0daf9f9d780ebdc0" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58559769" /></Metadata><TypeSignature Language="C#" Value="public enum CommunicationState" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="806ea8f6ecdb480b6a6455ee7a2205a3b25d99c6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69147742" /></Metadata><TypeSignature Language="C#" Value="public enum CommunicationState" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed CommunicationState extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.CommunicationState" />
   <TypeSignature Language="VB.NET" Value="Public Enum CommunicationState" />
@@ -51,21 +51,21 @@
   
  通信オブジェクトは、Created 状態で構成できます。 たとえば、プロパティの変更や、イベントの登録を実行できます。 この状態にあるときは、入力または出力が発生することはありません。 したがって、たとえば、チャネルからのメッセージの送信または受信は、この状態中には実行できません。  
   
- 開始は通信オブジェクトが入るときに一時的な状態、<xref:System.ServiceModel.ICommunicationObject.Open%2A>メソッドが呼び出されます。 派生クラスで特に指示しない限り、Opening 状態にあるオブジェクトは構成できません。 この遷移の状態は Created 状態からのみ入力できます。  
+ オープンは、 <xref:System.ServiceModel.ICommunicationObject.Open%2A>メソッドが呼び出されたときに通信オブジェクトによって入力される一時的な状態です。 派生クラスで特に指示しない限り、Opening 状態にあるオブジェクトは構成できません。 この遷移状態は、作成された状態からのみ入力できます。  
   
- オブジェクトを開いているプロセスが完了したら、Opened 状態に遷移します。 Opened 状態への移行は、Opening 状態からのみ有効です。 派生クラスで特に指示しない限り、オブジェクトの構成はこの時点で無効になります。 この時点で、オブジェクトはメッセージを転送するために完全に使用可能です。  
+ 開いているプロセスが完了すると、オブジェクトは Opened 状態に遷移します。 Opened 状態への遷移は、開始状態からのみ有効です。 派生クラスで特に指示しない限り、オブジェクトの構成はこの時点で無効になります。 この時点で、オブジェクトはメッセージを転送するために完全に使用可能です。  
   
- 終了は、オブジェクトが入るときに一時的な状態、<xref:System.ServiceModel.ICommunicationObject.Close%2A>グレースフル シャット ダウンのメソッドが呼び出されるか、オブジェクトが中断されました。 この時点で、オブジェクトは使用不能になります (既に使用不能になっていない場合)。 この移行は、Closed の状態を除く任意の状態からは有効です。  
+ 終了は、正常なシャットダウンのために<xref:System.ServiceModel.ICommunicationObject.Close%2A>メソッドが呼び出されたとき、またはオブジェクトが中止されたときにオブジェクトによって入力される一時的な状態です。 この時点で、オブジェクトは使用不能になります (既に使用不能になっていない場合)。 この遷移は、Closed 状態以外の任意の状態から有効です。  
   
- Closed の状態は破棄に相当し、オブジェクトの構成はまだ検査できます。  
+ Closed 状態は、破棄と同じであり、オブジェクトの構成を検査することもできます。  
   
- Faulted 状態は、オブジェクトは、不要になったことできます状態に遷移したことを示すために使用されます。 これが発生する可能性がある主なシナリオには、次の 2 つがあります。  
+ Faulted 状態は、オブジェクトが使用できなくなった状態に遷移したことを示すために使用されます。 これが発生する可能性がある主なシナリオには、次の 2 つがあります。  
   
 -   <xref:System.ServiceModel.ICommunicationObject.Open%2A> メソッドが何らかの理由で失敗した場合、オブジェクトは Faulted 状態に移行します。  
   
 -   セッション ベースのチャネルが、回復できないエラーを検出した場合は、Faulted 状態に移行します。 これは、たとえばプロトコル エラーが発生した (つまり、無効な時間にプロトコル メッセージを受信した) 場合や、リモート エンドポイントでセッションが中止された場合に発生することがあります。  
   
- Faulted 状態にあるオブジェクトが閉じられていないと、リソースを保持します。 Fault 状態にあるオブジェクトは、<xref:System.ServiceModel.ICommunicationObject.Abort%2A> メソッドを使用して閉じる必要があります。 場合<xref:System.ServiceModel.ICommunicationObject.Close%2A>が Faulted の状態のオブジェクトで呼び出されます、<xref:System.ServiceModel.CommunicationObjectFaultedException>オブジェクトを正常に閉じることができないためがスローされます。  
+ Faulted 状態のオブジェクトは閉じられていないため、リソースを保持している可能性があります。 Fault 状態にあるオブジェクトは、<xref:System.ServiceModel.ICommunicationObject.Abort%2A> メソッドを使用して閉じる必要があります。 Faulted 状態のオブジェクトに対して<xref:System.ServiceModel.ICommunicationObject.Close%2A>が呼び出されると、オブジェクトを正常に閉じることができないため、がスローされます。<xref:System.ServiceModel.CommunicationObjectFaultedException>  
   
  ]]></format>
     </remarks>

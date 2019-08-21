@@ -1,5 +1,5 @@
 <Type Name="DispatcherTimer" FullName="System.Windows.Threading.DispatcherTimer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0dd0e4caeeda8fb99923da39b3470b069d82c651" /><Meta Name="ms.sourcegitcommit" Value="9e3550fb2088d4faf2043f0acb29da4555519937" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/12/2018" /><Meta Name="ms.locfileid" Value="53291497" /></Metadata><TypeSignature Language="C#" Value="public class DispatcherTimer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4b2e50f88278a4455d96bba6b8bcca36042f334c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69445723" /></Metadata><TypeSignature Language="C#" Value="public class DispatcherTimer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DispatcherTimer extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Threading.DispatcherTimer" />
   <TypeSignature Language="VB.NET" Value="Public Class DispatcherTimer" />
@@ -20,23 +20,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.DispatcherTimer>は再評価の上部にあるすべて<xref:System.Windows.Threading.Dispatcher>ループします。  
+ は<xref:System.Windows.Threading.DispatcherTimer> 、すべて<xref:System.Windows.Threading.Dispatcher>のループの先頭で再評価されます。  
   
- タイマーが時間間隔が発生したが、時間間隔で発生する前に実行が保証されているときに正確に実行する保証はありません。  これは、ため<xref:System.Windows.Threading.DispatcherTimer>操作は、上に配置されます、<xref:System.Windows.Threading.Dispatcher>などその他の操作のキュー。  ときに、<xref:System.Windows.Threading.DispatcherTimer>操作の実行は、キューおよび優先順位の他のジョブに依存します。  
+ タイマーは、時間間隔が発生したときに正確に実行されるとは限りませんが、時間間隔が発生する前に実行されることは保証されません。  これは、 <xref:System.Windows.Threading.DispatcherTimer>他の操作と同様<xref:System.Windows.Threading.Dispatcher>に、操作がキューに配置されるためです。  <xref:System.Windows.Threading.DispatcherTimer>操作が実行されるタイミングは、キュー内の他のジョブとその優先順位に依存します。  
   
- 場合、<xref:System.Timers.Timer?displayProperty=nameWithType>で使用されて、[!INCLUDE[TLA2#tla_wpf](~/includes/tla2sharptla-wpf-md.md)]する注目すべきは、アプリケーション、<xref:System.Timers.Timer?displayProperty=nameWithType>とは異なるスレッド上で実行、[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]スレッド。  オブジェクトにアクセスするために、[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]投稿を操作する必要がある、スレッド、<xref:System.Windows.Threading.Dispatcher>の[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]スレッドを使用して<xref:System.Windows.Threading.Dispatcher.Invoke%2A>または<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>します。 使用する理由、<xref:System.Windows.Threading.DispatcherTimer>ではなく、<xref:System.Timers.Timer?displayProperty=nameWithType>ことが、<xref:System.Windows.Threading.DispatcherTimer>と同じスレッド上で実行、<xref:System.Windows.Threading.Dispatcher>と<xref:System.Windows.Threading.DispatcherPriority>に設定することができます、<xref:System.Windows.Threading.DispatcherTimer>します。  
+ アプリケーションでを<xref:System.Timers.Timer?displayProperty=nameWithType>使用する場合は、 <xref:System.Timers.Timer?displayProperty=nameWithType>がスレッドと[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]は異なるスレッドで実行されることに注意してください。 [!INCLUDE[TLA2#tla_wpf](~/includes/tla2sharptla-wpf-md.md)]  [!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]スレッド上のオブジェクトにアクセスするには、または<xref:System.Windows.Threading.Dispatcher.BeginInvoke%2A>を使用して<xref:System.Windows.Threading.Dispatcher.Invoke%2A> 、操作<xref:System.Windows.Threading.Dispatcher>を[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]スレッドのにポストする必要があります。 としてで<xref:System.Windows.Threading.DispatcherTimer>はなく<xref:System.Timers.Timer?displayProperty=nameWithType>を使用する理由は<xref:System.Windows.Threading.DispatcherTimer> 、がと同じスレッド<xref:System.Windows.Threading.Dispatcher> <xref:System.Windows.Threading.DispatcherPriority>で実行され、がに<xref:System.Windows.Threading.DispatcherTimer>設定できることです。  
   
- A<xref:System.Windows.Threading.DispatcherTimer>は維持オブジェクト、オブジェクトのメソッドは、タイマーにバインドされるたびにします。  
+ は<xref:System.Windows.Threading.DispatcherTimer> 、オブジェクトのメソッドがタイマーにバインドされるたびに、オブジェクトを維持します。  
   
 ## Examples  
- 次の例では、作成、<xref:System.Windows.Threading.DispatcherTimer>の内容を更新する、<xref:System.Windows.Controls.Label>を呼び出すと、<xref:System.Windows.Input.CommandManager.InvalidateRequerySuggested%2A>メソッドを<xref:System.Windows.Input.CommandManager>します。  
+ 次の例では<xref:System.Windows.Threading.DispatcherTimer> 、 <xref:System.Windows.Controls.Label>の内容を更新し、でメソッド<xref:System.Windows.Input.CommandManager.InvalidateRequerySuggested%2A>を<xref:System.Windows.Input.CommandManager>呼び出すを作成します。  
   
- A<xref:System.Windows.Threading.DispatcherTimer>という名前のオブジェクト`dispatcherTimer`が作成されます。  イベント ハンドラー`dispatcherTimer_Tick`に追加されます、<xref:System.Windows.Threading.DispatcherTimer.Tick>のイベント`dispatcherTimer`します。  <xref:System.Windows.Threading.DispatcherTimer.Interval%2A>を使用して 1 秒に設定されている、<xref:System.Windows.Duration.TimeSpan%2A>オブジェクト、およびタイマーを開始します。  
+ という名前`dispatcherTimer`のオブジェクトが作成されます。<xref:System.Windows.Threading.DispatcherTimer>  イベントハンドラー `dispatcherTimer_Tick`は、の<xref:System.Windows.Threading.DispatcherTimer.Tick> `dispatcherTimer`イベントに追加されます。  は<xref:System.Windows.Threading.DispatcherTimer.Interval%2A> 、 <xref:System.Windows.Duration.TimeSpan%2A>オブジェクトを使用して1秒に設定され、タイマーが開始されます。  
   
  [!code-csharp[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimerInit](~/samples/snippets/csharp/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/CSharp/Window1.xaml.cs#invalidatesampledispatchertimerinit)]
  [!code-vb[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimerInit](~/samples/snippets/visualbasic/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/visualbasic/window1.xaml.vb#invalidatesampledispatchertimerinit)]  
   
- <xref:System.Windows.Threading.DispatcherTimer.Tick>イベント ハンドラーの更新プログラム、<xref:System.Windows.Controls.Label>第 2 に、現在表示し、呼び出す<xref:System.Windows.Input.CommandManager.InvalidateRequerySuggested%2A>上、<xref:System.Windows.Input.CommandManager>します。  
+ イベント<xref:System.Windows.Threading.DispatcherTimer.Tick>ハンドラーは、現在<xref:System.Windows.Controls.Label>の秒を表示するを更新<xref:System.Windows.Input.CommandManager>し、 <xref:System.Windows.Input.CommandManager.InvalidateRequerySuggested%2A>でを呼び出します。  
   
  [!code-csharp[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimer](~/samples/snippets/csharp/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/CSharp/Window1.xaml.cs#invalidatesampledispatchertimer)]
  [!code-vb[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimer](~/samples/snippets/visualbasic/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/visualbasic/window1.xaml.vb#invalidatesampledispatchertimer)]  
@@ -78,7 +78,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.DispatcherTimer> 上で実行、<xref:System.Windows.Threading.Dispatcher>で現在のスレッドの<xref:System.Windows.Threading.DispatcherPriority.Background>優先順位。  異なる<xref:System.Windows.Threading.Dispatcher>、次のコンス トラクターを使用:<xref:System.Windows.Threading.DispatcherTimer.%23ctor%28System.Windows.Threading.DispatcherPriority%2CSystem.Windows.Threading.Dispatcher%29?displayProperty=nameWithType>します。  
+ <xref:System.Windows.Threading.DispatcherTimer>優先順位で<xref:System.Windows.Threading.DispatcherPriority.Background>現在のスレッドので実行されます。<xref:System.Windows.Threading.Dispatcher>  別<xref:System.Windows.Threading.Dispatcher>のを指定するには、次の<xref:System.Windows.Threading.DispatcherTimer.%23ctor%28System.Windows.Threading.DispatcherPriority%2CSystem.Windows.Threading.Dispatcher%29?displayProperty=nameWithType>コンストラクターを使用します。  
   
  ]]></format>
         </remarks>
@@ -107,7 +107,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.DispatcherTimer> 上で実行、<xref:System.Windows.Threading.Dispatcher>現在のスレッド。  異なる<xref:System.Windows.Threading.Dispatcher>、次のコンス トラクターを使用:<xref:System.Windows.Threading.DispatcherTimer.%23ctor%28System.Windows.Threading.DispatcherPriority%2CSystem.Windows.Threading.Dispatcher%29>します。  
+ <xref:System.Windows.Threading.DispatcherTimer>現在のスレッド<xref:System.Windows.Threading.Dispatcher>ので実行されます。  別<xref:System.Windows.Threading.Dispatcher>のを指定するには、次の<xref:System.Windows.Threading.DispatcherTimer.%23ctor%28System.Windows.Threading.DispatcherPriority%2CSystem.Windows.Threading.Dispatcher%29>コンストラクターを使用します。  
   
  ]]></format>
         </remarks>
@@ -134,7 +134,7 @@
         <param name="dispatcher">タイマーが関連付けられているディスパッチャー。</param>
         <summary>指定した <see cref="T:System.Windows.Threading.DispatcherTimer" /> で、指定した優先順位で実行される <see cref="T:System.Windows.Threading.Dispatcher" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="dispatcher" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="dispatcher" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -162,11 +162,11 @@
         <param name="dispatcher">タイマーが関連付けられているディスパッチャー。</param>
         <summary>指定した時間間隔、優先順位、イベント ハンドラー、および <see cref="T:System.Windows.Threading.DispatcherTimer" /> を使用する <see cref="T:System.Windows.Threading.Dispatcher" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="callback" /> は <see langword="null" /> です。
+        <exception cref="T:System.ArgumentNullException"><paramref name="callback" /> は <see langword="null" />です。
 
 - または -
 
-          <paramref name="dispatcher" /> は <see langword="null" /> です。</exception>
+          <paramref name="dispatcher" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="interval" /> が 0 未満であるか、または <see cref="F:System.Int32.MaxValue" /> を超えています。</exception>
       </Docs>
     </Member>
@@ -198,7 +198,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.DispatcherTimer.Dispatcher%2A>の作成時にプロパティが決定されます、<xref:System.Windows.Threading.DispatcherTimer>オブジェクト。  <xref:System.Windows.Threading.Dispatcher>プロパティが現在<xref:System.Windows.Threading.Dispatcher>の作成時にしない限り別<xref:System.Windows.Threading.Dispatcher>が指定されて。  
+ プロパティは、 <xref:System.Windows.Threading.DispatcherTimer>オブジェクトの作成時に決定されます。 <xref:System.Windows.Threading.DispatcherTimer.Dispatcher%2A>  <xref:System.Windows.Threading.Dispatcher>別<xref:System.Windows.Threading.Dispatcher> のが指定されていない場合、作成時にプロパティが現在のに設定されます。<xref:System.Windows.Threading.Dispatcher>  
   
  ]]></format>
         </remarks>
@@ -232,10 +232,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- タイマーが時間間隔が発生したが、時間間隔で発生する前に実行が保証されているときに正確に実行する保証はありません。  これは、ため<xref:System.Windows.Threading.DispatcherTimer>操作は、上に配置されます、<xref:System.Windows.Threading.Dispatcher>などその他の操作のキュー。  ときに、<xref:System.Windows.Threading.DispatcherTimer>操作の実行は、キューおよび優先順位の他のジョブに依存します。  
+ タイマーは、時間間隔が発生したときに正確に実行されるとは限りませんが、時間間隔が発生する前に実行されることは保証されません。  これは、 <xref:System.Windows.Threading.DispatcherTimer>他の操作と同様<xref:System.Windows.Threading.Dispatcher>に、操作がキューに配置されるためです。  <xref:System.Windows.Threading.DispatcherTimer>操作が実行されるタイミングは、キュー内の他のジョブとその優先順位に依存します。  
   
 ## Examples  
- 次の例では、作成、<xref:System.Windows.Threading.DispatcherTimer>します。  新しい<xref:System.Windows.Threading.DispatcherTimer>という名前のオブジェクト`dispatcherTimer`が作成されます。  イベント ハンドラー`dispatcherTimer_Tick`に追加されます、<xref:System.Windows.Threading.DispatcherTimer.Tick>イベント。  <xref:System.Windows.Threading.DispatcherTimer.Interval%2A>を使用して 1 秒に設定されている、<xref:System.TimeSpan>オブジェクト。  
+ 次の例では<xref:System.Windows.Threading.DispatcherTimer>、を作成します。  という<xref:System.Windows.Threading.DispatcherTimer>名前`dispatcherTimer`の新しいオブジェクトが作成されます。  イベントハンドラー `dispatcherTimer_Tick`が<xref:System.Windows.Threading.DispatcherTimer.Tick>イベントに追加されます。  は<xref:System.Windows.Threading.DispatcherTimer.Interval%2A> 、 <xref:System.TimeSpan>オブジェクトを使用して1秒に設定されます。  
   
  [!code-csharp[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimerInit](~/samples/snippets/csharp/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/CSharp/Window1.xaml.cs#invalidatesampledispatchertimerinit)]
  [!code-vb[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimerInit](~/samples/snippets/visualbasic/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/visualbasic/window1.xaml.vb#invalidatesampledispatchertimerinit)]  
@@ -273,14 +273,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A> 設定する必要があります`true`の<xref:System.Windows.Threading.DispatcherTimer.Tick>イベントが発生します。  
+ <xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>イベントを発生さ`true`せるに<xref:System.Windows.Threading.DispatcherTimer.Tick>は、をに設定する必要があります。  
   
- 呼び出す<xref:System.Windows.Threading.DispatcherTimer.Start%2A>設定<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>に`true`します。  
+ を<xref:System.Windows.Threading.DispatcherTimer.Start%2A>呼び<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>出す`true`と、がに設定されます。  
   
- 呼び出す<xref:System.Windows.Threading.DispatcherTimer.Stop%2A>設定<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>に`false`します。  
+ を<xref:System.Windows.Threading.DispatcherTimer.Stop%2A>呼び<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>出す`false`と、がに設定されます。  
   
 ## Examples  
- 次の例では、作成、<xref:System.Windows.Threading.DispatcherTimer>します。  新しい<xref:System.Windows.Threading.DispatcherTimer>という名前のオブジェクト`dispatcherTimer`が作成されます。  イベント ハンドラー`dispatcherTimer_Tick`に追加されます、<xref:System.Windows.Threading.DispatcherTimer.Tick>イベント。  <xref:System.Windows.Threading.DispatcherTimer.Interval%2A>を使用して 1 秒に設定されている、<xref:System.TimeSpan>オブジェクト。  
+ 次の例では<xref:System.Windows.Threading.DispatcherTimer>、を作成します。  という<xref:System.Windows.Threading.DispatcherTimer>名前`dispatcherTimer`の新しいオブジェクトが作成されます。  イベントハンドラー `dispatcherTimer_Tick`が<xref:System.Windows.Threading.DispatcherTimer.Tick>イベントに追加されます。  は<xref:System.Windows.Threading.DispatcherTimer.Interval%2A> 、 <xref:System.TimeSpan>オブジェクトを使用して1秒に設定されます。  
   
  [!code-csharp[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimerInit](~/samples/snippets/csharp/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/CSharp/Window1.xaml.cs#invalidatesampledispatchertimerinit)]
  [!code-vb[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimerInit](~/samples/snippets/visualbasic/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/visualbasic/window1.xaml.vb#invalidatesampledispatchertimerinit)]  
@@ -312,18 +312,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 設定<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>に`false`タイマーを停止するときに、タイマーが起動します。  
+ タイマー <xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>が`false`開始されたときにをに設定すると、タイマーは停止します。  
   
- 設定<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>に`true`タイマーが停止したときに、タイマーを開始します。  
+ タイマー <xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>が`true`停止したときにをに設定すると、タイマーが開始されます。  
   
- <xref:System.Windows.Threading.DispatcherTimer.Start%2A> 設定<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>に`true`します。  
+ <xref:System.Windows.Threading.DispatcherTimer.Start%2A>を<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A> に`true`設定します。  
   
- <xref:System.Windows.Threading.DispatcherTimer.Start%2A> タイマーをリセット<xref:System.Windows.Threading.DispatcherTimer.Interval%2A>します。  
+ <xref:System.Windows.Threading.DispatcherTimer.Start%2A>タイマー <xref:System.Windows.Threading.DispatcherTimer.Interval%2A>をリセットします。  
   
    
   
 ## Examples  
- 次の例では、作成、<xref:System.Windows.Threading.DispatcherTimer>します。  新しい<xref:System.Windows.Threading.DispatcherTimer>という名前のオブジェクト`dispatcherTimer`が作成されます。  イベント ハンドラー`dispatcherTimer_Tick`に追加されます、<xref:System.Windows.Threading.DispatcherTimer.Tick>イベント。  <xref:System.Windows.Threading.DispatcherTimer.Interval%2A>を使用して 1 秒に設定されている、<xref:System.Windows.Duration.TimeSpan%2A>オブジェクト。  
+ 次の例では<xref:System.Windows.Threading.DispatcherTimer>、を作成します。  という<xref:System.Windows.Threading.DispatcherTimer>名前`dispatcherTimer`の新しいオブジェクトが作成されます。  イベントハンドラー `dispatcherTimer_Tick`が<xref:System.Windows.Threading.DispatcherTimer.Tick>イベントに追加されます。  は<xref:System.Windows.Threading.DispatcherTimer.Interval%2A> 、 <xref:System.Windows.Duration.TimeSpan%2A>オブジェクトを使用して1秒に設定されます。  
   
  [!code-csharp[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimerInit](~/samples/snippets/csharp/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/CSharp/Window1.xaml.cs#invalidatesampledispatchertimerinit)]
  [!code-vb[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimerInit](~/samples/snippets/visualbasic/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/visualbasic/window1.xaml.vb#invalidatesampledispatchertimerinit)]  
@@ -355,11 +355,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 設定<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>に`false`タイマーを停止するときに、タイマーが起動します。  
+ タイマー <xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>が`false`開始されたときにをに設定すると、タイマーは停止します。  
   
- 設定<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>に`true`タイマーが停止したときに、タイマーを開始します。  
+ タイマー <xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>が`true`停止したときにをに設定すると、タイマーが開始されます。  
   
- 呼び出す<xref:System.Windows.Threading.DispatcherTimer.Stop%2A>設定<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>に`false`します。  
+ を<xref:System.Windows.Threading.DispatcherTimer.Stop%2A>呼び<xref:System.Windows.Threading.DispatcherTimer.IsEnabled%2A>出す`false`と、がに設定されます。  
   
  ]]></format>
         </remarks>
@@ -417,7 +417,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、作成、<xref:System.Windows.Threading.DispatcherTimer.Tick>イベント ハンドラー。  イベント ハンドラーの更新プログラム、<xref:System.Windows.Controls.Label>第 2 に、現在表示し、呼び出す<xref:System.Windows.Input.CommandManager.InvalidateRequerySuggested%2A>上、<xref:System.Windows.Input.CommandManager>します。  
+ 次の例では<xref:System.Windows.Threading.DispatcherTimer.Tick> 、イベントハンドラーを作成します。  イベントハンドラーは、現在<xref:System.Windows.Controls.Label>の秒を表示するを更新し、 <xref:System.Windows.Input.CommandManager.InvalidateRequerySuggested%2A>で<xref:System.Windows.Input.CommandManager>を呼び出します。  
   
  [!code-csharp[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimer](~/samples/snippets/csharp/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/CSharp/Window1.xaml.cs#invalidatesampledispatchertimer)]
  [!code-vb[invalidaterequerywithdispatchertimer#InvalidateSampleDispatcherTimer](~/samples/snippets/visualbasic/VS_Snippets_Wpf/InvalidateRequeryWithDispatcherTimer/visualbasic/window1.xaml.vb#invalidatesampledispatchertimer)]  

@@ -1,5 +1,5 @@
 <Type Name="Semaphore" FullName="System.Threading.Semaphore">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f09ba51049b785b441b3abb25f341ac68edc837a" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58736386" /></Metadata><TypeSignature Language="C#" Value="public sealed class Semaphore : System.Threading.WaitHandle" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4d612444124f1e9e0d4b84aef281ef295eb335ce" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69098835" /></Metadata><TypeSignature Language="C#" Value="public sealed class Semaphore : System.Threading.WaitHandle" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Semaphore extends System.Threading.WaitHandle" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Semaphore" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Semaphore&#xA;Inherits WaitHandle" />
@@ -38,24 +38,24 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用して、<xref:System.Threading.Semaphore>リソースのプールへのアクセスを制御するクラス。 スレッドがセマフォに入る呼び出すことによって、<xref:System.Threading.WaitHandle.WaitOne%2A>から継承されるメソッド、<xref:System.Threading.WaitHandle>クラス、およびを呼び出してセマフォの解放、<xref:System.Threading.Semaphore.Release%2A>メソッド。  
+ クラスを<xref:System.Threading.Semaphore>使用して、リソースのプールへのアクセスを制御します。 スレッドは、 <xref:System.Threading.WaitHandle>クラスから継承さ<xref:System.Threading.WaitHandle.WaitOne%2A>れたメソッドを呼び出してセマフォに入り、 <xref:System.Threading.Semaphore.Release%2A>メソッドを呼び出してセマフォを解放します。  
   
- セマフォのカウントは、スレッドがセマフォに入るし、スレッドがセマフォを解放するときにインクリメントされますたびに減少します。 カウントが 0 の場合、後続の要求は他のスレッドがセマフォを解放するまでブロックします。 すべてのスレッドがセマフォを解放、ときにカウントが最大値で指定されて、セマフォが作成されたとき。  
+ セマフォのカウントは、スレッドがセマフォに入るたびに減少し、スレッドがセマフォを解放するとインクリメントされます。 カウントがゼロの場合、後続の要求は他のスレッドがセマフォを解放するまでブロックされます。 すべてのスレッドがセマフォを解放すると、セマフォの作成時に指定された最大値にカウントされます。  
   
- FIFO や LIFO、ブロックされたスレッドがセマフォに入るなどの保証の順序はありません。  
+ ブロックされたスレッドがセマフォに入る、FIFO や LIFO などの保証された順序はありません。  
   
- スレッドはセマフォに入る、複数回呼び出すことによって、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッド繰り返し。 これらのエントリの一部またはすべてをリリースするには、スレッドをパラメーターなしに呼び出すことができます<xref:System.Threading.Semaphore.Release>メソッドのオーバー ロードが複数回、またはそれが呼び出すことができます、<xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドのオーバー ロードが解放されるエントリの数を指定します。  
+ スレッドは、 <xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを繰り返し呼び出して、セマフォに複数回入ることができます。 これらのエントリの一部またはすべてを解放するために、スレッド<xref:System.Threading.Semaphore.Release>は、パラメーターなしのメソッドオーバーロードを複数回<xref:System.Threading.Semaphore.Release%28System.Int32%29>呼び出すことができます。また、解放されるエントリの数を指定するメソッドオーバーロードを呼び出すこともできます。  
   
- <xref:System.Threading.Semaphore>クラスへの呼び出しでスレッド id は強制されません<xref:System.Threading.WaitHandle.WaitOne%2A>または<xref:System.Threading.Semaphore.Release%2A>します。 あるスレッドはセマフォの解放回数が多すぎますのプログラマの責任になります。 たとえば、セマフォの最大カウントが 2 で、スレッド A とスレッド B が両方ともセマフォに入るとします。 スレッド B でのプログラミング エラー原因を呼び出せるかどうか<xref:System.Threading.Semaphore.Release%2A>2 回、両方の呼び出しが成功します。 セマフォのカウントがいっぱいになっているときに、スレッド A も <xref:System.Threading.Semaphore.Release%2A> を呼び出すと、<xref:System.Threading.SemaphoreFullException> がスローされます。  
+ クラス<xref:System.Threading.Semaphore>で<xref:System.Threading.WaitHandle.WaitOne%2A>は、または<xref:System.Threading.Semaphore.Release%2A>の呼び出しにスレッド id は適用されません。 プログラマは、スレッドが何回もセマフォを解放しないようにする必要があります。 たとえば、セマフォの最大カウントが 2 で、スレッド A とスレッド B が両方ともセマフォに入るとします。 スレッド B のプログラミングエラーによってが2回<xref:System.Threading.Semaphore.Release%2A>呼び出される場合、両方の呼び出しが成功します。 セマフォのカウントがいっぱいになっているときに、スレッド A も <xref:System.Threading.Semaphore.Release%2A> を呼び出すと、<xref:System.Threading.SemaphoreFullException> がスローされます。  
   
- セマフォは次の 2 つの種類: ローカル セマフォおよび名前付きシステム セマフォです。 作成する場合、<xref:System.Threading.Semaphore>オブジェクト、名前を受け入れるコンス トラクターを使用してその名前のオペレーティング システム セマフォに関連付けられています。 名前付きシステム セマフォは、オペレーティング システム全体から参照でき、プロセスの動作を同期するために使用できます。 複数作成できます<xref:System.Threading.Semaphore>同じを表すオブジェクトの名前付きシステム セマフォの場合は、および使用することができます、<xref:System.Threading.Semaphore.OpenExisting%2A>メソッドを開き、既存の名前付きシステム セマフォです。  
+ セマフォには、ローカルセマフォと名前付きシステムセマフォの2種類があります。 名前を受け入れるコンストラクター <xref:System.Threading.Semaphore>を使用してオブジェクトを作成した場合は、その名前のオペレーティングシステムセマフォに関連付けられます。 名前付きシステムセマフォはオペレーティングシステム全体で表示され、プロセスの動作を同期するために使用できます。 同じ名前付きシステム<xref:System.Threading.Semaphore>セマフォを表す複数のオブジェクトを作成できます。また、 <xref:System.Threading.Semaphore.OpenExisting%2A>メソッドを使用して、既存の名前付きシステムセマフォを開くことができます。  
   
- プロセス内でのみ、ローカル セマフォが存在します。 ローカル <xref:System.Threading.Semaphore> オブジェクトを参照するプロセス内のすべてのスレッドから使用できます。 各<xref:System.Threading.Semaphore>オブジェクトが別のローカル セマフォです。  
+ ローカルセマフォは、プロセス内にのみ存在します。 ローカル <xref:System.Threading.Semaphore> オブジェクトを参照するプロセス内のすべてのスレッドから使用できます。 各<xref:System.Threading.Semaphore>オブジェクトは個別のローカルセマフォです。  
   
    
   
 ## Examples  
- 次のコード例は、0 の最初の数の 3 つの最大数、およびセマフォを作成します。 例では、セマフォの待機をブロックする 5 つのスレッドを開始します。 メイン スレッドを使用して、<xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドのオーバー ロードは、次の 3 つのスレッドがセマフォに入るをできるように、最大容量にセマフォ カウントを増やします。 各スレッドを使用して、<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドが、作業し、呼び出しをシミュレートするために、1 秒間待機する、<xref:System.Threading.Semaphore.Release>セマフォを解放するメソッドのオーバー ロードします。 セマフォがリリースされるたびに、前のセマフォのカウントが表示されます。 コンソール メッセージ追跡セマフォを使用します。 各スレッドは、出力を読みやすくするために、シミュレートされた動作の間隔が若干増加します。  
+ 次のコード例では、最大数が3で、初期カウントが0のセマフォを作成します。 この例では、5つのスレッドを開始します。これは、セマフォを待機しています。 メインスレッドは、 <xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドオーバーロードを使用してセマフォ数を最大値に増やし、3つのスレッドがセマフォに入ることができるようにします。 各スレッドは、 <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドを使用して1秒間待機し、作業をシミュレートし<xref:System.Threading.Semaphore.Release>た後、メソッドオーバーロードを呼び出してセマフォを解放します。 セマフォが解放されるたびに、前のセマフォ数が表示されます。 コンソールメッセージは、セマフォの使用を追跡します。 シミュレートされた作業間隔は、出力を読みやすくするために、スレッドごとに若干増加します。  
   
  [!code-cpp[System.Threading.Semaphore2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore2/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore2/CS/source.cs#1)]
@@ -125,14 +125,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターでは、無名のセマフォを初期化します。 このようなセマフォのインスタンスを使用するすべてのスレッドには、インスタンスへの参照が必要です。  
+ このコンストラクターは、名前のないセマフォを初期化します。 このようなセマフォのインスタンスを使用するすべてのスレッドは、インスタンスへの参照を持っている必要があります。  
   
- 場合`initialCount`がより小さい`maximumCount`、現在のスレッドを呼び出した場合と同じ効果が<xref:System.Threading.WaitHandle.WaitOne%2A>(`maximumCount`マイナス`initialCount`) 時刻。 セマフォを作成するスレッドのエントリを予約したくない場合の同じ番号を使用して、`maximumCount`と`initialCount`します。  
+ が`initialCount`より<xref:System.Threading.WaitHandle.WaitOne%2A> `maximumCount` `initialCount`小さい場合、効果は、現在のスレッドが (負の値を引いた) 時間を呼び出した場合と同じです。 `maximumCount` セマフォを作成するスレッドのエントリを予約しない場合は、と`maximumCount` `initialCount`の同じ数値を使用します。  
   
    
   
 ## Examples  
- 次の例は、0 の最初の数の 3 つの最大数、およびセマフォを作成します。 例では、セマフォの待機をブロックする 5 つのスレッドを開始します。 メイン スレッドを使用して、<xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドのオーバー ロードは、次の 3 つのスレッドがセマフォに入るをできるように、最大容量にセマフォ カウントを増やします。 各スレッドを使用して、<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドが、作業し、呼び出しをシミュレートするために、1 秒間待機する、<xref:System.Threading.Semaphore.Release>セマフォを解放するメソッドのオーバー ロードします。 セマフォがリリースされるたびに、前のセマフォのカウントが表示されます。 コンソール メッセージ追跡セマフォを使用します。 各スレッドは、出力を読みやすくするために、シミュレートされた動作の間隔が若干増加します。  
+ 次の例では、最大数が3で、初期カウントが0のセマフォを作成します。 この例では、5つのスレッドを開始します。これは、セマフォを待機しています。 メインスレッドは、 <xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドオーバーロードを使用してセマフォ数を最大値に増やし、3つのスレッドがセマフォに入ることができるようにします。 各スレッドは、 <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドを使用して1秒間待機し、作業をシミュレートし<xref:System.Threading.Semaphore.Release>た後、メソッドオーバーロードを呼び出してセマフォを解放します。 セマフォが解放されるたびに、前のセマフォ数が表示されます。 コンソールメッセージは、セマフォの使用を追跡します。 シミュレートされた作業間隔は、出力を読みやすくするために、スレッドごとに若干増加します。  
   
  [!code-cpp[System.Threading.Semaphore2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore2/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore2/CS/source.cs#1)]
@@ -189,23 +189,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターの初期化を<xref:System.Threading.Semaphore>名前付きシステム セマフォを表すオブジェクト。 複数作成できます<xref:System.Threading.Semaphore>名前付きシステム セマフォが同じを表すオブジェクト。  
+ このコンストラクターは、 <xref:System.Threading.Semaphore>名前付きシステムセマフォを表すオブジェクトを初期化します。 同じ名前付きシステム<xref:System.Threading.Semaphore>セマフォを表す複数のオブジェクトを作成できます。  
   
- 名前付きシステム セマフォが存在しない場合、最初の数で指定された最大数と作成`initialCount`と`maximumCount`します。 名前付きシステム セマフォが既に存在する場合`initialCount`と`maximumCount`を使用しないが、無効な値では例外が発生します。 かどうか、名前付きシステム セマフォが作成を決定する必要がある場合、使用、<xref:System.Threading.Semaphore.%23ctor%28System.Int32%2CSystem.Int32%2CSystem.String%2CSystem.Boolean%40%29>コンス トラクター オーバー ロードを代用します。  
+ 名前付きシステムセマフォが存在しない場合は、と`initialCount` `maximumCount`で指定された初期カウントと最大カウントを使用して作成されます。 名前付きシステムセマフォが既に存在`initialCount` `maximumCount`し、使用されていない場合でも、無効な値によって例外が発生します。 名前付きシステムセマフォが作成されたかどうかを判断する必要が<xref:System.Threading.Semaphore.%23ctor%28System.Int32%2CSystem.Int32%2CSystem.String%2CSystem.Boolean%40%29>ある場合は、代わりにコンストラクターのオーバーロードを使用します。  
   
 > [!IMPORTANT]
->  同じ番号を指定する、推奨される方法は、このコンス トラクター オーバー ロードを使用して、`initialCount`と`maximumCount`します。 場合`initialCount`がより小さい`maximumCount`、し、名前付きシステム セマフォが作成された、現在のスレッドを呼び出した場合と同じ効果が<xref:System.Threading.WaitHandle.WaitOne%2A>(`maximumCount`マイナス`initialCount`) 時刻。 ただし、このコンス トラクター オーバー ロードではありません、名前付きシステム セマフォが作成されたかどうかを判断する方法です。  
+>  このコンストラクターのオーバーロードを使用する場合、と`initialCount` `maximumCount`に同じ数値を指定することをお勧めします。 が`initialCount`より<xref:System.Threading.WaitHandle.WaitOne%2A> `maximumCount` `initialCount`小さい場合、および名前付きシステムセマフォが作成されると、その効果は、現在のスレッドが (負の値から) を呼び出した場合と同じになります。 `maximumCount` ただし、このコンストラクターのオーバーロードでは、名前付きシステムセマフォが作成されたかどうかを判断する方法はありません。  
   
- 指定した場合`null`または空の文字列の`name`、ローカル セマフォが作成されたことを呼び出した場合と、<xref:System.Threading.Semaphore.%23ctor%28System.Int32%2CSystem.Int32%29>コンス トラクター オーバー ロードします。  
+ またはに`null`空の`name`文字列を指定すると、 <xref:System.Threading.Semaphore.%23ctor%28System.Int32%2CSystem.Int32%29>コンストラクターのオーバーロードを呼び出した場合と同様に、ローカルセマフォが作成されます。  
   
- 名前付きセマフォは、オペレーティング システム全体表示であるために、プロセス境界をまたいでリソースの使用を調整するため、使用できます。  
+ 名前付きセマフォはオペレーティングシステム全体にわたって表示されるため、プロセスの境界を越えてリソースの使用量を調整するために使用できます。  
   
- 名前付きシステム セマフォが存在するかどうかを確認、使用するかどうか、<xref:System.Threading.Semaphore.OpenExisting%2A>メソッド。 <xref:System.Threading.Semaphore.OpenExisting%2A>メソッドは、既存の名前付きセマフォを開こうとすると、システム セマフォが存在しない場合は、例外をスローします。  
+ 名前付きシステムセマフォが存在するかどうかを確認するには<xref:System.Threading.Semaphore.OpenExisting%2A> 、メソッドを使用します。 メソッド<xref:System.Threading.Semaphore.OpenExisting%2A>は、既存の名前付きセマフォを開こうとし、システムセマフォが存在しない場合は例外をスローします。  
   
    
   
 ## Examples  
- 次のコード例では、名前付きセマフォのプロセス間の動作を示します。 例は、最大数が 5 つ、最大 5 人の最初の数と名前付きセマフォを作成します。 プログラムは、次の 3 つの呼び出し、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッド。 このため、2 つのコマンド ウィンドウからコンパイル済みの例を実行する場合、2 番目のコピーが 3 番目の呼び出しでブロックは<xref:System.Threading.WaitHandle.WaitOne%2A>します。 2 番目のブロックを解除するプログラムの最初のコピーで 1 つまたは複数のエントリを解放します。  
+ 名前付きセマフォのプロセス間の動作を示すコード例を次に示します。 この例では、最大数が5で、初期カウントが5である名前付きセマフォを作成します。 このプログラムは、 <xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを3回呼び出します。 したがって、コンパイルされた例を2つのコマンドウィンドウから実行した場合、2番目<xref:System.Threading.WaitHandle.WaitOne%2A>のコピーはの3回目の呼び出しでブロックされます。 プログラムの最初のコピーの1つ以上のエントリを解放して、2番目のブロックのブロックを解除します。  
   
  [!code-cpp[System.Threading.Semaphore.ctor named 3#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 3/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore.ctor named 3#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 3/CS/source.cs#1)]
@@ -215,18 +215,18 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="initialCount" /> が <paramref name="maximumCount" /> より大きくなっています。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumCount" /> が 1 未満です。  
   
-または 
+- または - 
  <paramref name="initialCount" /> が 0 未満です。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
         <exception cref="T:System.UnauthorizedAccessException">アクセス制御セキュリティを使用した名前付きセマフォが存在しており、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" /> がありません。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォを作成できません。原因として、別の型の待機ハンドルに同じ名前が付けられていることが考えられます。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">名前付きシステム セマフォを作成するアンマネージ コードを呼び出す。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)  
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出して名前付きシステムセマフォを作成する場合。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)  
   
-セキュリティ アクション:<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />します。</permission>
+セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。</permission>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
       </Docs>
@@ -278,20 +278,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターの初期化を<xref:System.Threading.Semaphore>名前付きシステム セマフォを表すオブジェクト。 複数作成できます<xref:System.Threading.Semaphore>名前付きシステム セマフォが同じを表すオブジェクト。  
+ このコンストラクターは、 <xref:System.Threading.Semaphore>名前付きシステムセマフォを表すオブジェクトを初期化します。 同じ名前付きシステム<xref:System.Threading.Semaphore>セマフォを表す複数のオブジェクトを作成できます。  
   
- 名前付きシステム セマフォが存在しない場合、最初の数で指定された最大数と作成`initialCount`と`maximumCount`します。 名前付きシステム セマフォが既に存在する場合`initialCount`と`maximumCount`を使用しないが、無効な値では例外が発生します。 使用`createdNew`システム セマフォが作成されたかどうかを判断します。  
+ 名前付きシステムセマフォが存在しない場合は、と`initialCount` `maximumCount`で指定された初期カウントと最大カウントを使用して作成されます。 名前付きシステムセマフォが既に存在`initialCount` `maximumCount`し、使用されていない場合でも、無効な値によって例外が発生します。 システム`createdNew`セマフォが作成されたかどうかを判断するには、を使用します。  
   
- 場合`initialCount`がより小さい`maximumCount`、および`createdNew`は`true`、現在のスレッドを呼び出した場合と同じ効果が<xref:System.Threading.WaitHandle.WaitOne%2A>(`maximumCount`マイナス`initialCount`) 回。  
+ が`initialCount`より`createdNew` `maximumCount` <xref:System.Threading.WaitHandle.WaitOne%2A>小さい場合、 `initialCount`が`true`である場合、効果は、現在のスレッドが (負の) 時間を呼び出した場合と同じになります。 `maximumCount`  
   
- 指定した場合`null`または空の文字列の`name`、ローカル セマフォが作成されたことを呼び出した場合と、<xref:System.Threading.Semaphore.%23ctor%28System.Int32%2CSystem.Int32%29>コンス トラクター オーバー ロードします。 この場合、`createdNew`は常に`true`します。  
+ またはに`null`空の`name`文字列を指定すると、 <xref:System.Threading.Semaphore.%23ctor%28System.Int32%2CSystem.Int32%29>コンストラクターのオーバーロードを呼び出した場合と同様に、ローカルセマフォが作成されます。 この場合、 `createdNew`は常に`true`です。  
   
- 名前付きセマフォは、オペレーティング システム全体表示であるために、プロセス境界をまたいでリソースの使用を調整するため、使用できます。  
+ 名前付きセマフォはオペレーティングシステム全体にわたって表示されるため、プロセスの境界を越えてリソースの使用量を調整するために使用できます。  
   
    
   
 ## Examples  
- 次のコード例では、名前付きセマフォのプロセス間の動作を示します。 例では、最大数が 5 つ、2 つの最初の数と名前付きセマフォを作成します。 つまり、コンス トラクターを呼び出すスレッドの 3 つのエントリを予約します。 場合`createNew`は`false`、プログラムは、次の 3 つの呼び出し、<xref:System.Threading.WaitHandle.WaitOne%2A>メソッド。 このため、2 つのコマンド ウィンドウからコンパイル済みの例を実行する場合、2 番目のコピーが 3 番目の呼び出しでブロックは<xref:System.Threading.WaitHandle.WaitOne%2A>します。 2 番目のブロックを解除するプログラムの最初のコピーで 1 つまたは複数のエントリを解放します。  
+ 名前付きセマフォのプロセス間の動作を示すコード例を次に示します。 この例では、最大数が5で、初期カウントが2である名前付きセマフォを作成します。 つまり、コンストラクターを呼び出すスレッドに対して、3つのエントリが予約されます。 <xref:System.Threading.WaitHandle.WaitOne%2A>が`createNew` の`false`場合、プログラムはメソッドを3回呼び出します。 したがって、コンパイルされた例を2つのコマンドウィンドウから実行した場合、2番目<xref:System.Threading.WaitHandle.WaitOne%2A>のコピーはの3回目の呼び出しでブロックされます。 プログラムの最初のコピーの1つ以上のエントリを解放して、2番目のブロックのブロックを解除します。  
   
  [!code-cpp[System.Threading.Semaphore.ctor named 4#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 4/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore.ctor named 4#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 4/CS/source.cs#1)]
@@ -301,18 +301,18 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="initialCount" /> が <paramref name="maximumCount" /> より大きくなっています。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumCount" /> が 1 未満です。  
   
-または 
+- または - 
  <paramref name="initialCount" /> が 0 未満です。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
         <exception cref="T:System.UnauthorizedAccessException">アクセス制御セキュリティを使用した名前付きセマフォが存在しており、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" /> がありません。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォを作成できません。原因として、別の型の待機ハンドルに同じ名前が付けられていることが考えられます。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">名前付きシステム セマフォを作成するアンマネージ コードを呼び出す。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)  
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出して名前付きシステムセマフォを作成する場合。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)  
   
-セキュリティ アクション:<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />します。</permission>
+セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。</permission>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
       </Docs>
@@ -354,29 +354,29 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターを使用すると、作成時、他のコードがセマフォを乗っ取ることを防止、アクセス制御セキュリティを名前付きシステム セマフォに適用できます。  
+ このコンストラクターを使用して、名前付きシステムセマフォの作成時にアクセス制御セキュリティを適用し、他のコードがセマフォを制御できないようにします。  
   
- このコンス トラクターの初期化を<xref:System.Threading.Semaphore>名前付きシステム セマフォを表すオブジェクト。 複数作成できます<xref:System.Threading.Semaphore>名前付きシステム セマフォが同じを表すオブジェクト。  
+ このコンストラクターは、 <xref:System.Threading.Semaphore>名前付きシステムセマフォを表すオブジェクトを初期化します。 同じ名前付きシステム<xref:System.Threading.Semaphore>セマフォを表す複数のオブジェクトを作成できます。  
   
- 名前付きシステム セマフォが存在しない場合は、指定したアクセス制御セキュリティで作成されます。 名前付きセマフォが存在する場合は、指定したアクセス制御セキュリティが無視されます。  
+ 名前付きシステムセマフォが存在しない場合は、指定されたアクセス制御セキュリティを使用して作成されます。 名前付きセマフォが存在する場合、指定されたアクセス制御セキュリティは無視されます。  
   
 > [!NOTE]
->  呼び出し元が新しく作成された完全な制御<xref:System.Threading.Semaphore>オブジェクトいて`semaphoreSecurity`拒否するか、現在のユーザーへのいくつかのアクセス権の付与に失敗しました。 ただし場合は、現在のユーザーが別の取得を試みます<xref:System.Threading.Semaphore>オブジェクトを表す、同じ名前付きセマフォをいずれかを使用して、コンス トラクターまたは<xref:System.Threading.Semaphore.OpenExisting%2A>メソッドでは、Windows アクセス制御セキュリティを適用します。  
+>  が現在のユーザーに対して一部の<xref:System.Threading.Semaphore>アクセス権を`semaphoreSecurity`拒否または許可しない場合でも、呼び出し元は、新しく作成されたオブジェクトを完全に制御できます。 ただし、コンストラクター <xref:System.Threading.Semaphore.OpenExisting%2A>またはメソッドを使用して<xref:System.Threading.Semaphore> 、現在のユーザーが同じ名前のセマフォを表す別のオブジェクトを取得しようとすると、Windows アクセス制御セキュリティが適用されます。  
   
- 名前付きシステム セマフォが存在しない場合、最初の数で指定された最大数と作成`initialCount`と`maximumCount`します。 名前付きシステム セマフォが既に存在する場合`initialCount`と`maximumCount`を使用しないが、無効な値では例外が発生します。 使用して、`createdNew`パラメーターをこのコンス トラクターによって、システム セマフォが作成されたかどうかを判断します。  
+ 名前付きシステムセマフォが存在しない場合は、と`initialCount` `maximumCount`で指定された初期カウントと最大カウントを使用して作成されます。 名前付きシステムセマフォが既に存在`initialCount` `maximumCount`し、使用されていない場合でも、無効な値によって例外が発生します。 `createdNew`パラメーターを使用して、システムセマフォがこのコンストラクターによって作成されたかどうかを確認します。  
   
- 場合`initialCount`がより小さい`maximumCount`、および`createdNew`は`true`、現在のスレッドを呼び出した場合と同じ効果が<xref:System.Threading.WaitHandle.WaitOne%2A>(`maximumCount`マイナス`initialCount`) 回。  
+ が`initialCount`より`createdNew` `maximumCount` <xref:System.Threading.WaitHandle.WaitOne%2A>小さい場合、 `initialCount`が`true`である場合、効果は、現在のスレッドが (負の) 時間を呼び出した場合と同じになります。 `maximumCount`  
   
- 指定した場合`null`または空の文字列の`name`、ローカル セマフォが作成されたことを呼び出した場合と、<xref:System.Threading.Semaphore.%23ctor%28System.Int32%2CSystem.Int32%29>コンス トラクター オーバー ロードします。 この場合、`createdNew`は常に`true`します。  
+ またはに`null`空の`name`文字列を指定すると、 <xref:System.Threading.Semaphore.%23ctor%28System.Int32%2CSystem.Int32%29>コンストラクターのオーバーロードを呼び出した場合と同様に、ローカルセマフォが作成されます。 この場合、 `createdNew`は常に`true`です。  
   
- 名前付きセマフォは、オペレーティング システム全体表示であるために、プロセス境界をまたいでリソースの使用を調整するため、使用できます。  
+ 名前付きセマフォはオペレーティングシステム全体にわたって表示されるため、プロセスの境界を越えてリソースの使用量を調整するために使用できます。  
   
    
   
 ## Examples  
- 次のコード例では、アクセス制御セキュリティを名前付きセマフォのプロセス間の動作を示します。 この例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>名前付きセマフォの存在をテストするメソッドのオーバー ロードします。 セマフォが存在しない場合、2 つの最大数と、セマフォを使用する権利を現在のユーザーに拒否の読み取りし、セマフォのアクセス許可を変更する権限を付与するアクセス制御セキュリティが作成されます。 2 つのコマンド ウィンドウからコンパイル済みの例を実行する場合、2 番目のコピーへの呼び出しでアクセス違反例外がスローされます、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッド。 例外がキャッチされ、例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドのオーバー ロードを読み取って、アクセス許可を変更するために必要な権限を持つ、セマフォを開きます。  
+ 次のコード例では、アクセス制御セキュリティを使用した名前付きセマフォのプロセス間の動作を示します。 この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%29> 、メソッドオーバーロードを使用して、名前付きセマフォが存在するかどうかをテストします。 セマフォが存在しない場合は、最大カウント2とアクセス制御セキュリティを使用して作成され、現在のユーザーがセマフォを使用する権限を拒否しますが、セマフォに対するアクセス許可の読み取りと変更の権限を付与します。 コンパイルされた例を2つのコマンドウィンドウから実行した場合、2番目のコピーでは、 <xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッドの呼び出しでアクセス違反例外がスローされます。 例外がキャッチされ、この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドオーバーロードを使用して、アクセス許可の読み取りと変更に必要な権限を持つセマフォを開きます。  
   
- アクセス許可が変更された後、セマフォは、入力し、解放に必要な権限で開かれます。 3 番目のコマンド ウィンドウからコンパイル済みの例を実行する場合は、新しいアクセス許可を使用してを実行します。  
+ アクセス許可が変更されると、セマフォを入力して解放するために必要な権限を使用してセマフォが開かれます。 コンパイルされた例を3番目のコマンドウィンドウから実行すると、新しいアクセス許可を使用して実行されます。  
   
  [!code-cpp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CS/source.cs#1)]
@@ -386,16 +386,16 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="initialCount" /> が <paramref name="maximumCount" /> より大きくなっています。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumCount" /> が 1 未満です。  
   
-または 
+- または - 
  <paramref name="initialCount" /> が 0 未満です。</exception>
         <exception cref="T:System.UnauthorizedAccessException">アクセス制御セキュリティを使用した名前付きセマフォが存在しており、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" /> がありません。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォを作成できません。原因として、別の型の待機ハンドルに同じ名前が付けられていることが考えられます。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">名前付きシステム セマフォを作成するアンマネージ コードを呼び出す。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体) セキュリティ アクション:<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />します。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出して名前付きシステムセマフォを作成する場合。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体) セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。</permission>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
       </Docs>
@@ -431,22 +431,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Semaphore.GetAccessControl%2A>メソッドは次のフラグ (ビットごとの OR 演算を使用して結合) の組み合わせを使用してアクセス許可を検索する: <xref:System.Security.AccessControl.AccessControlSections.Access?displayProperty=nameWithType>、 <xref:System.Security.AccessControl.AccessControlSections.Owner?displayProperty=nameWithType>、および<xref:System.Security.AccessControl.AccessControlSections.Group?displayProperty=nameWithType>します。  
+ メソッド<xref:System.Threading.Semaphore.GetAccessControl%2A> <xref:System.Security.AccessControl.AccessControlSections.Access?displayProperty=nameWithType>は、、 <xref:System.Security.AccessControl.AccessControlSections.Owner?displayProperty=nameWithType>、および<xref:System.Security.AccessControl.AccessControlSections.Group?displayProperty=nameWithType>の各フラグの組み合わせを使用して、アクセス許可を検索します (ビットごとの or 演算を使用します)。  
   
- ユーザーがいる必要があります<xref:System.Security.AccessControl.SemaphoreRights.ReadPermissions?displayProperty=nameWithType>でこのメソッドでは、およびセマフォを呼び出す権限が開かれている必要があります<xref:System.Security.AccessControl.SemaphoreRights.ReadPermissions?displayProperty=nameWithType>権限。  
+ ユーザーは、この<xref:System.Security.AccessControl.SemaphoreRights.ReadPermissions?displayProperty=nameWithType>メソッドを呼び出すための権限を持っている必要があり<xref:System.Security.AccessControl.SemaphoreRights.ReadPermissions?displayProperty=nameWithType>ます。また、セマフォが権限で開かれている必要があります。  
   
- ローカルのセマフォでアクセス制御セキュリティは関係ありません。 場合、<xref:System.Threading.Semaphore>オブジェクトは、名前付きシステム セマフォを表していません、このメソッドが戻る、<xref:System.Security.AccessControl.SemaphoreSecurity>任意のユーザーにすべての権限を付与するオブジェクトです。  
+ ローカルセマフォでは、アクセス制御セキュリティは無関係です。 オブジェクトが名前付きシステムセマフォを表していない場合、このメソッド<xref:System.Security.AccessControl.SemaphoreSecurity>は、すべてのユーザーに対してすべての権限を付与するオブジェクトを返します。 <xref:System.Threading.Semaphore>  
   
    
   
 ## Examples  
- 次のコード例では、アクセス制御セキュリティを名前付きセマフォのプロセス間の動作を示します。 この例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>名前付きセマフォの存在をテストするメソッドのオーバー ロードします。  
+ 次のコード例では、アクセス制御セキュリティを使用した名前付きセマフォのプロセス間の動作を示します。 この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%29> 、メソッドオーバーロードを使用して、名前付きセマフォが存在するかどうかをテストします。  
   
- セマフォが存在しない場合、2 つの最大数と、セマフォを使用する権利を現在のユーザーに拒否の読み取りし、セマフォのアクセス許可を変更する権限を付与するアクセス制御セキュリティが作成されます。  
+ セマフォが存在しない場合は、最大カウント2とアクセス制御セキュリティを使用して作成され、現在のユーザーがセマフォを使用する権限を拒否します。ただし、セマフォに対するアクセス許可を読み取り、変更する権限を付与します。  
   
- 2 つのコマンド ウィンドウからコンパイル済みの例を実行する場合、2 番目のコピーへの呼び出しでアクセス違反例外がスローされます、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッド。 例外がキャッチされ、例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドのオーバー ロードを読み取って、アクセス許可を変更するために必要な権限を持つ、セマフォを開きます。 使用して、システム セマフォのアクセス制御セキュリティを取得、<xref:System.Threading.Semaphore.GetAccessControl%2A>メソッド。  
+ コンパイルされた例を2つのコマンドウィンドウから実行した場合、2番目のコピーでは、 <xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッドの呼び出しでアクセス違反例外がスローされます。 例外がキャッチされ、この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドオーバーロードを使用して、アクセス許可の読み取りと変更に必要な権限を持つセマフォを開きます。 システムセマフォのアクセス制御セキュリティは、 <xref:System.Threading.Semaphore.GetAccessControl%2A>メソッドを使用して取得されます。  
   
- アクセス許可が変更された後、セマフォは、入力し、解放に必要な権限で開かれます。 3 番目のコマンド ウィンドウからコンパイル済みの例を実行する場合は、新しいアクセス許可を使用してを実行します。  
+ アクセス許可が変更されると、セマフォを入力して解放するために必要な権限を使用してセマフォが開かれます。 コンパイルされた例を3番目のコマンドウィンドウから実行すると、新しいアクセス許可を使用して実行されます。  
   
  [!code-cpp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CS/source.cs#1)]
@@ -456,7 +456,7 @@
         </remarks>
         <exception cref="T:System.UnauthorizedAccessException">現在の <see cref="T:System.Threading.Semaphore" /> オブジェクトは名前付きシステム セマフォを表していますが、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.ReadPermissions" /> 権限がありません。  
   
-または 
+- または - 
 現在の <see cref="T:System.Threading.Semaphore" /> オブジェクトは名前付きシステム セマフォを表しており、<see cref="F:System.Security.AccessControl.SemaphoreRights.ReadPermissions" /> 権限で開かれませんでした。</exception>
         <exception cref="T:System.NotSupportedException">Windows 98 または Windows Millennium Edition はサポートされていません。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
@@ -519,24 +519,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.Semaphore.OpenExisting%2A>メソッドが指定した名前付きセマフォを開こうとします。 システム セマフォが存在しない場合、このメソッドは、システム セマフォを作成する代わりに、例外をスローします。 既に存在しない場合にシステム セマフォを作成するには、いずれかを使用、<xref:System.Threading.Semaphore.%23ctor%2A>コンス トラクターを持つ、`name`パラメーター。  
+ メソッド<xref:System.Threading.Semaphore.OpenExisting%2A>は、指定された名前付きセマフォを開こうとします。 システムセマフォが存在しない場合、このメソッドはシステムセマフォを作成するのではなく、例外をスローします。 システムセマフォがまだ存在しない場合に作成するには、パラメーターを<xref:System.Threading.Semaphore.%23ctor%2A> `name`持つコンストラクターのいずれかを使用します。  
   
- このメソッドに同じ値を使用する複数の呼び出し`name`必ずしも返さない同じ<xref:System.Threading.Semaphore>場合でも、表現が返されるオブジェクトと同じ名前付きシステム セマフォ オブジェクトします。  
+ の同じ値を使用するこのメソッドの複数の`name`呼び出しでは、返される<xref:System.Threading.Semaphore>オブジェクトが同じ名前付きシステムセマフォを表す場合でも、必ずしも同じオブジェクトを返すとは限りません。  
   
- このメソッドのオーバー ロードの呼び出しと同じですが、<xref:System.Threading.Semaphore.OpenExisting%2A>メソッドのオーバー ロードを指定して<xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType>と<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>権限、ビットごとの OR 演算を使用して結合します。  
+ このメソッドのオーバーロードは、メソッドの<xref:System.Threading.Semaphore.OpenExisting%2A>オーバーロードを呼び出し、 <xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType> and <xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>権限を指定して、ビットごとの or 演算を使用して組み合わせたものです。  
   
- 指定する、<xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType>フラグによって、セマフォに入るためのスレッドを指定して、<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>フラグによって、スレッドを呼び出す、<xref:System.Threading.Semaphore.Release%2A>メソッド。  
+ フラグを指定すると、スレッドはセマフォに入ることができ<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType> 、フラグを指定すると、 <xref:System.Threading.Semaphore.Release%2A>スレッドはメソッドを呼び出すことができます。 <xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType>  
   
    
   
 ## Examples  
- 次のコード例では、アクセス制御セキュリティを名前付きセマフォのプロセス間の動作を示します。 この例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>名前付きセマフォの存在をテストするメソッドのオーバー ロードします。  
+ 次のコード例では、アクセス制御セキュリティを使用した名前付きセマフォのプロセス間の動作を示します。 この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%29> 、メソッドオーバーロードを使用して、名前付きセマフォが存在するかどうかをテストします。  
   
- セマフォが存在しない場合、2 つの最大数と、セマフォを使用する権利が、現在のユーザーを拒否しますが、読み取りし、セマフォのアクセス許可を変更する権限を付与するアクセス制御のセキュリティが作成されます。  
+ セマフォが存在しない場合は、最大カウント2とアクセス制御セキュリティを使用して作成されます。これにより、現在のユーザーがセマフォを使用する権限を拒否しますが、セマフォに対するアクセス許可の読み取りと変更の権限が付与されます。  
   
- 2 つのコマンド ウィンドウからコンパイル済みの例を実行する場合、2 番目のコピーへの呼び出しでアクセス違反例外がスローされます、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッドのオーバー ロードします。 例外がキャッチされ、例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドのオーバー ロードを読み取って、アクセス許可を変更するために必要な権限を持つ、セマフォを開きます。  
+ コンパイルされた例を2つのコマンドウィンドウから実行した場合、2番目のコピーでは、 <xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッドオーバーロードの呼び出しでアクセス違反例外がスローされます。 例外がキャッチされ、この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドオーバーロードを使用して、アクセス許可の読み取りと変更に必要な権限を持つセマフォを開きます。  
   
- アクセス許可が変更された後、セマフォを入力し、それを解放するために必要な権限で開きます。 3 番目のコマンド ウィンドウからコンパイル済みの例を実行する場合は、新しいアクセス許可を使用してを実行します。  
+ アクセス許可が変更されると、セマフォを入力および解放するために必要な権限を使用してセマフォが開かれます。 コンパイルされた例を3番目のコマンドウィンドウから実行すると、新しいアクセス許可を使用して実行されます。  
   
  [!code-cpp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CS/source.cs#1)]
@@ -546,15 +546,15 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> が空の文字列です。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォが存在しません。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
         <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、それを使用するために必要なセキュリティ アクセスがユーザーにありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">名前付きシステム セマフォを開きをアンマネージ コードを呼び出す。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)  
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出して名前付きシステムセマフォを開く場合。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)  
   
-セキュリティ アクション:<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />します。</permission>
+セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。</permission>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
       </Docs>
@@ -595,22 +595,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `rights`パラメーターを含める必要があります、 <xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType> 、セマフォに入るためのスレッドを許可するフラグ、<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>を呼び出すスレッドを許可するフラグ、<xref:System.Threading.Semaphore.Release%2A>メソッド。  
+ パラメーターには、スレッド<xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType>がセマフォに入ることを許可するフラグと<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType> 、スレッドが<xref:System.Threading.Semaphore.Release%2A>メソッドを呼び出すことを許可するフラグを含める必要があります。 `rights`  
   
- <xref:System.Threading.Semaphore.OpenExisting%2A>メソッドが、既存の名前付きセマフォを開こうとします。 システム セマフォが存在しない場合、このメソッドは、システム セマフォを作成する代わりに、例外をスローします。 既に存在しない場合にシステム セマフォを作成するには、いずれかを使用、<xref:System.Threading.Semaphore.%23ctor%2A>コンス トラクターを持つ、`name`パラメーター。  
+ メソッド<xref:System.Threading.Semaphore.OpenExisting%2A>は、既存の名前付きセマフォを開こうとします。 システムセマフォが存在しない場合、このメソッドはシステムセマフォを作成するのではなく、例外をスローします。 システムセマフォがまだ存在しない場合に作成するには、パラメーターを<xref:System.Threading.Semaphore.%23ctor%2A> `name`持つコンストラクターのいずれかを使用します。  
   
- このメソッドに同じ値を使用する複数の呼び出し`name`必ずしも返さない同じ<xref:System.Threading.Semaphore>場合でも、表現が返されるオブジェクトと同じ名前付きシステム セマフォ オブジェクトします。  
+ の同じ値を使用するこのメソッドの複数の`name`呼び出しでは、返される<xref:System.Threading.Semaphore>オブジェクトが同じ名前付きシステムセマフォを表す場合でも、必ずしも同じオブジェクトを返すとは限りません。  
   
    
   
 ## Examples  
- 次のコード例では、アクセス制御セキュリティを名前付きセマフォのプロセス間の動作を示します。 この例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>名前付きセマフォの存在をテストするメソッドのオーバー ロードします。  
+ 次のコード例では、アクセス制御セキュリティを使用した名前付きセマフォのプロセス間の動作を示します。 この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%29> 、メソッドオーバーロードを使用して、名前付きセマフォが存在するかどうかをテストします。  
   
- セマフォが存在しない場合、2 つの最大数と、セマフォを使用する権利を現在のユーザーに拒否の読み取りし、セマフォのアクセス許可を変更する権限を付与するアクセス制御セキュリティが作成されます。  
+ セマフォが存在しない場合は、最大カウント2とアクセス制御セキュリティを使用して作成され、現在のユーザーがセマフォを使用する権限を拒否します。ただし、セマフォに対するアクセス許可を読み取り、変更する権限を付与します。  
   
- 2 つのコマンド ウィンドウからコンパイル済みの例を実行する場合、2 番目のコピーへの呼び出しでアクセス違反例外がスローされます、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッド。 例外がキャッチされ、例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドのオーバー ロードを読み取って、アクセス許可を変更するために必要な権限を持つ、セマフォを開きます。  
+ コンパイルされた例を2つのコマンドウィンドウから実行した場合、2番目のコピーでは、 <xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッドの呼び出しでアクセス違反例外がスローされます。 例外がキャッチされ、この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドオーバーロードを使用して、アクセス許可の読み取りと変更に必要な権限を持つセマフォを開きます。  
   
- アクセス許可が変更された後、セマフォを入力し、それを解放するために必要な権限で開きます。 3 番目のコマンド ウィンドウからコンパイル済みの例を実行する場合は、新しいアクセス許可を使用してを実行します。  
+ アクセス許可が変更されると、セマフォを入力および解放するために必要な権限を使用してセマフォが開かれます。 コンパイルされた例を3番目のコマンドウィンドウから実行すると、新しいアクセス許可を使用して実行されます。  
   
  [!code-cpp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CS/source.cs#1)]
@@ -620,15 +620,15 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> が空の文字列です。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォが存在しません。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
         <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、必要なセキュリティ アクセス権がユーザーにありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">名前付きシステム セマフォを作成するアンマネージ コードを呼び出す。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)  
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出して名前付きシステムセマフォを作成する場合。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)  
   
-セキュリティ アクション:<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />します。</permission>
+セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。</permission>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
       </Docs>
@@ -692,18 +692,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スレッドを使用して、通常、<xref:System.Threading.WaitHandle.WaitOne%2A>セマフォ、およびそれらを通常入力する方法では、このメソッドのオーバー ロードを使用して、終了します。  
+ スレッドは通常、 <xref:System.Threading.WaitHandle.WaitOne%2A>メソッドを使用してセマフォに入ります。通常、スレッドはこのメソッドオーバーロードを使用して終了します。  
   
- 場合、<xref:System.Threading.SemaphoreFullException>によってスローされる、<xref:System.Threading.Semaphore.Release%2A>メソッドを呼び出し元のスレッドに問題が必ずしも可能性はありません。 別のスレッドでのプログラミング エラーによって、そのスレッドがセマフォに回よりも、入力した原因と考えです。  
+ <xref:System.Threading.SemaphoreFullException>がメソッド<xref:System.Threading.Semaphore.Release%2A>によってスローされた場合、必ずしも呼び出し元のスレッドに問題があるとは限りません。 別のスレッドでプログラミングエラーが発生したため、スレッドは、入力した数よりも多くのスレッドを終了している可能性があります。  
   
- 場合、現在<xref:System.Threading.Semaphore>オブジェクトは、名前付きシステム セマフォを表す、ユーザーがいる必要があります<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>にする必要がありますに開かれた権限と、セマフォ<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>権限。  
+ 現在<xref:System.Threading.Semaphore>のオブジェクトが名前付きシステムセマフォを表している場合、 <xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>ユーザーは権限を持っている必要が<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>あり、セマフォは権限で開かれている必要があります。  
   
    
   
 ## Examples  
- 次のコード例は、0 の最初の数の 3 つの最大数、およびセマフォを作成します。 例では、セマフォの待機をブロックする 5 つのスレッドを開始します。 メイン スレッドを使用して、<xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドのオーバー ロードは、次の 3 つのスレッドがセマフォに入るをできるように、最大容量にセマフォ カウントを増やします。 各スレッドを使用して、<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドが、作業し、呼び出しをシミュレートするために、1 秒間待機する、<xref:System.Threading.Semaphore.Release>セマフォを解放するメソッドのオーバー ロードします。  
+ 次のコード例では、最大数が3で、初期カウントが0のセマフォを作成します。 この例では、5つのスレッドを開始します。これは、セマフォを待機しています。 メインスレッドは、 <xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドオーバーロードを使用してセマフォ数を最大値に増やし、3つのスレッドがセマフォに入ることができるようにします。 各スレッドは、 <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドを使用して1秒間待機し、作業をシミュレートし<xref:System.Threading.Semaphore.Release>た後、メソッドオーバーロードを呼び出してセマフォを解放します。  
   
- セマフォがリリースされるたびに、前のセマフォのカウントが表示されます。 コンソール メッセージ追跡セマフォを使用します。 各スレッドは、出力を読みやすくするために、シミュレートされた動作の間隔が若干増加します。  
+ セマフォが解放されるたびに、前のセマフォ数が表示されます。 コンソールメッセージは、セマフォの使用を追跡します。 シミュレートされた作業間隔は、出力を読みやすくするために、スレッドごとに若干増加します。  
   
  [!code-cpp[System.Threading.Semaphore2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore2/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore2/CS/source.cs#1)]
@@ -766,18 +766,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スレッドは、セマフォを複数回入力が、このメソッドのオーバー ロードでは、全体のセマフォのカウントを 1 回の呼び出しで復元するができます。  
+ スレッドがセマフォに複数回入力した場合、このメソッドオーバーロードを使用すると、1回の呼び出しでセマフォ全体のカウントを復元できます。  
   
- 場合、<xref:System.Threading.SemaphoreFullException>によってスローされる、<xref:System.Threading.Semaphore.Release%2A>メソッドを呼び出し元のスレッドに問題が必ずしも可能性はありません。 別のスレッドでのプログラミング エラーによって、そのスレッドがセマフォに回よりも、入力した原因と考えです。  
+ <xref:System.Threading.SemaphoreFullException>がメソッド<xref:System.Threading.Semaphore.Release%2A>によってスローされた場合、必ずしも呼び出し元のスレッドに問題があるとは限りません。 別のスレッドでプログラミングエラーが発生したため、スレッドは、入力した数よりも多くのスレッドを終了している可能性があります。  
   
- 場合、現在<xref:System.Threading.Semaphore>オブジェクトは、名前付きシステム セマフォを表す、ユーザーがいる必要があります<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>にする必要がありますに開かれた権限と、セマフォ<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>権限。  
+ 現在<xref:System.Threading.Semaphore>のオブジェクトが名前付きシステムセマフォを表している場合、 <xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>ユーザーは権限を持っている必要が<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>あり、セマフォは権限で開かれている必要があります。  
   
    
   
 ## Examples  
- 次のコード例は、0 の最初の数の 3 つの最大数、およびセマフォを作成します。 例では、セマフォの待機をブロックする 5 つのスレッドを開始します。 メイン スレッドを使用して、<xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドのオーバー ロードは、次の 3 つのスレッドがセマフォに入るをできるように、最大容量にセマフォ カウントを増やします。 各スレッドを使用して、<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドが、作業し、呼び出しをシミュレートするために、1 秒間待機する、<xref:System.Threading.Semaphore.Release>セマフォを解放するメソッドのオーバー ロードします。  
+ 次のコード例では、最大数が3で、初期カウントが0のセマフォを作成します。 この例では、5つのスレッドを開始します。これは、セマフォを待機しています。 メインスレッドは、 <xref:System.Threading.Semaphore.Release%28System.Int32%29>メソッドオーバーロードを使用してセマフォ数を最大値に増やし、3つのスレッドがセマフォに入ることができるようにします。 各スレッドは、 <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッドを使用して1秒間待機し、作業をシミュレートし<xref:System.Threading.Semaphore.Release>た後、メソッドオーバーロードを呼び出してセマフォを解放します。  
   
- セマフォがリリースされるたびに、前のセマフォのカウントが表示されます。 コンソール メッセージ追跡セマフォを使用します。 各スレッドは、出力を読みやすくするために、シミュレートされた動作の間隔が若干増加します。  
+ セマフォが解放されるたびに、前のセマフォ数が表示されます。 コンソールメッセージは、セマフォの使用を追跡します。 シミュレートされた作業間隔は、出力を読みやすくするために、スレッドごとに若干増加します。  
   
  [!code-cpp[System.Threading.Semaphore2#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore2/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore2/CS/source.cs#1)]
@@ -828,20 +828,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- のみアクセス制御セキュリティを設定する<xref:System.Threading.Semaphore>名前付きシステム セマフォを表すオブジェクト。  
+ アクセス制御セキュリティは、名前付きシステム<xref:System.Threading.Semaphore>セマフォを表すオブジェクトに対してのみ設定できます。  
   
- ユーザーがいる必要があります<xref:System.Security.AccessControl.SemaphoreRights.ChangePermissions?displayProperty=nameWithType>でこのメソッドでは、およびセマフォを呼び出す権限が開かれている必要があります<xref:System.Security.AccessControl.SemaphoreRights.ChangePermissions?displayProperty=nameWithType>権限。  
+ ユーザーは、この<xref:System.Security.AccessControl.SemaphoreRights.ChangePermissions?displayProperty=nameWithType>メソッドを呼び出すための権限を持っている必要があり<xref:System.Security.AccessControl.SemaphoreRights.ChangePermissions?displayProperty=nameWithType>ます。また、セマフォが権限で開かれている必要があります。  
   
    
   
 ## Examples  
- 次のコード例では、アクセス制御セキュリティを名前付きセマフォのプロセス間の動作を示します。 この例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>名前付きセマフォの存在をテストするメソッドのオーバー ロードします。  
+ 次のコード例では、アクセス制御セキュリティを使用した名前付きセマフォのプロセス間の動作を示します。 この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%29> 、メソッドオーバーロードを使用して、名前付きセマフォが存在するかどうかをテストします。  
   
- セマフォが存在しない場合、2 つの最大数と、セマフォを使用する権利を現在のユーザーに拒否の読み取りし、セマフォのアクセス許可を変更する権限を付与するアクセス制御セキュリティが作成されます。  
+ セマフォが存在しない場合は、最大カウント2とアクセス制御セキュリティを使用して作成され、現在のユーザーがセマフォを使用する権限を拒否しますが、セマフォに対するアクセス許可の読み取りと変更の権限を付与します。  
   
- 2 つのコマンド ウィンドウからコンパイル済みの例を実行する場合、2 番目のコピーへの呼び出しでアクセス違反例外がスローされます、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッド。 例外がキャッチされ、例では、<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドのオーバー ロードを読み取って、アクセス許可を変更するために必要な権限を持つ、セマフォを開きます。  
+ コンパイルされた例を2つのコマンドウィンドウから実行した場合、2番目のコピーでは、 <xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッドの呼び出しでアクセス違反例外がスローされます。 例外がキャッチされ、この例では<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドオーバーロードを使用して、アクセス許可の読み取りと変更に必要な権限を持つセマフォを開きます。  
   
- 使用して、アクセス許可が変更した後、<xref:System.Threading.Semaphore.SetAccessControl%2A>セマフォ、メソッドは入力し、解放に必要な権限によって開かれます。 3 番目のコマンド ウィンドウからコンパイル済みの例を実行する場合は、新しいアクセス許可を使用してを実行します。  
+ アクセス許可が変更された後<xref:System.Threading.Semaphore.SetAccessControl%2A> 、メソッドを使用して、セマフォを入力および解放するために必要な権限を使用して開きます。 コンパイルされた例を3番目のコマンドウィンドウから実行すると、新しいアクセス許可を使用して実行されます。  
   
  [!code-cpp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.Semaphore.ctor named 5a#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.Semaphore.ctor named 5a/CS/source.cs#1)]
@@ -852,7 +852,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="semaphoreSecurity" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.UnauthorizedAccessException">ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.ChangePermissions" /> 権限がありません。  
   
-または 
+- または - 
 セマフォは <see cref="F:System.Security.AccessControl.SemaphoreRights.ChangePermissions" /> 権限で開かれませんでした。</exception>
         <exception cref="T:System.NotSupportedException">現在の <see cref="T:System.Threading.Semaphore" /> オブジェクトは名前付きシステム セマフォを表していません。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
@@ -911,17 +911,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 名前付きセマフォが存在しない場合このメソッドはいない作成しません。 既に存在しない場合にシステム セマフォを作成するには、いずれかを使用、<xref:System.Threading.Semaphore.%23ctor%2A>コンス トラクターを持つ、`name`パラメーター。  
+ 名前付きセマフォが存在しない場合、このメソッドはそれを作成しません。 システムセマフォがまだ存在しない場合に作成するには、パラメーターを<xref:System.Threading.Semaphore.%23ctor%2A> `name`持つコンストラクターのいずれかを使用します。  
   
- 名前付きセマフォが存在するかどうかが不明な場合は、代わりにこのメソッドのオーバー ロードを使用して、<xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッド オーバー ロードで、セマフォが存在しない場合は、例外をスローします。  
+ 名前付きセマフォが存在するかどうかが不明な場合は、 <xref:System.Threading.Semaphore.OpenExisting%28System.String%29>メソッドオーバーロードではなく、このメソッドオーバーロードを使用します。これにより、セマフォが存在しない場合に例外がスローされます。  
   
- このメソッドのオーバー ロードの呼び出しと同じですが、<xref:System.Threading.Semaphore.TryOpenExisting%2A>メソッドのオーバー ロードを指定して<xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType>と<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>権限、ビットごとの OR 演算を使用して結合します。 指定する、<xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType>フラグによって、セマフォに入るためのスレッドを指定して、<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>フラグによって、スレッドを呼び出す、<xref:System.Threading.Semaphore.Release%2A>メソッド。  
+ このメソッドのオーバーロードは、メソッドの<xref:System.Threading.Semaphore.TryOpenExisting%2A>オーバーロードを呼び出し、 <xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType> and <xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>権限を指定して、ビットごとの or 演算を使用して組み合わせたものです。 フラグを指定すると、スレッドはセマフォに入ることができ<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType> 、フラグを指定すると、 <xref:System.Threading.Semaphore.Release%2A>スレッドはメソッドを呼び出すことができます。 <xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType>  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> が空の文字列です。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
@@ -965,19 +965,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 名前付きセマフォが存在しない場合このメソッドはいない作成しません。 既に存在しない場合にシステム セマフォを作成するには、いずれかを使用、<xref:System.Threading.Semaphore.%23ctor%2A>コンス トラクターを持つ、`name`パラメーター。  
+ 名前付きセマフォが存在しない場合、このメソッドはそれを作成しません。 システムセマフォがまだ存在しない場合に作成するには、パラメーターを<xref:System.Threading.Semaphore.%23ctor%2A> `name`持つコンストラクターのいずれかを使用します。  
   
- 名前付きセマフォが存在するかどうかが不明な場合は、代わりにこのメソッドのオーバー ロードを使用して、<xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッド オーバー ロードで、セマフォが存在しない場合は、例外をスローします。  
+ 名前付きセマフォが存在するかどうかが不明な場合は、 <xref:System.Threading.Semaphore.OpenExisting%28System.String%2CSystem.Security.AccessControl.SemaphoreRights%29>メソッドオーバーロードではなく、このメソッドオーバーロードを使用します。これにより、セマフォが存在しない場合に例外がスローされます。  
   
- `rights`パラメーターを含める必要があります、 <xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType> 、セマフォに入るためのスレッドを許可するフラグ、<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType>を呼び出すスレッドを許可するフラグ、<xref:System.Threading.Semaphore.Release%2A>メソッド。  
+ パラメーターには、スレッド<xref:System.Security.AccessControl.SemaphoreRights.Synchronize?displayProperty=nameWithType>がセマフォに入ることを許可するフラグと<xref:System.Security.AccessControl.SemaphoreRights.Modify?displayProperty=nameWithType> 、スレッドが<xref:System.Threading.Semaphore.Release%2A>メソッドを呼び出すことを許可するフラグを含める必要があります。 `rights`  
   
- このメソッドに同じ値を使用する複数の呼び出し`name`必ずしも返さない同じ<xref:System.Threading.Semaphore>場合でも、表現が返されるオブジェクトと同じ名前付きシステム セマフォ オブジェクトします。  
+ の同じ値を使用するこのメソッドの複数の`name`呼び出しでは、返される<xref:System.Threading.Semaphore>オブジェクトが同じ名前付きシステムセマフォを表す場合でも、必ずしも同じオブジェクトを返すとは限りません。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> が空の文字列です。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>

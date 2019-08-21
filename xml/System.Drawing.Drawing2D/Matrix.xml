@@ -1,5 +1,5 @@
 <Type Name="Matrix" FullName="System.Drawing.Drawing2D.Matrix">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a65e3ba88f758ba0e325ee6bbe7d6adcfc16159f" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63881748" /></Metadata><TypeSignature Language="C#" Value="public sealed class Matrix : MarshalByRefObject, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7688304a052000f52dc57ce036cd4b6dd7b91470" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69361652" /></Metadata><TypeSignature Language="C#" Value="public sealed class Matrix : MarshalByRefObject, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Matrix extends System.MarshalByRefObject implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Drawing.Drawing2D.Matrix" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Matrix&#xA;Inherits MarshalByRefObject&#xA;Implements IDisposable" />
@@ -31,37 +31,37 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- [!INCLUDE[ndptecgdiplus](~/includes/ndptecgdiplus-md.md)]でアフィン変換を格納することができます、<xref:System.Drawing.Drawing2D.Matrix>オブジェクト。 アフィン変換を表す行列の 3 番目の列は常にあるため (0, 0, 1) を構築するとき、最初の 2 つの列に 6 桁の数字のみを指定する、<xref:System.Drawing.Drawing2D.Matrix>オブジェクト。 ステートメント`Matrix myMatrix = new Matrix(0, 1, -1, 0, 3, 4)`次の図に示すように、マトリックスを作成します。  
+ で[!INCLUDE[ndptecgdiplus](~/includes/ndptecgdiplus-md.md)]は、 <xref:System.Drawing.Drawing2D.Matrix>オブジェクトにアフィン変換を格納できます。 アフィン変換を表す行列の3番目の列は常に (0, 0, 1) であるため、オブジェクトを<xref:System.Drawing.Drawing2D.Matrix>構築するときに、最初の2つの列のうち6つの数値のみを指定します。 ステートメント`Matrix myMatrix = new Matrix(0, 1, -1, 0, 3, 4)`は、次の図に示すマトリックスを構築します。  
   
  ![変換](~/add/media/aboutgdip05-art10.gif "変換")  
   
 ## <a name="composite-transformations"></a>複合変換  
- 複合変換とは、変換後にもう 1 つのシーケンスです。 マトリックスと、次の一覧で変換を考慮してください。  
+ 複合変換は、変換のシーケンスであり、その後にもう1つ続きます。 次の一覧にあるマトリックスと変換について考えてみましょう。  
   
 |||  
 |-|-|  
-|行列 A|90 度回転します。|  
-|行列 B|X 方向に 2 倍でスケーリングします。|  
-|マトリックス C|Y 方向のユニット 3 つを変換します。|  
+|マトリックス A|90°回転|  
+|マトリックス B|X 方向に2の係数でスケールする|  
+|マトリックス C|Y 方向に3単位を平行移動する|  
   
- マトリックス [2 1 1] - で表されるポイント (2, 1) - 開始 a、B の乗算すると、し、C、点 (2, 1) が行われる順序で 3 つの変換。  
+ マトリックス [2 1 1] で表される point (2, 1) から開始し、A に乗算した場合、B、C のように、ポイント (2, 1) は、ここに示した順序で3つの変換を実行します。  
   
  [2 1 1]ABC = [-2 5 1]  
   
- はなく 3 つの独立した行列に複合変換の 3 つの部分を格納するよりは、A を乗算できます複合変換全体を格納する 1 つの 3 つ × 3 行列を取得するには、まとめて、B、および C。 たとえば、ABC D. を =D を掛けたポイントが A、B、C の乗算ポイントと同じ結果を提供し、  
+ 複合変換の3つの部分を3つの独立した行列に格納するのではなく、A、B、および C を組み合わせて、複合変換全体を格納する1つの3×3行列を取得することができます。 ABC = D とします。次に、D を乗算したポイントは、A、B、C の順に乗算した結果を示します。  
   
  [2 1 1]D = [-2 5 1]  
   
- 次の図は、A、B、C および D のマトリックス  
+ 次の図は、A、B、C、D というマトリックスを示しています。  
   
  ![変換](~/add/media/aboutgdip05-art12.gif "変換")  
   
- 複合変換の行列は、個々 の変換行列を掛け合わせることで形成できますファクトは 1 つの任意のアフィン変換のシーケンスを格納できることを意味<xref:System.Drawing.Drawing2D.Matrix>オブジェクト。  
+ 複合変換の行列は、個々の変換行列を乗算することで形成できます。つまり、アフィン変換の任意のシーケンスを1つ<xref:System.Drawing.Drawing2D.Matrix>のオブジェクトに格納できます。  
   
 > [!CAUTION]
->  複合変換の順序が重要です。 一般に、回転、拡大縮小、変換が同じではありません、スケーリング、回転、順に変換します。 同様に、行列乗算の順序が重要です。 一般に、ABC はバックアップと同じです。  
+>  複合変換の順序は重要です。 一般に、回転、スケーリング、および平行移動はスケールと同じではなく、回転してから平行移動します。 同様に、行列乗算の順序も重要です。 一般に、ABC は... と同じではありません。  
   
- <xref:System.Drawing.Drawing2D.Matrix>クラスが複合変換を構築するためのいくつかのメソッドを提供します。 <xref:System.Drawing.Drawing2D.Matrix.Multiply%2A>、 <xref:System.Drawing.Drawing2D.Matrix.Rotate%2A>、 <xref:System.Drawing.Drawing2D.Matrix.RotateAt%2A>、 <xref:System.Drawing.Drawing2D.Matrix.Scale%2A>、 <xref:System.Drawing.Drawing2D.Matrix.Shear%2A>、および<xref:System.Drawing.Drawing2D.Matrix.Translate%2A>します。 次の例では、30 ° 度回転し、y 方向の 2 倍で拡大または縮小し、x 方向に 5 つのユニットを変換する複合変換の行列を作成します。  
+ クラス<xref:System.Drawing.Drawing2D.Matrix>には、 <xref:System.Drawing.Drawing2D.Matrix.Scale%2A> <xref:System.Drawing.Drawing2D.Matrix.Shear%2A> <xref:System.Drawing.Drawing2D.Matrix.Multiply%2A> <xref:System.Drawing.Drawing2D.Matrix.Rotate%2A>複合変換<xref:System.Drawing.Drawing2D.Matrix.Translate%2A>を構築するためのメソッドがいくつか用意されています。、、 、、、およびです。<xref:System.Drawing.Drawing2D.Matrix.RotateAt%2A> 次の例では、最初に30°を回転させてから y 方向の係数2でスケールし、x 方向に5つの単位を平行移動する複合変換の行列を作成します。  
   
  [!code-csharp[System.Drawing.CoordinateSystems#11](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.CoordinateSystems/CS/Class1.cs#11)]
  [!code-vb[System.Drawing.CoordinateSystems#11](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.Drawing.CoordinateSystems/VB/Class1.vb#11)]  
@@ -137,7 +137,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定された四角形をマップするジオメトリック変換を表すように、このメソッドが新しいマトリックスを初期化、`rect`で 3 つの点によって定義された平行四辺形にパラメーター、`plgpts`パラメーター。 最初の点に四角形の左上隅がマップされて、`plgpts`配列は、右上隅は、2 番目のポイントにマップされ、左下隅は、3 番目のポイントにマップされます。 平行四辺形の右下のポイントは、最初の 3 つで暗黙的に指定します。  
+ このメソッドは、パラメーターで指定され`rect`た四角形を、 `plgpts`パラメーター内の3つの点によって定義される平行四辺形にマップするジオメトリック変換を表すように、新しい行列を初期化します。 四角形の左上隅は`plgpts`配列の最初の点にマップされ、右上隅は2番目の点にマップされ、左下隅は3番目のポイントにマップされます。 平行四辺形の右下点は、最初の3つによって暗黙的に指定されます。  
   
  ]]></format>
         </remarks>
@@ -175,7 +175,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、新しい初期化<xref:System.Drawing.Drawing2D.Matrix>で指定された四角形をマップするジオメトリック変換を表すよう、`rect`で 3 つの点によって定義された平行四辺形にパラメーター、`plgpts`パラメーター。 最初の点に四角形の左上隅がマップされて、`plgpts`配列は、右上隅は、2 番目のポイントにマップされ、左下隅は、3 番目のポイントにマップされます。 平行四辺形の右下のポイントは、最初の 3 つで暗黙的に指定します。  
+ このメソッドは、パラメーター <xref:System.Drawing.Drawing2D.Matrix>で指定され`rect`た四角形を、 `plgpts`パラメーター内の3つの点によって定義される平行四辺形にマップするジオメトリック変換を表すように、新しいを初期化します。 四角形の左上隅は`plgpts`配列の最初の点にマップされ、右上隅は2番目の点にマップされ、左下隅は3番目のポイントにマップされます。 平行四辺形の右下点は、最初の3つによって暗黙的に指定されます。  
   
  ]]></format>
         </remarks>
@@ -283,7 +283,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す`Dispose`により、これによって使用されるリソース<xref:System.Drawing.Drawing2D.Matrix>他の目的で再割り当てするオブジェクト。  
+ を`Dispose`呼び出すと、この<xref:System.Drawing.Drawing2D.Matrix>オブジェクトによって使用されるリソースを他の目的で再割り当てできます。  
   
  ]]></format>
         </remarks>
@@ -319,7 +319,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要素の m11、m12、m21、m22...、dx の dy、<xref:System.Drawing.Drawing2D.Matrix>はこの順序で配列内の値によって表されます。  
+ の m11、m12、m21、m22、dx、および dy 要素は、 <xref:System.Drawing.Drawing2D.Matrix>配列内の値によってその順序で表されます。  
   
  ]]></format>
         </remarks>
@@ -447,7 +447,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例では、行列を作成し、それを反転します。  
+ 次のコード例では、マトリックスを作成して反転します。  
   
 ```csharp  
 Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);  
@@ -602,32 +602,32 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定した順序が場合<xref:System.Drawing.Drawing2D.MatrixOrder.Prepend>、この<xref:System.Drawing.Drawing2D.Matrix>が先頭に追加された順序で指定した行列乗算します。 指定した順序が場合<xref:System.Drawing.Drawing2D.MatrixOrder.Append>、この<xref:System.Drawing.Drawing2D.Matrix>が追加された順序で指定した行列乗算します。  
+ 指定した順序が<xref:System.Drawing.Drawing2D.MatrixOrder.Prepend>の場合<xref:System.Drawing.Drawing2D.Matrix>は、指定した行列を前置の順序で乗算します。 指定した順序が<xref:System.Drawing.Drawing2D.MatrixOrder.Append>の場合<xref:System.Drawing.Drawing2D.Matrix>は、指定した行列を付加順序で乗算します。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   3 つの行列を作成します。  
+-   3つの行列を作成します。  
   
--   画面に 1 をマトリックスの内容を一覧表示します。  
+-   マトリックス1の内容を画面に表示します。  
   
--   行列 1 と 2 の行列を乗算し、その結果 1 のマトリックスに格納します。  
+-   マトリックス1をマトリックス2で乗算し、結果をマトリックス1に格納します。  
   
--   画面に 1 をマトリックスの内容を一覧表示します。  
+-   マトリックス1の内容を画面に表示します。  
   
--   行列 1 と 3 の行列に格納されている結果を乗算し、もう一度マトリックス 1 で、その結果を格納します。  
+-   マトリックス1に格納されている結果を行列3で乗算し、結果をマトリックス1に保存します。  
   
--   画面に 1 をマトリックスの内容を一覧表示します。  
+-   マトリックス1の内容を画面に表示します。  
   
--   1 の行列変換 (青い四角形) を適用する前に、画面には、四角形を描画します。  
+-   マトリックス1の変換 (青い四角形) を適用する前に、画面に四角形を描画します。  
   
 -   四角形に変換を適用します。  
   
--   前の四角形として同じ座標を使用して (赤い四角形)、画面に変換された四角形を描画します。  
+-   前の四角形と同じ座標を使用して、変換された四角形を画面 (赤い四角形) に描画します。  
   
- 赤色の四角形が、水平方向に 2 つの倍でスケーリングされていることに注意してください、90 度回転したしの y 方向 (翻訳) 250 のポイントの x 方向と 50 ポイントを移動します。  
+ 赤い四角形が水平方向の2倍の角度で拡大縮小された後、90度回転し、y 方向の x 方向と50ポイントで250ポイントが移動 (変換) されたことに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#1](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#1)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#1](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#1)]
@@ -725,32 +725,32 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 恒等行列のメインの対角線の要素には 1 です。 恒等行列の他のすべての要素には 0 です。  
+ Id 行列の対角線の主な要素は1です。 Id 行列の他のすべての要素は0です。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
 -   拡大縮小行列を作成します。  
   
--   マトリックスの要素を画面の一覧を表示します。  
+-   マトリックス要素を画面に表示します。  
   
--   Identity 行列にリセットします。  
+-   マトリックスを id にリセットします。  
   
--   画面に要素を示します。  
+-   画面に要素を一覧表示します。  
   
--   50 のポイントの x 軸と y 軸に 40 ポイントによって、マトリックスに変換します。  
+-   Y 軸の x 軸と40ポイントで、行列を50ポイントで平行移動します。  
   
--   画面に翻訳された行列の要素を一覧表示します。  
+-   変換された行列の要素を画面に表示します。  
   
--   行列変換 (青い四角形) を適用する前に画面に描画する四角形を描画します。  
+-   マトリックス変換 (青い四角形) を適用する前に、画面に四角形を描画します。  
   
 -   四角形に変換を適用します。  
   
--   (赤い四角形)、前の四角形と同じ座標を使用して、画面に描画する変換後の四角形を描画します。  
+-   前の四角形と同じ座標を使用して、変換された四角形を画面 (赤い四角形) に描画します。  
   
- 赤色の四角形が (リセット) が原因が何も掛けませんが x 軸と y 軸が変換されたことに注意してください。  
+ 赤い四角形は、(リセットによって) スケーリングされていないが、x 軸と y 軸で変換されたことに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#2](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#2)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#2](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#2)]
@@ -848,17 +848,17 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   回転変換 (青い四角形) を適用する前に、画面には、四角形を描画します。  
+-   回転変換 (青い四角形) を適用する前に、画面に四角形を描画します。  
   
--   行列を作成し、それを 45 度回転します。  
+-   マトリックスを作成し、それを45度回転させます。  
   
--   四角形に、この行列変換を適用します。  
+-   この行列変換を四角形に適用します。  
   
--   画面 (赤色の四角形) に変換された四角形を描画します。  
+-   変換された四角形を画面 (赤い四角形) に描画します。  
   
- 赤色の四角形が回転されたことに注意してください。 0 を、0 を中心には、画面の座標。  
+ 赤色の四角形が0の画面座標の周りに回転していることに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#3](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#3)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#3](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#3)]
@@ -917,7 +917,7 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例に示しますを使用して、 <xref:System.Drawing.Drawing2D.Matrix> 、<xref:System.Drawing.Drawing2D.GraphicsPath.Transform%2A>文字列を回転するメソッド。 この例は、Windows フォームで使用する設計されています。 フォームを作成し、次のコードを貼り付けます。 呼び出す、`DrawVerticalStringFromBottomUp`メソッドで、フォームの<xref:System.Windows.Forms.Control.Paint>イベント ハンドラーを渡す`e`として<xref:System.Windows.Forms.PaintEventArgs>します。  
+ 次のコード例は、 <xref:System.Drawing.Drawing2D.Matrix> <xref:System.Drawing.Drawing2D.GraphicsPath.Transform%2A>とメソッドを使用して文字列をローテーションする方法を示しています。 この例は、Windows フォームと共に使用するように設計されています。 フォームを作成し、次のコードを貼り付けます。 とし`DrawVerticalStringFromBottomUp`てを渡し`e`て<xref:System.Windows.Forms.Control.Paint> <xref:System.Windows.Forms.PaintEventArgs>、フォームのイベントハンドラーでメソッドを呼び出します。  
   
  [!code-cpp[System.Drawing.MiscExamples#5](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.MiscExamples/CPP/form1.cpp#5)]
  [!code-csharp[System.Drawing.MiscExamples#5](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.MiscExamples/CS/form1.cs#5)]
@@ -964,17 +964,17 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   回転変換 (青い四角形) を適用する前に、画面には、四角形を描画します。  
+-   回転変換 (青い四角形) を適用する前に、画面に四角形を描画します。  
   
--   行列を作成し、指定した点を中心に 45 度回転させます。  
+-   マトリックスを作成し、指定した点を中心に45度回転します。  
   
--   この行列を適用する四角形を変換します。  
+-   この行列変換を四角形に適用します。  
   
--   画面 (赤色の四角形) に変換された四角形を描画します。  
+-   変換された四角形を画面 (赤い四角形) に描画します。  
   
- 四角形の左上隅に赤い四角形が回転されたことに注意してください (指定された回転ポイント、<xref:System.Drawing.Drawing2D.Matrix.RotateAt%2A>メソッド)。  
+ 赤い四角形が四角形の左上隅 (メソッドを<xref:System.Drawing.Drawing2D.Matrix.RotateAt%2A>指定した回転ポイント) を中心に回転されていることに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#4](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#4)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#4](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#4)]
@@ -1076,17 +1076,17 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   スケーリングの変換 (青い四角形) を適用する前に、画面に四角形を描画します。  
+-   拡大縮小変換 (青い四角形) を適用する前に、画面に四角形を描画します。  
   
--   行列を作成し、3 x 軸にして、y 軸のサイズを変更します。  
+-   マトリックスを作成し、x 軸と y 軸の2でスケールします。  
   
--   四角形に、この行列変換を適用します。  
+-   この行列変換を四角形に適用します。  
   
--   画面 (赤色の四角形) に変換された四角形を描画します。  
+-   変換された四角形を画面 (赤い四角形) に描画します。  
   
- X 軸で 3 倍と 2 (四角形の開始点) の四角形の左上隅を含む、y 軸に赤色の四角形がスケールすることに注意してください。  
+ 赤い四角形が x 軸では3倍、y 軸では2ずつ拡大縮小されています。これには、四角形の左上隅 (四角形の開始点) が含まれます。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#5](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#5)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#5](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#5)]
@@ -1140,22 +1140,22 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドに適用される変換では、パラメーターのいずれかが 0 の場合にのみ、純粋な傾斜です。 原点に四角形に適用されるときに、`shearY`要素が 0 の場合、変換、下端をで水平方向に移動する`shearX`四角形の高さを常します。 ときに、`shearX`要素が 0 の場合、右端を垂直方向に移動します`shearY`回四角形の幅。 結果は予測できないために、両方のパラメーターが 0 以外の場合、ときに注意が必要ですが順序です。 たとえば、両方の要素が 1 の場合は、変換は特異な (したがって押しつぶされて)、平面を 1 行全体をつかんでいます。  
+ このメソッドで適用される変換は、パラメーターのいずれかが0の場合にのみ、純粋な傾斜です。 原点の四角形に適用されます。 `shearY`係数が0の場合、変換は、下端を四角形の高さの水平方向に`shearX`移動します。 係数が0の場合は、右端を四角形の幅に`shearY`合わせて垂直方向に移動します。 `shearX` 両方のパラメーターが0以外の場合は、結果を予測するのが難しいため、注意が必要です。 たとえば、両方の要素が1の場合、変換は単数形 (したがって noninvertible) であるため、平面全体が1行になります。  
   
    
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードでは、次の操作を実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 このコードは、次のアクションを実行します。  
   
--   スケーリングの変換を適用する前に、緑のペンを使用して、画面には、四角形を描画します。  
+-   拡大縮小変換を適用する前に、緑色のペンを使用して画面に四角形を描画します。  
   
--   作成、<xref:System.Drawing.Drawing2D.Matrix>のワールド座標変換の設定を使用して、<xref:System.Drawing.Graphics>します。  
+-   を<xref:System.Drawing.Drawing2D.Matrix>作成し、それを使用してのワールド座標変換<xref:System.Drawing.Graphics>を設定します。  
   
--   赤のペンを使用して別の四角形を描画します。  
+-   赤いペンを使用して別の四角形を描画します。  
   
--   青のペンを使用して、楕円を描画します。  
+-   青いペンを使用して楕円を描画します。  
   
- 緑の四角形、赤の平行四辺形および変換を示し、青い楕円になります。 (描画変換を設定する前に)、緑色の四角形に注目してくださいで指定した座標を使用して直接、<xref:System.Drawing.Graphics.DrawRectangle%2A>呼び出します。 その他の 2 つの図は、描画する前に変換されます。 四角形は (赤)、平行四辺形に変換され、省略記号ボタン (青) は、変換された平行四辺形に収まるように変換されます。 四角形の下部に移動し (傾斜) での平行四辺形四角形の高さの 2 倍の係数を使用して x 軸に注目してください。  
+ 結果は、緑の四角形、赤の平行四辺形、および変換された青い楕円です。 緑の四角形 (変換を設定する前に描画される) が、 <xref:System.Drawing.Graphics.DrawRectangle%2A>呼び出しで指定された座標を直接使用することに注意してください。 他の2つの図形は、描画前に変換されます。 四角形は平行四辺形 (赤) に変換され、変換された平行四辺形に適合するように楕円 (青) が変換されます。 四角形の下部は、四角形の高さの2倍の係数によって x 軸に移動 (傾斜) されることに注意してください。これにより、平行四辺形が形成されます。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#6](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#6)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#6](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#6)]
@@ -1202,7 +1202,7 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドに適用される変換では、パラメーターのいずれかが 0 の場合にのみ、純粋な傾斜です。 原点に四角形に適用されるときに、`shearY`要素が 0 の場合、変換、下端をで水平方向に移動する`shearX`四角形の高さを常します。 ときに、`shearX`要素が 0 の場合、右端を垂直方向に移動します`shearY`回四角形の幅。 結果は予測できないために、両方のパラメーターが 0 以外の場合、ときに注意が必要ですが順序です。 たとえば、両方の要素が 1 の場合は、変換は特異な (したがって押しつぶされて)、平面を 1 行全体をつかんでいます。  
+ このメソッドで適用される変換は、パラメーターのいずれかが0の場合にのみ、純粋な傾斜です。 原点の四角形に適用されます。 `shearY`係数が0の場合、変換は、下端を四角形の高さの水平方向に`shearX`移動します。 係数が0の場合は、右端を四角形の幅に`shearY`合わせて垂直方向に移動します。 `shearX` 両方のパラメーターが0以外の場合は、結果を予測するのが難しいため、注意が必要です。 たとえば、両方の要素が1の場合、変換は単数形 (したがって noninvertible) であるため、平面全体が1行になります。  
   
    
   
@@ -1255,19 +1255,19 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   四角形を形成するポイントの配列を作成します。  
+-   四角形を形成する点の配列を作成します。  
   
--   (に倍率変換 (青い四角形) を適用する前に画面このポイントの配列を描画します。 です。  
+-   スケール変換 (青い四角形) を適用する前に、この点の配列を画面に描画します。  
   
--   行列を作成し、3 x 軸にして、y 軸のサイズを変更します。  
+-   マトリックスを作成し、x 軸と y 軸の2でスケールします。  
   
--   このマトリックス変換を点の配列に適用します。  
+-   この行列変換をポイントの配列に適用します。  
   
--   画面 (赤色の四角形) に変換された配列を描画します。  
+-   変換された配列を画面 (赤い四角形) に描画します。  
   
- X 軸で 3 倍と 2 (四角形の開始点) の四角形の左上隅を含む、y 軸に赤色の四角形がスケールすることに注意してください。  
+ 赤い四角形が x 軸では3倍、y 軸では2ずつ拡大縮小されています。これには、四角形の左上隅 (四角形の開始点) が含まれます。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#7](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#7)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#7](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#7)]
@@ -1358,21 +1358,21 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   四角形を形成するポイントの配列を作成します。  
+-   四角形を形成する点の配列を作成します。  
   
--   このポイントの配列をスケール変換 (青い四角形) を適用する前に、画面に描画します。  
+-   拡大縮小変換 (青い四角形) を適用する前に、この点の配列を画面に描画します。  
   
--   行列を作成し、x 軸に 3 と 2、y 軸にによって両方の軸に 100 ずつ変換します。  
+-   マトリックスを作成し、x 軸と y 軸の2でスケールし、両方の軸で100で平行移動します。  
   
--   マトリックスの要素を画面の一覧を表示します。  
+-   マトリックス要素を画面に表示します。  
   
--   このマトリックス変換を点の配列に適用します。  
+-   この行列変換をポイントの配列に適用します。  
   
--   画面 (赤色の四角形) に変換された配列を描画します。  
+-   変換された配列を画面 (赤い四角形) に描画します。  
   
- 平行移動ベクター (マトリックスの最後の 2 つの要素) は無視されますが、x 軸で 3 倍と 2 (四角形の開始点) の四角形の左上隅を含む、y 軸に赤色の四角形がスケールに注意してください。  
+ 赤い四角形が x 軸では3倍、y 軸では2ずつ拡大縮小されていることに注意してください (四角形の開始点) が、平行移動ベクター (マトリックスの最後の2つの要素) は無視されますが、  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#8](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#8)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#8](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#8)]
@@ -1513,17 +1513,17 @@ Matrix myMatrix = new Matrix(3, 5, 1, 2, 2, 4);
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、Windows フォームで使用するために設計されています。 また必要が<xref:System.Windows.Forms.PaintEventArgs> `e`、<xref:System.Windows.Forms.Control.Paint>イベント オブジェクト。 コードは、次のアクションを実行します。  
+ 次のコード例は、Windows フォームで使用するように設計さ<xref:System.Windows.Forms.PaintEventArgs>れて<xref:System.Windows.Forms.Control.Paint>おり、イベントオブジェクトを必要`e`とします。 コードは、次のアクションを実行します。  
   
--   四角形を平行移動変換 (青い四角形) を適用する前に、画面に描画します。  
+-   平行移動変換 (青い四角形) を適用する前に、画面に四角形を描画します。  
   
--   行列を作成し、両方の軸に 100 ずつ渡します。  
+-   マトリックスを作成し、両方の軸で100で平行移動します。  
   
--   この行列変換を四角形に適用します。  
+-   このマトリックス変換を四角形に適用します。  
   
--   画面 (赤色の四角形) に変換された四角形を描画します。  
+-   変換された四角形を画面 (赤い四角形) に描画します。  
   
- 赤色の四角形の先頭は、青い三角形の先頭から両方の軸に配置されている 100 ポイントであることを確認します。  
+ 赤色の四角形の先頭が、青い三角形の先頭からの両方の軸の100点にあることに注意してください。  
   
  [!code-cpp[System.Drawing.Drawing2D.ClassicMatrixExamples#9](~/samples/snippets/cpp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CPP/form1.cpp#9)]
  [!code-csharp[System.Drawing.Drawing2D.ClassicMatrixExamples#9](~/samples/snippets/csharp/VS_Snippets_Winforms/System.Drawing.Drawing2D.ClassicMatrixExamples/CS/form1.cs#9)]

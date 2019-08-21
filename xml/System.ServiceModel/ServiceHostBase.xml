@@ -1,5 +1,5 @@
 <Type Name="ServiceHostBase" FullName="System.ServiceModel.ServiceHostBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9932eb18e66eca5ec8bc36f67e98864f715741ee" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57932703" /></Metadata><TypeSignature Language="C#" Value="public abstract class ServiceHostBase : System.ServiceModel.Channels.CommunicationObject, IDisposable, System.ServiceModel.IExtensibleObject&lt;System.ServiceModel.ServiceHostBase&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5239d7638e3916f5f5cfebbfca421fc225992977" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69147217" /></Metadata><TypeSignature Language="C#" Value="public abstract class ServiceHostBase : System.ServiceModel.Channels.CommunicationObject, IDisposable, System.ServiceModel.IExtensibleObject&lt;System.ServiceModel.ServiceHostBase&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ServiceHostBase extends System.ServiceModel.Channels.CommunicationObject implements class System.IDisposable, class System.ServiceModel.IExtensibleObject`1&lt;class System.ServiceModel.ServiceHostBase&gt;" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.ServiceHostBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ServiceHostBase&#xA;Inherits CommunicationObject&#xA;Implements IDisposable, IExtensibleObject(Of ServiceHostBase)" />
@@ -27,7 +27,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.ServiceHostBase> クラスを拡張して、カスタム プログラミング モデルを提供するホストを作成します。 プログラミング モデルは、Windows Communication Foundation (WCF) サービス、<xref:System.ServiceModel.ServiceHost>クラス。  
+ <xref:System.ServiceModel.ServiceHostBase> クラスを拡張して、カスタム プログラミング モデルを提供するホストを作成します。 Windows Communication Foundation (WCF) サービスプログラミングモデルでは、 <xref:System.ServiceModel.ServiceHost>クラスを使用します。  
   
  このクラスから派生するマネージド C++ ユーザーに対する特別な注意 :  
   
@@ -165,9 +165,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドを使用して、サービス ホストが、コントラクトの説明に"によって-構成-name"検証できます。 つまり、ホストを確認<xref:System.ServiceModel.Description.ContractDescription.ConfigurationName%2A>サービスによって実装されるサービス コントラクトの構成名の一覧に存在します。 かどうか、検証が成功の説明、<xref:System.ServiceModel.Description.ServiceEndpoint>は、使用場合でも、<xref:System.ServiceModel.Description.ContractDescription>から反映された、サービスが異なる。  
+ メソッドを使用する場合、サービスホストは、コントラクトの説明に対して "構成名" の検証を行います。 つまり、ホストは、サービスによっ<xref:System.ServiceModel.Description.ContractDescription.ConfigurationName%2A>て実装されたサービスコントラクトの構成名の一覧に存在することを確認します。 検証が成功した場合、サービスから<xref:System.ServiceModel.Description.ServiceEndpoint>反映された<xref:System.ServiceModel.Description.ContractDescription>が異なる場合でも、の説明はそのとして使用されます。  
   
- たとえば、ServiceEndpoint の説明と、サービスから反映されたコントラクトの説明がさまざまな操作の動作が、同じ名前を指定することを想定しています。 「構成の名前による」検証のみは、動作は、同じことと、いずれかの更新プログラムが 1 つの説明を別の説明のための検証は行われません。  
+ 例として、サービスから反映された ServiceEndpoint とコントラクトの説明の名前が同じで、操作の動作が異なることを想定しています。 "構成-名前" 検証のみの意味では、動作が同じであることが検証されず、別の説明のために1つの説明に1つの更新があります。  
   
  `address` が相対 URI の場合、(バインド プロトコルに応じて) <xref:System.ServiceModel.ServiceHost> のベース アドレスの 1 つがエンドポイントのベース アドレスとして使用されます。  
   
@@ -1154,7 +1154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドが呼び出されるのは、<xref:System.ServiceModel.ServiceHostBase.OnClose%28System.TimeSpan%29> および   
+ このメソッドが呼び出されるのは、<xref:System.ServiceModel.ServiceHostBase.OnClose%28System.TimeSpan%29> および  
   
  <xref:System.ServiceModel.ServiceHostBase.OnEndClose%28System.IAsyncResult%29>。  
   
@@ -1236,7 +1236,7 @@
 ## Remarks  
   
 > [!WARNING]
->  使用する場合<xref:System.ServiceModel.WorkflowServiceHost>をホストするエンドポイントを公開して、<xref:System.ServiceModel.ServiceHostBase.UnknownMessageReceived>例外がスローされます、ホストは、メッセージをイベント ハンドラーを渡します。 このメッセージの読み取りが試みられた場合、<xref:System.InvalidOperationException>がスローされます。 例外の説明では、「このメッセージ操作をサポートできません、読み取られているためです」と表示されます。  WCF インフラストラクチャでは、メッセージのパラメーターを抽出中にメッセージを読み取ります。 このメッセージは、イベント ハンドラーに渡されますし、読み取ることをしようとすると、例外が発生します。 メッセージのパラメーターにアクセスする必要がある場合、<xref:System.InvalidOperationException>ハンドラーをホストするエンドポイントからは MessageContract を使用してホスト エンドポイントのコントラクトを定義して、メッセージ ヘッダーに必要なデータを配置します。 エンドポイントをホストする方法の詳細については、次を参照してください[ワークフロー サービス ホストの拡張機能。](~/docs/framework/wcf/feature-details/workflow-service-host-extensibility.md)  
+>  を使用<xref:System.ServiceModel.WorkflowServiceHost>してホストエンドポイントを公開<xref:System.ServiceModel.ServiceHostBase.UnknownMessageReceived>し、例外がスローされた場合、ホストはメッセージをイベントハンドラーに渡します。 このメッセージを読み取ろうとすると、 <xref:System.InvalidOperationException>がスローされます。 例外の説明は、"このメッセージは読み取られたため、操作をサポートできません。" ということを意味します。  WCF インフラストラクチャは、メッセージパラメーターの抽出中にメッセージを読み取ります。 このメッセージはイベントハンドラーに渡され、読み取りが試行されると例外が発生します。 ホストエンドポイントから<xref:System.InvalidOperationException>ハンドラーのメッセージパラメーターにアクセスする必要がある場合は、MessageContract を使用してホストエンドポイントコントラクトを定義し、必要なデータをメッセージヘッダーに配置します。 ホストエンドポイントの詳細については、「[ワークフローサービスホストの機能拡張](~/docs/framework/wcf/feature-details/workflow-service-host-extensibility.md)」を参照してください。  
   
  ]]></format>
         </remarks>

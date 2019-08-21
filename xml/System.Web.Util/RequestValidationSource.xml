@@ -1,5 +1,5 @@
 <Type Name="RequestValidationSource" FullName="System.Web.Util.RequestValidationSource">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ab5b9348d3a2dcde861eeef4c5d9c664588a26d6" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/14/2019" /><Meta Name="ms.locfileid" Value="67134720" /></Metadata><TypeSignature Language="C#" Value="public enum RequestValidationSource" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="478ffa5993b6ecb9fbd6874f5e7cac44d682af68" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69386369" /></Metadata><TypeSignature Language="C#" Value="public enum RequestValidationSource" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed RequestValidationSource extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Web.Util.RequestValidationSource" />
   <TypeSignature Language="VB.NET" Value="Public Enum RequestValidationSource" />
@@ -19,23 +19,23 @@
   
 ## Remarks 
 
-カスタムの要求検証の種類を作成するには実装することによって、<xref:System.Web.Util.RequestValidator>型。 ASP.NET を呼び出すと、 <xref:System.Web.Util.RequestValidator.IsValidRequestString%2A> 、ASP.NET 要求を検証するメソッドは成功を`requestValidationSource`検証対象のデータのソースを指定するパラメーター。 <xref:System.Web.Util.RequestValidationSource>列挙体を使用して、ソースまたは検証されている要求データの種類を指定します。 列挙体が渡される HTTP 入力の種類を示す、`value`のパラメーター、<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>メソッド。 列挙体は、カスタム ロジックを使用して検証しない場合、HTTP の入力の基本の要求の検証の実装にフォールバックする手段として使用できます。  
+<xref:System.Web.Util.RequestValidator>型を実装することで、カスタム要求の検証型を作成できます。 ASP.NET が<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>メソッドを呼び出して要求を検証するときに、 `requestValidationSource` ASP.NET は検証されるデータのソースを指定するパラメーターを渡します。 列挙<xref:System.Web.Util.RequestValidationSource>は、検証される要求データのソースまたは種類を指定するために使用されます。 列挙体は、 `value` <xref:System.Web.Util.RequestValidator.IsValidRequestString%2A>メソッドのパラメーターで渡される HTTP 入力の種類を示します。 カスタムロジックを使用して検証を行わない場合は、HTTP 入力の基本要求の検証実装にフォールバックする手段として、列挙体を使用できます。  
 
-次の表ではの値、`collectionKey`と`value`のパラメーター、<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A?displayProperty=nameWithType>メソッドの各メンバーの解釈、`RequestValidationSource`列挙体。
+次`collectionKey`の表は、 `value` メソッドの<xref:System.Web.Util.RequestValidator.IsValidRequestString%2A?displayProperty=nameWithType>パラメーターとパラメーターの値が列挙体の各メンバーに対してどのように解釈されるかを示しています。`RequestValidationSource`
 
 |列挙型のメンバー|`collectionKey` パラメーター|`value` パラメーター|
 |--|--|--|
-|`Cookies`|コレクション内の cookie の名前。|コレクション内の値。|
-|`Files`|コレクションにアップロードされたファイルの名前。|コレクションにアップロードされたファイルの値。|
-|`Form`|コレクション内のフォーム パラメーターの名前|コレクション内のフォーム パラメーターの値。|
+|`Cookies`|コレクション内のクッキーの名前。|コレクション内の値。|
+|`Files`|コレクション内のアップロードされたファイルの名前。|コレクション内のアップロードされたファイルの値。|
+|`Form`|コレクション内のフォームパラメーターの名前です。|コレクション内の form パラメーターの値。|
 |`Headers`|コレクション内の HTTP ヘッダーの名前。|コレクション内の HTTP ヘッダーの値。|
-|`Path`|`null` (`Path`値のコレクションではありません)。|パス フィールドの値。|
-|`PathInfo`|`null` (`PathInfo`値のコレクションではありません)。|PathInfo フィールドの値。|
+|`Path`|`null`(`Path`は値のコレクションではありません)。|パスフィールドの値。|
+|`PathInfo`|`null`(`PathInfo`は値のコレクションではありません)。|PathInfo フィールドの値。|
 |`QueryString`|コレクション内のクエリ文字列パラメーターの名前。|コレクション内のクエリ文字列パラメーターの値。|
-|`RawUrl`|`null` (`RawUrl`値のコレクションではありません)。|RawUrl フィールドの値。|
+|`RawUrl`|`null`(`RawUrl`は値のコレクションではありません)。|RawUrl フィールドの値。|
   
 ## Examples  
- 次の例では、クエリ文字列の値の特定の文字列のみを許可するカスタムの要求検証クラスを作成する方法を示します。  
+ 次の例では、クエリ文字列値に特定の文字列のみを許可するカスタムの要求検証コントロールクラスを作成する方法を示します。  
   
 ```vb
 Imports System.Web  
@@ -135,7 +135,7 @@ public class CustomRequestValidation : RequestValidator
 }  
 ```  
   
- 次の例では、カスタム検証を使用する ASP.NET を構成する方法を示します。  
+ 次の例は、カスタム検証を使用するように ASP.NET を構成する方法を示しています。  
   
 ```  
 <httpRuntime requestValidationType="CustomRequestValidation" />  

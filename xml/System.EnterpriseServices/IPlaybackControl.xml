@@ -1,5 +1,5 @@
 <Type Name="IPlaybackControl" FullName="System.EnterpriseServices.IPlaybackControl">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9110597651512178c67edfe7320178c083861fad" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55344914" /></Metadata><TypeSignature Language="C#" Value="public interface IPlaybackControl" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d8244a38f035a96f53aaf4b667da80a3de717304" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69358528" /></Metadata><TypeSignature Language="C#" Value="public interface IPlaybackControl" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IPlaybackControl" />
   <TypeSignature Language="DocId" Value="T:System.EnterpriseServices.IPlaybackControl" />
   <TypeSignature Language="VB.NET" Value="Public Interface IPlaybackControl" />
@@ -26,15 +26,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 両方を実装するコンポーネント、COM + カタログで定義されている例外クラス<xref:System.EnterpriseServices.IPlaybackControl>と、元のクラスのインターフェイス。 元のクラス インターフェイスのメソッドの実装を使用して、クラス自体で障害が発生したメソッドの例外処理を実行できます。 後に呼び出される<xref:System.EnterpriseServices.IPlaybackControl.FinalClientRetry%2A>または<xref:System.EnterpriseServices.IPlaybackControl.FinalServerRetry%2A>を最初に呼び出されるメソッドの例外を処理します。  
+ Com + カタログのコンポーネントに対して定義されている<xref:System.EnterpriseServices.IPlaybackControl>例外クラスは、元のクラスのインターフェイスとインターフェイスの両方を実装します。 元のクラスインターフェイスのメソッド実装は、クラス自体の失敗したメソッドの例外処理を実行するために使用されます。 これらのメソッドは、 <xref:System.EnterpriseServices.IPlaybackControl.FinalClientRetry%2A>最初<xref:System.EnterpriseServices.IPlaybackControl.FinalServerRetry%2A>に呼び出されたメソッドの例外を処理するまたはの後に呼び出されます。  
   
- メソッドを呼び出して、キュー コンポーネント プレーヤー<xref:System.EnterpriseServices.IPlaybackControl>を最終的な配置されている、または配信不能キューに配置するメッセージがある例外ハンドラー オブジェクトに通知します。 キュー コンポーネント プレーヤーは、元のメソッド呼び出しで失敗した例外ハンドラー オブジェクトで、同じメソッドを呼び出します。 例外ハンドラー オブジェクトでは、問題の診断情報の収集など、オブジェクトまたはクライアントに、問題の通知メッセージを生成して、代わりをなど実装できます。 アプリケーションが実装していない場合<xref:System.EnterpriseServices.IPlaybackControl>、キュー コンポーネント プレーヤーのすべての再試行に達した場合、有害なメッセージが最終的な配置されている、または配信不能キューに配置されます。  
+ キューに置かれたコンポーネントプレーヤーは<xref:System.EnterpriseServices.IPlaybackControl> 、のメソッドを呼び出して、メッセージが最終的な静止キューまたは配信不能キューに配置されることを例外ハンドラーオブジェクトに通知します。 キューに登録されたコンポーネントプレーヤーは、元のメソッド呼び出しで失敗した例外ハンドラーオブジェクトで同じメソッドを呼び出します。 例外ハンドラーオブジェクトは、たとえば、問題の診断情報を収集したり、問題をクライアントに通知するオブジェクトやメッセージを生成したりするなど、別のを実装できます。 アプリケーションでが実装<xref:System.EnterpriseServices.IPlaybackControl>されていない場合、キューに置かれたコンポーネントプレーヤーがすべての再試行を実行すると、有害メッセージが最終的な静止キューまたは配信不能キューに配置されます。  
   
- 有害メッセージは、サーバーまたはキュー システムの問題のため、何らかの理由で処理できないメッセージです。 トランザクションがロールバックされ、有害メッセージはキューの先頭にします。 メッセージが再度にデキューされると、同じ条件が発生します。 このメッセージは、問題を修正するために何かがまで無限にループを続行できます。 キュー コンポーネント サービスは、一連の再試行を使用して、有害なメッセージを処理します。 いくつかの失敗した再試行の後、メッセージは、最後の静止キューに移動されます。 有害メッセージ キューに置かれたコンポーネントのメッセージ移動ツールを使用して手動で移動するまでの静止キューに残ります。  
+ 有害なメッセージとは、何らかの理由で処理できないメッセージのことです。サーバーまたはキューシステムの問題が原因である可能性があります。 トランザクションがロールバックされ、有害メッセージがキューの先頭に移動します。 メッセージが再度デキューされると、同じ状態が発生します。 このメッセージは、問題を修正するために何かが行われるまで、無限にループを続行できます。 キューに登録されたコンポーネントサービスは、一連の再試行を使用して有害メッセージを処理します。 いくつかの再試行に失敗すると、メッセージは最後の静止キューに移動されます。 有害なメッセージは、キューに置かれたコンポーネントのメッセージムーバーツールを使用して手動で移動するまで、静止キューに保持されます。  
   
- 有害メッセージのような状況も解決できるプログラムを使用して、<xref:System.EnterpriseServices.IPlaybackControl.FinalServerRetry%2A>メソッドで、サーバー側コンポーネントの作成者の遅延アクティベーションを再生するすべての試行が失敗したことを通知します。  
+ 有害なメッセージの状況は、メソッドを使用して<xref:System.EnterpriseServices.IPlaybackControl.FinalServerRetry%2A>プログラムで解決することもできます。このメソッドは、遅延アクティベーションを再生しようとするすべての試行が失敗したことをサーバー側コンポーネントの作成者に通知します。  
   
- 有害メッセージを検出すると、問題の根本原因を迅速に解決できる可能性があります。 たとえば、何らかの理由により、サーバーがオフラインで、サーバーをオンラインに戻すが開くことができます。 問題を迅速に解決することはできない場合、は、トランザクションが発生しなかったことを要求元に通知する別のトランザクションを自動的に生成できます。 リクエスターでは、既にコミットされているトランザクションの効果を反転する補正トランザクションを作成できます。  
+ 有害なメッセージが検出された場合は、問題の根底にある原因を迅速に解決できる可能性があります。 たとえば、何らかの理由でサーバーがオフラインだった場合は、サーバーをオンラインに戻すことができます。 問題を迅速に解決できない場合は、トランザクションが発生していないことを要求元に通知する別のトランザクションを自動的に生成できます。 次に、要求元は、既にコミットされたトランザクションの影響を元に戻す補正トランザクションを作成できます。  
   
  ]]></format>
     </remarks>
@@ -64,9 +64,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メッセージは、トランザクション配信不能キューに届いた、COM + は、この通知を配信するサーバー クラスに関連するクライアント側の例外ハンドラーを起動しようとします。 これは最初の呼び出しによって<xref:System.EnterpriseServices.IPlaybackControl.FinalClientRetry%2A>、例外ハンドラー オブジェクトで例外処理のバージョンの失敗したメソッドを呼び出してから。 この例外のメソッドは、エラーの記録、管理者にメール メッセージの送信またはクライアント側の補正アクション (以前のトランザクションの効果を反転) など、例外の操作を実行できます。 例外のメソッドが成功しなかった場合メッセージはトランザクション配信不能キューに残ります。  
+ メッセージが Xact 配信不能キューに到着すると、COM + は、この通知を配信するために、サーバークラスに関連するクライアント側の例外ハンドラーを呼び出そうとします。 これを行うには、 <xref:System.EnterpriseServices.IPlaybackControl.FinalClientRetry%2A>最初にを呼び出し、次に例外ハンドラーオブジェクトで失敗したメソッドの例外処理バージョンを呼び出します。 この例外メソッドは、エラーの記録、管理者へのメールメッセージの送信、クライアント側の補正アクション (以前のトランザクションの影響の反転) などの例外アクションを実行できます。 例外メソッドが失敗した場合、メッセージは Xact 配信不能キューに残されます。  
   
- トランザクション配信不能キューは、Microsoft メッセージ キュー (MSMQ) エクスプ ローラーで表示できます。  
+ Microsoft メッセージキュー (MSMQ) エクスプローラーでは、Xact 配信不能キューを表示できます。  
   
  ]]></format>
         </remarks>
@@ -96,7 +96,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メッセージは、トランザクション配信不能キューに到着、COM + は、この通知を配信するサーバー クラスに関連するサーバー側の例外ハンドラーを起動しようとします。 これは最初の呼び出しによって<xref:System.EnterpriseServices.IPlaybackControl.FinalServerRetry%2A>、例外処理のバージョンの障害が発生した例外ハンドラー オブジェクトでメソッドを呼び出してから。 この例外のメソッドは、エラーの記録、管理者にメール メッセージの送信またはクライアント側の補正アクション (以前のトランザクションの効果を反転) など、例外の操作を実行できます。 サーバー オブジェクトは、このトランザクションを正常に完了するには、あらゆる努力をする必要があります。 それ以外の場合、メッセージを再処理するには、手動介入が必要です。 例外のメソッドが成功しなかった場合、メッセージは、最後の静止キューに移動されます。  
+ メッセージが Xact 配信不能キューに到着すると、COM + はサーバークラスに関連するサーバー側の例外ハンドラーを呼び出そうとして、この通知を配信しようとします。 これを行うには、 <xref:System.EnterpriseServices.IPlaybackControl.FinalServerRetry%2A>最初にを呼び出し、次に例外ハンドラーオブジェクトで失敗したメソッドの例外処理バージョンを呼び出します。 この例外メソッドは、エラーの記録、管理者へのメールメッセージの送信、クライアント側の補正アクション (以前のトランザクションの影響の反転) などの例外アクションを実行できます。 サーバーオブジェクトは、このトランザクションを正常に完了するためにすべての作業を行う必要があります。 それ以外の場合、メッセージを再処理するには手動操作が必要です。 例外メソッドが失敗した場合、メッセージは最後の静止キューに移動されます。  
   
  ]]></format>
         </remarks>

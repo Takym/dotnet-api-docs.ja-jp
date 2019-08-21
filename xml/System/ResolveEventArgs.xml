@@ -1,5 +1,5 @@
 <Type Name="ResolveEventArgs" FullName="System.ResolveEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0fab4d75f85035ddff0ab7724a26b14a5c38cfb2" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58703265" /></Metadata><TypeSignature Language="C#" Value="public class ResolveEventArgs : EventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3353709c1a6219c53a805c9e845f7c72dd6bffdb" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405331" /></Metadata><TypeSignature Language="C#" Value="public class ResolveEventArgs : EventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ResolveEventArgs extends System.EventArgs" />
   <TypeSignature Language="DocId" Value="T:System.ResolveEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public Class ResolveEventArgs&#xA;Inherits EventArgs" />
@@ -37,11 +37,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ローダーがアセンブリ参照を解決できないし、適切なローダー解決イベントのイベントが発生した指定されたハンドラーと<xref:System.ResolveEventArgs>解決する項目に関する情報が含まれています。  
+ ローダーがアセンブリ参照を解決できず、適切なローダー解決イベントに対してハンドラーが提供されている場合、イベント<xref:System.ResolveEventArgs>が発生し、には解決される項目に関する情報が含まれます。  
   
--   <xref:System.ResolveEventArgs.Name%2A>プロパティを解決する項目の名前を含みます。  
+-   プロパティ<xref:System.ResolveEventArgs.Name%2A>は、解決する項目の名前を格納します。  
   
--   以降では、 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]、<xref:System.ResolveEventArgs.RequestingAssembly%2A>プロパティには、名前付きの項目を提供するアセンブリを要求したアセンブリが含まれています。 詳細については、<xref:System.ResolveEventArgs.RequestingAssembly%2A> プロパティを参照してください。  
+-   以降では、プロパティ<xref:System.ResolveEventArgs.RequestingAssembly%2A>に、名前付き項目を提供できるアセンブリを要求したアセンブリが格納されます。 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)] 詳細については、<xref:System.ResolveEventArgs.RequestingAssembly%2A> プロパティを参照してください。  
   
  ]]></format>
     </remarks>
@@ -96,7 +96,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターは通常、共通言語ランタイムによってのみ呼び出されます。  
+ このコンストラクターは、通常、共通言語ランタイムによってのみ呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -171,7 +171,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.AppDomain.AssemblyResolve>イベント、<xref:System.ResolveEventArgs.Name%2A>ポリシーが適用される前に、アセンブリ名は、します。  
+ イベントの場合、 <xref:System.ResolveEventArgs.Name%2A>はポリシーが適用される前のアセンブリ名です。 <xref:System.AppDomain.AssemblyResolve>  
   
  ]]></format>
         </remarks>
@@ -210,17 +210,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティによって返されるアセンブリがで指定された項目を解決できなかったアセンブリ、<xref:System.ResolveEventArgs.Name%2A>プロパティ、項目が、そのアセンブリに存在しないため、読み込まれた依存関係のいずれかまたはすべての依存関係、ローダーが見つかりませんでしたプローブします。  
+ このプロパティによって返されるアセンブリは、 <xref:System.ResolveEventArgs.Name%2A>プロパティによって指定された項目を解決できなかったアセンブリです。これは、そのアセンブリ、読み込まれた依存関係、またはローダーが検出できる依存関係に項目が存在しなかったためです。プローブを使用します。  
   
- たとえば、現在のアセンブリは、<xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=nameWithType>クラス CA を使用するには、プローブのパスの外部のディレクトリからアセンブリ A を読み込みます。 さらにそのクラスの CA は、クラス CB を使用するとしますアセンブリ B、およびアセンブリ A がアセンブリ B のコンパイル時参照を持つこともお住まいのプローブ パス。 ローダーが B. アセンブリへの参照を解決しようとした、現在のアセンブリが CA をインスタンス化しようとしたときただし、アセンブリ A を使用して、読み込まれたので、<xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=nameWithType>メソッド、ローダーは、依存関係を解決することはできません。 ハンドラーがある場合、<xref:System.AppDomain.AssemblyResolve?displayProperty=nameWithType>イベントのイベントが発生し、<xref:System.ResolveEventArgs.RequestingAssembly%2A>結果のプロパティ<xref:System.ResolveEventArgs>オブジェクトには、アセンブリ A が含まれています、アセンブリ A は、アセンブリでは、依存関係がありません。  
+ たとえば、現在のアセンブリが<xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=nameWithType>メソッドを使用して、プローブパスの外部にあるディレクトリからアセンブリ a を読み込んだとします。これは、クラス CA を使用するためです。 さらに、クラス CA がアセンブリ B でクラス CB を使用し、そのアセンブリ A にはアセンブリ B へのコンパイル時参照があり、プローブパスの外側にもあるとします。 現在のアセンブリが CA をインスタンス化しようとすると、ローダーはアセンブリ B への参照の解決を試みます。ただし、アセンブリ A が<xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=nameWithType>メソッドを使用して読み込まれたため、ローダーは依存関係を解決できません。 <xref:System.AppDomain.AssemblyResolve?displayProperty=nameWithType>イベントのハンドラーがある場合は、イベントが発生し、生成<xref:System.ResolveEventArgs>され<xref:System.ResolveEventArgs.RequestingAssembly%2A>たオブジェクトのプロパティにはアセンブリ a が含まれます。これは、アセンブリ a が依存関係を持たないアセンブリであるためです。  
   
- セマンティクス、<xref:System.ResolveEventArgs.RequestingAssembly%2A>要求元のアセンブリが読み込まれた方法によって、プロパティが異なります。  
+ <xref:System.ResolveEventArgs.RequestingAssembly%2A>プロパティのセマンティクスは、要求元のアセンブリがどのように読み込まれたかによって異なります。  
   
--   読み込みコンテキスト。プロパティの値があります`null`します。 読み込みコンテキストは、要求 id と読み込み順序に関係なく、アセンブリは必ずしも意味のあるではありません。 Null 以外の例が発生したときに、<xref:System.Type.GetType%2A?displayProperty=nameWithType>メソッドが呼び出され、要求元のアセンブリまたはその依存関係のいずれかを指定した型が不明です。  
+-   コンテキストの読み込み:プロパティの値は、の場合`null`もあります。 読み込みコンテキストは、読み込み順序に依存しません。要求元アセンブリの id は必ずしも意味がありません。 Null 以外の例は、 <xref:System.Type.GetType%2A?displayProperty=nameWithType>メソッドが呼び出され、指定された型が、要求元のアセンブリまたはその依存関係に認識されない場合に発生します。  
   
--   読み込み元コンテキスト:プロパティは、プローブのヒントとして使用できますが、イベント ハンドラーが指定されたアセンブリ名の 1 つ以上の要求を取得できません。  
+-   読み込み元コンテキスト:プロパティはプローブヒントとして使用できますが、イベントハンドラーは特定のアセンブリ名に対して複数の要求を取得することはできません。  
   
--   コンテキストなしで (を使用して要求元のアセンブリが読み込まれた、<xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=nameWithType>メソッド、または、バイト ストリームとして、または混在モードで)。ハンドラーを使用できる、<xref:System.ResolveEventArgs.RequestingAssembly%2A>要求元のアセンブリの id に基づいてプロパティを同じアセンブリの異なる実装を読み込みます。  
+-   コンテキストがありません (つまり、要求元のアセンブリは、 <xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=nameWithType>メソッドを使用して、またはバイトストリームとして、または混合モードで読み込まれています)。ハンドラーは、 <xref:System.ResolveEventArgs.RequestingAssembly%2A>プロパティを使用して、要求元のアセンブリの id に基づいて、同じアセンブリのさまざまな実装を読み込むことができます。  
   
  ]]></format>
         </remarks>
