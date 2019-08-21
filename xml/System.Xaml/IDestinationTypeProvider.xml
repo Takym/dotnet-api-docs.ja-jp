@@ -1,5 +1,5 @@
 <Type Name="IDestinationTypeProvider" FullName="System.Xaml.IDestinationTypeProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="50aef69f20a4e0e6146c69f5c8de036effb7f170" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51875059" /></Metadata><TypeSignature Language="C#" Value="public interface IDestinationTypeProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7377e7d5e09e53d4e38f48ac87c8d7c850bb504a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69416411" /></Metadata><TypeSignature Language="C#" Value="public interface IDestinationTypeProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDestinationTypeProvider" />
   <TypeSignature Language="DocId" Value="T:System.Xaml.IDestinationTypeProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDestinationTypeProvider" />
@@ -16,24 +16,24 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって返される型<xref:System.Xaml.IDestinationTypeProvider.GetDestinationType%2A>が XAML ノード ストリームの現在位置から現在の XAML スキーマ コンテキストを使用して解決します。  
+ によって<xref:System.Xaml.IDestinationTypeProvider.GetDestinationType%2A>返される型は、現在の xaml スキーマコンテキストを使用して、xaml ノードストリームの現在位置から解決されます。  
   
- .NET Framework XAML サービスとアクセスのような状況では、サービス コンテキストによって実装される、XAML 型システムを使用する場合<xref:System.Xaml.IDestinationTypeProvider.GetDestinationType%2A>を返します、<xref:System.Xaml.XamlType.UnderlyingType%2A>に基づいて使用可能な XAML 型システムの情報と CLR ベースの XAML スキーマ コンテキスト。  
+ .NET Framework xaml サービスによって実装された xaml 型システムを使用し、これらの条件下で<xref:System.Xaml.IDestinationTypeProvider.GetDestinationType%2A>サービスコンテキスト<xref:System.Xaml.XamlType.UnderlyingType%2A>にアクセスする場合、は、使用可能な xaml 型システム情報と CLR ベースの xaml スキーマコンテキストに基づいてを返します。  
   
- このサービスは、状況は、純粋な CLR リフレクションまたはその他のメカニズム利用できなくなるかもしれません、送信先の種類に関する情報を十分に関連します。 関連するシナリオの一覧を次に<xref:System.Xaml.IDestinationTypeProvider>:  
+ このサービスは、純粋な CLR リフレクションまたはその他のメカニズムが、変換先の型に関する十分な情報を提供しない場合に関連します。 に<xref:System.Xaml.IDestinationTypeProvider>関連するいくつかのシナリオの一覧を次に示します。  
   
--   CLR 型システムは、CLR の定義し、は、種類、使用のため間接の種類を報告し、真の変換先の型。 たとえば、.NET Framework XAML サービスで Api イベント メンバーの処理時にこのサービスは内部的に使用します。 として純粋な CLR リフレクションによってイベントが報告される、<xref:System.Delegate>します。  
+-   Clr 型システムは、CLR が型を定義および使用する方法により間接的な型を報告します。また、実際の変換先の型が必要です。 たとえば、.NET Framework XAML サービスの Api は、イベントメンバーを処理するときに、このサービスを内部的に使用します。 イベントは、純粋な<xref:System.Delegate>CLR リフレクションによってとして報告されます。  
   
--   型コンバーターの使用法の変換先の型が予期される型コンバーターを作成できる型と一致していることを確認するには。 このシナリオでは、変換先の型がパラメーター化されたときに便利です。 またはジェネリックです。  
+-   型コンバーターの使用法の変換先の型が、型コンバーターが生成できる予期される型と一致していることを確認します。 このシナリオは、変換先の型がパラメーター化またはジェネリックの場合に便利です。  
   
--   値コンバーターは、別の値コンバーターで入れ子になっている使用法から呼び出されています。 この場合、<xref:System.Xaml.IDestinationTypeProvider.GetDestinationType%2A>入れ子をアンワインドして、値コンバーターの介在するすべての出力の種類を返す代わりに、設定されている実際のプロパティの変換先の型を返します。  
+-   値コンバーターは、別の値コンバーターに入れ子になっている使用状況から呼び出されています。 この場合は、 <xref:System.Xaml.IDestinationTypeProvider.GetDestinationType%2A>中間値コンバーターの出力の種類を返すのではなく、入れ子を戻し、設定されている実際のプロパティの変換先の型を返します。  
   
- 型コンバーターおよびマークアップ拡張機能を照会できます<xref:System.Xaml.IDestinationTypeProvider>XAML オブジェクト ライターが値の変換動作を呼び出すと、XAML オブジェクト ライターによって提供されるサービスのコンテキストでサービスとして。 詳細については、次を参照してください。[型コンバーターと XAML のマークアップ拡張機能](~/docs/framework/xaml-services/type-converters-and-markup-extensions-for-xaml.md)と[Service Contexts Available to Type Converters and Markup Extensions](~/docs/framework/xaml-services/service-contexts-available-to-type-converters-and-markup-extensions.md)します。  
+ 型コンバーターとマークアップ拡張機能は<xref:System.Xaml.IDestinationTypeProvider> 、xaml オブジェクトライターが値の変換動作を呼び出すと、xaml オブジェクトライターによって提供されるサービスコンテキストで、サービスとしてのクエリを実行できます。 詳細については、「 [XAML の型コンバーターとマークアップ拡張機能](~/docs/framework/xaml-services/type-converters-and-markup-extensions-for-xaml.md)」および「[型コンバーターとマークアップ拡張機能で使用できるサービスコンテキスト](~/docs/framework/xaml-services/service-contexts-available-to-type-converters-and-markup-extensions.md)」を参照してください。  
   
  ]]></format>
     </remarks>
     <altmember cref="T:System.Xaml.XamlObjectWriter" />
-    <related type="Article" href="https://msdn.microsoft.com/library/db07a952-05ce-4aa4-b6f9-aac7397d0326">型コンバーターと XAML のマークアップ拡張機能</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/db07a952-05ce-4aa4-b6f9-aac7397d0326">XAML の型コンバーターまたはマークアップ拡張機能</related>
   </Docs>
   <Members>
     <Member MemberName="GetDestinationType">
@@ -59,10 +59,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドには、入力パラメーターがありません。 何を返す (以外の何も返すかどうかと`null`) は、XAML ノード ストリームの現在のノードの位置によって決まります。  
+ このメソッドには、入力パラメーターがありません。 返される内容 (および以外`null`のものを返すかどうか) は、XAML ノードストリーム内の現在のノード位置によって決まります。  
   
-## <a name="service-implementers"></a>サービス実装側  
- このサービスは、再実装する場合、<xref:System.Xaml.IDestinationTypeProvider.GetDestinationType%2A>メソッドは、その最も固有の変換または出力の型と照合するマークアップ拡張機能または型コンバーターが必要とする型を返す必要があります。  
+## <a name="service-implementers"></a>サービス実装者  
+ このサービスを再実装する場合<xref:System.Xaml.IDestinationTypeProvider.GetDestinationType%2A> 、メソッドは、マークアップ拡張機能または型コンバーターが最も具体的な変換または出力の種類に対してチェックすることを想定している型を返します。  
   
  ]]></format>
         </remarks>

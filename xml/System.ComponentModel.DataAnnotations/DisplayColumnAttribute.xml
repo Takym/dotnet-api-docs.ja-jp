@@ -1,5 +1,5 @@
 <Type Name="DisplayColumnAttribute" FullName="System.ComponentModel.DataAnnotations.DisplayColumnAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8afb7e10ddd9ccec4b04de1aa63c3b1ee66db99e" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63904646" /></Metadata><TypeSignature Language="C#" Value="public class DisplayColumnAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0a9d36b8d9d28bd9bbf82084fd25eeacc1785a67" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69351060" /></Metadata><TypeSignature Language="C#" Value="public class DisplayColumnAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DisplayColumnAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.DataAnnotations.DisplayColumnAttribute" />
   <TypeSignature Language="VB.NET" Value="Public Class DisplayColumnAttribute&#xA;Inherits Attribute" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <AssemblyVersion>4.3.0.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -22,8 +23,11 @@
   </Base>
   <Interfaces />
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0;netcore-3.0">
+    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0">
       <AttributeName>System.AttributeUsage(System.AttributeTargets.Class, AllowMultiple=false, Inherited=true)</AttributeName>
+    </Attribute>
+    <Attribute FrameworkAlternate="netcore-3.0">
+      <AttributeName>System.AttributeUsage</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
@@ -32,42 +36,42 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- テーブルの列に外部キーが含まれている場合、動的なデータは参照先のテーブルからその列の表示値を推測します。 既定では、型の文字列 (またはテキスト) は、参照先のテーブルの最初の列が使用されます。 <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>属性によって、この既定の動作を変更して、外部キー フィールドの列として使用する別の親テーブルの列を指定します。  
+ テーブル内の列に外部キーが含まれている場合、動的データは、参照されているテーブルからその列の表示値を推測します。 既定では、型が string (または text) である参照先テーブルの最初の列が使用されます。 <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>属性を使用すると、この既定の動作を変更したり、外部キーフィールドの列として使用する別の親テーブル列を指定したりすることができます。  
   
- この属性を適用する場合は、次の使用上の制約に従う必要があります。  
+ この属性を適用する場合は、次の使用制約に従う必要があります。  
   
 -   属性は、クラスにのみ適用できます。  
   
 -   属性は、派生クラスによって継承できます。  
   
--   属性は、1 回だけ適用できます。  
+-   属性を適用できるのは1回だけです。  
   
 
  ## Examples  
- <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute> 属性を使用する方法を次のコード例に示します。 例では、次のタスクを実行します。  
+ <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute> 属性を使用する方法を次のコード例に示します。 この例では、次のタスクを実行します。  
   
--   実装のメタデータ アドレスと顧客テーブル、CustomerAddress テーブルの親テーブルであるの部分クラスです。  
+-   Address テーブルと Customer テーブルのメタデータ部分クラスを実装します。これは、CustomerAddress テーブルの親テーブルです。  
   
--   適用、<xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>属性を`Address`メタデータ部分クラスで、次を指定します。  
+-   属性を`Address`メタデータ部分クラスに適用して、次のように指定します。 <xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>  
   
-    -   アドレス テーブル (親テーブル) から市区町村 列は、CustomerAddress の子テーブル内の外部キー列として表示されます。  
+    -   Address テーブルの City 列 (親テーブル) は、CustomerAddress 子テーブルの外部キー列として表示されます。  
   
-    -   アドレス テーブル (親テーブル) から郵便番号列は、アドレスの選択 ボックスに CustomerAddress の子テーブルの並べ替えに使用されます。  
+    -   Address テーブルの郵便番号列 (親テーブル) は、CustomerAddress 子テーブル内のアドレス選択ボックスの並べ替えに使用されます。  
   
-    -   並べ替え順序は、昇順に設定されます。  
+    -   並べ替え順序は昇順に設定されます。  
   
- 例では、適用、<xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute>属性を`Customer`の LastName 列は、CustomerAddress テーブルの外部キー列として表示されることを指定する部分クラスのメタデータ。  
+ この例では<xref:System.ComponentModel.DataAnnotations.DisplayColumnAttribute> 、 `Customer`メタデータ部分クラスに属性を適用して、の LastName 列を CustomerAddress テーブルの外部キー列として表示するように指定しています。  
   
  [!code-csharp[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/CS/Address.cs#1)]
  [!code-vb[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/VB/Address.vb#1)]  
   
- 例をコンパイルするには、次のものが必要。  
+ この例をコンパイルするには、次のものが必要です。  
   
--   任意のエディションの Visual Studio 2010 またはそれ以降。
+-   Visual Studio 2010 以降の任意のエディション。
   
--   AdventureWorksLT サンプル データベース。 ダウンロードして、SQL Server サンプル データベースをインストールする方法については、次を参照してください。 [Microsoft SQL Server の製品サンプル。データベース](https://github.com/Microsoft/sql-server-samples/releases)GitHub でします。 実行している SQL Server のバージョンのサンプル データベースの正しいバージョンをインストールすることを確認します。  
+-   AdventureWorksLT サンプルデータベース。 SQL Server サンプルデータベースをダウンロードしてインストールする方法については[、Microsoft SQL Server の製品サンプルを参照してください。GitHub](https://github.com/Microsoft/sql-server-samples/releases)のデータベース。 実行している SQL Server のバージョンに適したバージョンのサンプルデータベースがインストールされていることを確認してください。  
   
--   動的なデータ ドリブン Web サイトです。 これにより、データベースのデータ コンテキストを作成およびカスタマイズするデータ フィールドを含むクラスを作成することができます。 詳細については、「`Walkthrough: Creating a New Dynamic Data Web Site using Scaffolding`」を参照してください。  
+-   動的なデータドリブン Web サイト。 これにより、データベースのデータコンテキストを作成し、カスタマイズするデータフィールドを含むクラスを作成することができます。 詳細については、「`Walkthrough: Creating a New Dynamic Data Web Site using Scaffolding`」を参照してください。  
 
  ]]></format>
     </remarks>
@@ -96,6 +100,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -118,7 +123,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、外部キー列と子テーブルのページに表示する親の列を定義する方法を示します。  
+ 次の例では、子テーブルのページに外部キー列として表示する親列を定義する方法を示します。  
   
  [!code-csharp[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/CS/Address.cs#3)]
  [!code-vb[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/VB/Address.vb#3)]  
@@ -140,6 +145,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -164,7 +170,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定で指定した列`sortColumn`は昇順で並べ替えられます。  
+ 既定では、で`sortColumn`指定された列は昇順に並べ替えられます。  
   
  ]]></format>
         </remarks>
@@ -183,6 +189,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -204,7 +211,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、外部キー列と子テーブルのページに表示する親の列を定義する方法を示します。 親テーブルの列の並べ替えを設定しも並べ替え順序を設定します。  
+ 次の例では、子テーブルのページに外部キー列として表示する親列を定義する方法を示します。 並べ替えに親テーブルの列を設定し、並べ替え順序も設定します。  
   
  [!code-csharp[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/CS/Address.cs#2)]
  [!code-vb[System.ComponentModel.DataAnnotations.DisplayColumnAttribute#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.ComponentModel.DataAnnotations.DisplayColumnAttribute/VB/Address.vb#2)]  
@@ -226,6 +233,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -260,6 +268,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
@@ -294,6 +303,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.3.0.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.ComponentModel.DataAnnotations</AssemblyName>
