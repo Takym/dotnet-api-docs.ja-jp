@@ -1,5 +1,5 @@
 <Type Name="AttributeProviderAttribute" FullName="System.ComponentModel.AttributeProviderAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1f3840f543499fe8de3e699ee720019885471211" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63898407" /></Metadata><TypeSignature Language="C#" Value="public class AttributeProviderAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="962f12be490a2a3472a588962def82a316f231e3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69348171" /></Metadata><TypeSignature Language="C#" Value="public class AttributeProviderAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit AttributeProviderAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.AttributeProviderAttribute" />
   <TypeSignature Language="VB.NET" Value="Public Class AttributeProviderAttribute&#xA;Inherits Attribute" />
@@ -37,22 +37,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティがあいまいになるように意図的に型指定されている .NET Framework オブジェクト モデルには、いくつかのケースがあります。 たとえば、<xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>として型指定されたプロパティ`object`します。 この理由は、このプロパティがいくつかの種類の入力を受け入れることができます。 残念ながら、これは、プロパティの特性を記述するメタデータを追加する共通の場所。 各`DataSource`に型コンバーター、UI 型エディター、およびメタデータを必要とするその他のサービスのメタデータを同じ .NET Framework 全体でプロパティが必要があります。 <xref:System.ComponentModel.AttributeProviderAttribute>このような状況を解決します。  
+ .NET Framework オブジェクトモデルには、あいまいになるようにプロパティが意図的に型指定されているケースがいくつかあります。 たとえば、 <xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>プロパティはとして`object`型指定されます。 その理由は、このプロパティは複数の種類の入力を受け入れることができるためです。 残念ながら、この方法では、プロパティの特性を記述するメタデータを追加する一般的な場所はありません。 .NET Framework `DataSource`全体の各プロパティには、型コンバーター、UI 型エディター、およびメタデータを必要とするその他のサービスのメタデータが同一である必要があります。 は<xref:System.ComponentModel.AttributeProviderAttribute> 、この状況を解決します。  
   
- 取得するための規則のプロパティ記述子の属性プロパティにこの属性が格納されると、<xref:System.ComponentModel.MemberDescriptor.Attributes%2A?displayProperty=nameWithType>コレクションが異なります。 通常、プロパティ記述子では、ローカル属性を収集し、プロパティの型からの属性にこれらをマージします。 この場合、属性から返された型から取得、<xref:System.ComponentModel.AttributeProviderAttribute>からではなく、実際のプロパティの型。 この属性を使用<xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>ポイントを<xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>オブジェクトの特定の種類を<xref:System.ComponentModel.IListSource>に、適切なメタデータが配置されます<xref:System.ComponentModel.IListSource>データ バインディングを有効にします。 そのために、外部パーティがすべてのデータ ソースのメタデータを追加することに簡単にできます。  
+ この属性がプロパティに配置されると、プロパティ記述子の<xref:System.ComponentModel.MemberDescriptor.Attributes%2A?displayProperty=nameWithType>コレクションの属性を取得するための規則が異なります。 通常、プロパティ記述子は、ローカル属性を収集し、プロパティ型の属性とマージします。 この場合、属性は、実際の<xref:System.ComponentModel.AttributeProviderAttribute>プロパティ型ではなく、から返された型から取得されます。 <xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>この属性は、 <xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>オブジェクトの特定の型をに<xref:System.ComponentModel.IListSource>指定するためにで使用されます。 <xref:System.ComponentModel.IListSource>適切なメタデータは、データバインディングを有効にするために配置されます。 そのため、外部のパーティは、すべてのデータソースに簡単にメタデータを追加できます。  
   
- 宣言された属性の型から取得した、<xref:System.ComponentModel.AttributeProviderAttribute>プロパティのプロパティの型の属性と属性間の優先順位があります。 次の一覧では、優先順位に従って、使用可能なマージされた属性の完全なセットを示します。  
+ で宣言された型から取得<xref:System.ComponentModel.AttributeProviderAttribute>された属性には、プロパティの型の属性とプロパティの属性の間の優先順位があります。 次の一覧は、使用可能なマージされた属性の完全なセットを示しています。  
   
 -   プロパティの属性  
   
--   プロバイダーの属性の属性  
+-   属性プロバイダーの属性  
   
--   プロパティの型属性  
+-   プロパティの型の属性  
   
    
   
 ## Examples  
- 次のコード例に示しますを使用して<xref:System.ComponentModel.AttributeProviderAttribute>をマークする、`DataSource`の特定の種類とプロパティ<xref:System.ComponentModel.IListSource>します。 完全なコード一覧については、次を参照してください。[方法。Windows フォーム コントロールに属性を適用](~/docs/framework/winforms/controls/how-to-apply-attributes-in-windows-forms-controls.md)します。  
+ 次のコード例では<xref:System.ComponentModel.AttributeProviderAttribute> 、を使用`DataSource`して、特定の型<xref:System.ComponentModel.IListSource>のを持つプロパティをマークします。 完全なコードリストについて[は、「方法:Windows フォームコントロール](~/docs/framework/winforms/controls/how-to-apply-attributes-in-windows-forms-controls.md)に属性を適用します。  
   
  [!code-csharp[System.ComponentModel.AttributesDemoControl#25](~/samples/snippets/csharp/VS_Snippets_Winforms/System.ComponentModel.AttributesDemoControl/CS/attributesdemocontrol.cs#25)]
  [!code-vb[System.ComponentModel.AttributesDemoControl#25](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.ComponentModel.AttributesDemoControl/VB/attributesdemocontrol.vb#25)]  
@@ -144,7 +144,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例に示しますを使用して<xref:System.ComponentModel.AttributeProviderAttribute>をマークする、`DataSource`の特定の種類とプロパティ<xref:System.ComponentModel.IListSource>します。 完全なコード一覧については、次を参照してください。[方法。Windows フォーム コントロールに属性を適用](~/docs/framework/winforms/controls/how-to-apply-attributes-in-windows-forms-controls.md)します。  
+ 次のコード例では<xref:System.ComponentModel.AttributeProviderAttribute> 、を使用`DataSource`して、特定の型<xref:System.ComponentModel.IListSource>のを持つプロパティをマークします。 完全なコードリストについて[は、「方法:Windows フォームコントロール](~/docs/framework/winforms/controls/how-to-apply-attributes-in-windows-forms-controls.md)に属性を適用します。  
   
  [!code-csharp[System.ComponentModel.AttributesDemoControl#25](~/samples/snippets/csharp/VS_Snippets_Winforms/System.ComponentModel.AttributesDemoControl/CS/attributesdemocontrol.cs#25)]
  [!code-vb[System.ComponentModel.AttributesDemoControl#25](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.ComponentModel.AttributesDemoControl/VB/attributesdemocontrol.vb#25)]  
