@@ -1,5 +1,5 @@
 <Type Name="LifetimeServices" FullName="System.Runtime.Remoting.Lifetime.LifetimeServices">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f858c701b8e91bb960afbce09b207fd4ec670897" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64113433" /></Metadata><TypeSignature Language="C#" Value="public sealed class LifetimeServices" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="89ce4ee3658671422f76e78073db95594b7d082c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69061501" /></Metadata><TypeSignature Language="C#" Value="public sealed class LifetimeServices" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed LifetimeServices extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class LifetimeServices" />
@@ -30,12 +30,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 分散ガベージ コレクションは、サーバー アプリケーションの有効期間を制御して、有効期限が切れたときに、それらを削除します。 これまでは、分散ガベージ コレクションは、参照カウントとコントロールの ping を使用します。 これは、オブジェクトごとのいくつかのクライアントがある場合に適していますが、何千もの各オブジェクトごとのクライアントがある場合に機能しません。 クライアントの数が増えた場合にも、有効期間サービスは従来の分散ガベージ コレクターの関数を想定できます。  
+ 分散ガベージコレクションは、サーバーアプリケーションの有効期間を制御し、有効期間が切れたときにそれらを削除する役割を担います。 従来、分散ガベージコレクションでは、制御のために参照カウントと ping が使用されていました。 これは、オブジェクトごとに数千のクライアントがある場合に適していますが、各オブジェクトに数千のクライアントがある場合はうまく機能しません。 有効期間サービスは、従来の分散ガベージコレクターの機能を引き受けることができ、クライアントの数が増えると適切にスケールされます。  
   
- 有効期間サービスは、リースをリモートでアクティブ化された各オブジェクトに関連付けます。 リースの期限が切れると、オブジェクトが削除されます。  
+ 有効期間サービスは、リモートでアクティブ化される各オブジェクトにリースを関連付けます。 リースが期限切れになると、オブジェクトは削除されます。  
   
 > [!NOTE]
->  このクラスは、リンク確認要求です。 直前の呼び出し元にインフラストラクチャ アクセス許可がない場合は、SecurityException がスローされます。 参照してください[リンク確認要求](~/docs/framework/misc/link-demands.md)詳細についてはします。  
+>  このクラスは、リンク確認要求を行います。 SecurityException は、直前の呼び出し元にインフラストラクチャアクセス許可がない場合にスローされます。 詳細については、「[リンク確認要求](~/docs/framework/misc/link-demands.md)」を参照してください。  
   
    
   
@@ -46,7 +46,7 @@
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+    <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -107,14 +107,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在のプロパティは、位置、リース マネージャーがアクティブになる有効期限が切れたリースをクリーンアップする頻度を定義します。 たとえば場合、<xref:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime%2A>設定は 100 秒は、リースのリストが検査されますクリーンアップおよび更新 100 秒ごとです。  
+ 現在のプロパティは、リースマネージャーが有効になり、期限切れのリースをクリーンアップする頻度を定義します。 たとえば、が 100 <xref:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime%2A>秒に設定されている場合、リースリストはクリーンアップに対して検査され、100秒ごとに更新されます。  
   
- 既定値、<xref:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime%2A>プロパティは 10 秒です。  
+ <xref:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime%2A>プロパティの既定値は10秒です。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">コールスタックの上位にある 1 つ以上の呼び出し元に、リモート処理の型とチャネルを構成するためのアクセス許可がありません。 この例外はプロパティの値を設定したときにだけスローされます。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.Demand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="LeaseTime">
@@ -147,12 +147,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定のリース期間は、5 分です。  
+ 既定のリース期間は5分です。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">コールスタックの上位にある 1 つ以上の呼び出し元に、リモート処理の型とチャネルを構成するためのアクセス許可がありません。 この例外はプロパティの値を設定したときにだけスローされます。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.Demand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="RenewOnCallTime">
@@ -185,7 +185,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定の更新時間の有効期間リースを延長するには、2 分です。  
+ 有効期間リースを延長する既定の更新時間は2分です。  
   
    
   
@@ -197,7 +197,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">コールスタックの上位にある 1 つ以上の呼び出し元に、リモート処理の型とチャネルを構成するためのアクセス許可がありません。 この例外はプロパティの値を設定したときにだけスローされます。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.Demand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="SponsorshipTimeout">
@@ -230,7 +230,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スポンサーの呼び出しがタイムアウトになるまでの既定の時間には、2 分です。  
+ スポンサの呼び出しがタイムアウトになるまでの既定の時間は2分です。  
   
    
   
@@ -242,7 +242,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">コールスタックの上位にある 1 つ以上の呼び出し元に、リモート処理の型とチャネルを構成するためのアクセス許可がありません。 この例外はプロパティの値を設定したときにだけスローされます。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.Demand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
   </Members>
