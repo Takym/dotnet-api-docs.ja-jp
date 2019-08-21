@@ -1,5 +1,5 @@
 <Type Name="NetTcpBinding" FullName="System.ServiceModel.NetTcpBinding">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="26af54f33784947b2f25120c74282c8b692330dc" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58552619" /></Metadata><TypeSignature Language="C#" Value="public class NetTcpBinding : System.ServiceModel.Channels.Binding, System.ServiceModel.Channels.IBindingRuntimePreferences" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1d8b7b6352a35ce7490a828e0a9f7cf978a1cbd4" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69101467" /></Metadata><TypeSignature Language="C#" Value="public class NetTcpBinding : System.ServiceModel.Channels.Binding, System.ServiceModel.Channels.IBindingRuntimePreferences" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit NetTcpBinding extends System.ServiceModel.Channels.Binding implements class System.ServiceModel.Channels.IBindingRuntimePreferences" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.NetTcpBinding" />
   <TypeSignature Language="VB.NET" Value="Public Class NetTcpBinding&#xA;Inherits Binding&#xA;Implements IBindingRuntimePreferences" />
@@ -34,12 +34,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.NetTcpBinding> は、既定ではランタイム通信スタックを生成し、トランスポート セキュリティ、メッセージ配信用 TCP、およびバイナリ メッセージ エンコーディングを使用します。 このバインディングは、イントラネット経由で通信するため適切な Windows Communication Foundation (WCF) システムで指定された方法です。  
+ <xref:System.ServiceModel.NetTcpBinding> は、既定ではランタイム通信スタックを生成し、トランスポート セキュリティ、メッセージ配信用 TCP、およびバイナリ メッセージ エンコーディングを使用します。 このバインディングは、イントラネット経由で通信するための適切な Windows Communication Foundation (WCF) システム提供の選択肢です。  
   
- 既定の構成、<xref:System.ServiceModel.NetTcpBinding>によって提供される構成よりも高速、 <xref:System.ServiceModel.WSHttpBinding>WCF の通信のみを対象としていますが、します。 セキュリティ動作は、コンストラクターの省略可能な `securityMode` パラメーターを使用して設定できます。 WS-ReliableMessaging を使用するかどうかは、省略可能な `reliableSessionEnabled` パラメーターを使用して設定できます。 ただし、信頼できるメッセージングは、既定ではオフです。 <xref:System.ServiceModel.WSHttpBinding> や <xref:System.ServiceModel.BasicHttpBinding> などの HTTP システム指定のバインディングは、既定では設定をオンにするように構成され、<xref:System.ServiceModel.NetTcpBinding> バインディングは、既定では設定をオフにするように構成されているのが一般的であるため、たとえば、いずれかの WS-* 仕様のサポートを得るには、サポートを選択する必要があります。 これは、TCP の既定の構成の方が、HTTP バインド用の既定の構成より、エンドポイント間でのメッセージ交換が高速になることを意味します。  
+ の既定の構成<xref:System.ServiceModel.NetTcpBinding>は、 <xref:System.ServiceModel.WSHttpBinding>によって提供される構成よりも高速ですが、WCF 通信のみを目的としています。 セキュリティ動作は、コンストラクターの省略可能な `securityMode` パラメーターを使用して設定できます。 WS-ReliableMessaging を使用するかどうかは、省略可能な `reliableSessionEnabled` パラメーターを使用して設定できます。 ただし、信頼できるメッセージングは、既定ではオフです。 <xref:System.ServiceModel.WSHttpBinding> や <xref:System.ServiceModel.BasicHttpBinding> などの HTTP システム指定のバインディングは、既定では設定をオンにするように構成され、<xref:System.ServiceModel.NetTcpBinding> バインディングは、既定では設定をオフにするように構成されているのが一般的であるため、たとえば、いずれかの WS-* 仕様のサポートを得るには、サポートを選択する必要があります。 これは、TCP の既定の構成の方が、HTTP バインド用の既定の構成より、エンドポイント間でのメッセージ交換が高速になることを意味します。  
   
 > [!WARNING]
->  <xref:System.ServiceModel.NetTcpBinding> DNS 名と、サービスがリッスンするポート番号をホストするサービスの TCP 接続プールに基づいて使用します。 これは、動作も、クライアントが別々 のポート上の別のサービスへの呼び出しや、サービスの 1 つのプロセスでホストされ、ポートを共有します。 1 つのクライアントは、WAS または別のプロセスでホストされるポートを共有する複数のサービスを呼び出す場合/IIS でホストされている、クライアント側プールにつながる可能性の問題、例外がスローされている結果として、サービス B のサービス A への接続が再利用、中止されたため、接続と、新しいチャネルを作成します。 この問題を回避するには、CustomBinding を使用し、クライアントのサービスごとに異なる ConnectionPoolSettings.GroupName と通信を指定します。  
+>  は<xref:System.ServiceModel.NetTcpBinding> 、サービスのホスト DNS 名と、サービスがリッスンしているポート番号に基づいて、TCP 接続プールを使用します。 これは、クライアントが異なるポートで異なるサービスを呼び出す場合、またはサービスが1つのプロセスでホストされ、ポートを共有する場合に適しています。 1つのクライアントが複数のサービスを呼び出して、別のプロセスでホストされているポートを共有する場合、または WAS/IIS でホストされている場合は、クライアント側のプーリングによって、サービス A への接続がサービス B に再利用され、例外がスローされるという問題が発生する可能性があります。、接続が中止され、新しいチャネルが作成されました。 この問題を回避するには、CustomBinding を使用して、クライアントが通信するサービスごとに異なる ConnectionPoolSettings を指定します。  
   
    
   
@@ -184,7 +184,7 @@
         <Parameter Name="configurationName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="configurationName"><see cref="T:System.ServiceModel.NetTcpBinding" /> のバインディング構成の名前。</param>
+        <param name="configurationName"><see cref="T:System.ServiceModel.NetTcpBinding" /> のバインド構成の名前。</param>
         <summary>構成名を指定して、<see cref="T:System.ServiceModel.NetTcpBinding" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -400,7 +400,7 @@
       </ReturnValue>
       <Docs>
         <summary>保留可能なキュー内の接続要求の最大数を取得または設定します。</summary>
-        <value>保留中のキュー内の接続要求の最大数。 既定値は 10 です。</value>
+        <value>保留中のキューに置かれた接続要求の最大数。 既定値は 10 です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -452,7 +452,7 @@
       </ReturnValue>
       <Docs>
         <summary>バインディングによって処理される TCP メッセージを保存するバッファー プールで許可される最大サイズ (バイト単位) を取得または設定します。</summary>
-        <value>バインドによって処理される TCP メッセージを保存するバッファー プールの最大サイズ。 既定値は 524, 288 バイトです。</value>
+        <value>バインドによって処理される TCP メッセージを保存するバッファー プールの最大サイズ。 既定値は524288バイトです。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -644,9 +644,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この設定を使用するには、手動または自動スタートアップの種類を変更することで、Windows Communication Foundation (WCF) TCP ポート共有サービスを有効にする必要があります。  
+ この設定を使用するには、スタートアップの種類を手動または自動に変更して、Windows Communication Foundation (WCF) TCP ポート共有サービスを有効にする必要があります。  
   
- TCP リスナーとその起動方法の詳細については、次を参照してください。<xref:System.Net.Sockets.TcpListener>します。  
+ TCP リスナーとその開始方法の詳細については、「 <xref:System.Net.Sockets.TcpListener>」を参照してください。  
   
    
   
@@ -1062,7 +1062,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- いずれかでサービス メッセージを受信するためには、このランタイムの動作またはを使用してクライアント アプリケーションを変更できる[ &lt;synchronousReceive&gt;](~/docs/framework/configure-apps/file-schema/wcf/synchronousreceive-element.md)します。  
+ サービスまたはクライアントアプリケーションでメッセージを受信するためのこの実行時の動作は、 [ &lt;synchronousReceive&gt;](~/docs/framework/configure-apps/file-schema/wcf/synchronousreceive-element.md)を使用して変更できます。  
   
    
   

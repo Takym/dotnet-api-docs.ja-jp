@@ -1,5 +1,5 @@
 <Type Name="IObjectReference" FullName="System.Runtime.Serialization.IObjectReference">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="15a572ce6bbd23462a8f69dedc62f0a26c7b6cbd" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58743526" /></Metadata><TypeSignature Language="C#" Value="public interface IObjectReference" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="74bd210c6351b3af37461586750f2df84e536d7a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69087392" /></Metadata><TypeSignature Language="C#" Value="public interface IObjectReference" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IObjectReference" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.IObjectReference" />
   <TypeSignature Language="VB.NET" Value="Public Interface IObjectReference" />
@@ -40,7 +40,7 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>現在のオブジェクトが完全に復元されるまでに解決できない別のオブジェクトへの参照であるオブジェクトのこのインターフェイスを実装します。 修正段階では、任意のオブジェクトを実装する<see cref="T:System.Runtime.Serialization.IObjectReference" />その実際のクエリは、オブジェクトとそのオブジェクトは、グラフに挿入されます。 フィックス アップは、既に完了していないオブジェクトの逆シリアル化プロセス中に参照を最終処理中のプロセスを指します。</para></block>
+    <block subset="none" type="overrides"><para>別のオブジェクトを参照するオブジェクトにこのインターフェイスを実装します。このオブジェクトは、現在のオブジェクトが完全に復元されるまで解決できません。 修正段階では、を実装<see cref="T:System.Runtime.Serialization.IObjectReference" />するすべてのオブジェクトがその実オブジェクトに対して照会され、そのオブジェクトがグラフに挿入されます。 Fixup とは、オブジェクトの逆シリアル化プロセス中に、まだ完了していない参照を終了するプロセスを指します。</para></block>
   </Docs>
   <Members>
     <Member MemberName="GetRealObject">
@@ -87,11 +87,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、実際のオブジェクトではなく、プロキシ作成オブジェクトをシリアル化するリモート処理の場合に役立ちます。 プロキシ作成オブジェクトを逆シリアル化は、呼び出しを逆シリアル化の<xref:System.Runtime.Serialization.IObjectReference.GetRealObject%2A>メソッド。 この時点では、プロキシ作成オブジェクトは、リモート コンピューター上で、元の実際オブジェクトを逆参照するプロキシ オブジェクトの新しいインスタンスを作成します。 最後に、プロキシ作成オブジェクトが破棄され、ガベージ コレクションによって後で再利用します。  
+ このメソッドは、実際のオブジェクトではなく、プロキシクリエーターオブジェクトをシリアル化するリモート処理の場合に便利です。 プロキシクリエーターオブジェクトが逆シリアル化されると、逆<xref:System.Runtime.Serialization.IObjectReference.GetRealObject%2A>シリアル化によってメソッドが呼び出されます。 この時点で、プロキシクリエーターオブジェクトは、元の実際のオブジェクト (おそらくリモートコンピューター上) を参照するプロキシオブジェクトの新しいインスタンスを作成します。 最後に、プロキシクリエーターオブジェクトは破棄され、後でガベージコレクションによって回収されます。  
   
- たとえば、どの<xref:System.Type>オブジェクトがシリアル化します。 データを送信するのではなく、<xref:System.Type>オブジェクト、システムで実装するオブジェクトが見つかったアセンブリについては、型のオブジェクトの名前を使用して、所有者オブジェクトの転送<xref:System.Runtime.Serialization.IObjectReference>します。 逆シリアル化インフラストラクチャの呼び出し、型名とアセンブリ名が使用できる場合は、<xref:System.Runtime.Serialization.IObjectReference.GetRealObject%2A>転送された所有者オブジェクト。 この所有者を返します、<xref:System.Type>グラフに挿入するオブジェクト。  
+ たとえば、オブジェクトをシリアル<xref:System.Type>化する方法を検討します。 システムは、 <xref:System.Type>オブジェクトからデータを送信するのではなく、型オブジェクトの名前と、を実装<xref:System.Runtime.Serialization.IObjectReference>するオブジェクト内で見つかったアセンブリに関する情報を使用して、ホルダーオブジェクトを転送します。 型名とアセンブリ名の両方を使用できる場合、逆シリアル化<xref:System.Runtime.Serialization.IObjectReference.GetRealObject%2A>インフラストラクチャは、転送された所有者オブジェクトでを呼び出します。 この所有者は<xref:System.Type> 、グラフに挿入されたオブジェクトを返します。  
   
- このメソッドがによって保護されている、<xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType>の<xref:System.Security.Permissions.SecurityPermission>で、<xref:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter?displayProperty=nameWithType>指定します。  
+ このメソッドは、 <xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType> <xref:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter?displayProperty=nameWithType>指定したを<xref:System.Security.Permissions.SecurityPermission>持つのによって保護されます。  
   
    
   

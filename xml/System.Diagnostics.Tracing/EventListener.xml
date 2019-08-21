@@ -1,5 +1,5 @@
 <Type Name="EventListener" FullName="System.Diagnostics.Tracing.EventListener">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4b9b6cbaee889586e53969111bcef2a3741356af" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63888210" /></Metadata><TypeSignature Language="C#" Value="public abstract class EventListener : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b310ed7d5ba89022d120de88bbab3d5bad79a809" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69253392" /></Metadata><TypeSignature Language="C#" Value="public abstract class EventListener : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit EventListener extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Tracing.EventListener" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class EventListener&#xA;Implements IDisposable" />
@@ -38,20 +38,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベント リスナーがイベント ソースによって生成されたすべてのイベントのターゲットを表します (<xref:System.Diagnostics.Tracing.EventSource>オブジェクト)、現在のアプリケーション ドメインで実装します。 新しいイベント リスナーが作成されると、論理的にそのアプリケーション ドメイン内のすべてのイベント ソースにアタッチされています。  
+ イベントリスナーは、現在のアプリケーションドメインのイベントソース (<xref:System.Diagnostics.Tracing.EventSource>オブジェクト) の実装によって生成されたすべてのイベントのターゲットを表します。 新しいイベントリスナーが作成されると、そのリスナーは、そのアプリケーションドメイン内のすべてのイベントソースに論理的にアタッチされます。  
   
 > [!NOTE]
->  この型は <xref:System.IDisposable> インターフェイスを実装します。 型の使用が完了したら、直接または間接的にその破棄する必要があります。 直接的に型を破棄するには、`try` / `catch` ブロック内で <xref:System.IDisposable.Dispose%2A> メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
+>  この型は <xref:System.IDisposable> インターフェイスを実装します。 型の使用が終了したら、直接または間接的にその型を破棄する必要があります。 直接的に型を破棄するには、`try` / `catch` ブロック内で <xref:System.IDisposable.Dispose%2A> メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
   
- イベント リスナーを有効または - 現在のイベント ソースごとにイベント レベルを使用して無効にできます (<xref:System.Diagnostics.Tracing.EventLevel>) とイベントのキーワード (<xref:System.Diagnostics.Tracing.EventKeywords>) をさらに、リスナーに送信されるイベントのセットを制限します。 リスナーを使用して現在の特定のイベント ソースを任意のコマンドを送信もことができます、<xref:System.Diagnostics.Tracing.EventSource.SendCommand%2A>メソッド。 コマンドの意味は、イベント ソースの実装に固有です。  
+ イベントリスナーは、イベントレベル (<xref:System.Diagnostics.Tracing.EventLevel>) とイベントキーワード (<xref:System.Diagnostics.Tracing.EventKeywords>) を使用して、リスナーに送信されるイベントのセットをさらに制限することにより、現在のイベントソースごとに有効または無効にできます。 リスナーは、 <xref:System.Diagnostics.Tracing.EventSource.SendCommand%2A>メソッドを使用して、特定の現在のイベントソースに任意のコマンドを送信することもできます。 コマンドの意味は、イベントソースの実装に固有のものです。  
   
- 場合、<xref:System.Diagnostics.Tracing.EventSource.Guid%2A>プロパティ、<xref:System.Diagnostics.Tracing.EventSource>有効またはイベントを無効にするために使用するオブジェクトは、 <xref:System.Guid.Empty>、アプリケーション ドメイン内のすべてのイベント ソースが影響を受けます。  
+ イベントの有効化または<xref:System.Diagnostics.Tracing.EventSource>無効化に使用されるオブジェクトの<xref:System.Guid.Empty>プロパティがの場合、アプリケーションドメインのすべてのイベントソースが影響を受けます。<xref:System.Diagnostics.Tracing.EventSource.Guid%2A>  
   
- 複数のイベント リスナーは、1 つのアプリケーション ドメインで定義できます。 各リスナーは、1 つのリスナーでは無効または有効にするイベントがそのリスナーのみに影響するために他のリスナーの論理的に独立しました。 コマンドで送信される可能性があります、<xref:System.Diagnostics.Tracing.EventSource.SendCommand%2A>することにより、他のリスナーに影響しますが、これが、ルールではなく、例外がある (ガベージ コレクションやデータのフラッシュ) などのセマンティックの操作を実行します。  
+ 複数のイベントリスナーを1つのアプリケーションドメインで定義できます。 各リスナーは他のリスナーから論理的に独立しているため、1つのリスナーによって有効または無効にされたイベントは、そのリスナーのみに影響します。 メソッドを使用し<xref:System.Diagnostics.Tracing.EventSource.SendCommand%2A>て送信されたコマンドで、他のリスナーに影響を与えるセマンティック操作 (ガベージコレクションやデータのフラッシュなど) を実行することはできますが、これは規則ではなく例外です。  
   
- 各イベントのソースは、イベントを送信するイベント リスナーのリストを保持します。 フィルターの条件のセットは、各イベントのソース リスナー ペアに関連付けられます。 これらの条件の確認イベント リスナーは、現在のイベント ソースを受け取ります。 リスナーでイベントを受信する、<xref:System.Diagnostics.Tracing.EventListener.OnEventWritten%2A>メソッド。 サブクラスではそのため、<xref:System.Diagnostics.Tracing.EventListener>データでこのメソッドをオーバーライドする必要があります。  
+ 各イベントソースは、イベントを送信するイベントリスナーの一覧を保持します。 フィルター条件のセットは、各イベントソースとリスナーのペアに関連付けられています。 これらの条件によって、リスナーが現在のイベントソースに対して受け取るイベントが決まります。 リスナーは、その<xref:System.Diagnostics.Tracing.EventListener.OnEventWritten%2A>メソッドでイベントを受け取ります。 そのため、の<xref:System.Diagnostics.Tracing.EventListener>サブクラスでは、このメソッドをオーバーライドして、データで有用な処理を行う必要があります。  
   
- 新しいイベント ソースが作成されたときに、<xref:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated%2A>メソッドが呼び出されます。 すべて現在のイベント リスナーが 1 つだけを取得<xref:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated%2A>に送信できるすべての現在のイベント ソースのメッセージを記録します。 イベント リスナーが作成されたとき、一連の<xref:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated%2A>リスナーが作成される前に存在していたすべてのイベント ソースの新しいリスナーに通知する呼び出しは行われます。  
+ 新しいイベントソースが作成されると、 <xref:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated%2A>メソッドが呼び出されます。 現在のすべてのイベントリスナーは<xref:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated%2A> 、ログメッセージを送信できるすべての現在のイベントソースについて、正確に1つの呼び出しを取得します。 イベントリスナーが作成されると、リスナーが<xref:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated%2A>作成される前に存在していたすべてのイベントソースを新しいリスナーに通知するための一連の呼び出しが行われます。  
   
  ]]></format>
     </remarks>
@@ -90,7 +90,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新しいインスタンスが作成されたときに、すべてのイベントが無効です。 使用して、<xref:System.Diagnostics.Tracing.EventListener.EnableEvents%2A>イベントを有効にするメソッド。  
+ 新しいインスタンスが作成されると、すべてのイベントは無効になります。 イベントを<xref:System.Diagnostics.Tracing.EventListener.EnableEvents%2A>有効にするには、メソッドを使用します。  
   
  ]]></format>
         </remarks>
@@ -135,7 +135,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.Diagnostics.Tracing.EventSource.Guid%2A>プロパティ`eventSource`は<xref:System.Guid.Empty>、このイベント リスナーのアプリケーション ドメイン内のすべてのイベント ソースのイベントを無効にします。  
+ <xref:System.Diagnostics.Tracing.EventSource.Guid%2A>のプロパティ`eventSource`がの場合、アプリケーションドメイン内のすべてのイベントソースのイベントは、このイベントリスナーに対して無効<xref:System.Guid.Empty>になります。  
   
  ]]></format>
         </remarks>
@@ -243,7 +243,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.Diagnostics.Tracing.EventSource.Guid%2A>プロパティで指定した`eventSource`は<xref:System.Guid.Empty>、アプリケーション ドメイン内のすべてのイベント ソースが影響を受けます。  
+ <xref:System.Guid.Empty>指定<xref:System.Diagnostics.Tracing.EventSource.Guid%2A> し`eventSource`たのプロパティがの場合、アプリケーションドメイン内のすべてのイベントソースが影響を受けます。  
   
  ]]></format>
         </remarks>
@@ -292,7 +292,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.Diagnostics.Tracing.EventSource.Guid%2A>プロパティで指定した`eventSource`は<xref:System.Guid.Empty>、アプリケーション ドメイン内のすべてのイベント ソースが影響を受けます。  
+ <xref:System.Guid.Empty>指定<xref:System.Diagnostics.Tracing.EventSource.Guid%2A> し`eventSource`たのプロパティがの場合、アプリケーションドメイン内のすべてのイベントソースが影響を受けます。  
   
  ]]></format>
         </remarks>
@@ -343,7 +343,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.Diagnostics.Tracing.EventSource.Guid%2A>プロパティで指定した`eventSource`は<xref:System.Guid.Empty>、アプリケーション ドメイン内のすべてのイベント ソースが影響を受けます。  
+ <xref:System.Guid.Empty>指定<xref:System.Diagnostics.Tracing.EventSource.Guid%2A> し`eventSource`たのプロパティがの場合、アプリケーションドメイン内のすべてのイベントソースが影響を受けます。  
   
  ]]></format>
         </remarks>
@@ -379,7 +379,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.Tracing.EventListener.EventSourceCreated>イベント リスナーが作成されるもイベント リスナーの作成後に作成されるすべてのイベント ソースと既存のすべてのイベント ソースに発生します。  
+ は<xref:System.Diagnostics.Tracing.EventListener.EventSourceCreated> 、イベントリスナーの作成時に既存のすべてのイベントソースに対して、およびイベントリスナーの作成後に作成されたすべてのイベントソースに対して発生します。  
   
  ]]></format>
         </remarks>
@@ -425,7 +425,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって返される値<xref:System.Diagnostics.Tracing.EventListener.EventSourceIndex%2A>配列のインデックス作成に適したイベント ソースを識別します。 この整数は、アプリケーション ドメイン内で一意です。 イベント リスナーは、便利に接続されている各イベントのソースに関する追加情報を格納します。 によって返される値<xref:System.Diagnostics.Tracing.EventListener.EventSourceIndex%2A>により、この追加情報を効率的に格納される拡張可能な配列など`List<T>`します。  
+ によって<xref:System.Diagnostics.Tracing.EventListener.EventSourceIndex%2A>返される値は、配列のインデックス作成に適したイベントソースを識別します。 この整数は、アプリケーションドメイン内で一意です。 イベントリスナーは、接続されている各イベントソースに関する追加情報を格納するのに便利な場合があります。 によって<xref:System.Diagnostics.Tracing.EventListener.EventSourceIndex%2A>返される値を使用すると、この追加情報を、など`List<T>`の拡張可能な配列に効率的に格納できます。  
   
  ]]></format>
         </remarks>
@@ -499,9 +499,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベント ソースの実装は、イベント リスナーをインスタンス化されるときに、これらのコールバックが既存のイベント ソースに対して発行されたことに注意してくださいである必要があります。  
+ イベントソースの実装では、イベントリスナーがインスタンス化されるときに、これらのコールバックが既存のイベントソースに対して発行されることに注意する必要があります。  
   
- マルチ スレッド環境では可能<xref:System.Diagnostics.Tracing.EventListener.OnEventWritten%2A>する前に発生するコールバック、<xref:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated%2A>コールバック。  
+ マルチスレッド環境では、 <xref:System.Diagnostics.Tracing.EventListener.OnEventWritten%2A> <xref:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated%2A>コールバックの前にコールバックが発生する可能性があります。  
   
  ]]></format>
         </remarks>

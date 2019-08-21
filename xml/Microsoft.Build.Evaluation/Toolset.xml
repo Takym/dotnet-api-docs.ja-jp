@@ -1,5 +1,5 @@
 <Type Name="Toolset" FullName="Microsoft.Build.Evaluation.Toolset">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fd69f183dead1d64ab0202ecbaaec1ea3521f3d3" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63880881" /></Metadata><TypeSignature Language="C#" Value="public class Toolset" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0dd97938755b5f48f8c9cdcd53896e9aebbd42e6" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69258698" /></Metadata><TypeSignature Language="C#" Value="public class Toolset" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Toolset extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Evaluation.Toolset" />
   <TypeSignature Language="VB.NET" Value="Public Class Toolset" />
@@ -24,7 +24,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- UNDONE: (danmose) レビューの不変性。 変更不可でない場合は、その toolsetVersion をインクリメントを所有しているプロジェクト コレクション/秒に通知するためのメカニズムを追加します。  
+ 元に戻す: (danmose) 不変性を確認します。 これが変更できない場合は、そのツールを所有していることをプロジェクトコレクションに通知するメカニズムを追加して、toolsetVersion をインクリメントします。  
   
  ]]></format>
     </remarks>
@@ -149,14 +149,14 @@
       </ReturnValue>
       <Docs>
         <summary>このツールセットの既定のサブ ツールセット バージョンを取得します。</summary>
-        <value>既定のサブ ツールセット バージョン。</value>
+        <value>既定のサブツールセットバージョン。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合[!INCLUDE[vs_dev10_long](~/includes/vs-dev10-long-md.md)]は基本ツールセットを使用してインストールし、「10.0」のサブ ツールセット バージョンを返します。  
+ が[!INCLUDE[vs_dev10_long](~/includes/vs-dev10-long-md.md)]インストールされている場合は、基本ツールセットを使用して、"10.0" のサブツールセットバージョンを返します。  
   
- それ以外の場合、検出された最も高いバージョン管理されたサブツール セットを使用します。 サブ ツールセット バージョン番号では数値では順序付け任意の追加のサブ ツールセットの前は、検出された順序でリストの先頭に付加されます。 使用可能なサブツール セットがない場合は null を返しますと[!INCLUDE[vs_dev10_long](~/includes/vs-dev10-long-md.md)]がインストールされていません。  
+ それ以外の場合は、見つかった最新バージョンのサブツールセットを使用します。 番号付きバージョンのサブツールセットは数値順に並べ替えられます。追加のサブツールセットは、見つかった順にリストの先頭に付加されます。 使用可能なサブツールセットがなく、インストール[!INCLUDE[vs_dev10_long](~/includes/vs-dev10-long-md.md)]されていない場合は、null を返します。  
   
  ]]></format>
         </remarks>
@@ -194,9 +194,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- "VisualStudioVersion"は、ツールセット自体のプロパティとして設定されている場合、サブツール セット バージョンは、"VisualStudioVersion"に設定されます。  
+ "VisualStudioVersion" がツールセット自体のプロパティとして設定されている場合は、サブツールセットのバージョンが "VisualStudioVersion" に設定されます。  
   
- それ以外の場合、サブツール セット バージョンは、ツールセットの DefaultSubToolsetVersion に設定されます。  
+ それ以外の場合、サブツールセットのバージョンは、ツールセットの DefaultSubToolsetVersion に設定されます。  
   
  ]]></format>
         </remarks>
@@ -230,13 +230,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 渡された"VisualStudioVersion"グローバル プロパティがグローバル プロパティのセットに存在する場合、サブツール セット バージョンは、"VisualStudioVersion"に設定されます。  
+ 渡されたグローバルプロパティのセットに "VisualStudioVersion" グローバルプロパティが存在する場合は、サブツールセットのバージョンが "VisualStudioVersion" に設定されます。  
   
- それ以外の場合、"VisualStudioVersion"は、ツールセット自体のプロパティとして設定されている場合は、サブツール セット バージョンが"VisualStudioVersion"に設定されます。  
+ それ以外の場合、"VisualStudioVersion" がツールセット自体のプロパティとして設定されている場合は、サブツールセットのバージョンが "VisualStudioVersion" に設定されます。  
   
- 場合は、ソリューションのバージョンに対応するバージョンの Visual Studio (Visual Studio のバージョン = ソリューション バージョン - 1) サブ ツールセットのバージョンが Visual Studio のバージョンに設定に、マップで、既存のサブ ツールセットに渡されます。  
+ それ以外の場合、渡されたソリューションバージョン (Visual Studio version = solution version-1) に対応する Visual Studio のバージョンが既存のサブツールセットにマップされると、サブツールセットのバージョンは Visual Studio のバージョンに設定されます。  
   
- それ以外の場合、サブツール セット バージョンは、ツールセットの DefaultSubToolsetVersion に設定されます。  
+ それ以外の場合、サブツールセットのバージョンは、ツールセットの DefaultSubToolsetVersion に設定されます。  
   
  ]]></format>
         </remarks>
@@ -270,9 +270,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- サブ ツールセットのプロパティが見つからない場合は、基本ツールセットのプロパティを検索します。  
+ プロパティがサブツールセットに見つからない場合、は基本ツールセットでプロパティを検索します。  
   
- サブツール セットまたは基本ツールセットのプロパティが見つからない場合は、null を返します。  
+ プロパティがサブツールセットまたは基本ツールセットに見つからない場合、は null を返します。  
   
  ]]></format>
         </remarks>
@@ -316,7 +316,7 @@
       </ReturnValue>
       <Docs>
         <summary>このツールセットに関連付けられたサブ ツールセットのセットを取得します。</summary>
-        <value>サブ ツールセットのセット。</value>
+        <value>サブツールセットのセット。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -342,12 +342,12 @@
       </ReturnValue>
       <Docs>
         <summary>このツールセットのタスクとターゲットへのパスを取得します。</summary>
-        <value>タスクとこのツールセットのターゲットへのパス。</value>
+        <value>このツールセットのタスクとターゲットへのパス。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロジェクトまたは targets ファイルで $(MSBuildToolsPath) に対応します。  
+ プロジェクトまたはターゲットファイルの $ (MSBuildToolsPath) に対応します。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="BufferBlock&lt;T&gt;" FullName="System.Threading.Tasks.Dataflow.BufferBlock&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f91e2af3314b2a9ffed4d47420259a9546cc771" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58554517" /></Metadata><TypeSignature Language="C#" Value="public sealed class BufferBlock&lt;T&gt; : System.Threading.Tasks.Dataflow.IPropagatorBlock&lt;T,T&gt;, System.Threading.Tasks.Dataflow.IReceivableSourceBlock&lt;T&gt;, System.Threading.Tasks.Dataflow.ISourceBlock&lt;T&gt;, System.Threading.Tasks.Dataflow.ITargetBlock&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fa97b75dbcbbb4cda00a22813d9b534eb12fb2fb" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69099440" /></Metadata><TypeSignature Language="C#" Value="public sealed class BufferBlock&lt;T&gt; : System.Threading.Tasks.Dataflow.IPropagatorBlock&lt;T,T&gt;, System.Threading.Tasks.Dataflow.IReceivableSourceBlock&lt;T&gt;, System.Threading.Tasks.Dataflow.ISourceBlock&lt;T&gt;, System.Threading.Tasks.Dataflow.ITargetBlock&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit BufferBlock`1&lt;T&gt; extends System.Object implements class System.Threading.Tasks.Dataflow.IDataflowBlock, class System.Threading.Tasks.Dataflow.IPropagatorBlock`2&lt;!T, !T&gt;, class System.Threading.Tasks.Dataflow.IReceivableSourceBlock`1&lt;!T&gt;, class System.Threading.Tasks.Dataflow.ISourceBlock`1&lt;!T&gt;, class System.Threading.Tasks.Dataflow.ITargetBlock`1&lt;!T&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.Dataflow.BufferBlock`1" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class BufferBlock(Of T)&#xA;Implements IPropagatorBlock(Of T, T), IReceivableSourceBlock(Of T), ISourceBlock(Of T), ITargetBlock(Of T)" />
@@ -143,7 +143,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 後<xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Complete%2A>されたデータフロー ブロックで呼び出されると、そのブロックは完了し、その<xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Completion%2A>以前に使用可能なすべてのデータを処理した後、タスクは最終的な状態に入ります。 <xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Complete%2A> 発生すると、完了の待機をブロックしませんではなく、要求が開始されますが、発生すると、完了するまで待って、<xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Completion%2A>タスクを使用することがあります。  
+ データフローブロックで<xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Completion%2A> が呼び出されると、そのブロックは完了し、そのタスクは、以前に使用可能なすべてのデータを処理した後に、最終的な状態になります。<xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Complete%2A> <xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Complete%2A>は、完了するのを待っている間はブロックしませんが、要求を開始します。完了する<xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Completion%2A>まで待機するには、タスクを使用することができます。  
   
  ]]></format>
         </remarks>
@@ -179,7 +179,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- データ フロー ブロックは、現在処理していないメッセージと、これ以上メッセージを処理しないことを保証がされているときに、完了と見なされます。 返された<xref:System.Threading.Tasks.Task>関連するブロックが完了したときに完了した状態に遷移が。 移行、 <xref:System.Threading.Tasks.TaskStatus> <xref:System.Threading.Tasks.TaskStatus.RanToCompletion>ブロックには、データ フロー ブロックのに従って正常にその処理が完了するときの状態は、セマンティクスを定義します。 移行、 <xref:System.Threading.Tasks.TaskStatus> <xref:System.Threading.Tasks.TaskStatus.Faulted>データフロー ブロックが未処理の例外によって途中で処理を完了しからへの移行時の状態、 <xref:System.Threading.Tasks.TaskStatus> <xref:System.Threading.Tasks.TaskStatus.Canceled>データフロー ブロックが完了したときの状態取り消し要求を受け取ったため途中で処理します。 タスクが完了した場合、<xref:System.Threading.Tasks.TaskStatus.Faulted>状態、その`Exception`プロパティは、<xref:System.AggregateException>ブロックが失敗する原因となった 1 つまたは複数の例外を格納しています。  
+ データフローブロックは、現在メッセージを処理しておらず、それ以上メッセージを処理しないことが保証されている場合に、完了したと見なされます。 関連付けら<xref:System.Threading.Tasks.Task>れたブロックが完了すると、返されるは完了状態に遷移します。 データフローブロックの定義<xref:System.Threading.Tasks.TaskStatus>されたセマンティクスに従ってブロックが正常に処理を完了すると、 <xref:System.Threading.Tasks.TaskStatus.RanToCompletion>状態に遷移します。 <xref:System.Threading.Tasks.TaskStatus>このメソッドは、 <xref:System.Threading.Tasks.TaskStatus.Faulted>処理されない例外が原因でデータフローブロックが途中で処理を完了したときの状態<xref:System.Threading.Tasks.TaskStatus>に遷移し、データフローブロックの完了時に<xref:System.Threading.Tasks.TaskStatus.Canceled>状態に遷移します。キャンセル要求を受け取ったため、処理が途中で完了します。 タスクが<xref:System.Threading.Tasks.TaskStatus.Faulted>状態で完了した場合、 `Exception`そのプロパティは、 <xref:System.AggregateException>ブロックが失敗する原因となった1つ以上の例外を含むを返します。  
   
  ]]></format>
         </remarks>
@@ -278,7 +278,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 後<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Fault%2A>されたデータフロー ブロックで呼び出されると、そのブロックは完了し、その<xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Completion%2A>タスクが最終的な状態を入力します。 ブロックをエラーとしてでブロックをキャンセルすると、バッファー内のメッセージ (未処理の入力メッセージと unoffered 出力メッセージ) が失われる。  
+ データフローブロックで<xref:System.Threading.Tasks.Dataflow.BufferBlock%601.Completion%2A> が呼び出されると、そのブロックは完了し、タスクは最終的な状態になります。<xref:System.Threading.Tasks.Dataflow.IDataflowBlock.Fault%2A> ブロックのキャンセルと同様にブロックがエラーになると、バッファー内のメッセージ (未処理の入力メッセージと unoffered 出力メッセージ) が失われます。  
   
  ]]></format>
         </remarks>
@@ -324,7 +324,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- のみ<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>インスタンスがこのリンクされた<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>インスタンスを使用できます<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ConsumeMessage%2A>、使用にのみ使用する必要があります<xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>によってこのソースとターゲット インスタンスが以前に提供します。  
+ この<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601> <xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ConsumeMessage%2A> <xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>インスタンスにリンクされているインスタンスだけがを使用することができ、このソースによって以前にターゲットに提供されたインスタンスを使用するためにのみ使用する必要があります。 <xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>  
   
  ]]></format>
         </remarks>
@@ -366,7 +366,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- のみ<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>インスタンスがこのリンクされた<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>インスタンスを使用できます`ReleaseReservation`、リリースにのみ使用する必要があります<xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>インスタンスは以前と正常にターゲットによって予約されています。  
+ この<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601> `ReleaseReservation` <xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>インスタンスにリンクされているインスタンスだけがを使用することができます。また、これは、以前にターゲットによって正常に予約されたインスタンスを解放するためにのみ使用する必要があります<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>  
   
  ]]></format>
         </remarks>
@@ -410,11 +410,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- のみ<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>インスタンスがこのリンクされた<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>インスタンスを使用できます<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReserveMessage%2A>、予約にのみ使用する必要があります<xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>によってこのソースとターゲット インスタンスが以前に提供します。  
+ この<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601> <xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReserveMessage%2A> <xref:System.Threading.Tasks.Dataflow.DataflowMessageHeader>インスタンスにリンクされているインスタンスだけがを使用することができ、このソースによって以前に提供されたインスタンスをターゲットに予約するためにのみ使用する必要があります。 <xref:System.Threading.Tasks.Dataflow.ISourceBlock%601>  
   
- 場合`true`が返されます、<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601>いずれかを呼び出す必要があります、その後<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ConsumeMessage%2A>または<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReleaseReservation%2A>このメッセージにします。 これに失敗すると、他のターゲットまたはそれ以上のメッセージを伝達することができません、ソース可能性があります。  
+ が`true`返された場合<xref:System.Threading.Tasks.Dataflow.ITargetBlock%601> 、は、この<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ConsumeMessage%2A>メッセージ<xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReleaseReservation%2A>に対してまたはのいずれかを呼び出す必要があります。 これを行わないと、ソースはそれ以上メッセージをこのまたは他のターゲットに伝達できなくなる可能性があります。  
   
- <xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReserveMessage%2A> ターゲットの内部ロックが保持しているときにない呼び出さ 必要があります。 これに違反するデータ フロー ネットワーク内のデッドロックを回避するために必要なロック階層。  
+ <xref:System.Threading.Tasks.Dataflow.ISourceBlock%601.ReserveMessage%2A>ターゲットが内部ロックを保持している間は、を呼び出すことはできません。 これにより、データフローネットワークでデッドロックが発生するのを防ぐために必要なロック階層に違反することになります。  
   
  ]]></format>
         </remarks>
@@ -497,7 +497,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 継承された<xref:System.Object>します。 使用して、<xref:System.Threading.Tasks.Dataflow.DataflowBlockOptions.NameFormat%2A>オプション。  
+ から<xref:System.Object>継承されます。 オプションを<xref:System.Threading.Tasks.Dataflow.DataflowBlockOptions.NameFormat%2A>使用します。  
   
  ]]></format>
         </remarks>
@@ -536,9 +536,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、項目を提供するソースの待機をブロックしません。  
+ このメソッドは、ソースが項目を提供するのを待機するのをブロックしません。  
   
- 要素が使用できるかどうかを要素を確認してから返します。  
+ 要素が使用可能であったかどうかにかかわらず、要素のチェック後に戻ります。  
   
  ]]></format>
         </remarks>
@@ -575,9 +575,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、項目を提供するソースの待機をブロックしません。  
+ このメソッドは、ソースが項目を提供するのを待機するのをブロックしません。  
   
- 要素の場合、オンにした後、要素が使用できるかどうかを返します。  
+ 要素が使用可能であったかどうかにかかわらず、要素のチェック後に戻ります。  
   
  ]]></format>
         </remarks>

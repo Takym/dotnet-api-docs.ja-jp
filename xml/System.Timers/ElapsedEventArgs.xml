@@ -1,5 +1,5 @@
 <Type Name="ElapsedEventArgs" FullName="System.Timers.ElapsedEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="07c21a232ef7b45a3e8b0e5eb9de653e39248260" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58721432" /></Metadata><TypeSignature Language="C#" Value="public class ElapsedEventArgs : EventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d3dc938a0e5ca36dd99835612e30baf7ae061cf8" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69143537" /></Metadata><TypeSignature Language="C#" Value="public class ElapsedEventArgs : EventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ElapsedEventArgs extends System.EventArgs" />
   <TypeSignature Language="DocId" Value="T:System.Timers.ElapsedEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public Class ElapsedEventArgs&#xA;Inherits EventArgs" />
@@ -32,7 +32,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、インスタンス化、<xref:System.Timers.Timer>を発生させるオブジェクト、 <xref:System.Timers.Timer.Elapsed?displayProperty=nameWithType> 2 秒 (2000 ミリ秒) ごとのイベントがイベントのイベント ハンドラーを設定し、タイマーを開始します。 イベント ハンドラーの値を表示する、<xref:System.Timers.ElapsedEventArgs.SignalTime%2A?displayProperty=nameWithType>プロパティが発生するたびにします。  
+ 次の例では<xref:System.Timers.Timer> 、2秒 ( <xref:System.Timers.Timer.Elapsed?displayProperty=nameWithType> 2000 ミリ秒) ごとにイベントを発生させるオブジェクトをインスタンス化し、イベントのイベントハンドラーを設定して、タイマーを開始します。 イベントハンドラーは、発生するたびに<xref:System.Timers.ElapsedEventArgs.SignalTime%2A?displayProperty=nameWithType>プロパティの値を表示します。  
   
  [!code-cpp[System.Timers.Timer#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.timers.timer/cpp/timer1.cpp#1)]
  [!code-csharp[System.Timers.Timer#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.timers.timer/cs/timer1.cs#1)]
@@ -82,12 +82,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Timers.Timer.Elapsed?displayProperty=nameWithType>イベントの発生を<xref:System.Threading.ThreadPool>スレッド、イベント処理メソッドが 1 つのスレッドを同時実行のための時間をへの呼び出し、<xref:System.Timers.Timer.Stop%2A?displayProperty=nameWithType>メソッドは、別のスレッドで実行します。 これで発生する可能性があります、<xref:System.Timers.Timer.Elapsed>イベントが発生した後、<xref:System.Timers.Timer.Stop%2A>メソッドが呼び出されます。 比較するだけでこの競合状態を防ぐことはできません、<xref:System.Timers.ElapsedEventArgs.SignalTime%2A>時刻プロパティと、<xref:System.Timers.Timer.Stop%2A>メソッドが呼び出されると、イベント処理メソッドが既に実行するときにあるため、<xref:System.Timers.Timer.Stop%2A>メソッドが呼び出され、または開始可能性があります時点の間を実行するときに、<xref:System.Timers.Timer.Stop%2A>メソッドが呼び出されると停止時刻が保存される際に時点と。 呼び出すスレッドを防ぐために不可欠の場合は、<xref:System.Timers.Timer.Stop%2A>から続行中に、イベント処理メソッドがまだ実行中、メソッドなどのより堅牢な同期機構の使用、<xref:System.Threading.Monitor>クラスまたは<xref:System.Threading.Interlocked.CompareExchange%2A>メソッド。 使用するコード、<xref:System.Threading.Interlocked.CompareExchange%2A>の例ではメソッドがあります、<xref:System.Timers.Timer.Stop%2A?displayProperty=nameWithType>メソッド。  
+ イベントは<xref:System.Threading.ThreadPool>スレッドで発生します。そのため、イベント処理メソッドは、メソッドの<xref:System.Timers.Timer.Stop%2A?displayProperty=nameWithType>呼び出しが別のスレッドで実行されるときに、1つのスレッドで実行される可能性があります。 <xref:System.Timers.Timer.Elapsed?displayProperty=nameWithType> これにより、 <xref:System.Timers.Timer.Elapsed> <xref:System.Timers.Timer.Stop%2A>メソッドが呼び出された後にイベントが発生する可能性があります。 この競合状態は、メソッドが呼び出された<xref:System.Timers.ElapsedEventArgs.SignalTime%2A>時刻<xref:System.Timers.Timer.Stop%2A>とプロパティを比較するだけでは回避できません。これは、 <xref:System.Timers.Timer.Stop%2A>メソッドが呼び出されたときにイベント処理メソッドが既に実行されている可能性があるか、開始される可能性があるためです。<xref:System.Timers.Timer.Stop%2A>メソッドが呼び出された時点から、停止時刻が保存された時点までの間に実行します。 イベント処理メソッドがまだ実行されている間<xref:System.Timers.Timer.Stop%2A>に、メソッドを呼び出すスレッドが続行されないようにすることが重要な場合は、 <xref:System.Threading.Monitor>クラスや<xref:System.Threading.Interlocked.CompareExchange%2A>メソッドなど、より堅牢な同期機構を使用します。 メソッドを使用<xref:System.Threading.Interlocked.CompareExchange%2A>するコードに<xref:System.Timers.Timer.Stop%2A?displayProperty=nameWithType>ついては、メソッドの例を参照してください。  
   
    
   
 ## Examples  
- 次の例では、インスタンス化、<xref:System.Timers.Timer>を発生させるオブジェクト、 <xref:System.Timers.Timer.Elapsed?displayProperty=nameWithType> 2 秒 (2000 ミリ秒) ごとのイベントがイベントのイベント ハンドラーを設定し、タイマーを開始します。 イベント ハンドラーの値を表示する、<xref:System.Timers.ElapsedEventArgs.SignalTime%2A?displayProperty=nameWithType>プロパティが発生するたびにします。  
+ 次の例では<xref:System.Timers.Timer> 、2秒 ( <xref:System.Timers.Timer.Elapsed?displayProperty=nameWithType> 2000 ミリ秒) ごとにイベントを発生させるオブジェクトをインスタンス化し、イベントのイベントハンドラーを設定して、タイマーを開始します。 イベントハンドラーは、発生するたびに<xref:System.Timers.ElapsedEventArgs.SignalTime%2A?displayProperty=nameWithType>プロパティの値を表示します。  
   
  [!code-cpp[System.Timers.Timer#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.timers.timer/cpp/timer1.cpp#1)]
  [!code-csharp[System.Timers.Timer#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.timers.timer/cs/timer1.cs#1)]

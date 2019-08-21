@@ -1,5 +1,5 @@
 <Type Name="DataServiceConfiguration" FullName="System.Data.Services.DataServiceConfiguration">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a0c417adb0436193bb959341707152fe0aaa5422" /><Meta Name="ms.sourcegitcommit" Value="e28b7b371ead27d99e20387b8243f09b0cdb9fb3" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/12/2019" /><Meta Name="ms.locfileid" Value="59541594" /></Metadata><TypeSignature Language="C#" Value="public sealed class DataServiceConfiguration : System.Data.Services.IDataServiceConfiguration" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4de843c0afc89d053ce29cce3bb00f7f6bec4a67" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69370252" /></Metadata><TypeSignature Language="C#" Value="public sealed class DataServiceConfiguration : System.Data.Services.IDataServiceConfiguration" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit DataServiceConfiguration extends System.Object implements class System.Data.Services.IDataServiceConfiguration" />
   <TypeSignature Language="DocId" Value="T:System.Data.Services.DataServiceConfiguration" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DataServiceConfiguration&#xA;Implements IDataServiceConfiguration" />
@@ -88,7 +88,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.Services.DataServiceConfiguration.EnableTypeAccess%2A> メソッドは、データ サービス ランタイムに型を登録する際に使用します。 登録後は、オープン型のプロパティで型が返されます。 これにより、型に表示される`$metadata`データ サービスによって使用可能な出力。  
+ <xref:System.Data.Services.DataServiceConfiguration.EnableTypeAccess%2A> メソッドは、データ サービス ランタイムに型を登録する際に使用します。 登録後は、オープン型のプロパティで型が返されます。 これにより、型が`$metadata`出力され、データサービスで使用できるようになります。  
   
  引数の `typeName` は、CLR 型ではなくデータ モデルにおける型と同じ形式で定義されている必要があります。 登録された型は、既に <xref:System.Data.Services.DataServiceConfiguration.SetEntitySetAccessRule%2A> メソッドを呼び出すことによって公開されている型に追加されます。  
   
@@ -96,7 +96,7 @@
   
  `typeName` の値には、すべての型を表す "*" を指定することができます。  
   
- データ サービス ランタイムは、型を列挙するときや、基になるデータ プロバイダーから型を取得するときに、<xref:System.Data.Services.DataServiceConfiguration.SetEntitySetAccessRule%2A> メソッドが呼び出される場合にその型を公開する必要があるかどうかを最初に確認します。 この方法で型が利用できなかった場合は、<xref:System.Data.Services.DataServiceConfiguration.EnableTypeAccess%2A> メソッドを使って登録された型がチェックされます。 応答でその型が含まれていない型がない行われたときに表示されるこれらのメカニズムのいずれかを使用してを`$metadata`要求、およびその型のインスタンスがクライアントに返されません、データ サービスに要求の応答として。  
+ データ サービス ランタイムは、型を列挙するときや、基になるデータ プロバイダーから型を取得するときに、<xref:System.Data.Services.DataServiceConfiguration.SetEntitySetAccessRule%2A> メソッドが呼び出される場合にその型を公開する必要があるかどうかを最初に確認します。 この方法で型が利用できなかった場合は、<xref:System.Data.Services.DataServiceConfiguration.EnableTypeAccess%2A> メソッドを使って登録された型がチェックされます。 これらのメカニズムのいずれかを使用して型が表示されない場合、その型は`$metadata`要求への応答に含まれず、その型のインスタンスは、データサービスへの要求の応答としてクライアントに返されません。  
   
  <xref:System.Data.Services.DataServiceConfiguration.EnableTypeAccess%2A> メソッドは、同じ型名で何度も呼び出すことができます。  
   
@@ -391,7 +391,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アスタリスクの値を指定すると (`*`) の`name`パラメーターを明示的に設定するアクセス許可を持たないすべてのエンティティ セットのアクセス許可が設定されます。  
+ パラメーターの値としてアスタリスク (`*`) を指定すると、権限が明示的に設定されていないすべてのエンティティセットに対して権限が設定されます。 `name`  
   
    
   

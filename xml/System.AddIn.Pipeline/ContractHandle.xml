@@ -1,5 +1,5 @@
 <Type Name="ContractHandle" FullName="System.AddIn.Pipeline.ContractHandle">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f882cecb76c6ff9e01bf93c46041c039ad001dd5" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63914617" /></Metadata><TypeSignature Language="C#" Value="public class ContractHandle : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="402a3785f3b56febdc5450f8937c3f137b92c243" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342524" /></Metadata><TypeSignature Language="C#" Value="public class ContractHandle : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ContractHandle extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.AddIn.Pipeline.ContractHandle" />
   <TypeSignature Language="VB.NET" Value="Public Class ContractHandle&#xA;Implements IDisposable" />
@@ -24,18 +24,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アドイン モデルは、アプリケーション ドメイン間およびプロセス間の通信には、アドインの機能を提供するため再利用する、ガベージ コレクターに依存することはできません。 このクラスは、そのコントラクトの有効期間トークンを取得することにより、アドインのメカニズムをカウントの参照を提供します。  
+ アドインモデルは、アドインがアプリケーションドメイン間およびプロセス間で通信するための機能を提供するため、ガベージコレクターを利用してアプリケーションドメインを再利用することはできません。 このクラスは、コントラクトの有効期間トークンを取得することによって、アドインの参照カウント機構を提供します。  
   
- ときに、<xref:System.AddIn.Pipeline.ContractHandle>オブジェクトが構築された、呼び出し、<xref:System.AddIn.Pipeline.ContractBase.AcquireLifetimeToken%2A>メソッドをコンス トラクターに渡されるコントラクト。 ときに、<xref:System.AddIn.Pipeline.ContractHandle>呼び出し、オブジェクトが破棄されるか終了、<xref:System.AddIn.Pipeline.ContractBase.RevokeLifetimeToken%2A>保持契約を削除するコントラクトのメソッド。  
+ オブジェクトが構築されると、コンストラクターに<xref:System.AddIn.Pipeline.ContractBase.AcquireLifetimeToken%2A>渡されたコントラクトに対してメソッドが呼び出されます。 <xref:System.AddIn.Pipeline.ContractHandle> オブジェクトが破棄または終了されると、コントラクト<xref:System.AddIn.Pipeline.ContractBase.RevokeLifetimeToken%2A>に対してメソッドが呼び出され、コントラクトに対する保留が解除されます。 <xref:System.AddIn.Pipeline.ContractHandle>  
   
- アダプターは、コントラクトを実装します。 <xref:System.AddIn.Pipeline.ContractHandle>パイプラインの開発者は、採用されるコントラクトの有効期間を管理に役立つ、コントラクトからビューへのアダプターで使用されるクラスは設計されています。 通常、このクラスのインスタンスでは、アダプター クラスの構築時にインスタンス化され、アダプターのインスタンス フィールドに格納されます。 アダプター クラスは、ガベージ コレクトされたときに、<xref:System.AddIn.Pipeline.ContractHandle>オブジェクトは収集も、<xref:System.AddIn.Pipeline.ContractHandle>オブジェクトは、コントラクトの有効期間トークンを取り消されます。  
+ アダプターはコントラクトを実装します。 クラス<xref:System.AddIn.Pipeline.ContractHandle>は、パイプラインの開発者が、調整されているコントラクトの有効期間を管理できるようにするために、コントラクトからビューへのアダプターで使用されるように設計されています。 通常、このクラスのインスタンスは、アダプタークラスの構築時にインスタンス化され、アダプターのインスタンスフィールドに格納されます。 アダプタークラスがガベージコレクションされると、 <xref:System.AddIn.Pipeline.ContractHandle>オブジェクトも収集<xref:System.AddIn.Pipeline.ContractHandle>され、オブジェクトはコントラクトの有効期間トークンを失効させます。  
   
- ビューからコントラクトへのアダプターが継承することをお勧めしますが、<xref:System.AddIn.Pipeline.ContractBase>クラス。 メンバーの既定の実装を使用することができますし、 <xref:System.AddIn.Contract.IContract>、つまり、特定のコントラクトのメンバーのみを実装する必要があります。  
+ ビューからコントラクトへのアダプターは、 <xref:System.AddIn.Pipeline.ContractBase>クラスから継承することをお勧めします。 その後、の<xref:System.AddIn.Contract.IContract>メンバーに対して既定の実装を使用できます。つまり、特定のコントラクトのメンバーのみを実装する必要があります。  
   
    
   
 ## Examples  
- 次の例では、コントラクトからビューへのアダプターで、パイプラインのアドイン側で有効期間トークン ハンドルを設定する方法を示します。  
+ 次の例は、パイプラインのアドイン側で、コントラクトからビューへのアダプターの有効期間トークンハンドルを設定する方法を示しています。  
   
  [!code-csharp[AddinP2HostSideAdapters#2](~/samples/snippets/csharp/VS_Snippets_CLR/AddInP2HostSideAdapters/cs/Calc2ContractToViewHostSideAdapter.cs#2)]
  [!code-vb[AddinP2HostSideAdapters#2](~/samples/snippets/visualbasic/VS_Snippets_CLR/AddInP2HostSideAdapters/vb/Calc2ContractToViewHostSideAdapter.vb#2)]  
@@ -94,13 +94,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 追加アドイン側アダプターは、入力<xref:System.AddIn.Contract.IContract>します。  
+ アドイン側アダプターは、として<xref:System.AddIn.Contract.IContract>型指定されます。  
   
- 以前にアプリケーション ドメインがユーザーによって作成する場合、所有者はありません。  
+ アプリケーションドメインがユーザーによって既に作成されている場合、所有者は存在しません。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="domain" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="domain" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="Contract">
@@ -241,9 +241,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、<xref:System.Object.Finalize%2A?displayProperty=nameWithType> をオーバーライドします。 アプリケーション コードは、このメソッドを呼び出さないでください。オブジェクトの<xref:System.AddIn.Pipeline.ContractHandle.Finalize%2A>への呼び出しによって、ガベージ コレクターによって終了処理が無効になっている場合を除き、ガベージ コレクション中にメソッドが自動的に起動、<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>メソッド。  
+ このメソッドは、<xref:System.Object.Finalize%2A?displayProperty=nameWithType> をオーバーライドします。 アプリケーションコードはこのメソッドを呼び出すことはできません。オブジェクトの<xref:System.AddIn.Pipeline.ContractHandle.Finalize%2A>メソッドは、ガベージコレクションの実行中に、メソッドの<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>呼び出しによってガベージコレクターによる終了処理が無効にされていない限り、自動的に呼び出されます。  
   
- ガベージ コレクターによって呼び出されると、このメソッドを呼び出す、<xref:System.AddIn.Pipeline.ContractHandle.Dispose%28System.Boolean%29>メソッド。  
+ このメソッドは<xref:System.AddIn.Pipeline.ContractHandle.Dispose%28System.Boolean%29> 、ガベージコレクターによって呼び出された場合、メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
