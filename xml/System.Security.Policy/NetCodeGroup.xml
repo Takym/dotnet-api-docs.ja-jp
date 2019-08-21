@@ -1,5 +1,5 @@
 <Type Name="NetCodeGroup" FullName="System.Security.Policy.NetCodeGroup">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ca0ce8da4d574b318dd7315c7303498d9b632aab" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56791382" /></Metadata><TypeSignature Language="C#" Value="public sealed class NetCodeGroup : System.Security.Policy.CodeGroup" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b1fbaf25fda7f26c1371a8e71838b5048406cb2d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69163033" /></Metadata><TypeSignature Language="C#" Value="public sealed class NetCodeGroup : System.Security.Policy.CodeGroup" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit NetCodeGroup extends System.Security.Policy.CodeGroup" />
   <TypeSignature Language="DocId" Value="T:System.Security.Policy.NetCodeGroup" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class NetCodeGroup&#xA;Inherits CodeGroup" />
@@ -36,27 +36,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コード グループとは、コード アクセス セキュリティ ポリシーの構成要素です。 それぞれのポリシー レベルから成るルート コード グループを 1 つまたは複数の子コード グループを持つことができます。 各子コード グループは、独自の子コード グループがあることができます。この動作は、任意の数のレベル、ツリーを形成を拡張します。 各コード グループには、特定のアセンブリが、そのアセンブリの証拠に基づいて、グループに属するかを決定するメンバーシップ条件があります。 コード グループのメンバーシップ条件が一致とその子コード グループの指定されたアセンブリだけでは、コード アクセス セキュリティ ポリシーが適用されます。  
+ コードグループは、コードアクセスセキュリティポリシーの構成要素です。 各ポリシーレベルは、1つまたは複数の子コードグループを持つことができるルートコードグループで構成されます。 各子コードグループは、独自の子コードグループを持つことができます。この動作は、ツリーを形成する任意の数のレベルに拡張されます。 各コードグループには、そのアセンブリの証拠に基づいて、特定のアセンブリがグループに属しているかどうかを判断するメンバーシップ条件があります。 指定されたアセンブリとその子コードグループに一致するメンバーシップ条件を持つコードグループのみが、コードアクセスセキュリティポリシーを適用します。  
   
- <xref:System.Security.Policy.NetCodeGroup> 場合と同じ結合セマンティクスがあります。 <xref:System.Security.Policy.UnionCodeGroup>; の和集合を形成、<xref:System.Security.Policy.PolicyStatement>の一致するすべての子オブジェクトのコード グループと<xref:System.Security.Policy.PolicyStatement>入力から生成<xref:System.Security.Policy.Url>証拠。 ただし、<xref:System.Security.Policy.NetCodeGroup>動的に計算を含むアクセス許可を返します<xref:System.Net.WebPermission>付与されますが、サイト コードが実行元となる; にアクセスを接続すること<xref:System.Security.Policy.UnionCodeGroup>単に、静的なアクセス許可セットを返します。  
+ <xref:System.Security.Policy.NetCodeGroup>は、と同じ<xref:System.Security.Policy.UnionCodeGroup>マージセマンティクスを持ちます。これは、一致するすべての<xref:System.Security.Policy.PolicyStatement>子コードグループの<xref:System.Security.Policy.PolicyStatement>オブジェクトと入力<xref:System.Security.Policy.Url>証拠から生成されるオブジェクトの和集合を形成します。 ただし、 <xref:System.Security.Policy.NetCodeGroup>では、コードが実行さ<xref:System.Net.WebPermission>れるサイトへの接続アクセスを許可する動的に計算されたを含むアクセス許可が返されます。<xref:System.Security.Policy.UnionCodeGroup>静的アクセス許可セットを返すだけです。  
   
- ときに、<xref:System.Security.Policy.NetCodeGroup>は、次の表に示すように既定の接続アクセス規則を含む、作成します。  
+ <xref:System.Security.Policy.NetCodeGroup>が作成されると、次の表に示す既定の接続アクセスルールが含まれます。  
   
 |URI スキーム|ルール|  
 |----------------|----------|  
 |ファイル|配信元サーバーへの接続アクセスが許可されていません。|  
-|http|HTTP および HTTPS のアクセスは、配信元ポートを使用して許可されます。|  
-|https|配信元ポートを使用して、HTTPS アクセスが許可されていること。|  
+|http|送信元ポートを使用して HTTP および HTTPS アクセスを許可します。|  
+|https|HTTPS アクセスは、配信元ポートを使用して許可されます。|  
   
- スキームとを渡すことによって、その元のサイトに接続するときに使用するコードが許可されているポートを制御することができます、<xref:System.Security.Policy.CodeConnectAccess>オブジェクトと適切な<xref:System.Security.Policy.CodeConnectAccess.Scheme%2A>と<xref:System.Security.Policy.CodeConnectAccess.Port%2A>プロパティ値を<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>メソッド。 元のスキームが証拠に存在しないかを指定して認識されない場合に適用される接続アクセス規則を作成する<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>("")、スキームとして。 指定することで一致するスキームを持つ接続へのアクセス規則がない場合に適用される接続アクセス規則を作成することもできます。 <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme> ("*")、スキームとして。  
+ <xref:System.Security.Policy.CodeConnectAccess> <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>適切な<xref:System.Security.Policy.CodeConnectAccess.Scheme%2A>プロパティ値を持つオブジェクトをメソッドに渡すことによって、コードが元のサイトに接続するときに使用できるスキームとポートを制御できます。 <xref:System.Security.Policy.CodeConnectAccess.Port%2A> 送信元スキームが証拠に存在しない場合、またはスキームとして ("") を指定する<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>ことによって認識されない場合に適用される接続アクセス規則を作成できます。 また、スキームとして ("*") を指定<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>することによって、一致するスキームを持つ接続アクセス規則がない場合に適用される接続アクセス規則を作成することもできます。  
   
 > [!NOTE]
->  コードが証拠として URI スキームを送信しない場合、任意のスキームを使用して、配信元のサイトにアクセスが許可されます。  
+>  コードによって URI スキームが証拠として送信されない場合、元のサイトに戻る任意のスキームを使用してアクセスが許可されます。  
   
    
   
 ## Examples  
- 作成する次のコード例に示します、<xref:System.Security.Policy.NetCodeGroup>追加<xref:System.Security.Policy.CodeConnectAccess>HTTP スキームを使用してダウンロードされたコードのオブジェクト。  
+ 次のコード例は、を<xref:System.Security.Policy.NetCodeGroup>作成し<xref:System.Security.Policy.CodeConnectAccess> 、HTTP スキームを使用してダウンロードされたコードのオブジェクトを追加する方法を示しています。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -96,18 +96,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ときに、<xref:System.Security.Policy.NetCodeGroup>は、次の表に示すように既定の接続アクセス規則を含む、作成します。  
+ <xref:System.Security.Policy.NetCodeGroup>が作成されると、次の表に示す既定の接続アクセスルールが含まれます。  
   
 |Scheme|ルール|  
 |------------|----------|  
 |ファイル|配信元サーバーへの接続アクセスが許可されていません。|  
-|http|HTTP および HTTPS のアクセスは、配信元ポートを使用して許可されます。|  
-|https|配信元ポートを使用して、HTTPS アクセスが許可されていること。|  
+|http|送信元ポートを使用して HTTP および HTTPS アクセスを許可します。|  
+|https|HTTPS アクセスは、配信元ポートを使用して許可されます。|  
   
    
   
 ## Examples  
- 作成する次のコード例に示します、<xref:System.Security.Policy.NetCodeGroup>追加<xref:System.Security.Policy.CodeConnectAccess>HTTP スキームを使用してダウンロードされたコードのオブジェクト。  
+ 次のコード例は、を<xref:System.Security.Policy.NetCodeGroup>作成し<xref:System.Security.Policy.CodeConnectAccess> 、HTTP スキームを使用してダウンロードされたコードのオブジェクトを追加する方法を示しています。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -147,11 +147,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出すときに、<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>メソッド、スキームと関連付けられているを指定する<xref:System.Security.Policy.CodeConnectAccess>オブジェクト。 すべて<xref:System.Security.Policy.CodeConnectAccess>に追加するオブジェクト、<xref:System.Security.Policy.NetCodeGroup>を使用して<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>コードの元のスキームが、その証拠に存在しないか、またはスキームではありませんがで認識されるときに、配信元としてスキームが適用される、<xref:System.Security.Policy.NetCodeGroup>オブジェクト。  
+ <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>メソッドを呼び出すときに、スキームと関連付けられ<xref:System.Security.Policy.CodeConnectAccess>たオブジェクトを指定します。 オリジンスキームとし<xref:System.Security.Policy.NetCodeGroup>てを使用し<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>てに追加した<xref:System.Security.Policy.NetCodeGroup> オブジェクトは、コードのオリジンスキーマが証拠に存在しない場合、またはオブジェクトによって認識されるスキームではない場合に適用<xref:System.Security.Policy.CodeConnectAccess>されます。  
   
- 指定する、<xref:System.Security.Policy.CodeConnectAccess>コードの元のスキームに一致しない場合に現在追加配信元のスキームのセットに含まれるパターンのいずれかを使用するオブジェクト<xref:System.Security.Policy.NetCodeGroup>オブジェクトを使用して、<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>値。  
+ コードの元<xref:System.Security.Policy.CodeConnectAccess>のスキームが、現在<xref:System.Security.Policy.NetCodeGroup>のオブジェクトに追加された元のスキームのセットに含まれるスキームのいずれとも一致しない場合に使用<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>するオブジェクトを指定するには、値を使用します。  
   
- 値、<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>フィールドは空の文字列 ("")。  
+ <xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>フィールドの値が空の文字列 ("") です。  
   
  ]]></format>
         </remarks>
@@ -192,12 +192,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 複数を追加する<xref:System.Security.Policy.CodeConnectAccess>オブジェクトについて、同じ`origin scheme`します。 場合、`origin scheme`既に 1 つ以上の関連付けられている<xref:System.Security.Policy.CodeConnectAccess>オブジェクトを指定する`null`の`connectAccess`も何も起こりません。 場合は、元のスキームは関連付けられません<xref:System.Security.Policy.CodeConnectAccess>オブジェクトを指定する`null`の`connectAccess`と一致する元のスキームを使用したコードを防止`originScheme`から元のサーバーにアクセスします。  
+ <xref:System.Security.Policy.CodeConnectAccess> 同じ`origin scheme`に対して複数のオブジェクトを追加できます。 に既に1つ以上のオブジェクト<xref:System.Security.Policy.CodeConnectAccess>が関連付けられ`connectAccess`ている場合、にを指定`null`しても効果はありません。 `origin scheme` 元のスキームに<xref:System.Security.Policy.CodeConnectAccess>関連付けられたオブジェクトがない場合、に`connectAccess`を指定`null`すると、 `originScheme`元のスキーマが一致するコードが元のサーバーにアクセスできなくなります。  
   
    
   
 ## Examples  
- 次のコード例を示しますの作成と追加<xref:System.Security.Policy.CodeConnectAccess>オブジェクトを<xref:System.Security.Policy.NetCodeGroup>します。  
+ <xref:System.Security.Policy.CodeConnectAccess> オブジェクト<xref:System.Security.Policy.NetCodeGroup>を作成してに追加するコード例を次に示します。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -207,7 +207,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="originScheme" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="originScheme" /> には、スキームで許可されていない文字が含まれています。  
   
-または 
+- または - 
  <paramref name="originScheme" /> = <see cref="F:System.Security.Policy.NetCodeGroup.AbsentOriginScheme" /> および <paramref name="connectAccess" /> は、<see cref="F:System.Security.Policy.CodeConnectAccess.OriginScheme" /> をスキームとして指定します。</exception>
       </Docs>
     </Member>
@@ -240,13 +240,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出すときに、<xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>メソッド、スキームと関連付けられているを指定する<xref:System.Security.Policy.CodeConnectAccess>オブジェクト。 値を使用することができます、<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>を指定するフィールド、<xref:System.Security.Policy.CodeConnectAccess>オブジェクトに現在追加配信元のスキームのセットに明示的に含まれていない任意のスキームを使用する必要があります<xref:System.Security.Policy.NetCodeGroup>オブジェクト。  
+ <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>メソッドを呼び出すときに、スキームと関連付けられ<xref:System.Security.Policy.CodeConnectAccess>たオブジェクトを指定します。 <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>フィールドの値を使用して、現在<xref:System.Security.Policy.NetCodeGroup>のオブジェクト<xref:System.Security.Policy.CodeConnectAccess>に追加された元のスキームのセットに明示的に含まれていない任意のスキームに使用するオブジェクトを指定できます。  
   
- <xref:System.Security.Policy.CodeConnectAccess>で指定されたオブジェクト、<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>フィールドは、配信元のスキームに現在追加のセットに含まれるパターンのいずれか、コードの元のスキームに一致しない場合のみ使用<xref:System.Security.Policy.NetCodeGroup>オブジェクト。  
+ フィールドで指定された<xref:System.Security.Policy.NetCodeGroup> オブジェクトは、コードの元のスキームが、現在のオブジェクトに追加された元のスキームのセットに含まれているスキームのいずれとも一致しない場合にのみ使用されます。<xref:System.Security.Policy.CodeConnectAccess> <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>  
   
- 指定する、<xref:System.Security.Policy.CodeConnectAccess>コードの元のスキームがその証拠に利用できないかが認識されないときに適用するオブジェクトを使用して、<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>値。  
+ コードのオリジン<xref:System.Security.Policy.CodeConnectAccess>スキーマが証拠で利用できない場合、または認識されない場合に適用するオブジェクトを指定<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>するには、値を使用します。  
   
- 値、<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>フィールドは"*"。  
+ <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>フィールドの値は "*" です。  
   
  ]]></format>
         </remarks>
@@ -324,7 +324,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドでは、コード グループが含まれるすべてのオブジェクトのコピーも行われることを意味する、コード グループのディープ コピーを作成します。  
+ このメソッドは、コードグループの詳細コピーを作成します。つまり、コードグループに含まれるすべてのオブジェクトのコピーも作成されます。  
   
  ]]></format>
         </remarks>
@@ -403,13 +403,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 次のデータを使用して 2 つの等しいかどうかを決定<xref:System.Security.Policy.NetCodeGroup>オブジェクト。  
+ 次のデータは、2つ<xref:System.Security.Policy.NetCodeGroup>のオブジェクトが等しいかどうかを判断するために使用されます。  
   
--   <xref:System.Security.Policy.CodeGroup.Name%2A>と<xref:System.Security.Policy.CodeGroup.Description%2A>プロパティ。  
+-   プロパティ<xref:System.Security.Policy.CodeGroup.Name%2A> と<xref:System.Security.Policy.CodeGroup.Description%2A>プロパティ。  
   
 -   <xref:System.Security.Policy.CodeGroup.MembershipCondition%2A> プロパティ。  
   
--   一連の配信元のスキームと関連付けられている<xref:System.Security.Policy.CodeConnectAccess>オブジェクト。  
+-   元のスキームと関連付けられ<xref:System.Security.Policy.CodeConnectAccess>たオブジェクトのセット。  
   
  ]]></format>
         </remarks>
@@ -446,12 +446,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 各ディクショナリ エントリで、<xref:System.Collections.DictionaryEntry.Key%2A>プロパティの値が元のスキームと<xref:System.Collections.DictionaryEntry.Value%2A>プロパティの値の配列は、関連付けられている<xref:System.Security.Policy.CodeConnectAccess>オブジェクト。 いいえ関連がある場合<xref:System.Security.Policy.CodeConnectAccess>オブジェクト、<xref:System.Collections.DictionaryEntry.Value%2A?displayProperty=nameWithType>空の配列を返します。  
+ 各ディクショナリエントリ<xref:System.Collections.DictionaryEntry.Key%2A>では、プロパティ値はオリジンスキーム<xref:System.Collections.DictionaryEntry.Value%2A>であり、プロパティ値は関連付けられた<xref:System.Security.Policy.CodeConnectAccess>オブジェクトの配列です。 オブジェクトが関連付けられ<xref:System.Security.Policy.CodeConnectAccess>てい<xref:System.Collections.DictionaryEntry.Value%2A?displayProperty=nameWithType>ない場合は、空の配列を返します。  
   
    
   
 ## Examples  
- 接続アクセス規則を表示する次のコード例に示します、<xref:System.Security.Policy.NetCodeGroup>オブジェクト。  
+ 次のコード例は、 <xref:System.Security.Policy.NetCodeGroup>オブジェクトの接続アクセス規則を表示する方法を示しています。  
   
  [!code-cpp[NclCodeGroup#8](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#8)]
  [!code-csharp[NclCodeGroup#8](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#8)]  
@@ -625,20 +625,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- システム提供の既定の接続アクセス規則を削除するのにには、このメソッドを使用します。  
+ システムが提供する既定の接続アクセス規則を削除するには、このメソッドを使用します。  
   
- 既定の規則は、次の表に表示されます。  
+ 既定のルールを次の表に示します。  
   
 |Scheme|ルール|  
 |------------|----------|  
 |ファイル|配信元サーバーへの接続アクセスが許可されていません。|  
-|http|HTTP および HTTPS のアクセスは、配信元ポートを使用して許可されます。|  
-|https|配信元ポートを使用して、HTTPS アクセスが許可されていること。|  
+|http|送信元ポートを使用して HTTP および HTTPS アクセスを許可します。|  
+|https|HTTPS アクセスは、配信元ポートを使用して許可されます。|  
   
    
   
 ## Examples  
- 次のコード例では、既定のコード アクセス接続の規則を削除するには、このメソッドを呼び出すことを示します。  
+ 次のコード例は、このメソッドを呼び出して、既定のコードアクセス接続規則を削除する方法を示しています。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -686,11 +686,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 読み込まれるアセンブリの証拠を指定するには、このメソッドは、最初に指定した証拠とメンバーシップ条件をチェックして、コード グループを評価します。 一致がある場合、このメソッドは、子コード グループの評価を含む、コード グループのポリシー ステートメントを返します。  
+ このメソッドは、読み込まれるアセンブリの証拠として、最初に指定された証拠に対してメンバーシップ条件を確認することによって、コードグループを評価します。 一致するものがある場合、このメソッドは、子コードグループの評価を含む、コードグループのポリシーステートメントを返します。  
   
  このメソッドの操作は次のとおりです。  
   
- メンバーシップ条件が指定した証拠が一致しない場合は、返す`null`、それ以外のアクセス許可セットが返されます (P) がコード グループのポリシー ステートメントに等しくなり、引き続きセット。 各子コード グループの同じ証拠; を使用して、コード グループを解決します。結果がない場合`null`、そのポリシー ステートメントを返します。 子コード グループが一致しない場合は、P (親のポリシー ステートメント) を返します。  
+ メンバーシップ条件が指定した証拠と一致しない場合`null`はを返します。それ以外の場合は、返されるアクセス許可セット (P) をコードグループのポリシーステートメントと同じに設定し、続行します。 各子コードグループについて、同じ証拠でコードグループを解決します。結果がでない`null`場合は、そのポリシーステートメントを返します。 一致する子コードグループがない場合は、P (親のポリシーステートメント) を返します。  
   
  ]]></format>
         </remarks>
@@ -737,7 +737,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 読み込まれるアセンブリの証拠を指定するには、このメソッドは、最初に指定した証拠とメンバーシップ条件をチェックして、コード グループを評価します。 一致がある場合、このメソッドは、ルート コード グループを返します。 返されるコード グループは、さらに、ことがあるも子コード グループの場合、戻り値が指定された証拠と一致するコード グループの完全なセットを反映するための子コード グループを含めることができます。  
+ このメソッドは、読み込まれるアセンブリの証拠として、最初に指定された証拠に対してメンバーシップ条件を確認することによって、コードグループを評価します。 一致するものがある場合、このメソッドはルートコードグループを返します。 返されるコードグループには、子コードグループが含まれている場合があります。この場合、子コードグループも存在する可能性があるため、戻り値は、指定された証拠に一致したコードグループの完全なセットを反映しています。  
   
  ]]></format>
         </remarks>

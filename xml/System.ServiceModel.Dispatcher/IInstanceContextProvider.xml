@@ -1,5 +1,5 @@
 <Type Name="IInstanceContextProvider" FullName="System.ServiceModel.Dispatcher.IInstanceContextProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="28c37f44bfb30eb2dcec7a72634b22bd36550b6c" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51868182" /></Metadata><TypeSignature Language="C#" Value="public interface IInstanceContextProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d5fe22adabd6c7ddbd809e7be39d5cd041175a39" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69150301" /></Metadata><TypeSignature Language="C#" Value="public interface IInstanceContextProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IInstanceContextProvider" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Dispatcher.IInstanceContextProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface IInstanceContextProvider" />
@@ -19,10 +19,10 @@
 ## Remarks  
  <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider> インターフェイスを実装して、システムに適切な <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType> オブジェクトを提供します。 通常、このインターフェイスの実装では、共有セッションのサポート、サービス インスタンス プールの有効化、サービス インスタンスの有効期間の制御、またはクライアント間でのコンテキストのグループ化を実現します。  
   
- たとえば、共有を実装するには、カスタム <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider> を挿入して、クライアントからのどのセッションまたは呼び出しをどの <xref:System.ServiceModel.InstanceContext> オブジェクトと関連付けるかを決定します。 インスタンス コンテキストの共有の例は、次を参照してください。 [InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)します。  
+ たとえば、共有を実装するには、カスタム <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider> を挿入して、クライアントからのどのセッションまたは呼び出しをどの <xref:System.ServiceModel.InstanceContext> オブジェクトと関連付けるかを決定します。 インスタンスコンテキストの共有を示す例については、「 [InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)」を参照してください。  
   
 > [!NOTE]
->  ときに、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider>に Windows Communication Foundation (WCF) の作成を制御する通常のプロパティが挿入される<xref:System.ServiceModel.InstanceContext>オブジェクト (、<xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType>プロパティ) は検査されなくなり、効力はありません。  
+>  が Windows Communication Foundation (WCF) に挿入されると、オブジェクトの<xref:System.ServiceModel.InstanceContext>作成を制御する通常のプロパティ ( <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType>プロパティ) がチェックされなくなり、効果はありません。 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider>  
   
  <xref:System.ServiceModel.InstanceContext> オブジェクトを作成時に初期化できるさらに一般的なメカニズムは (たとえば、各 <xref:System.ServiceModel.InstanceContext> にカスタム拡張機能を関連付けるなど)、<xref:System.ServiceModel.Dispatcher.IInstanceContextInitializer?displayProperty=nameWithType> です。  
   
@@ -58,7 +58,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.GetExistingInstanceContext%2A> メソッドは、メッセージを受信すると呼び出されます。 メッセージの処理に使用する <xref:System.ServiceModel.InstanceContext> オブジェクト、または `null` を返します。 場合に`null`、WCF が新たに作成<xref:System.ServiceModel.InstanceContext>メッセージと、呼び出しのオブジェクト、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.InitializeInstanceContext%2A>メソッド。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.GetExistingInstanceContext%2A> メソッドは、メッセージを受信すると呼び出されます。 メッセージの処理に使用する <xref:System.ServiceModel.InstanceContext> オブジェクト、または `null` を返します。 の`null`場合、WCF はメッセージの新しい<xref:System.ServiceModel.InstanceContext>オブジェクトを作成し、メソッドを<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.InitializeInstanceContext%2A>呼び出します。  
   
  `null` を返すと、新しい <xref:System.ServiceModel.InstanceContext> オブジェクトがスロットル システムに渡って、<xref:System.ServiceModel.Dispatcher.ServiceThrottle.MaxConcurrentInstances%2A?displayProperty=nameWithType> のカウントをインクリメントします。  
   
@@ -127,9 +127,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> WCF が閉じてリサイクル、アイドル状態になっているときに呼び出される<xref:System.ServiceModel.InstanceContext>オブジェクト、作業を続行するかどうか、ランタイムに通知できます。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>は、WCF がアイドル状態<xref:System.ServiceModel.InstanceContext>のオブジェクトを閉じてリサイクルしようとしているときに呼び出され、継続するかどうかをランタイムに通知できます。  
   
- インスタンス コンテキストの共有の例は、次を参照してください。 [InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)します。  
+ インスタンスコンテキストの共有を示す例については、「 [InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -162,7 +162,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.NotifyIdle%2A>メソッドが呼び出されます、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>メソッドを返します。`false`で WCF を提供できるようにする、<xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType>オブジェクトのランタイムを通知するために使用することを、<xref:System.ServiceModel.InstanceContext>作業を完了しました。 ときに、<xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType>オブジェクトはランタイムに通知を<xref:System.ServiceModel.InstanceContext>の作業、WCF の呼び出しが完了した<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>もう一度です。 このサイクルは、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> が `true` を返すまで継続されます。コンテキストはサイクルごとに閉じられ、再利用されます。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> `false` <xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType>メソッドは、メソッドがを返したときに呼び出されます。これにより、 <xref:System.ServiceModel.InstanceContext>が実行を完了したことをランタイムに通知するために使用するオブジェクトを WCF に提供できるようになります。 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.NotifyIdle%2A> オブジェクトが、 <xref:System.ServiceModel.InstanceContext>が処理を完了したことをランタイムに通知する<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>と、WCF はもう一度を呼び出します。 <xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType> このサイクルは、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> が `true` を返すまで継続されます。コンテキストはサイクルごとに閉じられ、再利用されます。  
   
  ]]></format>
         </remarks>
