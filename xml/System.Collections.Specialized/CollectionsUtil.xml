@@ -1,5 +1,5 @@
 <Type Name="CollectionsUtil" FullName="System.Collections.Specialized.CollectionsUtil">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="434f562de074800b3f9001edd503db3741baeb6c" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63907237" /></Metadata><TypeSignature Language="C#" Value="public class CollectionsUtil" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="71ddfe79aa9d9b6bde90c6736a0c81edc5aca714" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69352154" /></Metadata><TypeSignature Language="C#" Value="public class CollectionsUtil" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CollectionsUtil extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Collections.Specialized.CollectionsUtil" />
   <TypeSignature Language="VB.NET" Value="Public Class CollectionsUtil" />
@@ -34,14 +34,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これらのメソッドは、ハッシュ コード プロバイダーと比較子の大文字の実装を使用して、コレクションの大文字のインスタンスを生成します。 結果のインスタンスは、動作が異なる場合がありますが、そのクラスの他のインスタンスのように使用できます。  
+ これらのメソッドは、ハッシュコードプロバイダーと比較子の大文字と小文字を区別しない実装を使用して、大文字と小文字を区別せずにコレクションのインスタンスを生成します。 結果として得られるインスタンスは、そのクラスの他のインスタンスと同様に使用できますが、動作が異なる場合もあります。  
   
- たとえば、2 つのオブジェクト キー「こんにちは」で"HELLO"が、ハッシュ テーブルに追加するには. 大文字のハッシュ テーブルを 2 つの異なるエントリを作成一方、2 番目のオブジェクトを追加するときに、大文字のハッシュ テーブルは例外をスローします。  
+ たとえば、"hello" と "HELLO" というキーを持つ2つのオブジェクトをハッシュテーブルに追加するとします。 大文字と小文字を区別するハッシュテーブルでは、2つの異なるエントリが作成される可能性があります。一方、大文字と小文字を区別しないハッシュテーブルでは、2番目のオブジェクトを追加するときに例外がスローされます。  
   
    
   
 ## Examples  
- 次の例では、ハッシュ テーブルと並べ替えられたリストの場合は、2 つのコレクションを使用して、グループの都市の人口値を保持します。 値は、キーとして市区町村名を使用して、コレクションから取得されます。 都市名は、大文字小文字のキーとしての使用を表示するには。  
+ 次の例では、2つのコレクション (ハッシュテーブルと並べ替え済みリスト) を使用して、都市のグループの母集団の値を保持します。 値は、キーとして市区町村名を使用してコレクションから取得されます。 市区町村名は、大文字と小文字を区別しないキーとして使用されることを示します。  
   
  [!code-cpp[System.Collections.Specialized.CollectionsUtil#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.collections.specialized.collectionsutil/cpp/source.cpp#1)]
  [!code-csharp[System.Collections.Specialized.CollectionsUtil#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.collections.specialized.collectionsutil/cs/source.cs#1)]
@@ -49,9 +49,9 @@
   
  ]]></format>
     </remarks>
-    <threadsafe>A <see cref="T:System.Collections.Hashtable" /> 1 つのライターと複数リーダー同時にサポートできます。 複数のライターをサポートするために、によって返されるラッパー経由のすべての操作を行う必要がある、<see cref="M:System.Collections.Hashtable.Synchronized(System.Collections.Hashtable)" />メソッド。  
+    <threadsafe>は<see cref="T:System.Collections.Hashtable" /> 、1つのライターと複数のリーダーを同時にサポートできます。 複数のライターをサポートするには、 <see cref="M:System.Collections.Hashtable.Synchronized(System.Collections.Hashtable)" />メソッドによって返されるラッパーを使用してすべての操作を行う必要があります。  
   
-A<see cref="T:System.Collections.SortedList" />コレクションが変更されない限り、複数のリーダーを同時にサポートできます。 スレッド セーフを保証するために、 <see cref="T:System.Collections.SortedList" />、によって返されるラッパーを通じて、すべての操作を行う必要がある、<see cref="M:System.Collections.SortedList.Synchronized(System.Collections.SortedList)" />メソッド。  
+は<see cref="T:System.Collections.SortedList" /> 、コレクションが変更されていない限り、複数のリーダーを同時にサポートできます。 の<see cref="T:System.Collections.SortedList" />スレッドセーフを保証するには、 <see cref="M:System.Collections.SortedList.Synchronized(System.Collections.SortedList)" />メソッドによって返されるラッパーを使用してすべての操作を行う必要があります。  
   
 コレクションの列挙は、本質的にスレッド セーフな手続きではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。</threadsafe>
     <altmember cref="N:System.Collections" />
@@ -143,7 +143,7 @@ A<see cref="T:System.Collections.SortedList" />コレクションが変更され
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する代わりに、<xref:System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable%2A>メソッドを使用して、<xref:System.Collections.Hashtable.%23ctor%28System.Collections.IEqualityComparer%29?displayProperty=nameWithType>大文字小文字の区別を作成するコンス トラクター<xref:System.Collections.Hashtable>クラス。  
+ <xref:System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable%2A>メソッドを使用する代わりに、 <xref:System.Collections.Hashtable.%23ctor%28System.Collections.IEqualityComparer%29?displayProperty=nameWithType>コンストラクターを使用して大文字と<xref:System.Collections.Hashtable>小文字を区別しないクラスを作成します。  
   
  ]]></format>
         </remarks>
@@ -194,7 +194,7 @@ A<see cref="T:System.Collections.SortedList" />コレクションが変更され
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する代わりに、<xref:System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable%2A>メソッドを使用して、<xref:System.Collections.Hashtable.%23ctor%28System.Collections.IDictionary%2CSystem.Collections.IEqualityComparer%29?displayProperty=nameWithType>大文字小文字の区別を作成するコンス トラクター<xref:System.Collections.Hashtable>クラス。  
+ <xref:System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable%2A>メソッドを使用する代わりに、 <xref:System.Collections.Hashtable.%23ctor%28System.Collections.IDictionary%2CSystem.Collections.IEqualityComparer%29?displayProperty=nameWithType>コンストラクターを使用して大文字と<xref:System.Collections.Hashtable>小文字を区別しないクラスを作成します。  
   
  ]]></format>
         </remarks>
@@ -247,7 +247,7 @@ A<see cref="T:System.Collections.SortedList" />コレクションが変更され
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する代わりに、<xref:System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable%2A>メソッドを使用して、<xref:System.Collections.Hashtable.%23ctor%28System.Int32%2CSystem.Collections.IEqualityComparer%29?displayProperty=nameWithType>大文字小文字の区別を作成するコンス トラクター<xref:System.Collections.Hashtable>クラス。  
+ <xref:System.Collections.Specialized.CollectionsUtil.CreateCaseInsensitiveHashtable%2A>メソッドを使用する代わりに、 <xref:System.Collections.Hashtable.%23ctor%28System.Int32%2CSystem.Collections.IEqualityComparer%29?displayProperty=nameWithType>コンストラクターを使用して大文字と<xref:System.Collections.Hashtable>小文字を区別しないクラスを作成します。  
   
  ]]></format>
         </remarks>
@@ -296,7 +296,7 @@ A<see cref="T:System.Collections.SortedList" />コレクションが変更され
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新しい<xref:System.Collections.SortedList>インスタンスに従って並べ替えられた、<xref:System.Collections.CaseInsensitiveComparer>します。  
+ 新しい<xref:System.Collections.SortedList>インスタンスは、 <xref:System.Collections.CaseInsensitiveComparer>に従って並べ替えられます。  
   
  ]]></format>
         </remarks>

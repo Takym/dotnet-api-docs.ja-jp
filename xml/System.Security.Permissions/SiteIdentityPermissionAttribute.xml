@@ -1,5 +1,5 @@
 <Type Name="SiteIdentityPermissionAttribute" FullName="System.Security.Permissions.SiteIdentityPermissionAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7a55948cae70a7d9ce2119de98600f688051314e" /><Meta Name="ms.sourcegitcommit" Value="93667418e6e77da6ba7109a407c61b8969cec4ec" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/05/2019" /><Meta Name="ms.locfileid" Value="67571090" /></Metadata><TypeSignature Language="C#" Value="public sealed class SiteIdentityPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b7ce3a85fe787b072799fa469a1807146214a580" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69057645" /></Metadata><TypeSignature Language="C#" Value="public sealed class SiteIdentityPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit SiteIdentityPermissionAttribute extends System.Security.Permissions.CodeAccessSecurityAttribute" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.SiteIdentityPermissionAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SiteIdentityPermissionAttribute&#xA;Inherits CodeAccessSecurityAttribute" />
@@ -42,18 +42,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- サイト id は Url から HTTP、HTTPS、および FTP のプロトコルでのコードだけに定義します。 サイト間の文字列とは、"//"URL と、次のプロトコルの後に「/」、たとえば、存在する場合`www.fourthcoffee.com`URL で`http://www.fourthcoffee.com/process/grind.htm`。 これには、ポート番号が含まれません。 指定された URL がある場合`http://www.fourthcoffee.com:8000/`、サイトが`www.fourthcoffee.com`ではなく、`www.fourthcoffee.com:8000`します。  
+ サイト id は、HTTP、HTTPS、および FTP のプロトコルを使用して、Url からのコードに対してのみ定義されます。 サイトは、url のプロトコルの後の "//" と、url の "/" の間の文字列です (たとえば`www.fourthcoffee.com` 、url `http://www.fourthcoffee.com/process/grind.htm`に "/" が含まれている場合)。 これにはポート番号が含まれません。 指定された URL `http://www.fourthcoffee.com:8000/`がの場合、 `www.fourthcoffee.com`サイトは`www.fourthcoffee.com:8000`ではなくです。  
   
- サイトはまったく、またはワイルドカードに一致する ("\*") ドット区切り文字のプレフィックス。 たとえば、サイトの名前文字列`*.fourthcoffee.com`と一致する`fourthcoffee.com`だけでなく`www.fourthcoffee.com`します。 ワイルドカードをせず、サイト名に正確に一致することがあります。 サイト名の文字列\*任意のサイトと一致するが、サイトの証拠を持たないコードは一致しません。  
+ サイトは、正確に一致することも、ドット区切り\*記号でワイルドカード ("") で区切ることもできます。 たとえば、サイト名の文字列`*.fourthcoffee.com`はと同様に一致`www.fourthcoffee.com` `fourthcoffee.com`します。 ワイルドカードを使用しない場合、サイト名は正確に一致している必要があります。 サイト名の文字列\*は任意のサイトと一致しますが、サイトの証拠がないコードとは一致しません。  
   
 > [!IMPORTANT]
->  以降では、 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]、id アクセス許可は使用されません。  
+>  以降では、id 権限は使用されません。 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]  
 >   
->  .NET Framework バージョン 1.0 および 1.1 では、id アクセス許可の要求は、呼び出し元のアセンブリが完全に信頼されている場合でも有効です。 つまり、呼び出し元のアセンブリに完全な信頼関係が id アクセス許可を要求は、アセンブリが要求の基準を満たしていない場合失敗します。 .NET framework version 2.0 では、id アクセス許可の要求では、効果的なは、呼び出し元のアセンブリに完全な信頼がある場合です。 これには、特殊なケースとしての id アクセス許可の扱いをなくして、すべてのアクセス許可の一貫性が保証されします。  
+>  .NET Framework バージョン1.0 および1.1 では、呼び出し元のアセンブリが完全に信頼されている場合でも、id アクセス許可に対する要求が有効になります。 つまり、呼び出し元のアセンブリには完全な信頼があるにもかかわらず、アセンブリが要求された条件を満たしていない場合、id アクセス許可の要求は失敗します。 .NET Framework バージョン2.0 では、呼び出し元のアセンブリに完全な信頼がある場合、id 権限の要求は無効になります。 これにより、すべてのアクセス許可の一貫性が確保され、特殊なケースとしての id アクセス許可の処理が不要になります。  
   
- 許可されている宣言のスコープによって異なります、<xref:System.Security.Permissions.SecurityAction>のために使用します。  
+ 許可される宣言のスコープは、 <xref:System.Security.Permissions.SecurityAction>使用されているによって異なります。  
   
- セキュリティ属性で宣言されているセキュリティ情報は、属性のターゲットのメタデータに格納され、実行時に、システムによってアクセスされます。 セキュリティ属性は、宣言型セキュリティに対してのみ使用されます。 強制セキュリティは、対応するアクセス許可クラスを使用します。  
+ セキュリティ属性によって宣言されたセキュリティ情報は、属性ターゲットのメタデータに格納され、実行時にシステムによってアクセスされます。 セキュリティ属性は、宣言セキュリティに対してのみ使用されます。 命令型のセキュリティについては、対応するアクセス許可クラスを使用します。  
   
  ]]></format>
     </remarks>
@@ -125,9 +125,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アプリケーション コードからではなく、セキュリティ システムでのみ呼び出す必要があります。  
+ このメソッドは、アプリケーションコードではなく、セキュリティシステムによってのみ呼び出される必要があります。  
   
- コンパイル時に、属性は、セキュリティ宣言をメタデータにシリアル化された形式に変換されます。 メタデータの宣言型セキュリティ データは、この属性に対応するこのメソッドから返される権限から作成されます。  
+ コンパイル時に、属性はセキュリティ宣言をメタデータ内のシリアル化された形式に変換します。 メタデータの宣言型セキュリティデータは、このメソッドが返すアクセス許可から、この属性に対応するように作成されます。  
   
  ]]></format>
         </remarks>
@@ -164,9 +164,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- サイト id は Url から HTTP、HTTPS、および FTP のプロトコルでのコードだけに定義します。 サイト間の文字列とは、"//"URL と、次のプロトコルの後に「/」、たとえば、存在する場合`www.fourthcoffee.com`URL で`http://www.fourthcoffee.com/process/grind.htm`。 これには、ポート番号が含まれません。 指定された URL がある場合`http://www.fourthcoffee.com:8000/`、サイトが`www.fourthcoffee.com`ではなく、`www.fourthcoffee.com:8000`します。  
+ サイト id は、HTTP、HTTPS、および FTP のプロトコルを使用して、Url からのコードに対してのみ定義されます。 サイトは、url のプロトコルの後の "//" と、url の "/" の間の文字列です (たとえば`www.fourthcoffee.com` 、url `http://www.fourthcoffee.com/process/grind.htm`に "/" が含まれている場合)。 これにはポート番号が含まれません。 指定された URL `http://www.fourthcoffee.com:8000/`がの場合、 `www.fourthcoffee.com`サイトは`www.fourthcoffee.com:8000`ではなくです。  
   
- サイトはまったく、またはワイルドカードに一致する ("\*") ドット区切り文字のプレフィックス。 たとえば、サイトの名前文字列`*.fourthcoffee.com`と一致する`fourthcoffee.com`だけでなく`www.fourthcoffee.com`します。 ワイルドカードをせず、サイト名に正確に一致することがあります。  
+ サイトは、正確に一致することも、ドット区切り\*記号でワイルドカード ("") で区切ることもできます。 たとえば、サイト名の文字列`*.fourthcoffee.com`はと同様に一致`www.fourthcoffee.com` `fourthcoffee.com`します。 ワイルドカードを使用しない場合、サイト名は正確に一致している必要があります。  
   
  ]]></format>
         </remarks>

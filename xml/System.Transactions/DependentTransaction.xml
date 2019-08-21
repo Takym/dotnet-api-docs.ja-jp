@@ -1,5 +1,5 @@
 <Type Name="DependentTransaction" FullName="System.Transactions.DependentTransaction">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4aa0b5e95ba1b90608a89db6dcedcedceb0b98fd" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58743567" /></Metadata><TypeSignature Language="C#" Value="public sealed class DependentTransaction : System.Transactions.Transaction, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8df0469f9917704ea67c6383e691ea154ba04e9f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69098331" /></Metadata><TypeSignature Language="C#" Value="public sealed class DependentTransaction : System.Transactions.Transaction, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit DependentTransaction extends System.Transactions.Transaction implements class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Transactions.DependentTransaction" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DependentTransaction&#xA;Inherits Transaction&#xA;Implements ISerializable" />
@@ -40,11 +40,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Transactions.DependentTransaction>のクローンである、<xref:System.Transactions.Transaction>オブジェクトを使用して作成、<xref:System.Transactions.Transaction.DependentClone%2A>メソッド。  その唯一の目的では、rest し、(たとえば、ワーカー スレッド) でトランザクションの作業が実行されているときにトランザクションをコミットできないことを保証するアプリケーションを許可します。  
+ は、 <xref:System.Transactions.Transaction.DependentClone%2A>メソッドを使用し<xref:System.Transactions.Transaction>て作成されたオブジェクトの複製です。<xref:System.Transactions.DependentTransaction>  その唯一の目的は、アプリケーションが rest にアクセスできるようにすることと、トランザクションで作業がまだ実行されている間 (ワーカースレッドなど)、トランザクションをコミットできないことを保証することです。  
   
- 使用して、トランザクションの作成者を通知できます複製されたトランザクション内で行われる作業は完了してコミットする準備では最後に、ときに、<xref:System.Transactions.DependentTransaction.Complete%2A>メソッド。 そのため、整合性とデータの正確性を保持できます。  
+ 複製されたトランザクション内で実行された作業が最終的に完了し、コミットの準備ができたら、 <xref:System.Transactions.DependentTransaction.Complete%2A>メソッドを使用してトランザクションの作成者に通知することができます。 そのため、データの一貫性と正確性を維持することができます。  
   
- <xref:System.Transactions.DependentCloneOption>コミット時に動作を決定する列挙を使用します。  この動作の制御ではアプリケーションを停止も同時実行のサポートを提供します。 この列挙体を使用する方法の詳細については、次を参照してください。 [DependentTransaction による同時実行を管理する](https://msdn.microsoft.com/library/bdad8468-2a90-4b81-8375-278067120cab)します。  
+ 列挙<xref:System.Transactions.DependentCloneOption>は、コミット時の動作を決定するために使用されます。  この動作制御によって、アプリケーションは rest にアクセスできるだけでなく、同時実行のサポートも提供されます。 この列挙型の使用方法の詳細については、「 [DependentTransaction による同時実行制御の管理](https://msdn.microsoft.com/library/bdad8468-2a90-4b81-8375-278067120cab)」を参照してください。  
   
    
   
@@ -94,13 +94,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 依存している複製が、作業が完了したことと、準備ができても、親である場合は、トランザクションをコミットすることができます、トランザクションの作成者に通知する場合は、このメソッドを呼び出します。  
+ 依存関係のある複製が作業を完了したことをトランザクションの作成者に通知する場合は、このメソッドを呼び出します。親の準備ができている場合は、トランザクションをコミットすることもできます。  
   
- この呼び出しが呼び出された後、トランザクションの追加作業がしないでまたは例外がスローされます。  
+ この呼び出しが呼び出された後、トランザクションに対して追加の作業を行わないでください。または、例外がスローされます。  
   
- 後に、アプリケーション ドメインがダウンした場合、このメソッドは呼び出されると、およびトランザクションを完了する前に、トランザクションが中止可能性があります。  
+ このメソッドが呼び出された後、トランザクションが完了する前にアプリケーションドメインがダウンした場合、トランザクションは中止される可能性があります。  
   
- **注**このメソッドは、依存トランザクションの有効期間中に 1 回だけ呼び出す必要があります。  
+ **メモ**このメソッドは、依存トランザクションの有効期間中に1回だけ呼び出す必要があります。  
   
  ]]></format>
         </remarks>

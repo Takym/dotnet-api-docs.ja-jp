@@ -1,5 +1,5 @@
 <Type Name="IMultiValueConverter" FullName="System.Windows.Data.IMultiValueConverter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ad8284f4f3501b38d0aa2982c3fa8bf5b1fa40d9" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64220625" /></Metadata><TypeSignature Language="C#" Value="public interface IMultiValueConverter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cfe54d48669bdaa8b22abe86873e8ed50e1237c1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69210519" /></Metadata><TypeSignature Language="C#" Value="public interface IMultiValueConverter" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IMultiValueConverter" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Data.IMultiValueConverter" />
   <TypeSignature Language="VB.NET" Value="Public Interface IMultiValueConverter" />
@@ -17,9 +17,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- なコンバーターに関連付ける、 <xref:System.Windows.Data.MultiBinding>、実装するクラスを作成、<xref:System.Windows.Data.IMultiValueConverter>インターフェイス、および実装し、<xref:System.Windows.Data.IMultiValueConverter.Convert%2A>と<xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A>メソッド。  
+ コンバーター <xref:System.Windows.Data.MultiBinding>をに関連付けるには、 <xref:System.Windows.Data.IMultiValueConverter>インターフェイスを実装するクラスを作成し、メソッド<xref:System.Windows.Data.IMultiValueConverter.Convert%2A>と<xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A>メソッドを実装します。  
   
- コレクション内の個々 のバインディングは、独自の値コンバーターを持つことができます。 詳細については、「<xref:System.Windows.Data.IValueConverter>」を参照してください。  
+ コレクション内の個々のバインドは、独自の値コンバーターを持つことができます。 詳細については、「<xref:System.Windows.Data.IValueConverter>」を参照してください。  
   
  ]]></format>
     </remarks>
@@ -64,7 +64,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- データ バインディング エンジンは、ユーザー指定のコンバーターによってスローされる例外をキャッチしません。 によってスローされる例外、<xref:System.Windows.Data.IMultiValueConverter.Convert%2A>メソッド、またはメソッドによってスローはキャッチされなかった例外を<xref:System.Windows.Data.IMultiValueConverter.Convert%2A>メソッドの呼び出しは実行時エラーとして扱われます。 返すことによって予測される問題を処理<xref:System.Windows.DependencyProperty>.<xref:System.Windows.DependencyProperty.UnsetValue>します。  
+ データバインディングエンジンは、ユーザーが指定したコンバーターによってスローされた例外をキャッチしません。 <xref:System.Windows.Data.IMultiValueConverter.Convert%2A>メソッドによってスローされた例外、またはメソッドが<xref:System.Windows.Data.IMultiValueConverter.Convert%2A>呼び出したメソッドによってスローされるキャッチされていない例外は、実行時エラーとして扱われます。 予想される問題を<xref:System.Windows.DependencyProperty>処理<xref:System.Windows.DependencyProperty.UnsetValue>するには、を返します。  
   
  ]]></format>
         </remarks>
@@ -104,15 +104,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 戻り値の数でバインドがあるかどうかは、 <xref:System.Windows.Data.MultiBinding>、余分な戻り値は無視されます。 ソース バインディングの戻り値がより多くの方がある場合は、残りのソースのバインドに設定されている値はありません。 戻り値の型がに対して検証されない`targetTypes`; の値が直接のソースのバインドに設定されます。  
+ 内の<xref:System.Windows.Data.MultiBinding>バインディングよりも多くの戻り値がある場合、余分な戻り値は無視されます。 戻り値よりも多くのソースバインディングがある場合、残りのソースバインディングには値が設定されていません。 戻り値の型はに対して`targetTypes`検証されません。値は、ソースバインディングに直接設定されます。  
   
- 返す<xref:System.Windows.Data.Binding.DoNothing>位置にある`i`インデックス位置にあるソース バインディングに設定する値がないことを示す`i`します。  
+ `i`インデックス<xref:System.Windows.Data.Binding.DoNothing> でソースバインディングに値が設定されていないことを示す位置に戻ります。`i`  
   
- 返す<xref:System.Windows.DependencyProperty>します。<xref:System.Windows.DependencyProperty.UnsetValue> 位置にある`i`コンバーターがインデックス位置にあるソースのバインドの値を指定することであることを示す`i`、およびそれに設定する値がありません。  
+ を<xref:System.Windows.DependencyProperty>返します。<xref:System.Windows.DependencyProperty.UnsetValue> コンバーターが`i`インデックス`i`でソースバインドの値を指定できず、値が設定されていないことを示す位置。  
   
- 返す`null`コンバーターが変換を実行できないか、この方向での変換をサポートしていないを示します。  
+ コンバーター `null`が変換を実行できないか、この方向の変換をサポートしていないことを示すには、を返します。  
   
- データ バインディング エンジンは、ユーザー指定のコンバーターによってスローされる例外をキャッチしません。 によってスローされる例外、<xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A>メソッドまたはいずれかのメソッドによってスローされる例外をキャッチできないが、<xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A>メソッドの呼び出しは実行時エラーとして扱われます。 返すことによって予測される問題を処理`null`します。  
+ データバインディングエンジンは、ユーザーが指定したコンバーターによってスローされた例外をキャッチしません。 メソッドによって<xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A>スローされた例外、またはメソッドが<xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A>呼び出したメソッドによってスローされるキャッチされていない例外は、実行時エラーとして扱われます。 を返す`null`ことによって、予想される問題を処理します。  
   
  ]]></format>
         </remarks>

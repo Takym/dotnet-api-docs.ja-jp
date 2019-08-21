@@ -1,5 +1,5 @@
 <Type Name="SymmetricAlgorithm" FullName="System.Security.Cryptography.SymmetricAlgorithm">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4bfc328fc1d2e927e76db3ca75ca77afb8661c68" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58715786" /></Metadata><TypeSignature Language="C#" Value="public abstract class SymmetricAlgorithm : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="29a1afd07afa5f5a9c278c301f5b56e409330505" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69081982" /></Metadata><TypeSignature Language="C#" Value="public abstract class SymmetricAlgorithm : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SymmetricAlgorithm extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.SymmetricAlgorithm" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SymmetricAlgorithm&#xA;Implements IDisposable" />
@@ -42,18 +42,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生するクラス、<xref:System.Security.Cryptography.SymmetricAlgorithm>クラスは、暗号化ブロック チェーン (CBC) と呼ばれるチェーン モードを使用するには、キーが必要です (<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>) と初期化ベクトル (<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>) データに対して暗号変換を実行します。  いずれかを使用して暗号化されたデータを復号化する、<xref:System.Security.Cryptography.SymmetricAlgorithm>設定する必要があります、クラス、<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>プロパティと<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>の暗号化に使用された値と一致するプロパティ。  対称アルゴリズムを使用するためには、送信側と受信側にのみで、秘密キーを知られないようにする必要があります。  
+ <xref:System.Security.Cryptography.SymmetricAlgorithm>クラスから派生するクラスは、暗号ブロックチェーン (CBC) と呼ばれるチェーンモードを使用します。この<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>モードでは、キー (<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>) と初期化ベクター () を使用してデータに対して暗号変換を実行します。  <xref:System.Security.Cryptography.SymmetricAlgorithm>クラスの1つを使用して暗号化されたデータを復号化<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>するには<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A> 、プロパティとプロパティを、暗号化に使用したのと同じ値に設定する必要があります。  対称アルゴリズムを使用するには、送信側と受信側だけが秘密キーを認識している必要があります。  
   
- <xref:System.Security.Cryptography.RijndaelManaged>、 <xref:System.Security.Cryptography.DESCryptoServiceProvider>、 <xref:System.Security.Cryptography.RC2CryptoServiceProvider>、および<xref:System.Security.Cryptography.TripleDESCryptoServiceProvider>は対称アルゴリズムの実装です。  
+ <xref:System.Security.Cryptography.RijndaelManaged>、、 <xref:System.Security.Cryptography.DESCryptoServiceProvider> 、<xref:System.Security.Cryptography.TripleDESCryptoServiceProvider>は、対称アルゴリズムの実装です。 <xref:System.Security.Cryptography.RC2CryptoServiceProvider>  
   
- クラスの派生を使用して、あるオブジェクトの使用が完了した後、ガベージ コレクションを実行するだけでは、セキュリティの観点から不足してに注意してください。 明示的に呼び出す必要があります、<xref:System.Security.Cryptography.SymmetricAlgorithm.Clear%2A>がリリースされる前に、オブジェクト内で機密データをゼロにするオブジェクトのメソッド。 ガベージ コレクションが収集されたオブジェクトの内容をゼロにはありませんが、再割り当て可能なものとしてメモリをマークするだけに注意してください。 したがってガベージ コレクション オブジェクト内のデータがありますメモリ ヒープに存在する未割り当てメモリの。 このデータは暗号化オブジェクトの場合、キー データやプレーン テキストのブロックなどの機密情報を含める可能性があります。  
+ 派生クラスを使用する場合、セキュリティの観点からは、オブジェクトの使用が終了した後にガベージコレクションを強制的に実行するだけでは不十分です。 オブジェクトのメソッドを<xref:System.Security.Cryptography.SymmetricAlgorithm.Clear%2A>明示的に呼び出して、オブジェクト内のすべての機微なデータが解放されるようにする必要があります。 ガベージコレクションは、収集されたオブジェクトの内容をゼロにはしませんが、メモリを再割り当て可能なものとしてマークするだけであることに注意してください。 そのため、ガベージコレクションされたオブジェクトに含まれるデータは、まだ未割り当てメモリ内のメモリヒープ内に存在する可能性があります。 暗号化オブジェクトの場合、このデータには、キーデータやプレーンテキストのブロックなどの機密情報が含まれている可能性があります。  
   
- 機密データの実装を保持する .NET Framework のすべての暗号化クラスを`Clear`メソッド。 が呼び出されると、`Clear`メソッドは 0 で、オブジェクト内のすべての機密データを上書きし、に安全にガベージ コレクトできるように、オブジェクトを解放します。 オブジェクトを 0 に設定され、解放を呼び出す必要がありますし、`Dispose`メソッドを`disposing`パラメーターに設定`True`管理すべて破棄され、アンマネージ オブジェクトに関連付けられているリソース。  
+ 機密データを保持する .NET Framework 内のすべての暗号化クラス`Clear`は、メソッドを実装します。 `Clear`メソッドを呼び出すと、オブジェクト内のすべての機微なデータが0で上書きされ、オブジェクトが解放されて、安全にガベージコレクションされるようになります。 オブジェクトをゼロにして解放した場合は、パラメーターを`Dispose`に`True`設定し`disposing`てメソッドを呼び出して、オブジェクトに関連付けられているすべてのマネージリソースとアンマネージリソースを破棄する必要があります。  
   
    
   
 ## Examples  
- 次のコード例では、 <xref:System.Security.Cryptography.RijndaelManaged> 、指定したクラス<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>プロパティおよび初期化ベクター (<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>) で指定されたファイルの暗号化に`inName`、によって指定されたファイルを暗号化された結果を出力`outName`. `desKey`と`desIV`メソッドのパラメーターは 8 バイトの配列。 この例を実行する高度暗号化パックが必要です。  
+ 次のコード例では<xref:System.Security.Cryptography.RijndaelManaged> 、クラスを指定<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>されたプロパティおよび<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>初期化ベクター () と共に`inName`使用して、で指定されたファイルを暗号化し、暗号化された結果をによって`outName`指定されたファイルに出力します。 メソッドの`desIV`パラメーターとパラメーターは8バイト配列です。`desKey` この例を実行するには、高暗号化パックがインストールされている必要があります。  
   
  [!code-cpp[Classic CryptoStream Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic CryptoStream Example/CPP/source.cpp#1)]
  [!code-csharp[Classic CryptoStream Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic CryptoStream Example/CS/source.cs#1)]
@@ -61,7 +61,7 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />クラスでは、次のメンバーをオーバーライドする必要があります: <see cref="M:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor(System.Byte[],System.Byte[])" />、 <see cref="M:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor(System.Byte[],System.Byte[])" />、 <see cref="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV" />、および<see cref="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey" />します。</para></block>
+    <block subset="none" type="overrides"><para><see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />クラスから継承する場合は<see cref="M:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor(System.Byte[],System.Byte[])" />、 <see cref="M:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor(System.Byte[],System.Byte[])" /> <see cref="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV" />、、、および<see cref="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey" />の各メンバーをオーバーライドする必要があります。</para></block>
     <related type="Article" href="~/docs/standard/security/cryptographic-services.md">暗号化サービス</related>
   </Docs>
   <Members>
@@ -97,7 +97,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 抽象クラスのインスタンスを作成することはできません。 アプリケーション コードでは、派生クラスの新しいインスタンスを作成します。  
+ 抽象クラスのインスタンスを作成することはできません。 アプリケーションコードは、派生クラスの新しいインスタンスを作成します。  
   
  ]]></format>
         </remarks>
@@ -141,7 +141,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ブロック サイズは、暗号化または 1 つの操作で復号化できるデータの基本単位です。 ブロック サイズよりも長いメッセージは、連続するブロックとして処理されます。ブロック サイズよりも短いメッセージは、ブロックのサイズに到達する余分なビットが埋め込まれている必要があります。 有効なブロック サイズは、使用される対称アルゴリズムによって決定されます。  
+ ブロックサイズは、1回の操作で暗号化または復号化できるデータの基本単位です。 ブロックサイズより長いメッセージは、連続するブロックとして処理されます。ブロックサイズより短いメッセージには、ブロックのサイズになるまでに余分なビットを埋め込む必要があります。 有効なブロックサイズは、使用される対称アルゴリズムによって決まります。  
   
  ]]></format>
         </remarks>
@@ -184,9 +184,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ブロック サイズは、暗号化または 1 つの操作で復号化できるデータの基本単位です。 ブロック サイズよりも長いメッセージは、連続するブロックとして処理されます。ブロック サイズよりも短いメッセージは、ブロックのサイズに到達する余分なビットが埋め込まれている必要があります。 有効なブロック サイズは、使用される対称アルゴリズムによって決定されます。  
+ ブロックサイズは、1回の操作で暗号化または復号化できるデータの基本単位です。 ブロックサイズより長いメッセージは、連続するブロックとして処理されます。ブロックサイズより短いメッセージには、ブロックのサイズになるまでに余分なビットを埋め込む必要があります。 有効なブロックサイズは、使用される対称アルゴリズムによって決まります。  
   
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.BlockSize%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.BlockSize%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
@@ -228,9 +228,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クラスの派生を使用して、あるオブジェクトの使用が完了した後、ガベージ コレクションを実行するだけでは、セキュリティの観点から不足してに注意してください。 明示的に呼び出す必要があります、<xref:System.Security.Cryptography.SymmetricAlgorithm.Clear%2A>がリリースされる前に、オブジェクト内で機密データをゼロにするオブジェクトのメソッド。 ガベージ コレクションが収集されたオブジェクトの内容をゼロにはありませんが、再割り当て可能なものとしてメモリをマークするだけに注意してください。 したがってガベージ コレクション オブジェクト内のデータがありますメモリ ヒープに存在する未割り当てメモリの。 このデータは暗号化オブジェクトの場合、キー データやプレーン テキストのブロックなどの機密情報を含める可能性があります。  
+ 派生クラスを使用する場合、セキュリティの観点からは、オブジェクトの使用が終了した後にガベージコレクションを強制的に実行するだけでは不十分です。 オブジェクトのメソッドを<xref:System.Security.Cryptography.SymmetricAlgorithm.Clear%2A>明示的に呼び出して、オブジェクト内のすべての機微なデータが解放されるようにする必要があります。 ガベージコレクションは、収集されたオブジェクトの内容をゼロにはしませんが、メモリを再割り当て可能なものとしてマークするだけであることに注意してください。 そのため、ガベージコレクションされたオブジェクトに含まれるデータは、まだ未割り当てメモリ内のメモリヒープ内に存在する可能性があります。 暗号化オブジェクトの場合、このデータには、キーデータやプレーンテキストのブロックなどの機密情報が含まれている可能性があります。  
   
- 機密データの実装を保持する .NET Framework のすべての暗号化クラスを`Clear`メソッド。 が呼び出されると、`Clear`メソッドは 0 で、オブジェクト内のすべての機密データを上書きし、に安全にガベージ コレクトできるように、オブジェクトを解放します。 オブジェクトを 0 に設定され、解放を呼び出す必要がありますし、`Dispose`メソッドを`disposing`パラメーターに設定`True`管理すべて破棄され、アンマネージ オブジェクトに関連付けられているリソース。  
+ 機密データを保持する .NET Framework 内のすべての暗号化クラス`Clear`は、メソッドを実装します。 `Clear`メソッドを呼び出すと、オブジェクト内のすべての機微なデータが0で上書きされ、オブジェクトが解放されて、安全にガベージコレクションされるようになります。 オブジェクトをゼロにして解放した場合は、パラメーターを`Dispose`に`True`設定し`disposing`てメソッドを呼び出して、オブジェクトに関連付けられているすべてのマネージリソースとアンマネージリソースを破棄する必要があります。  
   
  ]]></format>
         </remarks>
@@ -288,7 +288,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例では、 <xref:System.Security.Cryptography.RijndaelManaged> 、指定したクラス<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>プロパティおよび初期化ベクター (<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>) で指定されたファイルの暗号化に`inName`、によって指定されたファイルを暗号化された結果を出力`outName`. `desKey`と`desIV`メソッドのパラメーターは 8 バイトの配列。 この例を実行する高度暗号化パックが必要です。  
+ 次のコード例では<xref:System.Security.Cryptography.RijndaelManaged> 、クラスを指定<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>されたプロパティおよび<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>初期化ベクター () と共に`inName`使用して、で指定されたファイルを暗号化し、暗号化された結果をによって`outName`指定されたファイルに出力します。 メソッドの`desIV`パラメーターとパラメーターは8バイト配列です。`desKey` この例を実行するには、高暗号化パックがインストールされている必要があります。  
   
  [!code-cpp[Classic CryptoStream Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic CryptoStream Example/CPP/source.cpp#1)]
  [!code-csharp[Classic CryptoStream Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic CryptoStream Example/CS/source.cs#1)]
@@ -390,7 +390,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを使用して作成、暗号化されたメッセージを復号化、<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor%2A>同じシグネチャを持つオーバー ロードします。  
+ このメソッドは<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor%2A> 、同じシグネチャを持つオーバーロードを使用して作成された暗号化メッセージを復号化します。  
   
  ]]></format>
         </remarks>
@@ -439,7 +439,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを使用して作成、暗号化されたメッセージを復号化、<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor%2A>同じパラメーターを持つオーバー ロードします。  
+ このメソッドは、同じパラメーターを使用し<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor%2A>て、オーバーロードを使用して作成された暗号化メッセージを復号化します。  
   
  ]]></format>
         </remarks>
@@ -493,14 +493,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、現在<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>プロパティは`null`、<xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey%2A>新たに作成するメソッドが呼び出されるランダム<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>します。 場合、現在<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>プロパティは`null`、<xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV%2A>新たに作成するメソッドが呼び出されるランダム<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>します。  
+ 現在<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>のプロパティが`null`の場合、 <xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey%2A>メソッドが呼び出され、新しい乱<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>が作成されます。 現在<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>のプロパティが`null`の場合、 <xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV%2A>メソッドが呼び出され、新しい乱<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>が作成されます。  
   
- 使用して、<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor%2A>このメソッドの結果を復号化に同じシグネチャを持つオーバー ロードします。  
+ 同じシグネチャを持つオーバーロードを使用して、このメソッドの結果を復号化します。<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor%2A>  
   
    
   
 ## Examples  
- 次の例から返された変換オブジェクトを使用して文字列の暗号化、<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor%2A>メソッド。  
+ 次の例では、 <xref:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor%2A>メソッドから返された transform オブジェクトを使用して文字列を暗号化します。  
   
  [!code-cpp[System.Security.Cryptography.SymmetricAlgorithm#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.security.cryptography.symmetricalgorithm/cpp/encryptor.cpp#1)]
  [!code-csharp[System.Security.Cryptography.SymmetricAlgorithm#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.security.cryptography.symmetricalgorithm/cs/encryptor.cs#1)]
@@ -553,7 +553,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用して、<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor%2A>このメソッドの結果を復号化に同じパラメーターを持つオーバー ロードします。  
+ 同じパラメーターを持つオーバーロードを使用して、このメソッドの結果を復号化します。<xref:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor%2A>  
   
  ]]></format>
         </remarks>
@@ -662,16 +662,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose()`メソッドと`Finalize`メソッド。 `Dispose()` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 `Finalize` 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック`Dispose()`メソッド`Finalize`とメソッドによって呼び出されます。 `Dispose()``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 `Finalize`をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.Security.Cryptography.SymmetricAlgorithm> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 オーバーライドするときに<see langword="Dispose(Boolean)" />を以前の呼び出しで破棄されたオブジェクトを参照しないように注意、<see langword="Dispose" />します。 実装する方法についての詳細は<see langword="Dispose(Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 をオーバーライド<see langword="Dispose(Boolean)" />する場合は、以前にを<see langword="Dispose" />呼び出したときに破棄されたオブジェクトを参照しないように注意してください。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see langword="Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)します。</para></block>
+<see langword="Dispose" /> および<see langword="Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。</para></block>
         <related type="Article" href="~/docs/standard/security/cryptographic-services.md">暗号化サービス</related>
       </Docs>
     </Member>
@@ -710,7 +710,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- フィードバック サイズは、一連の暗号化または復号化操作にフィードバックは、データの量を決定します。 フィードバック サイズは、ブロック サイズを超える値にすることはできません。  
+ フィードバックサイズによって、後続の暗号化または復号化操作に戻されるデータの量が決まります。 フィードバックのサイズをブロックサイズより大きくすることはできません。  
   
  ]]></format>
         </remarks>
@@ -752,9 +752,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- フィードバック サイズは、一連の暗号化または復号化操作にフィードバックは、データの量を決定します。 フィードバック サイズは、ブロック サイズを超える値にすることはできません。  
+ フィードバックサイズによって、後続の暗号化または復号化操作に戻されるデータの量が決まります。 フィードバックのサイズをブロックサイズより大きくすることはできません。  
   
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
@@ -826,7 +826,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一般に、理由はありません、このメソッドを使用するため、`CreateEncryptor()`または`CreateEncryptor(null, null)`初期化ベクターとキーの両方を自動的に生成されます。 ただし、使用する可能性があります、<xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV%2A>メソッドをさまざまな初期化ベクターと対称アルゴリズムのインスタンスを再利用します。  
+ 一般に、またはでは`CreateEncryptor()` `CreateEncryptor(null, null)`初期化ベクターとキーの両方が自動的に生成されるため、このメソッドを使用する理由はありません。 ただし、 <xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV%2A>メソッドを使用して、異なる初期化ベクターを持つ対称アルゴリズムインスタンスを再利用することができます。  
   
  ]]></format>
         </remarks>
@@ -869,7 +869,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一般に、理由はありません、このメソッドを使用するため、`CreateEncryptor()`または`CreateEncryptor(null, null)`初期化ベクターとキーの両方を自動的に生成されます。 ただし、使用する可能性があります、<xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey%2A>対称アルゴリズムのインスタンスを別のキーで再利用するメソッド。  
+ 一般に、またはでは`CreateEncryptor()` `CreateEncryptor(null, null)`初期化ベクターとキーの両方が自動的に生成されるため、このメソッドを使用する理由はありません。 ただし、 <xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey%2A>メソッドを使用して、異なるキーを持つ対称アルゴリズムインスタンスを再利用することもできます。  
   
  ]]></format>
         </remarks>
@@ -912,11 +912,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>プロパティはいずれかの新しいインスタンスを作成するたびに、自動的に新しいランダムな値に設定、<xref:System.Security.Cryptography.SymmetricAlgorithm>クラスまたはを手動で呼び出すと、<xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV%2A>メソッド。  サイズ、<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>プロパティは同じである必要があります、<xref:System.Security.Cryptography.SymmetricAlgorithm.BlockSize%2A>プロパティが 8 で割った値します。  
+ クラスの1つの新しいインスタンスを作成した場合、または手動でメソッドを<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A> <xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV%2A>呼び出した場合、プロパティは自動的に新しいランダムな値に設定されます。 <xref:System.Security.Cryptography.SymmetricAlgorithm>  <xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>プロパティのサイズは、 <xref:System.Security.Cryptography.SymmetricAlgorithm.BlockSize%2A>プロパティが8で割った値と同じである必要があります。  
   
- 派生するクラス、<xref:System.Security.Cryptography.SymmetricAlgorithm>クラスは、暗号化ブロック チェーン (CBC) と呼ばれるチェーン モードを使用して、キーと初期化ベクトル データを暗号変換を実行する必要があります。  いずれかを使用して暗号化されたデータを復号化する、<xref:System.Security.Cryptography.SymmetricAlgorithm>クラスを設定する必要がある、<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>プロパティと<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>の暗号化に使用された値と一致するプロパティ。  
+ <xref:System.Security.Cryptography.SymmetricAlgorithm>クラスから派生するクラスは、暗号ブロックチェーン (CBC) と呼ばれるチェーンモードを使用します。これには、キーと初期化ベクターを使用してデータの暗号化変換を実行する必要があります。  <xref:System.Security.Cryptography.SymmetricAlgorithm>クラスの1つを使用して暗号化されたデータを復号化<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>するに<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>は、プロパティとプロパティを、暗号化に使用したのと同じ値に設定する必要があります。  
   
- 指定された秘密キーの*k*、初期化ベクターを使用しない単純なブロック暗号は同じ暗号文の出力ブロックにプレーン テキストの入力ブロックは同じを暗号化します。 をプレーン テキスト ストリーム内で重複するブロックがある場合は、暗号文ストリーム内で重複するブロックがあります。 承認されていないユーザーでは、プレーン テキストのブロックの構造に関する知識場合、既知の暗号テキスト ブロックを復号化、キーを復元してその情報を使用できます。 この問題を解決するには、前のブロックからの情報は、次のブロックの暗号化のプロセスに mixed です。 したがって、2 つの同一の平文ブロックの出力は異なります。 この手法は、次のブロックを暗号化する前のブロックを使用するため、初期化ベクターは、データの最初のブロックを暗号化に必要です。  
+ 特定の秘密キー *k*の場合、初期化ベクターを使用しない単純なブロック暗号では、プレーンテキストの同じ入力ブロックが暗号テキストの同じ出力ブロックに暗号化されます。 プレーンテキストストリーム内に重複するブロックがある場合は、暗号テキストストリーム内に重複するブロックがあります。 承認されていないユーザーがプレーンテキストのブロックの構造に関する知識を持っている場合、その情報を使用して既知の暗号文ブロックを解読し、場合によってはキーを回復することができます。 この問題に対処するために、前のブロックの情報は、次のブロックを暗号化するプロセスに組み込まれています。 したがって、2つの同じプレーンテキストブロックの出力は異なります。 この手法では、前のブロックを使用して次のブロックを暗号化するため、データの最初のブロックを暗号化するために初期化ベクターが必要になります。  
   
  ]]></format>
         </remarks>
@@ -960,7 +960,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.IV%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
@@ -1003,9 +1003,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 秘密キーは、暗号化と復号化の両方に使用されます。 正常に行う、対称アルゴリズムでは、送信側と受信側にのみで秘密キーを知られないようにする必要があります。 有効なキー サイズが特定の対称アルゴリズムの実装で指定され、記載されて、<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A>プロパティ。  
+ 秘密キーは、暗号化と復号化の両方に使用されます。 対称アルゴリズムを成功させるには、送信側と受信側だけが秘密キーを認識している必要があります。 有効なキーサイズは、特定の対称アルゴリズム実装によって指定され<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A> 、プロパティに一覧表示されます。  
   
- このプロパティは、する場合`null`使用した場合、<xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey%2A>メソッドを呼び出して新しいランダムな値を作成します。  
+ このプロパティが`null`使用<xref:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey%2A>されている場合は、メソッドが呼び出され、新しい乱数値が作成されます。  
   
  ]]></format>
         </remarks>
@@ -1050,7 +1050,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有効なキー サイズが特定の対称アルゴリズムの実装で指定され、記載されて、<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A>プロパティ。  
+ 有効なキーサイズは、特定の対称アルゴリズム実装によって指定され<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A> 、プロパティに一覧表示されます。  
   
  ]]></format>
         </remarks>
@@ -1093,9 +1093,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 有効なキー サイズが特定の対称アルゴリズムの実装で指定され、記載されて、<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A>プロパティ。  
+ 有効なキーサイズは、特定の対称アルゴリズム実装によって指定され<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A> 、プロパティに一覧表示されます。  
   
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.KeySize%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.KeySize%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
@@ -1137,9 +1137,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 秘密キーは、暗号化と復号化の両方に使用されます。 正常に行う、対称アルゴリズムでは、送信側と受信側にのみで秘密キーを知られないようにする必要があります。 有効なキー サイズが特定の対称アルゴリズムの実装で指定され、記載されて、<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A>プロパティ。  
+ 秘密キーは、暗号化と復号化の両方に使用されます。 対称アルゴリズムを成功させるには、送信側と受信側だけが秘密キーを認識している必要があります。 有効なキーサイズは、特定の対称アルゴリズム実装によって指定され<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A> 、プロパティに一覧表示されます。  
   
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.Key%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
@@ -1182,12 +1182,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 対称アルゴリズムでは、この配列内のエントリに一致するブロック サイズのみがサポートされます。  
+ 対称アルゴリズムでは、この配列内のエントリと一致するブロックサイズのみがサポートされます。  
   
    
   
 ## Examples  
- 次の例の値を表示する<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizes%2A>対称アルゴリズム。  
+ 次の例は、対称アルゴリズム<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizes%2A>のの値を示しています。  
   
  [!code-csharp[System.Security.Cryptography.SymmetricAlgorithm.BlockSize#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.security.cryptography.symmetricalgorithm.blocksize/cs/program.cs#1)]
  [!code-vb[System.Security.Cryptography.SymmetricAlgorithm.BlockSize#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.security.cryptography.symmetricalgorithm.blocksize/vb/program.vb#1)]  
@@ -1232,9 +1232,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 対称アルゴリズムでは、この配列内のエントリに一致するブロック サイズのみがサポートされます。  
+ 対称アルゴリズムでは、この配列内のエントリと一致するブロックサイズのみがサポートされます。  
   
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizes%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizes%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
@@ -1277,12 +1277,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 対称アルゴリズムでは、この配列内のエントリと一致するキー サイズだけをサポートします。  
+ 対称アルゴリズムでは、この配列内のエントリと一致するキーサイズのみがサポートされます。  
   
    
   
 ## Examples  
- 次の例の値を表示する<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A>対称アルゴリズム。  
+ 次の例は、対称アルゴリズム<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A>のの値を示しています。  
   
  [!code-csharp[System.Security.Cryptography.SymmetricAlgorithm.BlockSize#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.security.cryptography.symmetricalgorithm.blocksize/cs/program.cs#1)]
  [!code-vb[System.Security.Cryptography.SymmetricAlgorithm.BlockSize#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.security.cryptography.symmetricalgorithm.blocksize/vb/program.vb#1)]  
@@ -1327,9 +1327,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 対称アルゴリズムでは、この配列内のエントリと一致するキー サイズだけをサポートします。  
+ 対称アルゴリズムでは、この配列内のエントリと一致するキーサイズのみがサポートされます。  
   
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
@@ -1372,7 +1372,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 参照してください<xref:System.Security.Cryptography.CipherMode>の特定のモードの説明列挙体。  
+ 特定<xref:System.Security.Cryptography.CipherMode>のモードの説明については、「列挙型」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1415,9 +1415,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 参照してください<xref:System.Security.Cryptography.CipherMode>の特定のモードの説明列挙体。  
+ 特定<xref:System.Security.Cryptography.CipherMode>のモードの説明については、「列挙型」を参照してください。  
   
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.Mode%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.Mode%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
@@ -1460,7 +1460,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ほとんどのプレーン テキスト メッセージは、ブロックを完全に埋めるバイト数で構成されていません。 多くの場合、最後のブロックを格納するための十分なバイトがありません。 この場合、埋め込み文字列はテキストに追加します。 たとえば、ブロックの長さは 64 ビット、最後のブロックには、40 ビットのみが含まれている場合は、24 ビットのパディングが追加されます。 参照してください、<xref:System.Security.Cryptography.PaddingMode>の特定のモードの説明列挙体。  
+ ほとんどのプレーンテキストメッセージは、ブロックを完全に埋めるバイト数で構成されていません。 多くの場合、最後のブロックを埋めるために必要なバイト数が不足しています。 これが発生すると、テキストに埋め込み文字列が追加されます。 たとえば、ブロック長が64ビットで、最後のブロックに40ビットだけが含まれている場合、24ビットの埋め込みが追加されます。 特定の<xref:System.Security.Cryptography.PaddingMode>モードの説明については、列挙体を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1503,9 +1503,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ほとんどのプレーン テキスト メッセージは、ブロックを完全に埋めるバイト数で構成されていません。 多くの場合、最後のブロックを格納するための十分なバイトがありません。 この場合、埋め込み文字列はテキストに追加します。 たとえば、ブロックの長さは 64 ビット、最後のブロックには、40 ビットのみが含まれている場合は、24 ビットのパディングが追加されます。 参照してください、<xref:System.Security.Cryptography.PaddingMode>の特定のモードの説明列挙体。  
+ ほとんどのプレーンテキストメッセージは、ブロックを完全に埋めるバイト数で構成されていません。 多くの場合、最後のブロックを埋めるために必要なバイト数が不足しています。 これが発生すると、テキストに埋め込み文字列が追加されます。 たとえば、ブロック長が64ビットで、最後のブロックに40ビットだけが含まれている場合、24ビットの埋め込みが追加されます。 特定の<xref:System.Security.Cryptography.PaddingMode>モードの説明については、列挙体を参照してください。  
   
- このフィールドには、<xref:System.Security.Cryptography.SymmetricAlgorithm.Padding%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.SymmetricAlgorithm.Padding%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>
