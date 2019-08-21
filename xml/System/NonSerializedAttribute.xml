@@ -1,5 +1,5 @@
 <Type Name="NonSerializedAttribute" FullName="System.NonSerializedAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="09626645757f2b66f8c536a84b91a3d1cb539538" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58697926" /></Metadata><TypeSignature Language="C#" Value="public sealed class NonSerializedAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b94aefe87c821e5647dcce267241594e7b25796a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69419842" /></Metadata><TypeSignature Language="C#" Value="public sealed class NonSerializedAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit NonSerializedAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.NonSerializedAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class NonSerializedAttribute&#xA;Inherits Attribute" />
@@ -48,28 +48,28 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用する場合、<xref:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter>または<xref:System.Runtime.Serialization.Formatters.Soap.SoapFormatter>オブジェクトをシリアル化するクラスを使用して、<xref:System.NonSerializedAttribute>フィールドがシリアル化されていることを防ぐために属性。 たとえば、機密データのシリアル化を防ぐために、この属性を使用できます。  
+ クラス<xref:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter>または<xref:System.Runtime.Serialization.Formatters.Soap.SoapFormatter>クラスを使用してオブジェクトをシリアル化<xref:System.NonSerializedAttribute>する場合は、属性を使用して、フィールドがシリアル化されないようにします。 たとえば、この属性を使用して、機密データをシリアル化できないようにすることができます。  
   
- ターゲット オブジェクトに対する、<xref:System.NonSerializedAttribute>属性がシリアル化可能なクラスのパブリックおよびプライベートのフィールドを示します。 既定では、クラス、シリアル化できないとマークされていない<xref:System.SerializableAttribute>します。 シリアル化プロセス中に、クラスのすべてのパブリックおよびプライベート フィールドが既定でシリアル化されます。 マークされたフィールド<xref:System.NonSerializedAttribute>シリアル化中に除外されます。 使用する場合、<xref:System.Xml.Serialization.XmlSerializer>クラス オブジェクトをシリアル化を使用して、<xref:System.Xml.Serialization.XmlIgnoreAttribute>同じ機能を取得するクラス。 また、実装、<xref:System.Runtime.Serialization.ISerializable>シリアル化プロセスを明示的に制御するインターフェイスします。 実装するクラスを<xref:System.Runtime.Serialization.ISerializable>と共に設定されなければなりませんも<xref:System.SerializableAttribute>します。  
+ <xref:System.NonSerializedAttribute>属性のターゲットオブジェクトは、serializable クラスのパブリックフィールドとプライベートフィールドです。 既定では、で<xref:System.SerializableAttribute>マークされている場合を除き、クラスはシリアル化できません。 シリアル化プロセスでは、クラスのすべてのパブリックフィールドとプライベートフィールドが既定でシリアル化されます。 でマークさ<xref:System.NonSerializedAttribute>れたフィールドは、シリアル化時に除外されます。 <xref:System.Xml.Serialization.XmlSerializer>クラスを使用してオブジェクトをシリアル化する場合は、 <xref:System.Xml.Serialization.XmlIgnoreAttribute>クラスを使用して同じ機能を取得します。 または、 <xref:System.Runtime.Serialization.ISerializable>インターフェイスを実装して、シリアル化プロセスを明示的に制御します。 を実装<xref:System.Runtime.Serialization.ISerializable>するクラスは、で<xref:System.SerializableAttribute>もマークされている必要があることに注意してください。  
   
- 適用する、<xref:System.NonSerializedAttribute>クラス イベントを次の C# コードに示すように、フィールドに属性の場所を設定します。  
+ <xref:System.NonSerializedAttribute>クラスをイベントに適用するには、次C#のコードに示すように、[属性の場所] を [フィールド] に設定します。  
   
 ```csharp  
 [field:NonSerializedAttribute()]   
 public event ChangedEventHandler Changed;  
 ```  
   
- フィールドをシリアル化されませんが、逆シリアル化後に必要な既定値が必要な場合は、値、フィールドを提供するメソッドを作成し、適用、<xref:System.Runtime.Serialization.OnDeserializedAttribute>メソッドにします。  
+ フィールドはシリアル化されず、逆シリアル化後に指定する必要がある既定値が必要な場合は、フィールドに値を提供するメソッドを作成し、 <xref:System.Runtime.Serialization.OnDeserializedAttribute>をメソッドに適用できます。  
   
- 属性の使用方法の詳細については、次を参照してください。[属性](~/docs/standard/attributes/index.md)します。  
+ 属性の使用方法の詳細については、「[属性](~/docs/standard/attributes/index.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例でマークされたオブジェクトのシリアル化、<xref:System.SerializableAttribute>属性、およびでマークされたフィールドの動作、<xref:System.NonSerializedAttribute>でシリアル化されたオブジェクト。  
+ 次の例は、 <xref:System.SerializableAttribute>属性でマークされたオブジェクトのシリアル化と、シリアル化されたオブジェクトのでマーク<xref:System.NonSerializedAttribute>されたフィールドの動作を示しています。  
   
 > [!NOTE]
->  コードを使用して、<xref:System.Runtime.Serialization.Formatters.Soap.SoapFormatter>オブジェクトをシリアル化するクラス。 クラスには、プロジェクトに読み込まれる既定ではありませんが、system.runtime.serialization.formatters.soap.dll が記載されています。 コードを実行するをプロジェクトに DLL への参照を追加する必要があります。  
+>  このコードでは<xref:System.Runtime.Serialization.Formatters.Soap.SoapFormatter> 、クラスを使用してオブジェクトをシリアル化します。 クラスは、既定ではプロジェクトに読み込まれない、system.string....... .dll にあります。 コードを実行するには、DLL への参照をプロジェクトに追加する必要があります。  
   
  [!code-cpp[SerializationAttributes#1](~/samples/snippets/cpp/VS_Snippets_Remoting/SerializationAttributes/CPP/s.cpp#1)]
  [!code-csharp[SerializationAttributes#1](~/samples/snippets/csharp/VS_Snippets_Remoting/SerializationAttributes/CS/s.cs#1)]
