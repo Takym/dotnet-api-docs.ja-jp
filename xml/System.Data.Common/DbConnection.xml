@@ -1,5 +1,5 @@
 <Type Name="DbConnection" FullName="System.Data.Common.DbConnection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9da4369b329ee9a2630950166793dc348f6d6da3" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68438447" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbConnection : System.ComponentModel.Component, IDisposable, System.Data.IDbConnection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bc836f2bdb28f5a99e9003969128c0af98e371a7" /><Meta Name="ms.sourcegitcommit" Value="cb4d218ffd5a459a5f921fe1d945c682d1e09aca" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/16/2019" /><Meta Name="ms.locfileid" Value="69539578" /></Metadata><TypeSignature Language="C#" Value="public abstract class DbConnection : System.ComponentModel.Component, IDisposable, System.Data.IDbConnection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DbConnection extends System.ComponentModel.Component implements class System.Data.IDbConnection, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbConnection" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DbConnection&#xA;Inherits Component&#xA;Implements IDbConnection, IDisposable" />
@@ -36,10 +36,10 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>データベースへの接続を表します。</summary>
+    <summary>データベース接続のコア動作を定義し、データベース専用の接続の基底クラスを提供します。</summary>
     <remarks>To be added.</remarks>
     <block subset="none" type="overrides"><para><see cref="T:System.Data.Common.DbConnection" />から継承する場合は<see cref="M:System.Data.Common.DbConnection.BeginDbTransaction(System.Data.IsolationLevel)" /> <see cref="M:System.Data.Common.DbConnection.CreateDbCommand" />、、、 、<see cref="M:System.Data.Common.DbConnection.Open" />、、および<see cref="E:System.Data.Common.DbConnection.StateChange" />の各メンバーをオーバーライドする必要があります。 <see cref="M:System.Data.Common.DbConnection.ChangeDatabase(System.String)" /> <see cref="M:System.Data.Common.DbConnection.Close" /> また、、、 <see cref="P:System.Data.Common.DbConnection.ConnectionString" /> <see cref="P:System.Data.Common.DbConnection.DataSource" /> <see cref="P:System.Data.Common.DbConnection.Database" />、 、<see cref="P:System.Data.Common.DbConnection.ServerVersion" />およびの各プロパティも指定する必要<see cref="P:System.Data.Common.DbConnection.State" />があります。</para></block>
-    <related type="Article" href="https://msdn.microsoft.com/library/2a8e2640-3a49-42a1-a3a9-b43026907ae1">DbProviderFactories (ADO.NET)</related>
+    <related type="Article" href="~/docs/framework/data/adonet/dbproviderfactories.md">DbProviderFactories (ADO.NET)</related>
     <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
   </Docs>
   <Members>
@@ -72,7 +72,7 @@
       <Docs>
         <summary><see cref="T:System.Data.Common.DbConnection" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/2a8e2640-3a49-42a1-a3a9-b43026907ae1">DbProviderFactories (ADO.NET)</related>
+        <related type="Article" href="~/docs/framework/data/adonet/dbproviderfactories.md">DbProviderFactories (ADO.NET)</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -108,8 +108,8 @@
         <Parameter Name="isolationLevel" Type="System.Data.IsolationLevel" />
       </Parameters>
       <Docs>
-        <param name="isolationLevel">トランザクションの分離レベルを指定します。</param>
-        <summary>データベース トランザクションを開始します。</summary>
+        <param name="isolationLevel">使用するトランザクションの分離レベルを示す列挙値の 1 つ。</param>
+        <summary>派生クラスでオーバーライドされた場合、データベース トランザクションを開始します。</summary>
         <returns>新しいトランザクションを表すオブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -147,12 +147,21 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="isolationLevel">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
+        <param name="isolationLevel">使用するトランザクションの分離レベルを示す列挙値の 1 つ。</param>
+        <param name="cancellationToken">非同期操作を取り消すトークン。</param>
+        <summary>データベース トランザクションを非同期に開始します。</summary>
+        <returns><see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティが新しいトランザクションを表すオブジェクトであるタスク。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ この非同期メソッドの既定の実装は、対応する同期メソッドにデリゲートし`Task`、完了したを返します。これは、呼び出し元のスレッドをブロックする可能性があります。
+ 
+ [非同期プログラミング](~/docs/framework/data/adonet/asynchronous-programming.md)をサポートするデータプロバイダーは、非同期 i/o 操作を使用して既定の inmplementation を上書きする必要があります。
+  
+ ]]></format>
+        </remarks>
+    </Docs>
     </Member>
     <MemberGroup MemberName="BeginTransaction">
       <AssemblyInfo>
@@ -169,7 +178,7 @@
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/f46570de-9e50-4fe6-8710-a8c31fa8569b">トランザクション (ADO.NET)</related>
+        <related type="Article" href="~/docs/framework/data/adonet/transactions-and-concurrency.md">トランザクションとコンカレンシー (ADO.NET)</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </MemberGroup>
@@ -214,7 +223,7 @@
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/f46570de-9e50-4fe6-8710-a8c31fa8569b">トランザクション (ADO.NET)</related>
+        <related type="Article" href="~/docs/framework/data/adonet/transactions-and-concurrency.md">トランザクションとコンカレンシー (ADO.NET)</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -250,11 +259,11 @@
         <Parameter Name="isolationLevel" Type="System.Data.IsolationLevel" />
       </Parameters>
       <Docs>
-        <param name="isolationLevel">トランザクションの分離レベルを指定します。</param>
+        <param name="isolationLevel">使用するトランザクションの分離レベルを示す列挙値の 1 つ。</param>
         <summary>分離レベルを指定して、データベース トランザクションを開始します。</summary>
         <returns>新しいトランザクションを表すオブジェクト。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/f46570de-9e50-4fe6-8710-a8c31fa8569b">トランザクション (ADO.NET)</related>
+        <related type="Article" href="~/docs/framework/data/adonet/transactions-and-concurrency.md">トランザクションとコンカレンシー (ADO.NET)</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -281,10 +290,21 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="0" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="cancellationToken">非同期操作を取り消すトークン。</param>
+        <summary>データベース トランザクションを非同期に開始します。</summary>
+        <returns><see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティが新しいトランザクションを表すオブジェクトであるタスク。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ 分離レベルを指定しない場合は、特定の種類の接続の既定の分離レベルが使用されます。
+
+ この非同期メソッドの既定の実装は、対応する同期メソッドにデリゲートし`Task`、完了したを返します。これは、呼び出し元のスレッドをブロックする可能性があります。
+ 
+ [非同期プログラミング](~/docs/framework/data/adonet/asynchronous-programming.md)をサポートするデータプロバイダーは、非同期 i/o 操作を使用して既定の inmplementation を上書きする必要があります。
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="BeginTransactionAsync">
@@ -311,11 +331,20 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="isolationLevel">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="isolationLevel">使用するトランザクションの分離レベルを示す列挙値の 1 つ。</param>
+        <param name="cancellationToken">非同期操作を取り消すトークン。</param>
+        <summary>データベース トランザクションを非同期に開始します。</summary>
+        <returns><see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティが新しいトランザクションを表すオブジェクトであるタスク。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ この非同期メソッドの既定の実装は、対応する同期メソッドにデリゲートし`Task`、完了したを返します。これは、呼び出し元のスレッドをブロックする可能性があります。
+ 
+ [非同期プログラミング](~/docs/framework/data/adonet/asynchronous-programming.md)をサポートするデータプロバイダーは、非同期 i/o 操作を使用して既定の inmplementation を上書きする必要があります。
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="ChangeDatabase">
@@ -354,8 +383,8 @@
         <Parameter Name="databaseName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="databaseName">使用する接続のデータベースの名前を指定します。</param>
-        <summary>開いている接続の現在のデータベースを変更します。</summary>
+        <param name="databaseName">使用する接続のデータベースの名前。</param>
+        <summary>派生クラスでオーバーライドされた場合、開いている接続の現在のデータベースを変更します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -391,11 +420,22 @@
         <Parameter Name="cancellationToken" Type="System.Threading.CancellationToken" Index="1" FrameworkAlternate="netcore-3.0" />
       </Parameters>
       <Docs>
-        <param name="databaseName">To be added.</param>
-        <param name="cancellationToken">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="databaseName">使用する接続のデータベースの名前。</param>
+        <param name="cancellationToken">非同期操作を取り消すトークン。</param>
+        <summary>開いている接続の現在のデータベースを非同期に変更します。</summary>
+        <returns>非同期操作を表すタスク。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ `databaseName`パラメーターに指定する値は、現在のインスタンスの有効なデータベース名である必要があります。  
+
+ この非同期メソッドの既定の実装は、対応する同期メソッドにデリゲートし`Task`、完了したを返します。これは、呼び出し元のスレッドをブロックする可能性があります。
+ 
+ [非同期プログラミング](~/docs/framework/data/adonet/asynchronous-programming.md)をサポートするデータプロバイダーは、非同期 i/o 操作を使用して既定の inmplementation を上書きする必要があります。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Close">
@@ -432,24 +472,24 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>データベースへの接続を閉じます。 このメソッドは、開いている接続を閉じるための最も好ましいメソッドです。</summary>
+        <summary>派生クラスでオーバーライドされた場合、データベースへの接続を閉じます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Data.Common.DbConnection.Close%2A>は、保留中のトランザクションをロールバックします。 次に、接続プールへの接続を解放するか、接続プールが無効になっている場合は接続を閉じます。  
+ メソッド<xref:System.Data.Common.DbConnection.Close%2A>と<xref:System.Data.Common.DbConnection.CloseAsync%2A>メソッドは、保留中のトランザクションをロールバックします。 次に、接続プールへの接続を解放するか、接続プールが無効になっている場合は接続を閉じます。  
   
- アプリケーションが複数回<xref:System.Data.Common.DbConnection.Close%2A>呼び出すことができます。 例外は生成されません。  
+ アプリケーションは、また<xref:System.Data.Common.DbConnection.Close%2A>は<xref:System.Data.Common.DbConnection.CloseAsync%2A>を複数回呼び出すことができます。 例外は生成されません。  
   
  が<xref:System.Data.Common.DbConnection>スコープ外に出ると、閉じられません。 そのため、または`Close` `Dispose`を呼び出すことによって、接続を明示的に閉じる必要があります。これは機能的には同等です。 接続プールの値`Pooling`がまたは`yes`に`true`設定されている場合は、物理接続も解放されます。  
   
 > [!CAUTION]
->  クラスの`Close` メソッド`Finalize`で`Dispose` 、**接続**、 **DataReader**、またはその他のマネージオブジェクトでまたはを呼び出さないでください。 ファイナライザーでは、クラスが直接所有しているアンマネージリソースのみを解放する必要があります。 クラスがアンマネージ リソースを所有していない場合は、クラス定義に `Finalize` メソッドを含めないでください。 詳細については、「[ガベージコレクション](~/docs/standard/garbage-collection/index.md)」を参照してください。  
+>  クラスの`DbConnection` `Finalize`メソッドで`DbDataReader`、、、またはその他のマネージオブジェクトを閉じたり、削除したりしないでください。 ファイナライザーでは、クラスが直接所有しているアンマネージリソースのみを解放する必要があります。 クラスがアンマネージ リソースを所有していない場合は、クラス定義に `Finalize` メソッドを含めないでください。 詳細については、「[ガベージコレクション](~/docs/standard/garbage-collection/index.md)」を参照してください。  
   
  ]]></format>
         </remarks>
         <altmember cref="M:System.Data.Common.DbConnection.Open" />
-        <related type="Article" href="https://msdn.microsoft.com/library/955c057f-aea8-4ba8-aa6d-e3dfa18ba8d5">接続プール (ADO.NET)</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-pooling.md">接続プール (ADO.NET)</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -476,9 +516,27 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>データベースへの接続を非同期に閉じます。</summary>
+        <returns>非同期操作を表す <see cref="T:System.Threading.Tasks.Task" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ この非同期メソッドの既定の実装は、対応する同期メソッドにデリゲートし`Task`、完了したを返します。これは、呼び出し元のスレッドをブロックする可能性があります。
+ 
+ [非同期プログラミング](~/docs/framework/data/adonet/asynchronous-programming.md)をサポートするデータプロバイダーは、非同期 i/o 操作を使用して既定の inmplementation を上書きする必要があります。
+  
+ メソッド<xref:System.Data.Common.DbConnection.Close%2A>と<xref:System.Data.Common.DbConnection.CloseAsync%2A>メソッドは、保留中のトランザクションをロールバックします。 次に、接続プールへの接続を解放するか、接続プールが無効になっている場合は接続を閉じます。  
+  
+ アプリケーションは、また<xref:System.Data.Common.DbConnection.Close%2A>は<xref:System.Data.Common.DbConnection.CloseAsync%2A>を複数回呼び出すことができます。 例外は生成されません。  
+  
+ が<xref:System.Data.Common.DbConnection>スコープ外に出ると、閉じられません。 そのため、または`Close` `Dispose`を呼び出すことによって、接続を明示的に閉じる必要があります。これは機能的には同等です。 接続プールの値`Pooling`がまたは`yes`に`true`設定されている場合は、物理接続も解放されます。  
+  
+> [!CAUTION]
+>  クラスの`DbConnection` `Finalize`メソッドで`DbDataReader`、、、またはその他のマネージオブジェクトを閉じたり破棄したりしないでください。 ファイナライザーでは、クラスが直接所有しているアンマネージリソースのみを解放する必要があります。 クラスがアンマネージ リソースを所有していない場合は、クラス定義に `Finalize` メソッドを含めないでください。 詳細については、「[ガベージコレクション](~/docs/standard/garbage-collection/index.md)」を参照してください。  
+  
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="ConnectionString">
@@ -528,7 +586,7 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>接続を開くために使用する文字列を取得または設定します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、接続を開くために使用される文字列を取得または設定します。</summary>
         <value>初期接続を確立するために使用する接続文字列。 接続文字列の正確な内容は、この接続の特定のデータ ソースに応じて異なります。 既定値は空の文字列です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -538,7 +596,7 @@
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列 (ADO.NET)</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">接続文字列 (ADO.NET)</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -650,7 +708,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>現在の接続に関連付けられている <see cref="T:System.Data.Common.DbCommand" /> オブジェクトを作成し、返します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、現在の接続に関連付けられている <see cref="T:System.Data.Common.DbCommand" /> オブジェクトを作成して返します。</summary>
         <returns><see cref="T:System.Data.Common.DbCommand" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -697,7 +755,7 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>接続が開いてから現在のデータベースの名前を取得するか、接続が開く前に接続文字列に指定されたデータベース名を取得します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、接続が開いてから現在のデータベースの名前を取得するか、接続が開く前に接続文字列に指定されたデータベース名を取得します。</summary>
         <value>現在のデータベース、または接続が開いてから使用するデータベースの名前。 既定値は空の文字列です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -740,7 +798,7 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>接続するデータベース サーバーの名前を取得します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、接続するデータベース サーバーの名前を取得します。</summary>
         <value>接続するデータベース サーバーの名前。 既定値は空の文字列です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -750,7 +808,7 @@
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列 (ADO.NET)</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">接続文字列 (ADO.NET)</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -873,9 +931,19 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>接続オブジェクトを非同期に破棄します。</summary>
+        <returns>非同期操作を表す <see cref="P:System.Threading.Tasks.ValueTask" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+ この非同期メソッドの既定の実装は、対応する同期メソッドにデリゲートし`ValueTask`、完了したを返します。これは、呼び出し元のスレッドをブロックする可能性があります。
+ 
+ [非同期プログラミング](~/docs/framework/data/adonet/asynchronous-programming.md)をサポートするデータプロバイダーは、非同期 i/o 操作を使用して既定の inmplementation を上書きする必要があります。
+  
+ ]]></format>
+
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="EnlistTransaction">
@@ -918,7 +986,7 @@
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/f46570de-9e50-4fe6-8710-a8c31fa8569b">トランザクション (ADO.NET)</related>
+        <related type="Article" href="~/docs/framework/data/adonet/transactions-and-concurrency.md">トランザクションとコンカレンシー (ADO.NET)</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1166,7 +1234,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="P:System.Data.Common.DbConnection.ConnectionString" /> で指定した設定を使用して、データベース接続を開きます。</summary>
+        <summary>派生クラスでオーバーライドされた場合、<see cref="P:System.Data.Common.DbConnection.ConnectionString" /> で指定された設定を使用してデータベース接続を開きます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1332,7 +1400,7 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>オブジェクトが接続しているサーバーのバージョンを表す文字列を取得します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、オブジェクトが接続しているサーバーのバージョンを表す文字列を取得します。</summary>
         <value>データベースのバージョン。 返される文字列の形式は、使用している特定の接続の種類に応じて決まります。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException">返されるタスクが完了しておらず、<see cref="Overload:System.Data.Common.DbConnection.OpenAsync" /> への呼び出しの後に接続が開かれていないときに、<see cref="P:System.Data.Common.DbConnection.ServerVersion" /> が呼び出されました。</exception>
@@ -1516,8 +1584,8 @@
         <Parameter Name="isolationLevel" Type="System.Data.IsolationLevel" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="isolationLevel"><see cref="T:System.Data.IsolationLevel" /> 値のいずれか。</param>
-        <summary>指定した <see cref="T:System.Data.IsolationLevel" /> 値を使用して、データベース トランザクションを開始します。</summary>
+        <param name="isolationLevel">使用するトランザクションの分離レベルを示す列挙値の 1 つ。</param>
+        <summary>分離レベルを指定して、データベース トランザクションを開始します。</summary>
         <returns>新しいトランザクションを表すオブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  

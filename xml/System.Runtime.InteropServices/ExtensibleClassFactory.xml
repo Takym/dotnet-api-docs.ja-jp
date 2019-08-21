@@ -1,5 +1,5 @@
 <Type Name="ExtensibleClassFactory" FullName="System.Runtime.InteropServices.ExtensibleClassFactory">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c19e9b8869d9e1e23c9e71dec7657d7ba070d7b7" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64114718" /></Metadata><TypeSignature Language="C#" Value="public sealed class ExtensibleClassFactory" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="675047477e44908948d7adf8b77eed0360351b55" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69064287" /></Metadata><TypeSignature Language="C#" Value="public sealed class ExtensibleClassFactory" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ExtensibleClassFactory extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.ExtensibleClassFactory" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ExtensibleClassFactory" />
@@ -27,12 +27,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `ExtensibleClassFactory`を指定することができます、`delegate`基になる COM オブジェクトのインスタンスを提供するランタイム呼び出し可能ラッパー (RCW) の構築時に呼び出されます。 実際には、コールバックは、RCW によってラップされた COM オブジェクトのクラス ファクトリとして機能します。 共通言語ランタイムが呼び出すことによって、基になる COM オブジェクトを作成、コールバックなし`CoCreateInstance`します。 このコールバックは、COM モニカーまたはシングルトン オブジェクトを提供することなど、基になるオブジェクトをアクティブ化の手段を提供します。 <xref:System.Runtime.InteropServices.ExtensibleClassFactory.RegisterObjectCreationCallback%2A>メソッドを呼び出す必要があります、 `static` RCW を拡張するクラスの初期化子。 オブジェクトの種類ごとに 1 つのオブジェクト作成のコールバックが許可されます。 拡張可能な RCW をアクティブになるとコールバックを登録します。 基になる COM オブジェクトを作成する必要がある、オブジェクトへの参照を提供するコールバックが呼び出されます。 コールバックが返す必要があります、`IUnknown`ベース オブジェクトのインターフェイス ポインター。  
+ を使用すると、ユーザー `delegate`は、基になる COM オブジェクトのインスタンスを提供するランタイム呼び出し可能ラッパー (RCW) の構築時に呼び出されるを指定できます。 `ExtensibleClassFactory` 実際には、このコールバックは、RCW によってラップされた COM オブジェクトのクラスファクトリとして機能します。 コールバックがない場合、共通言語ランタイムはを呼び出し`CoCreateInstance`て、基になる COM オブジェクトを作成します。 このコールバックは、COM モニカーやシングルトンオブジェクトを提供するなど、基になるオブジェクトをアクティブ化する別の方法を提供します。 メソッド<xref:System.Runtime.InteropServices.ExtensibleClassFactory.RegisterObjectCreationCallback%2A>は、RCW を拡張する`static`クラスの初期化子で呼び出す必要があります。 オブジェクトの種類ごとに1つのオブジェクト作成コールバックのみが許可されます。 拡張 RCW がアクティブになると、コールバックが登録されます。 基になる COM オブジェクトを作成する必要がある場合は、オブジェクトへの参照を提供するためにコールバックが呼び出されます。 コールバックは、基本`IUnknown`オブジェクトのインターフェイスポインターを返す必要があります。  
   
    
   
 ## Examples  
- 登録、`delegate`を非管理対象の型から拡張したマネージ型のインスタンスが集計されたアンマネージ オブジェクトを割り当てる必要があるとき呼び出されます。 これは、`delegate`を割り当てたり、アンマネージ オブジェクトの集計が必要ですの代わりと呼ばれますが、`CoCreateInstance`します。 このルーチンは、のコンテキストで呼び出される必要があります、`static`コールバックが行われる対象のクラスの初期化子。  
+ アンマネージ`delegate`型から拡張されるマネージ型のインスタンスが、集計されたアンマネージオブジェクトを割り当てる必要がある場合に必ず呼び出されるを登録します。 これ`delegate`は、アンマネージオブジェクトを割り当てて集計し、 `CoCreateInstance`の代わりにを呼び出すことが想定されています。 このルーチンは、コールバックが行われるクラス`static`の初期化子のコンテキストで呼び出す必要があります。  
   
  [!code-cpp[Classic ExtensibleClassFactory Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic ExtensibleClassFactory Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ExtensibleClassFactory Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic ExtensibleClassFactory Example/CS/source.cs#1)]
@@ -75,9 +75,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、`delegate`割り当て、アンマネージ オブジェクトを集約し、の代わりに呼び出されますが`CoCreateInstance`します。 これは、`delegate`のコンテキストで登録する必要があります、`static`コールバックが行われる対象のクラス初期化子。  
+ これ`delegate`により、アンマネージオブジェクトが割り当てられて集計`CoCreateInstance`され、の代わりにが呼び出されます。 これ`delegate`は、コールバックを行う`static`クラス初期化子のコンテキストで登録する必要があります。  
   
- 階層内の 1 つのクラスを登録する必要があります、`delegate`コールバック。  
+ コールバックを`delegate`登録する必要があるのは、階層内の1つのクラスだけです。  
   
  ]]></format>
         </remarks>

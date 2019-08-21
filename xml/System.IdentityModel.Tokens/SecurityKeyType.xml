@@ -1,5 +1,5 @@
 <Type Name="SecurityKeyType" FullName="System.IdentityModel.Tokens.SecurityKeyType">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="42f6abecd202595ca3654b6dff53562f7ebfeafd" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64014195" /></Metadata><TypeSignature Language="C#" Value="public enum SecurityKeyType" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c8602481abac11d589a493ef0e0ad2f6695e4354" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69279699" /></Metadata><TypeSignature Language="C#" Value="public enum SecurityKeyType" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SecurityKeyType extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Tokens.SecurityKeyType" />
   <TypeSignature Language="VB.NET" Value="Public Enum SecurityKeyType" />
@@ -21,14 +21,14 @@
 ## Remarks  
  <xref:System.IdentityModel.Tokens.SecurityKeyType> 列挙型を使用して、<xref:System.IdentityModel.Selectors.SecurityTokenRequirement.KeyType%2A> プロパティを設定します。  
   
- BearerKey フィールドを併用、<xref:System.ServiceModel.Configuration.IssuedTokenParametersElement.KeyType%2A>プロパティ。  
+ BearerKey フィールドは、 <xref:System.ServiceModel.Configuration.IssuedTokenParametersElement.KeyType%2A>プロパティと共に使用されます。  
   
 ### <a name="bearerkey-requires-wsuid-or-transport-security-with-message-credentials"></a>BearerKey には Wsu:Id またはメッセージ資格情報付きトランスポート セキュリティが必要  
- フェデレーション シナリオで発行されるトークンは、通常、クライアントと証明書利用者の間のメッセージ セキュリティのための保証サポート トークンとして構成されます。 ただし、セキュリティ トークン サービス (STS) がないキー (BearerKey) を使用してトークンを発行時に WCF 構成として、<xref:System.ServiceModel.Security.SecurityTokenAttachmentMode>サポート トークンが (キーのない WCF が保証できません)。 このため、発行されたトークンを署名で参照する必要があります。 現在使用して、次の WCF:http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd:Id参照機構 (Wsu:Id) として。  
+ フェデレーション シナリオで発行されるトークンは、通常、クライアントと証明書利用者の間のメッセージ セキュリティのための保証サポート トークンとして構成されます。 ただし、セキュリティトークンサービス (STS) がキーを持たないトークンを発行した場合 (BearerKey)、wcf は<xref:System.ServiceModel.Security.SecurityTokenAttachmentMode>サポートトークンとしてそれを構成します (wcf はキーなしでは保証できません)。 このため、発行されたトークンを署名で参照する必要があります。 現在、WCF では、 http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd:Id参照メカニズム (wsu: Id) として次のものが使用されています。  
   
  発行されたトークンがこのような属性を持たない場合は、クライアントで、"署名する要素には ID が必要です" というメッセージと共に、<xref:System.ServiceModel.Security.MessageSecurityException> がスローされます。 これは、発行されたトークンとして、SAML 1.1 トークンが使用されている場合に起こります (Wsu:Id は、SAML 1.1 仕様では定義されていません)。  
   
- このような状況を回避するには、メッセージ資格情報付きトランスポート セキュリティを使用いずれか (たとえば、 <xref:System.ServiceModel.Configuration.AuthenticationMode>) または STS を追加する必要があります、 http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd:Id (Wsu:Id)、発行されたトークンをします。  
+ この状況を回避するには、メッセージ資格情報 (たとえば<xref:System.ServiceModel.Configuration.AuthenticationMode>) を使用してトランスポートセキュリティを使用するか、STS で発行済みトークンにhttp://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd:Id (wsu: Id) を追加する必要があります。  
   
  ただし、Wsu:Id を SAML 1.1 トークンに追加した場合、結果として得られる XML は SAML 1.1 仕様に準拠しないので注意してください。 または、発行されたトークンの暗号化結果 `EncryptedData` に Wsu:Id を追加します。 `EncryptedData` 要素は Wsu:Id 属性をサポートしているので、この手順は SAML 1.1 仕様に準拠します。  
   

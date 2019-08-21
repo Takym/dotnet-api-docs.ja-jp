@@ -1,5 +1,5 @@
 <Type Name="ICodeGenerator" FullName="System.CodeDom.Compiler.ICodeGenerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="2bf364ac80cf3aa866b4c6fa0469a54349eb9403" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63912488" /></Metadata><TypeSignature Language="C#" Value="public interface ICodeGenerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2ada64a8fb7c5c57e5e82b5bdadc29184e9eae33" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69336539" /></Metadata><TypeSignature Language="C#" Value="public interface ICodeGenerator" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ICodeGenerator" />
   <TypeSignature Language="DocId" Value="T:System.CodeDom.Compiler.ICodeGenerator" />
   <TypeSignature Language="VB.NET" Value="Public Interface ICodeGenerator" />
@@ -26,11 +26,11 @@
 ## Remarks  
   
 > [!NOTE]
->  .NET Framework バージョン 1.0 および 1.1 では、コード プロバイダーの構成の実装の<xref:System.CodeDom.Compiler.CodeDomProvider>、 <xref:System.CodeDom.Compiler.ICodeGenerator>、 <xref:System.CodeDom.Compiler.ICodeParser>、および<xref:System.CodeDom.Compiler.ICodeCompiler>します。 [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)]、 <xref:System.CodeDom.Compiler.CodeDomProvider.CreateGenerator%2A>、 <xref:System.CodeDom.Compiler.CodeDomProvider.CreateParser%2A>、および<xref:System.CodeDom.Compiler.CodeDomProvider.CreateCompiler%2A>メソッドは廃止のメソッドと<xref:System.CodeDom.Compiler.ICodeGenerator>と<xref:System.CodeDom.Compiler.ICodeCompiler>で直接使用可能な<xref:System.CodeDom.Compiler.CodeDomProvider>クラス。 コード プロバイダーの実装でこれらのメソッドをオーバーライドして、基本メソッドを呼び出さないでください。  
+>  .NET Framework バージョン1.0 および1.1 では、コード<xref:System.CodeDom.Compiler.CodeDomProvider>プロバイダーは<xref:System.CodeDom.Compiler.ICodeParser>、 <xref:System.CodeDom.Compiler.ICodeGenerator>、、および<xref:System.CodeDom.Compiler.ICodeCompiler>の実装で構成されます。 [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)] <xref:System.CodeDom.Compiler.CodeDomProvider> <xref:System.CodeDom.Compiler.ICodeCompiler>では、、 <xref:System.CodeDom.Compiler.ICodeGenerator> 、および<xref:System.CodeDom.Compiler.CodeDomProvider.CreateCompiler%2A>の各メソッドは互換性のために残されています。また、およびのメソッドは、クラスで直接使用できます。 <xref:System.CodeDom.Compiler.CodeDomProvider.CreateParser%2A> <xref:System.CodeDom.Compiler.CodeDomProvider.CreateGenerator%2A> これらのメソッドは、基本メソッドを呼び出さずに、コードプロバイダーの実装でオーバーライドする必要があります。  
   
- コンパイラの開発者は、特定の言語でコードを動的に生成できるようにするには、このインターフェイスを実装できます。 これは、さまざまなコードを生成する、デバッグ可能なコンテンツを含む動的アセンブリの作成ウィザードの作成などの目的で、ASP.NET などの埋め込みコードを含むテンプレートのドキュメントに使用できます。  
+ コンパイラの開発者は、このインターフェイスを実装して、特定の言語でコードを動的に生成できるようにすることができます。 これは、コード生成ウィザードを作成する、デバッグ可能なコンテンツを含む動的アセンブリを作成する、ASP.NET などのコードを埋め込んだテンプレートドキュメントを作成するなど、さまざまな目的で使用できます。  
   
- <xref:System.CodeDom.Compiler.ICodeGenerator>実装は通常の呼び出しによって取得、<xref:System.CodeDom.Compiler.CodeDomProvider.CreateGenerator%2A>メソッドの<xref:System.CodeDom.Compiler.CodeDomProvider>します。  
+ の実装は、通常、の<xref:System.CodeDom.Compiler.CodeDomProvider.CreateGenerator%2A> <xref:System.CodeDom.Compiler.CodeDomProvider>メソッドの呼び出しによって取得されます。 <xref:System.CodeDom.Compiler.ICodeGenerator>  
   
  ]]></format>
     </remarks>
@@ -70,12 +70,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.CodeDom.Compiler.ICodeGenerator.CreateEscapedIdentifier%2A> 識別子は予約済みと競合するかどうかをテストまたは言語キーワード、そうである場合は、言語固有のエスケープ コードの書式設定と同じ名前を返します。 これは、エスケープされた識別子に呼ばれます。 エスケープされた識別子には、同じ`value`がエスケープ コード書式、キーワード、識別子を区別するために追加する必要があります。 2 つの実装の例では、先頭、`value`に"@"の角かっこまたは、`value`に"["と"]"。  
+ <xref:System.CodeDom.Compiler.ICodeGenerator.CreateEscapedIdentifier%2A>識別子が予約語または言語キーワードと競合しているかどうかをテストします。存在する場合は、言語固有のエスケープコード書式を使用して同等の名前を返します。 これは、エスケープされた識別子と呼ばれます。 エスケープされた識別子は同じ`value`を含みますが、キーワードから識別子を区別するためにエスケープコードの書式設定が追加されます。 2つの実装例で`value`は、の前に "@ `value` " を付けます。または、を "[" および "]" にします。  
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
         <altmember cref="M:System.CodeDom.Compiler.ICodeGenerator.CreateValidIdentifier(System.String)" />
       </Docs>
     </Member>
@@ -113,12 +113,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.CodeDom.Compiler.ICodeGenerator.CreateValidIdentifier%2A> テストするかどうかと予約済み識別子の競合や言語のキーワードを返します。 有効な識別子名を競合しません。 返された識別子には、同じ`value`が予約されたと競合する場合、または言語のキーワードはキーワード、識別子を区別するために追加されたエスケープ コードの書式設定ができます。 通常、値に変更が必要がある場合値が返されます、アンダー スコア「_」が付きます。  
+ <xref:System.CodeDom.Compiler.ICodeGenerator.CreateValidIdentifier%2A>識別子が予約キーワードまたは言語キーワードと競合しているかどうかをテストし、競合しない有効な識別子名を返します。 返される識別子には同じ`value`ものが含まれますが、予約語または言語キーワードと競合する場合は、キーワードから識別子を区別するためにエスケープコードの書式が追加されます。 通常、値の変更が必要な場合は、前にアンダースコア "_" が付いた値が返されます。  
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
         <altmember cref="M:System.CodeDom.Compiler.ICodeGenerator.CreateEscapedIdentifier(System.String)" />
       </Docs>
     </Member>
@@ -156,8 +156,8 @@
         <param name="o">コードを生成するために使用するオプションを示す <see cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />。</param>
         <summary>指定した Code Document Object Model (CodeDOM) の コンパイル ユニットのコードを生成し、指定したオプションを使用して、指定したテキスト ライターに出力します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
         <altmember cref="T:System.IO.TextWriter" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
         <altmember cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />
@@ -197,8 +197,8 @@
         <param name="o">コードを生成するために使用するオプションを示す <see cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />。</param>
         <summary>指定した Code Document Object Model (CodeDOM) の式のコードを生成し、指定したテキスト ライターに出力します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
         <altmember cref="T:System.IO.TextWriter" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
         <altmember cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />
@@ -238,8 +238,8 @@
         <param name="o">コードを生成するために使用するオプションを示す <see cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />。</param>
         <summary>指定した Code Document Object Model (CodeDOM) の名前空間のコードを生成し、指定したオプションを使用して、指定したテキスト ライターに出力します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
         <altmember cref="T:System.IO.TextWriter" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
         <altmember cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />
@@ -279,8 +279,8 @@
         <param name="o">コードを生成するために使用するオプションを示す <see cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />。</param>
         <summary>指定した Code Document Object Model (CodeDOM) のステートメントのコードを生成し、指定したオプションを使用して、指定したテキスト ライターに出力します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
         <altmember cref="T:System.IO.TextWriter" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
         <altmember cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />
@@ -320,8 +320,8 @@
         <param name="o">コードを生成するために使用するオプションを示す <see cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />。</param>
         <summary>指定した Code Document Object Model (CodeDOM) の型宣言のコードを生成し、指定したオプションを使用して、指定したテキスト ライターに出力します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
         <altmember cref="T:System.IO.TextWriter" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
         <altmember cref="T:System.CodeDom.Compiler.CodeGeneratorOptions" />
@@ -358,8 +358,8 @@
         <summary>指定した <see cref="T:System.CodeDom.CodeTypeReference" /> で示される型を取得します。</summary>
         <returns>コード ジェネレーターがコードの生成用として対応している言語での、指定した型のテキスト表現。 たとえば、Visual Basic では、System.Int32 型を渡すと "Integer" が返されます。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="IsValidIdentifier">
@@ -396,12 +396,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、識別子が有効かどうかをテストします。 実装するときに<xref:System.CodeDom.Compiler.ICodeGenerator.IsValidIdentifier%2A>、派生クラスでは、渡された値をテストするメソッドを設計し、返す`true`値は、言語の規則に適合し、キーワードと競合しない場合にのみです。  
+ このメソッドは、識別子が有効かどうかをテストします。 派生クラス<xref:System.CodeDom.Compiler.ICodeGenerator.IsValidIdentifier%2A>でを実装する場合は、渡された値をテストするメソッドを設計し`true` 、値が言語の規則に適合し、キーワードと競合しない場合にのみを返します。  
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="Supports">
@@ -438,12 +438,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 数がこのメソッドを呼び出すことが<xref:System.CodeDom.Compiler.GeneratorSupport>バイナリと共に、適切な機能フラグのセットを結合することで、一連の機能をテストするには、一度にフラグ"Or"演算子 (&#124;)。  
+ このメソッドは、適切な機能フラグの<xref:System.CodeDom.Compiler.GeneratorSupport>セットとバイナリ "or" 演算子 (&#124;) を結合することによって、一連の機能をテストするために一度に複数のフラグを使用して呼び出すことができます。  
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="ValidateIdentifier">
@@ -479,13 +479,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 値を返すのではなくは、このメソッドは、指定された識別子は、メソッドの実装に従った有効な場合に例外をスローします。 通常、この例外は、<xref:System.ArgumentException>します。 このメソッドは、無効な識別子の値に基づいてわかりやすいエラー メッセージを生成するには、このメソッドを実装するコード ジェネレーターを使用します。  
+ このメソッドは、値を返すのではなく、メソッドの実装に従って指定された識別子が有効でない場合に例外をスローします。 通常、例外は<xref:System.ArgumentException>です。 このメソッドは、このメソッドを実装するコードジェネレーターが、無効な識別子の値に基づいて有益なエラーメッセージを生成できるようにします。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException">識別子が有効ではありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
-        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承クラスの完全な信頼。 部分的に信頼されたコードでは、このメンバーを継承できません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このメンバーは、部分的に信頼されたコードによって継承することはできません。</permission>
       </Docs>
     </Member>
   </Members>

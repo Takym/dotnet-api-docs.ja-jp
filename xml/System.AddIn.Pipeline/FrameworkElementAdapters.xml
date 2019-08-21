@@ -1,5 +1,5 @@
 <Type Name="FrameworkElementAdapters" FullName="System.AddIn.Pipeline.FrameworkElementAdapters">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f2aa9016ab992f01e3688ea36fddd600889e28cd" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63914100" /></Metadata><TypeSignature Language="C#" Value="public static class FrameworkElementAdapters" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a15803ba825d2f9a71f1f19cc5f22fe331007a99" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69337035" /></Metadata><TypeSignature Language="C#" Value="public static class FrameworkElementAdapters" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit FrameworkElementAdapters extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.AddIn.Pipeline.FrameworkElementAdapters" />
   <TypeSignature Language="VB.NET" Value="Public Class FrameworkElementAdapters" />
@@ -20,19 +20,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
-Windows Presentation Foundation (WPF) は、WPF Ui アプリケーションをホストとアドイン間で渡されるを許可する .NET Framework アドイン モデルを拡張します。WPF では、WPF Ui をいずれかに直接渡されるまたはから直接派生<xref:System.Windows.FrameworkElement>します。 ただし、アドインとホスト アプリケーションは、通常実行では、個別のアプリケーション ドメインとは、その結果、分離境界で区切られました。 このため、.NET Framework アドイン モデルにあるリモート処理可能な分離の境界を越えて渡される型が必要です。 リモート処理可能な型では、次のいずれかに準拠しています。  
+Windows Presentation Foundation (WPF) は、.NET Framework アドインモデルを拡張して、ホストアプリケーションとアドインの間で WPF Ui を渡せるようにします。WPF では、直接または間接的に派生した WPF Ui <xref:System.Windows.FrameworkElement>をから派生させる必要があります。 ただし、アドインとホストアプリケーションは、通常、別個のアプリケーションドメインで実行され、その結果、分離境界で区切られます。 このため、.NET Framework アドインモデルでは、分離境界を越えて渡される型がリモート処理可能である必要があります。 リモート処理可能な型は、次のいずれかに準拠しています。  
   
 -   <xref:System.Runtime.Serialization.ISerializable> インターフェイスを実装します。  
   
--   <xref:System.SerializableAttribute>属性が適用されています。  
+-   属性が<xref:System.SerializableAttribute>適用されています。  
   
--   派生した、<xref:System.MarshalByRefObject>クラス。  
+-   <xref:System.MarshalByRefObject>クラスから派生します。  
   
- <xref:System.Windows.FrameworkElement> リモート処理可能でないし、アドインとホスト アプリケーションの分離の境界を越えて渡される前に、リモート処理可能な型に変換する必要があります。 このため、静的な呼び出しする必要があります。<xref:System.AddIn.Pipeline.FrameworkElementAdapters.ViewToContractAdapter%2A>に変換するメソッド、 <xref:System.Windows.FrameworkElement> 、リモート処理可能なのインスタンスに<xref:System.AddIn.Contract.INativeHandleContract>します。  
+ <xref:System.Windows.FrameworkElement>はリモート処理可能ではなく、リモート処理可能な型に変換してから、アドインとホストアプリケーション間の分離境界を越えて渡す必要があります。 このため、をリモート<xref:System.AddIn.Pipeline.FrameworkElementAdapters.ViewToContractAdapter%2A> <xref:System.AddIn.Contract.INativeHandleContract>処理可能なのインスタンスに変換するに<xref:System.Windows.FrameworkElement>は、静的メソッドを呼び出す必要があります。  
   
- 1 回、<xref:System.AddIn.Contract.INativeHandleContract>が渡されますが、分離の境界を越えて、ホスト アプリケーションまたはアドインによって表示可能な型に変換する必要があります。 この場合は、静的な<xref:System.AddIn.Pipeline.FrameworkElementAdapters.ContractToViewAdapter%2A>に変換するメソッドが呼び出される、<xref:System.AddIn.Contract.INativeHandleContract>を<xref:System.Windows.FrameworkElement>します。  
+ <xref:System.AddIn.Contract.INativeHandleContract>が分離境界を越えて渡されると、ホストアプリケーションまたはアドインによって表示できる型に変換される必要があります。 この場合、を<xref:System.AddIn.Pipeline.FrameworkElementAdapters.ContractToViewAdapter%2A> <xref:System.AddIn.Contract.INativeHandleContract>に<xref:System.Windows.FrameworkElement>変換する静的メソッドが呼び出されます。  
   
- WPF アドインの説明の詳細を参照してください。 [WPF アドインの概要](~/docs/framework/wpf/app-development/wpf-add-ins-overview.md)します。  
+ WPF アドインの詳細については、「 [Wpf アドインの概要](~/docs/framework/wpf/app-development/wpf-add-ins-overview.md)」を参照してください。  
   
  ]]></format>
     </remarks>
@@ -101,7 +101,7 @@ Windows Presentation Foundation (WPF) は、WPF Ui アプリケーションを�
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException"><paramref name="root" /> は、要素のツリーのルート要素ではありません。</exception>
         <altmember cref="M:System.AddIn.Pipeline.FrameworkElementAdapters.ContractToViewAdapter(System.AddIn.Contract.INativeHandleContract)" />
-        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.5/bb913905(v=vs.90)">WPF アドインが複数の Ui サンプル</related>
+        <related type="Article" href="https://docs.microsoft.com/previous-versions/dotnet/netframework-3.5/bb913905(v=vs.90)">WPF アドインに複数の Ui サンプルがある</related>
       </Docs>
     </Member>
   </Members>

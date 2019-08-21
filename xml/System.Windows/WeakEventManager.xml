@@ -1,5 +1,5 @@
 <Type Name="WeakEventManager" FullName="System.Windows.WeakEventManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0b902a9b8f78c0d8e904a6bd4037d22a00c7fb84" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57941647" /></Metadata><TypeSignature Language="C#" Value="public abstract class WeakEventManager : System.Windows.Threading.DispatcherObject" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="080b5265a21bc5938d549e2c320e525fe044eb65" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69443645" /></Metadata><TypeSignature Language="C#" Value="public abstract class WeakEventManager : System.Windows.Threading.DispatcherObject" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract WeakEventManager extends System.Windows.Threading.DispatcherObject" />
   <TypeSignature Language="DocId" Value="T:System.Windows.WeakEventManager" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class WeakEventManager&#xA;Inherits DispatcherObject" />
@@ -20,15 +20,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常、イベント ソースには、イベント リスナーの独立したオブジェクトの有効期間がある場合は、弱いイベント パターンを使用します。 サーバーの全体の機能をディスパッチ イベントを使用して、<xref:System.Windows.WeakEventManager>ガベージ コレクションのソース オブジェクトが解決しない場合でも、リスナーのハンドラーを使用します。 これに対しを使用して定期的なイベント フックアップ、`+=`演算子により、リスナーへの参照を保持するために切断された可能性のあるソース。 これは、受信側がガベージ コレクション、迅速にすることを防ぎます。  
+ イベントリスナーに依存しないオブジェクトの有効期間がイベントソースにある場合は、通常、弱いイベントパターンを使用します。 の中心的なイベントディスパッチ機能を使用<xref:System.Windows.WeakEventManager>すると、ソースオブジェクトが永続化されている場合でもリスナーのハンドラーをガベージコレクションできます。 これに対し、 `+=`演算子を使用して通常のイベントフックを解除すると、切断されている可能性のあるソースにリスナーへの参照が保持されます。 これにより、受信側がタイムリーにガベージコレクションを実行できなくなります。  
   
- 一般的な状況の 1 つのソースとリスナーの有効期間の関係を使用する必要が弱いイベント パターンのでは、データ バインディングの更新イベントの処理です。  
+ ソースとリスナー間の有効期間の関係が弱いイベントパターンを使用する必要がある一般的な状況の1つは、データバインディングからの更新イベントの処理です。  
   
- 弱いイベント パターンは、コールバックと通常のイベントにも使用できます。  
+ 弱いイベントパターンは、コールバックや通常のイベントにも使用できます。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>カスタムの例については<see cref="T:System.Windows.WeakEventManager" />を参照してください[弱いイベント パターン](~/docs/framework/wpf/advanced/weak-event-patterns.md)します。</para></block>
+    <block subset="none" type="overrides"><para>カスタム<see cref="T:System.Windows.WeakEventManager" />の例については、「[弱いイベントパターン](~/docs/framework/wpf/advanced/weak-event-patterns.md)」を参照してください。</para></block>
     <altmember cref="T:System.Windows.IWeakEventListener" />
   </Docs>
   <Members>
@@ -78,11 +78,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す、<xref:System.Windows.WeakEventManager.DeliverEvent%2A>メソッドが追加または削除するイベント ハンドラー内から、<xref:System.Windows.WeakEventManager.StartListening%2A>と<xref:System.Windows.WeakEventManager.StopListening%2A>サブクラスの実装。  
+ クラスの<xref:System.Windows.WeakEventManager.DeliverEvent%2A> <xref:System.Windows.WeakEventManager.StartListening%2A> および<xref:System.Windows.WeakEventManager.StopListening%2A>実装によって追加または削除されたイベントハンドラー内から、メソッドを呼び出します。  
   
- 呼び出す場合、<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>メソッドで、`AddListener`クラスの実装は、イベントを受信するリスナーのリストは、基になるコレクションで保持されます。 (`AddListener`インターフェイスまたはクラスのコントラクトの一部ではありません。 `AddListener` 推奨される名前を呼び出す、manager クラスのメソッドは、<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>し、イベントの弱いイベント パターンのリスナーを追加します)。  
+ クラスの`AddListener`実装で<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>メソッドを呼び出すと、イベントを受信するリスナーの一覧が基になるコレクションに保持されます。 (`AddListener`はインターフェイスまたはクラスコントラクトの一部ではありません。 `AddListener`は、を呼び出し<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>てイベントの弱いイベントパターンリスナーを追加する、マネージャークラスのメソッドに推奨される名前です。  
   
- <xref:System.Windows.WeakEventManager.ProtectedAddListener%2A> 1 つのリストにリスナーを追加します。 マネージャーの実装にイベントごとのリスナーの 1 つ以上のリストが保持している場合は使用しないでください<xref:System.Windows.WeakEventManager.DeliverEvent%2A>または<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>します。 代わりに、実装する必要があります作成独自<xref:System.Windows.WeakEventManager.ListenerList>インスタンス、`AddListener`リスナーを該当する一覧に追加する必要があり、イベントを呼び出すことによって適切なリスナーのリストを配信する<xref:System.Windows.WeakEventManager.DeliverEventToList%2A>します。  
+ <xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>リスナーを1つのリストに追加します。 マネージャー実装でイベントごとにリスナーのリストが複数保持されている場合<xref:System.Windows.WeakEventManager.DeliverEvent%2A>は<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>、またはを使用しないでください。 代わりに、実装で独自<xref:System.Windows.WeakEventManager.ListenerList>のインスタンスを作成し、 `AddListener`適切なリストにリスナーを追加する必要があります。また、を呼び出す<xref:System.Windows.WeakEventManager.DeliverEventToList%2A>ことによって、イベントを適切なリスナー一覧に配信する必要があります。  
   
  ]]></format>
         </remarks>
@@ -119,7 +119,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、マネージャーの実装は、イベント データのキャプチャされた情報に基づいて、個別のリスナーのリストを保持する場合は、必要があります。 この高度な手法を使用する場合、作成および、マネージャーの実装の一部として個別の一覧を管理する必要があり、特定のリストにリスナーを追加する方法を提供する必要があります。 ハンドラーの実装を生のイベントをリッスンする必要があります機能、条件による、リストを区別するために使用し、適切なリストにのみ、イベントを配信します。  
+ このメソッドは、イベントデータでキャプチャされた情報に基づいて、マネージャー実装が個別のリスナーリストを保持する場合に必要です。 この高度な手法を使用する場合は、マネージャー実装の一部として個別のリストを作成して維持する必要があります。また、リスナーを特定のリストに追加する方法を提供する必要があります。 生のイベントをリッスンするハンドラーの実装は、リストを区別するために使用する条件に基づいて動作し、適切なリストまたはリストにのみイベントを配信する必要があります。  
   
  ]]></format>
         </remarks>
@@ -154,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.IWeakEventListener.ReceiveWeakEvent%2A> 実装が、渡されたを使用してこのメソッドを呼び出す`managerType`します。 返された<xref:System.Windows.WeakEventManager>はどのイベントを受信した、および起動するには、どのプライベート クラス ハンドラーを決定する差別化要因として使用されます。  
+ <xref:System.Windows.IWeakEventListener.ReceiveWeakEvent%2A>実装では、渡さ`managerType`れたを使用してこのメソッドを呼び出します。 返さ<xref:System.Windows.WeakEventManager>れたは、どのイベントを受信したか、および呼び出すプライベートクラスハンドラーを決定するための差別化要因として使用されます。  
   
  ]]></format>
         </remarks>
@@ -189,7 +189,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生クラスには、どのようなデータとこのインデクサーに格納する型を選択できます。 通常これとして実装されます、<xref:System.Windows.WeakEventManager.ListenerList>リスナーへの弱い参照の一覧します。 場合、この種類を変更する必要がありますのみ、<xref:System.Windows.WeakEventManager.ListenerList>型は、必要な情報を含めることはできません。 そのため、オーバーライドする必要が場合、<xref:System.Windows.WeakEventManager.Purge%2A>メソッド基になる型のすべてのクリーンアップが正常に実行できるようにします。  
+ 派生クラスでは、このインデクサーに格納するデータと型を選択できます。 通常、これは<xref:System.Windows.WeakEventManager.ListenerList>、リスナーへの弱い参照の一覧であるとして実装されます。 必要な情報が型に<xref:System.Windows.WeakEventManager.ListenerList>含まれていない場合にのみ、この型を変更する必要があります。 その場合は、基になる型の<xref:System.Windows.WeakEventManager.Purge%2A>すべてのクリーンアップが正しく実行されるように、メソッドをオーバーライドする必要があります。  
   
  ]]></format>
         </remarks>
@@ -234,8 +234,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="source" Type="System.Object" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="handler" Type="System.Delegate" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="source" Type="System.Object" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="handler" Type="System.Delegate" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="source">ハンドラー デリゲートがサブスクライブするソース オブジェクト。</param>
@@ -272,11 +272,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Manager クラス内でこのメソッドを呼び出す`AddListener`メソッド<xref:System.Windows.WeakEventManager>実装します。 `AddListener` 推奨される名前は、弱いイベント パターン用のリスナーを追加するには、他のクラスを有効にする、マネージャー クラスで定義する静的メソッド。 `AddListener` 2 つのパラメーターを受け取る必要があります。`source`リスナーが接続されている場合、`listener`インスタンス。 `AddListener`実装を呼び出し、<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>メソッドを現在のマネージャーと同じ 2 つのパス パラメーター。  
+ 実装で`AddListener` <xref:System.Windows.WeakEventManager> 、マネージャークラスのメソッド内でこのメソッドを呼び出します。 `AddListener`は、他のクラスが弱いイベントパターンのリスナーを追加できるようにするために、マネージャークラスで定義する静的メソッドの推奨される名前です。 `AddListener`2つのパラメーター `source` (リスナーがアタッチされている`listener`とインスタンス) を受け取る必要があります。 の実装では、現在<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>のマネージャーでメソッドを呼び出し、同じ2つのパラメーターを渡します。 `AddListener`  
   
- 場合、リスナーのリストが空になる、<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>呼び出し、<xref:System.Windows.WeakEventManager.StartListening%2A>メソッド特定を内部的には、どの呼び出しが<xref:System.Windows.WeakEventManager.StartListening%2A>ポリモーフィズムをオーバーライドします。  
+ リスナーのリストが以前に空だった<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>場合、 <xref:System.Windows.WeakEventManager.StartListening%2A>はメソッドを内部で呼び出します。 <xref:System.Windows.WeakEventManager.StartListening%2A>これにより、ポリモーフィズムによって特定のオーバーライドが呼び出されます。  
   
- <xref:System.Windows.WeakEventManager.ProtectedAddListener%2A> 1 つの内部にリスナーを追加します。<xref:System.Windows.WeakEventManager.ListenerList>あたり`source`します。 マネージャーの実装にイベント ソースの組み合わせごとにリスナーの 1 つ以上のリストが保持している場合は使用しないでください<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>します。 代わりに、実装する必要があります作成独自<xref:System.Windows.WeakEventManager.ListenerList>インスタンス、`AddListener`リスナーを該当する一覧に追加する必要があり、呼び出すことによって適切なリスナーのリストにイベントを配信する必要があります、 <xref:System.Windows.WeakEventManager.DeliverEventToList%2A> ではなくイベント<xref:System.Windows.WeakEventManager.DeliverEvent%2A>メソッド。  
+ <xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>リスナーを1つの内部<xref:System.Windows.WeakEventManager.ListenerList> `source`に追加します。 マネージャーの実装で、各イベントソースの組み合わせに対して複数のリスナーのリストが保持さ<xref:System.Windows.WeakEventManager.ProtectedAddListener%2A>れている場合は、を使用しないでください。 代わりに、実装で独自<xref:System.Windows.WeakEventManager.ListenerList>のインスタンスを作成し、 `AddListener`適切なリストにリスナーを追加する必要があります。また、の代わりに<xref:System.Windows.WeakEventManager.DeliverEventToList%2A>イベントを呼び出して、イベントを適切なリスナーリストに配信する必要があります。 <xref:System.Windows.WeakEventManager.DeliverEvent%2A>メソッド。  
   
  ]]></format>
         </remarks>
@@ -300,8 +300,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="source" Type="System.Object" Index="0" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
-        <Parameter Name="handler" Type="System.Delegate" Index="1" FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="source" Type="System.Object" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="handler" Type="System.Delegate" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="source">ハンドラーを削除するソース。</param>
@@ -338,11 +338,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Manager クラス内でこのメソッドを呼び出す`RemoveListener`メソッド<xref:System.Windows.WeakEventManager>実装します。 `RemoveListener` 推奨される名前は、弱いイベント パターン用のリスナーを削除するには、他のクラスを有効にする、マネージャー クラスで定義する静的メソッド。 `RemoveListener` 2 つのパラメーターを受け取る必要があります。`source`リスナーを削除すると、場所、および`listener`クラス。 `RemoveListener`実装を呼び出し、<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>メソッドを現在のマネージャーと同じ 2 つのパス パラメーター。  
+ 実装で`RemoveListener` <xref:System.Windows.WeakEventManager> 、マネージャークラスのメソッド内でこのメソッドを呼び出します。 `RemoveListener`は、他のクラスが弱いイベントパターンのリスナーを削除できるようにするために、マネージャークラスで定義する静的メソッドの推奨される名前です。 `RemoveListener`2つのパラメーター `source` (リスナーが削除される場所`listener`とクラス) を受け取る必要があります。 の実装では、現在<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>のマネージャーでメソッドを呼び出し、同じ2つのパラメーターを渡します。 `RemoveListener`  
   
- 呼び出し<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>の一覧で、最後のリスナーを削除します。<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>呼び出し、<xref:System.Windows.WeakEventManager.StopListening%2A>メソッド特定を内部的には、どの呼び出しが<xref:System.Windows.WeakEventManager.StopListening%2A>ポリモーフィズムをオーバーライドします。  
+ <xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>の呼び出しによってリスト内の最後のリスナーが削除さ<xref:System.Windows.WeakEventManager.StopListening%2A>れた場合、は<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>内部的に<xref:System.Windows.WeakEventManager.StopListening%2A>メソッドを呼び出します。このメソッドは、ポリモーフィズムによって特定のオーバーライドを呼び出します。  
   
- <xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A> 1 つの内部からのリスナーを削除します。<xref:System.Windows.WeakEventManager.ListenerList>あたり`source`します。 マネージャーの実装にイベント ソースの組み合わせごとにリスナーの 1 つ以上のリストが保持している場合は使用しないでください<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>します。 代わりに、実装する必要があります作成独自<xref:System.Windows.WeakEventManager.ListenerList>インスタンス、 `RemoveListener` 、該当する一覧からのリスナーを削除する必要があり、呼び出すことによって適切なリスナーのリストにイベントを配信する必要があります、<xref:System.Windows.WeakEventManager.DeliverEventToList%2A>メソッドの代わりに、<xref:System.Windows.WeakEventManager.DeliverEvent%2A>メソッド。  
+ <xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>1つの内部<xref:System.Windows.WeakEventManager.ListenerList> `source`のからリスナーを削除します。 マネージャーの実装で、各イベントソースの組み合わせに対して複数のリスナーのリストが保持さ<xref:System.Windows.WeakEventManager.ProtectedRemoveListener%2A>れている場合は、を使用しないでください。 代わりに、実装で独自<xref:System.Windows.WeakEventManager.ListenerList>のインスタンスを作成し、 `RemoveListener`適切なリストからリスナーを削除する必要があります。また、の代わりにメソッドを<xref:System.Windows.WeakEventManager.DeliverEventToList%2A>呼び出すことにより、イベントを適切なリスナーリストに配信する必要があります。<xref:System.Windows.WeakEventManager.DeliverEvent%2A>メソッド。  
   
  ]]></format>
         </remarks>
@@ -381,11 +381,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.WeakEventManager.Purge%2A>メソッドをデータがある場合は、すべてのエントリを削除する既定の実装には、<xref:System.Windows.WeakEventManager.ListenerList>します。  
+ メソッドには、データがで<xref:System.Windows.WeakEventManager.ListenerList>ある場合にすべてのエントリを削除する既定の実装があります。 <xref:System.Windows.WeakEventManager.Purge%2A>  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>型、基になる場合、<see cref="P:System.Windows.WeakEventManager.Item(System.Object)" />以外<see cref="T:System.Windows.WeakEventManager.ListenerList" />、またはを超えるデータが含まれている、 <see cref="T:System.Windows.WeakEventManager.ListenerList" />、オーバーライドする必要があります、<see cref="M:System.Windows.WeakEventManager.Purge(System.Object,System.Object,System.Boolean)" />メソッド。 オーバーライドでは、代替型の項目の一覧については、消去の動作を提供する必要があります。 一般に、オーバーライドは基本実装を呼び出すことがなく動作を提供する必要があります。 場合、特定<see cref="T:System.Windows.WeakEventManager.ListenerList" />消去呼び出しが引き続き必要<see cref="M:System.Windows.WeakEventManager.ListenerList.Purge" />します。</para></block>
+        <block subset="none" type="overrides"><para>の基<see cref="P:System.Windows.WeakEventManager.Item(System.Object)" />になる型が以外<see cref="T:System.Windows.WeakEventManager.ListenerList" />のものであるか、またはを<see cref="T:System.Windows.WeakEventManager.ListenerList" />超えるデータが含まれ<see cref="M:System.Windows.WeakEventManager.Purge(System.Object,System.Object,System.Boolean)" />ている場合は、メソッドをオーバーライドする必要があります。 オーバーライドでは、[代替型項目] の一覧の消去動作を指定する必要があります。 通常、オーバーライドは、基本実装を呼び出さずに動作を提供する必要があります。 それでも<see cref="T:System.Windows.WeakEventManager.ListenerList" />特定のをクリアする<see cref="M:System.Windows.WeakEventManager.ListenerList.Purge" />必要がある場合は、を呼び出します。</para></block>
         <altmember cref="T:System.Windows.IWeakEventListener" />
         <altmember cref="T:System.Windows.WeakEventManager.ListenerList" />
       </Docs>
@@ -413,7 +413,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 含まれるテーブルに対するクエリの派生クラスで<xref:System.Windows.WeakEventManager.Item%2A>内で常に実行する必要があります、`using (ReadLock) { ... }`既に書き込みロック内にあるクエリ以外の句。 これらのクエリは、クラスがより高度なサポートされている場合に必要な可能性があります`AddListener`を超えてより多くのデータが必要な実装、`source`と`listener`を使用して、<xref:System.Windows.WeakEventManager.Item%2A>余分な情報を格納するコレクション。  
+ 派生クラスでは、に格納<xref:System.Windows.WeakEventManager.Item%2A>されているテーブルに対するクエリは、既に書き込みロック内にあるクエリを除き、常に`using (ReadLock) { ... }`句内で実行する必要があります。 これらのクエリは、クラス`AddListener`がより高度な実装をサポートしていて、よりも多くのデータ`source` `listener`を必要<xref:System.Windows.WeakEventManager.Item%2A>とする場合に必要になることがあります。また、コレクションを使用して追加情報を格納します。  
   
  ]]></format>
         </remarks>
@@ -473,7 +473,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す、<xref:System.Windows.WeakEventManager.ScheduleCleanup%2A>メソッドの呼び出しに似ていますが、<xref:System.Windows.WeakEventManager.Purge%2A>スレッド優先順位の低いでの現在のマネージャーのリストのメソッドで、`purgeAll`パラメーターに設定`false`します。  
+ メソッドの<xref:System.Windows.WeakEventManager.ScheduleCleanup%2A>呼び出しは、現在のマネージャー <xref:System.Windows.WeakEventManager.Purge%2A>のリストで、 `purgeAll`パラメーターをに`false`設定して、スレッドの優先度を低くしてメソッドを呼び出すことと似ています。  
   
  ]]></format>
         </remarks>
@@ -509,7 +509,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出す、<xref:System.Windows.WeakEventManager.SetCurrentManager%2A>への呼び出しによってその場合、マネージャーを初期化するメソッドが必要な`CurrentManager`プロパティを<xref:System.Windows.WeakEventManager>実装します。  
+ 実装のプロパティの`CurrentManager`呼び出しによって要求される場合は、メソッドを呼び出して、マネージャーを初期化します。<xref:System.Windows.WeakEventManager.SetCurrentManager%2A> <xref:System.Windows.WeakEventManager>  
   
  ]]></format>
         </remarks>
@@ -541,7 +541,7 @@
         <summary>派生クラスでオーバーライドされると、管理対象のイベントのリッスンを開始します。 <see cref="M:System.Windows.WeakEventManager.StartListening(System.Object)" /> メソッドが初めて呼び出された後、マネージャーは、提供されたソースからの関連イベントを処理するたびに、<see cref="M:System.Windows.WeakEventManager.DeliverEvent(System.Object,System.EventArgs)" /> または <see cref="M:System.Windows.WeakEventManager.DeliverEventToList(System.Object,System.EventArgs,System.Windows.WeakEventManager.ListenerList)" /> を呼び出している状態になる必要があります。</summary>
         <remarks>To be added.</remarks>
         <block subset="none" type="overrides"><para>
-            <see cref="M:System.Windows.WeakEventManager.StartListening(System.Object)" /> 上書きは、提供されたハンドラーを追加する必要があります<paramref name="source" />します。 ハンドラーは、マネージャー自体で宣言されています。 クラス ハンドラーをパブリックにすることはできませんし、管理対象のイベントへの応答でのみ呼び出す必要があります。 クラス ハンドラーを呼び出す必要があります、<see cref="M:System.Windows.WeakEventManager.DeliverEvent(System.Object,System.EventArgs)" />メソッドまたは<see cref="M:System.Windows.WeakEventManager.DeliverEventToList(System.Object,System.EventArgs,System.Windows.WeakEventManager.ListenerList)" />メソッド適切にします。</para></block>
+            <see cref="M:System.Windows.WeakEventManager.StartListening(System.Object)" />オーバーライドは、指定さ<paramref name="source" />れたにハンドラーを追加する必要があります。 ハンドラーは、マネージャー自体によって宣言されます。 クラスハンドラーをパブリックにすることはできません。また、クラスハンドラーは、マネージイベントに応答している場合にのみ呼び出す必要があります。 クラスハンドラーは、 <see cref="M:System.Windows.WeakEventManager.DeliverEvent(System.Object,System.EventArgs)" />メソッド<see cref="M:System.Windows.WeakEventManager.DeliverEventToList(System.Object,System.EventArgs,System.Windows.WeakEventManager.ListenerList)" />またはメソッドを適切に呼び出す必要があります。</para></block>
         <altmember cref="T:System.Windows.IWeakEventListener" />
         <altmember cref="M:System.Windows.WeakEventManager.GetCurrentManager(System.Type)" />
       </Docs>
@@ -570,7 +570,7 @@
         <summary>派生クラスでオーバーライドされると、指定されたソースで管理対象のイベントのリッスンを停止します。</summary>
         <remarks>To be added.</remarks>
         <block subset="none" type="overrides"><para>
-            <see cref="M:System.Windows.WeakEventManager.StopListening(System.Object)" /> によって追加されると、実装は、クラスのハンドラーを削除する必要があります、<see cref="M:System.Windows.WeakEventManager.StartListening(System.Object)" />メソッド。 リスナーを削除するリスナーのリストを消去しないでください。 代わりに、(おそらくは一時的に)、クラス ハンドラーを切断する必要がありますのみにします。 その他のメソッドはなど、リスト全体をクリアするために使用できる、<see cref="M:System.Windows.WeakEventManager.Purge(System.Object,System.Object,System.Boolean)" />メソッドを<paramref name="purgeAll" />パラメーターに設定<see langword="true" />します。</para></block>
+            <see cref="M:System.Windows.WeakEventManager.StopListening(System.Object)" />実装では、 <see cref="M:System.Windows.WeakEventManager.StartListening(System.Object)" />メソッドによって追加されたクラスハンドラーを削除する必要があります。 リスナーを削除しても、リスナーの一覧はクリアされません。 代わりに、クラスハンドラーを (一時的に) 切断する必要があります。 パラメーターをに設定し<see cref="M:System.Windows.WeakEventManager.Purge(System.Object,System.Object,System.Boolean)" /> <see langword="true" />たメソッドなど、リスト全体をクリアするために他のメソッドを使用することもできます。 <paramref name="purgeAll" /></para></block>
         <altmember cref="T:System.Windows.IWeakEventListener" />
         <altmember cref="M:System.Windows.WeakEventManager.StartListening(System.Object)" />
         <altmember cref="M:System.Windows.WeakEventManager.Purge(System.Object,System.Object,System.Boolean)" />
@@ -599,7 +599,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生クラスでは、基になるデータ テーブルに対するすべての変更が内で発生する、`using (WriteLock) { ... }`句。 これらの変更、クラスがより高度なサポートされている場合に必要な場合があります`AddListener`を超えてより多くのデータが必要な実装、`source`と`listener`を使用して、<xref:System.Windows.WeakEventManager.Item%2A>余分な情報を格納するコレクション。  
+ 派生クラスでは、基になるデータテーブルに対して行われる`using (WriteLock) { ... }`すべての変更は、句内で行われる必要があります。 これらの変更`AddListener`は、クラスが`source`および`listener`よりも多くのデータを必要とするより高度な実装をサポートし、 <xref:System.Windows.WeakEventManager.Item%2A>コレクションを使用して追加の情報を格納する場合に必要になることがあります。  
   
  ]]></format>
         </remarks>
