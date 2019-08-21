@@ -1,5 +1,5 @@
 <Type Name="INormalizeForIsolatedStorage" FullName="System.IO.IsolatedStorage.INormalizeForIsolatedStorage">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ced9c141a3c2fa7908088ee460fa3c0a03d2c948" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66817402" /></Metadata><TypeSignature Language="C#" Value="public interface INormalizeForIsolatedStorage" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="aaffab0fbc40cf1041d92151d40e22ee66ac7f4b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69357016" /></Metadata><TypeSignature Language="C#" Value="public interface INormalizeForIsolatedStorage" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract INormalizeForIsolatedStorage" />
   <TypeSignature Language="DocId" Value="T:System.IO.IsolatedStorage.INormalizeForIsolatedStorage" />
   <TypeSignature Language="VB.NET" Value="Public Interface INormalizeForIsolatedStorage" />
@@ -34,12 +34,12 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 分離ストレージは、それを識別し、一意のファイルの保存場所を提供するためにアセンブリの証拠を使用します。 アセンブリは、ストアを要求するときに (が読み込まれているホストによって提示される) とその証拠が処理され、既存のストアを作成するために使用する証拠と比較します。 これは、新しいストアを作成する必要がある場合、または対象のアセンブリに対して既に存在する場合を決定します。 により使用される比較手法、機能的に同等である証拠のされない可能性があります true を返すシリアル化されたフォームが同一でない場合。 カスタムの証拠を実装する場合は、その場合、これは、証拠クラスの該当するかどうかを検討してください、実装<xref:System.IO.IsolatedStorage.INormalizeForIsolatedStorage>します。 このインターフェイスを実装する証拠の<xref:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize%2A>メソッドが呼び出され、そのメソッドによって返されるオブジェクトの正規化コピーに基づいて比較されます。  
+ 分離ストレージでは、アセンブリを識別し、それに一意のファイルストレージの場所を提供するために、アセンブリに関する証拠が使用されます。 アセンブリがストアを要求すると、(それを読み込んだホストによって示された) その証拠が処理され、既存のストアの作成に使用された証拠と比較されます。 これにより、新しいストアを作成する必要があるかどうか、または対象のアセンブリに対して既に存在するかどうかが決まります。 比較手法が使用されているため、シリアル化された形式が同一でない場合、機能的に等価な証拠の一部では、真の比較が行われないことがあります。 カスタム証拠を実装する場合は、これが証拠クラスに当てはまりそうであるかどうか<xref:System.IO.IsolatedStorage.INormalizeForIsolatedStorage>を検討し、存在する場合はを実装します。 このインターフェイス<xref:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize%2A>を実装する証拠の場合、メソッドが呼び出され、そのメソッドによって返されるオブジェクトの正規化されたコピーに基づいて比較が行います。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>このインターフェイスを実装するカスタムの証拠を実装するいるし、ストアが既に存在するかを判断する必要があります。 などの文字列の大文字小文字を区別する、いくつかのインスタンスの比較、シリアル化されたオブジェクトを使用しない必要があります。 たとえば、`www.MSN.com`と等しい`WWW.msn.com`を返します、<see langword="true" />と比較した場合。 作成する、<see cref="T:System.IO.IsolatedStorage.INormalizeForIsolatedStorage" />オブジェクトを実装する必要がある、<see cref="M:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize" />メソッド。</para></block>
-    <block subset="none" type="usage"><para>分離ストアのアセンブリの証拠と既存の間の比較を行う前に、インスタンスを正規化するには、このインターフェイスのメソッドを呼び出します。</para></block>
+    <block subset="none" type="overrides"><para>カスタム証拠を実装するときに、ストアが既に存在するかどうかを判断する必要がある場合は、このインターフェイスを実装します。 シリアル化されたオブジェクトは、大文字と小文字が区別される文字列など、一部のインスタンスでの比較には使用しないでください。 たとえば、は`www.MSN.com`と`WWW.msn.com`等しく、比較<see langword="true" />するとが返されます。 <see cref="T:System.IO.IsolatedStorage.INormalizeForIsolatedStorage" />オブジェクトを作成するには、 <see cref="M:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize" />メソッドを実装する必要があります。</para></block>
+    <block subset="none" type="usage"><para>このインターフェイスのメソッドを呼び出して、アセンブリの証拠と現在存在する分離ストアを比較する前に、インスタンスを正規化します。</para></block>
   </Docs>
   <Members>
     <Member MemberName="Normalize">
@@ -75,8 +75,8 @@
         <summary>派生クラスによってオーバーライドされた場合、呼び出し元オブジェクトの正規化コピーを返します。</summary>
         <returns>メソッドを呼び出したインスタンスを表す正規化オブジェクト。 このインスタンスには、文字列、ストリーム、またはシリアル化できる任意のオブジェクトを使用できます。</returns>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>このメソッドをオーバーライドすると、ストリームは、オブジェクトが返される、シリアル化すると見なされます、既存のストアを作成するために使用する証拠のシリアル化された形式に直接と比較されます。 返されるオブジェクトが、文字列の場合は、分離ストアの名前と見なされますがし、既存のストアの名前と比較します。</para></block>
-        <block subset="none" type="usage"><para>通常、分離ストレージから派生したクラスを作成して、現在のアセンブリの分離ストレージが既に存在するかどうかを確認する必要がある場合は、このメソッドを呼び出します。</para></block>
+        <block subset="none" type="overrides"><para>このメソッドをオーバーライドし、返されるオブジェクトがストリームである場合は、シリアル化され、既存のストアの作成に使用される証拠のシリアル化された形式と直接比較されます。 返されるオブジェクトが文字列の場合は、分離ストアの名前と見なされ、既存のストアの名前と比較されます。</para></block>
+        <block subset="none" type="usage"><para>通常は、分離ストレージから派生したクラスを作成していて、現在のアセンブリに対して分離ストレージが既に存在するかどうかを確認する必要がある場合に、このメソッドを呼び出します。</para></block>
       </Docs>
     </Member>
   </Members>

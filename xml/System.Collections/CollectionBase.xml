@@ -1,5 +1,5 @@
 <Type Name="CollectionBase" FullName="System.Collections.CollectionBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7b9269faa53d9214593af6d55af7d426702c85d6" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63907449" /></Metadata><TypeSignature Language="C#" Value="public abstract class CollectionBase : System.Collections.IList" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5cc81adfd490a01bad94cca0defdab21aebde8a2" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69333960" /></Metadata><TypeSignature Language="C#" Value="public abstract class CollectionBase : System.Collections.IList" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable beforefieldinit CollectionBase extends System.Object implements class System.Collections.ICollection, class System.Collections.IEnumerable, class System.Collections.IList" />
   <TypeSignature Language="DocId" Value="T:System.Collections.CollectionBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CollectionBase&#xA;Implements IList" />
@@ -54,16 +54,16 @@
 ## Remarks  
 
 > [!IMPORTANT]
->  使用することをお勧めしません、`CollectionBase`クラスの新しい開発します。 ジェネリックを使用すること勧め代わりに、<xref:System.Collections.ObjectModel.Collection%601>クラス。 詳細については、次を参照してください。[非ジェネリック コレクションを使用してはならない](https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md)GitHub でします。
+>  新しい開発には`CollectionBase`クラスを使用しないことをお勧めします。 代わりに、ジェネリック<xref:System.Collections.ObjectModel.Collection%601>クラスを使用することをお勧めします。 詳細については、「GitHub で[非ジェネリックコレクションを使用することはでき](https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md)ません。」を参照してください。
 
-A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常にします。 参照してください<xref:System.Collections.ReadOnlyCollectionBase>このクラスの読み取り専用バージョン。  
+<xref:System.Collections.CollectionBase>インスタンスは常に変更可能です。 この<xref:System.Collections.ReadOnlyCollectionBase>クラスの読み取り専用バージョンについては、「」を参照してください。  
   
- <xref:System.Collections.CollectionBase>の容量は、<xref:System.Collections.CollectionBase>が保持できる要素の数です。 要素が追加される、<xref:System.Collections.CollectionBase>容量が増やされます自動的に再割り当て、必要に応じて。 設定して、容量を削減できる、<xref:System.Collections.CollectionBase.Capacity%2A>プロパティに明示的にします。  
+ <xref:System.Collections.CollectionBase>の容量は、<xref:System.Collections.CollectionBase>が保持できる要素の数です。 要素がに<xref:System.Collections.CollectionBase>追加されると、再割り当てによって必要に応じて容量が自動的に増加します。 容量は、プロパティを<xref:System.Collections.CollectionBase.Capacity%2A>明示的に設定することによって減らすことができます。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -73,10 +73,10 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
     </remarks>
     <threadsafe>パブリック静的 (Visual Basic では<see langword="Shared" />) なこの型のメンバーはスレッド セーフです インスタンス メンバーの場合は、スレッド セーフであるとは限りません。  
   
-この実装は同期を行わない (スレッド セーフな) ラッパーを<see cref="T:System.Collections.CollectionBase" />、派生クラスは、独自の同期バージョンを作成できますが、<see cref="T:System.Collections.CollectionBase" />を使用して、<see cref="P:System.Collections.ICollection.SyncRoot" />プロパティ。  
+この実装は、 <see cref="T:System.Collections.CollectionBase" />に対して同期された (スレッドセーフな) ラッパーを提供しませんが、派生クラスは<see cref="P:System.Collections.ICollection.SyncRoot" />プロパティを使用して、 <see cref="T:System.Collections.CollectionBase" />独自の同期バージョンを作成できます。  
   
 コレクションの列挙は、本質的にスレッド セーフな手続きではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。</threadsafe>
-    <block subset="none" type="overrides"><para>この基本クラスは、実装側では厳密に型指定されたカスタム コレクションを作成するが容易に提供されます。 実装する場合は、独自に作成する代わりにこの基本クラスを拡張することをお勧めします。</para></block>
+    <block subset="none" type="overrides"><para>この基底クラスは、実装者が厳密に型指定されたカスタムコレクションを簡単に作成できるようにするために用意されています。 実装者は、独自の基底クラスを作成するのではなく、この基本クラスを拡張することをお勧めします。</para></block>
     <altmember cref="T:System.Collections.ArrayList" />
     <altmember cref="T:System.Collections.IList" />
     <altmember cref="T:System.Collections.ReadOnlyCollectionBase" />
@@ -127,11 +127,11 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 容量を<xref:System.Collections.CollectionBase>は要素の数を<xref:System.Collections.CollectionBase>を保持できます。 要素が追加される、<xref:System.Collections.CollectionBase>容量は自動的に増加内部配列を再割り当てすることで必要とします。  
+ の<xref:System.Collections.CollectionBase>容量は、 <xref:System.Collections.CollectionBase>が保持できる要素の数です。 要素がに<xref:System.Collections.CollectionBase>追加されると、内部配列を再割り当てすることで、必要に応じて容量が自動的に増加します。  
   
- 数の要素を追加するときにサイズ変更操作を実行する必要はありませんの初期量を指定する場合は、コレクションのサイズを推定することができます、<xref:System.Collections.CollectionBase>します。  
+ コレクションのサイズを推定できる場合、初期容量を指定すると、 <xref:System.Collections.CollectionBase>に要素を追加するときに、さまざまなサイズ変更操作を実行する必要がなくなります。  
   
- このコンス トラクターは、o (1) 操作です。  
+ このコンストラクターは O (1) 操作です。  
   
  ]]></format>
         </remarks>
@@ -174,11 +174,11 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 容量を<xref:System.Collections.CollectionBase>は要素の数を<xref:System.Collections.CollectionBase>を保持できます。 要素が追加される、<xref:System.Collections.CollectionBase>容量は自動的に増加内部配列を再割り当てすることで必要とします。  
+ の<xref:System.Collections.CollectionBase>容量は、 <xref:System.Collections.CollectionBase>が保持できる要素の数です。 要素がに<xref:System.Collections.CollectionBase>追加されると、内部配列を再割り当てすることで、必要に応じて容量が自動的に増加します。  
   
- 数の要素を追加するときにサイズ変更操作を実行する必要はありませんの初期量を指定する場合は、コレクションのサイズを推定することができます、<xref:System.Collections.CollectionBase>します。  
+ コレクションのサイズを推定できる場合、初期容量を指定すると、 <xref:System.Collections.CollectionBase>に要素を追加するときに、さまざまなサイズ変更操作を実行する必要がなくなります。  
   
- このコンス トラクターは、O (`n`) 操作、`n`は`capacity`します。  
+ このコンストラクターは O (`n`) 操作です。ここ`n`で、は`capacity`です。  
   
  ]]></format>
         </remarks>
@@ -226,13 +226,13 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.CollectionBase.Capacity%2A> 要素の数ですが、<xref:System.Collections.CollectionBase>格納できます。 <xref:System.Collections.CollectionBase.Count%2A> 実際には要素の数が、<xref:System.Collections.CollectionBase>します。  
+ <xref:System.Collections.CollectionBase.Capacity%2A>に<xref:System.Collections.CollectionBase>格納できる要素の数を指定します。 <xref:System.Collections.CollectionBase.Count%2A>は、 <xref:System.Collections.CollectionBase>実際に内にある要素の数です。  
   
- <xref:System.Collections.CollectionBase.Capacity%2A> 常より大きいまたは等しい<xref:System.Collections.CollectionBase.Count%2A>します。 場合<xref:System.Collections.CollectionBase.Count%2A>を超える<xref:System.Collections.CollectionBase.Capacity%2A>要素を追加するときに、容量を自動的に古い要素をコピーして、新しい要素を追加する前に、内部配列を再割り当てを増やします。  
+ <xref:System.Collections.CollectionBase.Capacity%2A>は、常に<xref:System.Collections.CollectionBase.Count%2A>以上です。 が<xref:System.Collections.CollectionBase.Count%2A>要素<xref:System.Collections.CollectionBase.Capacity%2A>の追加中にを超えた場合、内部配列を再割り当てして、古い要素をコピーし、新しい要素を追加することによって、容量が自動的に増加します。  
   
- 設定して、容量を削減できる、<xref:System.Collections.CollectionBase.Capacity%2A>プロパティに明示的にします。 ときに、値の<xref:System.Collections.CollectionBase.Capacity%2A>が設定されて、明示的に指定した容量を対応するために、内部配列が再割り当てもします。  
+ 容量は、プロパティを<xref:System.Collections.CollectionBase.Capacity%2A>明示的に設定することによって減らすことができます。 の<xref:System.Collections.CollectionBase.Capacity%2A>値が明示的に設定されている場合は、指定された容量に合わせて内部配列も再割り当てされます。  
   
- このプロパティの値を取得する場合は、o (1) 操作です。プロパティの設定は、O (`n`) 操作、`n`は新しい容量です。  
+ このプロパティの値の取得は O (1) 操作です。プロパティを設定すると、O`n`() 操作に`n`なります。ここで、は新しい容量です。  
   
  ]]></format>
         </remarks>
@@ -281,11 +281,11 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.CollectionBase.Count%2A> 0 に設定されます。  
+ <xref:System.Collections.CollectionBase.Count%2A>が0に設定されています。  
   
- このメソッドは O (`n`) 操作、`n`は<xref:System.Collections.CollectionBase.Count%2A>します。  
+ このメソッドは O(`n`) 操作で、`n`は <xref:System.Collections.CollectionBase.Count%2A> です。  
   
- コレクションがクリアされた後の前に、またはカスタムの操作を実行する、保護されたオーバーライド<xref:System.Collections.CollectionBase.OnClear%2A>または<xref:System.Collections.CollectionBase.OnClearComplete%2A>メソッド。  
+ コレクションがクリアされる前または後にカスタムアクションを実行する<xref:System.Collections.CollectionBase.OnClear%2A>に<xref:System.Collections.CollectionBase.OnClearComplete%2A>は、保護されたメソッドまたはメソッドをオーバーライドします。  
   
  ]]></format>
         </remarks>
@@ -333,7 +333,7 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -394,20 +394,20 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
   
  <xref:System.Collections.IEnumerator.Current%2A> は、<xref:System.Collections.IEnumerator.MoveNext%2A> または <xref:System.Collections.IEnumerator.Reset%2A> が呼び出されるまでは同じオブジェクトを返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> は、<xref:System.Collections.IEnumerator.Current%2A> を次の要素に設定します。  
   
- 場合<xref:System.Collections.IEnumerator.MoveNext%2A>列挙子、コレクションの末尾がコレクション内の最後の要素の後に配置されているパスと<xref:System.Collections.IEnumerator.MoveNext%2A>返します`false`します。 この位置では、後続の呼び出しで列挙子の場合<xref:System.Collections.IEnumerator.MoveNext%2A>を返すことも`false`します。 前回 <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出して `false` が返された場合に、<xref:System.Collections.IEnumerator.Current%2A> を呼び出すと例外がスローされます。 <xref:System.Collections.IEnumerator.Current%2A> をコレクションの最初の要素にもう一度設定するには、<xref:System.Collections.IEnumerator.Reset%2A> を呼び出してから <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出します。  
+ <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、後続の <xref:System.Collections.IEnumerator.MoveNext%2A> 呼び出しも `false` を返します。 前回 <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出して `false` が返された場合に、<xref:System.Collections.IEnumerator.Current%2A> を呼び出すと例外がスローされます。 <xref:System.Collections.IEnumerator.Current%2A> をコレクションの最初の要素にもう一度設定するには、<xref:System.Collections.IEnumerator.Reset%2A> を呼び出してから <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出します。  
   
- コレクションが変更されない限り、列挙子は有効です。 無効になり、次の呼び出しは変更を追加するなど、コレクション変更、または要素を削除するには、列挙子が不可能<xref:System.Collections.IEnumerator.MoveNext%2A>または<xref:System.Collections.IEnumerator.Reset%2A>スロー、<xref:System.InvalidOperationException>します。 <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出してから <xref:System.Collections.IEnumerator.Current%2A> を呼び出すまでの間にコレクションが変更された場合、列挙子が既に無効になっていても、<xref:System.Collections.IEnumerator.Current%2A> は、設定されている要素を返します。  
+ コレクションが変更されない限り、列挙子は有効です。 要素の追加、変更、削除などの変更がコレクションに対して行われた場合、列挙子はなりに<xref:System.Collections.IEnumerator.MoveNext%2A>無効化され、次のまたは<xref:System.Collections.IEnumerator.Reset%2A>の呼び出しでがスロー <xref:System.InvalidOperationException>されます。 <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出してから <xref:System.Collections.IEnumerator.Current%2A> を呼び出すまでの間にコレクションが変更された場合、列挙子が既に無効になっていても、<xref:System.Collections.IEnumerator.Current%2A> は、設定されている要素を返します。  
   
  列挙子には、コレクションへの排他アクセスがありません。したがって、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
   
- 中に、<xref:System.Collections.CollectionBase.GetEnumerator%2A>メソッドは既定では、COM クライアントに表示されていない継承、<xref:System.Collections.CollectionBase>クラスが公開することし、COM クライアントで望ましくない動作が発生することができます。  
+ 既定では、 <xref:System.Collections.CollectionBase> メソッドはcomクライアントには表示されませんが、クラスを継承すると、comクライアントで望ましくない動作が発生する可能性があります。<xref:System.Collections.CollectionBase.GetEnumerator%2A>  
   
- このメソッドは、o (1) 操作です。  
+ このメソッドは、O(1) 操作です。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -457,7 +457,7 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
  ]]></format>
         </remarks>
@@ -500,14 +500,14 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
  このプロパティ値を取得することは、O(1) 操作になります。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -554,21 +554,21 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装は、コレクションがクリアされる前に、何らかのアクションを実行する派生クラスによってオーバーライドされます。  
+ このメソッドの既定の実装は、コレクションが消去される前に何らかのアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- プロセスが失敗した場合、コレクションは、以前の状態に戻ります。  
+ プロセスが失敗した場合、コレクションは元の状態に戻ります。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>このメソッドを使用する、基礎となるすべての要素を削除する前に実行する必要があるプロセスを定義する<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドを使用すると、実装者は、基になる<see cref="T:System.Collections.ArrayList" />からすべての要素を削除する前に実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnClear" /> 一方、標準のクリア動作する前に呼び出される<see cref="M:System.Collections.CollectionBase.OnClearComplete" />が標準のクリア動作後に呼び出されます。  
+ <see cref="M:System.Collections.CollectionBase.OnClear" />は、標準のクリア動作の前に<see cref="M:System.Collections.CollectionBase.OnClearComplete" />呼び出されます。一方、は、標準のクリア動作の後に呼び出されます。  
   
-たとえば、実装者は、明確なグローバルによる削除からの特定の要素を除外できます。</para></block>
+たとえば、実装者は、特定の要素をグローバル明快によって削除から除外することができます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnClearComplete" />
         <altmember cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />
       </Docs>
@@ -610,17 +610,17 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装は、コレクションをクリアした後に何らかのアクションを実行する派生クラスでオーバーライドするためのものです。  
+ このメソッドの既定の実装は、コレクションがクリアされた後に何らかのアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>この方法で、基礎となるすべての要素を削除するには、<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドを使用すると、実装者は、基になる<see cref="T:System.Collections.ArrayList" />からすべての要素を削除した後に実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnClear" /> 一方、標準のクリア動作する前に呼び出される<see cref="M:System.Collections.CollectionBase.OnClearComplete" />が標準のクリア動作後に呼び出されます。</para></block>
+ <see cref="M:System.Collections.CollectionBase.OnClear" />は、標準のクリア動作の前に<see cref="M:System.Collections.CollectionBase.OnClearComplete" />呼び出されます。一方、は、標準のクリア動作の後に呼び出されます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnClear" />
         <altmember cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />
       </Docs>
@@ -667,18 +667,18 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装は、指定した要素が挿入される前に、何らかのアクションを実行する派生クラスによってオーバーライドされます。  
+ このメソッドの既定の実装は、指定された要素が挿入される前に何らかのアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- プロセスが失敗した場合、コレクションは、以前の状態に戻ります。  
+ プロセスが失敗した場合、コレクションは元の状態に戻ります。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -686,13 +686,13 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>このメソッドを使用する、基になるに要素を挿入する前に実行する必要があるプロセスを定義する<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドにより、実装者は、基になる<see cref="T:System.Collections.ArrayList" />に要素を挿入する前に実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" /> 一方は、標準の Insert 動作では、前に呼び出さ<see cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />が標準の Insert 動作後に呼び出されます。  
+ <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />は、標準の挿入動作の前に<see cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />呼び出されます。一方、は、標準の挿入動作の後に呼び出されます。  
   
-たとえば、実装者に挿入できるオブジェクトの種類を制限することができます、<see cref="T:System.Collections.ArrayList" />します。  
+たとえば、実装者は、 <see cref="T:System.Collections.ArrayList" />に挿入できるオブジェクトの型を制限できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" /> このメソッドの前に呼び出されます。</para></block>
+ <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />は、このメソッドの前に呼び出されます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />
@@ -740,23 +740,23 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装は、指定した要素を挿入した後に何らかのアクションを実行する派生クラスによってオーバーライドされます。  
+ このメソッドの既定の実装は、指定された要素が挿入された後に何らかのアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- コレクションは、次のいずれかが発生した場合、以前の状態に戻ります。  
+ 次のいずれかが発生すると、コレクションは元の状態に戻ります。  
   
 -   プロセスは失敗します。  
   
--   このメソッドは例外をスローします。  
+-   このメソッドは、例外をスローするためにオーバーライドされます。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>このメソッドを使用する、基になる要素に挿入した後に実行する必要があるプロセスを定義する<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドにより、実装者は、基になる<see cref="T:System.Collections.ArrayList" />に要素を挿入した後に実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" /> 一方は、標準の Insert 動作では、前に呼び出さ<see cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />が標準の Insert 動作後に呼び出されます。</para></block>
+ <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />は、標準の挿入動作の前に<see cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />呼び出されます。一方、は、標準の挿入動作の後に呼び出されます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />
       </Docs>
@@ -803,18 +803,18 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装は、指定した要素が削除される前に、何らかのアクションを実行する派生クラスによってオーバーライドされます。  
+ このメソッドの既定の実装は、指定された要素が削除される前に何らかのアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- プロセスが失敗した場合、コレクションは、以前の状態に戻ります。  
+ プロセスが失敗した場合、コレクションは元の状態に戻ります。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -822,13 +822,13 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>このメソッドを使用する、基礎となる要素を削除する前に実行する必要があるプロセスを定義する<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドにより、実装者は、基になる<see cref="T:System.Collections.ArrayList" />から要素を削除する前に実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" /> 一方、標準の削除動作の前に呼び出される<see cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />が標準の削除動作後に呼び出されます。  
+ <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />は、標準の削除動作の前に<see cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />呼び出されます。一方、は、標準の削除動作の後に呼び出されます。  
   
-たとえば、実装者は常に例外をスローして要素の削除を防ぐことができます<see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />します。  
+たとえば、の実装者は、常にで<see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />例外をスローすることによって、要素の削除を防ぐことができます。  
   
- <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" /> このメソッドの前に呼び出されます。</para></block>
+ <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />は、このメソッドの前に呼び出されます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnClear" />
       </Docs>
@@ -875,23 +875,23 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装は、指定した要素が削除された後に何らかのアクションを実行する派生クラスによってオーバーライドされます。  
+ このメソッドの既定の実装は、指定された要素が削除された後に何らかのアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- コレクションは、次のいずれかが発生した場合、以前の状態に戻ります。  
+ 次のいずれかが発生すると、コレクションは元の状態に戻ります。  
   
 -   プロセスは失敗します。  
   
--   このメソッドは例外をスローします。  
+-   このメソッドは、例外をスローするためにオーバーライドされます。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>この方法で、基礎となる要素を削除するには、<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドにより、実装者は、基になる<see cref="T:System.Collections.ArrayList" />から要素を削除した後に実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" /> 一方、標準の削除動作の前に呼び出される<see cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />が標準の削除動作後に呼び出されます。</para></block>
+ <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />は、標準の削除動作の前に<see cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />呼び出されます。一方、は、標準の削除動作の後に呼び出されます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnClearComplete" />
       </Docs>
@@ -940,18 +940,18 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装は、指定した要素を設定する前に、何らかのアクションを実行する派生クラスによってオーバーライドされます。  
+ このメソッドの既定の実装は、指定された要素が設定される前に何らかのアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- プロセスが失敗した場合、コレクションは、以前の状態に戻ります。  
+ プロセスが失敗した場合、コレクションは元の状態に戻ります。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -959,13 +959,13 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>このメソッドを使用する、基になる指定した要素を設定する前に実行する必要があるプロセスを定義する<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドを使用すると、実装者は、基になる<see cref="T:System.Collections.ArrayList" />内の指定された要素を設定する前に実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" /> 一方、標準のセットの動作をする前に呼び出される<see cref="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />が標準的な機能の設定後に呼び出されます。  
+ <see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />は、標準のセット動作の前に<see cref="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />呼び出されます。一方、は、標準のセット動作の後に呼び出されます。  
   
-たとえば、実装者が内でのチェックを実行することによって、どの値を上書きできるを制限することができます<see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />します。  
+たとえば、実装者は、内部<see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />のチェックを実行することで、上書きできる値を制限できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" /> このメソッドの前に呼び出されます。</para></block>
+ <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />は、このメソッドの前に呼び出されます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />
@@ -1015,23 +1015,23 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装は、指定した要素を設定した後に何らかのアクションを実行する派生クラスによってオーバーライドされます。  
+ このメソッドの既定の実装は、指定された要素が設定された後に何らかのアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- コレクションは、次のいずれかが発生した場合、以前の状態に戻ります。  
+ 次のいずれかが発生すると、コレクションは元の状態に戻ります。  
   
 -   プロセスは失敗します。  
   
--   このメソッドは例外をスローします。  
+-   このメソッドは、例外をスローするためにオーバーライドされます。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>このメソッドを使用する、基になる指定した要素を設定した後に実行する必要があるプロセスを定義する<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドを使用すると、実装者は、基になる<see cref="T:System.Collections.ArrayList" />内の指定された要素を設定した後に実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" /> 一方、標準のセットの動作をする前に呼び出される<see cref="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />が標準的な機能の設定後に呼び出されます。</para></block>
+ <see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />は、標準のセット動作の前に<see cref="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />呼び出されます。一方、は、標準のセット動作の後に呼び出されます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />
       </Docs>
@@ -1076,16 +1076,16 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装を決定するかどうか`value`は`null`、および、そうである場合にスローします<xref:System.ArgumentNullException>。 指定した要素が検証されると、追加の操作を実行する派生クラスでオーバーライドするものでは。  
+ このメソッドの既定の実装は、 `value`が`null`であるかどうかを判断<xref:System.ArgumentNullException>し、その場合はをスローします。 このクラスは、指定された要素が検証されるときに追加のアクションを実行するために、派生クラスによってオーバーライドされることを意図しています。  
   
- によって返されるインスタンスでのみでのメソッドが呼び出される、<xref:System.Collections.CollectionBase.List%2A>プロパティによって返されるインスタンスではなく、<xref:System.Collections.CollectionBase.InnerList%2A>プロパティ。  
+ On * メソッドは、プロパティによっ<xref:System.Collections.CollectionBase.List%2A>て返されるインスタンス上でのみ呼び出されますが、 <xref:System.Collections.CollectionBase.InnerList%2A>プロパティによって返されるインスタンスには呼び出されません。  
   
- このメソッドの既定の実装は、o (1) 操作です。  
+ このメソッドの既定の実装は、O (1) 操作です。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -1094,11 +1094,11 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="value" /> は <see langword="null" />です。</exception>
-        <block subset="none" type="overrides"><para>このメソッドを使用する、基になるは、標準の動作を実行するときに実行する必要があるプロセスを定義する<see cref="T:System.Collections.ArrayList" />します。 このメソッドを定義すると、実装側機能を追加できます継承されたメソッドに他のすべてのメソッドをオーバーライドする必要はありません。  
+        <block subset="none" type="overrides"><para>このメソッドを使用すると、実装者は、基になる<see cref="T:System.Collections.ArrayList" />の標準動作を実行するときに実行する必要があるプロセスを定義できます。 このメソッドを定義することにより、実装者は、他のすべてのメソッドをオーバーライドせずに、継承されたメソッドに機能を追加できます。  
   
- <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" /> コレクションに受け付けられるオブジェクトの種類の制限を適用するために使用します。 既定の実装<see langword="null" />が追加または削除から、基になる<see cref="T:System.Collections.ArrayList" />します。  
+ <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />を使用すると、コレクションに受け入れられるオブジェクトの型に制限を課すことができます。 既定の実装は<see langword="null" /> 、基になる<see cref="T:System.Collections.ArrayList" />に対してを追加または削除できないようにします。  
   
- <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" /> 前に呼び出されますが<see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />、および<see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />します。</para></block>
+ <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />は、、 <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />および<see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />の前に呼び出されます。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />
         <altmember cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />
       </Docs>
@@ -1148,7 +1148,7 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
 ## Remarks  
  リストなどの連続する要素のコレクションでは、空白になった位置を埋めるために、削除された要素の後にある要素の位置が繰り上げられます。 コレクションにインデックスがある場合、移動した要素のインデックスも更新されます。 この動作は、要素が概念的にバケットにグループ化されているハッシュ テーブルなどのコレクションには適用されません。  
   
- このメソッドは O (`n`) 操作、`n`は<xref:System.Collections.CollectionBase.Count%2A>します。  
+ このメソッドは O(`n`) 操作で、`n`は <xref:System.Collections.CollectionBase.Count%2A> です。  
   
  ]]></format>
         </remarks>
@@ -1156,7 +1156,7 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
   
 または 
  <paramref name="index" /> が <see cref="P:System.Collections.CollectionBase.Count" /> 以上になっています。</exception>
-        <block subset="none" type="overrides"><para>このメソッドを呼び出す<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />、および<see cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />します。</para></block>
+        <block subset="none" type="overrides"><para>このメソッドは<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />、、 <see cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />およびを呼び出します。</para></block>
       </Docs>
     </Member>
     <Member MemberName="System.Collections.ICollection.CopyTo">
@@ -1202,11 +1202,11 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定した配列は、互換性のある型でなければなりません。  
+ 指定された配列は、互換性のある型である必要があります。  
   
- このメソッドを使用して<xref:System.Array.Copy%2A?displayProperty=nameWithType>要素のコピー。  
+ このメソッドは<xref:System.Array.Copy%2A?displayProperty=nameWithType> 、を使用して要素をコピーします。  
   
- このメソッドは O (`n`) 操作、`n`は<xref:System.Collections.CollectionBase.Count%2A>します。  
+ このメソッドは O(`n`) 操作で、`n`は <xref:System.Collections.CollectionBase.Count%2A> です。  
   
  ]]></format>
         </remarks>
@@ -1214,7 +1214,7 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> が 0 未満です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="array" /> が多次元です。  
   
-または 
+- または - 
 コピー元の <see cref="T:System.Collections.CollectionBase" /> の要素数が、コピー先 <paramref name="array" /> の <paramref name="index" /> から最後までの使用可能領域を超えています。</exception>
         <exception cref="T:System.InvalidCastException">コピー元の <see cref="T:System.Collections.CollectionBase" /> の型をコピー先の <paramref name="array" /> の型に自動的にキャストすることはできません。</exception>
       </Docs>
@@ -1254,16 +1254,16 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Collections.CollectionBase" /> へのアクセスが同期されている (スレッド セーフである) かどうかを示す値を取得します。</summary>
-        <value><see langword="true" /> へのアクセスが同期されている (スレッド セーフである) 場合は <see cref="T:System.Collections.CollectionBase" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value><see langword="true" /> へのアクセスが同期されている (スレッド セーフである) 場合は <see cref="T:System.Collections.CollectionBase" /> 。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.Collections.CollectionBase>インスタンスが同期されていません。 派生クラスでの同期バージョンを提供できる、<xref:System.Collections.CollectionBase>を使用して、<xref:System.Collections.ICollection.SyncRoot%2A>プロパティ。  
+ <xref:System.Collections.CollectionBase>インスタンスが同期されていません。 派生クラスは、 <xref:System.Collections.CollectionBase> <xref:System.Collections.ICollection.SyncRoot%2A>プロパティを使用して、同期されたバージョンのを提供できます。  
   
  コレクションの列挙は、本質的にスレッド セーフな手続きではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
   
- 次のコード例を使用してコレクションをロックする方法を示しています、<xref:System.Collections.ICollection.SyncRoot%2A>列挙中に。  
+ 次のコード例は、 <xref:System.Collections.ICollection.SyncRoot%2A>列挙体全体でを使用してコレクションをロックする方法を示しています。  
   
  [!code-cpp[System.Collections.CollectionBase#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/remarks.cpp#2)]
  [!code-csharp[System.Collections.CollectionBase#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/remarks.cs#2)]
@@ -1316,11 +1316,11 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生クラスの独自の同期バージョンを提供できます、<xref:System.Collections.CollectionBase>を使用して、<xref:System.Collections.ICollection.SyncRoot%2A>プロパティ。 同期されたコードで操作を実行する必要があります、<xref:System.Collections.ICollection.SyncRoot%2A>の<xref:System.Collections.CollectionBase>、上で直接、<xref:System.Collections.CollectionBase>します。 これにより、他のオブジェクトから派生したコレクションを適切に操作できるようになります。 具体的には、同時に変更する可能性があるその他のスレッドと適切な同期を維持、<xref:System.Collections.CollectionBase>オブジェクト。  
+ 派生クラスは、 <xref:System.Collections.CollectionBase> <xref:System.Collections.ICollection.SyncRoot%2A>プロパティを使用して、独自に同期されたバージョンのを提供できます。 同期コードは、で直接<xref:System.Collections.ICollection.SyncRoot%2A> <xref:System.Collections.CollectionBase>ではなく、 <xref:System.Collections.CollectionBase>のに対して操作を実行する必要があります。 これにより、他のオブジェクトから派生したコレクションを適切に操作できるようになります。 具体的には、 <xref:System.Collections.CollectionBase>オブジェクトを同時に変更している可能性のある他のスレッドとの適切な同期を維持します。  
   
  コレクションの列挙は、本質的にスレッド セーフな手続きではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
   
- 次のコード例を使用してコレクションをロックする方法を示しています、<xref:System.Collections.ICollection.SyncRoot%2A>列挙中に。  
+ 次のコード例は、 <xref:System.Collections.ICollection.SyncRoot%2A>列挙体全体でを使用してコレクションをロックする方法を示しています。  
   
  [!code-cpp[System.Collections.CollectionBase#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/remarks.cpp#2)]
  [!code-csharp[System.Collections.CollectionBase#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/remarks.cs#2)]
@@ -1376,14 +1376,14 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合<xref:System.Collections.CollectionBase.Count%2A>容量に既に等しい、自動的に、内部配列を再割り当てし、新しい要素を追加する前に既存の要素を新しい配列にコピーして、リストの容量が 2 倍になります。  
+ が<xref:System.Collections.CollectionBase.Count%2A>容量に既に一致している場合は、新しい要素が追加される前に、リストの容量が2倍になります。これにより、内部配列が自動的に再割り当てされ、新しい配列に既存の要素がコピーされます。  
   
- 場合<xref:System.Collections.CollectionBase.Count%2A>が少なく、容量よりもこのメソッドは、o (1) 操作。 このメソッドになります、O が新しい要素を格納するために、容量が必要な場合 (`n`) 操作、`n`は<xref:System.Collections.CollectionBase.Count%2A>します。  
+ が<xref:System.Collections.CollectionBase.Count%2A>容量より小さい場合、このメソッドは O (1) 操作になります。 新しい要素を格納するために容量を増やす必要がある場合、このメソッドは O`n`() 操作に`n`なり<xref:System.Collections.CollectionBase.Count%2A>ます。ここで、はです。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -1393,9 +1393,9 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
         </remarks>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.Collections.CollectionBase" /> は読み取り専用です。  
   
-または 
+- または - 
 <see cref="T:System.Collections.CollectionBase" /> は固定サイズです。</exception>
-        <block subset="none" type="overrides"><para>このメソッドを呼び出す<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />、および<see cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />します。</para></block>
+        <block subset="none" type="overrides"><para>このメソッドは<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />、、 <see cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />およびを呼び出します。</para></block>
         <altmember cref="P:System.Collections.CollectionBase.Count" />
         <altmember cref="M:System.Collections.IList.Insert(System.Int32,System.Object)" />
         <altmember cref="M:System.Collections.IList.Remove(System.Object)" />
@@ -1444,16 +1444,16 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、一方向の検索を実行します。そのため、このメソッドは、O (`n`) 操作、`n`は<xref:System.Collections.CollectionBase.Count%2A>します。  
+ このメソッドは、線形検索を実行します。したがって、このメソッドは O (`n`) 演算です。 `n`ここ<xref:System.Collections.CollectionBase.Count%2A>で、はです。  
   
- このメソッドを呼び出すことで等しいかどうかを判断<xref:System.Object.Equals%2A?displayProperty=nameWithType>します。  
+ このメソッドは、を呼び<xref:System.Object.Equals%2A?displayProperty=nameWithType>出すことによって等価性を判断します。  
   
- 以降、.NET Framework 2.0 では、このメソッドを使用して、コレクションのオブジェクトの<xref:System.Object.Equals%2A>と<xref:System.IComparable.CompareTo%2A>メソッド`item`を決定するかどうか`item`存在します。 以前のバージョンの .NET Framework では、この判断を使用して行われた、<xref:System.Object.Equals%2A>と<xref:System.IComparable.CompareTo%2A>のメソッド、`item`パラメーター コレクション内のオブジェクトにします。  
+ .NET Framework 2.0 以降では、このメソッドは<xref:System.Object.Equals%2A> 、の`item`コレクションのオブジェクトと<xref:System.IComparable.CompareTo%2A>メソッドを使用して`item` 、が存在するかどうかを判断します。 以前のバージョンの .NET Framework では、この決定は、コレクション内の<xref:System.Object.Equals%2A>オブジェクト<xref:System.IComparable.CompareTo%2A>の`item`パラメーターのメソッドとメソッドを使用して行われていました。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -1508,16 +1508,16 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、一方向の検索を実行します。そのため、このメソッドは、O (`n`) 操作、`n`は<xref:System.Collections.CollectionBase.Count%2A>します。  
+ このメソッドは、線形検索を実行します。したがって、このメソッドは O (`n`) 演算です。 `n`ここ<xref:System.Collections.CollectionBase.Count%2A>で、はです。  
   
- このメソッドを呼び出すことで等しいかどうかを判断<xref:System.Object.Equals%2A?displayProperty=nameWithType>します。  
+ このメソッドは、を呼び<xref:System.Object.Equals%2A?displayProperty=nameWithType>出すことによって等価性を判断します。  
   
- 以降、.NET Framework 2.0 では、このメソッドを使用して、コレクションのオブジェクトの<xref:System.Object.Equals%2A>と<xref:System.IComparable.CompareTo%2A>メソッド`item`を決定するかどうか`item`存在します。 以前のバージョンの .NET Framework では、この判断を使用して行われた、<xref:System.Object.Equals%2A>と<xref:System.IComparable.CompareTo%2A>のメソッド、`item`パラメーター コレクション内のオブジェクトにします。  
+ .NET Framework 2.0 以降では、このメソッドは<xref:System.Object.Equals%2A> 、の`item`コレクションのオブジェクトと<xref:System.IComparable.CompareTo%2A>メソッドを使用して`item` 、が存在するかどうかを判断します。 以前のバージョンの .NET Framework では、この決定は、コレクション内の<xref:System.Object.Equals%2A>オブジェクト<xref:System.IComparable.CompareTo%2A>の`item`パラメーターのメソッドとメソッドを使用して行われていました。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -1573,18 +1573,18 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合<xref:System.Collections.CollectionBase.Count%2A>容量に既に等しい、新しい要素が挿入される前に、内部の配列を自動的に再割り当てすることによって、リストの容量が 2 倍になります。  
+ が<xref:System.Collections.CollectionBase.Count%2A>既に容量に等しい場合は、新しい要素が挿入される前に内部配列が自動的に再割り当てされ、リストの容量が2倍になります。  
   
- 場合`index`と等しい<xref:System.Collections.CollectionBase.Count%2A>、`value`の末尾に追加されます<xref:System.Collections.CollectionBase>します。  
+ が`index`に<xref:System.Collections.CollectionBase.Count%2A>等しい場合は`value` 、の<xref:System.Collections.CollectionBase>末尾にが追加されます。  
   
  リストなどの連続する要素のコレクションでは、新しい要素を挿入するために、挿入位置より後にある要素の位置が繰り下げられます。 コレクションにインデックスがある場合、移動した要素のインデックスも更新されます。 この動作は、要素が概念的にバケットにグループ化されているハッシュ テーブルなどのコレクションには適用されません。  
   
- このメソッドは O (`n`) 操作、`n`は<xref:System.Collections.CollectionBase.Count%2A>します。  
+ このメソッドは O(`n`) 操作で、`n`は <xref:System.Collections.CollectionBase.Count%2A> です。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -1594,13 +1594,13 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> が 0 未満です。  
   
-または 
+- または - 
  <paramref name="index" /> が <see cref="P:System.Collections.CollectionBase.Count" /> より大きくなっています。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.Collections.CollectionBase" /> は読み取り専用です。  
   
-または 
+- または - 
 <see cref="T:System.Collections.CollectionBase" /> は固定サイズです。</exception>
-        <block subset="none" type="overrides"><para>このメソッドを呼び出す<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />、および<see cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />します。</para></block>
+        <block subset="none" type="overrides"><para>このメソッドは<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)" />、、 <see cref="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />およびを呼び出します。</para></block>
         <altmember cref="M:System.Collections.IList.Add(System.Object)" />
         <altmember cref="M:System.Collections.IList.Remove(System.Object)" />
       </Docs>
@@ -1640,14 +1640,14 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Collections.CollectionBase" /> が固定サイズかどうかを示す値を取得します。</summary>
-        <value><see langword="true" /> が固定サイズの場合は <see cref="T:System.Collections.CollectionBase" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value><see langword="true" /> が固定サイズの場合は <see cref="T:System.Collections.CollectionBase" /> 。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  固定サイズのコレクションでは、コレクションの作成後に要素の追加または削除はできませんが、既存の要素の変更はできます。  
   
- 固定サイズのコレクションの追加と要素の削除を防止するラッパーは、コレクションは、します。そのため、追加または削除、要素を含む、基になるコレクションに変更された場合、固定サイズ コレクションそれらの変更が反映されます。  
+ 固定サイズのコレクションは、要素の追加と削除を防ぐラッパーを持つ単純なコレクションです。したがって、要素の追加や削除など、基になるコレクションに変更が加えられた場合、固定サイズのコレクションにはこれらの変更が反映されます。  
   
  このプロパティ値を取得することは、O(1) 操作になります。  
   
@@ -1697,7 +1697,7 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
 ## Remarks  
  読み取り専用のコレクションでは、コレクション作成後に要素の追加、削除、または変更はできません。  
   
- 読み取り専用のコレクション、コレクションの変更を防止するラッパー コレクションそのため、基になるコレクションの変更が加えられた、読み取り専用コレクションはそれらの変更を反映します。  
+ 読み取り専用のコレクションは、単純にコレクションを変更できないようにするラッパーを含むコレクションです。したがって、基になるコレクションに変更が加えられた場合、読み取り専用コレクションにはこれらの変更が反映されます。  
   
  このプロパティ値を取得することは、O(1) 操作になります。  
   
@@ -1751,12 +1751,12 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
 ## Remarks  
  このプロパティでは、`myCollection[index]` という構文を使用して、コレクション内の特定の要素にアクセスできます。  
   
- このプロパティの値を取得する場合は、o (1) 操作です。プロパティの設定は、o (1) 操作ではもします。  
+ このプロパティの値の取得は O (1) 操作です。プロパティの設定は、O (1) 操作でもあります。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -1768,7 +1768,7 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
   
 または 
  <paramref name="index" /> が <see cref="P:System.Collections.CollectionBase.Count" /> 以上になっています。</exception>
-        <block subset="none" type="overrides"><para>このプロパティ設定されている場合、メソッド<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />、および<see cref="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />と呼ばれます。</para></block>
+        <block subset="none" type="overrides"><para>このプロパティを設定すると、、 <see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" /> <see cref="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)" />、および<see cref="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />の各メソッドが呼び出されます。</para></block>
         <altmember cref="P:System.Collections.CollectionBase.Count" />
       </Docs>
     </Member>
@@ -1814,18 +1814,18 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.Collections.CollectionBase>に指定したオブジェクトが含まれていない、<xref:System.Collections.CollectionBase>は変更されません。 例外をスローすることはありません。  
+ に<xref:System.Collections.CollectionBase>指定したオブジェクトが含まれてい<xref:System.Collections.CollectionBase>ない場合、は変更されません。 例外をスローすることはありません。  
   
- このメソッドは、一方向の検索を実行します。そのため、このメソッドは、O (`n`) 操作、`n`は<xref:System.Collections.CollectionBase.Count%2A>します。  
+ このメソッドは、線形検索を実行します。したがって、このメソッドは O (`n`) 演算です。 `n`ここ<xref:System.Collections.CollectionBase.Count%2A>で、はです。  
   
- このメソッドを呼び出すことで等しいかどうかを判断<xref:System.Object.Equals%2A?displayProperty=nameWithType>します。  
+ このメソッドは、を呼び<xref:System.Object.Equals%2A?displayProperty=nameWithType>出すことによって等価性を判断します。  
   
  リストなどの連続する要素のコレクションでは、空白になった位置を埋めるために、削除された要素の後にある要素の位置が繰り上げられます。 コレクションにインデックスがある場合、移動した要素のインデックスも更新されます。 この動作は、要素が概念的にバケットにグループ化されているハッシュ テーブルなどのコレクションには適用されません。  
   
    
   
 ## Examples  
- 次のコード例の実装、<xref:System.Collections.CollectionBase>クラスし、その実装を使用して、コレクションを作成する<xref:System.Int16>オブジェクト。  
+ <xref:System.Collections.CollectionBase>クラスを実装し、その実装を使用してオブジェクトの<xref:System.Int16>コレクションを作成するコード例を次に示します。  
   
  [!code-cpp[System.Collections.CollectionBase#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CPP/collectionbase.cpp#1)]
  [!code-csharp[System.Collections.CollectionBase#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections.CollectionBase/CS/collectionbase.cs#1)]
@@ -1838,7 +1838,7 @@ A<xref:System.Collections.CollectionBase>インスタンスは変更可能な常
   
 または 
 <see cref="T:System.Collections.CollectionBase" /> は固定サイズです。</exception>
-        <block subset="none" type="overrides"><para>このメソッドを呼び出す<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />、および<see cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />します。</para></block>
+        <block subset="none" type="overrides"><para>このメソッドは<see cref="M:System.Collections.CollectionBase.OnValidate(System.Object)" />、 <see cref="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)" />、、 <see cref="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />およびを呼び出します。</para></block>
         <altmember cref="M:System.Collections.CollectionBase.RemoveAt(System.Int32)" />
         <altmember cref="M:System.Collections.IList.Add(System.Object)" />
         <altmember cref="M:System.Collections.IList.Insert(System.Int32,System.Object)" />

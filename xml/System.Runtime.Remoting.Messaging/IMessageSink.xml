@@ -1,5 +1,5 @@
 <Type Name="IMessageSink" FullName="System.Runtime.Remoting.Messaging.IMessageSink">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="191d609e27823e9cc38ec16e0a10a705f1f5c641" /><Meta Name="ms.sourcegitcommit" Value="662f143e6be46d519ff8ab4451d543d91e651478" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/18/2018" /><Meta Name="ms.locfileid" Value="53565250" /></Metadata><TypeSignature Language="C#" Value="public interface IMessageSink" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="db4b3566c2e207a0f52cfdcc7dfb959f685bbf3d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69061247" /></Metadata><TypeSignature Language="C#" Value="public interface IMessageSink" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IMessageSink" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Messaging.IMessageSink" />
   <TypeSignature Language="VB.NET" Value="Public Interface IMessageSink" />
@@ -24,18 +24,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロキシでメソッドの呼び出しが行われるリモート処理インフラストラクチャは、実際のオブジェクトへのリモート処理境界を越えて、引数を渡すために必要なサポートを提供します、引数で実際のオブジェクトのメソッドを呼び出すと、結果を返すに戻しますプロキシ オブジェクトのクライアント。  
+ プロキシでメソッド呼び出しが行われると、リモート処理インフラストラクチャは、リモート処理境界を越えて実際のオブジェクトに引数を渡し、引数を指定して実際のオブジェクトメソッドを呼び出し、結果をに戻すために必要なサポートを提供します。プロキシオブジェクトのクライアント。  
   
- リモート メソッド呼び出しはサーバー側に、クライアント エンドから移動するメッセージであり、再び可能性があります。 リモート メソッド呼び出しを通過のチェーンの方法は、リモート処理境界を越えているよう`IMessageSink`オブジェクト。 チェーン内の各シンク メッセージ オブジェクトを受信するには、特定の操作を実行しますおよびチェーン内の次のシンクにデリゲートします。 プロキシ オブジェクトには、最初への参照が含まれています。`IMessageSink`を使用して、チェーンを開始する必要があります。  
+ リモートメソッド呼び出しは、クライアント側からサーバー側に到達し、場合によっては再び返されるメッセージです。 リモートメソッド呼び出しは、リモート処理の境界を越えて、オブジェクトの`IMessageSink`チェーンを通過します。 チェーン内の各シンクは、メッセージオブジェクトを受信し、特定の操作を実行し、チェーン内の次のシンクにデリゲートします。 プロキシオブジェクトには、チェーンを開始する`IMessageSink`ために使用する必要がある最初のへの参照が含まれています。  
   
- 非同期の呼び出し時、委任の各シンクを提供します応答シンク (別`IMessageSink`) するときに呼び出されますの次のシンクで応答を戻す方法です。  
+ 非同期呼び出しの場合、委任時に、各シンクは応答が返されるときに`IMessageSink`次のシンクによって呼び出される応答シンク (別の) を提供します。  
   
- シンクの種類は、受信したメッセージ オブジェクトの種類に応じて、さまざまな操作を実行します。 たとえば、シンクを 1 つの考えられる原因、ロックが取得され、呼び出しのセキュリティを強制したり、フローの呼び出しの制御および信頼性サービスを実行および別の呼び出しをトランスポート別まだ<xref:System.AppDomain>プロセス、またはコンピューター。 2 つ以上のメッセージ シンク チェーンには、特定の各アクションに関して互いと対話できます。  
+ 受信したメッセージオブジェクトの種類に応じて、さまざまな種類のシンクがさまざまな操作を実行します。 たとえば、あるシンクがロックを取得したり、別のシンクが呼び出しのセキュリティを強制したり、フロー呼び出し制御と信頼性サービスを実行したりする可能性があります。 <xref:System.AppDomain>また、別のシンクが呼び出しを別の、プロセス、またはコンピューターに転送できます。 チェーン内の2つ以上のメッセージシンクは、それぞれの特定のアクションに関して相互に対話できます。  
   
    
   
 ## Examples  
- 次のコード例の実装を示しています、<xref:System.Runtime.Remoting.Messaging.IMessageSink>インターフェイス。 このサンプルには、型定義とサンプルをコンパイルする必要がありますを指定するアセンブリ参照を想定しているに注意してください。  
+ 次のコード例は、 <xref:System.Runtime.Remoting.Messaging.IMessageSink>インターフェイスの実装を示しています。 このサンプルでは、サンプルをコンパイルするために提供する必要がある型定義とアセンブリ参照を前提としています。  
   
  [!code-cpp[IMessageSink_Client#3](~/samples/snippets/cpp/VS_Snippets_Remoting/IMessageSink_Client/CPP/imessagesink_client.cpp#3)]
  [!code-csharp[IMessageSink_Client#3](~/samples/snippets/csharp/VS_Snippets_Remoting/IMessageSink_Client/CS/imessagesink_client.cs#3)]
@@ -43,7 +43,7 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>現在のインターフェイスを実装するコードが両方の実装を提供する必要がありますに注意してください。<see cref="M:System.Runtime.Remoting.Messaging.IMessageSink.SyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage)" />と<see cref="M:System.Runtime.Remoting.Messaging.IMessageSink.AsyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Messaging.IMessageSink)" />、非同期呼び出しにし、その逆の場合、同期呼び出しを変換できるためです。 シンクは非同期処理をサポートしていない場合でも、両方のメソッドを実装する必要があります。</para></block>
+    <block subset="none" type="overrides"><para>現在のインターフェイスを実装するコードはと<see cref="M:System.Runtime.Remoting.Messaging.IMessageSink.SyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage)" /> <see cref="M:System.Runtime.Remoting.Messaging.IMessageSink.AsyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Messaging.IMessageSink)" />の両方の実装を提供する必要があることに注意してください。これは、同期呼び出しを非同期呼び出しに変換でき、その逆も可能であるためです。 シンクが非同期処理をサポートしていない場合でも、両方のメソッドを実装する必要があります。</para></block>
   </Docs>
   <Members>
     <Member MemberName="AsyncProcessMessage">
@@ -82,12 +82,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- リモート処理インフラストラクチャで、または非同期のメッセージの直前のシンクによって、メッセージ シンク上でこのメソッドが呼び出されます。  
+ このメソッドは、メッセージシンクで、リモート処理インフラストラクチャまたは非同期メッセージの前のシンクによって呼び出されます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="NextSink">
@@ -118,7 +118,7 @@
         <value>シンク チェイン内の次のメッセージ シンク。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="SyncProcessMessage">
@@ -155,12 +155,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Remoting.Messaging.IMessageSink.SyncProcessMessage%2A>リモート処理インフラストラクチャでまたは同期メッセージの前のシンクがメッセージ シンク上でメソッドが呼び出されます。  
+ <xref:System.Runtime.Remoting.Messaging.IMessageSink.SyncProcessMessage%2A>メソッドは、リモート処理インフラストラクチャまたは同期メッセージの前のシンクによってメッセージシンクで呼び出されます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元は、インターフェイスへの参照を通じて呼び出しを実行します。この呼び出し元には、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
   </Members>

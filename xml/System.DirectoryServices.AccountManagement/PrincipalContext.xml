@@ -1,5 +1,5 @@
 <Type Name="PrincipalContext" FullName="System.DirectoryServices.AccountManagement.PrincipalContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="05a24762a978422603358d22eb2e895e9f81fc2f" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58560822" /></Metadata><TypeSignature Language="C#" Value="public class PrincipalContext : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1432f32dbe130b057d9bceb618bc435d0535a081" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69252130" /></Metadata><TypeSignature Language="C#" Value="public class PrincipalContext : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PrincipalContext extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.DirectoryServices.AccountManagement.PrincipalContext" />
   <TypeSignature Language="VB.NET" Value="Public Class PrincipalContext&#xA;Implements IDisposable" />
@@ -30,7 +30,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 検索操作では、プリンシパル コンテキストの定義、検索ベースと挿入操作のコンテキストは、オブジェクトが挿入されるコンテナーを定義します。  
+ 検索操作の場合、プリンシパルコンテキストは検索ベースを定義し、挿入操作では、オブジェクトが挿入されるコンテナーをコンテキストが定義します。  
   
  ]]></format>
     </remarks>
@@ -47,11 +47,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.DirectoryServices.AccountManagement.PrincipalContext>コンス トラクターのパラメーターとサーバーの検証を実行することはできませんない資格情報を検証します。  
+ コンストラクター <xref:System.DirectoryServices.AccountManagement.PrincipalContext>はパラメーターとサーバーの検証を実行しますが、資格情報を検証しません。  
   
- コンテナーを指定せず、プリンシパル コンテキスト オブジェクトが作成されるは、複数の異なるコンテナーを表す使用可能性があります。 1 つのコンテナーは、追加のコンテナーが新しく作成したプリンシパル オブジェクトを保持できるときに、クエリ操作のベースとして使用できます。 たとえば、ユーザーまたはグループがドメイン コンテキストの型に挿入されると、アカウント管理 API を使用既定の既知のユーザー コンテナー"CN = Users, DC = Fabrikam, DC = com"。 API が既定値を使用して、ストア内のコンピューターが挿入されると、"CN = コンピューター、DC = Fabrikam, DC = com"コンテナー。 ドメイン管理者が既定のコンテナー名を変更できることに注意してください。 プリンシパル オブジェクトのコンス トラクターでは、1 つのプリンシパル コンテキストを指定できますのみ、ために、アプリケーションがコンテナーを指定せずにドメイン コンテキストを作成するときに、追加のコンテキストが既定の動作として公開されます。 アプリケーション ディレクトリによく知られているコンテナーがないので、アプリケーションがコンス トラクターでコンテナーを指定する必要がありますまたは<xref:System.ArgumentException>がスローされます。 SAM には、コンテナーがあるないため、<xref:System.ArgumentException>コンス トラクターでコンテナーを指定しようとすると、アプリケーションがスローされます。  
+ コンテナーを指定せずにプリンシパルコンテキストオブジェクトを作成すると、複数の個別のコンテナーを表すために使用される場合があります。 1つのコンテナーをクエリ操作のベースとして使用できますが、追加のコンテナーは新しく作成されたプリンシパルオブジェクトを保持できます。 たとえば、ユーザーまたはグループがドメインコンテキストタイプに挿入されると、アカウント管理 API は、既定の既知のユーザーコンテナー "CN = Users, DC = Fabrikam, DC = com" を使用します。 ストアにコンピューターが挿入されると、API は既定の "CN = Computers, DC = Fabrikam, DC = com" コンテナーを使用します。 既定のコンテナー名は、ドメイン管理者が変更できます。 プリンシパルオブジェクトコンストラクターは1つのプリンシパルコンテキストのみを指定できるため、アプリケーションがコンテナーを指定せずにドメインコンテキストを作成する場合は、追加のコンテキストが既定の動作として公開されます。 アプリケーションディレクトリには既知のコンテナーがないため、アプリケーションではコンストラクターでコンテナーを指定する必要があり<xref:System.ArgumentException>ます。そうしないと、がスローされます。 SAM にはコンテナー <xref:System.ArgumentException>がないため、アプリケーションがコンストラクターでコンテナーを指定しようとすると、がスローされます。  
   
- ユーザー名をパラメーターとして受け取るコンス トラクターの各バージョンで、`userName`文字列は、さまざまな形式にすることができます。 3 つのサポートされている NameFormats は nt4name です、UserPrincipalName と SamAccountName です。 名前の形式の詳細については、なドキュメントを参照してください。[ここ](https://go.microsoft.com/fwlink/?LinkID=99942)します。  
+ パラメーターとしてユーザー名を受け取る各バージョンのコンストラクターでは、 `userName`文字列をさまざまな形式で指定できます。 でサポートされている NameFormats は、Nt4Name、UserPrincipalName、および SamAccountName の3つです。 名前の形式の詳細については、[こちら](https://go.microsoft.com/fwlink/?LinkID=99942)の ADS_NAME_TYPE_ENUM のドキュメントを参照してください。  
   
  ]]></format>
         </remarks>
@@ -142,7 +142,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.InvalidOperationException>のコンテナーが指定されている場合、サーバーに接続する後続のディレクトリ操作の呼び出しでスローされる可能性が、<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>プリンシパル コンテキストが有効なコンテナーではありません。 スキーマ クラスがプリンシパル クラスと、オブジェクトとしてのコンテナーが定義されているユーザー、グループ、またはその possibleInferiors 属性内のコンピューターのいずれか。  
+ プリンシパル<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>コンテキストに対して指定されたコンテナーが有効なコンテナーでない場合は、 <xref:System.InvalidOperationException>以降のディレクトリ操作呼び出しでがスローされる可能性があります。 コンテナーは、possibleInferiors 属性に、ユーザー、グループ、またはコンピューターのいずれかのプリンシパルクラスを持つスキーマクラスを持つオブジェクトとして定義されます。  
   
  ]]></format>
         </remarks>
@@ -192,7 +192,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.InvalidOperationException>のコンテナーが指定されている場合、サーバーに接続する後続のディレクトリ操作の呼び出しでスローされる可能性が、<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>プリンシパル コンテキストが有効なコンテナーではありません。 スキーマ クラスがプリンシパル クラスと、オブジェクトとしてのコンテナーが定義されているユーザー、グループ、またはその possibleInferiors 属性内のコンピューターのいずれか。  
+ プリンシパル<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>コンテキストに対して指定されたコンテナーが有効なコンテナーでない場合は、 <xref:System.InvalidOperationException>以降のディレクトリ操作呼び出しでがスローされる可能性があります。 コンテナーは、possibleInferiors 属性に、ユーザー、グループ、またはコンピューターのいずれかのプリンシパルクラスを持つスキーマクラスを持つオブジェクトとして定義されます。  
   
  ]]></format>
         </remarks>
@@ -275,7 +275,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.InvalidOperationException>のコンテナーが指定されている場合、サーバーに接続する後続のディレクトリ操作の呼び出しでスローされる可能性が、<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>プリンシパル コンテキストが有効なコンテナーではありません。 スキーマ クラスがプリンシパル クラスと、オブジェクトとしてのコンテナーが定義されているユーザー、グループ、またはその possibleInferiors 属性内のコンピューターのいずれか。  
+ プリンシパル<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>コンテキストに対して指定されたコンテナーが有効なコンテナーでない場合は、 <xref:System.InvalidOperationException>以降のディレクトリ操作呼び出しでがスローされる可能性があります。 コンテナーは、possibleInferiors 属性に、ユーザー、グループ、またはコンピューターのいずれかのプリンシパルクラスを持つスキーマクラスを持つオブジェクトとして定義されます。  
   
  ]]></format>
         </remarks>
@@ -326,7 +326,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.InvalidOperationException>のコンテナーが指定されている場合、サーバーに接続する後続のディレクトリ操作の呼び出しでスローされる可能性が、<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>プリンシパル コンテキストが有効なコンテナーではありません。 スキーマ クラスがプリンシパル クラスと、オブジェクトとしてのコンテナーが定義されているユーザー、グループ、またはその possibleInferiors 属性内のコンピューターのいずれか。  
+ プリンシパル<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>コンテキストに対して指定されたコンテナーが有効なコンテナーでない場合は、 <xref:System.InvalidOperationException>以降のディレクトリ操作呼び出しでがスローされる可能性があります。 コンテナーは、possibleInferiors 属性に、ユーザー、グループ、またはコンピューターのいずれかのプリンシパルクラスを持つスキーマクラスを持つオブジェクトとして定義されます。  
   
  ]]></format>
         </remarks>
@@ -359,12 +359,12 @@
       </ReturnValue>
       <Docs>
         <summary>プリンシパル コンテキストが接続するサーバーの名前を取得します。</summary>
-        <value>プリンシパル コンテキストが接続されているサーバーの名前または<see langword="null" />プリンシパル コンテキストがサーバーに接続されていない場合。</value>
+        <value>プリンシパルコンテキストが接続されているサーバーの名前。プリンシパル<see langword="null" />コンテキストがサーバーに接続されていない場合は。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コンテキストの種類が場合<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>、このプロパティは、ドメイン コント ローラーまたはアプリケーション ディレクトリのインスタンスの名前を返します。 コンテキストの種類が場合<xref:System.DirectoryServices.AccountManagement.ContextType.Machine>、このプロパティは、コンピューター名を返します。  
+ コンテキストの種類が<xref:System.DirectoryServices.AccountManagement.ContextType.Domain>の場合、このプロパティはドメインコントローラーまたはアプリケーションディレクトリインスタンスの名前を返します。 コンテキストの種類が<xref:System.DirectoryServices.AccountManagement.ContextType.Machine>の場合、このプロパティはコンピューター名を返します。  
   
  ]]></format>
         </remarks>
@@ -389,12 +389,12 @@
       </ReturnValue>
       <Docs>
         <summary>コンストラクター内のコンテナー パラメーターで指定された値を取得します。</summary>
-        <value>コンテキストのルートとして使用するストア上のコンテナーまたは<see langword="null" />コンテナーが指定されていない場合。</value>
+        <value>コンテキストのルートとして使用するストア上のコンテナー。コンテナー <see langword="null" />が指定されていない場合は。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- すべてのクエリはこのルートで実行され、すべての挿入はこのコンテナーに対して実行されます。 <xref:System.DirectoryServices.AccountManagement.ContextType.Domain>と<xref:System.DirectoryServices.AccountManagement.ContextType.ApplicationDirectory>コンテキスト タイプの場合、このプロパティは、コンテナー オブジェクトの識別名。 <xref:System.DirectoryServices.AccountManagement.ContextType.Machine>コンテキスト タイプの場合、このプロパティがある必要があります`null`します。  
+ すべてのクエリはこのルートで実行され、すべての挿入はこのコンテナーに対して実行されます。 <xref:System.DirectoryServices.AccountManagement.ContextType.Domain> および<xref:System.DirectoryServices.AccountManagement.ContextType.ApplicationDirectory>コンテキスト型の場合、このプロパティはコンテナーオブジェクトの識別名です。 コンテキスト<xref:System.DirectoryServices.AccountManagement.ContextType.Machine>型の場合、このプロパティは`null`である必要があります。  
   
  ]]></format>
         </remarks>
@@ -424,7 +424,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、アプリケーションがプリンシパル コンテキストの作成し、コンテキストの種類を指定して直接ときに使用されます。 たとえば、アプリケーションでは、グループ メンバーシップを列挙するときにこのプロパティ使用して、プリンシパルが属するストアの種類を判断できます。  
+ このプロパティは、アプリケーションがプリンシパルコンテキストを直接作成せず、コンテキストの種類を指定する場合に使用します。 たとえば、アプリケーションがグループのメンバーシップを列挙する場合、このプロパティを使用して、プリンシパルが属するストアの種類を決定できます。  
   
  ]]></format>
         </remarks>
@@ -475,7 +475,7 @@
       </ReturnValue>
       <Docs>
         <summary>コンストラクター内の <paramref name="name" /> パラメーターとして指定された値を取得します。</summary>
-        <value>ドメインまたはサーバーの名前<see cref="F:System.DirectoryServices.AccountManagement.ContextType.Domain" />のホスト名、コンテキスト型<see cref="F:System.DirectoryServices.AccountManagement.ContextType.Machine" />コンテキスト タイプ、ホストするサーバーの名前、<see cref="F:System.DirectoryServices.AccountManagement.ContextType.ApplicationDirectory" />インスタンス、または<see langword="null" />名が設定されていない場合。</value>
+        <value>コンテキストタイプの<see cref="F:System.DirectoryServices.AccountManagement.ContextType.Domain" />ドメインまたはサーバーの名前、コンテキストの種類の<see cref="F:System.DirectoryServices.AccountManagement.ContextType.Machine" />ホスト名、 <see cref="F:System.DirectoryServices.AccountManagement.ContextType.ApplicationDirectory" />インスタンスをホストしているサーバーの名前、また<see langword="null" />は名前が設定されていない場合は。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -521,12 +521,12 @@
       </ReturnValue>
       <Docs>
         <summary>コンストラクター内のユーザー名パラメーターで指定された値を取得します。</summary>
-        <value>ストアへの接続に使用するユーザー名または<see langword="null" />ユーザー名が存在しない場合。</value>
+        <value>ストアへの接続に使用するユーザー名。 <see langword="null" />ユーザー名が存在しない場合は。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、さまざまな形式のいずれかのユーザー名を渡すによって設定できます。 許容可能な種類の形式の完全な一覧なドキュメントを参照してください。[ここ](https://go.microsoft.com/fwlink/?LinkID=99942)します。  
+ このプロパティは、さまざまな形式のいずれかでユーザー名を渡すことによって設定できます。 使用可能な形式の完全な一覧については、[こちら](https://go.microsoft.com/fwlink/?LinkID=99942)の ADS_NAME_TYPE_ENUM のドキュメントを参照してください。  
   
  ]]></format>
         </remarks>
@@ -543,7 +543,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
-`userName`でこのメソッドの両方のオーバー ロードの引数は、フォームを使用する必要があります*username* (たとえば、 *mcampbell*) なく*domain \username*または*username\@ドメイン*します。   
+この`userName`メソッドの両方のオーバーロードの引数は、 *domain\username*または*username\@ドメイン*ではなく、*ユーザー名*(たとえば、 *mcampbell*) を受け取る必要があります。   
   
  ]]></format>
         </remarks>
@@ -579,9 +579,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.DirectoryServices.AccountManagement.PrincipalContext.ValidateCredentials%2A>メソッドは、コンス トラクターで指定されたサーバーにバインドします。 場合、`username`と`password`引数`null`、このメソッドは、現在のプリンシパルの既定の資格情報を確認します。  
+ メソッド<xref:System.DirectoryServices.AccountManagement.PrincipalContext.ValidateCredentials%2A>は、コンストラクターで指定されたサーバーにバインドします。 `username`引数と`password`引数が`null`の場合、このメソッドは現在のプリンシパルの既定の資格情報を検証します。  
 
-`userName`引数にフォームを使用する必要があります*ユーザー名*(たとえば、 *mcampbell*) なく*domain \username*または*username\@ドメイン*します。
+引数`userName`は、 *domain\username*または*username\@ドメイン*ではなく、*ユーザー名*(たとえば、 *mcampbell*) である必要があります。
 
  ]]></format>
         </remarks>
@@ -619,9 +619,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.DirectoryServices.AccountManagement.PrincipalContext.ValidateCredentials%2A>メソッドは、コンス トラクターで指定されたサーバーにバインドします。 場合、`username`と`password`パラメーターは`null`、このメソッドは、現在のプリンシパルの既定の資格情報を確認します。  
+ メソッド<xref:System.DirectoryServices.AccountManagement.PrincipalContext.ValidateCredentials%2A>は、コンストラクターで指定されたサーバーにバインドします。 `username`パラメーターと`password`パラメーターが`null`の場合、このメソッドは現在のプリンシパルの既定の資格情報を検証します。  
 
-`userName`引数にフォームを使用する必要があります*ユーザー名*(たとえば、 *mcampbell*) なく*domain \username*または*username\@ドメイン*します。 
+引数`userName`は、 *domain\username*または*username\@ドメイン*ではなく、*ユーザー名*(たとえば、 *mcampbell*) である必要があります。 
  
  ]]></format>
         </remarks>
