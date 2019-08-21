@@ -1,5 +1,5 @@
 <Type Name="ChannelServices" FullName="System.Runtime.Remoting.Channels.ChannelServices">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="eb09d69e1ee626d4fe13d619f33c15f362eedd8b" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57960679" /></Metadata><TypeSignature Language="C#" Value="public sealed class ChannelServices" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="84d5c90de6d5cd1a9e3f8aaf477b203a82e76546" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69062204" /></Metadata><TypeSignature Language="C#" Value="public sealed class ChannelServices" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ChannelServices extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Remoting.Channels.ChannelServices" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ChannelServices" />
@@ -27,13 +27,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- チャネルは、アプリケーション ドメイン、プロセス、およびコンピューターとしては、このようなリモート処理境界を越えて、アプリケーション間でメッセージを転送します。 このような転送は、受信および送信できます。 チャネルは、受信メッセージのエンドポイントでリッスン、送信メッセージ、またはその両方のエンドポイントに送信できます。 これにより、チャネルのもう一方の端に、ランタイムが存在しない場合でも、さまざまなプロトコルで接続するランタイムの機能拡張ポイントを提供します。 さまざまなセマンティクスとエンティティを公開するランタイム オブジェクトを使用できます。 チャネルは、特定のプロトコルとの間、メッセージに変換する機能拡張ポイントを提供します。  
+ チャネルは、アプリケーションドメイン、プロセス、コンピューターなどのリモート処理境界を越えて、アプリケーション間でメッセージを転送します。 これらのクロッシング回数は、受信と送信のどちらでもかまいません。 チャネルは、受信メッセージのエンドポイントでリッスンしたり、送信メッセージのエンドポイントに送信したりすることができます。 これにより、ランタイムがチャネルのもう一方の端にない場合でも、さまざまなプロトコルをプラグインするランタイムの機能拡張ポイントが提供されます。 実行時オブジェクトを使用すると、さまざまなセマンティクスやエンティティを公開できます。 チャネルは、特定のプロトコルとの間でメッセージを変換するための機能拡張ポイントを提供します。  
   
- チャネルを公開する必要があります、<xref:System.Runtime.Remoting.Channels.IChannel>などの情報のプロパティを提供するインターフェイスを<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A>と<xref:System.Runtime.Remoting.Channels.IChannel.ChannelPriority%2A>します。 使用してチャネルが登録されて、<xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%2A?displayProperty=nameWithType>メソッド。 チャネルは、リモート処理構成から読み込むこともできます。 (を参照してください[\<チャネル > 要素 (テンプレート)](https://msdn.microsoft.com/library/73399d48-f0fd-46e9-828b-6cdafde5ffce)詳細についてはします)。  
+ チャネルは、や<xref:System.Runtime.Remoting.Channels.IChannel> <xref:System.Runtime.Remoting.Channels.IChannel.ChannelPriority%2A>などの<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A>情報プロパティを提供するインターフェイスを公開する必要があります。 チャネルは、 <xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%2A?displayProperty=nameWithType>メソッドを使用して登録されます。 チャネルは、リモート処理構成から読み込むこともできます。 (詳細については、 [ \<channel > 要素 (テンプレート)](https://msdn.microsoft.com/library/73399d48-f0fd-46e9-828b-6cdafde5ffce)に関する説明を参照してください。)  
   
- クライアント側では、メッセージに渡されますクライアント チャネル シンク チェーン クライアントを通過した後<xref:System.Runtime.Remoting.Contexts.Context>チェーン。 最初のチャネル シンクは、通常、 <xref:System.Runtime.Remoting.Channels.IClientFormatterSink>、チャネル シンク チェーンに、クライアント転送シンクに渡されるストリームにメッセージをシリアル化します。 その後、クライアント転送シンクは、このストリームをネットワークに送出します。  
+ クライアント側では、クライアント<xref:System.Runtime.Remoting.Contexts.Context>チェーンを走査した後、メッセージはクライアントチャネルシンクチェーンに渡されます。 最初のチャネルシンクは、通常<xref:System.Runtime.Remoting.Channels.IClientFormatterSink>はです。これにより、メッセージがチャネルシンクチェーンからクライアントトランスポートシンクに渡されるストリームにシリアル化されます。 その後、クライアント転送シンクは、このストリームをネットワークに送出します。  
   
- サーバー側では、サーバー トランスポート シンクは、ネットワークから要求を読み取りし、サーバー チャネル シンク チェーンに要求ストリームを渡します。 サーバー フォーマッタ シンクは、このチェーンの末尾をメッセージに要求を逆シリアル化されます。 これはし、このメッセージに渡す、サーバーにディスパッチするリモート処理インフラストラクチャ<xref:System.Runtime.Remoting.Contexts.Context>チェーン。  
+ サーバー側では、サーバートランスポートシンクは回線から要求を読み取り、サーバーチャネルシンクチェーンに要求ストリームを渡します。 このチェーンの最後にあるサーバーフォーマッタシンクは、要求をメッセージに逆シリアル化します。 次に、このメッセージをリモート処理インフラストラクチャに渡します。これにより、サーバー <xref:System.Runtime.Remoting.Contexts.Context>チェーンにディスパッチされます。  
   
  ]]></format>
     </remarks>
@@ -76,13 +76,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- かどうか、サーバーが、指定したメッセージを処理するかどうか、現在のメソッドは、すぐに返します。  
+ 現在のメソッドは、サーバーが指定されたメッセージを処理したかどうかにかかわらず、すぐにを返します。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="msg" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元に、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="CreateServerChannelSinkChain">
@@ -119,7 +119,7 @@
         <returns>指定したチャネルの新しいチャネル シンク チェイン。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元に、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="DispatchMessage">
@@ -160,13 +160,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、受信リモート呼び出しをディスパッチするチャネルによって使用されます。  
+ このメソッドは、着信リモート呼び出しをディスパッチするためにチャネルによって使用されます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="msg" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元に、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetChannel">
@@ -210,7 +210,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元に、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetChannelSinkProperties">
@@ -254,7 +254,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">コールスタックの上位にある 1 つ以上の呼び出し元に、リモート処理の型とチャネルを構成するためのアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.Demand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetUrlsForObject">
@@ -298,7 +298,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元に、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="RegisterChannel">
@@ -344,11 +344,11 @@
 > [!NOTE]
 >  <xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%28System.Runtime.Remoting.Channels.IChannel%29> は互換性のために残されています。 代わりに、<xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%28System.Runtime.Remoting.Channels.IChannel%2CSystem.Boolean%29> を使用してください。  
   
- <xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%2A>メソッドは、<xref:System.Runtime.Remoting.Channels.IChannel>チャネル オブジェクトからのインターフェイス。 チャネルの<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A>一意である必要があります、チャネルは、匿名である必要がありますか。 チャネルは匿名場合、<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A?displayProperty=nameWithType>に設定されている`null`または<xref:System.String.Empty>を使用して、`name`構成プロパティ。  
+ メソッド<xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%2A>は、チャネルオブジェクト<xref:System.Runtime.Remoting.Channels.IChannel>からインターフェイスを受け取ります。 チャネルの<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A>は一意である必要があります。または、チャネルが匿名である必要があります。 が<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A?displayProperty=nameWithType> 構成プロパティを使用`name`してまたは<xref:System.String.Empty>の`null`いずれかに設定されている場合、チャネルは匿名になります。  
   
- 同じ名前の 2 つのチャネルを登録することはできません、<xref:System.AppDomain>します。 既定の名前で、<xref:System.Runtime.Remoting.Channels.Http.HttpChannel>は"http"との名前、 <xref:System.Runtime.Remoting.Channels.Tcp.TcpChannel> "tcp"にします。 したがって、同じ型の 2 つのチャネルを登録する場合は、構成プロパティを使用して 1 つの別の名前を指定する必要があります。  
+ で同じ名前の2つのチャネルを登録する<xref:System.AppDomain>ことはできません。 既定では、の名前<xref:System.Runtime.Remoting.Channels.Http.HttpChannel>は "http" で、 <xref:System.Runtime.Remoting.Channels.Tcp.TcpChannel>の名前は "tcp" です。 そのため、同じ種類の2つのチャネルを登録する場合は、構成プロパティを使用して、そのうちの1つに別の名前を指定する必要があります。  
   
- チャネルの構成プロパティの詳細については、次を参照してください。 <xref:System.Runtime.Remoting.Channels.Http.HttpChannel>、および[\<チャネル > 要素 (テンプレート)](https://msdn.microsoft.com/library/73399d48-f0fd-46e9-828b-6cdafde5ffce)します。  
+ チャネル構成プロパティの詳細については<xref:System.Runtime.Remoting.Channels.Http.HttpChannel>、「」および[ \<「channel > 要素 (テンプレート)](https://msdn.microsoft.com/library/73399d48-f0fd-46e9-828b-6cdafde5ffce)」を参照してください。  
   
    
   
@@ -362,7 +362,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="chnl" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.Runtime.Remoting.RemotingException">チャネルが既に登録されています。</exception>
         <exception cref="T:System.Security.SecurityException">コールスタックの上位にある 1 つ以上の呼び出し元に、リモート処理の型とチャネルを構成するためのアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.Demand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="RegisterChannel">
@@ -399,16 +399,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%28System.Runtime.Remoting.Channels.IChannel%2CSystem.Boolean%29>メソッドは受信、<xref:System.Runtime.Remoting.Channels.IChannel>チャネル オブジェクトからのインターフェイス。 チャネルの<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A>一意である必要があります、チャネルは、匿名である必要がありますか。 チャネルは匿名場合、<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A?displayProperty=nameWithType>に設定されている`null`または<xref:System.String.Empty>を使用して、`name`構成プロパティ。  
+ メソッド<xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%28System.Runtime.Remoting.Channels.IChannel%2CSystem.Boolean%29>は、チャネル<xref:System.Runtime.Remoting.Channels.IChannel>オブジェクトからインターフェイスを受け取ります。 チャネルの<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A>は一意である必要があります。または、チャネルが匿名である必要があります。 が<xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A?displayProperty=nameWithType> 構成プロパティを使用`name`してまたは<xref:System.String.Empty>の`null`いずれかに設定されている場合、チャネルは匿名になります。  
   
- 同じ名前の 2 つのチャネルを登録することはできません、<xref:System.AppDomain>します。 既定の名前で、<xref:System.Runtime.Remoting.Channels.Http.HttpChannel>は"http"との名前、 <xref:System.Runtime.Remoting.Channels.Tcp.TcpChannel> "tcp"。 したがって、同じ型の 2 つのチャネルを登録する場合は、構成プロパティを使用して 1 つの別の名前を指定する必要があります。  
+ で同じ名前の2つのチャネルを登録する<xref:System.AppDomain>ことはできません。 既定では、の名前<xref:System.Runtime.Remoting.Channels.Http.HttpChannel>は "http" で、 <xref:System.Runtime.Remoting.Channels.Tcp.TcpChannel>の名前は "tcp" です。 そのため、同じ種類の2つのチャネルを登録する場合は、構成プロパティを使用して、そのうちの1つに別の名前を指定する必要があります。  
   
- チャネルの構成プロパティの詳細については、次を参照してください。 [Channel and Formatter Configuration Properties](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/kw7c6kwc(v=vs.100))と[\<チャネル > 要素 (テンプレート)](https://msdn.microsoft.com/library/73399d48-f0fd-46e9-828b-6cdafde5ffce)します。  
+ チャネル構成プロパティの詳細については、「[チャネルとフォーマッタの構成プロパティ](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/kw7c6kwc(v=vs.100))」および[ \<「チャネル > 要素 (テンプレート)](https://msdn.microsoft.com/library/73399d48-f0fd-46e9-828b-6cdafde5ffce)」を参照してください。  
   
- 場合、`ensureSecurity`パラメーターを設定する`true`、リモート処理システムは、チャネルが実装するかどうかを判断<xref:System.Runtime.Remoting.Channels.ISecurableChannel>、そうである場合は、暗号化とデジタル署名を使用するとします。 チャネルが実装していない場合、例外がスローされます<xref:System.Runtime.Remoting.Channels.ISecurableChannel>します。  
+ パラメーターがに`true`設定されている場合、リモート処理システムは、 <xref:System.Runtime.Remoting.Channels.ISecurableChannel>チャネルがを実装しているかどうかを判断し、暗号化とデジタル署名を有効にします。 `ensureSecurity` チャネルがを実装<xref:System.Runtime.Remoting.Channels.ISecurableChannel>していない場合は、例外がスローされます。  
   
 > [!NOTE]
->  設定`ensureSecurity`に`true`がスローされます、<xref:System.Runtime.Remoting.RemotingException>の<xref:System.Runtime.Remoting.Channels.Tcp.TcpServerChannel>Windows 98 で (セキュリティで保護された tcp チャネルは Windows 9 ではサポートされていないため x)、および、<xref:System.Runtime.Remoting.Channels.Http.HttpServerChannel>すべてのプラットフォームで (を使用する場合は、IIS でサービスをホストする必要があります、セキュリティで保護された http チャネルの場合)。  
+>  を`ensureSecurity`に<xref:System.Runtime.Remoting.RemotingException> <xref:System.Runtime.Remoting.Channels.Tcp.TcpServerChannel> <xref:System.Runtime.Remoting.Channels.Http.HttpServerChannel>設定すると、(windows 9x ではセキュリティで保護された tcp チャネルがサポートされていないため) に対して98をスローし、すべてのプラットフォームに対してをスローします (を使用する場合は、IIS でサービスをホストする必要があります)。 `true`セキュリティで保護された http チャネル)。  
   
  ]]></format>
         </remarks>
@@ -416,7 +416,7 @@
         <exception cref="T:System.Runtime.Remoting.RemotingException">チャネルが既に登録されています。</exception>
         <exception cref="T:System.Security.SecurityException">コールスタックの上位にある 1 つ以上の呼び出し元に、リモート処理の型とチャネルを構成するためのアクセス許可がありません。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.Runtime.Remoting.Channels.Tcp.TcpServerChannel" /> のセキュリティ保護は、Windows 98 ではサポートされません。また、<see cref="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" /> のセキュリティ保護は、すべてのプラットフォームでサポートされていません。 セキュリティ保護された HTTP チャネルが必要な場合は、インターネット インフォメーション サービス (IIS) を使ってサービスをホストしてください。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.Demand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
     <Member MemberName="RegisteredChannels">
@@ -456,7 +456,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元に、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="SyncDispatchMessage">
@@ -501,7 +501,7 @@
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="msg" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.Security.SecurityException">直前の呼び出し元に、インフラストラクチャ アクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャ コードを操作します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">インフラストラクチャコードを操作する場合。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="UnregisterChannel">
@@ -546,7 +546,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="chnl" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException">チャネルが登録されていません。</exception>
         <exception cref="T:System.Security.SecurityException">コールスタックの上位にある 1 つ以上の呼び出し元に、リモート処理の型とチャネルを構成するためのアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求値: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />;アクセス許可の値。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">リモート処理インフラストラクチャを構成します。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.Demand" />:、アクセス許可値:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.RemotingConfiguration" /></permission>
       </Docs>
     </Member>
   </Members>

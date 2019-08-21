@@ -1,5 +1,5 @@
 <Type Name="ServicePoint" FullName="System.Net.ServicePoint">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b32619715dbcd038d3039e78f2f40b7fd486ba85" /><Meta Name="ms.sourcegitcommit" Value="f55040f35c19a83c85beb55243330558f6e369be" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/10/2019" /><Meta Name="ms.locfileid" Value="66818504" /></Metadata><TypeSignature Language="C#" Value="public class ServicePoint" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="91d37c98c11623c49fe975d2d704f0982eb07f61" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69071571" /></Metadata><TypeSignature Language="C#" Value="public class ServicePoint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ServicePoint extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Net.ServicePoint" />
   <TypeSignature Language="VB.NET" Value="Public Class ServicePoint" />
@@ -37,21 +37,21 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.ServicePoint>クラスは、リソースの統一リソース識別子 (URI) で渡されるホスト情報に基づいて、インターネット リソースへの接続を処理します。 リソースへの初期接続が指定した情報を<xref:System.Net.ServicePoint>オブジェクトを保持し、そのリソースへのすべての後続の要求で共有されます。  
+ クラス<xref:System.Net.ServicePoint>は、リソースの Uniform Resource Identifier (URI) で渡されるホスト情報に基づいて、インターネットリソースへの接続を処理します。 リソースへの最初の接続によって、 <xref:System.Net.ServicePoint>オブジェクトが保持する情報が決まります。この情報は、そのリソースへの後続のすべての要求で共有されます。  
   
- <xref:System.Net.ServicePoint> オブジェクトを管理、<xref:System.Net.ServicePointManager>クラスし、作成されますが、必要に応じて、<xref:System.Net.ServicePointManager.FindServicePoint%2A?displayProperty=nameWithType>メソッド。 <xref:System.Net.ServicePoint> オブジェクトは直接作成されませんが、常に作成および管理して、<xref:System.Net.ServicePointManager>クラス。 最大数<xref:System.Net.ServicePoint>で作成できるオブジェクトが設定されて、<xref:System.Net.ServicePointManager.MaxServicePoints?displayProperty=nameWithType>プロパティ。  
+ <xref:System.Net.ServicePoint>オブジェクトは<xref:System.Net.ServicePointManager>クラスによって管理され、必要に応じ<xref:System.Net.ServicePointManager.FindServicePoint%2A?displayProperty=nameWithType>てメソッドによって作成されます。 <xref:System.Net.ServicePoint>オブジェクトは直接作成されることはありませんが、 <xref:System.Net.ServicePointManager>常にクラスによって作成および管理されます。 作成できるオブジェクトの<xref:System.Net.ServicePoint>最大数は、 <xref:System.Net.ServicePointManager.MaxServicePoints?displayProperty=nameWithType>プロパティによって設定されます。  
   
- 各<xref:System.Net.ServicePoint>オブジェクトまでは保持されます、インターネット リソースへの接続がアイドルで指定された時間より長く、<xref:System.Net.ServicePoint.MaxIdleTime>プロパティ。 ときに、<xref:System.Net.ServicePoint>を超える、<xref:System.Net.ServicePoint.MaxIdleTime>値、それは再利用できます別の接続にします。 既定値<xref:System.Net.ServicePoint.MaxIdleTime>で設定されて、<xref:System.Net.ServicePointManager.MaxServicePointIdleTime?displayProperty=nameWithType>プロパティ。  
+ 各<xref:System.Net.ServicePoint>オブジェクトは、 <xref:System.Net.ServicePoint.MaxIdleTime>プロパティで指定された時間よりも長くアイドル状態になるまで、インターネットリソースへの接続を維持します。 が<xref:System.Net.ServicePoint> <xref:System.Net.ServicePoint.MaxIdleTime>値を超えると、別の接続にリサイクルされる可能性があります。 の<xref:System.Net.ServicePoint.MaxIdleTime>既定値は、 <xref:System.Net.ServicePointManager.MaxServicePointIdleTime?displayProperty=nameWithType>プロパティによって設定されます。  
   
- ときに、 <xref:System.Net.ServicePoint.ConnectionLeaseTimeout> -1、および指定時間後に経過すると、アクティブな以外の値に設定されて<xref:System.Net.ServicePoint>後、次の要求をサービスに接続が閉じられました。 これは既定では、無期限に開かれたアクティブな接続を必要としないアプリケーションに役立ちます。  
+ プロパティが-1 以外の値に設定されていて、指定した時間が経過する<xref:System.Net.ServicePoint>と、アクティブな接続は、次の要求をサービスした後に閉じられます。 <xref:System.Net.ServicePoint.ConnectionLeaseTimeout> これは、既定では、無期限に開かれているアクティブな接続を必要としないアプリケーションに便利です。  
   
 > [!NOTE]
->  高負荷の条件では、一部のアプリケーションは、ThreadPool では、システム パフォーマンスが低下し、変動する高いトランザクションの時刻) などにつながる可能性があります内のフリー スレッドから実行可能性があります。
+>  高負荷の状態では、一部のアプリケーションが ThreadPool 内の空きスレッドを使い果たし、システムパフォーマンスが低下する可能性があります (トランザクション時間の増加や変動など)。
   
    
   
 ## Examples  
- 次のコード例を作成、<xref:System.Net.ServicePoint>オブジェクト URI に接続する`www.contoso.com`します。  
+ 次のコード例では<xref:System.Net.ServicePoint> 、URI `www.contoso.com`に接続するオブジェクトを作成します。  
   
  [!code-cpp[System.Net.ServicePoint#1](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#1)]
  [!code-csharp[System.Net.ServicePoint#1](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#1)]
@@ -96,7 +96,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例では、このプロパティの値が表示されます。  
+ 次のコード例では、このプロパティの値を表示します。  
   
  [!code-cpp[System.Net.ServicePoint#2](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#2)]
  [!code-csharp[System.Net.ServicePoint#2](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#2)]
@@ -105,7 +105,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.Net.ServicePoint" /> がホスト モードです。</exception>
-        <permission cref="T:System.Net.WebPermission">使用するため<see cref="P:System.Net.ServicePoint.Address" />場合、<see cref="T:System.Net.ServicePoint" />プロキシ サーバーを経由して接続します。</permission>
+        <permission cref="T:System.Net.WebPermission">がプロキシ<see cref="P:System.Net.ServicePoint.Address" />サーバー経由<see cref="T:System.Net.ServicePoint" />で接続する場合は、を使用します。</permission>
       </Docs>
     </Member>
     <Member MemberName="BindIPEndPointDelegate">
@@ -147,11 +147,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 負荷分散手法をいくつか特定ローカル IP アドレスとポート番号を使用するクライアントが必要なく<xref:System.Net.IPAddress.Any?displayProperty=nameWithType>(または<xref:System.Net.IPAddress.IPv6Any?displayProperty=nameWithType>インターネット プロトコル バージョン 6 の) と、一時的なポートです。 <xref:System.Net.ServicePoint.BindIPEndPointDelegate>この要件を満たすことができます。  
+ 負荷分散の手法によっては、クライアントが<xref:System.Net.IPAddress.Any?displayProperty=nameWithType> (インターネットプロトコルバージョン6では<xref:System.Net.IPAddress.IPv6Any?displayProperty=nameWithType>なく) 特定のローカル IP アドレスとポート番号を使用し、一時的なポートを使用する必要があります。 は<xref:System.Net.ServicePoint.BindIPEndPointDelegate> 、この要件を満たすことができます。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">ローカル ポートにバインドします。 関連付けられた列挙体。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">ローカルポートにバインドする場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.Infrastructure" /></permission>
       </Docs>
     </Member>
     <Member MemberName="Certificate">
@@ -189,12 +189,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ただし、<xref:System.Net.ServicePoint>オブジェクトは、インターネット リソースへの複数の接続を作成できる、唯一の証明書を管理できます。  
+ オブジェクトは<xref:System.Net.ServicePoint>インターネットリソースに対して複数の接続を確立できますが、保持できる証明書は1つだけです。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値が表示されます。  
+ 次のコード例では、このプロパティの値を表示します。  
   
  [!code-cpp[System.Net.ServicePoint#5](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#5)]
  [!code-csharp[System.Net.ServicePoint#5](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#5)]
@@ -239,7 +239,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例では、このプロパティの値が表示されます。  
+ 次のコード例では、このプロパティの値を表示します。  
   
  [!code-cpp[System.Net.ServicePoint#5](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#5)]
  [!code-csharp[System.Net.ServicePoint#5](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#5)]
@@ -287,7 +287,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 接続グループは、特定の接続または接続のセットを一連の要求を関連付けます。 このメソッドは、削除し、指定された接続グループに属しているすべての接続を閉じます。  
+ 接続グループは、一連の要求を特定の接続または接続のセットに関連付けます。 このメソッドは、指定された接続グループに属するすべての接続を削除して閉じます。  
   
  ]]></format>
         </remarks>
@@ -335,13 +335,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを使用していることを確認することができます、<xref:System.Net.ServicePoint>オブジェクトのアクティブな接続して無制限にします。 このプロパティは、接続を削除して負荷分散のシナリオなど、定期的に再確立する必要がありますのシナリオ向けです。  
+ このプロパティを使用すると、 <xref:System.Net.ServicePoint>オブジェクトのアクティブな接続が無期限に開いたままにならないようにすることができます。 このプロパティは、負荷分散のシナリオなど、定期的に接続を削除して再確立する必要があるシナリオを対象としています。  
   
- 既定では、ときに<xref:System.Net.HttpWebRequest.KeepAlive>は`true`要求の場合、<xref:System.Net.ServicePoint.MaxIdleTime>終了のタイムアウトを設定するプロパティ<xref:System.Net.ServicePoint>非アクティブな接続します。 場合、<xref:System.Net.ServicePoint>がアクティブな接続、<xref:System.Net.ServicePoint.MaxIdleTime>影響を与えませんし、接続は無期限に開いたままです。  
+ 既定では、 <xref:System.Net.HttpWebRequest.KeepAlive>が`true`要求に対してで<xref:System.Net.ServicePoint.MaxIdleTime>ある場合、プロパティは、非アクティブ<xref:System.Net.ServicePoint>になっている接続を閉じるためのタイムアウトを設定します。 にアクティブな接続<xref:System.Net.ServicePoint.MaxIdleTime> がある場合、は無効になり、接続は無期限に開いたままになります。<xref:System.Net.ServicePoint>  
   
- ときに、 <xref:System.Net.ServicePoint.ConnectionLeaseTimeout> -1、および指定時間後に経過すると、アクティブな以外の値に設定されて<xref:System.Net.ServicePoint>設定要求の処理後の接続が閉じられた<xref:System.Net.HttpWebRequest.KeepAlive>に`false`要求にします。  
+ プロパティが-1 以外の値に設定されていて、指定した時間が経過し<xref:System.Net.ServicePoint>た後、その要求でをに設定<xref:System.Net.HttpWebRequest.KeepAlive>する`false`ことによって、アクティブな接続が要求の処理後に閉じられます。 <xref:System.Net.ServicePoint.ConnectionLeaseTimeout>  
   
- この値を設定して管理されているすべての接続に影響を与えます、<xref:System.Net.ServicePoint>オブジェクト。  
+ この値を設定すると、オブジェクトに<xref:System.Net.ServicePoint>よって管理されるすべての接続に影響します。  
   
    
   
@@ -395,12 +395,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.ServicePoint.ConnectionLimit>プロパティの設定接続の最大数、<xref:System.Net.ServicePoint>オブジェクトは、インターネット リソースに加えることができます。 値、<xref:System.Net.ServicePoint.ConnectionLimit>の値に設定されて、<xref:System.Net.ServicePointManager.DefaultConnectionLimit?displayProperty=nameWithType>プロパティと、<xref:System.Net.ServicePoint>オブジェクトが作成されます。 その後に変更<xref:System.Net.ServicePointManager.DefaultConnectionLimit>既存に影響を与えるありません<xref:System.Net.ServicePoint>オブジェクト。  
+ プロパティ<xref:System.Net.ServicePoint.ConnectionLimit>は、 <xref:System.Net.ServicePoint>オブジェクトがインターネットリソースに対して実行できる接続の最大数を設定します。 <xref:System.Net.ServicePoint.ConnectionLimit>プロパティの値は、 <xref:System.Net.ServicePoint>オブジェクトの作成時に<xref:System.Net.ServicePointManager.DefaultConnectionLimit?displayProperty=nameWithType>プロパティの値に設定されます。その後の<xref:System.Net.ServicePointManager.DefaultConnectionLimit>変更は、既存<xref:System.Net.ServicePoint>のオブジェクトに影響しません。  
   
    
   
 ## Examples  
- 次のコード例では、<xref:System.Net.ServicePoint.ConnectionLimit>接続の最大数を確認するプロパティを<xref:System.Net.ServicePoint>オブジェクトは、指定を統一リソース識別子 (URI) を行うことができます。  
+ 次のコード例では<xref:System.Net.ServicePoint.ConnectionLimit> 、プロパティを使用して、 <xref:System.Net.ServicePoint>オブジェクトが指定された Uniform Resource Identifier (URI) に対して実行できる接続の最大数を確認します。  
   
  [!code-cpp[System.Net.ServicePoint#4](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#4)]
  [!code-csharp[System.Net.ServicePoint#4](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#4)]
@@ -452,9 +452,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合、<xref:System.Net.ServicePoint>オブジェクトが呼び出すことによって作成された、<xref:System.Net.ServicePointManager.FindServicePoint%2A>オーバー ロードを<xref:System.Uri>引数、<xref:System.Net.ServicePoint.ConnectionName>プロパティを表します、<xref:System.Uri.Scheme>のプロパティ、<xref:System.Uri>オブジェクトを使用します。  
+ <xref:System.Net.ServicePointManager.FindServicePoint%2A> <xref:System.Uri.Scheme> <xref:System.Net.ServicePoint.ConnectionName> <xref:System.Uri> <xref:System.Net.ServicePoint>引数を使用してオーバーロードを呼び出すことによってオブジェクトが構築された場合、プロパティは使用されるオブジェクトのプロパティを表します。 <xref:System.Uri>  
   
- 場合、<xref:System.Net.ServicePoint>オブジェクトがネットワークのホストとポートから構築された、<xref:System.Net.ServicePoint.ConnectionName>プロパティには、ホストとネットワーク ポートを表す文字列が含まれています。 場合、<xref:System.Net.ServicePoint.ConnectionName>ホストとポートのみから作成されるときにプロパティが設定されて<xref:System.Net.WebRequest>オブジェクトと同じ<xref:System.Net.WebRequest.ConnectionGroupName>値は、これを使用できます<xref:System.Net.ServicePoint>オブジェクト。  
+ オブジェクトがネットワークホストとポートから構築された場合、 <xref:System.Net.ServicePoint.ConnectionName>プロパティには、ホストとネットワークポートを表す文字列が含まれます。 <xref:System.Net.ServicePoint> ホストとポートから構築されたときに<xref:System.Net.WebRequest> <xref:System.Net.WebRequest.ConnectionGroupName> <xref:System.Net.ServicePoint> プロパティが設定されている場合、同じ値を持つオブジェクトだけ<xref:System.Net.ServicePoint.ConnectionName>がこのオブジェクトを使用できます。  
   
    
   
@@ -503,12 +503,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.ServicePoint.CurrentConnections>プロパティに関連付けられた開いているインターネット接続の数を格納<xref:System.Net.ServicePoint>オブジェクト。 値<xref:System.Net.ServicePoint.CurrentConnections>を超えることはできません<xref:System.Net.ServicePoint.ConnectionLimit>します。  
+ プロパティ<xref:System.Net.ServicePoint.CurrentConnections>は、この<xref:System.Net.ServicePoint>オブジェクトに関連付けられている、開いているインターネット接続の数を格納します。 の<xref:System.Net.ServicePoint.CurrentConnections>値は、の<xref:System.Net.ServicePoint.ConnectionLimit>値を超えることはできません。  
   
    
   
 ## Examples  
- 次のコード例では、<xref:System.Net.ServicePoint.CurrentConnections>プロパティに関連付けられた開いているインターネット接続の数を決定する<xref:System.Net.ServicePoint>オブジェクト。  
+ 次のコード例では<xref:System.Net.ServicePoint.CurrentConnections> 、プロパティを使用して、この<xref:System.Net.ServicePoint>オブジェクトに関連付けられている、開いているインターネット接続の数を確認します。  
   
  [!code-cpp[System.Net.ServicePoint#2](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#2)]
  [!code-csharp[System.Net.ServicePoint#2](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#2)]
@@ -561,20 +561,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを設定すると`true`、クライアント要求を使用して、`POST`メソッドは、100 を受信すること-をクライアントがポストするデータを送信する必要がありますを示すためにサーバーからの応答を続行します。 このメカニズムにより、クライアント要求のヘッダーに基づき、サーバー要求を拒否するときに、ネットワーク経由で大量のデータを送信する必要があります。  
+ このプロパティがに`true`設定されている場合、 `POST`メソッドを使用するクライアント要求は、クライアントがポストされるデータを送信する必要があることを示すために、サーバーから 100-Continue 応答を受け取ることを想定しています。 このメカニズムにより、要求ヘッダーに基づいてサーバーが要求を拒否する場合に、クライアントがネットワーク経由で大量のデータを送信することを防ぐことができます。  
   
- たとえば、<xref:System.Net.ServicePoint.Expect100Continue>プロパティは`false`します。 要求がサーバーに送信されると、データが含まれています。 場合は、要求ヘッダーを読み取った後、サーバー認証が必要です、401 の応答を送信、クライアントは適切な認証ヘッダーを使用してデータを再送信する必要があります。  
+ たとえば、 <xref:System.Net.ServicePoint.Expect100Continue>プロパティがである`false`とします。 要求がサーバーに送信されると、そのデータが含まれます。 要求ヘッダーを読み取った後、サーバーが認証を必要とし、401応答を送信する場合、クライアントは適切な認証ヘッダーを使用してデータを再送信する必要があります。  
   
- 場合、<xref:System.Net.ServicePoint.Expect100Continue>プロパティは`true`、要求ヘッダーは、サーバーに送信されます。 サーバーが要求を拒否されない場合は、100、送信-100-continue 応答データを送信することができます。 上記の例のように、サーバー認証が必要な場合は、401 の応答を送信し、クライアントがデータを不必要に送信されません。  
+ <xref:System.Net.ServicePoint.Expect100Continue>プロパティが`true`の場合、要求ヘッダーはサーバーに送信されます。 サーバーが要求を拒否していない場合は、データが送信可能であることを通知する 100-Continue 応答を送信します。 前の例のように、サーバーが認証を必要とする場合は、401の応答を送信し、クライアントはデータを不必要に転送していないことを示します。  
   
- このプロパティの値を変更しても、既存の接続には影響しません。 のみ、変更後に作成された新しい接続には影響します。  
+ このプロパティの値を変更しても、既存の接続には影響しません。 変更後に作成された新しい接続のみが影響を受けます。  
   
- Expect 100-10.1.1 IETF RFC 2616 のセクションで完全に説明している動作を続行します。  
+ "100-Continue" 動作の詳細については、「IETF RFC 2616 Section 10.1.1」を参照してください。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値が表示されます。  
+ 次のコード例では、このプロパティの値を表示します。  
   
  [!code-cpp[System.Net.ServicePoint#9](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#9)]
  [!code-csharp[System.Net.ServicePoint#9](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#9)]
@@ -613,7 +613,7 @@
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-`GetHashCode`メソッドのこのインスタンスのハッシュ コードを返します。 この値は、ハッシュ テーブル内のキーとして使用できます。
+メソッド`GetHashCode`は、このインスタンスのハッシュコードを返します。 この値は、ハッシュテーブルのキーとして使用できます。
 
 ]]></format>
         </remarks>
@@ -659,12 +659,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.ServicePoint.IdleSince>プロパティは、最後の日付と、ホストからサービス ポイントが切断された時刻を記録します。 ときに、現在の時刻の差と<xref:System.Net.ServicePoint.IdleSince>の値を超える<xref:System.Net.ServicePoint.MaxIdleTime>、<xref:System.Net.ServicePoint>オブジェクトは別の接続を再利用できます。  
+ プロパティ<xref:System.Net.ServicePoint.IdleSince>は、サービスポイントがホストから切断された最後の日付と時刻を記録します。 現在の時刻と<xref:System.Net.ServicePoint.IdleSince>の差がの<xref:System.Net.ServicePoint.MaxIdleTime> <xref:System.Net.ServicePoint>値を超えた場合、オブジェクトは別の接続にリサイクルするために使用できます。  
   
    
   
 ## Examples  
- 次のコード例では、<xref:System.Net.ServicePoint.IdleSince>プロパティを設定し、日付を取得するとき、<xref:System.Net.ServicePoint>オブジェクトが前回ホストに接続します。  
+ 次のコード例では<xref:System.Net.ServicePoint.IdleSince> 、プロパティを使用して、 <xref:System.Net.ServicePoint>オブジェクトが最後にホストに接続された日時を設定および取得します。  
   
  [!code-cpp[System.Net.ServicePoint#3](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#3)]
  [!code-csharp[System.Net.ServicePoint#3](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#3)]
@@ -709,16 +709,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 設定することができます<xref:System.Net.ServicePoint.MaxIdleTime>に<xref:System.Threading.Timeout.Infinite?displayProperty=nameWithType>との接続が関連付けられていることを示す、<xref:System.Net.ServicePoint>オブジェクトがタイムアウトしません。  
+ をに<xref:System.Net.ServicePoint.MaxIdleTime> <xref:System.Threading.Timeout.Infinite?displayProperty=nameWithType>設定すると、 <xref:System.Net.ServicePoint>オブジェクトに関連付けられている接続がタイムアウトしないように指定できます。  
   
- 既定値、<xref:System.Net.ServicePoint.MaxIdleTime>プロパティの値である、<xref:System.Net.ServicePointManager.MaxServicePointIdleTime?displayProperty=nameWithType>プロパティと、<xref:System.Net.ServicePoint>オブジェクトが作成されます。 以降の変更、<xref:System.Net.ServicePointManager.MaxServicePointIdleTime>に既存のプロパティの影響がない<xref:System.Net.ServicePoint>オブジェクト。  
+ <xref:System.Net.ServicePoint.MaxIdleTime>プロパティの既定値は、 <xref:System.Net.ServicePoint>オブジェクトが作成される<xref:System.Net.ServicePointManager.MaxServicePointIdleTime?displayProperty=nameWithType>ときのプロパティの値です。 その後の<xref:System.Net.ServicePointManager.MaxServicePointIdleTime>プロパティへの変更は、既存<xref:System.Net.ServicePoint>のオブジェクトには影響しません。  
   
- ときに、<xref:System.Net.ServicePoint.MaxIdleTime>に関連付けられている接続を<xref:System.Net.ServicePoint>を超えると、接続まで開いたまま、アプリケーションは、接続を使用しようとしています。 その時点では、フレームワークは、接続を閉じ、リモート ホストへの新しい接続を作成します。  
+ に関連付けられている<xref:System.Net.ServicePoint>接続のを超えた場合、アプリケーションが接続を使用しようとするまで、接続は開いたままになります。<xref:System.Net.ServicePoint.MaxIdleTime> その時点で、フレームワークは接続を閉じ、リモートホストへの新しい接続を作成します。  
   
    
   
 ## Examples  
- 次のコード例では、<xref:System.Net.ServicePoint.MaxIdleTime>設定および取得するプロパティ、<xref:System.Net.ServicePoint>アイドル時間。  
+ 次のコード例では<xref:System.Net.ServicePoint.MaxIdleTime> 、プロパティを使用して<xref:System.Net.ServicePoint> 、アイドル時間を設定および取得します。  
   
  [!code-cpp[System.Net.ServicePoint#3](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#3)]
  [!code-csharp[System.Net.ServicePoint#3](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#3)]
@@ -764,12 +764,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- HTTP プロトコルのバージョンとは、HTTP/1.0 および http/1.1 です。  
+ Http プロトコルのバージョンは、HTTP/1.0 および HTTP/1.1 です。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値が表示されます。  
+ 次のコード例では、このプロパティの値を表示します。  
   
  [!code-cpp[System.Net.ServicePoint#5](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#5)]
  [!code-csharp[System.Net.ServicePoint#5](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#5)]
@@ -886,11 +886,11 @@ false に設定すると、TCP keep-alive オプションが無効になり、�
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションでは、TCP/IP プロバイダーが、TCP 接続の keep alive パケットの使用を有効にすることを要求できます。 既定では、TCP 接続の keep alive パケットの使用が無効になっています。  
+ アプリケーションでは、tcp 接続での keep-alive パケットの使用を TCP/IP プロバイダーに許可するように要求できます。 既定では、TCP 接続でのキープアライブパケットの使用は無効になっています。  
   
- TCP ソケットの場合、既定の設定は、2 時間にセットのキープ アライブ タイムアウトとキープ アライブ間隔を 1 秒を初期化します。 `keepAliveTime`パラメーターは、反応のない最初のキープ アライブ パケットが送信されるまでのミリ秒単位のタイムアウトを指定します。 `keepAliveInterval`パラメーターを指定します、間隔 (ミリ秒単位) の受信確認が受信されない場合、連続する keep-alive パケットが送信されるとします。 キープ アライブ プローブの数は変更することはできず、10 に設定されます。  
+ TCP ソケットが初期化されるときの既定の設定では、キープアライブタイムアウトは2時間、キープアライブ間隔は1秒に設定されます。 パラメーター `keepAliveTime`は、最初のキープアライブパケットが送信されるまで、アクティビティを含まないタイムアウトをミリ秒単位で指定します。 パラメーター `keepAliveInterval`は、受信確認が受信されなかった場合に、連続したキープアライブパケットが送信される間隔をミリ秒単位で指定します。 キープアライブプローブの数は変更できません。また、は10に設定されています。  
   
- Keep-alive の結果として、TCP 接続が削除された場合、<xref:System.Net.Sockets.SocketError>の<xref:System.Net.Sockets.SocketError.NetworkReset>、ソケットで進行中のすべての呼び出しに返されるすべての後続の呼び出しは失敗し、<xref:System.Net.Sockets.SocketError>の<xref:System.Net.Sockets.SocketError.NotConnected>。  
+ キープアライブの結果として TCP 接続が削除されると<xref:System.Net.Sockets.SocketError> 、 <xref:System.Net.Sockets.SocketError.NetworkReset>のはソケットで進行中のすべての呼び出しに返され、それ以降の呼び出しは<xref:System.Net.Sockets.SocketError> 、 <xref:System.Net.Sockets.SocketError.NotConnected>ので失敗します。  
   
  ]]></format>
         </remarks>
@@ -932,14 +932,14 @@ false に設定すると、TCP keep-alive オプションが無効になり、�
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パイプライン化により、サーバーからの各応答を待つことがなく、永続的な接続経由で複数の要求を送信するクライアント。 サーバーは、要求が受信した順序で応答を送信します。  
+ パイプラインを使用すると、クライアントは、サーバーからの各応答を待たずに、永続的な接続を介して複数の要求を送信できます。 サーバーは、要求を受信したときと同じ順序で応答を送信します。  
   
- パイプライン処理は、IETF RFC 2616 8.1.2.2 セクションで詳しく説明します。  
+ パイプラインの詳細については、「IETF RFC 2616」セクション8.1.2.2 を参照してください。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値が表示されます。  
+ 次のコード例では、このプロパティの値を表示します。  
   
  [!code-cpp[System.Net.ServicePoint#5](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#5)]
  [!code-csharp[System.Net.ServicePoint#5](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#5)]
@@ -992,16 +992,16 @@ false に設定すると、TCP keep-alive オプションが無効になり、�
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Nagle のアルゴリズムは、小さなデータ パケットをバッファリングしてから 1 つのパケットとして送信するに使用されます。 「ナグリング」と呼ばれる、このプロセスは、転送されたパケットの数が減るため、広く使用されてし、1 パケットあたりのオーバーヘッドを削減します。  
+ Nagle アルゴリズムを使用して、小さいデータパケットをバッファーに格納し、1つのパケットとして送信します。 このプロセス ("nagling" と呼ばれます) は、送信されるパケットの数を減らし、パケットあたりのオーバーヘッドを削減するため、広く使用されています。  
   
- このプロパティの値を変更しても、既存の接続には影響しません。 のみ、変更後に作成された新しい接続には影響します。  
+ このプロパティの値を変更しても、既存の接続には影響しません。 変更後に作成された新しい接続のみが影響を受けます。  
   
- Nagle のアルゴリズムは IETF RFC 896 完全に説明します。  
+ Nagle アルゴリズムは、IETF RFC 896 で完全に記述されています。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値が表示されます。  
+ 次のコード例では、このプロパティの値を表示します。  
   
  [!code-cpp[System.Net.ServicePoint#9](~/samples/snippets/cpp/VS_Snippets_Remoting/System.Net.ServicePoint/CPP/servicepoint.cpp#9)]
  [!code-csharp[System.Net.ServicePoint#9](~/samples/snippets/csharp/VS_Snippets_Remoting/System.Net.ServicePoint/CS/servicepoint.cs#9)]
