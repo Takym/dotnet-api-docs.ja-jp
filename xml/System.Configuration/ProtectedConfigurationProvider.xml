@@ -1,5 +1,5 @@
 <Type Name="ProtectedConfigurationProvider" FullName="System.Configuration.ProtectedConfigurationProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="052430f09c5058b07ef914746de89513adaa31ae" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63865216" /></Metadata><TypeSignature Language="C#" Value="public abstract class ProtectedConfigurationProvider : System.Configuration.Provider.ProviderBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="063677d6c210ebcbbdc023a72eddcfa1c7344427" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69378273" /></Metadata><TypeSignature Language="C#" Value="public abstract class ProtectedConfigurationProvider : System.Configuration.Provider.ProviderBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ProtectedConfigurationProvider extends System.Configuration.Provider.ProviderBase" />
   <TypeSignature Language="DocId" Value="T:System.Configuration.ProtectedConfigurationProvider" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ProtectedConfigurationProvider&#xA;Inherits ProviderBase" />
@@ -26,35 +26,35 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーションで使用する機密情報を保護する構成ファイルのセクションを暗号化できます。 これにより、困難未承認のアクセスを構成ファイルにアクセスできる攻撃者する場合でも、セキュリティが向上します。  
+ 構成ファイルのセクションを暗号化して、アプリケーションで使用される機密情報を保護することができます。 これにより、攻撃者が構成ファイルにアクセスする場合でも、不正なアクセスが困難になるため、セキュリティが強化されます。  
   
- .NET Framework には、構成ファイルのセクションを暗号化するために使用できる 2 つの保護構成プロバイダーが含まれています。 <xref:System.Configuration.RsaProtectedConfigurationProvider>クラスで使用、<xref:System.Security.Cryptography.RSACryptoServiceProvider>構成セクションを暗号化します。 <xref:System.Configuration.DpapiProtectedConfigurationProvider>クラスでは、Windows データ保護 API (DPAPI) を使用して構成セクションを暗号化します。  
+ .NET Framework には、構成ファイルのセクションを暗号化するために使用できる、2つの保護された構成プロバイダーが含まれています。 クラス<xref:System.Configuration.RsaProtectedConfigurationProvider>は、を<xref:System.Security.Cryptography.RSACryptoServiceProvider>使用して構成セクションを暗号化します。 クラス<xref:System.Configuration.DpapiProtectedConfigurationProvider>は、Windows Data Protection API (DPAPI) を使用して構成セクションを暗号化します。  
   
- RSA や DPAPI プロバイダー以外のアルゴリズムを使用して機密情報を暗号化する必要があります。 この場合は、カスタムの保護された構成プロバイダーをビルドすることができます。 <xref:System.Configuration.ProtectedConfigurationProvider>は独自の保護された構成プロバイダーを作成するを継承する必要がある抽象基本クラスです。  
+ RSA または DPAPI プロバイダー以外のアルゴリズムを使用して機密情報を暗号化する必要がある場合があります。 この場合は、独自のカスタム保護構成プロバイダーを作成できます。 は<xref:System.Configuration.ProtectedConfigurationProvider> 、独自の保護構成プロバイダーを作成するために、から継承する必要がある抽象基本クラスです。  
   
- 標準またはカスタム プロバイダーを使用するかどうかで構成されていることを確認する必要があります、`add`内の要素、`providers`のセクション、`configProtectedData`構成セクション。 (詳しくは、次の例を参照してください)。  
+ 標準プロバイダーとカスタムプロバイダーのどちらを使用する場合でも、 `add` `configProtectedData`構成セクションの`providers`セクションの要素で構成されていることを確認する必要があります。 (次の例を参照してください)。  
   
- 詳細については、次を参照してください。[保護構成プロバイダーを実装する](https://msdn.microsoft.com/library/afc329e4-ef37-4915-b419-b37c745d2865)します。  
+ 詳細については、「[保護された構成プロバイダーの実装](https://msdn.microsoft.com/library/afc329e4-ef37-4915-b419-b37c745d2865)」を参照してください。  
   
 > [!NOTE]
->  ASP.NET には、暗号化された構成データが検出されると、構成済みのプロバイダーを使用して透過的に暗号化解除を実行します。 必要なプロバイダーを構成することを確認する以外には、お客様側では、操作は必要ありません。  
+>  ASP.NET が暗号化された構成データを検出すると、構成されたプロバイダーを使用して透過的に暗号化解除を実行します。 必要なプロバイダーが構成されているかどうかを確認する以外に、操作を行う必要はありません。  
   
    
   
 ## Examples  
- 次の例は、カスタムを実装する方法を示します<xref:System.Configuration.ProtectedConfigurationProvider>します。  
+ 次の例は、カスタム<xref:System.Configuration.ProtectedConfigurationProvider>を実装する方法を示しています。  
   
- このプロバイダーを構成する構成の抜粋を次に示すように、必要がありますインストールする、グローバル アセンブリ キャッシュ (GAC) にします。 参照してください[保護構成プロバイダーを実装する](https://msdn.microsoft.com/library/afc329e4-ef37-4915-b419-b37c745d2865)詳細についてはします。  
+ このプロバイダーを構成できるようにするには、次の構成の抜粋に示すように、グローバルアセンブリキャッシュ (GAC) にインストールする必要があります。 詳細について[は、「保護された構成プロバイダーの実装](https://msdn.microsoft.com/library/afc329e4-ef37-4915-b419-b37c745d2865)」を参照してください。  
   
  [!code-csharp[System.Configuration.ProtectedConfigurationProvider#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Configuration.ProtectedConfigurationProvider/CS/ProtectedConfigurationProviderLib.cs#1)]
  [!code-vb[System.Configuration.ProtectedConfigurationProvider#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Configuration.ProtectedConfigurationProvider/VB/ProtectedConfigurationProviderLib.vb#1)]  
   
- 次の例は、前のユーザー設定を使用する方法を示します<xref:System.Configuration.ProtectedConfigurationProvider>します。  
+ 次の例は、前のカスタム<xref:System.Configuration.ProtectedConfigurationProvider>を使用する方法を示しています。  
   
  [!code-csharp[System.Configuration.UsingProtectedConfigurationProvider#11](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Configuration.UsingProtectedConfigurationProvider/CS/ProtectedConfigurationProvider.cs#11)]
  [!code-vb[System.Configuration.UsingProtectedConfigurationProvider#11](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Configuration.UsingProtectedConfigurationProvider/VB/ProtectedConfigurationProvider.vb#11)]  
   
- 上記の例で使用される構成ファイルの抜粋を次に示します。  
+ 上記の例で使用した構成ファイルの抜粋を次に示します。  
   
 ```xml  
 <?xml version="1.0" encoding="utf-8" ?>  
@@ -86,7 +86,7 @@ providerName="System.Data.SqlClient" />
     <altmember cref="T:System.Configuration.ProtectedConfigurationSection" />
     <altmember cref="T:System.Configuration.DpapiProtectedConfigurationProvider" />
     <altmember cref="T:System.Configuration.RsaProtectedConfigurationProvider" />
-    <related type="Article" href="https://msdn.microsoft.com/library/51cdfe5b-9d82-458c-94ff-c551c4f38ed1">保護された構成を使用して構成情報の暗号化</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/51cdfe5b-9d82-458c-94ff-c551c4f38ed1">保護された構成を使用した構成情報の暗号化</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -111,7 +111,7 @@ providerName="System.Data.SqlClient" />
       <Docs>
         <summary>既定の設定を使用して <see cref="T:System.Configuration.ProtectedConfigurationProvider" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>クラスの必要に応じて、このコンス トラクターをオーバーライドします。</para></block>
+        <block subset="none" type="overrides"><para>クラスで必要とされるように、このコンストラクターをオーバーライドします。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Decrypt">
@@ -125,8 +125,8 @@ providerName="System.Data.SqlClient" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; abstract System::Xml::XmlNode ^ Decrypt(System::Xml::XmlNode ^ encrypted_node);" FrameworkAlternate="xamarinmac-3.0" />
       <MemberSignature Language="DocId" Value="M:System.Configuration.ProtectedConfigurationProvider.Decrypt(System.Xml.XmlNode)" FrameworkAlternate="xamarinmac-3.0" />
       <MemberSignature Language="F#" Value="abstract member Decrypt : System.Xml.XmlNode -&gt; System.Xml.XmlNode" Usage="protectedConfigurationProvider.Decrypt encrypted_node" FrameworkAlternate="xamarinmac-3.0" />
-      <MemberSignature Language="DocId" Value="M:System.Configuration.ProtectedConfigurationProvider.Decrypt(System.Xml.XmlNode)" FrameworkAlternate="xamarinmac-3.0" />
-      <MemberSignature Language="F#" Value="abstract member Decrypt : System.Xml.XmlNode -&gt; System.Xml.XmlNode" Usage="protectedConfigurationProvider.Decrypt encrypted_node" FrameworkAlternate="xamarinmac-3.0" />
+      <MemberSignature Language="DocId" Value="M:System.Configuration.ProtectedConfigurationProvider.Decrypt(System.Xml.XmlNode)" FrameworkAlternate="xamarinmac-3.0;netcore-3.0" />
+      <MemberSignature Language="F#" Value="abstract member Decrypt : System.Xml.XmlNode -&gt; System.Xml.XmlNode" Usage="protectedConfigurationProvider.Decrypt encrypted_node" FrameworkAlternate="xamarinmac-3.0;netcore-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Configuration</AssemblyName>
@@ -155,15 +155,15 @@ providerName="System.Data.SqlClient" />
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例は、使用する方法を示します<xref:System.Configuration.ProtectedConfigurationProvider.Decrypt%2A>カスタム復号化を実行するメソッド。  
+ 次の例は、メソッドを<xref:System.Configuration.ProtectedConfigurationProvider.Decrypt%2A>使用してカスタムの復号化を実行する方法を示しています。  
   
  [!code-csharp[System.Configuration.ProtectedConfigurationProvider#2](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Configuration.ProtectedConfigurationProvider/CS/ProtectedConfigurationProviderLib.cs#2)]
  [!code-vb[System.Configuration.ProtectedConfigurationProvider#2](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Configuration.ProtectedConfigurationProvider/VB/ProtectedConfigurationProviderLib.vb#2)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>カスタムの復号化を実行するには、このメソッドをオーバーライドします。</para></block>
-        <related type="Article" href="https://msdn.microsoft.com/library/eb5dee1e-f6ac-4b16-bc2c-32c1e8cd9341">構成セクションを暗号化および暗号化</related>
+        <block subset="none" type="overrides"><para>カスタム復号化を実行するには、このメソッドをオーバーライドします。</para></block>
+        <related type="Article" href="https://msdn.microsoft.com/library/eb5dee1e-f6ac-4b16-bc2c-32c1e8cd9341">構成セクションの暗号化と復号化</related>
       </Docs>
     </Member>
     <Member MemberName="Encrypt">
@@ -199,15 +199,15 @@ providerName="System.Data.SqlClient" />
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例は、使用する方法を示します<xref:System.Configuration.ProtectedConfigurationProvider.Encrypt%2A>カスタムの暗号化を実行します。  
+ 次の例は、を使用<xref:System.Configuration.ProtectedConfigurationProvider.Encrypt%2A>してカスタム暗号化を実行する方法を示しています。  
   
  [!code-csharp[System.Configuration.ProtectedConfigurationProvider#3](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Configuration.ProtectedConfigurationProvider/CS/ProtectedConfigurationProviderLib.cs#3)]
  [!code-vb[System.Configuration.ProtectedConfigurationProvider#3](~/samples/snippets/visualbasic/VS_Snippets_WebNet/System.Configuration.ProtectedConfigurationProvider/VB/ProtectedConfigurationProviderLib.vb#3)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>カスタムの暗号化を実行するには、このメソッドをオーバーライドします。</para></block>
-        <related type="Article" href="https://msdn.microsoft.com/library/eb5dee1e-f6ac-4b16-bc2c-32c1e8cd9341">構成セクションを暗号化および暗号化</related>
+        <block subset="none" type="overrides"><para>カスタム暗号化を実行するには、このメソッドをオーバーライドします。</para></block>
+        <related type="Article" href="https://msdn.microsoft.com/library/eb5dee1e-f6ac-4b16-bc2c-32c1e8cd9341">構成セクションの暗号化と復号化</related>
       </Docs>
     </Member>
   </Members>

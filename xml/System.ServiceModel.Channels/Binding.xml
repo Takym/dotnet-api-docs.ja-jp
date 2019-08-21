@@ -1,5 +1,5 @@
 <Type Name="Binding" FullName="System.ServiceModel.Channels.Binding">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c89b7105c9fd5725eaa64587f0ecdb9e09cdca39" /><Meta Name="ms.sourcegitcommit" Value="10aa513a7461eb2abbf8d1e35d2a045d4e5a9be7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/09/2019" /><Meta Name="ms.locfileid" Value="67665163" /></Metadata><TypeSignature Language="C#" Value="public abstract class Binding : System.ServiceModel.IDefaultCommunicationTimeouts" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9a10ae7d575439ada3d41fbbfbc2e78091722c09" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69157634" /></Metadata><TypeSignature Language="C#" Value="public abstract class Binding : System.ServiceModel.IDefaultCommunicationTimeouts" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit Binding extends System.Object implements class System.ServiceModel.IDefaultCommunicationTimeouts" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.Binding" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Binding&#xA;Implements IDefaultCommunicationTimeouts" />
@@ -34,7 +34,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- バインド要素のコレクションを表します。各バインド要素は他のエンドポイントとの通信方法を記述しており、チャネル ファクトリ (クライアント側) およびチャネル リスナー (サービス側) に、整合性を保って組み込まれています。 バインドは、プロトコル チャネル、トランスポート チャネル、およびメッセージ エンコーダーに対応するバインド要素のコレクションを格納しています。 プロトコル チャネルに対しては任意の数のバインド要素が存在できますが、個々のトランスポートとメッセージ エンコーダーに対して存在できるバインド要素はただ 1 つだけです。 バインド内には、一般的に 6 層のバインド要素があります。 スタックの最下位のトランスポート バインド要素とエンコーディング バインド要素だけが必須です。 エンコーディングが指定されていない場合、エンコーディングは各バインディングに必要であるために、Windows Communication Foundation (WCF) は既定エンコーディングを追加します。 既定では、HTTP および HTTPS トランスポートに対してはテキスト/XML、その他のトランスポートに対してはバイナリです。  
+ バインド要素のコレクションを表します。各バインド要素は他のエンドポイントとの通信方法を記述しており、チャネル ファクトリ (クライアント側) およびチャネル リスナー (サービス側) に、整合性を保って組み込まれています。 バインドは、プロトコル チャネル、トランスポート チャネル、およびメッセージ エンコーダーに対応するバインド要素のコレクションを格納しています。 プロトコル チャネルに対しては任意の数のバインド要素が存在できますが、個々のトランスポートとメッセージ エンコーダーに対して存在できるバインド要素はただ 1 つだけです。 バインド内には、一般的に 6 層のバインド要素があります。 スタックの最下位のトランスポート バインド要素とエンコーディング バインド要素だけが必須です。 各バインドにはエンコーディングが必要であるため、エンコーディングが指定されていない場合 Windows Communication Foundation (WCF) によって既定のエンコーディングが追加されます。 既定では、HTTP および HTTPS トランスポートに対してはテキスト/XML、その他のトランスポートに対してはバイナリです。  
   
  各層のオプションの概要を次の表に示します。  
   
@@ -50,7 +50,7 @@
   
  各バインド要素は、クライアントでのチャネル ファクトリの構築、およびサービスでのチャネル リスナーの構築に対する仕様を提供します。 たとえば、チャネル ファクトリ スタックを作成するときは、バインド内の各バインド要素に対し、スタック内に 1 つのチャネル ファクトリが存在します。 同様のマッピングが、サービス上のスタックでのチャネル リスナーにも適用されます。 これらのエンドポイントの間でチャネル ベースの接続を確立するには、クライアントとサービスの間の整合性が不可欠です。 その結果、各ファクトリとリスナーは、両者を接続するチャネル スタック内の対応するチャネルの送信と受け入れを処理し、これらのチャネルは通信に使用するメッセージを送受信できます。  
   
- <xref:System.ServiceModel.Channels.Binding> の各インスタンスには、<xref:System.ServiceModel.Channels.Binding.Name%2A> および <xref:System.ServiceModel.Channels.Binding.Namespace%2A> があり、合わせてサービスのメタデータ内でそのインスタンスを一意に識別します。 名前または名前空間が指定されていない場合、WCF は、既定値を追加します。 既定の名前は`null`、既定の名前空間は`http://tempuri.org/`します。 バインディングに対するこのユーザー名は、<xref:System.ServiceModel.Channels.Binding.Scheme%2A> プロパティによって指定されるプロトコル名とは異なります。 たとえば、HTTP バインドをさらに追加する場合は、それらに自由に名前を付けて、すべてのスキームを "http" に設定できます。 <xref:System.ServiceModel.Channels.Binding.Scheme%2A> に基づくアプリケーションまたはマシンの固有のディスパッチはありません。 したがって、既知のプロトコルに対して追加のハンドラーを登録できないという、よくある問題は避けられます。 また、複数のバージョンのバインドの並行使用も、各バージョンに異なる名前を付けることで、簡単に処理できます。  
+ <xref:System.ServiceModel.Channels.Binding> の各インスタンスには、<xref:System.ServiceModel.Channels.Binding.Name%2A> および <xref:System.ServiceModel.Channels.Binding.Namespace%2A> があり、合わせてサービスのメタデータ内でそのインスタンスを一意に識別します。 名前または名前空間が指定されていない場合、WCF によって既定値が追加されます。 既定の名前は`null`で、既定の名前`http://tempuri.org/`空間はです。 バインディングに対するこのユーザー名は、<xref:System.ServiceModel.Channels.Binding.Scheme%2A> プロパティによって指定されるプロトコル名とは異なります。 たとえば、HTTP バインドをさらに追加する場合は、それらに自由に名前を付けて、すべてのスキームを "http" に設定できます。 <xref:System.ServiceModel.Channels.Binding.Scheme%2A> に基づくアプリケーションまたはマシンの固有のディスパッチはありません。 したがって、既知のプロトコルに対して追加のハンドラーを登録できないという、よくある問題は避けられます。 また、複数のバージョンのバインドの並行使用も、各バージョンに異なる名前を付けることで、簡単に処理できます。  
   
  <xref:System.ServiceModel.Channels.Binding> クラスは、長時間リソースを停滞させることによるサービス拒否 (DOS) 攻撃を軽減するために、<xref:System.ServiceModel.IDefaultCommunicationTimeouts> インターフェイスを実装します。 この実装により、接続の確立と終了や、メッセージの送受信に関連付けられている読み取りおよび書き込み操作についての通信タイムアウト値が指定されます。 これらのタイムアウト値とその既定の操作を取得および設定するプロパティを、次の表に示します。  
   
@@ -113,7 +113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定の名前は`null`、既定の名前空間は`http://tempuri.org/`します。  
+ 既定の名前は`null`で、既定の名前`http://tempuri.org/`空間はです。  
   
    
   
@@ -1119,7 +1119,7 @@
       </ReturnValue>
       <Docs>
         <summary>バインドの XML 名前空間を取得または設定します。</summary>
-        <value>バインディングの XML 名前空間。 既定値は<c>"http://tempuri.org/"</c>します。</value>
+        <value>バインディングの XML 名前空間。 既定値は<c>"http://tempuri.org/"</c>です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1217,7 +1217,7 @@
       </ReturnValue>
       <Docs>
         <summary>アプリケーション メッセージが受信されない間に、接続が非アクティブになってから切断されるまでの時間を取得または設定します。</summary>
-        <value>アプリケーションでメッセージを受信する必要がある、タイムアウトまでの制限時間を指定する <see cref="T:System.TimeSpan" />。既定値は、10 分です。</value>
+        <value>アプリケーションでメッセージを受信する必要がある、タイムアウトまでの制限時間を指定する <see cref="T:System.TimeSpan" />。既定値は10分です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1232,7 +1232,7 @@
   
  バインドまたはチャネルでトランザクション フローが有効になっている場合は、指定したタイムアウト時間より操作の実行が長くかかる可能性があります。 このような場合は、タイムアウトの時間が経過し、そのためにトランザクションが中止されるため、操作は失敗します。  
   
- セッションでセキュリティを使用した場合、<xref:System.ServiceModel.Channels.Binding.ReceiveTimeout%2A>バインドで設定値は、セッションのタイムアウトとしても使用されます。  
+ セッションでセキュリティを使用する場合は<xref:System.ServiceModel.Channels.Binding.ReceiveTimeout%2A> 、バインディングに設定された値もセッションタイムアウトとして使用されます。  
   
  ]]></format>
         </remarks>

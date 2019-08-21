@@ -1,5 +1,5 @@
 <Type Name="RegistrySecurity" FullName="System.Security.AccessControl.RegistrySecurity">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9bc6f7493d7a9e1de154cf46db0d9c5021e7a5d9" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56763822" /></Metadata><TypeSignature Language="C#" Value="public sealed class RegistrySecurity : System.Security.AccessControl.NativeObjectSecurity" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a1e573054d899d9ece24be60d9cd1af96043f0b2" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69085988" /></Metadata><TypeSignature Language="C#" Value="public sealed class RegistrySecurity : System.Security.AccessControl.NativeObjectSecurity" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit RegistrySecurity extends System.Security.AccessControl.NativeObjectSecurity" />
   <TypeSignature Language="DocId" Value="T:System.Security.AccessControl.RegistrySecurity" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class RegistrySecurity&#xA;Inherits NativeObjectSecurity" />
@@ -36,66 +36,66 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト、レジストリ キーのアクセス権を指定しもアクセス試行を監査する方法を指定します。 によって表される各アクセス規則と、規則で表されるレジストリ キーへのアクセス権を<xref:System.Security.AccessControl.RegistryAccessRule>オブジェクト。 によって表される、各監査規則を<xref:System.Security.AccessControl.RegistryAuditRule>オブジェクト。  
+ オブジェクト<xref:System.Security.AccessControl.RegistrySecurity>は、レジストリキーのアクセス権を指定します。また、アクセス試行の監査方法も指定します。 レジストリキーへのアクセス権は、 <xref:System.Security.AccessControl.RegistryAccessRule>オブジェクトによって表される各アクセスルールと共に、ルールとして表現されます。 各監査規則は、 <xref:System.Security.AccessControl.RegistryAuditRule>オブジェクトによって表されます。  
   
- これは図らずもをセキュリティ保護可能な各オブジェクトが最大で 1 つ随意アクセス制御リスト (DACL) をセキュリティで保護されたオブジェクトとで最もアクセスを指定する 1 つのシステム アクセス制御リスト (SACL) のアクセスを制御する、基になる Windows セキュリティ システム試行が監査されます。 DACL と SACL によっては、アクセスおよび監査ユーザーとグループを指定するアクセス制御エントリ (ACE) のリストが並べ替えられています。 A<xref:System.Security.AccessControl.RegistryAccessRule>または<xref:System.Security.AccessControl.RegistryAuditRule>オブジェクトは、1 つ以上の ACE を表すことができます。  
+ これにより、基になる Windows セキュリティシステムがミラー化されます。セキュリティ保護可能な各オブジェクトには、セキュリティで保護されたオブジェクトへのアクセスを制御する随意アクセス制御リスト (DACL) が1つだけあります。また、アクセスを指定するシステムアクセス制御リスト (SACL) は最大1つです。試行は監査されます。 DACL と SACL は、ユーザーおよびグループのアクセスと監査を指定するアクセス制御エントリ (ACE) の順序付きリストです。 オブジェクト<xref:System.Security.AccessControl.RegistryAccessRule>また<xref:System.Security.AccessControl.RegistryAuditRule>はオブジェクトは、複数の ACE を表す場合があります。  
   
 > [!NOTE]
->  Windows アクセス制御のセキュリティは、レジストリ キーにのみ適用できます。 キーに格納されている個別のキー/値ペアに適用できません。  
+>  Windows アクセス制御セキュリティは、レジストリキーにのみ適用できます。 キーに格納されている個々のキーと値のペアには適用できません。  
   
- <xref:System.Security.AccessControl.RegistrySecurity>、 <xref:System.Security.AccessControl.RegistryAccessRule>、および<xref:System.Security.AccessControl.RegistryAuditRule>クラスは、Acl、Ace の実装の詳細を非表示にします。 17 個の異なる ACE 型と正しく維持するためのアクセス権の継承と反映の複雑さを無視できます。 これらのオブジェクトが、次の一般的なアクセス制御エラーを防ぐためにも設計されています。  
+ 、 <xref:System.Security.AccessControl.RegistrySecurity> 、<xref:System.Security.AccessControl.RegistryAccessRule>および<xref:System.Security.AccessControl.RegistryAuditRule>の各クラスは、acl と ace の実装の詳細を非表示にします。 17個の ACE の種類と、アクセス権の継承と反映を適切に維持する複雑さを無視することができます。 これらのオブジェクトは、次の一般的なアクセス制御エラーを防ぐためにも設計されています。  
   
--   Null DACL のセキュリティ記述子を作成しています。 DACL を null 参照では、可能性のあるサービス拒否攻撃を作成、オブジェクトにアクセス規則を追加するすべてのユーザーを許可します。 新しい<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトは常にすべてのユーザーのすべてのアクセスを拒否する空の DACL で起動します。  
+-   Null の DACL を持つセキュリティ記述子を作成します。 DACL への null 参照を使用すると、任意のユーザーがオブジェクトにアクセス規則を追加でき、サービス拒否攻撃を行う可能性があります。 新しい<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトは、常に空の DACL で開始され、すべてのユーザーのすべてのアクセスを拒否します。  
   
--   Ace の正規の順序に違反しています。 DACL の ACE リストが正規順序で維持されない場合ユーザーが誤ってアクセスが与えをセキュリティで保護されたオブジェクト。 たとえば、拒否されたアクセス権は必要があります許可されているアクセス権の前に常に表示されます。 <xref:System.Security.AccessControl.RegistrySecurity> オブジェクトは、内部的に正しい順序を維持します。  
+-   Ace の正規の順序に違反しています。 DACL の ACE リストが正規の順序で保持されていない場合、セキュリティで保護されたオブジェクトへのアクセス権がユーザーに与えられる可能性があります。 たとえば、拒否されたアクセス権は、許可されたアクセス権の前に常に表示される必要があります。 <xref:System.Security.AccessControl.RegistrySecurity>オブジェクトは、内部で正しい順序を維持します。  
   
--   セキュリティ記述子フラグは、リソース マネージャーの管理だけ下にある必要がありますを操作します。  
+-   セキュリティ記述子のフラグを操作します。このフラグは、resource manager コントロールのみに存在する必要があります。  
   
--   ACE フラグの無効な組み合わせを作成します。  
+-   ACE フラグの無効な組み合わせを作成しています。  
   
--   継承された Ace を操作します。 継承と反映は、アクセスおよび監査規則に加えた変更に応じて、リソース マネージャーによって処理されます。  
+-   継承された Ace を操作します。 継承と反映は、アクセスおよび監査規則に対する変更に応じて、リソースマネージャーによって処理されます。  
   
--   Acl に無意味な Ace を挿入しています。  
+-   Acl に意味のない Ace を挿入します。  
   
- オブジェクトのセキュリティを .NET でサポートされていない唯一の機能は、アプリケーション開発者は、次などの大半を避ける必要がある危険なアクティビティ。  
+ .NET セキュリティオブジェクトでサポートされていない機能は、次のように、ほとんどのアプリケーション開発者が回避する必要がある危険なアクティビティだけです。  
   
--   通常、リソース マネージャーで実行される低レベルのタスク。  
+-   通常はリソースマネージャーによって実行される低レベルのタスク。  
   
--   追加または標準の順序を保持しない方法でアクセス制御エントリを削除します。  
+-   アクセス制御エントリを追加または削除すると、標準の順序が維持されません。  
   
- レジストリ キーの Windows アクセス制御セキュリティを変更するには、使用、<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>を取得するメソッド、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト。 追加し、ルールを削除するには、セキュリティ オブジェクトを変更し、<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>メソッドを再度アタッチします。  
+ レジストリキーの Windows アクセス制御セキュリティを変更するには、 <xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>メソッドを使用し<xref:System.Security.AccessControl.RegistrySecurity>てオブジェクトを取得します。 規則を追加および削除してセキュリティオブジェクトを変更し、 <xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>メソッドを使用して再アタッチします。  
   
 > [!IMPORTANT]
->  加えた変更を<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトには影響しません、レジストリ キーのアクセス レベルを呼び出すまで、<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>メソッドをレジストリ キーに変更されたセキュリティ オブジェクトを割り当てます。  
+>  <xref:System.Security.AccessControl.RegistrySecurity>オブジェクトに加えた変更は、変更されたセキュリティオブジェクトをレジストリキーに割り当てるために<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>メソッドを呼び出すまで、レジストリキーのアクセスレベルには影響しません。  
   
- 1 つのレジストリ キーから別のアクセス制御セキュリティをコピーするには、使用、<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>を取得するメソッド、<xref:System.Security.AccessControl.RegistrySecurity>最初のレジストリ キーのアクセスおよび監査規則を表すオブジェクトし、を使用して、<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>それらの規則を割り当てるメソッドを2 番目のレジストリ キー。 規則を 2 番目のレジストリ キーを割り当てることも、<xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A?displayProperty=nameWithType>または<xref:Microsoft.Win32.RegistryKey.CreateSubKey%2A?displayProperty=nameWithType>を受け取るメソッドを<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト パラメーター。  
+ あるレジストリキーから別のレジストリキーにアクセス制御セキュリティをコピー <xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>するには、 <xref:System.Security.AccessControl.RegistrySecurity>メソッドを使用して、最初のレジストリキーのアクセス規則と監査規則を<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>表すオブジェクトを取得し、メソッドを使用してこれらの規則をに割り当てます。2番目のレジストリキー。 <xref:Microsoft.Win32.RegistryKey.OpenSubKey%2A?displayProperty=nameWithType>また、オブジェクトパラメーターを<xref:System.Security.AccessControl.RegistrySecurity>受け取るメソッドまたは<xref:Microsoft.Win32.RegistryKey.CreateSubKey%2A?displayProperty=nameWithType>メソッドを使用して、2番目のレジストリキーに規則を割り当てることもできます。  
   
- セキュリティ記述子定義言語 (SDDL) に投資してユーザーが使用できる、 <xref:System.Security.AccessControl.ObjectSecurity.SetSecurityDescriptorSddlForm%2A> 、レジストリ キーのアクセス規則を設定するメソッドをおよび<xref:System.Security.AccessControl.ObjectSecurity.GetSecurityDescriptorSddlForm%2A>SDDL 形式へのアクセス規則を表す文字列を取得するメソッド。 これは新規の開発は推奨されません。  
+ セキュリティ記述子定義言語 (SDDL) に投資しているユーザーは、 <xref:System.Security.AccessControl.ObjectSecurity.SetSecurityDescriptorSddlForm%2A>メソッドを使用してレジストリキーのアクセス規則を設定できます。また、 <xref:System.Security.AccessControl.ObjectSecurity.GetSecurityDescriptorSddlForm%2A>メソッドを使用して、アクセス規則を SDDL 形式で表す文字列を取得することもできます。 これは、新しい開発では推奨されません。  
   
    
   
 ## Examples  
- このセクションには、2 つのコード例が含まれています。 最初の例は互換性のある規則のマージ追加し、削除、および、2 番目に示す追加と削除の規則の継承と反映フラグの影響します。  
+ このセクションには、2 つのコード例が含まれています。 最初の例では、互換性のあるルールが追加および削除されたときのマージ方法を示し、2番目の例では、継承フラグと反映フラグがルールの追加と削除にどのように影響するかを示します。  
   
  例 1  
   
- 次のコード例に示す方法、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>メソッドは、互換性のある規則から権利を削除する方法と、<xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>メソッドは、互換性のある規則の権限をマージします。  
+ 次のコード例は、メソッド<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>が互換性のある規則から権限を削除する方法<xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>と、メソッドが互換性のある規則との間で権限をマージする方法を示しています。  
   
- 例は、作成、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトし、現在のユーザーを許可する規則を追加します。<xref:System.Security.AccessControl.RegistryRights.ReadKey?displayProperty=nameWithType>権限。 ユーザーを許可するルールを作成し<xref:System.Security.AccessControl.RegistryRights.SetValue?displayProperty=nameWithType>同じ継承および使用して最初のルールと伝達の権限を指定して、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>からこの新しいルールを削除する方法、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト。 <xref:System.Security.AccessControl.RegistryRights.SetValue> 構成要素は、<xref:System.Security.AccessControl.RegistryRights.ReadKey>ので、互換性のある規則から削除されます。 内のルール、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトに表示されるの残りの構成要素を示す<xref:System.Security.AccessControl.RegistryRights.ReadKey>します。  
+ この例では<xref:System.Security.AccessControl.RegistrySecurity> 、オブジェクトを作成し、現在のユーザー <xref:System.Security.AccessControl.RegistryRights.ReadKey?displayProperty=nameWithType>の権限を許可するルールを追加します。 次に、最初の規則と同じ継承と<xref:System.Security.AccessControl.RegistryRights.SetValue?displayProperty=nameWithType>反映の権限を持つユーザーを付与する規則を作成し、 <xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>メソッドを使用して、 <xref:System.Security.AccessControl.RegistrySecurity>この新しい規則をオブジェクトから削除します。 <xref:System.Security.AccessControl.RegistryRights.SetValue>はの構成要素<xref:System.Security.AccessControl.RegistryRights.ReadKey>であるため、互換性のある規則から削除されます。 <xref:System.Security.AccessControl.RegistrySecurity>オブジェクト内のルールが表示され、の<xref:System.Security.AccessControl.RegistryRights.ReadKey>残りの構成要素が表示されます。  
   
- コード例を呼び出して、<xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>にマージするメソッド、<xref:System.Security.AccessControl.RegistryRights.SetValue>内のルールに戻す、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト。  
+ コード例では、 <xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>メソッドを呼び出して、 <xref:System.Security.AccessControl.RegistryRights.SetValue> <xref:System.Security.AccessControl.RegistrySecurity>オブジェクト内のルールに適切にマージします。  
   
 > [!NOTE]
->  この例は、セキュリティ オブジェクトをアタッチできません、<xref:Microsoft.Win32.RegistryKey>オブジェクト。 このセクションでは、2 番目の例は、セキュリティ オブジェクトをアタッチおよびは<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>と<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>します。  
+>  この例では、 <xref:Microsoft.Win32.RegistryKey>オブジェクトにセキュリティオブジェクトをアタッチしません。 このセクションの2番目の例では、セキュリティオブジェクトをアタッチします<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType> 。 <xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>そのため、「」と「」の例を参照してください。  
   
  [!code-csharp[System.Security.AccessControl.RegistrySecurity.RemoveAccessRule#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.RemoveAccessRule/CS/source.cs#1)]
  [!code-vb[System.Security.AccessControl.RegistrySecurity.RemoveAccessRule#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.RemoveAccessRule/VB/source.vb#1)]  
   
  例 2  
   
- 次のコード例では、継承と反映によるアクセス規則を示します。 例は、作成、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトを作成しを持つ 2 つの規則を追加します、<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>フラグ。 最初の規則にはフラグと反映フラグがない、2 つ目は<xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit>と<xref:System.Security.AccessControl.PropagationFlags.InheritOnly>します。  
+ 次のコード例は、継承と反映を含むアクセス規則を示しています。 この例では<xref:System.Security.AccessControl.RegistrySecurity> 、オブジェクトを作成し、 <xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit>フラグを持つ2つのルールを作成して追加します。 最初のルールには伝達フラグがありませんが<xref:System.Security.AccessControl.PropagationFlags.NoPropagateInherit> 、 <xref:System.Security.AccessControl.PropagationFlags.InheritOnly>2 番目のルールにはおよびがあります。  
   
- プログラム内のルールを表示する、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト、および、使用、<xref:System.Security.AccessControl.RegistrySecurity>サブキーを作成するオブジェクト。 プログラムは、子サブキーと孫サブキーを作成し、各サブキーのセキュリティを表示します。 最後に、プログラムは、テスト キーを削除します。  
+ プログラムによって<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト内のルールが表示され、 <xref:System.Security.AccessControl.RegistrySecurity>オブジェクトを使用してサブキーが作成されます。 プログラムは、子サブキーと孫サブキーを作成し、各サブキーのセキュリティを表示します。 最後に、プログラムはテストキーを削除します。  
   
  [!code-csharp[System.Security.AccessControl.RegistryAccessRule.ctor2#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.AccessControl.RegistryAccessRule.ctor2/CS/source.cs#1)]
  [!code-vb[System.Security.AccessControl.RegistryAccessRule.ctor2#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.AccessControl.RegistryAccessRule.ctor2/VB/source.vb#1)]  
@@ -134,7 +134,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新しい<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトは常にすべてのユーザーのすべてのアクセスを拒否する空の随意アクセス リスト (DACL) で始まります。  
+ 新しい<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトは、常に空の随意アクセスリスト (DACL) で開始され、すべてのユーザーのすべてのアクセスを拒否します。  
   
  ]]></format>
         </remarks>
@@ -174,7 +174,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生するクラス、<xref:System.Security.AccessControl.ObjectSecurity>クラスのオーバーライド、<xref:System.Security.AccessControl.ObjectSecurity.AccessRightType%2A>プロパティと戻り値を使用してアクセス権を表す型。 配列または複数の種類のセキュリティ オブジェクトを含むコレクションを使用する場合は、このプロパティを使用して、各セキュリティ オブジェクトで使用する適切な列挙型を判断します。  
+ <xref:System.Security.AccessControl.ObjectSecurity>クラスから派生するクラスは、 <xref:System.Security.AccessControl.ObjectSecurity.AccessRightType%2A>プロパティをオーバーライドし、アクセス権を表すために使用する型を返します。 複数の種類のセキュリティオブジェクトを含む配列またはコレクションを使用する場合は、このプロパティを使用して、各セキュリティオブジェクトで使用する適切な列挙型を決定します。  
   
  ]]></format>
         </remarks>
@@ -227,17 +227,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アクセス制御規則を作成することをお勧めの方法は、のコンス トラクターを使用する、<xref:System.Security.AccessControl.RegistryAccessRule>クラス。  
+ アクセス制御規則を作成するには、 <xref:System.Security.AccessControl.RegistryAccessRule>クラスのコンストラクターを使用することをお勧めします。  
   
 > [!NOTE]
->  指定することができますが、<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit?displayProperty=nameWithType>フラグは、その際に意味がありません。 アクセス制御のためには、サブキーの名前/値ペアは別個のオブジェクトではありません。 名前/値ペアへのアクセス権は、サブキーの権限によって制御されます。 さらに、すべてのサブキーはコンテナーであるため (つまり、ことが含まれているその他のサブキーには) は影響しない、<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグ。 最後に、指定する、<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>互換性のある規則の標準の組み合わせに干渉するためにフラグが、ルールのメンテナンスに不必要に複雑にします。  
+>  <xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit?displayProperty=nameWithType>フラグを指定することはできますが、そのようなポイントはありません。 アクセス制御のために、サブキーの名前と値のペアは個別のオブジェクトではありません。 名前と値のペアへのアクセス権は、サブキーの権限によって制御されます。 さらに、すべてのサブキーはコンテナーであるため (つまり、他のサブキーを含めることができ<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>ます)、フラグの影響を受けません。 最後に、 <xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグを指定すると、互換性のある規則の通常の組み合わせが妨げられるため、規則の保守が不必要に複雑になります。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="accessMask" />、<paramref name="inheritanceFlags" />、<paramref name="propagationFlags" />、または <paramref name="type" /> に無効な値が指定されています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="identityReference" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="identityReference" /> が <see langword="null" /> です。  
   
-または 
+- または - 
  <paramref name="accessMask" /> が 0 です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="identityReference" /> が <see cref="T:System.Security.Principal.SecurityIdentifier" /> 型ではなく、<see cref="T:System.Security.Principal.NTAccount" /> 型に変換できる <see cref="T:System.Security.Principal.SecurityIdentifier" /> などの型でもありません。</exception>
       </Docs>
@@ -276,7 +276,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生するクラス、<xref:System.Security.AccessControl.ObjectSecurity>クラスのオーバーライド、<xref:System.Security.AccessControl.ObjectSecurity.AccessRuleType%2A>プロパティと戻り値を使用して、アクセス規則を表す型。 配列または複数の種類のセキュリティ オブジェクトを含むコレクションを使用する場合は、このプロパティを使用して、各セキュリティ オブジェクトを使用する適切なアクセス規則の種類を決定します。  
+ <xref:System.Security.AccessControl.ObjectSecurity>クラスから派生するクラスは、 <xref:System.Security.AccessControl.ObjectSecurity.AccessRuleType%2A>プロパティをオーバーライドし、アクセス規則を表すために使用する型を返します。 複数の種類のセキュリティオブジェクトを含む配列またはコレクションを操作する場合は、このプロパティを使用して、各セキュリティオブジェクトで使用する適切なアクセス規則の種類を決定します。  
   
  ]]></format>
         </remarks>
@@ -319,23 +319,23 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>メソッドと同じユーザーまたはグループと同じ規則を検索<xref:System.Security.AccessControl.AccessControlType>として`rule`します。 何も見つからない場合`rule`が追加されます。 照合ルールが見つからないかどうか、rights in`rule`は既存の規則にマージされます。  
+ メソッド<xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>は、同じユーザーまたはグループの規則を検索し、 <xref:System.Security.AccessControl.AccessControlType>と`rule`同じを検索します。 何も見つからない場合`rule`は、が追加されます。 照合ルールが見つかった場合、の`rule`権限は既存のルールとマージされます。  
   
- 別の継承フラグがある場合、規則をマージできません。 たとえば、ユーザーには、継承フラグなしで読み取りアクセスが許可された場合と<xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>サブキーの継承を持つユーザーの書き込みアクセス権を付与する規則を追加するために使用 (<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit?displayProperty=nameWithType>)、2 つの規則をマージすることはできません。  
+ 継承フラグが異なる場合は、ルールをマージできません。 たとえば、ユーザーが継承フラグを指定せずに読み取りアクセスを許可さ<xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>れており、サブキー (<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit?displayProperty=nameWithType>) の継承を使用してユーザーに書き込みアクセスを付与する規則を追加するために使用される場合、2つの規則をマージすることはできません。  
   
- さまざまなルール<xref:System.Security.AccessControl.AccessControlType>値がマージされることはありません。  
+ 値が異なる<xref:System.Security.AccessControl.AccessControlType>規則はマージされません。  
   
- ルールは、最も経済的な方法で権限を express します。 たとえば、ユーザーがある<xref:System.Security.AccessControl.RegistryRights.QueryValues>、<xref:System.Security.AccessControl.RegistryRights.Notify>と<xref:System.Security.AccessControl.RegistryRights.ReadPermissions>権限、およびを許可する規則を追加<xref:System.Security.AccessControl.RegistryRights.EnumerateSubKeys>権、ユーザーがの構成要素をすべて<xref:System.Security.AccessControl.RegistryRights.ReadKey>権限。 ユーザーの権限を照会する場合を含むルールが表示されます<xref:System.Security.AccessControl.RegistryRights.ReadKey>権限。 同様に、削除する場合<xref:System.Security.AccessControl.RegistryRights.EnumerateSubKeys>の他の構成要素の権限<xref:System.Security.AccessControl.RegistryRights.ReadKey>権限が再表示されます。  
+ ルールは、最も経済的な方法で付与されます。 たとえば、 <xref:System.Security.AccessControl.RegistryRights.QueryValues>ユーザーが<xref:System.Security.AccessControl.RegistryRights.Notify> <xref:System.Security.AccessControl.RegistryRights.EnumerateSubKeys> 、権限を持っていて、権限を許可する規則を追加した場合、ユーザーには権限<xref:System.Security.AccessControl.RegistryRights.ReadKey>の構成要素がすべて含まれます。 <xref:System.Security.AccessControl.RegistryRights.ReadPermissions> ユーザーの権限に対してクエリを実行すると、権限を<xref:System.Security.AccessControl.RegistryRights.ReadKey>含むルールが表示されます。 同様に、権限を<xref:System.Security.AccessControl.RegistryRights.EnumerateSubKeys>削除すると、他の<xref:System.Security.AccessControl.RegistryRights.ReadKey>構成要素の権限も再表示されます。  
   
    
   
 ## Examples  
- 次のコード例は、レジストリ アクセス規則を作成しに追加されます、<xref:System.Security.AccessControl.RegistrySecurity>許可し、権限を拒否するルールは、同じの互換性のあるルールの中に、個別のまま方法の種類を示すオブジェクトがマージされます。  
+ 次のコード例では、レジストリアクセス規則を作成し<xref:System.Security.AccessControl.RegistrySecurity> 、オブジェクトに追加します。これにより、同じ種類の互換性のある規則が結合されたまま、アクセス許可と拒否の規則がどのように分離されているかが示されます。  
   
 > [!NOTE]
->  この例は、セキュリティ オブジェクトをアタッチできません、<xref:Microsoft.Win32.RegistryKey>オブジェクト。 セキュリティ オブジェクトをアタッチする例が記載<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>と<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>します。  
+>  この例では、 <xref:Microsoft.Win32.RegistryKey>オブジェクトにセキュリティオブジェクトをアタッチしません。 セキュリティオブジェクトをアタッチする例について<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>は<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>、「」および「」を参照してください。  
   
- 継承と反映フラグを示すコード例が記載されて、<xref:System.Security.AccessControl.RegistryAccessRule>クラス。  
+ 継承フラグと反映フラグを示すコード例は、 <xref:System.Security.AccessControl.RegistryAccessRule>クラスにあります。  
   
  [!code-csharp[System.Security.AccessControl.RegistrySecurity.AddAccessRule#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.AddAccessRule/CS/source.cs#1)]
  [!code-vb[System.Security.AccessControl.RegistrySecurity.AddAccessRule#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.AddAccessRule/VB/source.vb#1)]  
@@ -382,9 +382,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.AccessControl.RegistrySecurity.AddAuditRule%2A>メソッドと同じユーザーまたはグループとして使用してルールを検索`rule`します。 何も見つからない場合`rule`が追加されます。 照合ルールが見つからないかどうかでフラグ`rule`既存のルールにマージされます。  
+ メソッド<xref:System.Security.AccessControl.RegistrySecurity.AddAuditRule%2A>は、と`rule`同じユーザーまたはグループを持つルールを検索します。 何も見つからない場合`rule`は、が追加されます。 照合ルールが見つかった場合は、の`rule`フラグが既存のルールにマージされます。  
   
- 別の継承フラグがある場合、規則をマージできません。 、継承フラグなしで、特定のユーザーのキーへの書き込み試行が失敗した場合の監査などと<xref:System.Security.AccessControl.RegistrySecurity.AddAuditRule%2A>ことを指定するアクセス許可の変更に失敗した試行の継承を持つが、同じユーザーの監査規則を追加するために使用サブキー (<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit?displayProperty=nameWithType>)、2 つの規則をマージすることはできません。  
+ 継承フラグが異なる場合は、ルールをマージできません。 たとえば、失敗したキーへの書き込み試行が、継承フラグを使用せずに特定のユーザーに対し<xref:System.Security.AccessControl.RegistrySecurity.AddAuditRule%2A>て監査される場合、およびを使用して、アクセス許可を変更するための失敗した試行を同じユーザーに対して監査することを指定する規則を追加します。サブキー<xref:System.Security.AccessControl.InheritanceFlags.ContainerInherit?displayProperty=nameWithType>() では、2つのルールをマージすることはできません。  
   
  ]]></format>
         </remarks>
@@ -437,17 +437,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 監査規則を作成することをお勧めの方法は、のコンス トラクターを使用する、<xref:System.Security.AccessControl.RegistryAuditRule>クラス。  
+ 監査規則を作成するには、 <xref:System.Security.AccessControl.RegistryAuditRule>クラスのコンストラクターを使用することをお勧めします。  
   
 > [!NOTE]
->  指定することができますが、<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit?displayProperty=nameWithType>フラグは、その際に意味がありません。 監査の管理のためは、サブキーの名前/値ペアと、別のオブジェクトではありません。 名前/値ペアを監査権限は、サブキーの権限によって制御されます。 さらに、すべてのサブキーはコンテナーであるため (つまり、ことが含まれているその他のサブキーには) は影響しない、<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグ。 最後に、指定する、<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>互換性のある規則の標準の組み合わせに干渉するためにフラグが、ルールのメンテナンスに不必要に複雑にします。  
+>  <xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit?displayProperty=nameWithType>フラグを指定することはできますが、そのようなポイントはありません。 監査制御の目的では、サブキーの名前と値のペアは個別のオブジェクトではありません。 名前と値のペアに対する監査権限は、サブキーの権限によって制御されます。 さらに、すべてのサブキーはコンテナーであるため (つまり、他のサブキーを含めることができ<xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>ます)、フラグの影響を受けません。 最後に、 <xref:System.Security.AccessControl.InheritanceFlags.ObjectInherit>フラグを指定すると、互換性のある規則の通常の組み合わせが妨げられるため、規則の保守が不必要に複雑になります。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="accessMask" />、<paramref name="inheritanceFlags" />、<paramref name="propagationFlags" />、または <paramref name="flags" /> に無効な値が指定されています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="identityReference" /> は <see langword="null" />です。  
   
-または 
+- または - 
  <paramref name="accessMask" /> が 0 です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="identityReference" /> が <see cref="T:System.Security.Principal.SecurityIdentifier" /> 型ではなく、<see cref="T:System.Security.Principal.NTAccount" /> 型に変換できる <see cref="T:System.Security.Principal.SecurityIdentifier" /> などの型でもありません。</exception>
       </Docs>
@@ -486,7 +486,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生するクラス、<xref:System.Security.AccessControl.ObjectSecurity>クラスのオーバーライド、<xref:System.Security.AccessControl.ObjectSecurity.AuditRuleType%2A>プロパティと戻り値を使用して監査権限を表す型。 配列または複数の種類のセキュリティ オブジェクトを含むコレクションを使用する場合は、このプロパティを使用して、各セキュリティ オブジェクトを使用する適切な監査規則の種類を決定します。  
+ <xref:System.Security.AccessControl.ObjectSecurity>クラスから派生するクラスは、 <xref:System.Security.AccessControl.ObjectSecurity.AuditRuleType%2A>プロパティをオーバーライドし、監査権限を表すために使用する型を返します。 複数の種類のセキュリティオブジェクトを含む配列またはコレクションを操作する場合は、このプロパティを使用して、各セキュリティオブジェクトで使用する適切な監査規則の種類を決定します。  
   
  ]]></format>
         </remarks>
@@ -530,19 +530,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在<xref:System.Security.AccessControl.RegistrySecurity>同じユーザーと同じであるルールが検索<xref:System.Security.AccessControl.AccessControlType>として値`rule`します。 このようなルールが見つからないかどうか、アクションは実行されませんし、メソッドを返します`false`します。 指定されたフラグと互換性のため、継承との互換性フラグをチェック照合ルールが見つかった場合`rule`します。 互換性のある規則が存在しないかどうか、操作はありませんし、メソッドを返します`false`します。 権限がで指定された互換性フラグを含む規則が見つかった場合`rule`、互換性のある規則から削除されます、メソッドを返します`true`します。 場合`rule`互換性のある規則に含まれていない権限を指定します、それらの権利に関する操作はありません。 現在から全体の規則が削除される場合、すべての権限は、互換性のある規則から削除されます、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト。  
+ 現在<xref:System.Security.AccessControl.RegistrySecurity>のは、と`rule`同じユーザーと同じ<xref:System.Security.AccessControl.AccessControlType>値を持つルールを検索します。 このような規則が見つからない場合、アクションは実行されず、 `false`メソッドはを返します。 一致規則が見つかった場合、その継承と互換性フラグは、に`rule`指定されているフラグと互換性があるかどうかがチェックされます。 互換性のある規則が見つからない場合、アクションは実行されず、 `false`メソッドはを返します。 互換性のあるフラグを持つ規則が見つかった場合、に`rule`指定された権限は互換性のあるルールから`true`削除され、メソッドはを返します。 が`rule` 、互換性のある規則に含まれていない権限を指定している場合、これらの権限に関して何も実行されません。 すべての権限が互換性のあるルールから削除されると、ルール全体が現在<xref:System.Security.AccessControl.RegistrySecurity>のオブジェクトから削除されます。  
   
    
   
 ## Examples  
- 次のコード例に示す方法、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>メソッドは、互換性のある規則から権利を削除する方法と、<xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>メソッドは、互換性のある規則の権限をマージします。  
+ 次のコード例は、メソッド<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>が互換性のある規則から権限を削除する方法<xref:System.Security.AccessControl.RegistrySecurity.AddAccessRule%2A>と、メソッドが互換性のある規則との間で権限をマージする方法を示しています。  
   
- 例は、作成、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトし、現在のユーザーを許可する規則を追加します。<xref:System.Security.AccessControl.RegistryRights.ReadKey?displayProperty=nameWithType>権限。 ユーザーを許可するルールを作成し<xref:System.Security.AccessControl.RegistryRights.SetValue?displayProperty=nameWithType>同じ継承および使用して最初のルールと伝達の権限を指定して、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>からこの新しいルールを削除する方法、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト。 <xref:System.Security.AccessControl.RegistryRights.SetValue> 構成要素は、<xref:System.Security.AccessControl.RegistryRights.ReadKey>ので、互換性のある規則から削除されます。 内のルール、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトに表示されるの残りの構成要素を示す<xref:System.Security.AccessControl.RegistryRights.ReadKey>します。  
+ この例では<xref:System.Security.AccessControl.RegistrySecurity> 、オブジェクトを作成し、現在のユーザー <xref:System.Security.AccessControl.RegistryRights.ReadKey?displayProperty=nameWithType>の権限を許可するルールを追加します。 次に、最初の規則と同じ継承と<xref:System.Security.AccessControl.RegistryRights.SetValue?displayProperty=nameWithType>反映の権限を持つユーザーを付与する規則を作成し、 <xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>メソッドを使用して、 <xref:System.Security.AccessControl.RegistrySecurity>この新しい規則をオブジェクトから削除します。 <xref:System.Security.AccessControl.RegistryRights.SetValue>はの構成要素<xref:System.Security.AccessControl.RegistryRights.ReadKey>であるため、互換性のある規則から削除されます。 <xref:System.Security.AccessControl.RegistrySecurity>オブジェクト内のルールが表示され、の<xref:System.Security.AccessControl.RegistryRights.ReadKey>残りの構成要素が表示されます。  
   
- コード例を呼び出して、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>にマージするメソッド、<xref:System.Security.AccessControl.RegistryRights.SetValue>内のルールに戻す、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト。  
+ コード例では、 <xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>メソッドを呼び出して、 <xref:System.Security.AccessControl.RegistryRights.SetValue> <xref:System.Security.AccessControl.RegistrySecurity>オブジェクト内のルールに適切にマージします。  
   
 > [!NOTE]
->  この例は、セキュリティ オブジェクトをアタッチできません、<xref:Microsoft.Win32.RegistryKey>オブジェクト。 このセクションでは、2 番目の例は、セキュリティ オブジェクトをアタッチおよびは<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType><xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>します。  
+>  この例では、 <xref:Microsoft.Win32.RegistryKey>オブジェクトにセキュリティオブジェクトをアタッチしません。 このセクションの2番目の例では、セキュリティオブジェクトをアタッチします<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>。そのため、「」 <xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>の例を参照してください。  
   
  [!code-csharp[System.Security.AccessControl.RegistrySecurity.RemoveAccessRule#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.RemoveAccessRule/CS/source.cs#1)]
  [!code-vb[System.Security.AccessControl.RegistrySecurity.RemoveAccessRule#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.RemoveAccessRule/VB/source.vb#1)]  
@@ -589,19 +589,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在<xref:System.Security.AccessControl.RegistrySecurity>を含む、同じユーザーと同じ規則が検索<xref:System.Security.AccessControl.AccessControlType>として値`rule`します。 権限、継承フラグ、またはフラグと反映フラグで指定された`rule`この検索を実行する場合は無視されます。 照合ルールが見つからない場合、アクションは行われません。  
+ 現在<xref:System.Security.AccessControl.RegistrySecurity>のは、と`rule`同じユーザーと同じ<xref:System.Security.AccessControl.AccessControlType>値を持つルールを検索します。 この検索を実行する場合、によって`rule`指定された権限、継承フラグ、または伝達フラグは無視されます。 一致するルールが見つからない場合は、何も実行されません。  
   
- たとえば、ユーザーに別の継承と反映フラグのさまざまな権限を許可する複数のルールがある場合は、削除できますこれらすべてのルールを作成して、 <xref:System.Security.AccessControl.RegistryAccessRule> 、ユーザーを指定するオブジェクトと<xref:System.Security.AccessControl.AccessControlType.Allow?displayProperty=nameWithType>フラグ、および任意の権限を持つそのルールを渡すと、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll%2A>メソッド。  
+ たとえば、継承フラグと反映フラグが異なるさまざまな権限を許可する複数のルールがある場合、その<xref:System.Security.AccessControl.RegistryAccessRule> <xref:System.Security.AccessControl.AccessControlType.Allow?displayProperty=nameWithType>ユーザーを指定するオブジェクトを作成し、任意の権限とフラグを指定して、すべてのルールを削除できます。その後、その規則を<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll%2A>メソッドに渡します。  
   
    
   
 ## Examples  
- コード例を次に示します、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll%2A>メソッドは、ユーザーに一致するすべての規則を削除し、 <xref:System.Security.AccessControl.AccessControlType>、権およびフラグは無視されます。  
+ 次のコード例では、 <xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll%2A>メソッドが、ユーザーと<xref:System.Security.AccessControl.AccessControlType>一致するすべての規則を削除し、権限とフラグを無視することを示しています。  
   
- 例は、作成、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトし、許可し、異なる継承と反映フラグで、現在のユーザーのさまざまな権限を拒否する規則を追加します。 所有権を取得する現在のユーザーを許可しするには、そのルールを渡す新しいルールを作成し、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll%2A>アクセスを許可する 2 つの規則を削除するメソッド。  
+ この例では<xref:System.Security.AccessControl.RegistrySecurity> 、オブジェクトを作成し、継承フラグと反映フラグが異なる、現在のユーザーに対するさまざまな権限を許可および拒否する規則を追加します。 この例では、現在のユーザーに所有権の取得を許可する新しい規則を作成し、 <xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll%2A>その規則をメソッドに渡して、アクセスを許可する2つの規則を削除します。  
   
 > [!NOTE]
->  この例は、セキュリティ オブジェクトをアタッチできません、<xref:Microsoft.Win32.RegistryKey>オブジェクト。 参照してください、<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>メソッドと<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>メソッド。  
+>  この例では、 <xref:Microsoft.Win32.RegistryKey>オブジェクトにセキュリティオブジェクトをアタッチしません。 <xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType> メソッド<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>とメソッドを参照してください。  
   
  [!code-csharp[System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll/CS/source.cs#1)]
  [!code-vb[System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll/VB/source.vb#1)]  
@@ -648,20 +648,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 完全に一致する場合にのみ、ルールが削除`rule`フラグを含むすべての詳細。 その他の規則と同じユーザーと<xref:System.Security.AccessControl.AccessControlType>は影響しません。  
+ ルールが削除されるのは、フラグ`rule`を含むすべての詳細で完全に一致する場合だけです。 同じユーザーと<xref:System.Security.AccessControl.AccessControlType>を持つその他の規則は影響を受けません。  
   
 > [!IMPORTANT]
->  ルールを表す 1 つまたは複数基になるアクセス制御エントリ (ACE) とこれらのエントリが分割またはユーザーのアクセスのセキュリティ規則を変更するときに、必要に応じて組み合わせます。 そのため、ルールが存在しなく、形式が追加されたときに、その場合、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific%2A>方法はそれを削除することはできません。  
+>  規則は1つ以上の基になるアクセス制御エントリ (ACE) を表します。これらのエントリは、ユーザーのアクセスセキュリティ規則を変更するときに、必要に応じて分割または結合されます。 そのため、ルールは、追加されたときの特定の形式には存在しなくなった可能性が<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific%2A>あります。その場合、メソッドは削除できません。  
   
    
   
 ## Examples  
- コード例を次に示します、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific%2A>メソッドが正確に一致した場合にのみ、ルールを削除します。  
+ 次のコード例では、 <xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific%2A>メソッドが完全に一致した場合にのみ規則が削除されることを示しています。  
   
- この例は、異なる権限を許可する 2 つのルールを作成します。 ルールはあるので、最初の 2 番目のルールが追加されたときにマージの互換性のある継承フラグと反映フラグ、です。 例では、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific%2A>最初の規則を指定して、メソッド、規則は、マージするために一致する規則はありませんが。 例を呼び出して、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>結合規則、および最後に呼び出しから 2 番目のルールの削除するメソッド、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific%2A>最初の規則を削除する方法。  
+ この例では、異なる権限を許可する2つのルールを作成します。 規則には互換性のある継承フラグと反映フラグがあります。そのため、2番目のルールを追加すると、最初のルールとマージされます。 この例では<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific%2A> 、最初の規則を指定してメソッドを呼び出しますが、規則はマージされるため、に一致する規則はありません。 次に、 <xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule%2A>メソッドを呼び出して、マージされた規則から2番目の規則を削除<xref:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific%2A>し、最後にメソッドを呼び出して最初の規則を削除します。  
   
 > [!NOTE]
->  この例は、セキュリティ オブジェクトをアタッチできません、<xref:Microsoft.Win32.RegistryKey>オブジェクト。 参照してください、<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>メソッドと<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>メソッド。  
+>  この例では、 <xref:Microsoft.Win32.RegistryKey>オブジェクトにセキュリティオブジェクトをアタッチしません。 <xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType> メソッド<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>とメソッドを参照してください。  
   
  [!code-csharp[System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific/CS/source.cs#1)]
  [!code-vb[System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific/VB/source.vb#1)]  
@@ -709,7 +709,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在<xref:System.Security.AccessControl.RegistrySecurity>と同じユーザーを含む監査規則の検索は`rule`します。 このようなルールが見つからないかどうか、アクションは実行されませんし、メソッドを返します`false`します。 指定されたフラグと互換性のため、継承との互換性フラグをチェック照合ルールが見つかった場合`rule`します。 互換性のある規則が存在しないかどうか、操作はありませんし、メソッドを返します`false`します。 権限がで指定された互換性フラグを含む規則が見つかった場合`rule`、互換性のある規則から削除されます、メソッドを返します`true`します。 場合`rule`互換性のある規則に含まれていない権限を指定します、それらの権利に関する操作はありません。 現在から全体の規則が削除される場合、すべての権限は、互換性のある規則から削除されます、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクト。  
+ 現在<xref:System.Security.AccessControl.RegistrySecurity>のは、と`rule`同じユーザーを持つ監査規則を検索します。 このような規則が見つからない場合、アクションは実行されず、 `false`メソッドはを返します。 一致規則が見つかった場合、その継承と互換性フラグは、に`rule`指定されているフラグと互換性があるかどうかがチェックされます。 互換性のある規則が見つからない場合、アクションは実行されず、 `false`メソッドはを返します。 互換性のあるフラグを持つ規則が見つかった場合、に`rule`指定された権限は互換性のあるルールから`true`削除され、メソッドはを返します。 が`rule` 、互換性のある規則に含まれていない権限を指定している場合、これらの権限に関して何も実行されません。 すべての権限が互換性のあるルールから削除されると、ルール全体が現在<xref:System.Security.AccessControl.RegistrySecurity>のオブジェクトから削除されます。  
   
  ]]></format>
         </remarks>
@@ -753,11 +753,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在<xref:System.Security.AccessControl.RegistrySecurity>と同じユーザーの監査規則が検索`rule`します。 権限、継承フラグ、またはフラグと反映フラグで指定された`rule`この検索を実行する場合は無視されます。 照合ルールが見つからない場合、アクションは行われません。  
+ 現在<xref:System.Security.AccessControl.RegistrySecurity>のは、と`rule`同じユーザーを持つ監査規則を検索します。 この検索を実行する場合、によって`rule`指定された権限、継承フラグ、または伝達フラグは無視されます。 一致するルールが見つからない場合は、何も実行されません。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="rule" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="rule" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="RemoveAuditRuleSpecific">
@@ -797,10 +797,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 完全に一致する場合にのみ、ルールが削除`rule`フラグを含むすべての詳細。 同じユーザーの場合は、その他の監査規則には影響しません。  
+ ルールが削除されるのは、フラグ`rule`を含むすべての詳細で完全に一致する場合だけです。 同じユーザーのその他の監査規則は影響を受けません。  
   
 > [!IMPORTANT]
->  ルールを表す 1 つまたは複数基になるアクセス制御エントリ (ACE) とこれらのエントリが分割またはユーザーのセキュリティの監査規則を変更するときに、必要に応じて組み合わせます。 そのため、ルールが存在しなく、形式が追加されたときに、その場合、<xref:System.Security.AccessControl.RegistrySecurity.RemoveAuditRuleSpecific%2A>方法はそれを削除することはできません。  
+>  規則は1つ以上の基になるアクセス制御エントリ (ACE) を表します。これらのエントリは、ユーザーの監査セキュリティ規則を変更するときに、必要に応じて分割または結合されます。 そのため、ルールは、追加されたときの特定の形式には存在しなくなった可能性が<xref:System.Security.AccessControl.RegistrySecurity.RemoveAuditRuleSpecific%2A>あります。その場合、メソッドは削除できません。  
   
  ]]></format>
         </remarks>
@@ -844,17 +844,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーが指定されたルールに一致するアクセス規則がない場合`rule`が追加されます。  
+ ユーザーが指定した規則に一致するアクセス規則がない`rule`場合は、が追加されます。  
   
    
   
 ## Examples  
- 次のコード例に示す方法、<xref:System.Security.AccessControl.RegistrySecurity.ResetAccessRule%2A>メソッドは、一致する指定された規則に一致するユーザーのすべての規則を置き換えます。  
+ 次のコード例は、一致<xref:System.Security.AccessControl.RegistrySecurity.ResetAccessRule%2A>するユーザーのすべての規則を一致に対して指定された規則と置き換える方法を示しています。  
   
- 例は、作成、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトし、許可し、異なる継承と反映フラグで、現在のユーザーのさまざまな権限を拒否する規則を追加します。 使用して、キーを読み取る場合にのみ、現在のユーザーは、新しいルールを作成し、<xref:System.Security.AccessControl.RegistrySecurity.ResetAccessRule%2A>メソッドをユーザーのすべての規則を削除し、新しい規則に置き換えます。  
+ この例では<xref:System.Security.AccessControl.RegistrySecurity> 、オブジェクトを作成し、継承フラグと反映フラグが異なる、現在のユーザーに対するさまざまな権限を許可および拒否する規則を追加します。 この例では、現在のユーザーにのみキーの読み取りを許可する新しい規則を作成し<xref:System.Security.AccessControl.RegistrySecurity.ResetAccessRule%2A> 、メソッドを使用してユーザーのすべての規則を削除し、新しい規則に置き換えます。  
   
 > [!NOTE]
->  この例は、セキュリティ オブジェクトをアタッチできません、<xref:Microsoft.Win32.RegistryKey>オブジェクト。 参照してください、<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>メソッドと<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>メソッド。  
+>  この例では、 <xref:Microsoft.Win32.RegistryKey>オブジェクトにセキュリティオブジェクトをアタッチしません。 <xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType> メソッド<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>とメソッドを参照してください。  
   
  [!code-csharp[System.Security.AccessControl.RegistrySecurity.ResetAccessRule#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.ResetAccessRule/CS/source.cs#1)]
  [!code-vb[System.Security.AccessControl.RegistrySecurity.ResetAccessRule#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.ResetAccessRule/VB/source.vb#1)]  
@@ -900,19 +900,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定されたルールがある場合<xref:System.Security.AccessControl.AccessControlType.Allow>、このメソッドの効果は、すべてを削除する<xref:System.Security.AccessControl.AccessControlType.Allow>指定されたルールに置き換えて、指定したユーザーの規則。 指定されたルールがある場合<xref:System.Security.AccessControl.AccessControlType.Deny>すべて、<xref:System.Security.AccessControl.AccessControlType.Deny>指定したユーザーの規則は、指定されたルールに置き換えられます。  
+ 指定された規則<xref:System.Security.AccessControl.AccessControlType.Allow>がの場合、このメソッドの効果は、 <xref:System.Security.AccessControl.AccessControlType.Allow>指定されたユーザーのすべての規則を削除し、指定した規則に置き換えることです。 指定した規則に<xref:System.Security.AccessControl.AccessControlType.Deny>が含ま<xref:System.Security.AccessControl.AccessControlType.Deny>れている場合は、指定したユーザーのすべての規則が指定した規則に置き換えられます。  
   
- 規則がないユーザーの場合と<xref:System.Security.AccessControl.AccessControlType>指定の規則と一致`rule`が追加されます。  
+ ユーザー <xref:System.Security.AccessControl.AccessControlType>が指定した規則に一致する規則が存在し`rule`ない場合は、が追加されます。  
   
    
   
 ## Examples  
- コード例を次に示します、<xref:System.Security.AccessControl.RegistrySecurity.SetAccessRule%2A>メソッドは、ユーザーの両方に一致するすべての規則を削除し、<xref:System.Security.AccessControl.AccessControlType>の`rule`権限と、フラグを無視しで置き換え、`rule`します。  
+ 次のコード例では、 <xref:System.Security.AccessControl.RegistrySecurity.SetAccessRule%2A>メソッドが、ユーザー <xref:System.Security.AccessControl.AccessControlType>との`rule`両方に一致するすべての規則を削除し、権限とフラグを無視`rule`し、をに置き換えます。  
   
- 例は、作成、<xref:System.Security.AccessControl.RegistrySecurity>オブジェクトし、許可し、異なる継承と反映フラグで、現在のユーザーのさまざまな権限を拒否する規則を追加します。 使用して、キーを読み取る場合にのみ、現在のユーザーは、新しいルールを作成し、<xref:System.Security.AccessControl.RegistrySecurity.SetAccessRule%2A>メソッド アクセスを許可する 2 つの規則を削除して、新しい規則に置き換えます。 アクセスを拒否する規則が影響を受けません。  
+ この例では<xref:System.Security.AccessControl.RegistrySecurity> 、オブジェクトを作成し、継承フラグと反映フラグが異なる、現在のユーザーに対するさまざまな権限を許可および拒否する規則を追加します。 この例では、現在のユーザーにのみキーの読み取りを許可する新しい規則を作成し<xref:System.Security.AccessControl.RegistrySecurity.SetAccessRule%2A> 、メソッドを使用して、アクセスを許可する2つの規則を削除し、新しい規則に置き換えます。 アクセスを拒否する規則は影響を受けません。  
   
 > [!NOTE]
->  この例は、セキュリティ オブジェクトをアタッチできません、<xref:Microsoft.Win32.RegistryKey>オブジェクト。 参照してください、<xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType>メソッドと<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>メソッド。  
+>  この例では、 <xref:Microsoft.Win32.RegistryKey>オブジェクトにセキュリティオブジェクトをアタッチしません。 <xref:Microsoft.Win32.RegistryKey.GetAccessControl%2A?displayProperty=nameWithType> メソッド<xref:Microsoft.Win32.RegistryKey.SetAccessControl%2A?displayProperty=nameWithType>とメソッドを参照してください。  
   
  [!code-csharp[System.Security.AccessControl.RegistrySecurity.SetAccessRule#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.SetAccessRule/CS/source.cs#1)]
  [!code-vb[System.Security.AccessControl.RegistrySecurity.SetAccessRule#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.AccessControl.RegistrySecurity.SetAccessRule/VB/source.vb#1)]  
@@ -959,7 +959,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ユーザーが指定されたルールに一致する監査規則がない場合`rule`が追加されます。  
+ ユーザーが指定した規則に一致する監査規則がない`rule`場合は、が追加されます。  
   
  ]]></format>
         </remarks>
