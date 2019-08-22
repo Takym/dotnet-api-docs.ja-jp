@@ -1,5 +1,5 @@
 <Type Name="UdpSingleSourceMulticastClient" FullName="System.Net.Sockets.UdpSingleSourceMulticastClient">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c027a4d4116c04f027be65aee90bb4584786c2ec" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55395913" /></Metadata><TypeSignature Language="C#" Value="public class UdpSingleSourceMulticastClient : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9eb81441e483a85c9c2256e50ce009ef6eb76c41" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69112040" /></Metadata><TypeSignature Language="C#" Value="public class UdpSingleSourceMulticastClient : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit UdpSingleSourceMulticastClient extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
   <TypeSignature Language="VB.NET" Value="Public Class UdpSingleSourceMulticastClient&#xA;Implements IDisposable" />
@@ -31,11 +31,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- マルチキャスト グループ アドレスとセンダの送信元アドレスを認識する必要があります。  
+ マルチキャストグループアドレスと送信元アドレスは既知である必要があります。  
   
- 特定の送信者からマルチキャスト データを受信するだけでなく、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>クライアントは、送信者に送り返すユニキャスト データも送信します。  
+ クライアントは<xref:System.Net.Sockets.UdpSingleSourceMulticastClient> 、特定の送信元からのマルチキャストデータを受信するだけでなく、ユニキャストデータを送信元に送信することもできます。  
   
- 複数のソースからマルチキャストを受信するか、使用して、ソースは、事前にわかっている場合、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>クラスの代わりにします。  
+ 複数のソースからマルチキャストを受信する場合、またはソースが事前に認識<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>されていない場合は、代わりにクラスを使用します。  
   
  ]]></format>
     </remarks>
@@ -75,18 +75,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>コンス トラクターは、グループ アドレスとポート、UDP マルチキャスト ソケットを関連付けますはないバインドまたはそれ以外の場合、ソケットを使用します。  
+ この<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>コンストラクターは、UDP マルチキャストソケットをグループアドレスとポートに関連付けますが、バインドしたり、ソケットを使用したりしません。  
   
- `groupAddress`パラメーターの有効期限があります、IPv6 または IPv4 マルチキャスト アドレス。 ただしのアドレス ファミリ、`sourceAddress`と`groupAddress`パラメーターでは、同じ必要があります。  
+ パラメーター `groupAddress`には、IPv6 または IPv4 マルチキャストアドレスを指定できます。 ただし、パラメーター `sourceAddress`と`groupAddress`パラメーターのアドレスファミリは同じである必要があります。  
   
- `localPort` 1,024 未満のポート パラメーターを指定する必要があります。  
+ パラメーター `localPort`では、1024未満のポートを指定することはできません。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="sourceAddress" /> および <paramref name="groupAddress" /> は同じアドレス ファミリである必要があります。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="sourceAddress" /> が null 参照 (Visual Basic では Nothing) です。  
   
-または 
+- または - 
  <paramref name="groupAddress" /> が null 参照 (Visual Basic では Nothing) です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="localPort" /> が 0 未満です。 
 または 
@@ -130,11 +130,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup%2A>メソッドは、ローカル ポートに UDP マルチキャスト ソケットをバインドし、マルチキャスト データグラムを 1 つのソース アドレスから受信するようにするグループに参加します。 マルチキャスト グループ アドレス、1 つの送信元アドレス、およびローカル ポートにバインドするがで指定された、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>コンス トラクター。  
+ メソッド<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup%2A>は、UDP マルチキャストソケットをローカルポートにバインドし、マルチキャストグループに参加して、1つのソースアドレスからデータグラムを受信できるようにします。 バインド先のマルチキャストグループアドレス、単一ソースアドレス、およびローカルポートは、 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>コンストラクターで指定されます。  
   
- 指定されたメソッド、`callback`パラメーターが、マルチキャスト グループへの参加操作が完了したときに呼び出されます。  
+ マルチキャストグループに参加`callback`する操作が完了すると、パラメーターに指定されたメソッドが呼び出されます。  
   
- ランタイムで必要な場合、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup%2A>メソッドでは、クライアントがマルチキャスト グループへのアクセスを許可されていることを確認するポリシーのチェックも実行します。 クライアントでは、アクセスを許可されていない場合、<xref:System.Net.Sockets.SocketException>がスローされ<xref:System.Net.Sockets.SocketError.AccessDenied>します。  
+ ランタイムによって要求され<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup%2A>た場合、メソッドはポリシーチェックを実行して、クライアントがマルチキャストグループにアクセスできるかどうかを確認します。 クライアントがアクセスを<xref:System.Net.Sockets.SocketException>許可されていない場合は、と共<xref:System.Net.Sockets.SocketError.AccessDenied>にがスローされます。  
   
  ]]></format>
         </remarks>
@@ -185,22 +185,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>メソッドは、単一の送信者から参加しているマルチキャスト グループから UDP パケットの受信の操作を開始します。 ローカル ポート、マルチキャスト グループ、および送信者の発信元アドレスがで指定された、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>コンス トラクター。 マルチキャスト クライアントも、マルチキャスト グループへの参加を完了が必要があります。  
+ メソッド<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>は、1つの送信元から、参加しているマルチキャストグループから UDP パケットを受信する操作を開始します。 ローカルポート、マルチキャストグループ、および送信元アドレスは、 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>コンストラクターで指定されます。 マルチキャストクライアントでは、マルチキャストグループへの参加も完了している必要があります。  
   
- 指定されたメソッド、`callback`パラメーターが、パケットが受信したときに呼び出されます。  
+ `callback`パラメーターで指定されたメソッドは、パケットの受信時に呼び出されます。  
   
- これは udp 一般的ではありませんが受信操作が同期的に、失敗した場合、ソケット エラーを含めることは可能になります。 ソケット エラーが発生した場合、<xref:System.Net.Sockets.SocketException>がスローされます。 メンバーとして表示されるエラーが指定されて、<xref:System.Net.Sockets.SocketError>列挙体。  
+ 受信操作が同期的に失敗した場合、ソケットに障害が発生する可能性があります。ただし、これは UDP では一般的ではありません。 ソケットエラーが発生した場合<xref:System.Net.Sockets.SocketException>は、がスローされます。 受信したエラーは<xref:System.Net.Sockets.SocketError>列挙体のメンバーとして指定されます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が null 参照 (Visual Basic では Nothing) です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> が 0 未満です。 
-または 
+- または - 
  <paramref name="offset" /> が <paramref name="buffer" /> の長さを超えています。  
   
-または 
+- または - 
  <paramref name="count" /> が 0 未満です。 
-または 
+- または - 
  <paramref name="offset" /> にカウントを加算した値が <paramref name="buffer" /> の長さを超えています。</exception>
         <exception cref="T:System.InvalidOperationException">マルチキャスト グループはまだ結合されていません。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Net.Sockets.UdpSingleSourceMulticastClient" /> は破棄されています。</exception>
@@ -251,17 +251,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>メソッドは、以前に指定されたソースに UDP パケットを送信する操作を開始します。  
+ メソッド<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>は、以前に指定したソースへの UDP パケットの送信操作を開始します。  
   
- 一部のプロトコルでは、この情報を使用して、フロー制御、品質のサービスの統計情報、または回復メッセージを渡します。  
+ 一部のプロトコルでは、この情報を使用してフロー制御、サービス品質統計、または回復メッセージを渡すことができます。  
   
- 指定されたメソッド、`callback`パラメーターが、パケットが送信されたときに呼び出されます。  
+ `callback`パラメーターで指定されたメソッドは、パケットが送信されたときに呼び出されます。  
   
- クライアントは、マルチキャスト グループへの参加が完了しましたする必要があります。  
+ クライアントは、マルチキャストグループへの参加を完了している必要があります。  
   
- 接続先ポートが指定されている場合、`remotePort`パラメーターは、1,024 未満、<xref:System.Net.Sockets.SocketException>がスローされ<xref:System.Net.Sockets.SocketError.AccessDenied>。  
+ `remotePort`パラメーターで指定された宛先ポートが 1024 <xref:System.Net.Sockets.SocketException>未満の場合は、と共<xref:System.Net.Sockets.SocketError.AccessDenied>にがスローされます。  
   
- これは udp 一般的ではありませんが、送信操作が同期的に、失敗した場合、ソケット エラーを含めることは可能になります。 ソケット エラーが発生した場合、<xref:System.Net.Sockets.SocketException>がスローされます。 メンバーとして表示されるエラーが指定されて、<xref:System.Net.Sockets.SocketError>列挙体。  
+ 送信操作が同期的に失敗した場合、ソケットに障害が発生する可能性があります。ただし、これは UDP では一般的ではありません。 ソケットエラーが発生した場合<xref:System.Net.Sockets.SocketException>は、がスローされます。 受信したエラーは<xref:System.Net.Sockets.SocketError>列挙体のメンバーとして指定されます。  
   
  ]]></format>
         </remarks>
@@ -270,12 +270,12 @@
 または 
  <paramref name="offset" /> が <paramref name="buffer" /> の長さを超えています。  
   
-または 
+- または - 
  <paramref name="count" /> が 0 未満です。 
-または 
+- または - 
  <paramref name="offset" /> にカウントを加算した値が <paramref name="buffer" /> の長さを超えています。  
   
-または 
+- または - 
  <paramref name="remotePort" /> が 0 より小さいか、65,535 を超えています。</exception>
         <exception cref="T:System.InvalidOperationException">マルチキャスト グループはまだ結合されていません。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Net.Sockets.UdpSingleSourceMulticastClient" /> は破棄されています。</exception>
@@ -356,11 +356,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup%2A>メソッドは、マルチキャスト グループへのソケットとの結合操作に非同期のバインドを完了します。  
+ メソッド<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup%2A>は、ソケットへの非同期バインドとマルチキャストグループへの結合操作を完了します。  
   
- ランタイムで必要な場合、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup%2A>メソッドでは、クライアントがマルチキャスト グループへのアクセスを許可されていることを確認するポリシーのチェックも実行します。 クライアントでは、アクセスを許可されていない場合、<xref:System.Net.Sockets.SocketException>がスローされ<xref:System.Net.Sockets.SocketError.AccessDenied>します。  
+ ランタイムによって要求され<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup%2A>た場合、メソッドはポリシーチェックを実行して、クライアントがマルチキャストグループにアクセスできるかどうかを確認します。 クライアントがアクセスを<xref:System.Net.Sockets.SocketException>許可されていない場合は、と共<xref:System.Net.Sockets.SocketError.AccessDenied>にがスローされます。  
   
- グループの参加の操作を実行中にソケット エラーがある場合、<xref:System.Net.Sockets.SocketException>がスローされます。 メンバーとして表示されるエラーが指定されて、<xref:System.Net.Sockets.SocketError>列挙体。  
+ グループの結合操作<xref:System.Net.Sockets.SocketException>の実行中にソケットエラーが発生した場合は、がスローされます。 受信したエラーは<xref:System.Net.Sockets.SocketError>列挙体のメンバーとして指定されます。  
   
  ]]></format>
         </remarks>
@@ -405,9 +405,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>メソッドは、マルチキャスト グループの 1 つのソースからのパケットを受信する非同期操作を完了します。  
+ メソッド<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>は、マルチキャストグループ内の単一のソースからパケットを受信する非同期操作を完了します。  
   
- 受信操作を実行するときにソケット エラーがある場合、<xref:System.Net.Sockets.SocketException>がスローされます。 メンバーとして表示されるエラーが指定されて、<xref:System.Net.Sockets.SocketError>列挙体。  
+ 受信操作の実行中にソケットエラーが発生した場合<xref:System.Net.Sockets.SocketException>は、がスローされます。 受信したエラーは<xref:System.Net.Sockets.SocketError>列挙体のメンバーとして指定されます。  
   
  ]]></format>
         </remarks>
@@ -450,9 +450,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource%2A>メソッドは、以前に指定された 1 つのソースにパケットを送信する非同期操作を完了します。  
+ メソッド<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource%2A>は、前に指定した単一のソースにパケットを送信する非同期操作を完了します。  
   
- 受信操作を実行するときにソケット エラーがある場合、<xref:System.Net.Sockets.SocketException>がスローされます。 メンバーとして表示されるエラーが指定されて、<xref:System.Net.Sockets.SocketError>列挙体。  
+ 受信操作の実行中にソケットエラーが発生した場合<xref:System.Net.Sockets.SocketException>は、がスローされます。 受信したエラーは<xref:System.Net.Sockets.SocketError>列挙体のメンバーとして指定されます。  
   
  ]]></format>
         </remarks>
@@ -494,9 +494,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `ReceiveBufferSize`プロパティを取得または基になるは、受信バッファーのバイト単位のサイズを設定<xref:System.Net.Sockets.Socket>このマルチキャスト受信操作に使用される<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>インスタンス。 具体的には、`ReceiveBufferSize`プロパティがスタックのパケットが到着すると、アプリケーションがまだ呼び出されていない場合に使用するバッファーのサイズを制御、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>メソッド。 このバッファーがいっぱいし、アプリケーション呼び出しの前にパケットを受け取った場合、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>と<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>メソッド、古いパケットが削除されます。 アプリケーションが、古いパケットを受信できなくし、を呼び出すときに新しいパケットの受信が代わりに、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>メソッド。  
+ プロパティ`ReceiveBufferSize`は、 <xref:System.Net.Sockets.Socket> この<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>インスタンスでのマルチキャストの受信操作に使用される、基になるの受信バッファーのサイズ (バイト単位) を取得または設定します。 具体的には`ReceiveBufferSize` 、プロパティは、パケットが到着したときにスタックによって使用されるバッファーのサイズを制御し<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>ますが、アプリケーションはまだメソッドを呼び出していません。 このバッファーがいっぱいになり、アプリケーションがメソッド<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>と<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>メソッドを呼び出す前にパケットが保持される場合、古いパケットは破棄されます。 アプリケーションは、古いパケットを受信できなくなり、メソッドの<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>呼び出し時に新しいパケットを受信します。  
   
- Windows 上の受信バッファーの既定のサイズには 8,192 です。  
+ Windows での受信バッファーの既定のサイズは8192です。  
   
  ]]></format>
         </remarks>
@@ -532,18 +532,18 @@
         <summary>この <see cref="T:System.Net.Sockets.UdpSingleSourceMulticastClient" /> インスタンスのマルチキャストの送信操作に使用される <see cref="T:System.Net.Sockets.Socket" /> の送信バッファーのバイト単位のサイズを取得または設定します。</summary>
         <value><see cref="T:System.Int32" /> を返します。  
   
-送信バッファーのバイト単位のサイズ。</value>
+送信バッファーのサイズ (バイト単位)。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- SendBufferSize プロパティを取得または基になるの送信バッファーのバイト単位のサイズを設定<xref:System.Net.Sockets.Socket>のマルチキャストの送信操作には、この使用<xref:System.Net.Sockets.UdpSingleSourceMulticastClient>インスタンス。  
+ Sendbuffersize プロパティは、この<xref:System.Net.Sockets.Socket> <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>インスタンスでのマルチキャストの送信操作に使用される、基になるの送信バッファーのサイズ (バイト単位) を取得または設定します。  
   
- Mac OS X、上、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>呼び出しを追加する前に、ネットワーク スタックの待機中---送信するバッファーのバイト数ができるプロパティを制御、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>メソッドが失敗します。 Mac OS X 上のアプリケーションは、短期間で大量の UDP パケットが送信されている場合に、このプロパティを使用してを考慮する必要があります。  
+ Mac OS X では、 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>プロパティは、メソッドへの追加の<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>呼び出しが失敗する前に、ネットワークスタックの待機中のバッファーに格納できるバイト数を制御します。 短時間の間に多数の UDP パケットを送信する場合、Mac OS X のアプリケーションはこのプロパティを考慮する必要があります。  
   
- 呼び出しで、Windows、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>メソッドの時間が長くなりますの値に応じてコールバックを呼び出し、<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>プロパティ送信バッファーがいっぱいの場合。 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>プロパティ コントロールのみが、送信が完了するまでに物理メモリでロックされているユーザーのバッファーのままかどうか。  
+ Windows では、 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>メソッドを呼び出すと、送信バッファーがいっぱいの場合に、 <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>プロパティの値に応じてコールバックが呼び出されるまでに時間がかかります。 プロパティ<xref:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize%2A>は、送信が完了するまで、ユーザーのバッファーが物理メモリ内でロックされたままになるかどうかを制御します。  
   
- Windows 上の送信バッファーの既定のサイズには 8,192 です。  
+ Windows での送信バッファーの既定のサイズは8192です。  
   
  ]]></format>
         </remarks>
