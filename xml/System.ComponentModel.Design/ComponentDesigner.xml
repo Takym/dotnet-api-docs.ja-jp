@@ -1,5 +1,5 @@
 <Type Name="ComponentDesigner" FullName="System.ComponentModel.Design.ComponentDesigner">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="cba9ab7eabae2155b27a0813aea41b359d88de55" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63902514" /></Metadata><TypeSignature Language="C#" Value="public class ComponentDesigner : IDisposable, System.ComponentModel.Design.IComponentInitializer, System.ComponentModel.Design.IDesignerFilter, System.ComponentModel.Design.ITreeDesigner" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bacaac6b965d4255a0d0ded3326f195fa0821212" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69349535" /></Metadata><TypeSignature Language="C#" Value="public class ComponentDesigner : IDisposable, System.ComponentModel.Design.IComponentInitializer, System.ComponentModel.Design.IDesignerFilter, System.ComponentModel.Design.ITreeDesigner" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ComponentDesigner extends System.Object implements class System.ComponentModel.Design.IComponentInitializer, class System.ComponentModel.Design.IDesigner, class System.ComponentModel.Design.IDesignerFilter, class System.ComponentModel.Design.ITreeDesigner, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.ComponentDesigner" />
   <TypeSignature Language="VB.NET" Value="Public Class ComponentDesigner&#xA;Implements IComponentInitializer, IDesignerFilter, IDisposable, ITreeDesigner" />
@@ -41,24 +41,24 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.ComponentDesigner>の基本デザイナー クラスには、デザイン モードでの関連付けられているコンポーネントの動作を拡張できる単純なデザイナーが用意されています。  
+ 基本<xref:System.ComponentModel.Design.ComponentDesigner>デザイナークラスには、デザインモードで関連コンポーネントの動作を拡張できる単純なデザイナーが用意されています。  
   
- <xref:System.ComponentModel.Design.ComponentDesigner> 空の提供<xref:System.ComponentModel.Design.IDesignerFilter>インターフェイスの実装、メソッドをオーバーライドすると、デザイン時に、属性、プロパティおよび関連付けられているコンポーネントのイベントを調整します。  
+ <xref:System.ComponentModel.Design.ComponentDesigner>メソッドをオーバーライド<xref:System.ComponentModel.Design.IDesignerFilter>して、関連付けられたコンポーネントの属性、プロパティ、イベントをデザイン時に調整できる、空のインターフェイス実装を提供します。  
   
- 使用して型をデザイナーを関連付けることができます、<xref:System.ComponentModel.DesignerAttribute>します。 デザイン時の動作のカスタマイズの概要については、次を参照してください。[デザイン時サポートの拡張](https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2010/37899azc(v=vs.100))します。  
+ を<xref:System.ComponentModel.DesignerAttribute>使用して、デザイナーを型に関連付けることができます。 デザイン時の動作のカスタマイズの概要については、「[デザイン時サポートの拡張](https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2010/37899azc(v=vs.100))」を参照してください。  
   
- <xref:System.ComponentModel.Design.ComponentDesigner>クラスは継承されたコンポーネントのプロパティ記述子の特別な動作を実装します。 という名前の内部型`InheritedPropertyDescriptor`、既定で使用されます<xref:System.ComponentModel.Design.ComponentDesigner>基底クラスから継承されるプロパティの代わりに実装します。 これらのプロパティ記述子を追加する 2 つのケースがあります。  
+ クラス<xref:System.ComponentModel.Design.ComponentDesigner>は、継承されたコンポーネントのプロパティ記述子に特別な動作を実装します。 という名前`InheritedPropertyDescriptor`の内部型は、基本<xref:System.ComponentModel.Design.ComponentDesigner>クラスから継承されたプロパティに対してを使用するために、既定の実装によって使用されます。 これらのプロパティ記述子が追加されるケースは2つあります。  
   
-1.  返されるルート オブジェクト自体に、<xref:System.ComponentModel.Design.IDesignerHost.RootComponent%2A?displayProperty=nameWithType>プロパティ、その基本クラスから継承しているためです。  
+1.  基底クラスから継承するため、 <xref:System.ComponentModel.Design.IDesignerHost.RootComponent%2A?displayProperty=nameWithType>プロパティによって返されるルートオブジェクト自体。  
   
-2.  ルート オブジェクトの基本クラスで見つかるフィールド。 基本クラスからパブリックおよびプロテクト フィールドは、ユーザーが操作できるように、デザイナーに追加されます。  
+2.  ルートオブジェクトの基底クラスにあるフィールドへの参照。 基本クラスからのパブリックおよびプロテクトフィールドは、ユーザーが操作できるようにデザイナーに追加されます。  
   
- `InheritedPropertyDescriptor`既定値は、現在の値オブジェクトのインスタンス化できるように、クラスが、プロパティの既定値を変更します。 これは、プロパティが別のインスタンスから継承されるためです。 デザイナーでは、プロパティ値をリセットするように、継承されたクラスによって設定された値に設定するを定義します。 この値は、メタデータに格納されている既定値に異なる場合があります。  
+ クラス`InheritedPropertyDescriptor`は、プロパティの既定値を変更して、既定値がオブジェクトのインスタンス化の現在の値になるようにします。 これは、プロパティが別のインスタンスから継承されているためです。 デザイナーは、継承されたクラスによって設定された値にプロパティ値を設定するときに、その値をリセットすることを定義します。 この値は、メタデータに格納されている既定値とは異なる場合があります。  
   
    
   
 ## Examples  
- 次のコード例は、例を示します<xref:System.ComponentModel.Design.ComponentDesigner>実装と、デザイナーに関連付けられた例コンポーネント。 デザイナーのオーバーライドを実装する、<xref:System.ComponentModel.Design.ComponentDesigner.Initialize%2A>メソッドを呼び出す基本`Initialize`メソッドは、のオーバーライド、<xref:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction%2A>を表示するメソッド、<xref:System.Windows.Forms.MessageBox>コンポーネントをダブルクリックしたときとのオーバーライド、 <xref:System.ComponentModel.Design.ComponentDesigner.Verbs%2A>カスタムを提供するプロパティのアクセサー<xref:System.ComponentModel.Design.DesignerVerb>コンポーネントのショートカット メニューにメニュー コマンド。  
+ 次のコード例では、 <xref:System.ComponentModel.Design.ComponentDesigner>実装の例と、デザイナーに関連付けられているコンポーネントの例を示します。 デザイナーは<xref:System.ComponentModel.Design.ComponentDesigner.Initialize%2A> 、基本`Initialize`メソッドを呼び出すメソッドのオーバーライド<xref:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction%2A> 、 <xref:System.ComponentModel.Design.ComponentDesigner.Verbs%2A>コンポーネントがダブルクリックされたときにを<xref:System.Windows.Forms.MessageBox>表示するメソッドのオーバーライド、およびのオーバーライドを実装します。コンポーネントのショートカットメニューに<xref:System.ComponentModel.Design.DesignerVerb>カスタムメニューコマンドを提供するプロパティアクセサー。  
   
  [!code-cpp[ComponentDesignerExample#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ComponentDesignerExample/CPP/examplecomponent.cpp#1)]
  [!code-csharp[ComponentDesignerExample#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ComponentDesignerExample/CS/examplecomponent.cs#1)]
@@ -70,7 +70,7 @@
     <altmember cref="T:System.ComponentModel.Design.IDesignerFilter" />
     <altmember cref="T:System.ComponentModel.DesignerAttribute" />
     <related type="Article" href="https://docs.microsoft.com/previous-versions/visualstudio/visual-studio-2010/37899azc(v=vs.100)">デザイン時サポートの拡張</related>
-    <related type="Article" href="https://msdn.microsoft.com/library/c186c4b6-076c-438d-9ed3-f13da29c8c1f">方法: デザイン時サービスにアクセス</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/c186c4b6-076c-438d-9ed3-f13da29c8c1f">方法: デザイン時サービスへのアクセス</related>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -155,11 +155,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、コピーまたは移動、コピー中に、デザイナーによって管理されるコンポーネントと任意コンポーネントをドラッグ、または移動操作を示します。  
+ このプロパティは、コピー、ドラッグ、または移動操作中に、デザイナーによって管理されるコンポーネントと共にコピーまたは移動するコンポーネントを示します。  
   
- このコレクションに現在のデザイン モードのドキュメントでは、他のコンポーネントへの参照が含まれている場合は、コピー操作中に、デザイナーによって管理されるコンポーネントとそれらのコンポーネントがコピーされます。  
+ このコレクションに、現在のデザインモードドキュメント内の他のコンポーネントへの参照が含まれている場合、コピー操作中に、デザイナーによって管理されるコンポーネントと共にこれらのコンポーネントがコピーされます。  
   
- デザイナーによって管理されているコンポーネントを選択すると、このコレクションに任意の入れ子になったコントロールが格納されます。 このコレクションには、ツールバーのボタンなどの他のコンポーネントを含めることもできます。  
+ デザイナーによって管理されるコンポーネントを選択すると、このコレクションには入れ子になったコントロールが格納されます。 このコレクションには、ツールバーのボタンなどの他のコンポーネントを含めることもできます。  
   
  ]]></format>
         </remarks>
@@ -201,10 +201,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.ComponentDesigner.Initialize%2A>メソッドの<xref:System.ComponentModel.Design.ComponentDesigner>このプロパティを設定します。  
+ <xref:System.ComponentModel.Design.ComponentDesigner.Initialize%2A> の<xref:System.ComponentModel.Design.ComponentDesigner>メソッドは、このプロパティを設定します。  
   
 > [!NOTE]
->  オーバーライドする場合、<xref:System.ComponentModel.Design.ComponentDesigner.Initialize%2A>メソッド、基底クラスを呼び出して必ず<xref:System.ComponentModel.Design.ComponentDesigner.Initialize%2A>メソッドがこのプロパティを使用する前にします。  
+>  <xref:System.ComponentModel.Design.ComponentDesigner.Initialize%2A>メソッドをオーバーライドする場合は、このプロパティを使用する<xref:System.ComponentModel.Design.ComponentDesigner.Initialize%2A>前に、基本クラスのメソッドを必ず呼び出してください。  
   
  ]]></format>
         </remarks>
@@ -292,16 +292,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose()`メソッドと<xref:System.Object.Finalize%2A>メソッド。 `Dispose()` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 <xref:System.Object.Finalize%2A> 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック`Dispose()`メソッド<xref:System.Object.Finalize%2A>とメソッドによって呼び出されます。 `Dispose()``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 <xref:System.Object.Finalize%2A>をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
- ときに、`disposing`パラメーターが true の場合、このメソッドは、すべてのマネージ オブジェクトによって保持されているすべてのリソースを解放します。 この<xref:System.ComponentModel.Design.ComponentDesigner>参照。 このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
+ パラメーターが true の場合、このメソッドは、この<xref:System.ComponentModel.Design.ComponentDesigner>が参照するすべてのマネージオブジェクトによって保持されているすべてのリソースを解放します。 `disposing` このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 オーバーライドするときに<see langword="Dispose(Boolean)" />の事前に呼び出したで以前破棄されたオブジェクトを参照しないように注意する<see langword="Dispose" />します。 実装する方法についての詳細は<see langword="Dispose(Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 をオーバーライド<see langword="Dispose(Boolean)" />する場合は、以前にを<see langword="Dispose" />呼び出したときに破棄されたオブジェクトを参照しないように注意してください。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see cref="M:System.Object.Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)と[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。</para></block>
+<see langword="Dispose" /> および<see cref="M:System.Object.Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」と「 [Finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。</para></block>
       </Docs>
     </Member>
     <Member MemberName="DoDefaultAction">
@@ -335,7 +335,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Windows フォームおよび Web フォーム デザイナーでコンポーネントをダブルクリックしたときに、このメソッドが呼び出されます。  
+ Windows フォームと Web フォームデザイナーでは、ユーザーがコンポーネントをダブルクリックすると、このメソッドが呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -371,11 +371,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは<xref:System.Object.Finalize%2A?displayProperty=nameWithType>を呼び出してリソースをクリーンアップし、`Dispose(false)`します。 `Dispose(Boolean)` をオーバーライドしてクリーンアップをカスタマイズします。  
+ このメソッドは<xref:System.Object.Finalize%2A?displayProperty=nameWithType> 、を呼び出し`Dispose(false)`てリソースをオーバーライドし、クリーンアップします。 `Dispose(Boolean)` をオーバーライドしてクリーンアップをカスタマイズします。  
   
- アプリケーション コードは、このメソッドを呼び出さないでください。オブジェクトの`Finalize`への呼び出しによって、ガベージ コレクターによって終了処理が無効になっている場合を除き、ガベージ コレクション中にメソッドが自動的に起動、<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>メソッド。  
+ アプリケーションコードはこのメソッドを呼び出すことはできません。オブジェクトの`Finalize`メソッドは、ガベージコレクションの実行中に、メソッドの<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>呼び出しによってガベージコレクターによる終了処理が無効にされていない限り、自動的に呼び出されます。  
   
- 詳細については、次を参照してください。 [Finalize メソッドおよびデストラクター](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/0s71x931(v%3dvs.100))、[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)、および[Finalize メソッドをオーバーライドする](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))します。  
+ 詳細については、「 [Finalize メソッドとデストラクター](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/0s71x931(v%3dvs.100))」、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」、および「 [finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -413,19 +413,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では、コンポーネントのサイトからサービスを要求します。  
+ このメソッドの既定の実装は、コンポーネントのサイトからサービスを要求します。  
   
    
   
 ## Examples  
- 次のコード例は、の使用を示します、<xref:System.ComponentModel.Design.ComponentDesigner.GetService%2A>デザイナーのサービスへのアクセス方法。  
+ 次のコード例は、 <xref:System.ComponentModel.Design.ComponentDesigner.GetService%2A>メソッドを使用してデザイナーサービスにアクセスする方法を示しています。  
   
  [!code-csharp[System.ComponentModel.Design.DesignerServices#7](~/samples/snippets/csharp/VS_Snippets_Winforms/System.ComponentModel.Design.DesignerServices/CS/Form1.cs#7)]
  [!code-vb[System.ComponentModel.Design.DesignerServices#7](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.ComponentModel.Design.DesignerServices/VB/Form1.vb#7)]  
   
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/c186c4b6-076c-438d-9ed3-f13da29c8c1f">方法: デザイン時サービスにアクセス</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/c186c4b6-076c-438d-9ed3-f13da29c8c1f">方法: デザイン時サービスへのアクセス</related>
       </Docs>
     </Member>
     <Member MemberName="InheritanceAttribute">
@@ -516,7 +516,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- デザイナーのホストは、デザイナーを使用する準備ができた場合、このメソッドを呼び出します。  
+ デザイナーホストは、デザイナーを使用する準備ができたときにこのメソッドを呼び出します。  
   
  ]]></format>
         </remarks>
@@ -562,11 +562,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent%2A>メソッドは、既存のコンポーネントを再初期化されるときに呼び出されます。 たとえば、ユーザーが別のコンテナーにコンポーネントをドラッグした後に、この問題が発生する可能性があります。  
+ メソッド<xref:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent%2A>は、既存のコンポーネントが再初期化されるときに呼び出されます。 たとえば、これは、ユーザーがコンポーネントを別のコンテナーにドラッグした後に発生する可能性があります。  
   
- 使用すること、`defaultValues`ディクショナリを適用するには、既定値をプロパティに推奨される変更する必要がただし、する必要がありますいないコンポーネントのプロパティとは別に、ディクショナリに格納されているため、この既存のコンポーネントに設定されているプロパティは既にします。  
+ ディクショナリを使用し`defaultValues`て、推奨される既定値をプロパティに適用することができます。ただし、既存のコンポーネントには既にプロパティが設定されている場合があるため、ディクショナリに格納されているコンポーネントプロパティを変更しないようにしてください。  
   
- このメソッドの既定の実装では、何も行われません。  
+ このメソッドの既定の実装では、何も実行されません。  
   
  ]]></format>
         </remarks>
@@ -605,11 +605,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent%2A>コンポーネントの初期化時に最初に、通常、デザイン サーフェイスに追加される最初の後にメソッドが呼び出されます。  
+ <xref:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent%2A>メソッドは、コンポーネントが最初に初期化されたときに呼び出されます。通常は、デザインサーフェイスに最初に追加された後に呼び出されます。  
   
- このコンポーネントは、必要な初期化を実行することがあり、無視しても、`defaultValues`ディクショナリ全体。  
+ 必要に応じて、このコンポーネントの初期化を実行することが`defaultValues`できます。また、この辞書は無視してかまいません。  
   
- このメソッドの既定の実装では、何も行われません。  
+ このメソッドの既定の実装では、何も実行されません。  
   
  ]]></format>
         </remarks>
@@ -648,7 +648,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- デザイナーがコントロールを貼り付けるか、デザイナーにドラッグ アンド ドロップ操作で移動するなど、既定の状態ではないコントロールに関連付けられたときに、このメソッドが呼び出されます。 このメソッドは、実装側で変更またはシャドウ コンポーネントのプロパティではなく、コンポーネントには既定のプロパティを初期化する機会を提供します。 このメソッドは、その他の関数の初期化後に呼び出されます。  
+ このメソッドは、デザイナーが既定の状態ではないコントロールに関連付けられている場合に呼び出されます。これには、貼り付けたり、ドラッグアンドドロップ操作でデザイナーに移動したりするコントロールなどがあります。 このメソッドは、コンポーネントのプロパティを既定値に初期化するのではなく、コンポーネントのプロパティを変更またはシャドウすることを実装する機会を提供します。 このメソッドは、他の初期化関数の後に呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -725,11 +725,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults%2A> デザイナーが初期化されると呼び出されます。 これにより、デザイナーの基本コンポーネントの既定値を指定できます。  
+ <xref:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults%2A>は、デザイナーが初期化されるときに呼び出されます。 これにより、デザイナーは基本コンポーネントの既定値を指定できます。  
   
- このメソッドが 1 回だけ呼び出されます。 作成したとき、コンポーネントをツールボックスからデザイン画面にドラッグします。 後続のデザイナーの初期化では、このメソッドは呼び出されません。  
+ このメソッドは、最初に [ツールボックス] からデザインサーフェイスにコンポーネントをドラッグして作成したときに1回だけ呼び出されます。 その後のデザイナーの初期化では、このメソッドは呼び出されません。  
   
- このメソッドの既定の実装では、既定のプロパティは文字列であり、プロパティが既に設定されていない場合に、コンポーネントの名前に、コンポーネントの既定のプロパティを設定します。 このメソッドは、このデザイナーがデザインするコンポーネントの初期化をカスタマイズする派生クラスで実装できます。  
+ このメソッドの既定の実装は、既定のプロパティが文字列であり、プロパティがまだ設定されていない場合に、コンポーネントの既定のプロパティをコンポーネントの名前に設定します。 このメソッドを派生クラスに実装すると、このデザイナーがデザインするコンポーネントの初期化をカスタマイズできます。  
   
  ]]></format>
         </remarks>
@@ -762,7 +762,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティはデザイナー内の親リレーションシップを検出するための一般的なメカニズムを提供しますを使って、<xref:System.ComponentModel.Design.ComponentDesigner>オブジェクトの<xref:System.ComponentModel.Design.ITreeDesigner>インターフェイスの実装。 このプロパティが返す必要がありますのみ`null`このデザイナーがルート コンポーネントが場合。 このプロパティの既定の実装は、ルート コンポーネントではないすべてのコンポーネントのルート コンポーネントを返します、`null`ルート コンポーネント。  
+ このプロパティは、デザイナー内で親リレーションシップを検出するための汎用的な機構<xref:System.ComponentModel.Design.ComponentDesigner>を提供<xref:System.ComponentModel.Design.ITreeDesigner>し、オブジェクトのインターフェイス実装によって使用されます。 このプロパティは、この`null`デザイナーがルートコンポーネントの場合にのみを返します。 このプロパティの既定の実装は、ルートコンポーネントではないすべてのコンポーネントのルートコンポーネントを返し、ルート`null`コンポーネントに対してを返します。  
   
  ]]></format>
         </remarks>
@@ -802,13 +802,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、を通じて公開されている属性の項目をディクショナリ内で変更または削除する方法を提供する<xref:System.ComponentModel.TypeDescriptor>します。  
+ このメソッドは、を<xref:System.ComponentModel.TypeDescriptor>通じて公開される属性のディクショナリ内の項目を変更または削除する手段を提供します。  
   
- 属性のディクショナリ内のキーの値で指定したとおり、属性の型識別子はその<xref:System.Attribute.TypeId%2A>プロパティ。 オブジェクトが型の<xref:System.ComponentModel.PropertyDescriptor>します。 直後にこのメソッドは、<xref:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes%2A>メソッド。  
+ 属性のディクショナリ内のキーは、 <xref:System.Attribute.TypeId%2A>プロパティの値によって指定された属性の型識別子です。 オブジェクトの型<xref:System.ComponentModel.PropertyDescriptor>はです。 このメソッドは、メソッドの<xref:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes%2A>直後に呼び出されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>アクセス可能なディクショナリは、直接フィルター処理、<paramref name="attributes" />パラメーター、またはするは、そのままかまいません。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行した後、基本実装を呼び出します。 さらに、項目の削除しないで、<see cref="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />メソッド。 代わりに、項目を非表示にする属性を変更します。 内の項目を削除することも、<see cref="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />メソッド。</para></block>
+        <block subset="none" type="overrides"><para><paramref name="attributes" />パラメーターを使用してアクセスできるディクショナリを直接フィルター処理することも、変更せずに残すこともできます。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行した後に基本実装を呼び出します。 また、 <see cref="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />メソッド内の項目を削除することはできません。 代わりに、属性を変更してアイテムを非表示にします。 <see cref="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />メソッド内の項目を削除することもできます。</para></block>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <altmember cref="T:System.ComponentModel.Design.IDesignerFilter" />
       </Docs>
@@ -847,13 +847,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、を通じて公開されるイベントの項目をディクショナリ内で変更または削除する方法を提供する<xref:System.ComponentModel.TypeDescriptor>します。  
+ このメソッドは、を<xref:System.ComponentModel.TypeDescriptor>通じて公開されるイベントのディクショナリ内の項目を変更または削除する方法を提供します。  
   
- イベントのディクショナリ内のキーは、イベントの名前です。 オブジェクトが型の<xref:System.ComponentModel.PropertyDescriptor>します。 直後にこのメソッドは、<xref:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents%2A>メソッド。  
+ イベントのディクショナリ内のキーは、イベントの名前です。 オブジェクトの型<xref:System.ComponentModel.PropertyDescriptor>はです。 このメソッドは、メソッドの<xref:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents%2A>直後に呼び出されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>アクセス可能なディクショナリは、直接フィルター処理、<paramref name="events" />パラメーター、またはするは、そのままかまいません。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行した後、基本実装を呼び出します。 さらに、項目の削除しないで、<see cref="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />メソッド。 代わりに、項目を非表示にする属性を変更します。 内の項目を削除することも、<see cref="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />メソッド。</para></block>
+        <block subset="none" type="overrides"><para><paramref name="events" />パラメーターを使用してアクセスできるディクショナリを直接フィルター処理することも、変更せずに残すこともできます。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行した後に基本実装を呼び出します。 また、 <see cref="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />メソッド内の項目を削除することはできません。 代わりに、属性を変更してアイテムを非表示にします。 <see cref="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />メソッド内の項目を削除することもできます。</para></block>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <altmember cref="T:System.ComponentModel.Design.IDesignerFilter" />
       </Docs>
@@ -892,13 +892,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを変更またはを通じて公開されるプロパティのディクショナリ内の項目を削除する方法を提供する、<xref:System.ComponentModel.TypeDescriptor>します。  
+ このメソッドは、を<xref:System.ComponentModel.TypeDescriptor>通じて公開されるプロパティのディクショナリ内の項目を変更または削除する手段を提供します。  
   
- プロパティのディクショナリ内のキーは、プロパティの名前です。 オブジェクトが型の<xref:System.ComponentModel.PropertyDescriptor>します。 直後にこのメソッドは、<xref:System.ComponentModel.Design.ComponentDesigner.PreFilterProperties%2A>メソッド。  
+ プロパティのディクショナリ内のキーは、プロパティの名前です。 オブジェクトの型<xref:System.ComponentModel.PropertyDescriptor>はです。 このメソッドは、メソッドの<xref:System.ComponentModel.Design.ComponentDesigner.PreFilterProperties%2A>直後に呼び出されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>アクセス可能なディクショナリは、直接フィルター処理、<paramref name="properties" />パラメーター、またはするは、そのままかまいません。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行した後、基本実装を呼び出します。 さらに、項目の削除しないで、<see cref="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />メソッド。 代わりに、項目を非表示にする属性を変更します。 内の項目を削除することも、<see cref="M:System.ComponentModel.Design.ComponentDesigner.PreFilterProperties(System.Collections.IDictionary)" />メソッド。</para></block>
+        <block subset="none" type="overrides"><para><paramref name="properties" />パラメーターを使用してアクセスできるディクショナリを直接フィルター処理することも、変更せずに残すこともできます。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行した後に基本実装を呼び出します。 また、 <see cref="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />メソッド内の項目を削除することはできません。 代わりに、属性を変更してアイテムを非表示にします。 <see cref="M:System.ComponentModel.Design.ComponentDesigner.PreFilterProperties(System.Collections.IDictionary)" />メソッド内の項目を削除することもできます。</para></block>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <altmember cref="T:System.ComponentModel.Design.IDesignerFilter" />
         <altmember cref="T:System.ComponentModel.Design.IDesigner" />
@@ -938,13 +938,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、デザイナーを通じて公開する属性のディクショナリに項目を追加する方法を提供します。、<xref:System.ComponentModel.TypeDescriptor>します。  
+ このメソッドは、デザイナーがを<xref:System.ComponentModel.TypeDescriptor>通じて公開する属性のディクショナリに項目を追加する方法を提供します。  
   
- 属性のディクショナリ内のキーの値で指定したとおり、属性の型識別子はその<xref:System.Attribute.TypeId%2A>プロパティ。 オブジェクトが型の<xref:System.ComponentModel.PropertyDescriptor>します。 このメソッドは、直前に呼び出されますが、<xref:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes%2A>メソッド。  
+ 属性のディクショナリ内のキーは、 <xref:System.Attribute.TypeId%2A>プロパティの値によって指定された属性の型識別子です。 オブジェクトの型<xref:System.ComponentModel.PropertyDescriptor>はです。 このメソッドは、メソッドの<xref:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes%2A>直前に呼び出されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>アクセス可能なディクショナリを直接変更できる、<paramref name="attributes" />パラメーター、またはするは、そのままかまいません。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行する前に、基本実装を呼び出します。</para></block>
+        <block subset="none" type="overrides"><para><paramref name="attributes" />パラメーターを使用してアクセスできるディクショナリを直接変更することも、変更せずに残しておくこともできます。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行する前に基本実装を呼び出します。</para></block>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <altmember cref="T:System.ComponentModel.Design.IDesignerFilter" />
       </Docs>
@@ -983,13 +983,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、デザイナーを通じて公開するイベントのディクショナリに項目を追加する方法を提供します。、<xref:System.ComponentModel.TypeDescriptor>します。  
+ このメソッドは、デザイナーがを<xref:System.ComponentModel.TypeDescriptor>通じて公開するイベントのディクショナリに項目を追加する方法を提供します。  
   
- イベントのディクショナリ内のキーは、イベントの名前です。 オブジェクトが型の<xref:System.ComponentModel.PropertyDescriptor>します。 このメソッドは、直前に呼び出されますが、<xref:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents%2A>メソッド。  
+ イベントのディクショナリ内のキーは、イベントの名前です。 オブジェクトの型<xref:System.ComponentModel.PropertyDescriptor>はです。 このメソッドは、メソッドの<xref:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents%2A>直前に呼び出されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>アクセス可能なディクショナリを直接変更できる、<paramref name="events" />パラメーター、またはするは、そのままかまいません。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行する前に、基本実装を呼び出します。</para></block>
+        <block subset="none" type="overrides"><para><paramref name="events" />パラメーターを使用してアクセスできるディクショナリを直接変更することも、変更せずに残しておくこともできます。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行する前に基本実装を呼び出します。</para></block>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <altmember cref="T:System.ComponentModel.Design.IDesignerFilter" />
       </Docs>
@@ -1028,13 +1028,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、デザイナーを通じて公開するプロパティのディクショナリに項目を追加する方法を提供します。、<xref:System.ComponentModel.TypeDescriptor>します。  
+ このメソッドは、デザイナーがを<xref:System.ComponentModel.TypeDescriptor>通じて公開するプロパティのディクショナリに項目を追加する方法を提供します。  
   
- プロパティのディクショナリ内のキーは、プロパティの名前です。 オブジェクトが型の<xref:System.ComponentModel.PropertyDescriptor>します。 このメソッドは、直前に呼び出されますが、<xref:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties%2A>メソッド。  
+ プロパティのディクショナリ内のキーは、プロパティの名前です。 オブジェクトの型<xref:System.ComponentModel.PropertyDescriptor>はです。 このメソッドは、メソッドの<xref:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties%2A>直前に呼び出されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>アクセス可能なディクショナリを直接変更できる、<paramref name="properties" />パラメーター、またはするは、そのままかまいません。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行する前に、基本実装を呼び出します。</para></block>
+        <block subset="none" type="overrides"><para><paramref name="properties" />パラメーターを使用してアクセスできるディクショナリを直接変更することも、変更せずに残しておくこともできます。 このメソッドをオーバーライドする場合は、独自のフィルター処理を実行する前に基本実装を呼び出します。</para></block>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <altmember cref="T:System.ComponentModel.Design.IDesignerFilter" />
       </Docs>
@@ -1074,7 +1074,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって提供されるアクセサーではなくとコンポーネントのプロパティに直接影響する場合にのみ、このメソッドを呼び出す<xref:System.ComponentModel.MemberDescriptor>します。  
+ によっ<xref:System.ComponentModel.MemberDescriptor>て提供されるアクセサーを使用せずに、コンポーネントのプロパティに直接影響を与える場合にのみ、このメソッドを呼び出します。  
   
  ]]></format>
         </remarks>
@@ -1113,7 +1113,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって提供されるアクセサーではなくとコンポーネントのプロパティに直接影響する場合にのみ、このメソッドを呼び出す<xref:System.ComponentModel.MemberDescriptor>します。  
+ このメソッドは、によっ<xref:System.ComponentModel.MemberDescriptor>て提供されるアクセサーを使用せずに、コンポーネントのプロパティに直接影響を与える場合にのみ呼び出します。  
   
  ]]></format>
         </remarks>
@@ -1515,12 +1515,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドが戻る`null`コンポーネントのデザイン時の動詞があるない場合。  
+ コンポーネントにデザイン`null`時の動詞がない場合、このメソッドはを返します。  
   
- 通常、デザイン時環境には、ショートカット (右クリック) メニューでこのメソッドによって返される動詞が表示されます。 ユーザーは、動詞のいずれかを選択すると、<xref:System.ComponentModel.Design.MenuCommand.Invoke%2A>メソッドの対応する<xref:System.ComponentModel.Design.DesignerVerb>が呼び出されます。  
+ 通常、デザイン時環境では、このメソッドによって返された動詞がショートカット (右クリック) メニューに表示されます。 ユーザーがいずれかの動詞<xref:System.ComponentModel.Design.MenuCommand.Invoke%2A>を選択すると、対応する<xref:System.ComponentModel.Design.DesignerVerb>のメソッドが呼び出されます。  
   
 > [!NOTE]
->  デザイン時環境では、通常は、**プロパティ**コンポーネントのショートカット メニューのコマンド。 そのため、このようなエントリは、デザイナーが指定した動詞のコレクションでは含めないようにしてください。  
+>  通常、デザイン時環境では、コンポーネントのショートカットメニューに **[プロパティ]** コマンドが用意されています。 したがって、このようなエントリは、デザイナーが指定した動詞のコレクションに含めないでください。  
   
  ]]></format>
         </remarks>

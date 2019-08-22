@@ -1,5 +1,5 @@
 <Type Name="ProjectCollection" FullName="Microsoft.Build.Evaluation.ProjectCollection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0080077c4ef88d91929ce144a30fb9b149d32fda" /><Meta Name="ms.sourcegitcommit" Value="1bb00d2f4343e73ae8d58668f02297a3cf10a4c1" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/15/2019" /><Meta Name="ms.locfileid" Value="63881051" /></Metadata><TypeSignature Language="C#" Value="public class ProjectCollection : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1e607db4ee16a44b6f5c635bce20c321c6e42f25" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69258955" /></Metadata><TypeSignature Language="C#" Value="public class ProjectCollection : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi ProjectCollection extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Evaluation.ProjectCollection" />
   <TypeSignature Language="VB.NET" Value="Public Class ProjectCollection&#xA;Implements IDisposable" />
@@ -23,7 +23,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 複数のプロジェクト コレクションは、アプリケーション ドメイン内に存在できます。 ただし、これらする必要があります同時にビルドできません。  
+ 1つのアプリケーションドメイン内に複数のプロジェクトコレクションを配置できます。 ただし、同時にビルドすることはできません。  
   
  ]]></format>
     </remarks>
@@ -186,7 +186,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- グローバル プロパティのいずれかが予約されている場合は、InvalidProjectFileException をスローします。  
+ グローバルプロパティのいずれかが予約されている場合は、InvalidProjectFileException をスローします。  
   
  ]]></format>
         </remarks>
@@ -257,7 +257,7 @@
       </ReturnValue>
       <Docs>
         <summary>このコレクションに現在読み込まれているプロジェクトの数を取得します。</summary>
-        <value>プロジェクトの数は、このコレクションに現在読み込まれています。</value>
+        <value>このコレクションに現在読み込まれているプロジェクトの数。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -278,14 +278,14 @@
       </ReturnValue>
       <Docs>
         <summary>このプロジェクト コレクションの既定のツール バージョンを取得します。</summary>
-        <value>常に定義されますが、このプロジェクト コレクションの既定のツール バージョン。</value>
+        <value>このプロジェクトコレクションの既定のツールバージョン。常に定義されます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この既定値から取得されます、。 システムのレジストリからの exe.config ファイルが存在し、ハード コーディングされたツール バージョン"2.0"のどちらでもない場合またはします。  
+ この既定値は、ハードコーディングされたツールバージョン "2.0" の .exe .config ファイルから、システムレジストリから取得されるか、またはどちらも存在しない場合に取得されます。  
   
- セット メソッドで提供されているツールのバージョンのツールセットの場合、InvalidOperationException のスローが定義されていません。  
+ 指定したツールバージョンのツールセットが定義されていない場合、set メソッドは InvalidOperationException をスローします。  
   
  ]]></format>
         </remarks>
@@ -354,7 +354,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- .NET Framework 4.5 と Visual Studio 12.0 に配信された MSBuild のバージョンでは、呼び出す必要があります UnloadProject() ProjectCollection がスコープ外になる前にします。"  
+ .NET Framework 4.5 と Visual Studio 12.0 を使用して配信された MSBuild バージョンでは、ProjectCollection がスコープ外に出る前に UnloadProject () を呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -385,7 +385,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- .NET のガベージ破棄のガイドラインに従います。  
+ .NET のガベージ破棄ガイドラインに従います。  
   
  ]]></format>
         </remarks>
@@ -417,7 +417,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- たとえば、"%"for"3 b"です。 MSBuild の解析に特に重要な文字だけが変換されます。 呼び出し元は、このメソッドを使用することでそれを展開する他の方法で解析するのに安全な文字列。 呼び出し元は、このメソッドを使用して、プロジェクト ファイルに書き込まれる安全な文字列を作成できます。  
+ たとえば、";" の "% 3b" のようになります。 MSBuild 解析に特に重要な文字だけが変換されます。 呼び出し元は、このメソッドを使用して、他の方法では、文字列を安全に解析できるようにすることができます。 また、呼び出し元はこのメソッドを使用して、文字列を安全にプロジェクトファイルに書き込むことができます。  
   
  ]]></format>
         </remarks>
@@ -474,7 +474,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロジェクトはグローバル プロパティやツールのバージョンによっても区別されますので、指定されたパスでは、複数のプロジェクトがかかることがあります。  
+ プロジェクトは、グローバルプロパティやツールのバージョンによっても区別されるため、指定されたパスを持つ複数のプロジェクトが存在する場合があります。  
   
  ]]></format>
         </remarks>
@@ -525,7 +525,7 @@
       </ReturnValue>
       <Docs>
         <summary>グローバル プロジェクト コレクション オブジェクトを取得します。</summary>
-        <value>グローバル プロジェクト コレクション オブジェクト。 これは、グローバル プロパティやロガーを持たないシングルトン プロジェクト コレクションです。 ツールセットの情報は、構成ファイルとレジストリから取得されます。</value>
+        <value>グローバルプロジェクトコレクションオブジェクト。 これは、グローバル プロパティやロガーを持たないシングルトン プロジェクト コレクションです。 ツールセットの情報は、構成ファイルとレジストリから取得されます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -553,12 +553,12 @@
       </ReturnValue>
       <Docs>
         <summary>このコレクション内のすべてのプロジェクトに対する読み取り専用の既定のグローバル プロパティを取得します。</summary>
-        <value>このコレクション内のすべてのプロジェクトに対する読み取り専用の既定のグローバル プロパティ。</value>
+        <value>このコレクション内のすべてのプロジェクトに対する読み取り専用の既定のグローバルプロパティ。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用<xref:Microsoft.Build.Evaluation.ProjectCollection.SetGlobalProperty%2A>と<xref:Microsoft.Build.Evaluation.ProjectCollection.RemoveGlobalProperty%2A>グローバル プロパティを追加、設定、および削除します。  
+ グローバル<xref:Microsoft.Build.Evaluation.ProjectCollection.SetGlobalProperty%2A>プロパティ<xref:Microsoft.Build.Evaluation.ProjectCollection.RemoveGlobalProperty%2A>を追加、設定、および削除するには、およびを使用します。  
   
  ]]></format>
         </remarks>
@@ -586,12 +586,12 @@
       </ReturnValue>
       <Docs>
         <summary>このプロジェクト コレクションに含まれているプロジェクトのビルド時に、タスクにホスト サービスを提供するオブジェクトを取得または設定します。</summary>
-        <value>ホストのサービス オブジェクト。</value>
+        <value>ホストサービスオブジェクト。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定では、次のように返されます。 <xref:Microsoft.Build.Evaluation.ProjectCollection.HostServices%2A>、null になる可能性もあります。  
+ 既定では、 <xref:Microsoft.Build.Evaluation.ProjectCollection.HostServices%2A>は null である可能性があるを返します。  
   
  ]]></format>
         </remarks>
@@ -628,12 +628,12 @@
       </ReturnValue>
       <Docs>
         <summary>このプロジェクト コレクション内のプロジェクトのターゲットとタスクがビルド可能かどうかを示す値を取得または設定します。</summary>
-        <value><see langword="true" /> ターゲットとタスクをこのプロジェクト コレクション内のプロジェクトを構築することができる場合それ以外の場合、<see langword="false" />します。</value>
+        <value><see langword="true" />このプロジェクトコレクション内のプロジェクトのターゲットとタスクをビルドできる場合は。それ以外<see langword="false" />の場合は。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- セキュリティのために使用できます。 新しいプロジェクトの既定値はそれを含んでいる親プロジェクト コレクションとして同じ IsBuildEnabled 設定です。 IsBuildEnabled が false の場合は、このプロジェクトでビルド メソッドが失敗します。  
+ セキュリティ上の目的で使用できます。 既定では、新しいプロジェクトは、それを含む親プロジェクトコレクションと同じ IsBuildEnabled 設定を持ちます。 IsBuildEnabled が false の場合、このプロジェクトのビルドメソッドは失敗します。  
   
  ]]></format>
         </remarks>
@@ -656,12 +656,12 @@
       </ReturnValue>
       <Docs>
         <summary>このコレクションに現在読み込まれているすべてのプロジェクトを取得します。</summary>
-        <value>すべてのプロジェクトは、このコレクションに現在読み込まれています。</value>
+        <value>このコレクションに現在読み込まれているすべてのプロジェクト。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 各プロジェクトには、パス、グローバル プロパティ、およびツールのバージョンの一意の組み合わせがあります。  
+ 各プロジェクトには、パス、グローバルプロパティ、およびツールバージョンの一意の組み合わせがあります。  
   
  ]]></format>
         </remarks>
@@ -678,7 +678,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ProjectCollection がスコープ外になる前に .NET Framework 4.5 と Visual Studio 12.0 に配信された MSBuild のバージョンでは、UnloadProject を呼び出す必要があります。  
+ .NET Framework 4.5 と Visual Studio 12.0 を使用して配信された MSBuild バージョンでは、ProjectCollection がスコープ外に出る前に UnloadProject を呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -715,7 +715,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ProjectCollection がスコープ外になる前に .NET Framework 4.5 と Visual Studio 12.0 に配信された MSBuild のバージョンでは、UnloadProject を呼び出す必要があります。  
+ .NET Framework 4.5 と Visual Studio 12.0 を使用して配信された MSBuild バージョンでは、ProjectCollection がスコープ外に出る前に UnloadProject を呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -751,9 +751,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロジェクトは、このプロジェクトまたは指定したプロジェクト ルートのいずれかがプロジェクト ファイルへの完全なパスを指定されている場合、このプロジェクト コレクションに追加されます。  
+ このプロジェクトまたは指定されたプロジェクトルートにプロジェクトファイルへの完全パスが与えられると、プロジェクトがこのプロジェクトコレクションに追加されます。  
   
- ProjectCollection がスコープ外になる前に .NET Framework 4.5 と Visual Studio 12.0 に配信された MSBuild のバージョンでは、UnloadProject を呼び出す必要があります。  
+ .NET Framework 4.5 と Visual Studio 12.0 を使用して配信された MSBuild バージョンでは、ProjectCollection がスコープ外に出る前に UnloadProject を呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -792,7 +792,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ProjectCollection がスコープ外になる前に .NET Framework 4.5 と Visual Studio 12.0 に配信された MSBuild のバージョンでは、UnloadProject を呼び出す必要があります。  
+ .NET Framework 4.5 と Visual Studio 12.0 を使用して配信された MSBuild バージョンでは、ProjectCollection がスコープ外に出る前に UnloadProject を呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -830,9 +830,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロジェクトは、このプロジェクトまたは指定したプロジェクト ルートのいずれかがプロジェクト ファイルへの完全なパスを指定されている場合、このプロジェクト コレクションに追加されます。  
+ このプロジェクトまたは指定されたプロジェクトルートにプロジェクトファイルへの完全パスが与えられると、プロジェクトがこのプロジェクトコレクションに追加されます。  
   
- ProjectCollection がスコープ外になる前に .NET Framework 4.5 と Visual Studio 12.0 に配信された MSBuild のバージョンでは、UnloadProject を呼び出す必要があります。  
+ .NET Framework 4.5 と Visual Studio 12.0 を使用して配信された MSBuild バージョンでは、ProjectCollection がスコープ外に出る前に UnloadProject を呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -868,7 +868,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ProjectCollection がスコープ外になる前に .NET Framework 4.5 と Visual Studio 12.0 に配信された MSBuild のバージョンでは、UnloadProject を呼び出す必要があります。  
+ .NET Framework 4.5 と Visual Studio 12.0 を使用して配信された MSBuild バージョンでは、ProjectCollection がスコープ外に出る前に UnloadProject を呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -903,9 +903,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロジェクトは、このプロジェクトまたは指定したプロジェクト ルートのいずれかがプロジェクト ファイルへの完全なパスを指定されている場合、このプロジェクト コレクションに追加されます。  
+ このプロジェクトまたは指定されたプロジェクトルートにプロジェクトファイルへの完全パスが与えられると、プロジェクトがこのプロジェクトコレクションに追加されます。  
   
- ProjectCollection がスコープ外になる前に .NET Framework 4.5 と Visual Studio 12.0 に配信された MSBuild のバージョンでは、UnloadProject を呼び出す必要があります。  
+ .NET Framework 4.5 と Visual Studio 12.0 を使用して配信された MSBuild バージョンでは、ProjectCollection がスコープ外に出る前に UnloadProject を呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -933,12 +933,12 @@
       </ReturnValue>
       <Docs>
         <summary>このコレクション内のプロジェクトのビルドに使用できる、すべてのロガーを取得します。</summary>
-        <value>すべてのロガーをこのコレクション内のプロジェクトのビルドに使用できます。</value>
+        <value>このコレクション内のプロジェクトがビルドに使用できるすべての logger。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ロガーを使用して追加、<xref:Microsoft.Build.Evaluation.ProjectCollection.RegisterLogger%2A>メソッド。  
+ Logger は、 <xref:Microsoft.Build.Evaluation.ProjectCollection.RegisterLogger%2A>メソッドを使用して追加されます。  
   
  ]]></format>
         </remarks>
@@ -969,7 +969,7 @@
       </ReturnValue>
       <Docs>
         <summary>警告やエラーなどの重大なイベントだけを記録するかどうかを示す値を取得または設定します。</summary>
-        <value><see langword="true" /> 場合のみ警告やエラーなどの重大なイベントが記録されます。それ以外の場合、<see langword="false" />します。</value>
+        <value><see langword="true" />警告やエラーなどの重大なイベントだけがログに記録される場合は、それ以外<see langword="false" />の場合は。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1014,7 +1014,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このイベントは、構築のモデルを使用して直接プロジェクト XML の変更は発生しません。  
+ このイベントは、構築モデルによるプロジェクトの直接 XML 変更に対しては発生しません。  
   
  ]]></format>
         </remarks>
@@ -1041,7 +1041,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このイベントは、個々 のプロジェクトでの変更は発生しません。  
+ このイベントは、個々のプロジェクトの変更に対しては発生しません。  
   
  ]]></format>
         </remarks>
@@ -1068,7 +1068,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このイベントは、グローバル プロパティを変更または XML をダーティが実際に他の変更は発生しません。  
+ このイベントは、グローバルプロパティの変更や、実際には XML を修正しないその他の変更に対しては発生しません。  
   
  ]]></format>
         </remarks>
@@ -1123,7 +1123,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Logger オブジェクトのコレクションが既にいる場合は、何も行われません。  
+ Logger オブジェクトがコレクション内に既に存在する場合、は何も行いません。  
   
  ]]></format>
         </remarks>
@@ -1154,7 +1154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクションに既に存在するすべてのロガー オブジェクトをスキップします。  
+ コレクション内に既に存在する logger オブジェクトをスキップします。  
   
  ]]></format>
         </remarks>
@@ -1258,7 +1258,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一致するプロパティが見つからない場合、プロパティが作成され、指定された値で初期化します。  
+ 一致するプロパティが見つからない場合は、指定された値を使用してプロパティが作成され、初期化されます。  
   
  ]]></format>
         </remarks>
@@ -1289,7 +1289,7 @@
       </ReturnValue>
       <Docs>
         <summary>このコレクション内のプロジェクトで、ReevaluateIfNecessary を一時的に無効にするかどうかを示す値を取得または設定します。 これは、ホストでプロジェクトに対して多数の読み書きを行う必要があり、一時的に正確さよりもパフォーマンスを優先する場合に役立ちます。</summary>
-        <value>ReevaluateIfNecessary を一時的に無効にするかどうかを決定するフラグ。</value>
+        <value>ReevaluateIfNecessary が一時的に無効になっているかどうかを示すフラグ。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1318,7 +1318,7 @@
       </ReturnValue>
       <Docs>
         <summary>ツールセットを検索する場所を取得します。</summary>
-        <value>ツールセットを検索するために使用する場所。</value>
+        <value>ツールセットを検索するために使用される場所。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1342,7 +1342,7 @@
       </ReturnValue>
       <Docs>
         <summary>このプロジェクト コレクションで使用できるツールセットを取得します。</summary>
-        <value>このプロジェクト コレクションで使用できるツールセットです。</value>
+        <value>このプロジェクトコレクションで使用できるツールセット。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1396,7 +1396,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- "%3b"を変換するなど、「;」します。  
+ たとえば、"% 3b" は ";" に変換されます。  
   
  ]]></format>
         </remarks>
@@ -1424,7 +1424,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ホストは、プロジェクトが必要がなくなったときに、このメソッドを呼び出す必要があります。  
+ ホストは、プロジェクトが不要になったときに、このメソッドを呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -1463,7 +1463,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、このルート要素を使用してすべてのプロジェクトが削除されていることと、未保存の変更を破棄すること、ホストが知っている場合に便利です。  
+ このメソッドは、このルート要素を使用するすべてのプロジェクトが削除されていること、および保存されていない変更を破棄する必要があることをホストが認識している場合に便利です。  
   
  ]]></format>
         </remarks>
@@ -1494,9 +1494,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ホストは、プロジェクトが必要がなくなったときに、このメソッドを呼び出す必要があります。  
+ ホストは、プロジェクトが不要になったときに、このメソッドを呼び出す必要があります。  
   
- 指定されたプロジェクトがプロジェクト コレクションに存在しない場合、InvalidOperationException をスローします。  
+ 指定されたプロジェクトがプロジェクトコレクションに存在しない場合、InvalidOperationException をスローします。  
   
  ]]></format>
         </remarks>
@@ -1540,12 +1540,12 @@
       </ReturnValue>
       <Docs>
         <summary>MSBuild エンジンを含むアセンブリ ファイルのファイル バージョンを取得します。</summary>
-        <value>MSBuild エンジンを含むアセンブリ ファイルのファイル バージョン。</value>
+        <value>MSBuild エンジンを含むアセンブリファイルのファイルバージョン。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは Windows ファイル バージョン (具体的には、ProductVersion リソースの値)、アセンブリのバージョンとは限りません。 アセンブリのバージョンを取得するには、Constants.AssemblyVersion を使用します。
+ これは、必ずしもアセンブリのバージョンではない、Windows ファイルのバージョン (具体的には ProductVersion リソースの値) です。 アセンブリのバージョンを取得するには、定数 AssemblyVersion を使用します。
   
  ]]></format>
         </remarks>
