@@ -1,5 +1,5 @@
 <Type Name="CollectionView" FullName="System.Windows.Data.CollectionView">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f181c00dad889a88fbb57a9bea13f2ea4a8a31bd" /><Meta Name="ms.sourcegitcommit" Value="8e213bb5e6801f6e29861ba72664978ad00e34fa" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/18/2019" /><Meta Name="ms.locfileid" Value="56372864" /></Metadata><TypeSignature Language="C#" Value="public class CollectionView : System.Windows.Threading.DispatcherObject, System.Collections.IEnumerable, System.Collections.Specialized.INotifyCollectionChanged, System.ComponentModel.ICollectionView, System.ComponentModel.INotifyPropertyChanged" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4dab4b150da7a014655d9181e656bdb3febd0003" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69211191" /></Metadata><TypeSignature Language="C#" Value="public class CollectionView : System.Windows.Threading.DispatcherObject, System.Collections.IEnumerable, System.Collections.Specialized.INotifyCollectionChanged, System.ComponentModel.ICollectionView, System.ComponentModel.INotifyPropertyChanged" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CollectionView extends System.Windows.Threading.DispatcherObject implements class System.Collections.IEnumerable, class System.Collections.Specialized.INotifyCollectionChanged, class System.ComponentModel.ICollectionView, class System.ComponentModel.INotifyPropertyChanged" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Data.CollectionView" />
   <TypeSignature Language="VB.NET" Value="Public Class CollectionView&#xA;Inherits DispatcherObject&#xA;Implements ICollectionView, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged" />
@@ -28,24 +28,24 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>データ コレクションのグループ化、並べ替え、フィルター処理、および移動を行うことができるビューを表します。</summary>
+    <summary>データ コレクションをグループ化、並べ替え、フィルター処理、移動するためのビューを表します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コードでは、このクラスのオブジェクトを作成する必要があります。 だけを実装するコレクションのコレクション ビューを作成する<xref:System.Collections.IEnumerable>、作成、<xref:System.Windows.Data.CollectionViewSource>オブジェクト、コレクションの追加、<xref:System.Windows.Data.CollectionViewSource.Source%2A>プロパティ、および get からコレクションを表示を<xref:System.Windows.Data.CollectionViewSource.View%2A>プロパティ。  
+ このクラスのオブジェクトをコードに作成することはできません。 を実装<xref:System.Collections.IEnumerable>するコレクションのコレクションビューを作成するには、 <xref:System.Windows.Data.CollectionViewSource>オブジェクトを作成し、コレクションを<xref:System.Windows.Data.CollectionViewSource.Source%2A>プロパティに追加して、 <xref:System.Windows.Data.CollectionViewSource.View%2A>プロパティからコレクションビューを取得します。  
   
- コレクション ビューに移動し、並べ替え、フィルター、および基になるソース コレクション自体を操作することがなくグループのクエリに基づいてコレクションを表示できるようにするバインディング ソース コレクションの上位レイヤーとして考えることができます。 ソース コレクションを実装する場合、<xref:System.Collections.Specialized.INotifyCollectionChanged>インターフェイス、変更を発生させる、<xref:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged>イベントは、ビューに反映されます。  
+ コレクションビューは、基になるソースコレクション自体を操作せずに、並べ替え、フィルター、およびグループクエリに基づいてコレクションを移動して表示できるようにする、バインディングソースコレクションの上にあるレイヤーと考えることができます。 ソースコレクションが<xref:System.Collections.Specialized.INotifyCollectionChanged>インターフェイスを実装している場合は、 <xref:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged>イベントを発生させる変更がビューに反映されます。  
   
- ビューは基になるソース コレクションが変更されないので、ソース コレクションは、関連付けられている複数のビューを持つことができます。 ビューを使用すると、さまざまな方法で、同じデータを表示できます。 たとえばのコレクションに 2 つのビューを使用することができます`Task`タスクを表示するオブジェクトが、ページの 1 つの部分での優先順位で並べ替えられ、ページの別の部分を領域別にグループ化します。  
+ ビューでは基になるソースコレクションが変更されないため、ソースコレクションには複数のビューを関連付けることができます。 ビューを使用すると、同じデータをさまざまな方法で表示できます。 たとえば、オブジェクトの`Task`コレクションに対して2つのビューを使用して、ページの1つの部分に優先順位で並べ替えられたタスクを表示し、ページの別の部分に区分別にグループ化することができます。  
   
- [!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]アプリケーションでは、すべてのコレクションである、関連付けられている既定のコレクションを表示します。 コレクションを直接操作ではなく、バインディング エンジンは関連の表示を使用してコレクションを常にアクセスします。 既定のビューを取得する、<xref:System.Windows.Data.CollectionViewSource.GetDefaultView%2A?displayProperty=nameWithType>メソッド。 内部クラスに基づいて<xref:System.Windows.Data.CollectionView>のみを実装するコレクションの既定のビューは、<xref:System.Collections.IEnumerable>します。 <xref:System.Windows.Data.ListCollectionView> 実装するコレクションの既定のビューは、<xref:System.Collections.IList>します。 <xref:System.Windows.Data.BindingListCollectionView> 実装するコレクションの既定のビューは、<xref:System.ComponentModel.IBindingListView>または<xref:System.ComponentModel.IBindingList>します。  
+ アプリケーション[!INCLUDE[TLA2#tla_winclient](~/includes/tla2sharptla-winclient-md.md)]では、すべてのコレクションに既定のコレクションビューが関連付けられています。 コレクションを直接操作するのではなく、バインドエンジンは常に関連付けられたビューを使用してコレクションにアクセスします。 既定のビューを取得するには<xref:System.Windows.Data.CollectionViewSource.GetDefaultView%2A?displayProperty=nameWithType> 、メソッドを使用します。 に<xref:System.Windows.Data.CollectionView>基づく内部クラスは、のみ<xref:System.Collections.IEnumerable>を実装するコレクションの既定のビューです。 <xref:System.Windows.Data.ListCollectionView>は、を実装<xref:System.Collections.IList>するコレクションの既定のビューです。 <xref:System.Windows.Data.BindingListCollectionView>は、または<xref:System.ComponentModel.IBindingListView> <xref:System.ComponentModel.IBindingList>を実装するコレクションの既定のビューです。  
   
- コレクション内のビューを作成する代わりに、[!INCLUDE[TLA#tla_xaml](~/includes/tlasharptla-xaml-md.md)]を使用して、<xref:System.Windows.Data.CollectionViewSource>クラスし、そのビューにコントロールをバインドします。 <xref:System.Windows.Data.CollectionViewSource>クラスは、[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]の表現、<xref:System.Windows.Data.CollectionView>クラス。 例については、「[方法: 並べ替えや XAML でビューを使用してデータをグループ化](~/docs/framework/wpf/data/how-to-sort-and-group-data-using-a-view-in-xaml.md)します。  
+ または、 [!INCLUDE[TLA#tla_xaml](~/includes/tlasharptla-xaml-md.md)] <xref:System.Windows.Data.CollectionViewSource>クラスを使用してコレクションのビューを作成し、そのビューにコントロールをバインドすることもできます。 クラスは、 <xref:System.Windows.Data.CollectionView>クラスの表現です。[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)] <xref:System.Windows.Data.CollectionViewSource> 例については、「[方法: XAML](~/docs/framework/wpf/data/how-to-sort-and-group-data-using-a-view-in-xaml.md)でビューを使用してデータの並べ替えとグループ化を行います。  
   
- 詳細については、「コレクションにバインド」を参照してください[データ バインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)します。  
+ 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」の「コレクションへのバインド」を参照してください。  
   
- ビューを設定する[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]を使用して、<xref:System.Windows.Data.CollectionViewSource>クラス。 <xref:System.Windows.Data.CollectionViewSource> [!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]の表現、<xref:System.Windows.Data.CollectionView>クラス、およびの最もよく使用されるメンバーを公開する、<xref:System.Windows.Data.CollectionView>クラス。  
+ で[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]ビューを設定するには、 <xref:System.Windows.Data.CollectionViewSource>クラスを使用します。 <xref:System.Windows.Data.CollectionViewSource>はクラスの表現であり、 <xref:System.Windows.Data.CollectionView>クラスの中で最もよく使用されるメンバーを公開します。 [!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)] <xref:System.Windows.Data.CollectionView>  
   
  ]]></format>
     </remarks>
@@ -79,7 +79,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インスタンス<xref:System.Windows.Data.CollectionView>にバインドされて、[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]このコンス トラクターの呼び出し元のディスパッチャー スレッドします。  
+ の<xref:System.Windows.Data.CollectionView>インスタンスは、このコンストラクターの[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]呼び出し元のスレッドディスパッチャーにバインドされます。  
   
  ]]></format>
         </remarks>
@@ -132,7 +132,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを返す場合`false`で、設定、<xref:System.Windows.Data.CollectionView.Filter%2A>プロパティは例外をスローします。  
+ このプロパティがを`false`返す場合、 <xref:System.Windows.Data.CollectionView.Filter%2A>プロパティを設定すると例外がスローされます。  
   
  ]]></format>
         </remarks>
@@ -164,7 +164,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを使用して、ビューが追加する前に並べ替えをサポートするかどうかをテストする<xref:System.Windows.Data.CollectionView.GroupDescriptions%2A>します。 派生クラスでは、グループ化をサポートするかどうかを示すには、このプロパティをオーバーライドします。  
+ このプロパティを使用して、追加<xref:System.Windows.Data.CollectionView.GroupDescriptions%2A>する前にビューが並べ替えをサポートするかどうかをテストします。 派生クラスは、グループ化をサポートするかどうかを示すために、このプロパティをオーバーライドします。  
   
  ]]></format>
         </remarks>
@@ -196,7 +196,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティを使用して、ビューが追加する前に並べ替えをサポートするかどうかをテストする<xref:System.Windows.Data.CollectionView.SortDescriptions%2A>します。 派生クラスでは、並べ替えをサポートするかどうかを示すには、このプロパティをオーバーライドします。  
+ このプロパティを使用して、追加<xref:System.Windows.Data.CollectionView.SortDescriptions%2A>する前にビューが並べ替えをサポートするかどうかをテストします。 派生クラスは、並べ替えをサポートするかどうかを示すために、このプロパティをオーバーライドします。  
   
  ]]></format>
         </remarks>
@@ -328,7 +328,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、基になるコレクションに項目が属しているかどうかについてどのような想定を行いません。 呼び出す方が効率的です、呼び出し元を基になるコレクションに項目が属していることを知っている場合、<xref:System.Windows.Data.CollectionView.PassesFilter%2A>メソッド。  
+ このメソッドは、項目が基になるコレクションに属しているかどうかを判断することはありません。 呼び出し元が、項目が基になるコレクションに属していることを認識している<xref:System.Windows.Data.CollectionView.PassesFilter%2A>場合は、メソッドを呼び出す方が効率的です。  
   
  ]]></format>
         </remarks>
@@ -352,16 +352,16 @@
       </ReturnValue>
       <Docs>
         <summary>ビュー内のレコードの数を取得します。</summary>
-        <value>ビュー、またはレコードの数が不明の場合は-1 でレコードの数。</value>
+        <value>ビュー内のレコードの数。レコードの数が不明の場合は-1。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- フィルターが設定されている場合、このプロパティの値にはフィルターを通過する項目にはのみが含まれます。 基になるコレクションが型の場合<xref:System.Collections.IEnumerable>、これは o (n) 操作。 この値は、コレクションが変更されるまでキャッシュされます。  
+ フィルターが設定されている場合、このプロパティ値にはフィルターに合格した項目のみが含まれます。 基になるコレクションの型<xref:System.Collections.IEnumerable>がである場合、これは O (N) 操作です。 この値は、コレクションが変更されるまでキャッシュされます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生する場合<see cref="T:System.Windows.Data.CollectionView" />より効率的な実装を提供するには、このプロパティをオーバーライドします。</para></block>
+        <block subset="none" type="overrides"><para>から<see cref="T:System.Windows.Data.CollectionView" />派生する場合は、このプロパティをオーバーライドして、より効率的な実装を提供します。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Culture">
@@ -419,7 +419,7 @@
       <Docs>
         <summary><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> が変更された後に発生します。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>このイベントを発生させる変更した後、<see cref="P:System.Windows.Data.CollectionView.CurrentItem" />します。</para></block>
+        <block subset="none" type="overrides"><para>を変更した後に<see cref="P:System.Windows.Data.CollectionView.CurrentItem" />、このイベントを発生させます。</para></block>
         <altmember cref="E:System.ComponentModel.ICollectionView.CurrentChanged" />
       </Docs>
     </Member>
@@ -445,7 +445,7 @@
       <Docs>
         <summary><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> が変更されているときに発生します。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>変更する前にこのイベントを発生させる、<see cref="P:System.Windows.Data.CollectionView.CurrentItem" />します。</para></block>
+        <block subset="none" type="overrides"><para>を変更する前に、 <see cref="P:System.Windows.Data.CollectionView.CurrentItem" />このイベントを発生させます。</para></block>
         <altmember cref="E:System.ComponentModel.ICollectionView.CurrentChanging" />
       </Docs>
     </Member>
@@ -475,15 +475,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。  
   
- 現在のレコード ポインターを移動、並べ替えやフィルターがいずれかとの相互運用をは、コレクションに適用されます。 選択すると、最後のレコードには、現在のレコード ポインターの並べ替えが保持されますが、中心に、コレクション ビューが再構築します。 (選択したレコードが前に、の一覧の先頭がおそらくが途中で選択したレコードをどこかにする可能性がようになりました)。フィルター処理と、残っている場合に、フィルター処理した後、選択したレコードが保持されます。 それ以外の場合、現在のレコード ポインターは、フィルター選択されたコレクション ビューの最初のレコードに設定されます。  
+ 現在のレコードポインターを移動すると、コレクションに適用されている並べ替えやフィルター処理との相互作用が発生することに注意してください。 並べ替えを行うと、選択した最後のレコードの現在のレコードポインターが保持されますが、コレクションビューはその周りに再構築ます。 (選択したレコードは前の一覧の先頭にありましたが、現在選択されているレコードは中間にある可能性があります)。選択したレコードは、フィルター処理後も選択されたままになります。 それ以外の場合、現在のレコードポインターは、フィルター処理されたコレクションビューの最初のレコードに設定されます。  
   
- バインディングのターゲットが単一値の場合、コレクションの現在の項目に自動的にバインドされます。 ターゲットの場合、 <xref:System.Windows.Controls.ItemsControl>、現在の項目が選択した項目と同期します。 たとえば、リスト ボックスがコレクションにバインドされている場合、<xref:System.Windows.Data.CollectionView.CurrentItem%2A>が現在選択されている項目と同期します。  
+ バインディングのターゲットがシングルトン値の場合、コレクションの現在の項目は自動的ににバインドされます。 ターゲットが<xref:System.Windows.Controls.ItemsControl>の場合、現在の項目は選択された項目と同期されます。 たとえば、リストボックスがコレクション<xref:System.Windows.Data.CollectionView.CurrentItem%2A>にバインドされている場合、は現在選択されている項目と同期されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>処理を別の内部呼び出しクラスのみ<see cref="T:System.Windows.Data.CollectionView" />オブジェクトは、このプロパティをオーバーライドする必要があります。 他のすべての派生クラスを使用する必要があります、<see cref="M:System.Windows.Data.CollectionView.SetCurrent(System.Object,System.Int32)" />基底クラスに格納されている現在の値を更新するメソッド。</para></block>
+        <block subset="none" type="overrides"><para>別の内部<see cref="T:System.Windows.Data.CollectionView" />オブジェクトへの通貨処理呼び出しを渡すクラスのみが、このプロパティをオーバーライドする必要があり<see cref="M:System.Windows.Data.CollectionView.SetCurrent(System.Object,System.Int32)" />ます。他のすべての派生クラスでは、メソッドを使用して、基底クラスに格納されている現在の値を更新する必要があります。</para></block>
       </Docs>
     </Member>
     <Member MemberName="CurrentPosition">
@@ -509,7 +509,7 @@
         <summary>ビュー (オプションで並べ替えおよびフィルター処理されたビュー) 内の <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> の位置を表す序数を取得します。</summary>
         <value>ビュー (オプションで並べ替えおよびフィルター処理されたビュー) 内の <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> の位置を表す序数。</value>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>処理を別の内部呼び出しクラスのみ<see cref="T:System.Windows.Data.CollectionView" />オブジェクトは、このプロパティをオーバーライドする必要があります。 他のすべての派生クラスを使用する必要があります、<see cref="M:System.Windows.Data.CollectionView.SetCurrent(System.Object,System.Int32)" />基底クラスに格納されている現在の値を更新するメソッド。</para></block>
+        <block subset="none" type="overrides"><para>別の内部<see cref="T:System.Windows.Data.CollectionView" />オブジェクトへの通貨処理呼び出しを渡すクラスのみが、このプロパティをオーバーライドする必要があり<see cref="M:System.Windows.Data.CollectionView.SetCurrent(System.Object,System.Int32)" />ます。他のすべての派生クラスでは、メソッドを使用して、基底クラスに格納されている現在の値を更新する必要があります。</para></block>
       </Docs>
     </Member>
     <Member MemberName="DeferRefresh">
@@ -533,13 +533,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>ビューに対する変更をマージし、自動更新を遅延させるために使用できる遅延サイクルを入力します。</summary>
-        <returns>呼び出し元のオブジェクトを破棄する際に使用できる <see cref="T:System.IDisposable" /> オブジェクト。</returns>
+        <summary>ビューの変更をマージして自動更新を遅延させるために使用できる遅延サイクルを入力します。</summary>
+        <returns>呼び出し元のオブジェクトを破棄するために使用できる <see cref="T:System.IDisposable" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 一般的な使用状況、作成する、`using`このメソッドを使用してスコープを設定して、スコープ内で複数のビューを変更する呼び出しを配置します。 これにより、遅延サイクルが終了するまで、自動更新が遅延します。  
+ 一般的な使用方法は、この`using`メソッドを使用してスコープを作成し、そのスコープ内に複数のビュー変更呼び出しを配置することです。 これにより、遅延サイクルが終了するまで自動更新が遅延されます。  
   
  ]]></format>
         </remarks>
@@ -567,7 +567,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを使用して、基になるコレクションのイベントをアンサブスク ライブすることができ、<xref:System.Windows.Data.CollectionView>ガベージ コレクションします。  
+ このメソッドを使用して、基になるコレクションでイベントの<xref:System.Windows.Data.CollectionView>サブスクライブを解除し、ガベージコレクションを実行できるようにします。  
   
  ]]></format>
         </remarks>
@@ -604,11 +604,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 簡単な実装をサポートしないフィルター処理をスローする<xref:System.NotSupportedException>します。 使用して、<xref:System.Windows.Data.CollectionView.CanFilter%2A>プロパティをこのプロパティに null 以外の値を割り当てる前にフィルター処理がサポートされている場合をテストします。  
+ より単純な実装では、のフィルター <xref:System.NotSupportedException>処理とスローはサポートされていません。 このプロパティ<xref:System.Windows.Data.CollectionView.CanFilter%2A>を null 以外の値に割り当てる前に、プロパティを使用してフィルター処理がサポートされているかどうかをテストします。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.NotSupportedException">現在の実装がフィルター処理をサポートしていません。</exception>
+        <exception cref="T:System.NotSupportedException">現在の実装ではフィルター処理をサポートしていません。</exception>
         <altmember cref="E:System.Windows.Data.CollectionViewSource.Filter" />
       </Docs>
     </Member>
@@ -665,14 +665,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、インデックスのいずれかを評価<xref:System.Windows.Data.CollectionView.SortDescriptions%2A>または<xref:System.Windows.Data.CollectionView.Filter%2A>ビューに設定されているプロパティの値。  
+ このメソッド<xref:System.Windows.Data.CollectionView.SortDescriptions%2A>は、ビューに設定さ<xref:System.Windows.Data.CollectionView.Filter%2A>れているまたはプロパティ値を使用してインデックスを評価します。  
   
- 基になるコレクションが型の場合<xref:System.Collections.IEnumerable>、これは o (n) 操作。  
+ 基になるコレクションの型<xref:System.Collections.IEnumerable>がである場合、これは O (N) 操作です。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> が 0 未満です。</exception>
-        <block subset="none" type="overrides"><para>派生する場合<see cref="T:System.Windows.Data.CollectionView" />より効率的な実装を提供するには、このメソッドをオーバーライドします。</para></block>
+        <block subset="none" type="overrides"><para>から<see cref="T:System.Windows.Data.CollectionView" />派生する場合は、このメソッドをオーバーライドして、より効率的な実装を提供します。</para></block>
       </Docs>
     </Member>
     <Member MemberName="GroupDescriptions">
@@ -701,7 +701,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの値は常に`null`ため、<xref:System.Windows.Data.CollectionView>クラスがその基になるコレクションにグループ化をサポートされていません。 派生クラス<xref:System.Windows.Data.ListCollectionView>と<xref:System.Windows.Data.BindingListCollectionView>はグループ化をサポートします。  
+ クラスは、基になるコレクション`null`に対する<xref:System.Windows.Data.CollectionView>グループ化をサポートしていないため、このプロパティの値は常にです。 派生クラス<xref:System.Windows.Data.ListCollectionView>とは<xref:System.Windows.Data.BindingListCollectionView> 、グループ化をサポートしています。  
   
  ]]></format>
         </remarks>
@@ -734,7 +734,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの値は常に`null`ため、<xref:System.Windows.Data.CollectionView>クラスがその基になるコレクションにグループ化をサポートされていません。 派生クラス<xref:System.Windows.Data.ListCollectionView>と<xref:System.Windows.Data.BindingListCollectionView>はグループ化をサポートします。  
+ クラスは、基になるコレクション`null`に対する<xref:System.Windows.Data.CollectionView>グループ化をサポートしていないため、このプロパティの値は常にです。 派生クラス<xref:System.Windows.Data.ListCollectionView>とは<xref:System.Windows.Data.BindingListCollectionView> 、グループ化をサポートしています。  
   
  ]]></format>
         </remarks>
@@ -767,9 +767,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、-1 以外のインデックスを返します場合、する必要がありますが常にそのビューのインデックス-1 は true < 項目 < = 比較が完了したらビュー [index] を使用して、<xref:System.Collections.IComparer.Compare%2A?displayProperty=nameWithType>が存在する場合は、ビューのメソッド。  
+ このメソッドが-1 以外のインデックスを返す場合、view [index-1] < item < = view [index] であることを常に true にする必要があります<xref:System.Collections.IComparer.Compare%2A?displayProperty=nameWithType> 。この場合、比較はビューのメソッドを使用して実行されます (存在する場合)。  
   
- メソッドのこの特定の動作がいくつかで使用される<xref:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged>イベント ハンドラーの反応を挿入および削除を高速化します。 リスナーはバイナリ サーチを使用して、派生クラスがこのメソッドをオーバーライドしない場合、<xref:System.Collections.IComparer.Compare%2A?displayProperty=nameWithType>メソッド。  
+ このメソッドの特定の動作は、挿入と<xref:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged>削除に対する反応を高速化するために、一部のイベントハンドラーによって使用されます。 派生クラスがこのメソッドをオーバーライドしない場合、リスナーは<xref:System.Collections.IComparer.Compare%2A?displayProperty=nameWithType>メソッドを使用してバイナリ検索を行います。  
   
  ]]></format>
         </remarks>
@@ -796,12 +796,12 @@
       </ReturnValue>
       <Docs>
         <summary>ビューの <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がコレクションの末尾を越えるかどうかを示す値を取得します。</summary>
-        <value>ビューの <see langword="true" /> がコレクションの末尾を越える場合は <see cref="P:System.Windows.Data.CollectionView.CurrentItem" />。それ以外の場合は <see langword="false" />。</value>
+        <value>ビューの <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がコレクションの末尾を越える場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。  
   
  ]]></format>
         </remarks>
@@ -829,12 +829,12 @@
       </ReturnValue>
       <Docs>
         <summary>ビューの <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がコレクションの先頭より前にあるかどうかを示す値を取得します。</summary>
-        <value>ビューの <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がコレクションの先頭より前にある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value>ビューの <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がコレクションの先頭より前にある場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。  
   
  ]]></format>
         </remarks>
@@ -956,7 +956,7 @@
         <summary>保留状態の <see cref="M:System.Windows.Data.CollectionView.DeferRefresh" /> が使用されているかどうかを示す値を取得します。</summary>
         <value>保留状態の <see cref="M:System.Windows.Data.CollectionView.DeferRefresh" /> が使用されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>派生クラスは、呼び出しを避ける必要があります<see cref="M:System.Windows.Data.CollectionView.Refresh" />場合<see cref="P:System.Windows.Data.CollectionView.IsRefreshDeferred" />返します<see langword="true" />します。</para></block>
+        <block subset="none" type="overrides"><para>がを返す場合<see cref="M:System.Windows.Data.CollectionView.Refresh" /> <see cref="P:System.Windows.Data.CollectionView.IsRefreshDeferred" /> 、派生クラス<see langword="true" />はを呼び出さないでください。</para></block>
       </Docs>
     </Member>
     <Member MemberName="MoveCurrentTo">
@@ -982,23 +982,23 @@
         <Parameter Name="item" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="item"><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定される項目。</param>
+        <param name="item"><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定する項目。</param>
         <summary>指定された項目をビュー内の <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> に設定します。</summary>
-        <returns>結果として得られる <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がビュー内に存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns>結果として得られる <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がビュー内にある場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定した項目が見つからないかどうか、メソッドを返します`false`、<xref:System.Windows.Data.CollectionView.CurrentItem%2A>ビューでは、コレクションの先頭の前に配置されます。  
+ 指定された項目が見つからない場合、メソッド`false`はを<xref:System.Windows.Data.CollectionView.CurrentItem%2A>返し、はビュー内のコレクションの先頭の前に配置されます。  
   
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。 詳細については、「コレクションにバインド」を参照してください[データ バインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」の「コレクションへのバインド」を参照してください。  
   
- ビューの現在の項目の詳細については、次を参照してください。<xref:System.Windows.Data.CollectionView.CurrentItem%2A>します。  
+ ビューの現在の項目の詳細については、 <xref:System.Windows.Data.CollectionView.CurrentItem%2A>「」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、このメソッドの使用を示します。  
+ このメソッドの使用例を次に示します。  
   
  [!code-csharp[Colors#NewColor](~/samples/snippets/csharp/VS_Snippets_Wpf/Colors/CSharp/Colors.xaml.cs#newcolor)]
  [!code-vb[Colors#NewColor](~/samples/snippets/visualbasic/VS_Snippets_Wpf/Colors/visualbasic/colors.xaml.vb#newcolor)]  
@@ -1029,13 +1029,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>ビュー内の最初の項目を <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定します。</summary>
+        <summary>ビュー内の最初の項目が <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> になるように設定します。</summary>
         <returns>結果として得られる <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がビュー内の項目である場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。 詳細については、「コレクションにバインド」を参照してください[データ バインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」の「コレクションへのバインド」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1063,13 +1063,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>ビュー内の最後の項目を <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定します。</summary>
+        <summary>ビュー内の最後の項目が <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> になるように設定します。</summary>
         <returns>結果として得られる <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がビュー内の項目である場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。 詳細については、「コレクションにバインド」を参照してください[データ バインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」の「コレクションへのバインド」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1103,7 +1103,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。 詳細については、「コレクションにバインド」を参照してください[データ バインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」の「コレクションへのバインド」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1133,14 +1133,14 @@
         <Parameter Name="position" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="position"><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> を設定するインデックス。</param>
+        <param name="position"><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> に設定するインデックス。</param>
         <summary>指定したインデックスにある項目を、ビュー内の <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> になるように設定します。</summary>
         <returns>結果として得られる <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がビュー内の項目である場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。 詳細については、「コレクションにバインド」を参照してください[データ バインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」の「コレクションへのバインド」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1167,13 +1167,13 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>ビュー内の <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> の前にある項目を <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定します。</summary>
+        <summary>ビュー内の <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> の前の項目を <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定します。</summary>
         <returns>結果として得られる <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> がビュー内の項目である場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コレクション ビューは、現在のレコード ポインターの概念をサポートします。 コレクション ビュー内のオブジェクトを移動し、コレクション内の特定の場所に存在するオブジェクトを取得できるレコード ポインター移動します。 詳細については、「コレクションにバインド」を参照してください[データ バインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)します。  
+ コレクションビューは、現在のレコードポインターの概念をサポートします。 コレクションビュー内のオブジェクト間を移動すると、レコードポインターが移動されます。これにより、コレクション内の特定の場所に存在するオブジェクトを取得できます。 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」の「コレクションへのバインド」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1208,7 +1208,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、ビューの内部状態が変更され、必要かどうかを示します、<xref:System.Windows.Data.CollectionView.Refresh%2A>メソッドの呼び出し。 一般的なシナリオは場合、<xref:System.ComponentModel.SortDescription>と同様に追加されたビュー、ビューが遅延更新サイクルの間または (を参照してください<xref:System.Windows.Data.CollectionView.DeferRefresh%2A>)。 このシナリオを明示的に呼び出すなしで<xref:System.Windows.Data.CollectionView.Refresh%2A>が必要です。 遅延更新サイクル終了すると、ビューの更新を自動的に呼び出しますようになります。  
+ このプロパティは、ビューの内部状態が変更され、 <xref:System.Windows.Data.CollectionView.Refresh%2A>メソッド呼び出しが必要かどうかを示します。 一般的なシナリオは、ビュー <xref:System.ComponentModel.SortDescription>が遅延更新サイクルであるときに、または類似したがビューに追加さ<xref:System.Windows.Data.CollectionView.DeferRefresh%2A>れた場合です (「」を参照してください)。 このシナリオでは、へ<xref:System.Windows.Data.CollectionView.Refresh%2A>の明示的な呼び出しは必要ありません。遅延更新サイクルが終了するとすぐに、ビューは自動的に更新を呼び出します。  
   
  ]]></format>
         </remarks>
@@ -1244,9 +1244,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ときに、<xref:System.Windows.Data.CollectionView>を実装する<xref:System.ComponentModel.IEditableCollectionView>が<xref:System.ComponentModel.IEditableCollectionView.NewItemPlaceholderPosition%2A>に設定<xref:System.ComponentModel.NewItemPlaceholderPosition.AtBeginning>または<xref:System.ComponentModel.NewItemPlaceholderPosition.AtEnd>、<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>コレクションに追加されます。  <xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>コレクションで常に表示されますをグループ化、並べ替え、またはフィルター処理に関与しません。  
+ <xref:System.ComponentModel.NewItemPlaceholderPosition.AtBeginning>を実装<xref:System.Windows.Data.CollectionView> <xref:System.ComponentModel.IEditableCollectionView>する<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>が<xref:System.ComponentModel.IEditableCollectionView.NewItemPlaceholderPosition%2A>または<xref:System.ComponentModel.NewItemPlaceholderPosition.AtEnd>に設定されている場合、がコレクションに追加されます。  は<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>常にコレクションに表示されます。グループ化、並べ替え、またはフィルター処理には関与しません。  
   
- <xref:System.Windows.Data.CollectionView.CurrentItem%2A>することはできません、<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>します。 などの相対的なナビゲーションを実行するメソッド、 <xref:System.Windows.Data.CollectionView.MoveCurrentToNext%2A>、スキップ、<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>します。  <xref:System.Windows.Data.CollectionView.MoveCurrentToFirst%2A> <xref:System.Windows.Data.CollectionView.MoveCurrentToLast%2A>スキップ、<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>場合<xref:System.ComponentModel.IEditableCollectionView.NewItemPlaceholderPosition%2A>に設定されている<xref:System.ComponentModel.NewItemPlaceholderPosition.AtBeginning>または<xref:System.ComponentModel.NewItemPlaceholderPosition.AtEnd>、それぞれします。 など、絶対のナビゲーションを実行するメソッド<xref:System.Windows.Data.CollectionView.MoveCurrentToPosition%2A>、何もしない場合、<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>なります、<xref:System.Windows.Data.CollectionView.CurrentItem%2A>します。  
+ をに<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>することはできません。 <xref:System.Windows.Data.CollectionView.CurrentItem%2A> などの相対ナビゲーション<xref:System.Windows.Data.CollectionView.MoveCurrentToNext%2A>を実行するメソッドは、を<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>スキップします。  <xref:System.Windows.Data.CollectionView.MoveCurrentToFirst%2A>と<xref:System.Windows.Data.CollectionView.MoveCurrentToLast%2A>は、 <xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A>それぞれ<xref:System.ComponentModel.IEditableCollectionView.NewItemPlaceholderPosition%2A>または<xref:System.ComponentModel.NewItemPlaceholderPosition.AtBeginning>がに設定されている場合にスキップします。 <xref:System.ComponentModel.NewItemPlaceholderPosition.AtEnd> などの絶対ナビゲーション<xref:System.Windows.Data.CollectionView.MoveCurrentToPosition%2A>を実行するメソッドは、がの<xref:System.Windows.Data.CollectionView.NewItemPlaceholder%2A> <xref:System.Windows.Data.CollectionView.CurrentItem%2A>場合、何も実行しません。  
   
  ]]></format>
         </remarks>
@@ -1362,7 +1362,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 並べ替え、フィルター処理、または条件をグループ化を発生させるには、このメソッドを呼び出す前に考慮、<xref:System.Windows.Data.CollectionView.CollectionChanged>イベント。  
+ このメソッドを呼び出してイベントを発生させる前に、並べ替え、フィルター処理、 <xref:System.Windows.Data.CollectionView.CollectionChanged>またはグループ化の条件を考慮してください。  
   
  ]]></format>
         </remarks>
@@ -1396,7 +1396,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを呼び出す<xref:System.Windows.Data.CollectionView.ProcessCollectionChanged%2A>正しい上にある場合[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]ディスパッチャー スレッドしは別のスレッドから更新されていません、または正しいスレッドで処理するディスパッチャーに変更を投稿します。  
+ このメソッドは<xref:System.Windows.Data.CollectionView.ProcessCollectionChanged%2A> 、が適切[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]なスレッドディスパッチャー上にあり、別のスレッドから更新されたことがない場合にを呼び出します。また、変更をディスパッチャーにポストして、正しいスレッドで処理します。  
   
  ]]></format>
         </remarks>
@@ -1456,7 +1456,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、設定<xref:System.Windows.Data.CollectionView.CurrentPosition%2A>を-1 にします。 このメソッドはコレクションの変更に影響を与える、<xref:System.Windows.Data.CollectionView.CurrentItem%2A>します。  
+ このメソッドは<xref:System.Windows.Data.CollectionView.CurrentPosition%2A> 、を-1 に設定します。 このメソッドは、に影響を与えるコレクションの<xref:System.Windows.Data.CollectionView.CurrentItem%2A>変更によって呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -1539,7 +1539,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 異なり、<xref:System.Windows.Data.CollectionView.Contains%2A>メソッドでは、この方法では、指定した項目が基になるコレクションに属しています。 このメソッドは、アカウントにフィルターを受け取ります。 通常、このメソッドは、追加または削除された項目の処理が必要かどうかを判断するのににコレクションの変更の通知時に使用します。  
+ <xref:System.Windows.Data.CollectionView.Contains%2A>メソッドとは異なり、このメソッドは、指定された項目が基になるコレクションに属していることを前提としています。 このメソッドでは、フィルターが考慮されます。 通常、このメソッドは、追加または削除された項目が処理を必要とするかどうかを判断するために、コレクションが変更された通知の間に使用します。  
   
  ]]></format>
         </remarks>
@@ -1568,7 +1568,7 @@
         <param name="args">処理対象の <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> オブジェクト。</param>
         <summary>派生クラスでオーバーライドされると、[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)] スレッド上で単一の変更を処理します。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>このメソッドは、1 つの変更の処理に派生クラスでオーバーライドする必要があります、[!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]スレッド。</para></block>
+        <block subset="none" type="overrides"><para>このメソッドは、 [!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]スレッドの1つの変更を処理するために、派生クラスでオーバーライドする必要があります。</para></block>
       </Docs>
     </Member>
     <Member MemberName="ProcessPendingChanges">
@@ -1643,9 +1643,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 設定すると、 <xref:System.Windows.Data.CollectionView.Filter%2A>、 <xref:System.Windows.Data.CollectionView.SortDescriptions%2A>、または<xref:System.Windows.Data.CollectionView.GroupDescriptions%2A>プロパティです。 更新が発生します。  呼び出す必要はありません、<xref:System.Windows.Data.CollectionView.Refresh%2A>した後すぐにメソッドがこれらのプロパティのいずれかを設定します。 自動更新が遅延する方法については、次を参照してください。<xref:System.Windows.Data.CollectionView.DeferRefresh%2A>します。  
+ <xref:System.Windows.Data.CollectionView.Filter%2A> 、<xref:System.Windows.Data.CollectionView.SortDescriptions%2A>、または<xref:System.Windows.Data.CollectionView.GroupDescriptions%2A>プロパティを設定すると、更新が行われます。  これらのプロパティのいずれかを<xref:System.Windows.Data.CollectionView.Refresh%2A>設定した直後に、メソッドを呼び出す必要はありません。 自動更新を遅延させる方法について<xref:System.Windows.Data.CollectionView.DeferRefresh%2A>は、「」を参照してください。  
   
- 派生クラスを使用して、保護された<xref:System.Windows.Data.CollectionView.RefreshOverride%2A>このメソッドの動作をオーバーライドするメソッド。  
+ 派生クラスでは、 <xref:System.Windows.Data.CollectionView.RefreshOverride%2A> protected メソッドを使用して、このメソッドの動作をオーバーライドします。  
   
  ]]></format>
         </remarks>
@@ -1695,7 +1695,7 @@
       <Docs>
         <summary>ビューを再作成します。</summary>
         <remarks>To be added.</remarks>
-        <block subset="none" type="overrides"><para>派生クラスでの動作を変更するには、このメソッドをオーバーライドする必要があります、<see cref="M:System.Windows.Data.CollectionView.Refresh" />メソッド。</para></block>
+        <block subset="none" type="overrides"><para>派生クラスは、メソッドの動作を変更するために<see cref="M:System.Windows.Data.CollectionView.Refresh" /> 、このメソッドをオーバーライドする必要があります。</para></block>
       </Docs>
     </Member>
     <MemberGroup MemberName="SetCurrent">
@@ -1728,7 +1728,7 @@
         <Parameter Name="newPosition" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="newItem"><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定される項目。</param>
+        <param name="newItem"><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定する項目。</param>
         <param name="newPosition"><see cref="P:System.Windows.Data.CollectionView.CurrentPosition" /> プロパティ値として設定する値。</param>
         <summary>指定された項目およびインデックスを <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> プロパティおよび <see cref="P:System.Windows.Data.CollectionView.CurrentPosition" /> プロパティの値として設定します。</summary>
         <remarks>To be added.</remarks>
@@ -1756,7 +1756,7 @@
         <Parameter Name="count" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="newItem"><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定される項目。</param>
+        <param name="newItem"><see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> として設定する項目。</param>
         <param name="newPosition"><see cref="P:System.Windows.Data.CollectionView.CurrentPosition" /> プロパティ値として設定する値。</param>
         <param name="count"><see cref="T:System.Windows.Data.CollectionView" /> 内の項目数。</param>
         <summary>指定された項目およびインデックスを <see cref="P:System.Windows.Data.CollectionView.CurrentItem" /> プロパティおよび <see cref="P:System.Windows.Data.CollectionView.CurrentPosition" /> プロパティの値として設定します。 このメソッドは、派生クラスのコンストラクターから呼び出すことができます。</summary>
@@ -1764,9 +1764,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生したクラスのコンス トラクターには、このオーバー ロードを呼び出します。  処理されない、<xref:System.Windows.Data.CollectionView.Count%2A>仮想プロパティである、プロパティとして`count`します。 代わりに、内部の数を渡す<xref:System.Collections.IList>コレクションを表します。  
+ 派生クラスのコンストラクターからこのオーバーロードを呼び出します。  仮想プロパティである<xref:System.Windows.Data.CollectionView.Count%2A>プロパティをとして`count`渡さないでください。 代わりに、コレクションを表す内部<xref:System.Collections.IList>の数を渡します。  
   
- <xref:System.Windows.Data.CollectionView.SetCurrent%2A> .NET Framework version 3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
+ <xref:System.Windows.Data.CollectionView.SetCurrent%2A>は .NET Framework バージョン3.5 で導入されました。  詳細については、「[.NET Framework のバージョンおよび依存関係](~/docs/framework/migration-guide/versions-and-dependencies.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1803,7 +1803,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 追加することはできません、<xref:System.ComponentModel.SortDescription>返された (空) のコレクションのため、基底クラス<xref:System.Windows.Data.CollectionView>は並べ替えをサポートしていません。 代わりに、派生クラスを使用して、<xref:System.Windows.Data.ListCollectionView>と<xref:System.Windows.Data.BindingListCollectionView>並べ替えをサポートしています。 また、確認、<xref:System.Windows.Data.CollectionView.CanSort%2A>プロパティを追加または削除する前に<xref:System.ComponentModel.SortDescription>例外を避けるためにオブジェクト。  
+ 基底クラス<xref:System.ComponentModel.SortDescription> <xref:System.Windows.Data.CollectionView>では並べ替えがサポートされていないため、返された (空の) コレクションにを追加することはできません。 代わりに、並べ替えをサポートする<xref:System.Windows.Data.ListCollectionView>派生<xref:System.Windows.Data.BindingListCollectionView>クラスとを使用します。 また、例外を<xref:System.Windows.Data.CollectionView.CanSort%2A>回避するためにオブジェクト<xref:System.ComponentModel.SortDescription>を追加または削除する前に、プロパティを確認してください。  
   
  ]]></format>
         </remarks>
@@ -1937,7 +1937,7 @@
       </ReturnValue>
       <Docs>
         <summary><see cref="E:System.Windows.Data.CollectionView.CollectionChanged" /> 通知が最初に [!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)] スレッド ディスパッチャーに入らずに別のスレッドで受信されたため変更ログを更新する必要があったかどうかを示す値を取得します。</summary>
-        <value><see langword="true" /> 変更ログを更新する必要があったそのかどうか、<see cref="E:System.Windows.Data.CollectionView.CollectionChanged" />通知は、最初の入力しなくても別のスレッドで受信されたが、[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]スレッド ディスパッチャー、それ以外の<see langword="false" />します。</value>
+        <value><see langword="true" /><see cref="E:System.Windows.Data.CollectionView.CollectionChanged" />通知が最初に[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)]スレッドディスパッチャーに入らずに別のスレッドで受信されたために変更ログを更新する必要がある場合<see langword="false" />は。それ以外の場合は。</value>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Data.CollectionView.OnBeginChangeLogging(System.Collections.Specialized.NotifyCollectionChangedEventArgs)" />
       </Docs>
