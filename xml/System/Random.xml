@@ -1,5 +1,5 @@
 <Type Name="Random" FullName="System.Random">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a5d099662a51c9ac6e434b6e8eb94d1a73c68700" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69419510" /></Metadata><TypeSignature Language="C#" Value="public class Random" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="271a79a5bfaf5ae1188446a6544d91f2c0f14890" /><Meta Name="ms.sourcegitcommit" Value="00194cfb0d5c4f2d3f620c0b561d50d547ce2f7f" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/06/2019" /><Meta Name="ms.locfileid" Value="70389735" /></Metadata><TypeSignature Language="C#" Value="public class Random" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit Random extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Random" />
   <TypeSignature Language="VB.NET" Value="Public Class Random" />
@@ -76,17 +76,17 @@
   
  異なる<xref:System.Random>オブジェクトに対して同じシードを使用すると、同じ一連の乱数が生成されます。 これは、ランダムな値を処理するテストスイートを作成する場合や、ランダムな数値からデータを派生するゲームを再生する場合に便利です。 ただし、異なるバージョン<xref:System.Random>の .NET Framework で実行されているプロセス内のオブジェクトは、同じシード値を使用してインスタンス化されている場合でも、異なる一連の乱数を返す可能性があることに注意してください。  
   
- 乱数の異なるシーケンスを生成するには、シード値を時間に依存させることができます。これにより、の<xref:System.Random>新しいインスタンスごとに異なる系列が生成されます。 パラメーター化<xref:System.Random.%23ctor%28System.Int32%29>されたコンストラクター <xref:System.Int32>は、現在の時刻のタイマー刻みの数に基づいて値を<xref:System.Random.%23ctor>受け取ることができます。一方、パラメーターなしのコンストラクターは、システムクロックを使用してシード値を生成します。 ただし、クロックには有限の解決があるため、パラメーターなしのコンストラクター <xref:System.Random>を使用して、連続して異なるオブジェクトを作成すると、ランダムな数値のシーケンスを生成する乱数ジェネレーターが作成されます。 次の例は、連続<xref:System.Random>してインスタンス化された2つのオブジェクトが、同一の連続する乱数を生成する方法を示しています。 ほとんどの Windows システムで<xref:System.Random>は、1つのオブジェクトで15ミリ秒以内に作成されたオブジェクトのシード値が同一である可能性があります。  
+ 乱数の異なるシーケンスを生成するには、シード値を時間に依存させることができます。これにより、の<xref:System.Random>新しいインスタンスごとに異なる系列が生成されます。 パラメーター化<xref:System.Random.%23ctor%28System.Int32%29>されたコンストラクター <xref:System.Int32>は、現在の時刻のタイマー刻みの数に基づいて値を<xref:System.Random.%23ctor>受け取ることができます。一方、パラメーターなしのコンストラクターは、システムクロックを使用してシード値を生成します。 ただし、.NET Framework のみでは、クロックには有限の解決があるため、パラメーターなしのコンストラクター <xref:System.Random>を使用して close 連続で異なるオブジェクトを作成すると、ランダムなシーケンスを生成する乱数ジェネレーターが作成されます。乱数. 次の例は、.NET Framework <xref:System.Random>アプリケーションで連続してインスタンス化された2つのオブジェクトが、同一の一連の乱数を生成する方法を示しています。 ほとんどの Windows システムで<xref:System.Random>は、1つのオブジェクトで15ミリ秒以内に作成されたオブジェクトのシード値が同一である可能性があります。  
   
  [!code-cpp[System.Random#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Random/cpp/random1.cpp#1)]
  [!code-csharp[System.Random#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Random/cs/Random1.cs#1)]
  [!code-vb[System.Random#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Random/vb/Random1.vb#1)]  
   
- この問題を回避するには、 <xref:System.Random>複数のオブジェクトではなく、単一のオブジェクトを作成します。  
+この問題を回避するには、 <xref:System.Random>複数のオブジェクトではなく、単一のオブジェクトを作成します。 .Net Core の`Random`クラスにはこのような制限がないことに注意してください。
   
 <a name="Multiple"></a>   
 ## <a name="avoiding-multiple-instantiations"></a>複数のインスタンス化の回避  
- 2つの乱数ジェネレーターを密ループまたは高速連続で初期化すると、2つの乱数ジェネレーターが作成され、乱数の同一シーケンスが生成されます。 ほとんどの場合、これは開発者の意図ではなく、ランダムな数値ジェネレーターのインスタンス化と初期化は比較的コストのかかるプロセスであるため、パフォーマンスの問題が発生する可能性があります。  
+ .NET Framework では、2つの乱数ジェネレーターを密ループで初期化するか、高速連続で初期化すると、2つの乱数ジェネレーターが作成され、同一の乱数シーケンスを生成することができます。 ほとんどの場合、これは開発者の意図ではなく、ランダムな数値ジェネレーターのインスタンス化と初期化は比較的コストのかかるプロセスであるため、パフォーマンスの問題が発生する可能性があります。  
   
  パフォーマンスを向上させ、同一の数値シーケンスを生成する個別の乱数ジェネレーターが誤って作成されない<xref:System.Random>ようにするために、1つのオブジェクトを作成し、時間の経過と共に多数の乱数を生成することをお勧めします。1 <xref:System.Random>つの乱数を生成する新しいオブジェクト。  
   
@@ -184,7 +184,7 @@
  [!code-csharp[System.Random#13](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Random/cs/unique.cs#13)]
  [!code-vb[System.Random#13](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Random/vb/unique.vb#13)]  
   
- ただし、このような制限があるため、システムクロックでは、約15ミリ秒未満の時間差は検出されません。 したがって、2つ<xref:System.Random.%23ctor> <xref:System.Random>のオブジェクトを連続してインスタンス化するためにコードがオーバーロードを呼び出した場合、誤って同じシード値を持つオブジェクトを提供することがあります。 前の例でこれを確認するには、 <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッド呼び出しをコメントアウトし、この例をもう一度コンパイルして実行します。  
+ ただし、このような制限があるため、システムクロックでは、約15ミリ秒未満の時間差は検出されません。 したがって、コードが .NET Framework の<xref:System.Random.%23ctor>オーバーロードを呼び出して2つ<xref:System.Random>のオブジェクトを連続してインスタンス化する場合、誤ったシード値を持つオブジェクトを提供することがあります。 (.Net <xref:System.Random> Core のクラスには、このような制限はありません)。前の例でこれを確認するには、 <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>メソッド呼び出しをコメントアウトし、この例をもう一度コンパイルして実行します。  
   
  これが起こらないようにするために、複数のオブジェクト<xref:System.Random>ではなく、単一のオブジェクトをインスタンス化することをお勧めします。 ただし、は<xref:System.Random>スレッドセーフではないため、複数のスレッドからインスタンスに<xref:System.Random>アクセスする場合は、同期デバイスを使用する必要があります。詳細については、このトピックで前述した「[ランダムクラスとスレッドセーフ](#ThreadSafety)」を参照してください。 または、前の例で使用した<xref:System.Threading.Thread.Sleep%2A>メソッドなどの遅延メカニズムを使用して、インスタンス化が15ミリ秒以上離れていることを確認することもできます。  
   
@@ -366,8 +366,9 @@ Random.NextDouble() * (maxValue - minValue) + minValue
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 既定のシード値は、システムクロックから派生し、有限の解決があります。 結果として、 <xref:System.Random>パラメーターなしのコンストラクターの呼び出しによって連続して作成された異なるオブジェクトの既定のシード値は同じになります。したがって、では、同一の乱数セットが生成されます。 この問題を回避するには、単一<xref:System.Random>のオブジェクトを使用してすべての乱数を生成します。 また、システムクロックによって返されたシード値を変更し、この新しいシード値を<xref:System.Random.%23ctor%28System.Int32%29>コンストラクターに明示的に指定することによって回避することもできます。 詳細については、 <xref:System.Random.%23ctor%28System.Int32%29>コンストラクターを参照してください。  
+## Remarks
+
+既定のシード値は、有限の解決を持つシステムクロックから派生します。 その結果、.NET Framework のみで、パラメーターなしの<xref:System.Random>コンストラクターの呼び出しによって連続して作成された異なるオブジェクトの既定のシード値が同一になるため、同じセットの乱数が生成されます。 この問題を回避するには、単一<xref:System.Random>のオブジェクトを使用してすべての乱数を生成します。 また、独自のランダムシード値を生成し、それを<xref:System.Random.%23ctor%28System.Int32%29>コンストラクターに渡すことによって回避することもできます。 詳細については、 <xref:System.Random.%23ctor%28System.Int32%29>コンストラクターを参照してください。 この制限は .NET Core には適用されないことに注意してください。  
   
  乱数ジェネレーターでランダムな数値シーケンスを生成する場合は、このコンストラクターを呼び出します。 異なる乱数ジェネレーターに対して同じである固定シーケンスの乱数を生成するには、固定<xref:System.Random.%23ctor%28System.Int32%29>のシード値を使用してコンストラクターを呼び出します。 この<xref:System.Random>コンストラクターのオーバーロードは、ランダムな数値を使用するアプリをテストするときによく使用されます。  
   
@@ -375,8 +376,9 @@ Random.NextDouble() * (maxValue - minValue) + minValue
   
    
   
-## Examples  
- 次の例では、パラメーターなしのコンストラクター <xref:System.Random>を使用して、3つのオブジェクトをインスタンス化し、それぞれに対して5つのランダムな整数のシーケンスを表示します。 最初の2つ<xref:System.Random>のオブジェクトは、連続して作成されるので、システムクロックに基づいて同一のシード値を使用してインスタンス化されるため、同じシーケンスの乱数が生成されます。 一方、3番目<xref:System.Random>のオブジェクトのパラメーターなしのコンストラクターは、メソッドの<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>呼び出しによって発生する2秒の遅延の後に呼び出されます。 これにより、3番目<xref:System.Random>のオブジェクトに対して異なるシード値が生成されるため、異なる乱数シーケンスが生成されます。  
+## Examples
+
+次の例では、パラメーターなしのコンストラクター <xref:System.Random>を使用して、3つのオブジェクトをインスタンス化し、それぞれに対して5つのランダムな整数のシーケンスを表示します。 最初の2つ<xref:System.Random>のオブジェクトが連続して作成されるので、.NET Framework で実行される場合は、システムクロックに基づいて同一のシード値を使用してインスタンス化されます。したがって、同じシーケンスの乱数が生成されます。 一方、3番目<xref:System.Random>のオブジェクトのパラメーターなしのコンストラクターは、メソッドの<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>呼び出しによって発生する2秒の遅延の後に呼び出されます。 これにより、3番目<xref:System.Random>のオブジェクトに対して異なるシード値が生成されるため、異なる乱数シーケンスが生成されます。  
   
  [!code-csharp[System.Random.Ctor#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Random.Ctor/CS/ctor1.cs#2)]
  [!code-vb[System.Random.Ctor#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Random.Ctor/VB/ctor1.vb#2)]  
@@ -425,7 +427,7 @@ Random.NextDouble() * (maxValue - minValue) + minValue
 ## Remarks  
  異なる<xref:System.Random>オブジェクトに対して同一のシード値を指定すると、各インスタンスは同じシーケンスの乱数を生成します。 これは、ランダムな数値ジェネレーターに依存するアプリをテストする場合によく行われます。  
   
- アプリケーションで異なる乱数シーケンスが必要な場合は、別のシード値を使用してこのコンストラクターを繰り返し呼び出します。 一意のシード値を生成する方法の1つは、時間に依存するようにすることです。 たとえば、オーバーロードの<xref:System.Random.%23ctor>場合と同じように、システムクロックからシード値を派生させます。 ただし、システムクロックには、別のシード値を持つこのコンストラクターの異なる呼び出しを提供するための十分な解決策がない可能性があります。 この結果、次の例の最初の2つ<xref:System.Random>のオブジェクトに示すように、擬似乱数の同じシーケンスを生成する乱数ジェネレーターが生成されます。 これを回避するには、各呼び出しのシード値を区別するためのアルゴリズムを<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>適用するか、またはメソッドを呼び出して、各コンストラクターに異なるシード値を指定していることを確認します。  
+ アプリケーションで異なる乱数シーケンスが必要な場合は、別のシード値を使用してこのコンストラクターを繰り返し呼び出します。 一意のシード値を生成する方法の1つは、時間に依存するようにすることです。 たとえば、オーバーロードの<xref:System.Random.%23ctor>場合と同じように、システムクロックからシード値を派生させます。 ただし、システムクロックには、別のシード値を持つこのコンストラクターの異なる呼び出しを提供するための十分な解決策がない可能性があります。 この .NET Framework では、次の例の最初の2つ<xref:System.Random>のオブジェクトに示すように、擬似乱数の同じシーケンスを生成する乱数ジェネレーターが生成されます。 これを回避するには、各呼び出しのシード値を区別するためのアルゴリズムを<xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>適用するか、またはメソッドを呼び出して、各コンストラクターに異なるシード値を指定していることを確認します。  
   
  [!code-csharp[System.Random.Ctor#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Random.Ctor/CS/ctor4.cs#4)]
  [!code-vb[System.Random.Ctor#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Random.Ctor/VB/ctor4.vb#4)]  
@@ -715,7 +717,7 @@ Random.NextDouble() * (maxValue - minValue) + minValue
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
         <block subset="none" type="overrides"><para>.NET Framework バージョン2.0 以降では、から<see cref="T:System.Random" />クラスを派生させ、メソッドを<see cref="M:System.Random.Sample" />オーバーライドした場合、 <see cref="M:System.Random.Sample" />メソッドの派生クラス実装によって提供される分布は、基本クラスの呼び出しでは使用されません。<see cref="M:System.Random.NextBytes(System.Byte[])" />メソッドの実装。 代わりに、基本<see cref="T:System.Random" />クラスによって返される一様分布が使用されます。 この動作により、 <see cref="T:System.Random" />クラスの全体的なパフォーマンスが向上します。 派生クラスで<see cref="M:System.Random.Sample" />メソッドを呼び出すようにこの動作を変更するには、 <see cref="M:System.Random.NextBytes(System.Byte[])" />メソッドもオーバーライドする必要があります。</para></block>
         <altmember cref="T:System.Byte" />
       </Docs>
