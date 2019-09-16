@@ -1,5 +1,5 @@
 <Type Name="IDuplexSession" FullName="System.ServiceModel.Channels.IDuplexSession">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8e2288779b884fb864395f74d1f1c86ad03976d4" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58555414" /></Metadata><TypeSignature Language="C#" Value="public interface IDuplexSession : System.ServiceModel.Channels.IInputSession, System.ServiceModel.Channels.IOutputSession" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4893578ce73fa37c40f4ed3571ed2e659faba7dc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69155870" /></Metadata><TypeSignature Language="C#" Value="public interface IDuplexSession : System.ServiceModel.Channels.IInputSession, System.ServiceModel.Channels.IOutputSession" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDuplexSession implements class System.ServiceModel.Channels.IInputSession, class System.ServiceModel.Channels.IOutputSession, class System.ServiceModel.Channels.ISession" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.IDuplexSession" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDuplexSession&#xA;Implements IInputSession, IOutputSession" />
@@ -198,15 +198,15 @@
         </remarks>
         <block subset="none" type="overrides"><para>
             <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は、セッションを所有する <see cref="T:System.ServiceModel.Channels.IDuplexSessionChannel" /> と対話できるセッション メソッドです。 具体的には、セッションの有効期間とチャネルの有効期間をまとめると、次のようになります (TCP および信頼性の高いセッションとセキュリティを想定した場合)。 
-If<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />前に呼び出されます<see cref="M:System.ServiceModel.ICommunicationObject.Close" />、チャネルで呼び出される<see cref="M:System.ServiceModel.ICommunicationObject.Close" />待つ必要があります<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />を完了します。  
+- <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> チャネルで<see cref="M:System.ServiceModel.ICommunicationObject.Close" />が呼び出される前にが呼び出された場合、はが終了するまで待機します。<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />  
   
-場合、チャネルが、<see cref="F:System.ServiceModel.CommunicationState.Created" />または<see cref="F:System.ServiceModel.CommunicationState.Opening" />状態、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />スローする必要があります、<see cref="T:System.InvalidOperationException" />します。  
+- <see cref="F:System.ServiceModel.CommunicationState.Created" />チャネルが<see cref="F:System.ServiceModel.CommunicationState.Opening" /> 状態また<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />は状態の場合、はをスローする必要があります。<see cref="T:System.InvalidOperationException" />  
   
-場合、チャネルが、<see cref="F:System.ServiceModel.CommunicationState.Faulted" />状態、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />スローする必要があります、<see cref="T:System.ServiceModel.CommunicationObjectFaultedException" />します。  
+-チャネルが<see cref="F:System.ServiceModel.CommunicationState.Faulted" />状態の場合、 <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />はをスロー <see cref="T:System.ServiceModel.CommunicationObjectFaultedException" />する必要があります。  
   
-に場合、チャネルはエラー<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />をスローします。  
+-がをスローした<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />場合、チャネルはエラーになります。  
   
--の実装<see cref="M:System.ServiceModel.ICommunicationObject.Close" />チャネルで呼び出す必要があります<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />ことを確認します<see cref="M:System.ServiceModel.Channels.IInputChannel.Receive" />返します<see langword="null" />、ことを示します<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />がセッションの相手側から呼び出されました。</para></block>
+-チャネル上の<see cref="M:System.ServiceModel.ICommunicationObject.Close" />の実装では、 <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />を呼び出し、が<see cref="M:System.ServiceModel.Channels.IInputChannel.Receive" />を<see langword="null" />返すことを確認<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />する必要があります。これは、がセッションのもう一方の側から呼び出されたことを示します。</para></block>
       </Docs>
     </Member>
     <Member MemberName="CloseOutputSession">
@@ -253,15 +253,15 @@ If<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /
         </remarks>
         <block subset="none" type="overrides"><para>
             <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は、セッションを所有する <see cref="T:System.ServiceModel.Channels.IDuplexSessionChannel" /> と対話できるセッション メソッドです。 具体的には、セッションの有効期間とチャネルの有効期間をまとめると、次のようになります (TCP および信頼性の高いセッションとセキュリティを想定した場合)。 
-If<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />前に呼び出されます<see cref="M:System.ServiceModel.ICommunicationObject.Close" />、チャネルで呼び出される<see cref="M:System.ServiceModel.ICommunicationObject.Close" />待つ必要があります<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />を完了します。  
+- <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> チャネルで<see cref="M:System.ServiceModel.ICommunicationObject.Close" />が呼び出される前にが呼び出された場合、はが終了するまで待機します。<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />  
   
-場合、チャネルが、<see cref="F:System.ServiceModel.CommunicationState.Created" />または<see cref="F:System.ServiceModel.CommunicationState.Opening" />状態、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />スローする必要があります、<see cref="T:System.InvalidOperationException" />します。  
+- <see cref="F:System.ServiceModel.CommunicationState.Created" />チャネルが<see cref="F:System.ServiceModel.CommunicationState.Opening" /> 状態また<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />は状態の場合、はをスローする必要があります。<see cref="T:System.InvalidOperationException" />  
   
-場合、チャネルが、<see cref="F:System.ServiceModel.CommunicationState.Faulted" />状態、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />スローする必要があります、<see cref="T:System.ServiceModel.CommunicationObjectFaultedException" />します。  
+-チャネルが<see cref="F:System.ServiceModel.CommunicationState.Faulted" />状態の場合、 <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />はをスロー <see cref="T:System.ServiceModel.CommunicationObjectFaultedException" />する必要があります。  
   
-に場合、チャネルはエラー<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />をスローします。  
+-がをスローした<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />場合、チャネルはエラーになります。  
   
--の実装<see cref="M:System.ServiceModel.ICommunicationObject.Close" />チャネルで呼び出す必要があります<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />ことを確認します<see cref="M:System.ServiceModel.Channels.IInputChannel.Receive" />返します<see langword="null" />ことを示すを<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />がセッションの相手側から呼び出されました。</para></block>
+-チャネル上の<see cref="M:System.ServiceModel.ICommunicationObject.Close" />の実装では、 <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />を呼び出し、が<see cref="M:System.ServiceModel.Channels.IInputChannel.Receive" />を<see langword="null" />返すことを<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" />確認する必要があります。これは、がセッションのもう一方の側から呼び出されたことを示します。</para></block>
       </Docs>
     </Member>
     <Member MemberName="EndCloseOutputSession">

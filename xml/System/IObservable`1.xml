@@ -1,5 +1,5 @@
 <Type Name="IObservable&lt;T&gt;" FullName="System.IObservable&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b254aa9b58fa22bb12d126a5a11607096ee177a5" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58717595" /></Metadata><TypeSignature Language="C#" Value="public interface IObservable&lt;out T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bce716cd0c3354619ffbdd10290d061e39634ace" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405929" /></Metadata><TypeSignature Language="C#" Value="public interface IObservable&lt;out T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IObservable`1&lt;+ T&gt;" />
   <TypeSignature Language="DocId" Value="T:System.IObservable`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface IObservable(Of Out T)" />
@@ -39,46 +39,46 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IObserver%601>と<xref:System.IObservable%601>インターフェイスが汎用化されたプッシュ ベースの通知、オブザーバー デザイン パターンとも呼ばれるメカニズムを提供します。 <xref:System.IObservable%601>インターフェイス (プロバイダー); の通知を送信するクラスを表す、<xref:System.IObserver%601>インターフェイスは、受信する (オブザーバー) クラスを表します。 `T` 通知情報を提供するクラスを表します。 一部のプッシュ ベースの通知で、<xref:System.IObserver%601>実装と`T`同じ型を表すことができます。  
+ インターフェイス<xref:System.IObserver%601> と<xref:System.IObservable%601>インターフェイスは、オブザーバーデザインパターンとも呼ばれる、プッシュベースの通知の一般化されたメカニズムを提供します。 インターフェイス<xref:System.IObservable%601>は、通知を送信するクラス (プロバイダー) を表します<xref:System.IObserver%601> 。インターフェイスは、そのインターフェイスを受け取るクラス (オブザーバー) を表します。 `T`通知情報を提供するクラスを表します。 一部のプッシュベースの通知<xref:System.IObserver%601>では、実装と`T`が同じ型を表すことができます。  
   
- プロバイダーは、1 つのメソッドを実装する必要があります<xref:System.IObservable%601.Subscribe%2A>オブザーバーがプッシュ ベースの通知を受信することを示します。 メソッドの呼び出し元は、オブザーバーのインスタンスを渡します。 メソッドを返します、<xref:System.IDisposable>により、プロバイダーが送信を停止する前に、いつでも通知をキャンセルするオブザーバーを実装します。  
+ プロバイダーは、オブザーバーがプッシュベースの<xref:System.IObservable%601.Subscribe%2A>通知を受け取ることを示す1つのメソッドを実装する必要があります。 メソッドへの呼び出し元は、オブザーバーのインスタンスを渡します。 メソッドは、プロバイダー <xref:System.IDisposable>が通知の送信を停止する前に、オブザーバーが通知をキャンセルできるようにする実装を返します。  
   
- 任意の時点では、指定されたプロバイダーは 0、1、または複数のオブザーバーがあります。 プロバイダーは、オブザーバーへの参照を格納すると、それらが有効である通知を送信することを確認します。 <xref:System.IObservable%601>インターフェイスはオブザーバーまたは通知が送信される注文の数に関するどのような想定を行いません。  
+ 特定の時点で、指定されたプロバイダーは、0、1、または複数のオブザーバーを持つことができます。 プロバイダーは、オブザーバーへの参照を保存し、通知を送信する前に有効であることを確認します。 この<xref:System.IObservable%601>インターフェイスは、オブザーバーの数や通知が送信される順序については想定していません。  
   
- プロバイダーは、呼び出すことによって、オブザーバーに次の 3 種類の通知を送信<xref:System.IObserver%601>メソッド。  
+ プロバイダーは、メソッドを呼び出す<xref:System.IObserver%601>ことによって、次の3種類の通知をオブザーバーに送信します。  
   
--   現在のデータ。 プロバイダーが呼び出すことができます、<xref:System.IObserver%601.OnNext%2A?displayProperty=nameWithType>オブザーバーを渡すメソッドを`T`を現在のデータや変更されたデータは、新しいデータを持つオブジェクト。  
+-   現在のデータ。 プロバイダーは、 <xref:System.IObserver%601.OnNext%2A?displayProperty=nameWithType>メソッドを呼び出して、現在のデータ`T` 、変更されたデータ、または新しいデータを持つオブジェクトをオブザーバーに渡すことができます。  
   
--   エラー条件。 プロバイダーが呼び出すことができます、<xref:System.IObserver%601.OnError%2A?displayProperty=nameWithType>何らかのエラー状態が発生したことをオブザーバーに通知するメソッド。  
+-   エラー状態。 プロバイダーは、 <xref:System.IObserver%601.OnError%2A?displayProperty=nameWithType>メソッドを呼び出して、何らかのエラー状態が発生したことをオブザーバーに通知できます。  
   
--   さらにデータがありません。 プロバイダーが呼び出すことができます、<xref:System.IObserver%601.OnCompleted%2A?displayProperty=nameWithType>通知の送信が完了したことをオブザーバーに通知するメソッド。  
+-   それ以上のデータはありません。 プロバイダーは、メソッドを<xref:System.IObserver%601.OnCompleted%2A?displayProperty=nameWithType>呼び出して、通知の送信が完了したことをオブザーバーに通知できます。  
   
    
   
 ## Examples  
- 次の例は、オブザーバー デザイン パターンを示しています。 定義、`Location`緯度と経度の情報を含むクラスです。  
+ 次の例は、オブザーバーデザインパターンを示しています。 緯度と経度`Location`の情報を含むクラスを定義します。  
   
  [!code-csharp[System.IObserver.Class#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.iobserver.class/cs/provider.cs#5)]
  [!code-vb[System.IObserver.Class#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.iobserver.class/vb/provider.vb#5)]  
   
- `LocationTracker`クラスには、<xref:System.IObservable%601>実装します。 その`TrackLocation`メソッドは、null 許容型で渡される`Location`緯度と経度のデータを格納しているオブジェクト。 場合、`Location`値が`null`、`TrackLocation`メソッドの呼び出し、<xref:System.IObserver%601.OnNext%2A>各オブザーバーのメソッド。  
+ クラス`LocationTracker`は、実装<xref:System.IObservable%601>を提供します。 このメソッドには、緯度`Location`と経度のデータを格納する null 許容のオブジェクトが渡されます。 `TrackLocation` 値がでない`null`場合、メソッド`TrackLocation`は各オブザーバー <xref:System.IObserver%601.OnNext%2A>のメソッドを呼び出します。 `Location`  
   
  [!code-csharp[System.IObserver.Class#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.iobserver.class/cs/provider.cs#6)]
  [!code-vb[System.IObserver.Class#6](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.iobserver.class/vb/provider.vb#6)]  
   
- 場合、`Location`値は`null`、`TrackLocation`メソッドをインスタンス化、`LocationUnknownException`オブジェクトで、次の例に示します。 各オブザーバーを呼び出して<xref:System.IObserver%601.OnError%2A>メソッドを渡します、`LocationUnknownException`オブジェクト。 なお`LocationUnknownException`から派生した<xref:System.Exception>、新しいメンバーを追加しません。  
+ 値が`null`の場合`TrackLocation` 、メソッドはオブジェクトをインスタンス化します。これを次の例に示します。`LocationUnknownException` `Location` 次に、各オブザーバーの<xref:System.IObserver%601.OnError%2A>メソッドを呼び出し、オブジェクト`LocationUnknownException`を渡します。 はから`LocationUnknownException` <xref:System.Exception>派生しますが、新しいメンバーを追加することはありません。  
   
  [!code-csharp[System.IObserver.Class#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.iobserver.class/cs/provider.cs#7)]
  [!code-vb[System.IObserver.Class#7](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.iobserver.class/vb/provider.vb#7)]  
   
- 通知を受信するオブザーバーを登録、`TrackLocation`オブジェクトを呼び出すことによってその<xref:System.IObservable%601.Subscribe%2A?displayProperty=nameWithType>メソッドで、オブザーバー オブジェクトへの参照をプライベート ジェネリックに割り当てます<xref:System.Collections.Generic.List%601>オブジェクト。 メソッドを返します、`Unsubscriber`となるオブジェクト、<xref:System.IDisposable>により、通知の受信を停止するオブザーバーを実装します。 `LocationTracker`クラスも含まれています、`EndTransmission`メソッド。 場所データをさらに利用できない場合は、メソッドの各オブザーバーの<xref:System.IObserver%601.OnCompleted%2A>メソッドし、オブザーバーの内部リストをクリアします。  
+ オブザーバーは、 <xref:System.IObservable%601.Subscribe%2A?displayProperty=nameWithType>メソッドを呼び出して`TrackLocation`オブジェクトから通知を受け取るように登録します。これにより、オブザーバー <xref:System.Collections.Generic.List%601>オブジェクトへの参照がプライベートオブジェクトに割り当てられます。 メソッドは`Unsubscriber`オブジェクトを返します。これ<xref:System.IDisposable>は、オブザーバーが通知の受信を停止できるようにする実装です。 クラス`LocationTracker`には、 `EndTransmission`メソッドも含まれています。 これ以上の場所データが使用できない場合、メソッドは各<xref:System.IObserver%601.OnCompleted%2A>オブザーバーのメソッドを呼び出し、オブザーバーの内部リストをクリアします。  
   
- この例で、`LocationReporter`クラスには、<xref:System.IObserver%601>実装します。 コンソールには、現在の場所に関する情報が表示されます。 そのコンス トラクターが含まれています、`name`パラメーターは、これにより、`LocationReporter`の文字列の出力で自身を識別するインスタンス。 含まれています、`Subscribe`メソッドは、プロバイダーの呼び出しをラップする<xref:System.IObservable%601.Subscribe%2A>メソッド。 これにより、メソッドは、返された割り当てる<xref:System.IDisposable>秘密の変数への参照。 `LocationReporter`クラスも含まれています、`Unsubscribe`メソッドを呼び出す、<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>によって返されるオブジェクトのメソッド、<xref:System.IObservable%601.Subscribe%2A?displayProperty=nameWithType>メソッド。 次のコード定義、`LocationReporter`クラス。  
+ この例では、 `LocationReporter`クラスに実装<xref:System.IObserver%601>が用意されています。 現在の場所に関する情報がコンソールに表示されます。 そのコンストラクターには`name` 、パラメーターが含まれ`LocationReporter`ています。これにより、インスタンスは、その文字列の出力で自身を識別できます。 また、プロバイダーの`Subscribe` <xref:System.IObservable%601.Subscribe%2A>メソッドへの呼び出しをラップするメソッドも含まれています。 これにより、メソッドは、返さ<xref:System.IDisposable>れた参照をプライベート変数に割り当てることができます。 クラス`LocationReporter`には、メソッド`Unsubscribe`によって<xref:System.IObservable%601.Subscribe%2A?displayProperty=nameWithType>返される<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>オブジェクトのメソッドを呼び出すメソッドも含まれています。 次のコードでは`LocationReporter` 、クラスを定義しています。  
   
  [!code-csharp[System.IObserver.Class#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.iobserver.class/cs/observer.cs#8)]
  [!code-vb[System.IObserver.Class#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.iobserver.class/vb/observer.vb#8)]  
   
- 次のコードは、プロバイダーとオブザーバーにし、インスタンス化します。  
+ 次のコードでは、プロバイダーとオブザーバーをインスタンス化します。  
   
  [!code-csharp[System.IObserver.Class#9](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.iobserver.class/cs/program.cs#9)]
  [!code-vb[System.IObserver.Class#9](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.iobserver.class/vb/module1.vb#9)]  
@@ -86,7 +86,7 @@
  ]]></format>
     </remarks>
     <altmember cref="T:System.IObserver`1" />
-    <related type="Article" href="https://msdn.microsoft.com/library/3680171f-f522-453c-aa4a-54f755a78f88">オブザーバー デザイン パターン</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/3680171f-f522-453c-aa4a-54f755a78f88">オブザーバーデザインパターン</related>
   </Docs>
   <Members>
     <Member MemberName="Subscribe">
@@ -130,18 +130,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IObservable%601.Subscribe%2A>プッシュ ベースの通知のオブザーバーを登録するメソッドを呼び出す必要があります。 一般的な実装、<xref:System.IObservable%601.Subscribe%2A>メソッドは、次を実行します。  
+ プッシュ<xref:System.IObservable%601.Subscribe%2A>ベースの通知にオブザーバーを登録するには、メソッドを呼び出す必要があります。 <xref:System.IObservable%601.Subscribe%2A>メソッドの一般的な実装では、次のことを行います。  
   
--   など、コレクション オブジェクトで、オブザーバーへの参照を格納、<xref:System.Collections.Generic.List%601>オブジェクト。  
+-   <xref:System.Collections.Generic.List%601>オブジェクトなどのコレクションオブジェクトにオブザーバーへの参照を格納します。  
   
--   参照を返します、<xref:System.IDisposable>インターフェイス。 これにより、登録を解除するオブザーバー (つまり、通知の受信を停止する)、プロバイダーが送信を完了という、サブスクライバーの前に<xref:System.IObserver%601.OnCompleted%2A>メソッド。  
+-   このメソッドは、 <xref:System.IDisposable>インターフェイスへの参照を返します。 これにより、オブザーバーは、プロバイダーがサブスクリプションの送信を終了し、サブスクライバーの<xref:System.IObserver%601.OnCompleted%2A>メソッドと呼ばれる前に、通知の受信を中止できます。  
   
- 時間の特定のインスタンスに特定、<xref:System.IObservable%601>実装はすべてのサブスクリプションを処理し、すべてのサブスクライバーに通知する責任を負います。 しない限り、特定のドキュメント<xref:System.IObservable%601>実装がそれを示すオブザーバーことは避けてください前提条件について、<xref:System.IObservable%601>など複数のオブザーバーを受信する通知の順番の実装。  
+ 特定の時点で、 <xref:System.IObservable%601>実装の特定のインスタンスがすべてのサブスクリプションを処理し、すべてのサブスクライバーに通知します。 特定<xref:System.IObservable%601>の実装に関するドキュメントで特に指定されていない限り、 <xref:System.IObservable%601>オブザーバーは、複数のオブザーバーが受信する通知の順序など、実装についての仮定を行いません。  
   
    
   
 ## Examples  
- 次の例を示しています、<xref:System.IObservable%601.Subscribe%2A>緯度と経度の情報を報告するアプリケーションのメソッド。 定義、<xref:System.Collections.Generic.IList%601>すべてオブザーバーへの参照を格納するコレクション オブジェクト。 という名前のプライベート クラスも返します`Unsubscriber`を実装する、<xref:System.IDisposable>インターフェイスし、により、サブスクライバーにイベント通知の受信を停止します。  例を参照してください、<xref:System.IObservable%601>完全な例についてはトピック。  
+ 次の例は、 <xref:System.IObservable%601.Subscribe%2A>緯度と経度の情報を報告するアプリケーションのメソッドを示しています。 すべてのオブザーバー <xref:System.Collections.Generic.IList%601>への参照を格納するコレクションオブジェクトを定義します。 また、 <xref:System.IDisposable>インターフェイスを実装すると`Unsubscriber`いう名前のプライベートクラスを返し、サブスクライバーがイベント通知の受信を停止できるようにします。  完全な例について<xref:System.IObservable%601>は、「」の「例」を参照してください。  
   
  [!code-csharp[System.IObserver.Class#13](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.iobserver.class/cs/provider.cs#13)]
  [!code-vb[System.IObserver.Class#13](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.iobserver.class/vb/provider.vb#13)]  

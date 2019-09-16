@@ -1,5 +1,5 @@
 <Type Name="HttpListenerResponse" FullName="System.Net.HttpListenerResponse">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="3a1b5eb536e9b00536acd9dbfe5a083c60324776" /><Meta Name="ms.sourcegitcommit" Value="10aa513a7461eb2abbf8d1e35d2a045d4e5a9be7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/09/2019" /><Meta Name="ms.locfileid" Value="67665434" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpListenerResponse : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4c5efe47c6284cfe45d058a491611c31374813ac" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69091031" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpListenerResponse : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit HttpListenerResponse extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Net.HttpListenerResponse" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class HttpListenerResponse&#xA;Implements IDisposable" />
@@ -35,9 +35,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- によって処理される場合は、クライアントがリソースへの要求、<xref:System.Net.HttpListener>オブジェクトで、アプリケーションで利用できる、要求と応答、<xref:System.Net.HttpListenerContext>オブジェクト。 要求がによって表される、<xref:System.Net.HttpListenerRequest>オブジェクトし、では、<xref:System.Net.HttpListenerContext.Request%2A?displayProperty=nameWithType>プロパティ。 応答がによって表される、<xref:System.Net.HttpListenerResponse>オブジェクトし、では、<xref:System.Net.HttpListenerContext.Response%2A?displayProperty=nameWithType>プロパティ。  
+ クライアントが<xref:System.Net.HttpListener>オブジェクトによって処理されるリソースに対して要求を行うと、要求と応答は、 <xref:System.Net.HttpListenerContext>オブジェクト内のアプリケーションで使用できるようになります。 要求は<xref:System.Net.HttpListenerRequest>オブジェクトによって表され、 <xref:System.Net.HttpListenerContext.Request%2A?displayProperty=nameWithType>プロパティで使用できます。 応答は<xref:System.Net.HttpListenerResponse>オブジェクトによって表され、 <xref:System.Net.HttpListenerContext.Response%2A?displayProperty=nameWithType>プロパティで使用できます。  
   
- など、さまざまなプロパティを設定して、応答をカスタマイズする<xref:System.Net.HttpListenerResponse.StatusCode%2A>、 <xref:System.Net.HttpListenerResponse.StatusDescription%2A>、および<xref:System.Net.HttpListenerResponse.Cookies%2A>します。 使用して、<xref:System.Net.HttpListenerResponse.OutputStream%2A?displayProperty=nameWithType>プロパティを取得する、<xref:System.IO.Stream>インスタンスが応答にデータを記述できます。 最後に、呼び出すことによって応答データをクライアントに送信、<xref:System.Net.HttpListenerResponse.Close%2A>メソッド。  
+ <xref:System.Net.HttpListenerResponse.StatusCode%2A> 、<xref:System.Net.HttpListenerResponse.StatusDescription%2A>、などのさまざまなプロパティを設定することによって、応答をカスタマイズできます。<xref:System.Net.HttpListenerResponse.Cookies%2A> プロパティを<xref:System.Net.HttpListenerResponse.OutputStream%2A?displayProperty=nameWithType>使用して、 <xref:System.IO.Stream>応答データを書き込むことができるインスタンスを取得します。 最後に、 <xref:System.Net.HttpListenerResponse.Close%2A>メソッドを呼び出して、応答データをクライアントに送信します。  
  
   
  ]]></format>
@@ -81,7 +81,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既に閉じられているオブジェクトでこのメソッドを呼び出しても効果はありません。 このメソッドは、関連付けられている閉じます応答が終了されていない場合<xref:System.Net.HttpListenerRequest>と<xref:System.Net.HttpListenerContext>オブジェクト。 関係なく、閉じている、クライアントへの接続も、<xref:System.Net.HttpListenerRequest.KeepAlive%2A>クライアント要求のプロパティの値。  
+ 既に閉じられているオブジェクトに対してこのメソッドを呼び出すと、効果はありません。 応答がまだ閉じられていない場合、このメソッドはそれを<xref:System.Net.HttpListenerRequest>閉じ<xref:System.Net.HttpListenerContext> 、関連付けられたオブジェクトとオブジェクトを閉じます。 クライアント要求の<xref:System.Net.HttpListenerRequest.KeepAlive%2A>プロパティ値に関係なく、クライアントへの接続も閉じられます。  
   
  ]]></format>
         </remarks>
@@ -129,14 +129,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを呼び出すことは、呼び出しに相当、<xref:System.Net.WebHeaderCollection.Set%2A>メソッドによって返されるコレクションを<xref:System.Net.HttpListenerResponse.Headers%2A>プロパティ。  
+ このメソッドを呼び出す<xref:System.Net.WebHeaderCollection.Set%2A> <xref:System.Net.HttpListenerResponse.Headers%2A>ことは、プロパティによって返されるコレクションに対してメソッドを呼び出すことと同じです。  
   
- ヘッダーが指定されている場合`name`が存在しないこのメソッド内に新しいヘッダーの挿入、<xref:System.Net.HttpListenerResponse.Headers%2A>プロパティのコレクション。 場合`name`が既存の値をこのメソッドは、コレクション内に存在する`value`します。 既存の値を置き換えることがなく、既存のヘッダーに値を追加するには、使用、<xref:System.Net.HttpListenerResponse.AppendHeader%2A>メソッド。  
+ で`name`指定されたヘッダーが存在しない場合、このメソッドは新しいヘッダー <xref:System.Net.HttpListenerResponse.Headers%2A>をプロパティのコレクションに挿入します。 が`name`コレクション内に存在する場合、このメソッドは既存の値`value`をに置き換えます。 既存の値を置き換えずに既存のヘッダーに値を追加するに<xref:System.Net.HttpListenerResponse.AppendHeader%2A>は、メソッドを使用します。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティを使用してヘッダーを追加することを示します。  
+ 次のコード例は、このプロパティを使用してヘッダーを追加する方法を示しています。  
   
  [!code-csharp[Net_Listener_Basic#26](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#26)]  
  [!code-vb[Net_Listener_Basic#26](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#26)]  
@@ -191,21 +191,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを呼び出すことは、呼び出しに相当、<xref:System.Net.CookieCollection.Add%2A>メソッドによって返されるコレクションを<xref:System.Net.HttpListenerResponse.Cookies%2A>プロパティ。  
+ このメソッドを呼び出す<xref:System.Net.CookieCollection.Add%2A> <xref:System.Net.HttpListenerResponse.Cookies%2A>ことは、プロパティによって返されるコレクションに対してメソッドを呼び出すことと同じです。  
   
- 指定したクッキーに存在しない場合、<xref:System.Net.HttpListenerResponse.Cookies%2A>プロパティのコレクション、`cookie`が追加されます。 Cookie は、コレクションに存在する場合`cookie`置き換えられます。  
+ 指定したクッキーが<xref:System.Net.HttpListenerResponse.Cookies%2A>プロパティのコレクションに存在しない場合は、 `cookie`が追加されます。 クッキーがコレクション内に存在する場合`cookie`は、に置き換えられます。  
   
    
   
 ## Examples  
- 次のコード例に示しますを応答に cookie を追加します。  
+ 次のコード例は、応答に cookie を追加する方法を示しています。  
   
  [!code-csharp[Net_Listener_Basic#20](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#20)]  
  [!code-vb[Net_Listener_Basic#20](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#20)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="cookie" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="cookie" /> が <see langword="null" /> です。</exception>
         <altmember cref="T:System.Net.HttpListener" />
         <altmember cref="T:System.Net.HttpListenerContext" />
         <altmember cref="T:System.Net.HttpListenerRequest" />
@@ -250,15 +250,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを呼び出すことは、呼び出しに相当、<xref:System.Net.WebHeaderCollection.Add%2A>メソッドによって返されるコレクションを<xref:System.Net.HttpListenerResponse.Headers%2A>プロパティ。  
+ このメソッドを呼び出す<xref:System.Net.WebHeaderCollection.Add%2A> <xref:System.Net.HttpListenerResponse.Headers%2A>ことは、プロパティによって返されるコレクションに対してメソッドを呼び出すことと同じです。  
   
- ヘッダーが指定されている場合`header`が存在しないこのメソッド内に新しいヘッダーの挿入、<xref:System.Net.HttpListenerResponse.Headers%2A>プロパティのコレクション。 場合`header`は、コレクションに存在するこのメソッドは追加`value`既存の値にします。 既存のヘッダーの値を置き換えるには、使用、<xref:System.Net.HttpListenerResponse.AddHeader%2A>メソッド。  
+ で`header`指定されたヘッダーが存在しない場合、このメソッドは新しいヘッダー <xref:System.Net.HttpListenerResponse.Headers%2A>をプロパティのコレクションに挿入します。 が`header`コレクション内に存在する場合、このメソッド`value`は既存の値にを追加します。 既存のヘッダーの値を置き換えるには、 <xref:System.Net.HttpListenerResponse.AddHeader%2A>メソッドを使用します。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> は <see langword="null" /> または空の文字列 ("") です。  
   
-- または - 
+または 
 指定したヘッダーの指定が許可されていません。  
   
 - または - 
@@ -313,12 +313,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、応答ストリームを閉じ、<xref:System.Net.HttpListenerRequest>応答に関連付けられています。  
+ このメソッドは、応答ストリームと応答<xref:System.Net.HttpListenerRequest>に関連付けられたを閉じます。  
   
    
   
 ## Examples  
- 次のコード例では、送信するには、このメソッドの呼び出しを示しています、 <xref:System.Net.HttpStatusCode.Forbidden> (403) 応答をクライアントにします。  
+ 次のコード例は、このメソッドを呼び出して<xref:System.Net.HttpStatusCode.Forbidden> 、クライアントに (403) 応答を送信する方法を示しています。  
   
  [!code-csharp[NclListener#5](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLListener/CS/sample.cs#5)]
  [!code-vb[NclListener#5](~/samples/snippets/visualbasic/VS_Snippets_Remoting/NCLListener/vb/sample.vb#5)]  
@@ -369,14 +369,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- として送信するこのメソッドを使用するには、応答本文のデータを送信する場合、<xref:System.Byte>本文データの書き込みではなく配列、<xref:System.Net.HttpListenerResponse.OutputStream%2A>プロパティと呼び出し、<xref:System.Net.HttpListenerResponse.Close%2A>メソッド。  
+ 本文データを応答と共に送信する場合は、このメソッドを使用して、本文<xref:System.Byte>データを<xref:System.Net.HttpListenerResponse.OutputStream%2A>プロパティに書き込み、 <xref:System.Net.HttpListenerResponse.Close%2A>メソッドを呼び出すのではなく、配列として送信することができます。  
   
- このメソッドは、応答ストリームを閉じ、<xref:System.Net.HttpListenerRequest>応答に関連付けられています。  
+ このメソッドは、応答ストリームと応答<xref:System.Net.HttpListenerRequest>に関連付けられたを閉じます。  
   
    
   
 ## Examples  
- 次のコード例では、このメソッドの呼び出しを示しています。  
+ 次のコード例は、このメソッドの呼び出しを示しています。  
   
  [!code-csharp[Net_Listener_Basic#24](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#24)]  
  [!code-vb[Net_Listener_Basic#24](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#24)]  
@@ -432,12 +432,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Text.Encoding>オブジェクトは、バイト シーケンスに文字セット (コード ページ) と文字をバイト シーケンスに変換するために使用できます。  
+ <xref:System.Text.Encoding>オブジェクトを使用すると、バイトシーケンスを文字セット (コードページ) に変換し、文字をバイトシーケンスに変換することができます。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティを使用してを示します。  
+ このプロパティの使用例を次のコード例に示します。  
   
  [!code-csharp[NclListener#5](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLListener/CS/sample.cs#5)]
  [!code-vb[NclListener#5](~/samples/snippets/visualbasic/VS_Snippets_Remoting/NCLListener/vb/sample.vb#5)]  
@@ -488,14 +488,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Content-Length`ヘッダーは応答の本文データの長さ、(バイト単位) を表します。 ときに、データを送信しない形式を使用してチャンク生、設定することも必要があります、<xref:System.Net.HttpListenerResponse.ContentLength64%2A>プロパティ。 そうでない場合、<xref:System.Net.HttpListener>応答データを送信しません。  
+ ヘッダー `Content-Length`は、応答の本文データの長さをバイト単位で表します。 データチャンクまたは未加工のデータを送信しない形式を使用する場合は、 <xref:System.Net.HttpListenerResponse.ContentLength64%2A>プロパティを設定する必要があります。 そう<xref:System.Net.HttpListener>しないと、は応答データを送信しません。  
   
- 応答ヘッダーの完全な一覧を参照してください、<xref:System.Net.HttpResponseHeader>列挙体。  
+ 応答ヘッダーの完全な一覧については<xref:System.Net.HttpResponseHeader> 、列挙体を参照してください。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値の設定を示します。  
+ 次のコード例は、このプロパティの値を設定する方法を示しています。  
   
  [!code-csharp[Net_Listener_Basic#2](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#2)]  
  [!code-vb[Net_Listener_Basic#2](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#2)]  
@@ -544,9 +544,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 以外の任意のコンテンツ タイプを返すときにこのプロパティを設定する Web ブラウザーを通信するときに明示的にする必要があります`text/html`します。  
+ Web ブラウザーと通信する場合は、以外`text/html`のコンテンツの種類を返すときに、このプロパティを明示的に設定する必要があります。  
   
- 応答ヘッダーの完全な一覧を参照してください、<xref:System.Net.HttpResponseHeader>列挙体。  
+ 応答ヘッダーの完全な一覧については<xref:System.Net.HttpResponseHeader> 、列挙体を参照してください。  
   
  ]]></format>
         </remarks>
@@ -597,12 +597,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Cookie とは、ローカル (クライアント) コンピューターに格納されている Web サーバーから名前/値のテキスト データです。 次の cookie の形式がサポートされています。Netscape、 [RFC 2109](https://www.rfc-editor.org/info/rfc2109)、および[RFC 2965](https://www.rfc-editor.org/info/rfc2965)します。
+ Cookie は、ローカル (クライアント) コンピューターに格納されている Web サーバーの名前/値テキストデータです。 次のクッキー形式がサポートされています。Netscape、 [rfc 2109](https://www.rfc-editor.org/info/rfc2109)、 [rfc 2965](https://www.rfc-editor.org/info/rfc2965)。
   
    
   
 ## Examples  
- 次のコード例では、クッキーの要求をチェックし、要求が 1 つを持たない場合、応答で新しい cookie を返します。  
+ 次のコード例では、cookie の要求を確認し、要求に含まれていない場合は、応答と共に新しいクッキーを返します。  
   
  [!code-csharp[Net_Listener_Basic#20](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#20)]  
  [!code-vb[Net_Listener_Basic#20](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#20)]  
@@ -651,9 +651,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 新しい値の固定セットをその既定値から定期的に多くのプロパティを変更する場合を使用すると便利です、<xref:System.Net.HttpListenerResponse>をテンプレートとしてのインスタンス。 1 回と、各応答を個別に構成する代わりに、テンプレートの応答をカスタマイズ、呼び出し、<xref:System.Net.HttpListenerResponse.CopyFrom%2A>テンプレート応答内のプロパティ値に基づいて、新しい応答を構成する方法。  
+ 多くのプロパティを既定値から新しい値の固定セットに定期的に変更する場合は、 <xref:System.Net.HttpListenerResponse>インスタンスをテンプレートとして使用すると便利です。 テンプレート応答を1回だけカスタマイズし、各応答を個別に構成する<xref:System.Net.HttpListenerResponse.CopyFrom%2A>のではなく、メソッドを呼び出して、テンプレート応答のプロパティ値に基づいて新しい応答を構成します。  
   
- 次のプロパティからコピーされる`templateResponse`現在のインスタンス。  
+ 次のプロパティはから`templateResponse`現在のインスタンスにコピーされます。  
   
 -   <xref:System.Net.HttpListenerResponse.Headers%2A>  
   
@@ -670,7 +670,7 @@
    
   
 ## Examples  
- 次のコード例では、テンプレートの応答をコピーして、応答を作成するを示します。  
+ 次のコード例は、テンプレート応答をコピーすることによって応答を作成する方法を示しています。  
   
  [!code-csharp[NCLListener#5](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLListener/CS/sample.cs#5)]
  [!code-vb[NCLListener#5](~/samples/snippets/visualbasic/VS_Snippets_Remoting/NCLListener/vb/sample.vb#5)]  
@@ -721,17 +721,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 応答ヘッダーは、日付と、応答時間、応答側のサーバーに、応答本文に含まれるデータの MIME の種類の id などのメタデータ情報を格納します。  
+ 応答ヘッダーには、応答の日付と時刻、応答サーバーの id、応答本文に含まれるデータの MIME の種類などのメタデータ情報が含まれます。  
   
- 応答ヘッダーの完全な一覧を参照してください、<xref:System.Net.HttpResponseHeader>列挙体。  
+ 応答ヘッダーの完全な一覧については<xref:System.Net.HttpResponseHeader> 、列挙体を参照してください。  
   
 > [!NOTE]
->  コンテンツの長さを設定しようとした場合、転送エンコードのキープ アライブまたはヘッダーのプロパティ、例外を使用して、Www-authenticate ヘッダーがスローされます。 使用して、<xref:System.Net.HttpListenerResponse.KeepAlive%2A>または<xref:System.Net.HttpListenerResponse.ContentLength64%2A>プロパティをこれらのヘッダーを設定します。 転送エンコードまたは WWW 認証ヘッダーを手動で設定することはできません。  
+>  Headers プロパティを使用して、Content-length、keep-alive、転送エンコード、または WWW-認証ヘッダーを設定しようとすると、例外がスローされます。 これらの<xref:System.Net.HttpListenerResponse.KeepAlive%2A>ヘッダー <xref:System.Net.HttpListenerResponse.ContentLength64%2A>を設定するには、プロパティまたはプロパティを使用します。 転送エンコードヘッダーまたは WWW 認証ヘッダーを手動で設定することはできません。  
   
    
   
 ## Examples  
- 内のヘッダーを表示する次のコード例に示します、<xref:System.Net.WebHeaderCollection>します。  
+ 次のコード例は、でヘッダーを表示<xref:System.Net.WebHeaderCollection>する方法を示しています。  
   
  [!code-csharp[Net_Listener_Basic#23](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#23)]  
  [!code-vb[Net_Listener_Basic#23](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#23)]  
@@ -783,14 +783,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合は、HTTP クライアントとサーバー、短時間で複数回のデータを交換する、永続的な接続、通信速度がメッセージごとに TCP 接続を開いたり閉じたりするために必要なオーバーヘッドを回避することができます。 永続的な接続は、最新の Web ブラウザーと Web サーバー間の通信での広範囲にわたる使用中です。  
+ HTTP クライアントとサーバーが短時間に複数回データを交換することを想定している場合、永続的な接続では、各メッセージの TCP 接続を開いたり閉じたりするために必要なオーバーヘッドを回避することで、通信の速度を向上させることができます。 永続的な接続は、最新の Web ブラウザーと Web サーバー間の通信に広く使用されています。  
   
- 永続的な接続が RTF Editor の Web サイトで使用可能な http/1.1 プロトコル仕様 (RFC 2616) で詳しく説明されている ([https://www.rfc-editor.org/](https://www.rfc-editor.org/))。  
+ 永続接続の詳細については、「RTF エディター Web サイト ()」 ([https://www.rfc-editor.org/](https://www.rfc-editor.org/)) の「HTTP/1.1 プロトコル仕様 (RFC 2616)」を参照してください。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値の設定を示します。  
+ 次のコード例は、このプロパティの値を設定する方法を示しています。  
   
  [!code-csharp[NclListener#7](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLListener/CS/sample.cs#7)]
  [!code-vb[NclListener#7](~/samples/snippets/visualbasic/VS_Snippets_Remoting/NCLListener/vb/sample.vb#7)]  
@@ -837,15 +837,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.HttpListenerResponse.ContentLength64%2A>プロパティは、返されたに書き込む前に明示的に設定する必要があります<xref:System.IO.Stream>オブジェクト。  
+ 返さ<xref:System.Net.HttpListenerResponse.ContentLength64%2A> れ<xref:System.IO.Stream>たオブジェクトに書き込む前に、プロパティを明示的に設定する必要があります。  
   
 > [!NOTE]
->  要求を終了しても、このプロパティによって返されるストリームは閉じられません。 ストリームが不要になった、ときに、Close メソッドを呼び出すことで閉じる必要があります。  
+>  要求を終了しても、このプロパティによって返されたストリームは閉じられません。 ストリームが不要になったら、Close メソッドを呼び出して閉じる必要があります。  
   
    
   
 ## Examples  
- 次のコード例では、このメソッドの呼び出しを示しています。  
+ 次のコード例は、このメソッドの呼び出しを示しています。  
   
  [!code-csharp[Net_Listener_Basic#3](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#3)]  
  [!code-vb[Net_Listener_Basic#3](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#3)]  
@@ -892,12 +892,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- さまざまな HTTP のバージョンの機能で使用可能なドキュメントで指定された[ https://www.ietf.org](https://www.ietf.org)します。  
+ さまざまな HTTP バージョンの機能は、で[https://www.ietf.org](https://www.ietf.org)使用可能なドキュメントに指定されています。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値の設定を示します。  
+ 次のコード例は、このプロパティの値を設定する方法を示しています。  
   
  [!code-csharp[NclListener#5](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLListener/CS/sample.cs#5)]
  [!code-vb[NclListener#5](~/samples/snippets/visualbasic/VS_Snippets_Remoting/NCLListener/vb/sample.vb#5)]  
@@ -949,12 +949,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Net.HttpListenerResponse.Redirect%2A>メソッドを使用して、リソースの新しい場所にクライアントをリダイレクトします。 このメソッドの設定、応答の`Location`ヘッダーを`url`、<xref:System.Net.HttpListenerResponse.StatusCode%2A>プロパティを<xref:System.Net.HttpStatusCode.Redirect>、および<xref:System.Net.HttpListenerResponse.StatusDescription%2A>プロパティを「が見つかりました」。  
+ メソッド<xref:System.Net.HttpListenerResponse.Redirect%2A>は、クライアントをリソースの新しい場所にリダイレクトするために使用されます。 このメソッドは、応答の`Location` `url`ヘッダー <xref:System.Net.HttpListenerResponse.StatusCode%2A>をに、プロパティを<xref:System.Net.HttpStatusCode.Redirect>に、 <xref:System.Net.HttpListenerResponse.StatusDescription%2A>プロパティを "Found" に設定します。  
   
    
   
 ## Examples  
- 次のコード例では、このメソッドの呼び出しを示しています。  
+ 次のコード例は、このメソッドの呼び出しを示しています。  
   
  [!code-csharp[Net_Listener_Basic#27](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#27)]  
  [!code-vb[Net_Listener_Basic#27](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#27)]  
@@ -1000,15 +1000,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Location`ヘッダーは、クライアントが要求されたリソースに対する URL を指定します。  
+ ヘッダー `Location`は、要求されたリソースを検索するためにクライアントが送信される URL を指定します。  
   
 > [!NOTE]
->  このプロパティは自動的に設定されていない設定、<xref:System.Net.HttpListenerResponse.StatusCode%2A>プロパティ。  
+>  このプロパティを設定しても、 <xref:System.Net.HttpListenerResponse.StatusCode%2A>プロパティは自動的には設定されません。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの設定を示します。  
+ このプロパティを設定するコード例を次に示します。  
   
  [!code-csharp[Net_Listener_Basic#25](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#25)]  
  [!code-vb[Net_Listener_Basic#25](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#25)]  
@@ -1056,7 +1056,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- チャンク処理されたメッセージの本文は、一連のチャンク単位で構成されます。 各チャンクをチャンクのデータと実際のデータのサイズの 2 つの部分で構成されます。 設定すると、応答を true を使用して送信はチャンク転送エンコードです。  
+ チャンクされたメッセージの本文は、一連のチャンクで構成されます。 各チャンクは、チャンクデータのサイズと実際のデータの2つの部分で構成されます。 True に設定すると、チャンク転送エンコードを使用して応答が送信されます。  
   
  ]]></format>
         </remarks>
@@ -1098,19 +1098,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2 つの cookie が場合でも同じと見なされますの値、 <xref:System.Net.Cookie.Name%2A>、 <xref:System.Net.Cookie.Domain%2A>、および<xref:System.Net.Cookie.Path%2A>プロパティは同じです。 これら 3 つの情報が同じ場合、メソッドは、cookie を更新しようとします。 名とドメインの比較は大文字小文字が区別されませんが、パスの比較は大文字小文字を区別します。  
+ 、 <xref:System.Net.Cookie.Name%2A> 、<xref:System.Net.Cookie.Domain%2A>およびの各プロパティの値が同じ場合、2つのcookieは同じものと<xref:System.Net.Cookie.Path%2A>見なされます。 この3つの情報が同じである場合、メソッドは cookie の更新を試みます。 名前とドメインの比較では大文字と小文字は区別されませんが、パスの比較では大文字と小文字が区別されます。  
   
    
   
 ## Examples  
- 次のコード例では、このメソッドの呼び出しを示しています。  
+ 次のコード例は、このメソッドの呼び出しを示しています。  
   
  [!code-csharp[Net_Listener_Basic#28](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#28)]  
  [!code-vb[Net_Listener_Basic#28](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#28)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="cookie" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="cookie" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException">クッキーが既にコレクション内に存在し、置き換えることができません。</exception>
         <altmember cref="T:System.Net.HttpListener" />
         <altmember cref="T:System.Net.HttpListenerContext" />
@@ -1151,14 +1151,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クライアントは、続行するのに方法を決定するのに、サーバーによって返されるステータス コードを使用します。 値<xref:System.Net.HttpStatusCode.OK>サーバーが正常にクライアントの要求を処理し、応答本文に要求されたリソースを含めることを示します。 その他の一般的なステータス コードを含める<xref:System.Net.HttpStatusCode.NotFound>、サーバーで、要求されたリソースが見つからなかったことを示すと<xref:System.Net.HttpStatusCode.NotModified>クライアントでのコピーをキャッシュされたのため、応答本文で要求されたリソースを返す必要がないことを示すリソースは最新です。  
+ クライアントは、サーバーによって返されたステータスコードを使用して、処理を続行する方法を決定します。 値がの<xref:System.Net.HttpStatusCode.OK>場合は、サーバーがクライアントの要求を正常に処理し、要求されたリソースを応答本文に含めたことを示します。 その他の一般的な<xref:System.Net.HttpStatusCode.NotFound>状態コードには、要求されたリソースがサーバー <xref:System.Net.HttpStatusCode.NotModified>で見つからなかったことを示す、があります。これは、クライアントのキャッシュされたのコピーが原因で、要求されたリソースを応答本文に返す必要がないことを示します。リソースは最新の状態です。  
   
- 使用できる状態コードの完全な一覧を参照してください、<xref:System.Net.HttpStatusCode>列挙体。  
+ 使用可能なステータスコードの完全な一覧につい<xref:System.Net.HttpStatusCode>ては、「列挙体」を参照してください。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値の設定を示します。  
+ 次のコード例は、このプロパティの値を設定する方法を示しています。  
   
  [!code-csharp[Net_Listener_Basic#7](~/samples/snippets/csharp/VS_Snippets_Remoting/Net_Listener_Basic/CS/test.cs#7)]  
  [!code-vb[Net_Listener_Basic#7](~/samples/snippets/visualbasic/VS_Snippets_Remoting/Net_Listener_Basic/VB/test.vb#7)]  
@@ -1206,12 +1206,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 状態の説明は説明の詳細は、通常は、<xref:System.Net.HttpListenerResponse.StatusCode%2A>値。  
+ 通常、状態の説明には<xref:System.Net.HttpListenerResponse.StatusCode%2A>値を説明する詳細情報が表示されます。  
   
    
   
 ## Examples  
- 次のコード例では、このプロパティの値の設定を示します。  
+ 次のコード例は、このプロパティの値を設定する方法を示しています。  
   
  [!code-csharp[NclListener#7](~/samples/snippets/csharp/VS_Snippets_Remoting/NCLListener/CS/sample.cs#7)]
  [!code-vb[NclListener#7](~/samples/snippets/visualbasic/VS_Snippets_Remoting/NCLListener/vb/sample.vb#7)]  
@@ -1261,7 +1261,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 使用して、<xref:System.Net.HttpListenerResponse.Close%2A>メソッドを応答を送信し、保持されているリソースを解放する<xref:System.Net.HttpListenerResponse>します。 応答を破棄して、このインスタンスによって保持されているリソースを解放を使用して、<xref:System.Net.HttpListenerResponse.Abort%2A>メソッド。  
+ メソッドを使用し<xref:System.Net.HttpListenerResponse>て、によって保持されている応答リソースと解放リソースを送信します。 <xref:System.Net.HttpListenerResponse.Close%2A> 応答を破棄し、このインスタンスによって保持されている<xref:System.Net.HttpListenerResponse.Abort%2A>リソースを解放するには、メソッドを使用します。  
   
  ]]></format>
         </remarks>

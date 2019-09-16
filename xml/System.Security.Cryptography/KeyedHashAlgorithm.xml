@@ -1,5 +1,5 @@
 <Type Name="KeyedHashAlgorithm" FullName="System.Security.Cryptography.KeyedHashAlgorithm">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7623002fbcdfc00ba4db0a2f0e13c1716bbddbcb" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58725261" /></Metadata><TypeSignature Language="C#" Value="public abstract class KeyedHashAlgorithm : System.Security.Cryptography.HashAlgorithm" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c436012f93e2cff1ded8f1ffb88ff308182d1f4e" /><Meta Name="ms.sourcegitcommit" Value="8544f14c8194a55eb22d46721b0bbe46f345c063" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/21/2019" /><Meta Name="ms.locfileid" Value="69669393" /></Metadata><TypeSignature Language="C#" Value="public abstract class KeyedHashAlgorithm : System.Security.Cryptography.HashAlgorithm" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit KeyedHashAlgorithm extends System.Security.Cryptography.HashAlgorithm" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.KeyedHashAlgorithm" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class KeyedHashAlgorithm&#xA;Inherits HashAlgorithm" />
@@ -38,16 +38,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ハッシュ関数マップのバイナリ文字列固定長のバイナリ文字列を小規模に任意の長さ。 暗号ハッシュ関数では、同じ値にハッシュされる 2 つの異なる入力を見つけるには計算上不可能がないプロパティがあります。 ハッシュで大規模で予期しない変更データの結果を少し変更します。  
+ ハッシュ関数は、任意の長さのバイナリ文字列を固定長の小さなバイナリ文字列にマップします。 暗号ハッシュ関数には、同じ値にハッシュされる2つの異なる入力を見つけることができるというプロパティがあります。 データに小さな変更を加えると、ハッシュに大きな変更が加えられることがあります。  
   
- キー付きハッシュ アルゴリズムは、メッセージ認証コードとして使用されるキーに依存し、一方向のハッシュ関数です。 キーを知っている人だけはハッシュを検証できます。 キー付きハッシュ アルゴリズムは秘密にしなくても完全性を提供します。  
+ キー付きハッシュアルゴリズムは、メッセージ認証コードとして使用される、キーに依存する一方向のハッシュ関数です。 ハッシュを検証できるのは、そのキーを知っているユーザーだけです。 キー付きハッシュアルゴリズムは、機密性のない信頼性を提供します。  
   
- デジタル署名を使用し、データの整合性のハッシュ関数がよく使用されます。 <xref:System.Security.Cryptography.HMACSHA1>クラス キー付きハッシュ アルゴリズムの例に示します。  
+ ハッシュ関数は、デジタル署名とデータ整合性のために一般的に使用されます。 この<xref:System.Security.Cryptography.HMACSHA1>クラスは、キー付きハッシュアルゴリズムの一例です。  
   
-   
+ SHA1 との競合問題のため、Microsoft では SHA256 以上に基づくセキュリティ モデルを推奨しています。  
   
 ## Examples  
- 派生させる方法を次のコード例に示します、<xref:System.Security.Cryptography.KeyedHashAlgorithm>クラス。  
+ <xref:System.Security.Cryptography.KeyedHashAlgorithm>クラスから派生する方法を次のコード例に示します。  
   
  [!code-csharp[KeyedHashAlgorithm#1](~/samples/snippets/csharp/VS_Snippets_CLR/keyedhashalgorithm/cs/program.cs#1)]
  [!code-vb[KeyedHashAlgorithm#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/keyedhashalgorithm/vb/program.vb#1)]  
@@ -89,7 +89,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 抽象クラスのインスタンスを作成することはできません。 アプリケーション コードでは、派生クラスの新しいインスタンスを作成します。  
+ 抽象クラスのインスタンスを作成することはできません。 アプリケーションコードは、派生クラスの新しいインスタンスを作成します。  
   
  ]]></format>
         </remarks>
@@ -147,7 +147,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定では、このオーバー ロードを使用して、<xref:System.Security.Cryptography.HMACSHA1>キー付きハッシュ アルゴリズムの実装。 別の実装を指定する場合を使用して、<xref:System.Security.Cryptography.KeyedHashAlgorithm.Create%28System.String%29>オーバー ロードを代わりに、アルゴリズムの名前を指定することができます。 暗号化の構成システムの既定の実装を定義する、<xref:System.Security.Cryptography.KeyedHashAlgorithm>クラス。  
+ 既定では、このオーバーロードは<xref:System.Security.Cryptography.HMACSHA1>キー付きハッシュアルゴリズムの実装を使用します。 別の実装を指定する場合は、代わりにアルゴリズム<xref:System.Security.Cryptography.KeyedHashAlgorithm.Create%28System.String%29>名を指定できるオーバーロードを使用します。 暗号化構成システムは、 <xref:System.Security.Cryptography.KeyedHashAlgorithm>クラスの既定の実装を定義します。  
+
+ SHA1 との競合問題のため、Microsoft では SHA256 以上に基づくセキュリティ モデルを推奨しています。
   
  ]]></format>
         </remarks>
@@ -218,7 +220,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、さまざまな MD5、sha-1、sha-256、および RIPEMD160 などのアルゴリズムをサポートします。 完全な一覧については、サポートされている値を参照してください、`algName`パラメーター。  
+ このメソッドでは、MD5、SHA-1、SHA-256、RIPEMD160 など、さまざまなアルゴリズムがサポートされています。 完全な一覧については、 `algName`パラメーターでサポートされている値を参照してください。  
   
  ]]></format>
         </remarks>
@@ -264,16 +266,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose()`メソッドと`Finalize`メソッド。 `Dispose()` 保護された起動`Dispose(Boolean)`メソッドを`disposing`パラメーターに設定`true`します。 `Finalize` 呼び出す`Dispose`で`disposing`に設定`false`します。  
+ このメソッドは、パブリック`Dispose()`メソッド`Finalize`とメソッドによって呼び出されます。 `Dispose()``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 `Finalize`をに`disposing` `Dispose` 設定してを呼び出します`false`。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.Security.Cryptography.KeyedHashAlgorithm> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの `Dispose()` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 オーバーライドするときに<see langword="Dispose(Boolean)" />を以前の呼び出しで破棄されたオブジェクトを参照しないように注意、<see langword="Dispose" />します。 実装する方法についての詳細は<see langword="Dispose(Boolean)" />を参照してください[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)します。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 をオーバーライド<see langword="Dispose(Boolean)" />する場合は、以前にを<see langword="Dispose" />呼び出したときに破棄されたオブジェクトを参照しないように注意してください。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-詳細については<see langword="Dispose" />と<see langword="Finalize" />を参照してください[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)します。</para></block>
+<see langword="Dispose" /> および<see langword="Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。</para></block>
         <related type="Article" href="~/docs/standard/security/cryptographic-services.md">暗号化サービス</related>
       </Docs>
     </Member>
@@ -342,12 +344,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティはパブリック アクセサーを<xref:System.Security.Cryptography.KeyedHashAlgorithm.KeyValue>フィールド。  
+ このプロパティは、 <xref:System.Security.Cryptography.KeyedHashAlgorithm.KeyValue>フィールドのパブリックアクセサーです。  
   
    
   
 ## Examples  
- 次のコード例は、オーバーライドする方法を示します、<xref:System.Security.Cryptography.KeyedHashAlgorithm.Key%2A>現在のキーを取得するプロパティ<xref:System.Security.Cryptography.KeyedHashAlgorithm>オブジェクト。 このコード例が示されている例の一部、<xref:System.Security.Cryptography.KeyedHashAlgorithm>クラス。  
+ 次のコード例は、 <xref:System.Security.Cryptography.KeyedHashAlgorithm.Key%2A>プロパティをオーバーライドして、現在<xref:System.Security.Cryptography.KeyedHashAlgorithm>のオブジェクトで使用されているキーを取得する方法を示しています。 このコード例は、 <xref:System.Security.Cryptography.KeyedHashAlgorithm>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Cryptography.KeyedHashAlgorithm#22](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Cryptography.KeyedHashAlgorithm/CPP/contosokeyedhash.cpp#22)]
  [!code-csharp[System.Security.Cryptography.KeyedHashAlgorithm#22](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Cryptography.KeyedHashAlgorithm/CS/contosokeyedhash.cs#22)]
@@ -393,7 +395,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このフィールドには、<xref:System.Security.Cryptography.KeyedHashAlgorithm.Key%2A>プロパティ。  
+ このフィールドには、プロパティ<xref:System.Security.Cryptography.KeyedHashAlgorithm.Key%2A>を使用してアクセスします。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="DataProtector" FullName="System.Security.Cryptography.DataProtector">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="829aa622b8291b8f4994c2f8b332b002febae197" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57927979" /></Metadata><TypeSignature Language="C#" Value="public abstract class DataProtector" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c89e6bca3bb0e347b29f0a1c442d51ebcfc522a7" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69083522" /></Metadata><TypeSignature Language="C#" Value="public abstract class DataProtector" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DataProtector extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.DataProtector" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DataProtector" />
@@ -19,19 +19,19 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このクラスは、表示や改ざんから格納されたデータを保護します。 保護されたデータへのアクセスは、このクラスのインスタンスを作成し、データを保護するために使用された正確な目的の文字列を使用して取得されます。  呼び出し元は、キーを保護するか、データの保護を解除する必要はありません。 キーは、暗号化アルゴリズムによって提供されます。  
+ このクラスは、格納されているデータの表示や改ざんを防止します。 保護されたデータへのアクセスは、このクラスのインスタンスを作成し、データの保護に使用された正確な目的の文字列を使用することによって取得されます。  呼び出し元には、データを保護または保護解除するためのキーは必要ありません。 キーは暗号化アルゴリズムによって提供されます。  
   
- 派生クラスでオーバーライドする必要があります、<xref:System.Security.Cryptography.DataProtector.ProviderProtect%2A>と<xref:System.Security.Cryptography.DataProtector.Unprotect%2A>メソッドを<xref:System.Security.Cryptography.DataProtector>基本クラスの呼び出しに戻す。 オーバーライドする必要あります、<xref:System.Security.Cryptography.DataProtector.IsReprotectRequired%2A>メソッドは、常に返す可能性のある`true`アプリケーション ストアド暗号テキストのデータベースを更新する場合に効率の低下する可能性が小さい。 派生クラス設定の基本クラスのコンス トラクターを呼び出すコンス トラクターを提供する必要があります、 <xref:System.Security.Cryptography.DataProtector.ApplicationName%2A>、 <xref:System.Security.Cryptography.DataProtector.SpecificPurposes%2A>、および<xref:System.Security.Cryptography.DataProtector.PrimaryPurpose%2A>プロパティ。  
+ 派生クラスは、 <xref:System.Security.Cryptography.DataProtector.ProviderProtect%2A> <xref:System.Security.Cryptography.DataProtector>基底クラス<xref:System.Security.Cryptography.DataProtector.Unprotect%2A>がコールバックするメソッドとメソッドをオーバーライドする必要があります。 また、 <xref:System.Security.Cryptography.DataProtector.IsReprotectRequired%2A>メソッドをオーバーライドする必要があります。 `true`このメソッドは、アプリケーションが格納されている暗号テキストのデータベースを更新するときに、効率が低下する可能性がある場合に常に返すことができます。 派生クラスは、、 <xref:System.Security.Cryptography.DataProtector.ApplicationName%2A> <xref:System.Security.Cryptography.DataProtector.SpecificPurposes%2A>、および<xref:System.Security.Cryptography.DataProtector.PrimaryPurpose%2A>の各プロパティを設定する基底クラスのコンストラクターを呼び出すコンストラクターを提供する必要があります。  
   
    
   
 ## Examples  
- 次の例では、データを追加のエントロピー オプションを使用した保護クラスを使用する保護機能を作成する方法を示します。 既定で、<xref:System.Security.Cryptography.DataProtector>クラスは、データを暗号化する目的のプロパティのハッシュを付加します。 その機能をオフにして、追加のエントロピー オプションを使用したデータ プロテクターを呼び出すときに、追加のエントロピーとしてハッシュの目的を使用できます。  
+ 次の例では、追加のエントロピのオプションで保護クラスを使用するデータ保護機能を作成する方法を示します。 既定では、 <xref:System.Security.Cryptography.DataProtector>クラスは、暗号化するデータに対して目的のプロパティのハッシュを付加します。 追加のエントロピオプションを使用してデータプロテクターを呼び出すときに、その機能を無効にして、ハッシュ化された目的を余分なエントロピとして使用することができます。  
   
  [!code-csharp[Cryptography.DataProtector#1](~/samples/snippets/csharp/VS_Snippets_CLR/cryptography.dataprotector/cs/class1.cs#1)]
  [!code-vb[Cryptography.DataProtector#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/cryptography.dataprotector/vb/class1.vb#1)]  
   
- 次の例で使用する単純なデータ保護機能、<xref:System.Security.Cryptography.DataProtector.PrependHashedPurposeToPlaintext%2A>の機能、<xref:System.Security.Cryptography.DataProtector>クラス。  
+ クラスの機能<xref:System.Security.Cryptography.DataProtector.PrependHashedPurposeToPlaintext%2A>を使用する単純なデータプロテクターの例を次に示します。 <xref:System.Security.Cryptography.DataProtector>  
   
  [!code-csharp[Cryptography.MemoryProtector#1](~/samples/snippets/csharp/VS_Snippets_CLR/cryptography.memoryprotector/cs/class1.cs#1)]
  [!code-vb[Cryptography.MemoryProtector#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/cryptography.memoryprotector/vb/class1.vb#1)]  
@@ -66,13 +66,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターの設定、 <xref:System.Security.Cryptography.DataProtector.ApplicationName%2A>、 <xref:System.Security.Cryptography.DataProtector.PrimaryPurpose%2A>、および<xref:System.Security.Cryptography.DataProtector.SpecificPurposes%2A>プロパティ。 これら 3 つのプロパティの組み合わせでは、保護するデータを一意に識別する必要があります。 データが一意に識別されない場合、間違ったデータを読み取る可能性がありますが誤ってまたはその他のデータをお客様にも置き換えられる可能性があります。 プライマリと特定の目的のペアの例では、「invoice」はと、請求書の数、「ギフト カード」とギフト カード番号、"password"、および URL 文字列。  
+ このコンストラクターは、 <xref:System.Security.Cryptography.DataProtector.ApplicationName%2A> <xref:System.Security.Cryptography.DataProtector.PrimaryPurpose%2A>、、および<xref:System.Security.Cryptography.DataProtector.SpecificPurposes%2A>の各プロパティを設定します。 これら3つのプロパティを組み合わせて、保護するデータを一意に識別する必要があります。 データが一意に識別されない場合は、誤って誤ったデータを読み取ることがあります。または、他のデータを置き換えてしまう可能性があります。 プライマリと特定の目的のペアの例としては、"請求書" と請求書番号、"ギフトカード" とギフトカード番号、"パスワード"、および URL 文字列があります。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException">です。<paramref name="applicationName" /> は空の文字列または <see langword="null" /> です。  
   
-または 
+- または - 
  です。<paramref name="primaryPurpose" /> は空の文字列または <see langword="null" /> です。  
   
 または 
@@ -135,7 +135,7 @@
         <summary>指定したデータ プロテクターのクラス名、アプリケーション名、主な目的、特定の目的を使用して、データ プロテクターの実装のインスタンスを作成します。</summary>
         <returns>データ プロテクターの実装オブジェクト。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="providerClass" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="providerClass" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetHashedPurpose">
@@ -161,12 +161,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Cryptography.DataProtector.GetHashedPurpose%2A> アプリケーション名と完全な目的のハッシュを計算します。  完全な目的は、すべての連結、<xref:System.Security.Cryptography.DataProtector.PrimaryPurpose%2A>と<xref:System.Security.Cryptography.DataProtector.SpecificPurposes%2A>プロパティ。  その長さ接頭辞ハッシュを反転させるための 3 つの部分は。  
+ <xref:System.Security.Cryptography.DataProtector.GetHashedPurpose%2A>アプリケーション名のハッシュと完全な目的を計算します。  完全な目的は、すべて<xref:System.Security.Cryptography.DataProtector.PrimaryPurpose%2A>のプロパティと<xref:System.Security.Cryptography.DataProtector.SpecificPurposes%2A>プロパティを連結したものです。  3つの各部分には長さが付いており、ハッシュを逆にすることができます。  
   
    
   
 ## Examples  
- 次の例は、使用する方法を示します、<xref:System.Security.Cryptography.DataProtector.GetHashedPurpose%2A>メソッドを追加のエントロピーとして使用するため、目的のプロパティをハッシュします。  コード例の一部では、<xref:System.Security.Cryptography.DataProtector>クラス。  
+ 次の例は、 <xref:System.Security.Cryptography.DataProtector.GetHashedPurpose%2A>メソッドを使用して、余分なエントロピとして使用するための目的のプロパティをハッシュする方法を示しています。  これは、 <xref:System.Security.Cryptography.DataProtector>クラスのより大きなコード例の一部です。  
   
  [!code-csharp[Cryptography.DataProtector#3](~/samples/snippets/csharp/VS_Snippets_CLR/cryptography.dataprotector/cs/class1.cs#3)]
  [!code-vb[Cryptography.DataProtector#3](~/samples/snippets/visualbasic/VS_Snippets_CLR/cryptography.dataprotector/vb/class1.vb#3)]  
@@ -222,7 +222,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定では、ことが前提と派生クラスがのハッシュを付加する、 <xref:System.Security.Cryptography.DataProtector.ApplicationName%2A>、 <xref:System.Security.Cryptography.DataProtector.PrimaryPurpose%2A>、および<xref:System.Security.Cryptography.DataProtector.SpecificPurposes%2A>暗号化、およびは前にプレーン テキストのプロパティを確認し、暗号化解除中にハッシュを検証します。  派生クラスは、独自の先頭に追加されたデータを指定する必要がある場合 (たとえばエントロピが省略可能な値) としてこのプロパティをオーバーライドでき返すように設定`false`します。  場合<xref:System.Security.Cryptography.DataProtector.PrependHashedPurposeToPlaintext%2A>は`false`、<xref:System.Security.Cryptography.DataProtector.Protect%2A>と<xref:System.Security.Cryptography.DataProtector.Unprotect%2A>を通じて直接に渡します、<xref:System.Security.Cryptography.DataProtector.ProviderProtect%2A>と<xref:System.Security.Cryptography.DataProtector.ProviderUnprotect%2A>バイト配列を変更することがなくよりも優先されます。  
+ 既定では、派生クラスが<xref:System.Security.Cryptography.DataProtector.ApplicationName%2A>、 <xref:System.Security.Cryptography.DataProtector.PrimaryPurpose%2A>、、および<xref:System.Security.Cryptography.DataProtector.SpecificPurposes%2A>の各プロパティのハッシュを暗号化の前にプレーンテキストに付加することを前提としており、復号化中にハッシュを確認して検証します。  派生クラスが、先頭に付加されたデータを (たとえば、オプションのエントロピ値として) 指定しようとしている場合、 `false`このプロパティをオーバーライドしてを返すように設定できます。  が<xref:System.Security.Cryptography.DataProtector.PrependHashedPurposeToPlaintext%2A> <xref:System.Security.Cryptography.DataProtector.ProviderUnprotect%2A> <xref:System.Security.Cryptography.DataProtector.ProviderProtect%2A>の場合、<xref:System.Security.Cryptography.DataProtector.Protect%2A> および<xref:System.Security.Cryptography.DataProtector.Unprotect%2A>はに直接を渡し、バイト配列を変更せずにをオーバーライドします。 `false`  
   
  ]]></format>
         </remarks>
@@ -272,7 +272,7 @@
         <summary>指定したユーザー データを保護します。</summary>
         <returns>暗号化されたデータを格納するバイト配列。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="userData" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="userData" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="ProviderProtect">
@@ -301,7 +301,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- <xref:System.Security.Cryptography.DataProtector.ProviderProtect%2A> メソッドを実装する例を次に示します。  コード例の一部では、<xref:System.Security.Cryptography.DataProtector>クラス。  
+ <xref:System.Security.Cryptography.DataProtector.ProviderProtect%2A> メソッドを実装する例を次に示します。  これは、 <xref:System.Security.Cryptography.DataProtector>クラスのより大きなコード例の一部です。  
   
  [!code-csharp[Cryptography.MemoryProtector#3](~/samples/snippets/csharp/VS_Snippets_CLR/cryptography.memoryprotector/cs/class1.cs#3)]
  [!code-vb[Cryptography.MemoryProtector#3](~/samples/snippets/visualbasic/VS_Snippets_CLR/cryptography.memoryprotector/vb/class1.vb#3)]  
@@ -336,7 +336,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- <xref:System.Security.Cryptography.DataProtector.ProviderUnprotect%2A> メソッドを実装する例を次に示します。  コード例の一部では、<xref:System.Security.Cryptography.DataProtector>クラス。  
+ <xref:System.Security.Cryptography.DataProtector.ProviderUnprotect%2A> メソッドを実装する例を次に示します。  これは、 <xref:System.Security.Cryptography.DataProtector>クラスのより大きなコード例の一部です。  
   
  [!code-csharp[Cryptography.MemoryProtector#4](~/samples/snippets/csharp/VS_Snippets_CLR/cryptography.memoryprotector/cs/class1.cs#4)]
  [!code-vb[Cryptography.MemoryProtector#4](~/samples/snippets/visualbasic/VS_Snippets_CLR/cryptography.memoryprotector/vb/class1.vb#4)]  

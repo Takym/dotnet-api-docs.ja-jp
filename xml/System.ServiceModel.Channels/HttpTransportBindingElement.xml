@@ -1,5 +1,5 @@
 <Type Name="HttpTransportBindingElement" FullName="System.ServiceModel.Channels.HttpTransportBindingElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e31a7c30fb75e6ef021b9fc3f8e4fd1e3e5fb977" /><Meta Name="ms.sourcegitcommit" Value="7461f9e28c2f184bd1596e6f07c25a3f34984516" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/28/2019" /><Meta Name="ms.locfileid" Value="58553634" /></Metadata><TypeSignature Language="C#" Value="public class HttpTransportBindingElement : System.ServiceModel.Channels.TransportBindingElement, System.ServiceModel.Description.IPolicyExportExtension, System.ServiceModel.Description.IWsdlExportExtension" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="03787e77a3a53a2348eb832cc35526d7009e8f80" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69156308" /></Metadata><TypeSignature Language="C#" Value="public class HttpTransportBindingElement : System.ServiceModel.Channels.TransportBindingElement, System.ServiceModel.Description.IPolicyExportExtension, System.ServiceModel.Description.IWsdlExportExtension" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HttpTransportBindingElement extends System.ServiceModel.Channels.TransportBindingElement implements class System.ServiceModel.Description.IPolicyExportExtension, class System.ServiceModel.Description.IWsdlExportExtension" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.HttpTransportBindingElement" />
   <TypeSignature Language="VB.NET" Value="Public Class HttpTransportBindingElement&#xA;Inherits TransportBindingElement&#xA;Implements IPolicyExportExtension, IWsdlExportExtension" />
@@ -37,9 +37,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Channels.HttpTransportBindingElement> クラスを基にして、HTTP トランスポート プロトコルを実装するカスタム バインドを作成します。 HTTP は、相互運用性のために使用される主要なトランスポートです。 このトランスポートは、Windows Communication Foundation (WCF) に、その他の WCF 以外の Web サービス スタックとの相互運用をサポートします。  
+ <xref:System.ServiceModel.Channels.HttpTransportBindingElement> クラスを基にして、HTTP トランスポート プロトコルを実装するカスタム バインドを作成します。 HTTP は、相互運用性のために使用される主要なトランスポートです。 このトランスポートは Windows Communication Foundation (WCF) によってサポートされており、WCF 以外の Web サービススタックとの相互運用性を確保します。  
   
- WCF サービス モデルでは、このクラスを使用して、実装するファクトリ オブジェクトを作成、<xref:System.ServiceModel.Channels.IChannelFactory>と<xref:System.ServiceModel.Channels.IChannelListener>インターフェイス。 これらのファクトリ オブジェクトは、HTTP プロトコルを使用して SOAP メッセージを送信するチャネルやリスナーを作成します。  
+ WCF サービスモデルでは、このクラスを使用して、インターフェイス<xref:System.ServiceModel.Channels.IChannelFactory>と<xref:System.ServiceModel.Channels.IChannelListener>インターフェイスを実装するファクトリオブジェクトを作成します。 これらのファクトリ オブジェクトは、HTTP プロトコルを使用して SOAP メッセージを送信するチャネルやリスナーを作成します。  
   
  このクラスが作成するファクトリを構成するには、<xref:System.ServiceModel.Channels.HttpTransportBindingElement.AuthenticationScheme%2A>、<xref:System.ServiceModel.Channels.HttpTransportBindingElement.HostNameComparisonMode%2A>、<xref:System.ServiceModel.Channels.HttpTransportBindingElement.MaxBufferSize%2A> などのプロパティを設定します。  
   
@@ -446,7 +446,7 @@ int odd=calc.Add(5,4);
 ## Remarks  
  ローカル アドレスは、ローカル LAN またはイントラネット上にあるアドレスです。  
   
- WCF が常に、サービスのアドレスが始まる場合に、プロキシが無視`http://localhost`します。 クライアントが同じマシン上のサービスと対話するときにプロキシを経由させる場合は、`localhost` ではなく、ホスト名を使用する必要があります。  
+ サービスアドレスがで`http://localhost`始まる場合、WCF は常にプロキシを無視します。 クライアントが同じマシン上のサービスと対話するときにプロキシを経由させる場合は、`localhost` ではなく、ホスト名を使用する必要があります。  
   
    
   
@@ -500,7 +500,7 @@ httpBinding.BypassProxyOnLocal = true;
         <summary>指定した種類のチャネル ファクトリを作成できるかどうかを判断します。</summary>
         <returns>チャネル ファクトリを作成できる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="context" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="context" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="CanBuildChannelListener&lt;TChannel&gt;">
@@ -904,7 +904,7 @@ httpBinding.MaxBufferSize = 16384;
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定値の<xref:System.ServiceModel.Channels.HttpTransportBindingElement.MaxPendingAccepts%2A>が 0 で、WCF の値を構成します。 スケーラビリティの向上の数を増やすことができます。 自己ホスト型の場合は、このプロパティは、WCF が呼び出す BeginGetContext の同時呼び出しの最大数を制御します。 BeginGetContext のメモリの一部が呼び出されるたびには、バッファリングのマネージ ヒープ内でピン留めされます。 バッファーが多すぎますがピン留めされている、過剰なヒープの断片化が表示される場合があります。 このプロパティは、web ホストの場合は無視されます。  
+ の<xref:System.ServiceModel.Channels.HttpTransportBindingElement.MaxPendingAccepts%2A>既定値は0です。これは、WCF によって値が構成されることを意味します。 この数を増やすことで、スケーラビリティを向上させることができます。 自己ホスト型の場合、このプロパティは WCF が呼び出す同時実行コンテキストの最大数を制御します。 BeginGetContext が呼び出されるたびに、バッファー処理のためにマネージヒープ内にメモリが固定されます。 固定されているバッファーが多すぎると、過剰なヒープの断片化が発生する可能性があります。 このプロパティは、web ホストの場合は無視されます。  
   
  ]]></format>
         </remarks>
@@ -1080,7 +1080,7 @@ httpBinding.ProxyAuthenticationScheme = AuthenticationSchemes.Digest;
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- サーバーは、領域を使用して、保護されたリソースをパーティションに分割します。パーティションごとに、認証方式のデータベースまたは承認データベースを指定できます。 レルムは、基本認証およびダイジェスト認証だけに使用されます。 クライアントが正常に認証されると、その認証は特定のレルムのすべてのリソースに対して有効となります。 レルムの詳細については、次を参照してください。 [RFC 2617](https://go.microsoft.com/fwlink/?LinkID=95943)します。  
+ サーバーは、領域を使用して、保護されたリソースをパーティションに分割します。パーティションごとに、認証方式のデータベースまたは承認データベースを指定できます。 レルムは、基本認証およびダイジェスト認証だけに使用されます。 クライアントが正常に認証されると、その認証は特定のレルムのすべてのリソースに対して有効となります。 領域の詳細については、 [RFC 2617](https://go.microsoft.com/fwlink/?LinkID=95943)を参照してください。  
   
  ]]></format>
         </remarks>
@@ -1160,7 +1160,7 @@ HttpTransportBindingElement httpBinding = new HttpTransportBindingElement();
 Console.WriteLine("The scheme of the binding is {0}.",httpBinding.Scheme);  
 ```  
   
- 出力は次のようになります。「バインドのスキームは http です。」  
+ 出力は次のようになります。"バインディングのスキームは http です。"  
   
  ]]></format>
         </remarks>
@@ -1289,7 +1289,7 @@ Console.WriteLine("The scheme of the binding is {0}.",httpBinding.Scheme);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、バインディングに関連するステートメントを WSDL 情報には、特定のコントラクトによって公開され、Windows Communication Foundation (WCF) によって、バインド スタックでこのカスタム バインド要素の存在をクライアントに通信に使用を書き込みます。  
+ このメソッドは、特定のコントラクトによって公開される WSDL 情報にバインド関連のステートメントを書き込み、Windows Communication Foundation (WCF) によって、バインディングスタック内のこのカスタムバインド要素の存在をクライアントに通知するために使用されます。  
   
  このメソッドには、<xref:System.ServiceModel.Description.MetadataExporter> オブジェクトおよび <xref:System.ServiceModel.Description.PolicyConversionContext> オブジェクトの 2 つのパラメーターがあります。 <xref:System.ServiceModel.Description.PolicyConversionContext.GetBindingAssertions%2A>、<xref:System.ServiceModel.Description.PolicyConversionContext.GetMessageBindingAssertions%2A>、および <xref:System.ServiceModel.Description.PolicyConversionContext.GetOperationBindingAssertions%2A> の各メソッドを使用して、既にさまざまなスコープでエクスポートされているポリシー アサーションのコレクションを取得します。 次に、このメソッドを使用して、独自のポリシー アサーションを適切なコレクションに追加します。  
   
@@ -1402,8 +1402,8 @@ Console.WriteLine("The scheme of the binding is {0}.",httpBinding.Scheme);
       <Docs>
         <summary>転送モードを取得または設定します。</summary>
         <value>次に示す <see cref="P:System.ServiceModel.Channels.HttpTransportBindingElement.TransferMode" /> のメンバー値のいずれか。 
-バッファリング 
-ストリーミングを使用 
+-バッファー 
+-ストリーミング 
 -StreamedRequest 
 -StreamedResponse</value>
         <remarks>

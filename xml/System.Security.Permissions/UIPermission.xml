@@ -1,5 +1,5 @@
 <Type Name="UIPermission" FullName="System.Security.Permissions.UIPermission">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a52e4cb2d26e4a5de129c8473ba1eedd4e36bf0f" /><Meta Name="ms.sourcegitcommit" Value="220917117f9d774aaa482439aa7324e39dc1f5b6" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2019" /><Meta Name="ms.locfileid" Value="56768632" /></Metadata><TypeSignature Language="C#" Value="public sealed class UIPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="069778f3427aa76fa0005f9fa6b6adb48e107d36" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70319472" /></Metadata><TypeSignature Language="C#" Value="public sealed class UIPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit UIPermission extends System.Security.CodeAccessPermission implements class System.Security.Permissions.IUnrestrictedPermission" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.UIPermission" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class UIPermission&#xA;Inherits CodeAccessPermission&#xA;Implements IUnrestrictedPermission" />
@@ -40,11 +40,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Windows での描画とユーザーの入力イベントは、ユーザー インターフェイスです。  
+ Windows での描画とユーザー入力のイベントは、ユーザーインターフェイスです。  
   
- Windows を使用するアクセス許可は、次のいずれかを指定できます: 無制限、限定<xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows>だけ<xref:System.Security.Permissions.UIPermissionWindow.SafeSubWindows>、またはウィンドウのイベントへのアクセスが許可されている入力なし。 <xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows> <xref:System.Security.Permissions.UIPermissionWindow.SafeSubWindows>タイトルと有害なコードで可能なスプーフィングを防止するサイズは制限されています。  
+ Windows を使用するためのアクセス許可は、無制限、制限付き<xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows>、のみ<xref:System.Security.Permissions.UIPermissionWindow.SafeSubWindows>、またはウィンドウ描画もユーザー入力イベントアクセスも許可されていません。 <xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows>と<xref:System.Security.Permissions.UIPermissionWindow.SafeSubWindows>のタイトルとサイズは制限されており、有害な可能性のあるコードによるスプーフィングを防ぐことができます。  
   
- クリップボードを使用するアクセス許可は、次のいずれかを指定できます。 無制限、書き込み専用、またはクリップボードへのアクセスが許可されません。 貼り付けを制限では、有害な可能性のあるアプリケーションからデータを切り取り、コピー、およびユーザーのキーボード コマンドを実行して開始されたときに、貼り付け操作を許可する一方、ユーザーの同意なしにクリップボードから取得できないようにします。  
+ クリップボードを使用する権限は、無制限、書き込み専用、またはクリップボードへのアクセスが許可されていない、のいずれかになります。 貼り付けの制限により、悪意のあるアプリケーションがユーザーの同意なしにクリップボードからデータを取得できなくなります。一方、ユーザーがキーボードコマンドを使用して、切り取り、コピー、貼り付けの操作を行うことができます。  
   
  ]]></format>
     </remarks>
@@ -94,12 +94,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターを作成するか、完全に制限された (`None`) または`Unrestricted`形式のアクセス許可。  
+ このコンストラクター`None` `Unrestricted`は、完全に制限された () またはアクセス許可の形式のいずれかを作成します。  
   
    
   
 ## Examples  
- 次のコード例の使用を示しています、<xref:System.Security.Permissions.UIPermission.%23ctor%2A>コンス トラクター。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ <xref:System.Security.Permissions.UIPermission.%23ctor%2A>コンストラクターの使用方法を次のコード例に示します。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#7](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#7)]
  [!code-csharp[System.Security.Permissions.UIPermission#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#7)]
@@ -107,7 +107,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="state" /> パラメーターが、有効な <see cref="T:System.Security.Permissions.PermissionState" /> ではありません。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="state" /> パラメーターが正しい <see cref="T:System.Security.Permissions.PermissionState" /> ではありません。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -141,12 +141,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クリップボードとウィンドウの両方のアクセス許可を設定するには、両方のパラメーターを受け取るコンス トラクターを使用します。  
+ クリップボードとウィンドウの両方のアクセス許可を設定するには、両方のパラメーターを受け取るコンストラクターを使用します。  
   
    
   
 ## Examples  
- 次のコード例の使用を示しています、<xref:System.Security.Permissions.UIPermission.%23ctor%28System.Security.Permissions.UIPermissionClipboard%29?displayProperty=nameWithType>コンス トラクター。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ <xref:System.Security.Permissions.UIPermission.%23ctor%28System.Security.Permissions.UIPermissionClipboard%29?displayProperty=nameWithType>コンストラクターの使用方法を次のコード例に示します。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#9](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#9)]
  [!code-csharp[System.Security.Permissions.UIPermission#9](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#9)]
@@ -154,7 +154,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="clipboardFlag" /> パラメーターが、有効な <see cref="T:System.Security.Permissions.UIPermissionClipboard" /> 値ではありません。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="clipboardFlag" /> パラメーターが有効な <see cref="T:System.Security.Permissions.UIPermissionClipboard" /> の値ではありません。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -188,12 +188,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クリップボードとウィンドウの両方のアクセス許可を設定するには、両方のパラメーターを受け取るコンス トラクターを使用します。  
+ クリップボードとウィンドウの両方のアクセス許可を設定するには、両方のパラメーターを受け取るコンストラクターを使用します。  
   
    
   
 ## Examples  
- 次のコード例の使用を示しています、<xref:System.Security.Permissions.UIPermission.%23ctor%28System.Security.Permissions.UIPermissionWindow%29?displayProperty=nameWithType>コンス トラクター。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ <xref:System.Security.Permissions.UIPermission.%23ctor%28System.Security.Permissions.UIPermissionWindow%29?displayProperty=nameWithType>コンストラクターの使用方法を次のコード例に示します。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#8](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#8)]
  [!code-csharp[System.Security.Permissions.UIPermission#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#8)]
@@ -201,7 +201,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="windowFlag" /> パラメーターが、有効な <see cref="T:System.Security.Permissions.UIPermissionWindow" /> 値ではありません。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="windowFlag" /> パラメーターが有効な <see cref="T:System.Security.Permissions.UIPermissionWindow" /> の値ではありません。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -237,7 +237,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例の使用を示しています、<xref:System.Security.Permissions.UIPermission.%23ctor%28System.Security.Permissions.UIPermissionWindow%2CSystem.Security.Permissions.UIPermissionClipboard%29?displayProperty=nameWithType>コンス トラクター。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ <xref:System.Security.Permissions.UIPermission.%23ctor%28System.Security.Permissions.UIPermissionWindow%2CSystem.Security.Permissions.UIPermissionClipboard%29?displayProperty=nameWithType>コンストラクターの使用方法を次のコード例に示します。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#10](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#10)]
  [!code-csharp[System.Security.Permissions.UIPermission#10](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#10)]
@@ -245,10 +245,10 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="windowFlag" /> パラメーターが、有効な <see cref="T:System.Security.Permissions.UIPermissionWindow" /> 値ではありません。  
+        <exception cref="T:System.ArgumentException"><paramref name="windowFlag" /> パラメーターが有効な <see cref="T:System.Security.Permissions.UIPermissionWindow" /> の値ではありません。  
   
 または 
-<paramref name="clipboardFlag" /> パラメーターが、有効な <see cref="T:System.Security.Permissions.UIPermissionClipboard" /> 値ではありません。</exception>
+<paramref name="clipboardFlag" /> パラメーターが有効な <see cref="T:System.Security.Permissions.UIPermissionClipboard" /> の値ではありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="Clipboard">
@@ -277,7 +277,7 @@
       </ReturnValue>
       <Docs>
         <summary>アクセス許可で指定されたクリップボードのアクセスを取得または設定します。</summary>
-        <value><see cref="T:System.Security.Permissions.UIPermissionClipboard" /> 値のいずれか。</value>
+        <value><see cref="T:System.Security.Permissions.UIPermissionClipboard" /> 値のいずれか 1 つ。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -313,15 +313,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アクセス許可のコピーは、元のアクセス許可とリソースに同じアクセス権を表します。  
+ アクセス許可のコピーは、元のアクセス許可と同じリソースへのアクセスを表します。  
   
    
   
 ## Examples  
- 次のコード例の動作を示しています、<xref:System.Security.Permissions.UIPermission.Copy%2A>メソッド。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ 次のコード例は、 <xref:System.Security.Permissions.UIPermission.Copy%2A>メソッドの動作を示しています。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
 > [!NOTE]
->  コード例では、その使い方を示していますが、メソッドの動作を示したものです。 アクセス許可クラスのメソッドを使用して、セキュリティ インフラストラクチャによって一般に、これらはアプリケーションでは通常使用されません。  
+>  このコード例は、使用方法を示すものではなく、メソッドの動作を示すことを目的としています。 一般に、セキュリティインフラストラクチャでは、アクセス許可クラスのメソッドが使用されます。通常、アプリケーションでは使用されません。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#5](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#5)]
  [!code-csharp[System.Security.Permissions.UIPermission#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#5)]
@@ -359,16 +359,16 @@
         <Parameter Name="esd" Type="System.Security.SecurityElement" />
       </Parameters>
       <Docs>
-        <param name="esd">アクセス許可の再構築に使用する XML エンコーディング。</param>
-        <summary>XML エンコーディングから、指定した状態のアクセス許可を再構築します。</summary>
+        <param name="esd">アクセス許可の再構築に使用する XML エンコード。</param>
+        <summary>XML エンコードから指定された状態で、アクセス許可を再構築します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例の動作を示しています、<xref:System.Security.Permissions.UIPermission.FromXml%2A>メソッド。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ 次のコード例は、 <xref:System.Security.Permissions.UIPermission.FromXml%2A>メソッドの動作を示しています。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
 > [!NOTE]
->  コード例では、その使い方を示していますが、メソッドの動作を示したものです。 アクセス許可クラスのメソッドを使用して、セキュリティ インフラストラクチャによって一般に、これらはアプリケーションでは通常使用されません。  
+>  このコード例は、使用方法を示すものではなく、メソッドの動作を示すことを目的としています。 一般に、セキュリティインフラストラクチャでは、アクセス許可クラスのメソッドが使用されます。通常、アプリケーションでは使用されません。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#6)]
  [!code-csharp[System.Security.Permissions.UIPermission#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#6)]
@@ -379,8 +379,8 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="esd" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="esd" /> パラメーターが有効なアクセス許可要素ではありません。  
   
-または 
-<paramref name="esd" /> パラメーターのバージョン番号が有効ではありません。</exception>
+- または - 
+<paramref name="esd" /> パラメーターのバージョン番号が正しくありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="Intersect">
@@ -411,22 +411,22 @@
         <Parameter Name="target" Type="System.Security.IPermission" />
       </Parameters>
       <Docs>
-        <param name="target">現在のアクセス許可との積集合を持つアクセス許可。 これは、現在のアクセス許可と同じ型であることが必要です。</param>
-        <summary>現在のアクセス許可と指定したアクセス許可の積集合を表すアクセス許可を作成して返します。</summary>
-        <returns>現在のアクセス許可と指定したアクセス許可の積集合を表す新しいアクセス許可。 積集合が空の場合、この新しいアクセス許可オブジェクトは <see langword="null" /> です。</returns>
+        <param name="target">現在のアクセス許可との共通部分のあるアクセス許可。 現在のアクセス許可と同じ型である必要があります。</param>
+        <summary>現在のアクセス許可と指定したアクセス許可の積集合となるアクセス許可を作成して返します。</summary>
+        <returns>現在のアクセス許可と指定したアクセス許可の共通部分を表す新しいアクセス許可。 積集合が空の場合、この新しいアクセス許可は <see langword="null" /> です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2 つのアクセス許可の積集合は、両方に共通する操作のセットを説明する権限です。 具体的には、最も制限の多い値を表す<xref:System.Security.Permissions.UIPermissionWindow>と<xref:System.Security.Permissions.UIPermissionClipboard>から現在のアクセス許可と指定したアクセス許可。  
+ 2つのアクセス許可の積集合は、両方が共通で記述する一連の操作を記述するアクセス許可です。 具体的には、現在のアクセス許可と<xref:System.Security.Permissions.UIPermissionWindow>指定<xref:System.Security.Permissions.UIPermissionClipboard>したアクセス許可に含まれる、およびの最も制限の緩い値を表します。  
   
    
   
 ## Examples  
- 次のコード例の動作を示しています、<xref:System.Security.Permissions.UIPermission.Intersect%2A>メソッド。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ 次のコード例は、 <xref:System.Security.Permissions.UIPermission.Intersect%2A>メソッドの動作を示しています。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
 > [!NOTE]
->  コード例では、その使い方を示していますが、メソッドの動作を示したものです。 アクセス許可クラスのメソッドを使用して、セキュリティ インフラストラクチャによって一般に、これらはアプリケーションでは通常使用されません。  
+>  このコード例は、使用方法を示すものではなく、メソッドの動作を示すことを目的としています。 一般に、セキュリティインフラストラクチャでは、アクセス許可クラスのメソッドが使用されます。通常、アプリケーションでは使用されません。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#4](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#4)]
  [!code-csharp[System.Security.Permissions.UIPermission#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#4)]
@@ -434,7 +434,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> ではなく、現在のアクセス許可と同じ型でもありません。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> でなく、また現在のアクセス許可と同じ型でもありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="IsSubsetOf">
@@ -465,22 +465,22 @@
         <Parameter Name="target" Type="System.Security.IPermission" />
       </Parameters>
       <Docs>
-        <param name="target">サブセットの関係を調べるアクセス許可。 このアクセス許可は、現在のアクセス許可と同じ型である必要があります。</param>
-        <summary>現在のアクセス許可が、指定したアクセス許可のサブセットかどうかを判断します。</summary>
+        <param name="target">サブセットの関係を調べるアクセス許可。 このアクセス許可は、現在のアクセス許可と同じ型であることが必要です。</param>
+        <summary>現在のアクセス許可が、指定したアクセス許可のサブセットであるかどうかを判断します。</summary>
         <returns>現在のアクセス許可が、指定したアクセス許可のサブセットの場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在のアクセス許可は、現在のアクセス許可に対して成功したすべての要求は、指定した権限も成功した場合、指定したアクセス許可のサブセットです。 指定したアクセス許可のサブセットに含まれているアクセス許可を含む少なくとも。 <xref:System.Security.Permissions.UIPermission.IsSubsetOf%2A>を返す`true`の両方を<xref:System.Security.Permissions.UIPermissionWindow>と<xref:System.Security.Permissions.UIPermissionClipboard>に等しくないか、指定した権限の値より小さい許容度が高い値の現在のアクセス許可がある必要があります。  
+ 現在のアクセス許可に対して成功したすべての要求も、指定したアクセス許可に対して成功した場合、現在のアクセス許可は、指定したアクセス許可のサブセットになります。 つまり、指定されたアクセス許可には、少なくともサブセットに含まれるアクセス許可が含まれています。 がを返す`true`には、 <xref:System.Security.Permissions.UIPermissionWindow>現在<xref:System.Security.Permissions.UIPermissionClipboard>のアクセス許可の値と値の両方が、指定されたアクセス許可の値以上である必要があります。 <xref:System.Security.Permissions.UIPermission.IsSubsetOf%2A>  
   
    
   
 ## Examples  
- 次のコード例の動作を示しています、<xref:System.Security.Permissions.UIPermission.IsSubsetOf%2A>メソッド。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ 次のコード例は、 <xref:System.Security.Permissions.UIPermission.IsSubsetOf%2A>メソッドの動作を示しています。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
 > [!NOTE]
->  コード例では、その使い方を示していますが、メソッドの動作を示したものです。 アクセス許可クラスのメソッドを使用して、セキュリティ インフラストラクチャによって一般に、これらはアプリケーションでは通常使用されません。  
+>  このコード例は、使用方法を示すものではなく、メソッドの動作を示すことを目的としています。 一般に、セキュリティインフラストラクチャでは、アクセス許可クラスのメソッドが使用されます。通常、アプリケーションでは使用されません。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#2)]
  [!code-csharp[System.Security.Permissions.UIPermission#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#2)]
@@ -488,7 +488,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> ではなく、現在のアクセス許可と同じ型でもありません。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> でなく、また現在のアクセス許可と同じ型でもありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="IsUnrestricted">
@@ -497,7 +497,8 @@
       <MemberSignature Language="DocId" Value="M:System.Security.Permissions.UIPermission.IsUnrestricted" />
       <MemberSignature Language="VB.NET" Value="Public Function IsUnrestricted () As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual bool IsUnrestricted();" />
-      <MemberSignature Language="F#" Value="override this.IsUnrestricted : unit -&gt; bool" Usage="uIPermission.IsUnrestricted " />
+      <MemberSignature Language="F#" Value="abstract member IsUnrestricted : unit -&gt; bool&#xA;override this.IsUnrestricted : unit -&gt; bool" Usage="uIPermission.IsUnrestricted " FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+      <MemberSignature Language="F#" Value="override this.IsUnrestricted : unit -&gt; bool" Usage="uIPermission.IsUnrestricted " FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Security.Permissions.IUnrestrictedPermission.IsUnrestricted</InterfaceMember>
@@ -558,16 +559,16 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>アクセス許可とその現在の状態を表す XML エンコーディングを作成します。</summary>
-        <returns>状態情報を含む、アクセス許可の XML エンコーディング。</returns>
+        <summary>アクセス許可とその現在の状態の XML エンコードを作成します。</summary>
+        <returns>状態情報を含む、アクセス許可の XML エンコード。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例の動作を示しています、<xref:System.Security.Permissions.UIPermission.ToXml%2A>メソッド。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ 次のコード例は、 <xref:System.Security.Permissions.UIPermission.ToXml%2A>メソッドの動作を示しています。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
 > [!NOTE]
->  コード例では、その使い方を示していますが、メソッドの動作を示したものです。 アクセス許可クラスのメソッドを使用して、セキュリティ インフラストラクチャによって一般に、これらはアプリケーションでは通常使用されません。  
+>  このコード例は、使用方法を示すものではなく、メソッドの動作を示すことを目的としています。 一般に、セキュリティインフラストラクチャでは、アクセス許可クラスのメソッドが使用されます。通常、アプリケーションでは使用されません。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#6)]
  [!code-csharp[System.Security.Permissions.UIPermission#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#6)]
@@ -612,15 +613,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 呼び出しの結果<xref:System.Security.Permissions.UIPermission.Union%2A>アクセス許可が現在のアクセス許可によって表されるすべての操作に加え、指定した権限によって表されるすべての操作を表します。 具体的には、最も制限の少ない値を表す<xref:System.Security.Permissions.UIPermissionWindow>と<xref:System.Security.Permissions.UIPermissionClipboard>から現在のアクセス許可と指定したアクセス許可。  
+ の呼び出し<xref:System.Security.Permissions.UIPermission.Union%2A>の結果は、現在のアクセス許可によって表されるすべての操作と、指定したアクセス許可によって表されるすべての操作を表すアクセス許可です。 具体的には、現在のアクセス許可と<xref:System.Security.Permissions.UIPermissionWindow>指定<xref:System.Security.Permissions.UIPermissionClipboard>したアクセス許可の中で最も制限の厳しい値を表します。  
   
    
   
 ## Examples  
- 次のコード例の動作を示しています、<xref:System.Security.Permissions.UIPermission.Union%2A>メソッド。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ 次のコード例は、 <xref:System.Security.Permissions.UIPermission.Union%2A>メソッドの動作を示しています。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
 > [!NOTE]
->  コード例では、その使い方を示していますが、メソッドの動作を示したものです。 アクセス許可クラスのメソッドを使用して、セキュリティ インフラストラクチャによって一般に、これらはアプリケーションでは通常使用されません。  
+>  このコード例は、使用方法を示すものではなく、メソッドの動作を示すことを目的としています。 一般に、セキュリティインフラストラクチャでは、アクセス許可クラスのメソッドが使用されます。通常、アプリケーションでは使用されません。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#3](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#3)]
  [!code-csharp[System.Security.Permissions.UIPermission#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#3)]
@@ -628,7 +629,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> ではなく、現在のアクセス許可と同じ型でもありません。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> でなく、また現在のアクセス許可と同じ型でもありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="Window">
@@ -657,12 +658,12 @@
       </ReturnValue>
       <Docs>
         <summary>アクセス許可によって表されるウィンドウへのアクセスを取得または設定します。</summary>
-        <value><see cref="T:System.Security.Permissions.UIPermissionWindow" /> 値のいずれか。</value>
+        <value><see cref="T:System.Security.Permissions.UIPermissionWindow" /> 値のいずれか 1 つ。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例の使用を示しています、<xref:System.Security.Permissions.UIPermission.Window%2A>プロパティ。 この例が示されている例の一部、<xref:System.Security.Permissions.UIPermission>クラス。  
+ 次のコード例は、 <xref:System.Security.Permissions.UIPermission.Window%2A>プロパティの使用方法を示しています。 この例は、 <xref:System.Security.Permissions.UIPermission>クラスに対して提供される大規模な例の一部です。  
   
  [!code-cpp[System.Security.Permissions.UIPermission#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CPP/uipermission.cpp#2)]
  [!code-csharp[System.Security.Permissions.UIPermission#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.Permissions.UIPermission/CS/uipermission.cs#2)]

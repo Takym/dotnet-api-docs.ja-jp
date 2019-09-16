@@ -1,5 +1,5 @@
 <Type Name="ResourceManager" FullName="System.Resources.ResourceManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f40ddf3e36c2a3ed405b38e461b19dcaf278554b" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67248681" /></Metadata><TypeSignature Language="C#" Value="public class ResourceManager" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="db342e80d65f7aa94968cfa755b77a6a0c5ac058" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70353276" /></Metadata><TypeSignature Language="C#" Value="public class ResourceManager" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit ResourceManager extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Resources.ResourceManager" />
   <TypeSignature Language="VB.NET" Value="Public Class ResourceManager" />
@@ -54,7 +54,7 @@
   
  デスクトップ アプリや [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリでのリソース作成および管理の詳細については、次のセクションを参照してください。  
   
--   [デスクトップ アプリ](#desktop)  
+-   [デスクトップアプリ](#desktop)  
   
     -   [リソースの作成](#creating_resources)  
   
@@ -64,16 +64,16 @@
   
     -   [リソースの取得](#retrieving)  
   
-    -   [MissingManifestResourceException および MissingSatelliteAssemblyException 例外の処理](#exception)  
+    -   [MissingManifestResourceException と MissingSatelliteAssemblyException の例外の処理](#exception)  
   
     -   [リソースのバージョン管理](#versioning)  
   
     -   [\<satelliteassemblies> 構成ファイルのノード](#config)  
   
--   [Windows ストア アプリ](#ws)  
+-   [Windows ストアアプリ](#ws)  
   
 <a name="desktop"></a>   
-## <a name="desktop-apps"></a>デスクトップ アプリ  
+## <a name="desktop-apps"></a>デスクトップアプリ  
  デスクトップ アプリの場合、<xref:System.Resources.ResourceManager> クラスは、バイナリ リソース (.resources) ファイルからリソースを取得します。 通常は、言語コンパイラか[アセンブリ リンカー (AL.exe)](~/docs/framework/tools/al-exe-assembly-linker.md) がアセンブリにこれらのリソース ファイルを埋め込みます。 <xref:System.Resources.ResourceManager.CreateFileBasedResourceManager%2A> メソッドを呼び出すことによって、<xref:System.Resources.ResourceManager> オブジェクトを使用して、アセンブリに埋め込まれていない .resources ファイルからリソースを直接取得できます。  
   
 > [!CAUTION]
@@ -89,7 +89,7 @@
   
  たとえば、ベースの名前に MyResources を持つリソース ファイルにいくつかのリソースが含まれているアセンブリを想定します。 これらのリソース ファイルは、日本 (日本語) のカルチャには MyResources.ja-JP.resources、ドイツのカルチャには MyResources.de.resources、簡体字中国語のカルチャには MyResources.zh-CHS.resources、フランス語 (ベルギー) のカルチャには MyResources.fr-BE.resources、などの名前を持つ必要があります。 既定のリソース ファイルは MyResources.resources の名前を持つ必要があります。 通常は、カルチャ固有のリソース ファイルは、カルチャごとにサテライト アセンブリにパッケージ化されます。 既定のリソース ファイルは、アプリのメイン アセンブリに埋め込まれる必要があります。  
   
- 注意してください[アセンブリ リンカー](~/docs/framework/tools/al-exe-assembly-linker.md)により、プライベートとしてマーク済みであるリソースが常にマークするに public として他のアセンブリによってアクセスできるようにします。 (サテライト アセンブリはコードを含まないため、プライベートとしてマークされたリソースは、どんな方法を使ってもアプリで使用できません。)  
+ [アセンブリリンカー](~/docs/framework/tools/al-exe-assembly-linker.md)では、リソースをプライベートとしてマークすることができますが、他のアセンブリからアクセスできるようにするには、常にパブリックとしてマークする必要があります。 (サテライト アセンブリはコードを含まないため、プライベートとしてマークされたリソースは、どんな方法を使ってもアプリで使用できません。)  
   
  リソースの作成、パッケージ化、および、配置の詳細については、[リソース ファイルの作成](~/docs/framework/resources/creating-resource-files-for-desktop-apps.md)、[サテライト アセンブリの作成](~/docs/framework/resources/creating-satellite-assemblies-for-desktop-apps.md)、[リソースのパッケージ化と配置](~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md)の記事を参照してください。  
   
@@ -126,7 +126,7 @@ csc ShowTime.cs /resource:strings.resources
   
 ```  
   
- Visual Basic コンパイラでは、次のバッチ ファイルを使用できます。  
+ Visual Basic コンパイラでは、次のバッチファイルを使用できます。  
   
 ```  
   
@@ -206,7 +206,7 @@ al /embed:Greetings.ru-RU.resources /culture:ru-RU /out:ru-RU\Example.resources.
 |カルチャ|ファイル名|リソース名|リソースの値|  
 |-------------|---------------|-------------------|--------------------|  
 |en-US|DateStrings.txt|`DateStart`|Today is|  
-|fr-FR|DateStrings.fr-FR.txt|`DateStart`|Aujourd'hui, c'est le|  
+|fr-FR|DateStrings.fr-FR.txt|`DateStart`|Aujourd'hui、c' est le|  
 |ru-RU|DateStrings.ru-RU.txt|`DateStart`|Сегодня|  
   
  次に、この例のソース コード (Visual Basic バージョンの ShowDate.vb または C# バージョンの ShowDate.cs) を示します。  
@@ -238,10 +238,10 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
 -   <xref:System.Resources.ResourceManager.GetResourceSet%2A> メソッドを呼び出して、特定のカルチャのリソースを表す <xref:System.Resources.ResourceSet> オブジェクトを取得できます。 メソッドの呼び出しでは、ローカライズされたリソースが見つからない場合に、親カルチャのリソース マネージャーのプローブを作成するかどうかや、単純に既定のカルチャのリソースにフォールバックするかどうかを指定できます。 その後、<xref:System.Resources.ResourceSet> のメソッドを使用して、(そのカルチャに向けてローカライズされた) リソースに名前でアクセスしたり、または、セット内のリソースを列挙したりできます。  
   
 <a name="exception"></a>   
-### <a name="handling-missingmanifestresourceexception-and-missingsatelliteassemblyexception-exceptions"></a>MissingManifestResourceException および MissingSatelliteAssemblyException 例外の処理  
+### <a name="handling-missingmanifestresourceexception-and-missingsatelliteassemblyexception-exceptions"></a>MissingManifestResourceException と MissingSatelliteAssemblyException の例外の処理  
  特定のリソースを取得しようとしても、リソース マネージャーがそのリソースを見つけられないときに、既定のカルチャが定義されていないか、または既定のカルチャのリソースが見つからない場合、リソース マネージャーは、メイン アセンブリにリソースを探しているなら、<xref:System.Resources.MissingManifestResourceException> 例外をスローし、サテライト アセンブリにリソースを探しているなら、<xref:System.Resources.MissingSatelliteAssemblyException> 例外をスローします。 例外がスローされるのは、<xref:System.Resources.ResourceManager.GetString%2A> や <xref:System.Resources.ResourceManager.GetObject%2A> などのリソース取得メソッドを呼び出すときであり、<xref:System.Resources.ResourceManager> オブジェクトをインスタンス化するときではないことに注意してください。  
   
- 次の条件下では、通常、例外がスローされます。  
+ この例外は、通常、次のような状況でスローされます。  
   
 -   適切なリソース ファイルまたはサテライト アセンブリが存在しません。 リソース マネージャーによって、アプリの既定のリソースがメイン アプリ アセンブリに埋め込まれていることが期待される場合に、それらが存在しません。 <xref:System.Resources.NeutralResourcesLanguageAttribute> 属性によって、アプリの既定のリソースがサテライト アセンブリに存在することが指示されている場合に、そのアセンブリが見つかりません。 アプリをコンパイルするときに、リソースがメイン アセンブリに埋め込まれているか、あるいは必要なサテライト アセンブリが生成され、適切な名前がついていることを確認します。 その名前は *appName*.resources.dll の形式をとる必要があります。また、含まれているリソースのカルチャに基づいて名前をつけたディレクトリに配置する必要があります。  
   
@@ -299,7 +299,7 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
  `<satelliteassemblies>` ノード下に示されていないアセンブリにリソースが必要な場合、<xref:System.Resources.ResourceManager> クラスは標準のプローブ規則を使用してカルチャにプローブを作成します。  
   
 <a name="ws"></a>   
-## <a name="includewin8appnamelongincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
+## <a name="includewin8_appname_longincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
   
 > [!IMPORTANT]
 >  <xref:System.Resources.ResourceManager> クラスは [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリでサポートされていますが、その使用は推奨されていません。 [!INCLUDE[net_portable](~/includes/net-portable-md.md)] アプリで使用できる[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]を開発する場合にのみ、このクラスを使用します。 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリのリソースを取得するには、[Windows.ApplicationModel.Resources.ResourceLoader](https://go.microsoft.com/fwlink/p/?LinkId=238182) クラスを代わりに使用します。  
@@ -380,7 +380,7 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
     <altmember cref="T:System.Globalization.CultureInfo" />
     <altmember cref="P:System.Globalization.CultureInfo.CurrentUICulture" />
     <altmember cref="T:System.Resources.SatelliteContractVersionAttribute" />
-    <related type="Article" href="https://msdn.microsoft.com/library/8ad495d4-2941-40cf-bf64-e82e85825890">アプリケーションのリソース</related>
+    <related type="Article" href="https://msdn.microsoft.com/library/8ad495d4-2941-40cf-bf64-e82e85825890">アプリケーション内のリソース</related>
   </Docs>
   <Members>
     <MemberGroup MemberName=".ctor">
@@ -424,7 +424,7 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンス トラクターは、独自のクラスから派生したを記述する場合にのみ役立ちます、<xref:System.Resources.ResourceManager>クラス。  
+ このコンストラクターは、 <xref:System.Resources.ResourceManager>クラスから派生する独自のクラスを記述する場合にのみ役立ちます。  
   
  ]]></format>
         </remarks>
@@ -472,50 +472,50 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
   
 ## Remarks  
   
-## <a name="desktop-apps"></a>デスクトップ アプリ  
- リソース マネージャーを使用してデスクトップ アプリ、`resourceSource`パラメーターを次のように、特定のリソース ファイルを読み込めません。  
+## <a name="desktop-apps"></a>デスクトップアプリ  
+ デスクトップアプリでは、リソースマネージャーはパラメーター `resourceSource`を使用して、次のように特定のリソースファイルを読み込みます。  
   
--   場合、<xref:System.Resources.NeutralResourcesLanguageAttribute>を示す既定のカルチャのリソースがサテライト アセンブリに配置をリソース マネージャーは、既定のカルチャのリソース ファイルをで指定された型と同じアセンブリで見つかったこと前提としています属性は使用されません。`resourceSource`パラメーター。  
+-   既定のカルチャのリソースがサテライトアセンブリに存在することを示すために属性が使用されていない場合、リソースマネージャーは、既定のカルチャのリソースファイルが、によって指定された型と同じアセンブリ内にあることを前提としています。<xref:System.Resources.NeutralResourcesLanguageAttribute> `resourceSource`パラメーター。  
   
--   リソース マネージャーは、既定のリソース ファイルがで指定された型と同じ基本名を持つことを想定しています、`resourceSource`パラメーター。  
+-   リソースマネージャーでは、既定のリソースファイルの基本名が、 `resourceSource`パラメーターで指定された型と同じであることを前提としています。  
   
--   リソース マネージャーは、既定値を使用します。<xref:System.Resources.ResourceSet>リソース ファイルを操作するクラス。  
+-   リソースマネージャーは、既定<xref:System.Resources.ResourceSet>のクラスを使用してリソースファイルを操作します。  
   
- MyType を定義するアセンブリで MyCompany.MyProduct.MyType.resources をという名前の .resources ファイルのリソース マネージャーを検索など MyCompany.MyProduct.MyType という名前の型を指定します。  
+ たとえば、MyCompany という名前の型が指定されている場合、リソースマネージャーは、MyType を定義するアセンブリで MyCompany という名前の .resources ファイルを検索します。  
   
- Visual Studio で、リソース デザイナーを自動的に生成コードを定義する、 `internal` (で C# の場合) または`Friend`(Visual Basic) では、クラスの名前は既定のカルチャの .resources ファイルの基本名と同じです。 これにより、インスタンス化すること、<xref:System.Resources.ResourceManager>として、リソースがある必要があります、クラスがコンパイラに表示されている限りために、リソースの名前に対応する名前の型のオブジェクトを取得することによって、特定のリソースのセットを結合、およびオブジェクトまぁ。 たとえば、Resource1 .resources ファイルの名前が場合、次のステートメントをインスタンス化、 <xref:System.Resources.ResourceManager> Resource1 をという名前の .resources ファイルを管理するオブジェクト。  
+ Visual Studio では、リソースデザイナーによって、既定の`internal`カルチャのC#.resources ファイル`Friend`の基本名と同じ名前を持つ (in) クラスまたは (Visual Basic) クラスを定義するコードが自動的に生成されます。 これにより、オブジェクトを<xref:System.Resources.ResourceManager>インスタンス化し、リソースの名前に対応する型オブジェクトを取得することで、オブジェクトを特定のリソースのセットと組み合わせることができます。これは、クラスがコンパイラから参照できる限り、リソースは次のようにする必要があるためです。まぁ。 たとえば、.resources ファイルに resource1.resx という名前が付けられている場合、 <xref:System.Resources.ResourceManager>次のステートメントは、resource1.resx という名前の .resources ファイルを管理するためのオブジェクトをインスタンス化します。  
   
  [!code-csharp[System.Resources.ResourceManager.ctor#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.ctor/cs/ctor1.cs#2)]  
   
- Visual Studio を使用していない場合、その名前空間と名前は、既定の .resources ファイルのと同じメンバーを持たないクラスを作成することができます。 具体的な例を次に示します。  
+ Visual Studio を使用していない場合は、名前空間と名前が既定の .resources ファイルと同じであるメンバーを持たないクラスを作成できます。 具体的な例を次に示します。  
   
-## <a name="includewin8appnamelongincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
+## <a name="includewin8_appname_longincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
   
 > [!IMPORTANT]
 >  <xref:System.Resources.ResourceManager> クラスは [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリでサポートされていますが、その使用は推奨されていません。 [!INCLUDE[net_portable](~/includes/net-portable-md.md)] アプリで使用できる[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]を開発する場合にのみ、このクラスを使用します。 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリのリソースを取得するには、[Windows.ApplicationModel.Resources.ResourceLoader](https://go.microsoft.com/fwlink/p/?LinkId=238182) クラスを代わりに使用します。  
   
- [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]アプリ、<xref:System.Resources.ResourceManager>を使用して、`resourceSource`パラメーター、アセンブリ、基本名、およびリソース項目をアプリのパッケージ リソース インデックス (PRI) ファイル内に配置できる場所の名前空間を推論します。 たとえばで定義されている MyCompany.MyProduct.MyType という名前の型を指定`MyAssembly`、リソース マネージャーのリソース セット識別子が MyAssembly という名前の外観し、MyCompany.MyProduct.MyType そのリソース セット内のスコープを探します。 リソース マネージャーは、このスコープ内での既定のコンテキスト (現在のカルチャや現在のハイ コントラスト設定) の下にあるリソース項目を検索します。  
+ アプリ[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]では<xref:System.Resources.ResourceManager> 、 `resourceSource`パラメーターを使用して、アセンブリ、基本名、およびリソース項目をアプリのパッケージリソースインデックス (PRI) ファイル内に配置できる名前空間を推論します。 たとえば、で`MyAssembly`定義されている MyCompany という名前の型が指定されている場合、リソースマネージャーは、MyType という名前のリソースセット識別子を検索し、そのリソースセット内でスコープ MyCompany を検索します。 リソースマネージャーは、このスコープ内で、既定のコンテキスト (現在のカルチャ、現在のハイコントラストの設定など) の下にあるリソース項目を検索します。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Resources.ResourceManager.%23ctor%28System.Type%29>インスタンスを作成するコンス トラクター、<xref:System.Resources.ResourceManager>オブジェクト。 これは、英語 (en)、フランス語 (フランス) (fr-FR)、およびロシア語 (ロシア) (ru-RU) の .txt ファイルからコンパイルされたリソースで構成されます。 例では、現在のカルチャと現在の UI カルチャを、英語 (米国)、フランス語 (フランス)、ロシア語 (ロシア)、およびスウェーデン語 (スウェーデン) に変更します。 呼び出して、<xref:System.Resources.ResourceManager.GetString%28System.String%29>時間帯に依存している応答メッセージを表示するローカライズされた文字列を取得します。  
+ 次の例では<xref:System.Resources.ResourceManager.%23ctor%28System.Type%29> 、コンストラクターを使用<xref:System.Resources.ResourceManager>してオブジェクトをインスタンス化します。 これは、英語 (en)、フランス語 (フランス) (fr-FR)、およびロシア語 (ロシア) (ru-RU) の .txt ファイルからコンパイルされたリソースで構成されます。 例では、現在のカルチャと現在の UI カルチャを、英語 (米国)、フランス語 (フランス)、ロシア語 (ロシア)、およびスウェーデン語 (スウェーデン) に変更します。 次に、メソッド<xref:System.Resources.ResourceManager.GetString%28System.String%29>を呼び出して、ローカライズされた文字列を取得します。これにより、時刻に依存するあいさつ文が表示されます。  
   
- 例では、次の表に記載されている、3 つのテキスト ベースのリソース ファイルが必要です。 各ファイルには、という名前の文字列リソースが含まれています。 `Morning`、 `Afternoon`、および`Evening`します。  
+ この例では、次の表に示すように、3つのテキストベースのリソースファイルが必要です。 各ファイルには、、 `Morning`、 `Afternoon`および`Evening`という名前の文字列リソースが含まれています。  
   
 |カルチャ|ファイル名|リソース名|リソースの値|  
 |-------------|---------------|-------------------|--------------------|  
 |en-US|GreetingResources.txt|`Morning`|おはようございます|  
 |en-US|GreetingResources.txt|`Afternoon`|こんにちは|  
 |en-US|GreetingResources.txt|`Evening`|こんばんは|  
-|fr-FR|GreetingResources.fr ファイルに格納|`Morning`|Bonjour|  
-|fr-FR|GreetingResources.fr ファイルに格納|`Afternoon`|Bonjour|  
-|fr-FR|GreetingResources.fr ファイルに格納|`Evening`|Bonsoir|  
-|ru-RU|GreetingResources.ru ファイルに格納|`Morning`|Доброе утро|  
-|ru-RU|GreetingResources.ru ファイルに格納|`Afternoon`|ДОБРЫЙ ДЕНЬ|  
-|ru-RU|GreetingResources.ru ファイルに格納|`Evening`|Добрый вечер|  
+|fr-FR|GreetingResources.fr|`Morning`|Bonjour|  
+|fr-FR|GreetingResources.fr|`Afternoon`|Bonjour|  
+|fr-FR|GreetingResources.fr|`Evening`|Bonsoir|  
+|ru-RU|GreetingResources.ru|`Morning`|Доброе утро|  
+|ru-RU|GreetingResources.ru|`Afternoon`|Добрый день|  
+|ru-RU|GreetingResources.ru|`Evening`|Добрый вечер|  
   
- 次のバッチ ファイルを使用して、Visual Basic の例をコンパイルし、Greet.exe という名前の実行可能ファイルを作成することができます。 C# でコンパイルをするからコンパイラ名を変更`vbc`に`csc`とからのファイル拡張子`.vb`に`.cs`します。  
+ 次のバッチファイルを使用して Visual Basic の例をコンパイルし、あいさつという名前の実行可能ファイルを作成できます。 でC#コンパイルするには、コンパイラ名を`vbc`から`csc`に変更し、ファイル`.vb`拡張子`.cs`をからに変更します。  
   
 ```  
   
@@ -537,9 +537,9 @@ al /out:ru-RU\Greet.resources.dll /culture:ru-RU /embed: GreetingResources.ru-RU
  [!code-csharp[System.Resources.ResourceManager.Ctor#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.ctor/cs/greet.cs#3)]
  [!code-vb[System.Resources.ResourceManager.Ctor#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.ctor/vb/greet.vb#3)]  
   
- アプリのクラスを定義するだけでなく、名前付き`Example`、ソース コードは、名前の内部クラスを定義します`GreetingResources`、リソース ファイルの基本名と同じです。 正常にインスタンスを作成できるようになります、<xref:System.Resources.ResourceManager>オブジェクトを呼び出すことによって、<xref:System.Resources.ResourceManager.%23ctor%28System.Type%29>コンス トラクター。  
+ ソースコードでは、という`Example`名前のアプリクラスを定義するだけでなく、リソースファイルの基本名と同じ名前を`GreetingResources`持つ内部クラスを定義します。 これにより、 <xref:System.Resources.ResourceManager> <xref:System.Resources.ResourceManager.%23ctor%28System.Type%29>コンストラクターを呼び出すことによってオブジェクトを正常にインスタンス化できるようになります。  
   
- 出力が表示されますが、適切なローカライズされた文字列ことである場合、現在の UI カルチャがスウェーデン語 (スウェーデン) が場合を除き、通知は、英語の言語リソースを使用します。 定義されている、アプリが既定のカルチャのリソースを使用してスウェーデン語の言語リソースが利用できないため、<xref:System.Resources.NeutralResourcesLanguageAttribute>属性は、代わりにします。  
+ 現在の UI カルチャがスウェーデン語 (スウェーデン) の場合を除き、出力には適切なローカライズされた文字列が表示されることに注意してください。この場合、英語の言語リソースが使用されます。 スウェーデン語の言語リソースは使用できないため、アプリは<xref:System.Resources.NeutralResourcesLanguageAttribute>属性で定義されている既定のカルチャのリソースを代わりに使用します。  
   
  ]]></format>
         </remarks>
@@ -589,59 +589,59 @@ al /out:ru-RU\Greet.resources.dll /culture:ru-RU /embed: GreetingResources.ru-RU
   
 ## Remarks  
   
-## <a name="desktop-apps"></a>デスクトップ アプリ  
- デスクトップ アプリ、サテライト アセンブリには、個々 のカルチャに固有のリソース ファイルを含める必要があり、メイン アセンブリには、既定のカルチャのリソース ファイルを含める必要があります。 サテライト アセンブリでは、そのアセンブリのマニフェストで指定された 1 つのカルチャのリソースを含むと見なされますされ、必要に応じて読み込まれます。  
+## <a name="desktop-apps"></a>デスクトップアプリ  
+ デスクトップアプリでは、個々のカルチャ固有のリソースファイルがサテライトアセンブリに含まれている必要があり、既定のカルチャのリソースファイルはメインアセンブリに含まれている必要があります。 サテライトアセンブリは、そのアセンブリのマニフェストで指定された1つのカルチャのリソースを格納し、必要に応じて読み込まれることを前提としています。  
   
 > [!NOTE]
->  呼び出す必要がありますをアセンブリから取得するのではなく、直接の .resources ファイルからリソースを取得する、<xref:System.Resources.ResourceManager.CreateFileBasedResourceManager%2A>メソッド代わりにインスタンス化する、<xref:System.Resources.ResourceManager>オブジェクト。  
+>  リソースをアセンブリから取得するのではなく、.resources ファイルから直接取得するには<xref:System.Resources.ResourceManager.CreateFileBasedResourceManager%2A> 、オブジェクトを<xref:System.Resources.ResourceManager>インスタンス化するために、代わりにメソッドを呼び出す必要があります。  
   
- リソース ファイルがで識別される場合`baseName`内に見つかりません`assembly`、メソッドがインスタンス化、<xref:System.Resources.ResourceManager>オブジェクトが、特定のリソースを取得しようとすると、通常、例外がスロー<xref:System.Resources.MissingManifestResourceException>します。 例外の原因を診断する方法の詳細については、の「the MissingManifestResourceException 例外を処理する」セクションを参照してください、<xref:System.Resources.ResourceManager>クラスに関するトピック。  
+ で識別`baseName`されるリソースファイルがに`assembly`見つからない場合<xref:System.Resources.ResourceManager> 、メソッドはオブジェクトをインスタンス化しますが、特定のリソースを取得しようと<xref:System.Resources.MissingManifestResourceException>すると、通常は例外がスローされます。 例外の原因の診断の詳細については、 <xref:System.Resources.ResourceManager>クラスのトピックの「MissingManifestResourceException exception の処理」セクションを参照してください。  
   
-## <a name="includewin8appnamelongincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
+## <a name="includewin8_appname_longincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
   
 > [!IMPORTANT]
 >  <xref:System.Resources.ResourceManager> クラスは [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリでサポートされていますが、その使用は推奨されていません。 [!INCLUDE[net_portable](~/includes/net-portable-md.md)] アプリで使用できる[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]を開発する場合にのみ、このクラスを使用します。 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリのリソースを取得するには、[Windows.ApplicationModel.Resources.ResourceLoader](https://go.microsoft.com/fwlink/p/?LinkId=238182) クラスを代わりに使用します。  
   
- [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]アプリ、リソース マネージャーの使用の簡易名、`assembly`アプリのパッケージ リソース インデックス (PRI) ファイルで一致するリソースを検索するパラメーターを設定します。 `baseName`リソース セット内のリソース項目を検索するパラメーターを使用します。 たとえば、PortableLibrary1.Resource1.de DE.resources のルート名は PortableLibrary1.Resource1 です。  
+ アプリ[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]では、リソースマネージャーは`assembly`パラメーターの簡易名を使用して、アプリのパッケージリソースインデックス (PRI) ファイルで一致するリソースセットを検索します。 `baseName`パラメーターは、リソースセット内のリソース項目を検索するために使用されます。 たとえば、PortableLibrary1.Resource1.de のルート名は PortableLibrary1 になります。  
   
    
   
 ## Examples  
- 次の例を示すためにローカライズされていない単純な"Hello World"アプリを使用して、<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29>コンス トラクター。 ExampleResources.txt をという名前のテキスト ファイルの内容を次に示します。 アプリがコンパイルされると、リソースは、メイン アプリケーション アセンブリに埋め込まれます。  
+ 次の例では、単純なローカライズされていない "Hello World <xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29> " アプリを使用して、コンストラクターを示しています。 ExampleResources という名前のテキストファイルの内容を次に示します。 アプリがコンパイルされると、リソースはメインアプリケーションアセンブリに埋め込まれます。  
   
 ```  
 Greeting=Hello  
 ```  
   
- 使用して、テキスト ファイルをバイナリ リソース ファイルに変換できる、[リソース ファイル ジェネレーター (ResGen.exe)](~/docs/framework/tools/resgen-exe-resource-file-generator.md)コマンド プロンプトで、次のようにします。  
+ テキストファイルをバイナリリソースファイルに変換するには、コマンドプロンプトで次のように[リソースファイルジェネレーター (resgen.exe)](~/docs/framework/tools/resgen-exe-resource-file-generator.md)を使用します。  
   
 ```  
 resgen ExampleResources.txt  
 ```  
   
- 次の例は、実行可能コードをインスタンス化する、<xref:System.Resources.ResourceManager>オブジェクトの名前を入力するように求めるし、あいさつ文が表示されます。  
+ 次の例では、オブジェクトを<xref:System.Resources.ResourceManager>インスタンス化し、ユーザーに名前の入力を要求し、あいさつ文を表示する実行可能コードを示します。  
   
  [!code-csharp[System.Resources.ResourceManager.ctor#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.ctor/cs/example.cs#1)]
  [!code-vb[System.Resources.ResourceManager.ctor#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.ctor/vb/example.vb#1)]  
   
- Visual Basic では、次のコマンドを使用してコンパイルできます。  
+ Visual Basic で次のコマンドを使用してコンパイルできます。  
   
 ```  
 vbc Example.vb /resource:ExampleResources.resources  
 ```  
   
- または、以下を使用して c# ではコマンドします。  
+ または、でC#次のコマンドを使用します。  
   
 ```  
 csc Example.cs /resource:ExampleResources.resources  
 ```  
   
- 例にそのアセンブリで定義された型を渡すことによって、リソース ファイルを含むアセンブリへの参照を取得することに注意してください、`typeof`関数 (c#) または`GetType`(Visual Basic) で機能し、そのの値を取得する<xref:System.Type.Assembly%2A?displayProperty=nameWithType>プロパティ。  
+ この例では、そのアセンブリで定義されている型を`typeof`関数 (でC#は) また`GetType`は関数 (Visual Basic) に渡し、その値を取得することによって、リソースファイルを含むアセンブリへの参照を取得します。<xref:System.Type.Assembly%2A?displayProperty=nameWithType>プロパティ。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="baseName" /> パラメーターまたは <paramref name="assembly" /> パラメーターが <see langword="null" /> です。</exception>
-        <block subset="none" type="overrides"><para>このコンス トラクターは、システム指定<see cref="T:System.Resources.ResourceSet" />実装します。 派生する必要があります、カスタム リソース ファイル形式を使用する、<see cref="T:System.Resources.ResourceSet" />クラスでオーバーライド、<see cref="M:System.Resources.ResourceSet.GetDefaultReader" />と<see cref="M:System.Resources.ResourceSet.GetDefaultWriter" />メソッド、およびパスを入力する、<see cref="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly,System.Type)" />コンス トラクター。 カスタムを使用して<see cref="T:System.Resources.ResourceSet" />は制御するリソースのキャッシュ ポリシーまたは、独自のリソース ファイル形式をサポートしているが、一般に必要な役に立ちます。</para></block>
+        <block subset="none" type="overrides"><para>このコンストラクターは、システム指定<see cref="T:System.Resources.ResourceSet" />の実装を使用します。 カスタムリソースファイル形式を使用するに<see cref="T:System.Resources.ResourceSet" />は、クラスから派生させ、 <see cref="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly,System.Type)" />メソッド<see cref="M:System.Resources.ResourceSet.GetDefaultReader" />と<see cref="M:System.Resources.ResourceSet.GetDefaultWriter" />メソッドをオーバーライドして、その型をコンストラクターに渡す必要があります。 カスタム<see cref="T:System.Resources.ResourceSet" />を使用すると、リソースキャッシュポリシーを制御したり、独自のリソースファイル形式をサポートしたりする場合に便利ですが、通常は必要ありません。</para></block>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -687,21 +687,21 @@ csc Example.cs /resource:ExampleResources.resources
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- サテライト アセンブリには、個々 のカルチャに固有のリソース ファイルを含める必要があり、メイン アセンブリには、既定のカルチャのリソース ファイルを含める必要があります。 サテライト アセンブリでは、そのアセンブリのマニフェストで指定された 1 つのカルチャのリソースを含むと見なされますされ、必要に応じて読み込まれます。  
+ 個々のカルチャ固有のリソースファイルはサテライトアセンブリに含まれている必要があり、既定のカルチャのリソースファイルはメインアセンブリに含まれている必要があります。 サテライトアセンブリは、そのアセンブリのマニフェストで指定された1つのカルチャのリソースを格納し、必要に応じて読み込まれることを前提としています。  
   
 > [!NOTE]
->  呼び出す必要がありますをアセンブリから取得するのではなく、直接の .resources ファイルからリソースを取得する、<xref:System.Resources.ResourceManager.CreateFileBasedResourceManager%2A>メソッド代わりにインスタンス化する、<xref:System.Resources.ResourceManager>オブジェクト。  
+>  リソースをアセンブリから取得するのではなく、.resources ファイルから直接取得するには<xref:System.Resources.ResourceManager.CreateFileBasedResourceManager%2A> 、オブジェクトを<xref:System.Resources.ResourceManager>インスタンス化するために、代わりにメソッドを呼び出す必要があります。  
   
- リソース ファイルがで識別される場合`baseName`内に見つかりません`assembly`、メソッドがインスタンス化、<xref:System.Resources.ResourceManager>オブジェクトが、特定のリソースを取得しようとすると、通常、例外がスロー<xref:System.Resources.MissingManifestResourceException>します。 例外の原因を診断する方法の詳細については、の「the MissingManifestResourceException 例外を処理する」セクションを参照してください、<xref:System.Resources.ResourceManager>クラスに関するトピック。  
+ で識別`baseName`されるリソースファイルがに`assembly`見つからない場合<xref:System.Resources.ResourceManager> 、メソッドはオブジェクトをインスタンス化しますが、特定のリソースを取得しようと<xref:System.Resources.MissingManifestResourceException>すると、通常は例外がスローされます。 例外の原因の診断の詳細については、 <xref:System.Resources.ResourceManager>クラスのトピックの「MissingManifestResourceException exception の処理」セクションを参照してください。  
   
 > [!NOTE]
->  `usingResourceSet`パラメーターは、独自のリソース形式をサポートするために使用されは、一般的に`null`します。 異なるを受け取るコンス トラクター、<xref:System.Type>のみです。  
+>  パラメーターは、独自のリソース形式をサポートするために使用され`null`、通常はになります。 `usingResourceSet` これは、のみを<xref:System.Type>受け取るコンストラクターとは異なります。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="usingResourceset" /> が <see cref="T:System.Resources.ResourceSet" /> の派生クラスではありません。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="baseName" /> パラメーターまたは <paramref name="assembly" /> パラメーターが <see langword="null" /> です。</exception>
-        <block subset="none" type="usage"><para>このコンス トラクターでは、指定することができます、<see cref="T:System.Resources.ResourceSet" />実装します。 特定したくない場合<see cref="T:System.Resources.ResourceSet" />実装は、カスタム リソース ファイルの形式を使用するようにから派生する必要があります、<see cref="T:System.Resources.ResourceSet" />クラスでオーバーライド、<see cref="M:System.Resources.ResourceSet.GetDefaultReader" />と<see cref="M:System.Resources.ResourceSet.GetDefaultWriter" />メソッド、およびこのコンス トラクターにパスを入力します。</para></block>
+        <block subset="none" type="usage"><para>このコンストラクターを使用すると<see cref="T:System.Resources.ResourceSet" /> 、実装を指定できます。 特定<see cref="T:System.Resources.ResourceSet" />の実装を必要とせず、カスタムリソースファイル形式を使用する場合は、 <see cref="T:System.Resources.ResourceSet" />クラスから派生させ、メソッド<see cref="M:System.Resources.ResourceSet.GetDefaultReader" />と<see cref="M:System.Resources.ResourceSet.GetDefaultWriter" />メソッドをオーバーライドして、その型をこのコンストラクターに渡す必要があります。</para></block>
       </Docs>
     </Member>
     <Member MemberName="BaseName">
@@ -739,17 +739,17 @@ csc Example.cs /resource:ExampleResources.resources
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.BaseName%2A>プロパティには、完全修飾名前空間の名前とそのカルチャまたはファイル名拡張子を除いたのリソース ファイルのルート リソース名が反映されます。 たとえば、アプリの既定のリソース ファイルの名前は`SampleApps.StringResources.resources`の値、<xref:System.Resources.ResourceManager.BaseName%2A>プロパティが"SampleApps.StringResources"。 アプリの既定のリソース ファイルの名前が場合`SampleApps.StringResources.en-US.resources`の値、サテライト アセンブリに埋め込まれていると、<xref:System.Resources.ResourceManager.BaseName%2A>プロパティが"SampleApps.StringResources"。  
+ プロパティ<xref:System.Resources.ResourceManager.BaseName%2A>には、リソースファイルの完全修飾名前空間名とルートリソース名が反映されます。カルチャまたはファイル名拡張子は含まれません。 たとえば、アプリの既定`SampleApps.StringResources.resources` <xref:System.Resources.ResourceManager.BaseName%2A>のリソースファイルにという名前が付けられている場合、プロパティの値は "sampleapps. stringresources" になります。 アプリの既定<xref:System.Resources.ResourceManager.BaseName%2A>のリソースファイルがという`SampleApps.StringResources.en-US.resources`名前で、サテライトアセンブリに埋め込まれている場合、プロパティの値は依然として "sampleapps. stringresources" になります。  
   
 > [!IMPORTANT]
->  <xref:System.Resources.ResourceManager.BaseName%2A>を含めない限り、明示的に 1 つのファイルをコンパイルするときに、コンパイルされ、コマンドラインから埋め込みリソース ファイルのプロパティの値で名前空間の名前が含まれません。 一方で、<xref:System.Resources.ResourceManager.BaseName%2A>コンパイルされ、通常、Visual Studio 環境内で埋め込みリソース ファイルのプロパティの値には、既定の名前空間の名前にが含まれます。  
+>  コンパイルされ、コマンドラインから埋め込まれるリソースファイルのプロパティ値には、ファイルをコンパイルするときに明示的に指定しない限り、名前空間の名前は含まれません。<xref:System.Resources.ResourceManager.BaseName%2A> 一方、Visual Studio 環境内にコンパイルされて埋め込まれるリソースファイルのプロパティ値には、通常、既定の名前空間名が含まれます。<xref:System.Resources.ResourceManager.BaseName%2A>  
   
- <xref:System.Resources.ResourceManager.BaseName%2A>に渡された文字列と同じプロパティ値が、<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29>または<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%2CSystem.Type%29>コンス トラクターをインスタンス化するときに、<xref:System.Resources.ResourceManager>インスタンス。  
+ プロパティ値は、インスタンスを<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29> <xref:System.Resources.ResourceManager>インスタンス化するときに、コンストラクター <xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%2CSystem.Type%29>またはコンストラクターに渡される文字列と同じです。 <xref:System.Resources.ResourceManager.BaseName%2A>  
   
    
   
 ## Examples  
- 次のユーティリティをコンパイルして実行すると、埋め込まれた .resources ファイルの名前を判断できます。 これは、メイン アセンブリまたはサテライト アセンブリの名前をコマンド ライン パラメーターとして指定するコンソール アプリです。 文字列として指定する必要がありますが表示されます、`baseName`のパラメーター、<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29>または<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%2CSystem.Type%29>コンス トラクター、resource manager では、リソースを正しく特定できるようにします。  
+ 次のユーティリティをコンパイルして実行すると、埋め込まれた .resources ファイルの名前を判断できます。 これは、メイン アセンブリまたはサテライト アセンブリの名前をコマンド ライン パラメーターとして指定するコンソール アプリです。 リソースマネージャーがリソースを正しく識別できるように`baseName` 、 <xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%29>または<xref:System.Resources.ResourceManager.%23ctor%28System.String%2CSystem.Reflection.Assembly%2CSystem.Type%29>コンストラクターのパラメーターとして指定する必要がある文字列を表示します。  
   
  [!code-csharp[System.Resources.ResourceManager.Class#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.class/cs/resourcenames.cs#4)]
  [!code-vb[System.Resources.ResourceManager.Class#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.class/vb/resourcenames.vb#4)]  
@@ -788,7 +788,7 @@ csc Example.cs /resource:ExampleResources.resources
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.BaseNameField>フィールドはから派生した独自のクラスを記述する場合にのみ役立ちますが、<xref:System.Resources.ResourceManager>クラス。  
+ フィールドは、 <xref:System.Resources.ResourceManager>クラスから派生した独自のクラスを記述する場合にのみ役立ちます。 <xref:System.Resources.ResourceManager.BaseNameField>  
   
  ]]></format>
         </remarks>
@@ -837,17 +837,17 @@ csc Example.cs /resource:ExampleResources.resources
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アセンブリに埋め込まれていない .resources ファイルからリソースを取得するリソース マネージャーを返します。 これを使用することができます<xref:System.Resources.ResourceManager>ASP.NET ページのリソースを読み込むかをテストするオブジェクト、<xref:System.Resources.ResourceSet>実装します。  スタンドアロンの .resources ファイルからリソースを取得する例を参照してください、[のリソースの取得](~/docs/framework/resources/retrieving-resources-in-desktop-apps.md)記事。  
+ このメソッドは、アセンブリに埋め込まれていない .resources ファイルからリソースを取得するリソースマネージャーを返します。 この<xref:System.Resources.ResourceManager>オブジェクトを使用して、ASP.NET ページのリソースを読み込んだり、 <xref:System.Resources.ResourceSet>実装をテストしたりすることができます。  スタンドアロンの .resources ファイルからリソースを取得する例については、[リソースの取得](~/docs/framework/resources/retrieving-resources-in-desktop-apps.md)に関する記事をご覧ください。  
   
- このメソッドを指定できます、<xref:System.Resources.ResourceSet>実装します。 特定したくない場合<xref:System.Resources.ResourceSet>実装では、カスタム リソース ファイル形式を使用することから派生する必要があります、<xref:System.Resources.ResourceSet>クラスでオーバーライド、<xref:System.Resources.ResourceSet.GetDefaultReader%2A>と<xref:System.Resources.ResourceSet.GetDefaultWriter%2A>メソッド、およびこのコンス トラクターにパスを入力します。  
+ このメソッドでは、実装<xref:System.Resources.ResourceSet>を指定できます。 特定<xref:System.Resources.ResourceSet>の実装を必要とせず、カスタムリソースファイル形式を使用する場合は、 <xref:System.Resources.ResourceSet>クラスから派生させ、メソッド<xref:System.Resources.ResourceSet.GetDefaultReader%2A>と<xref:System.Resources.ResourceSet.GetDefaultWriter%2A>メソッドをオーバーライドして、その型をこのコンストラクターに渡す必要があります。  
   
 > [!CAUTION]
->  ASP.NET アプリでスタンドアロン .resources ファイルを使用すると、XCOPY による配置が中断されます。<xref:System.Resources.ResourceManager.ReleaseAllResources%2A> メソッドによって明示的に解放されるまで、リソースがロックされたままになるためです。 ASP.NET アプリケーションでリソースをデプロイする場合は、サテライト アセンブリに .resources ファイルをコンパイルします。  
+>  ASP.NET アプリでスタンドアロン .resources ファイルを使用すると、XCOPY による配置が中断されます。<xref:System.Resources.ResourceManager.ReleaseAllResources%2A> メソッドによって明示的に解放されるまで、リソースがロックされたままになるためです。 ASP.NET アプリを使用してリソースをデプロイする場合は、.resources ファイルをサテライトアセンブリにコンパイルします。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="baseName" /> パラメーターまたは <paramref name="resourceDir" /> パラメーターが <see langword="null" /> です。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="FallbackLocation">
@@ -884,9 +884,9 @@ csc Example.cs /resource:ExampleResources.resources
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.FallbackLocation%2A>プロパティは、独自のクラスから派生したを記述する場合にのみ役立ちますが、<xref:System.Resources.ResourceManager>クラス。  
+ プロパティは、 <xref:System.Resources.ResourceManager>クラスから派生した独自のクラスを記述する場合にのみ役立ちます。 <xref:System.Resources.ResourceManager.FallbackLocation%2A>  
   
- 使用することができます、<xref:System.Resources.NeutralResourcesLanguageAttribute>アプリ用の既定のカルチャの検索場所、リソース マネージャーに通知する属性: (既定値) のメインのアセンブリまたはサテライト アセンブリ。  
+ <xref:System.Resources.NeutralResourcesLanguageAttribute>属性を使用して、アプリケーションの既定のカルチャを検索する場所をリソースマネージャーに通知できます。これは、メインアセンブリ (既定値) またはサテライトアセンブリ内で行います。  
   
  ]]></format>
         </remarks>
@@ -936,7 +936,7 @@ csc Example.cs /resource:ExampleResources.resources
         <summary>指定したアセンブリで <see cref="T:System.Resources.NeutralResourcesLanguageAttribute" /> 属性の値を取得して、メイン アセンブリの既定のリソースのカルチャ固有の情報を返します。</summary>
         <returns>見つかった場合は <see cref="T:System.Resources.NeutralResourcesLanguageAttribute" /> 属性のカルチャ、それ以外の場合は、インバリアント カルチャ。</returns>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="GetObject">
@@ -988,22 +988,22 @@ csc Example.cs /resource:ExampleResources.resources
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.GetObject%2A>文字列以外のリソースを取得するメソッドを使用します。 などのプリミティブ データ型に属している値が含まれます<xref:System.Int32>または<xref:System.Double>、ビットマップ (など、<xref:System.Drawing.Bitmap?displayProperty=nameWithType>オブジェクト)、またはカスタム オブジェクトをシリアル化します。 通常、返されたオブジェクトをキャスト (c#) または (Visual Basic) で、適切な型のオブジェクトへの変換する必要があります。  
+ 文字列<xref:System.Resources.ResourceManager.GetObject%2A>以外のリソースを取得するには、メソッドを使用します。 これに<xref:System.Int32>は、や<xref:System.Double>などのプリミティブデータ型、 <xref:System.Drawing.Bitmap?displayProperty=nameWithType>ビットマップ (オブジェクトなど)、またはカスタムのシリアル化されたオブジェクトに属する値が含まれます。 通常、返されるオブジェクトは、適切な型C#のオブジェクトにキャスト (では) または変換 (Visual Basic) する必要があります。  
   
- 定義されている現在のスレッドの UI カルチャの返されたリソースのローカライズ、<xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティ。 リソースがそのカルチャのローカライズされていない場合、リソース マネージャーは適切なリソースの読み込みにフォールバック規則を使用します。 使用できるローカライズされたリソースのセットが見つからない場合、<xref:System.Resources.ResourceManager>既定のカルチャのリソースにフォールバックします。 既定のカルチャのリソース セットが見つからない場合、メソッドがスローされます、<xref:System.Resources.MissingManifestResourceException>例外や、サテライト アセンブリ内に存在するリソース セットが予想される場合、<xref:System.Resources.MissingSatelliteAssemblyException>例外。 適切なリソースが設定という名前のリソースを見つけることができませんが、リソース マネージャーが読み込むことができる場合`name`、メソッドを返します`null`します。  
+ 返されたリソースは、 <xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティによって定義されている現在のスレッドの UI カルチャにローカライズされます。 リソースがそのカルチャ用にローカライズされていない場合、リソースマネージャーはフォールバック規則を使用して適切なリソースを読み込みます。 ローカライズされたリソースの使用可能なセットが<xref:System.Resources.ResourceManager>見つからない場合、は既定のカルチャのリソースにフォールバックします。 既定のカルチャのリソースセットが見つからない場合、メソッドは例外を<xref:System.Resources.MissingManifestResourceException>スローします。また、リソースセットがサテライトアセンブリ<xref:System.Resources.MissingSatelliteAssemblyException>に存在することが予想される場合は、例外をスローします。 リソースマネージャーが適切なリソースセットを読み込むことができても、と`name`いう名前のリソース`null`が見つからない場合、メソッドはを返します。  
   
- <xref:System.Resources.ResourceManager.IgnoreCase%2A>プロパティかどうかの比較`name`リソースの名前は大文字と小文字の区別 (既定)。  
+ プロパティ<xref:System.Resources.ResourceManager.IgnoreCase%2A>は、リソース名との`name`比較で大文字と小文字を区別するかどうか、または大文字と小文字を区別するかどうかを決定します (既定値)。  
   
 > [!CAUTION]
->  このメソッドは、表示されているもの以外の例外をスローできます。 これが発生する理由の 1 つは、このメソッドを呼び出すメソッドが例外をスローするかどうかです。  たとえば、<xref:System.IO.FileLoadException>の配置またはサテライト アセンブリのインストール エラーが行われた場合、例外がスローされる<xref:System.Runtime.Serialization.SerializationException>型が逆シリアル化時に、ユーザー定義型がユーザー定義の例外をスローした場合、例外がスローされる可能性が。  
+>  このメソッドは、一覧表示されているよりも多くの例外をスローすることがあります。 このような場合に発生する原因の1つとして、このメソッドが呼び出すメソッドが例外をスローすることが考えられます。  たとえば、 <xref:System.IO.FileLoadException>サテライトアセンブリを配置またはインストールする際にエラーが発生した場合、 <xref:System.Runtime.Serialization.SerializationException>または型が逆シリアル化されるときにユーザー定義型がユーザー定義の例外をスローした場合に例外がスローされることがあります。  
   
 ## <a name="performance-considerations"></a>パフォーマンスに関する考慮事項  
- 呼び出す場合、<xref:System.Resources.ResourceManager.GetObject%2A>メソッドを複数回、同じ`name`パラメーターでは、各呼び出しで同じオブジェクトへの参照を返すメソッドに依存しません。 これは、ため、<xref:System.Resources.ResourceManager.GetObject%2A>メソッドは、キャッシュで既存のリソース オブジェクトへの参照を返すか、リソースを再読み込みし、新しいリソース オブジェクトへの参照を返します。  
+ <xref:System.Resources.ResourceManager.GetObject%2A> 同じ`name`パラメーターを使用してメソッドを複数回呼び出す場合は、呼び出しごとに同じオブジェクトへの参照を返すメソッドに依存しないでください。 これは、 <xref:System.Resources.ResourceManager.GetObject%2A>メソッドがキャッシュ内の既存のリソースオブジェクトへの参照を返すことができるか、またはリソースを再度読み込み、新しいリソースオブジェクトへの参照を返すことができるためです。  
   
    
   
 ## Examples  
- 次の例では、 <xref:System.Resources.ResourceManager.GetObject%28System.String%29> メソッドを使用して、カスタム オブジェクトを逆シリアル化します。 例では、UIElements.cs (場合は UIElements.vb Visual Basic を使用している場合) をという名前のソース コード ファイルが含まれていますという名前の次の構造を定義する`PersonTable`します。 この構造体は、ローカライズされたテーブル列名を表示する一般的なテーブル表示ルーチンでの使用を目的としています。 `PersonTable` 構造体は、 <xref:System.SerializableAttribute> 属性でマークされています。  
+ 次の例では、 <xref:System.Resources.ResourceManager.GetObject%28System.String%29> メソッドを使用して、カスタム オブジェクトを逆シリアル化します。 この例には、と`PersonTable`いう名前の構造体を定義する、UIElements.cs という名前のソースコードファイル (Visual Basic を使用している場合は uielements .vb) が含まれています。 この構造体は、ローカライズされたテーブル列名を表示する一般的なテーブル表示ルーチンでの使用を目的としています。 `PersonTable` 構造体は、 <xref:System.SerializableAttribute> 属性でマークされています。  
   
  [!code-csharp[Conceptual.Resources.Retrieving#6](~/samples/snippets/csharp/VS_Snippets_CLR/conceptual.resources.retrieving/cs/example.cs#6)]
  [!code-vb[Conceptual.Resources.Retrieving#6](~/samples/snippets/visualbasic/VS_Snippets_CLR/conceptual.resources.retrieving/vb/example.vb#6)]  
@@ -1038,7 +1038,7 @@ GetObject.exe
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.Resources.MissingManifestResourceException">使用できるローカライズされたリソースのセットが見つからず、既定のカルチャ リソースもありません。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
         <exception cref="T:System.Resources.MissingSatelliteAssemblyException">既定のカルチャのリソースがサテライト アセンブリに存在し、そのサテライト アセンブリが見つかりませんでした。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="M:System.Resources.ResourceManager.GetStream(System.String)" />
         <related type="Article" href="~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md">リソースのパッケージ化と配置</related>
       </Docs>
@@ -1086,37 +1086,37 @@ GetObject.exe
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.GetObject%28System.String%2CSystem.Globalization.CultureInfo%29>文字列以外のリソースを取得するメソッドを使用します。 などのプリミティブ データ型に属している値が含まれます<xref:System.Int32>または<xref:System.Double>、ビットマップ (など、<xref:System.Drawing.Bitmap?displayProperty=nameWithType>オブジェクト)、またはカスタム オブジェクトをシリアル化します。 通常、返されたオブジェクトをキャスト (c#) または (Visual Basic) で、適切な型のオブジェクトへの変換する必要があります。  
+ 文字列<xref:System.Resources.ResourceManager.GetObject%28System.String%2CSystem.Globalization.CultureInfo%29>以外のリソースを取得するには、メソッドを使用します。 これに<xref:System.Int32>は、や<xref:System.Double>などのプリミティブデータ型、 <xref:System.Drawing.Bitmap?displayProperty=nameWithType>ビットマップ (オブジェクトなど)、またはカスタムのシリアル化されたオブジェクトに属する値が含まれます。 通常、返されるオブジェクトは、適切な型C#のオブジェクトにキャスト (では) または変換 (Visual Basic) する必要があります。  
   
- 指定されたカルチャ用に、返されたリソースがローカライズ`culture`、またはカルチャで指定されている、<xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティ場合`culture`は`null`します。 リソースがそのカルチャのローカライズされていない場合、リソース マネージャーは適切なリソースの読み込みにフォールバック規則を使用します。 使用できるローカライズされたリソースのセットが見つからない場合、リソース マネージャーの既定のカルチャのリソースにフォールバックします。 既定のカルチャのリソース セットが見つからない場合、メソッドがスローされます、<xref:System.Resources.MissingManifestResourceException>例外や、サテライト アセンブリ内に存在するリソース セットが予想される場合、<xref:System.Resources.MissingSatelliteAssemblyException>例外。 適切なリソースが設定という名前のリソースを見つけることができませんが、リソース マネージャーが読み込むことができる場合`name`、メソッドを返します`null`します。  
+ 返されるリソースは、に`culture`よって指定されるカルチャ、またはが`null`の場合`culture`は<xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティで指定されるカルチャにローカライズされます。 リソースがそのカルチャ用にローカライズされていない場合、リソースマネージャーはフォールバック規則を使用して適切なリソースを読み込みます。 ローカライズされたリソースの使用可能なセットが見つからない場合、リソースマネージャーは既定のカルチャのリソースにフォールバックします。 既定のカルチャのリソースセットが見つからない場合、メソッドは例外を<xref:System.Resources.MissingManifestResourceException>スローします。また、リソースセットがサテライトアセンブリ<xref:System.Resources.MissingSatelliteAssemblyException>に存在することが予想される場合は、例外をスローします。 リソースマネージャーが適切なリソースセットを読み込むことができても、と`name`いう名前のリソース`null`が見つからない場合、メソッドはを返します。  
   
- <xref:System.Resources.ResourceManager.IgnoreCase%2A>プロパティを決定するかどうかの比較`name`リソースの名前を持つ大文字小文字が (既定値) または大文字小文字を区別します。  
+ プロパティ<xref:System.Resources.ResourceManager.IgnoreCase%2A>は、リソース名との`name`比較で大文字と小文字を区別しないか (既定値)、大文字と小文字を区別するかどうかを決定します。  
   
 > [!CAUTION]
->  このメソッドは、表示されているもの以外の例外をスローできます。 これが発生する理由の 1 つは、このメソッドを呼び出すメソッドが例外をスローするかどうかです。  たとえば、<xref:System.IO.FileLoadException>の配置またはサテライト アセンブリのインストール エラーが行われた場合、例外がスローされる<xref:System.Runtime.Serialization.SerializationException>型が逆シリアル化時に、ユーザー定義型がユーザー定義の例外をスローした場合、例外がスローされる可能性が。  
+>  このメソッドは、一覧表示されているよりも多くの例外をスローすることがあります。 このような場合に発生する原因の1つとして、このメソッドが呼び出すメソッドが例外をスローすることが考えられます。  たとえば、 <xref:System.IO.FileLoadException>サテライトアセンブリを配置またはインストールする際にエラーが発生した場合、 <xref:System.Runtime.Serialization.SerializationException>または型が逆シリアル化されるときにユーザー定義型がユーザー定義の例外をスローした場合に例外がスローされることがあります。  
   
 ## <a name="performance-considerations"></a>パフォーマンスに関する考慮事項  
- 呼び出す場合、<xref:System.Resources.ResourceManager.GetObject%2A>メソッドを複数回、同じ`name`パラメーターでは、各呼び出しで同じオブジェクトへの参照を返すメソッドに依存しません。 これは、ため、<xref:System.Resources.ResourceManager.GetObject%2A>メソッドは、キャッシュで既存のリソース オブジェクトへの参照を返すか、リソースを再読み込みし、新しいリソース オブジェクトへの参照を返します。  
+ <xref:System.Resources.ResourceManager.GetObject%2A> 同じ`name`パラメーターを使用してメソッドを複数回呼び出す場合は、呼び出しごとに同じオブジェクトへの参照を返すメソッドに依存しないでください。 これは、 <xref:System.Resources.ResourceManager.GetObject%2A>メソッドがキャッシュ内の既存のリソースオブジェクトへの参照を返すことができるか、またはリソースを再度読み込み、新しいリソースオブジェクトへの参照を返すことができるためです。  
   
    
   
 ## Examples  
- 次の例では、 <xref:System.Resources.ResourceManager.GetObject%28System.String%2CSystem.Globalization.CultureInfo%29> メソッドを使用して、カスタム オブジェクトを逆シリアル化します。 例では、NumberInfo.cs (NumberInfo.vb Visual Basic を使用している場合) をという名前のソース コード ファイルが含まれていますという名前の次の構造を定義する`Numbers`します。 この構造体がについて説明する英語以外には英語で 10 にカウントする単純な教育アプリで使用するためのものです。 なお、`Numbers`クラスには、<xref:System.SerializableAttribute>属性。  
+ 次の例では、 <xref:System.Resources.ResourceManager.GetObject%28System.String%2CSystem.Globalization.CultureInfo%29> メソッドを使用して、カスタム オブジェクトを逆シリアル化します。 この例には、という名前`Numbers`の構造体を定義する NumberInfo.cs (Visual Basic を使用する場合は、) という名前のソースコードファイルが含まれています。 この構造は、英語以外の人の生徒が英語で10にカウントする、簡単な教育用アプリによって使用されることを意図しています。 `Numbers`クラスは<xref:System.SerializableAttribute>属性でマークされていることに注意してください。  
   
  [!code-csharp[System.Resources.ResourceManager.GetObject#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.getobject/cs/numberinfo.cs#1)]
  [!code-vb[System.Resources.ResourceManager.GetObject#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.getobject/vb/numberinfo.vb#1)]  
   
- 次のソース コードをファイルから名前付き CreateResources.cs (Visual Basic の場合は CreateResources.vb) は、既定の英語とフランス語、ポルトガル語、ロシア語の言語の XML リソース ファイルを作成します。  
+ CreateResources.cs という名前のファイル (Visual Basic の場合は Createresources.vb) の次のソースコードでは、既定の英語用の XML リソースファイルと、フランス語、ポルトガル語、およびロシア語の言語が作成されます。  
   
  [!code-csharp[System.Resources.ResourceManager.GetObject#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.getobject/cs/createresources.cs#2)]
  [!code-vb[System.Resources.ResourceManager.GetObject#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.getobject/vb/createresources.vb#2)]  
   
- リソースは、次のアプリは、現在の UI カルチャをフランス語 (フランス)、ポルトガル語 (ブラジル)、またはロシア語 (ロシア) に設定によって使用されます。 呼び出す、<xref:System.Resources.ResourceManager.GetObject%28System.String%29>を取得するメソッド、`Numbers`ローカライズされた数値を含むオブジェクトと<xref:System.Resources.ResourceManager.GetObject%28System.String%2CSystem.Globalization.CultureInfo%29>を取得します、`Numbers`英語数字を含むオブジェクト。 現在の UI カルチャと英語の言語を使用して奇数の数値が表示されます。 ソース コード ファイルの名前は ShowNumbers.cs (ShowNumbers.vb)。  
+ リソースは、現在の UI カルチャをフランス語 (フランス)、ポルトガル語 (ブラジル)、またはロシア語 (ロシア) に設定する次のアプリによって使用されます。 メソッドを呼び出して、ローカライズ<xref:System.Resources.ResourceManager.GetObject%28System.String%2CSystem.Globalization.CultureInfo%29>さ`Numbers`れた数値を格納するオブジェクトを取得し、 `Numbers`メソッドを呼び出して、英語の言語番号を含むオブジェクトを取得します。 <xref:System.Resources.ResourceManager.GetObject%28System.String%29> 次に、現在の UI カルチャと英語を使用して奇数の数値が表示されます。 ソースコードファイルには、ShowNumbers.cs (ShowNumbers .vb) という名前が付けられています。  
   
  [!code-csharp[System.Resources.ResourceManager.GetObject#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.getobject/cs/shownumbers.cs#3)]
  [!code-vb[System.Resources.ResourceManager.GetObject#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.getobject/vb/shownumbers.vb#3)]  
   
- ビルドの例では、Visual Basic バージョンを実行して、次のバッチ ファイルを使用できます。 C# を使用している場合は置き換えます`vbc`で`csc`と置換、`.vb`拡張機能を`.cs`します。  
+ 次のバッチファイルを使用すると、この例の Visual Basic バージョンをビルドして実行できます。 を使用してC#いる場合`vbc`は`csc`、をに置き換え`.vb` 、拡張子`.cs`をに置き換えます。  
   
 ```  
   
@@ -1148,8 +1148,8 @@ ShowNumbers.exe
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.Resources.MissingManifestResourceException">使用できるリソースのセットが見つからず、既定のカルチャ リソースもありません。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
         <exception cref="T:System.Resources.MissingSatelliteAssemblyException">既定のカルチャのリソースがサテライト アセンブリに存在し、そのサテライト アセンブリが見つかりませんでした。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
-        <threadsafe><see cref="M:System.Resources.ResourceManager.GetObject(System.String,System.Globalization.CultureInfo)" />メソッドはスレッド セーフであります。</threadsafe>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <threadsafe><see cref="M:System.Resources.ResourceManager.GetObject(System.String,System.Globalization.CultureInfo)" />メソッドはスレッドセーフです。</threadsafe>
         <altmember cref="M:System.Resources.ResourceManager.GetStream(System.String,System.Globalization.CultureInfo)" />
         <altmember cref="T:System.Globalization.CultureInfo" />
         <related type="Article" href="~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md">リソースのパッケージ化と配置</related>
@@ -1194,15 +1194,15 @@ ShowNumbers.exe
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.GetResourceFileName%2A>メソッドは、独自のクラスから派生したを記述する場合にのみ、<xref:System.Resources.ResourceManager>クラス。  
+ メソッドは、 <xref:System.Resources.ResourceManager>クラスから派生した独自のクラスを記述する場合にのみ役立ちます。 <xref:System.Resources.ResourceManager.GetResourceFileName%2A>  
   
- このメソッドを使用して、<xref:System.Globalization.CultureInfo.Name%2A?displayProperty=nameWithType>インバリアント カルチャ以外のすべてのカルチャのファイル名の一部としてプロパティ。 このメソッドは、アセンブリのマニフェストまたはタッチ、ディスクを検索しませんし、リソースのファイル名を作成する場合にのみ使用されます (に渡すに適した、<xref:System.Resources.ResourceReader>コンス トラクター) または blob のマニフェスト リソース名。  
+ このメソッドは、 <xref:System.Globalization.CultureInfo.Name%2A?displayProperty=nameWithType>インバリアントカルチャ以外のすべてのカルチャのファイル名の一部として、プロパティを使用します。 このメソッドは、アセンブリのマニフェストを参照したりディスクにタッチしたりするのではなく、リソースファイル名 ( <xref:System.Resources.ResourceReader>コンストラクターへの受け渡しに適しています) またはマニフェストリソース blob 名を構築するためにのみ使用されます。  
   
- 派生クラスが別の拡張機能など、検索するには、このメソッドをオーバーライドできます"。ResX"、またはリソース ファイルの名前付けするためのまったく異なるスキーム。 サテライト アセンブリ内のリソース ファイルの名前をカスタマイズし、サテライト アセンブリ自体の名前をカスタマイズするには、いないメソッドを使用できることに注意してください。  
+ 派生クラスは、このメソッドをオーバーライドして、"などの別の拡張機能を検索できます。ResX (リソースファイルに名前を付けるための完全に異なるスキーム)。 メソッドを使用して、サテライトアセンブリ内のリソースファイルの名前をカスタマイズしたり、サテライトアセンブリ自体の名前をカスタマイズしたりすることはできないことに注意してください。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Globalization.CultureInfo" />
         <related type="Article" href="~/docs/standard/globalization-localization/index.md">.NET アプリケーションのグローバライズとローカライズ</related>
       </Docs>
@@ -1255,12 +1255,12 @@ ShowNumbers.exe
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返されるリソース セットは、指定したカルチャにローカライズされたリソースを表します。 そのカルチャのリソースがローカライズされていない場合、`tryParents`は`true`、<xref:System.Resources.ResourceManager.GetResourceSet%2A>リソース フォールバック規則を使用して、適切なリソースを読み込めません。 場合`tryParents`は`false`、メソッドを返しますのカルチャに固有のリソース セットが見つからない`null`します。 リソース フォールバックの詳細については、「リソース フォールバック プロセス」セクションを参照して、 [Packaging and Deploying Resources](~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md)記事。  
+ 返されるリソースセットは、指定されたカルチャにローカライズされているリソースを表します。 リソースがそのカルチャ`tryParents`用にローカライズされておらず、が`true`である場合、 <xref:System.Resources.ResourceManager.GetResourceSet%2A>はリソースフォールバックルールを使用して適切なリソースを読み込みます。 `null`が`tryParents` で、カルチャ固有のリソースセットが見つからない場合、メソッドはを返します。`false` リソースフォールバックの詳細については、リソースの[パッケージ化とデプロイ](~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md)に関する記事の「リソースフォールバックプロセス」セクションを参照してください。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Resources.ResourceManager.GetResourceSet%2A>フランス語 (フランス) カルチャのカルチャに固有のリソースを取得します。 すべてのリソース セット内のリソースを列挙します。 実行可能ファイル ShowNumbers.exe という名前のソース コードが含まれています。 数値の名前を格納する次の 2 つのテキスト ファイルも含まれています。 まず、NumberResources.txt には、番号 1 から 10 まで英語での名前が含まれています。  
+ 次の例では<xref:System.Resources.ResourceManager.GetResourceSet%2A> 、メソッドを呼び出して、フランス語 (フランス) カルチャのカルチャ固有のリソースを取得します。 次に、リソースセット内のすべてのリソースを列挙します。 これには、ShowNumbers という名前の実行可能ファイルのソースコードが含まれています。 また、数値の名前を含む次の2つのテキストファイルも含まれます。 1つ目の Number Resources .txt には、英語の 1 ~ 10 の数値の名前が含まれています。  
   
 ```  
   
@@ -1277,7 +1277,7 @@ ten=ten
   
 ```  
   
- 2 つ目 NumberResources.fr ファイルに格納にはには、フランス語の言語で 4 つに 1 つの数字の名前が含まれています。  
+ 2番目の NumberResources.fr には、フランス語の 1 ~ 4 の数値の名前が含まれています。  
   
 ```  
   
@@ -1288,7 +1288,7 @@ four=quatre
   
 ```  
   
- バッチ ファイルを使用して、リソース ファイルを生成し、英語の言語リソース ファイルを実行可能ファイルに埋め込む、フランス語の言語リソースのサテライト アセンブリを作成することができます。 Visual Basic コンパイラを使用して、実行可能ファイルを生成するバッチ ファイルを次に示します。  
+ バッチファイルを使用してリソースファイルを生成し、その実行可能ファイルに英語のリソースファイルを埋め込み、フランス語の言語リソース用のサテライトアセンブリを作成できます。 Visual Basic コンパイラを使用して実行可能ファイルを生成するバッチファイルを次に示します。  
   
 ```  
   
@@ -1300,7 +1300,7 @@ resgen NumberResources.fr-FR.txt
 al /out:fr-FR\ShowNumbers.resources.dll /culture:fr-FR /embed:NumberResources.fr-FR.resources  
 ```  
   
- C# コンパイラでは、次のバッチ ファイルを使用できます。  
+ C#コンパイラでは、次のバッチファイルを使用できます。  
   
 ```  
   
@@ -1316,13 +1316,13 @@ al /out:fr-FR\ShowNumbers.resources.dll /culture:fr-FR /embed:NumberResources.fr
  [!code-csharp[System.Resources.ResourceManager.GetResourceSet#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.getresourceset/cs/shownumbers.cs#1)]
  [!code-vb[System.Resources.ResourceManager.GetResourceSet#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.getresourceset/vb/shownumbers.vb#1)]  
   
- 値を変更する場合、`createIfNotExists`引数`false`、メソッド呼び出しから制御`null`リソース マネージャーで、フランス語の言語リソースがまだロードされていないため、します。  
+ `createIfNotExists`引数の値をに`false`変更した場合、Resource Manager がフランス語の`null`言語リソースをまだ読み込んでいないため、メソッドの呼び出しはを返します。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="culture" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.Resources.MissingManifestResourceException"><paramref name="tryParents" /> が <see langword="true" /> で、使用できるリソースのセットが見つからず、既定のカルチャ リソースもありません。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Globalization.CultureInfo" />
         <related type="Article" href="~/docs/standard/globalization-localization/index.md">.NET アプリケーションのグローバライズとローカライズ</related>
       </Docs>
@@ -1371,13 +1371,13 @@ al /out:fr-FR\ShowNumbers.resources.dll /culture:fr-FR /embed:NumberResources.fr
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- サテライト アセンブリのバージョン管理の詳細については、次を参照してください。、<xref:System.Resources.SatelliteContractVersionAttribute>リファレンス トピック。  
+ サテライトアセンブリの<xref:System.Resources.SatelliteContractVersionAttribute>バージョン管理の詳細については、リファレンストピックを参照してください。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException">アセンブリの <paramref name="a" /> で見つかった <see cref="T:System.Version" /> が無効です。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="a" /> は <see langword="null" />です。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <exception cref="T:System.ArgumentNullException"><paramref name="a" /> が <see langword="null" /> です。</exception>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Resources.SatelliteContractVersionAttribute" />
       </Docs>
     </Member>
@@ -1437,21 +1437,21 @@ al /out:fr-FR\ShowNumbers.resources.dll /culture:fr-FR /embed:NumberResources.fr
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.GetStream%2A>メソッドとして格納されているリソースの名前を受け取り、<xref:System.IO.MemoryStream>オブジェクトの値を取得、<xref:System.Object>リソース、および返します、<xref:System.IO.UnmanagedMemoryStream>オブジェクト。 オブジェクトに変換し、バイトのストリームを直接操作することが必要です。 このメソッドは主にパフォーマンス上の理由です。明示的なオブジェクトではなくバイト ストリームとしてリソースを取得すると、パフォーマンスを向上させることができます。  
+ メソッド<xref:System.Resources.ResourceManager.GetStream%2A>は、 <xref:System.IO.MemoryStream>オブジェクトとして格納されているリソースの名前を受け取り、 <xref:System.Object>リソースの値を取得して<xref:System.IO.UnmanagedMemoryStream> 、オブジェクトを返します。 この場合、バイトのストリームを直接操作してから、オブジェクトに変換する必要があります。 このメソッドは、主にパフォーマンス上の理由から役立ちます。明示的なオブジェクトではなくバイトストリームとしてリソースを取得すると、パフォーマンスが向上します。  
   
- 定義されている現在のスレッドの UI カルチャの返されたリソースのローカライズ、<xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティ。 リソースがそのカルチャのローカライズされていない場合、リソース マネージャーは適切なリソースの読み込みにフォールバック規則を使用します。 使用できるローカライズされたリソースのセットが見つからない場合、<xref:System.Resources.ResourceManager>既定のカルチャのリソースにフォールバックします。 既定のカルチャのリソース セットが見つからない場合、メソッドがスローされます、<xref:System.Resources.MissingManifestResourceException>例外や、サテライト アセンブリ内に存在するリソース セットが予想される場合、<xref:System.Resources.MissingSatelliteAssemblyException>例外。 適切なリソースが設定という名前のリソースを見つけることができませんが、リソース マネージャーが読み込むことができる場合`name`、メソッドを返します`null`します。  
+ 返されたリソースは、 <xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティによって定義されている現在のスレッドの UI カルチャにローカライズされます。 リソースがそのカルチャ用にローカライズされていない場合、リソースマネージャーはフォールバック規則を使用して適切なリソースを読み込みます。 ローカライズされたリソースの使用可能なセットが<xref:System.Resources.ResourceManager>見つからない場合、は既定のカルチャのリソースにフォールバックします。 既定のカルチャのリソースセットが見つからない場合、メソッドは例外を<xref:System.Resources.MissingManifestResourceException>スローします。また、リソースセットがサテライトアセンブリ<xref:System.Resources.MissingSatelliteAssemblyException>に存在することが予想される場合は、例外をスローします。 リソースマネージャーが適切なリソースセットを読み込むことができても、と`name`いう名前のリソース`null`が見つからない場合、メソッドはを返します。  
   
- <xref:System.Resources.ResourceManager.IgnoreCase%2A>プロパティを決定するかどうかの比較`name`リソースの名前を持つ大文字小文字が (既定値) または大文字小文字を区別します。  
+ プロパティ<xref:System.Resources.ResourceManager.IgnoreCase%2A>は、リソース名との`name`比較で大文字と小文字を区別しないか (既定値)、大文字と小文字を区別するかどうかを決定します。  
   
    
   
 ## Examples  
- 次の例では、 <xref:System.Resources.ResourceManager.GetStream%28System.String%29> メソッドを使用して、アプリの開始スプラッシュ ウィンドウで使用されるビットマップを取得します。 次のソース コードという名前のファイルから CreateResources.cs (C# の場合) または CreateResources.vb (Visual Basic) にシリアル化されたイメージを含む AppResources.resx をという名前の .resx ファイルが生成されます。 この場合、画像は SplashScreen.jpg という名前のファイルから読み込まれます。ファイル名を変更して、独自の画像に置き換えることができます。  
+ 次の例では、 <xref:System.Resources.ResourceManager.GetStream%28System.String%29> メソッドを使用して、アプリの開始スプラッシュ ウィンドウで使用されるビットマップを取得します。 CreateResources.cs (のC#場合) または createresources.vb (Visual Basic の場合) という名前のファイルからの次のソースコードでは、シリアル化されたイメージを含む AppResources という名前の .resx ファイルが生成されます。 この場合、画像は SplashScreen.jpg という名前のファイルから読み込まれます。ファイル名を変更して、独自の画像に置き換えることができます。  
   
  [!code-csharp[Conceptual.Resources.Retrieving#4](~/samples/snippets/csharp/VS_Snippets_CLR/conceptual.resources.retrieving/cs/createresources.cs#4)]
  [!code-vb[Conceptual.Resources.Retrieving#4](~/samples/snippets/visualbasic/VS_Snippets_CLR/conceptual.resources.retrieving/vb/createresources.vb#4)]  
   
- 次のコード (c#) の GetStream.cs をという名前のファイルまたは GetStream.vb (Visual Basic) のリソースを取得しでイメージを表示します、<xref:System.Windows.Forms.PictureBox?displayProperty=nameWithType>コントロール。  
+ GetStream.cs (のC#場合) または system.resources.resourcemanager.getstream (Visual Basic の場合) という名前のファイルの次のコードは、リソースを取得し、 <xref:System.Windows.Forms.PictureBox?displayProperty=nameWithType>コントロールにイメージを表示します。  
   
  [!code-csharp[Conceptual.Resources.Retrieving#5](~/samples/snippets/csharp/VS_Snippets_CLR/conceptual.resources.retrieving/cs/getstream.cs#5)]
  [!code-vb[Conceptual.Resources.Retrieving#5](~/samples/snippets/visualbasic/VS_Snippets_CLR/conceptual.resources.retrieving/vb/getstream.vb#5)]  
@@ -1475,7 +1475,7 @@ csc GetStream.cs /resource:AppResources.resources
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.Resources.MissingManifestResourceException">使用できるリソースのセットが見つからず、既定のリソースもありません。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
         <exception cref="T:System.Resources.MissingSatelliteAssemblyException">既定のカルチャのリソースがサテライト アセンブリに存在し、そのサテライト アセンブリが見つかりませんでした。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="GetStream">
@@ -1526,19 +1526,19 @@ csc GetStream.cs /resource:AppResources.resources
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.GetStream%2A>メソッドとして格納されているリソースの名前を受け取り、<xref:System.IO.MemoryStream>オブジェクトの値を取得、<xref:System.Object>リソース、および返します、<xref:System.IO.UnmanagedMemoryStream>オブジェクト。 オブジェクトに変換し、バイトのストリームを直接操作することが必要です。 このメソッドは主にパフォーマンス上の理由です。明示的なオブジェクトではなくバイト ストリームとしてリソースを取得すると、パフォーマンスを向上させることができます。  
+ メソッド<xref:System.Resources.ResourceManager.GetStream%2A>は、 <xref:System.IO.MemoryStream>オブジェクトとして格納されているリソースの名前を受け取り、 <xref:System.Object>リソースの値を取得して<xref:System.IO.UnmanagedMemoryStream> 、オブジェクトを返します。 この場合、バイトのストリームを直接操作してから、オブジェクトに変換する必要があります。 このメソッドは、主にパフォーマンス上の理由から役立ちます。明示的なオブジェクトではなくバイトストリームとしてリソースを取得すると、パフォーマンスが向上します。  
   
- 指定されたカルチャ用に、返されたリソースがローカライズ`culture`、またはカルチャで指定されている、<xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティ場合`culture`は`null`します。 リソースがそのカルチャのローカライズされていない場合、リソース マネージャーは適切なリソースの読み込みにフォールバック規則を使用します。 使用できるローカライズされたリソースのセットが見つからない場合、<xref:System.Resources.ResourceManager>既定のカルチャのリソースにフォールバックします。 既定のカルチャのリソース セットが見つからない場合、メソッドがスローされます、<xref:System.Resources.MissingManifestResourceException>例外や、サテライト アセンブリ内に存在するリソース セットが予想される場合、<xref:System.Resources.MissingSatelliteAssemblyException>例外。 適切なリソースが設定という名前のリソースを見つけることができませんが、リソース マネージャーが読み込むことができる場合`name`、メソッドを返します`null`します。  
+ 返されるリソースは、に`culture`よって指定されるカルチャ、またはが`null`の場合`culture`は<xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティで指定されるカルチャにローカライズされます。 リソースがそのカルチャ用にローカライズされていない場合、リソースマネージャーはフォールバック規則を使用して適切なリソースを読み込みます。 ローカライズされたリソースの使用可能なセットが<xref:System.Resources.ResourceManager>見つからない場合、は既定のカルチャのリソースにフォールバックします。 既定のカルチャのリソースセットが見つからない場合、メソッドは例外を<xref:System.Resources.MissingManifestResourceException>スローします。また、リソースセットがサテライトアセンブリ<xref:System.Resources.MissingSatelliteAssemblyException>に存在することが予想される場合は、例外をスローします。 リソースマネージャーが適切なリソースセットを読み込むことができても、と`name`いう名前のリソース`null`が見つからない場合、メソッドはを返します。  
   
- <xref:System.Resources.ResourceManager.IgnoreCase%2A>プロパティを決定するかどうかの比較`name`リソースの名前を持つ大文字小文字が (既定値) または大文字小文字を区別します。  
+ プロパティ<xref:System.Resources.ResourceManager.IgnoreCase%2A>は、リソース名との`name`比較で大文字と小文字を区別しないか (既定値)、大文字と小文字を区別するかどうかを決定します。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">指定されたリソースの値が <see cref="T:System.IO.MemoryStream" /> オブジェクトではありません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.Resources.MissingManifestResourceException">使用できるリソースのセットが見つからず、既定のリソースもありません。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
         <exception cref="T:System.Resources.MissingSatelliteAssemblyException">既定のカルチャのリソースがサテライト アセンブリに存在し、そのサテライト アセンブリが見つかりませんでした。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="GetString">
@@ -1552,12 +1552,17 @@ csc GetStream.cs /resource:AppResources.resources
       </Docs>
     </MemberGroup>
     <Member MemberName="GetString">
-      <MemberSignature Language="C#" Value="public virtual string GetString (string name);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance string GetString(string name) cil managed" />
+      <MemberSignature Language="C#" Value="public string GetString (string name);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance string GetString(string name) cil managed" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6" />
       <MemberSignature Language="DocId" Value="M:System.Resources.ResourceManager.GetString(System.String)" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Function GetString (name As String) As String" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual System::String ^ GetString(System::String ^ name);" />
-      <MemberSignature Language="F#" Value="abstract member GetString : string -&gt; string&#xA;override this.GetString : string -&gt; string" Usage="resourceManager.GetString name" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetString (name As String) As String" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::String ^ GetString(System::String ^ name);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6" />
+      <MemberSignature Language="F#" Value="member this.GetString : string -&gt; string" Usage="resourceManager.GetString name" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6" />
+      <MemberSignature Language="C#" Value="public virtual string GetString (string name);" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance string GetString(string name) cil managed" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Function GetString (name As String) As String" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual System::String ^ GetString(System::String ^ name);" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="F#" Value="abstract member GetString : string -&gt; string&#xA;override this.GetString : string -&gt; string" Usage="resourceManager.GetString name" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Resources.ResourceManager</AssemblyName>
@@ -1592,20 +1597,20 @@ csc GetStream.cs /resource:AppResources.resources
   
 ## Remarks  
   
-## <a name="desktop-apps"></a>デスクトップ アプリ  
- デスクトップ アプリは、返されるリソースが、現在のスレッドの UI カルチャのローカライズで定義されている、<xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティ。 次の「リソース フォールバック プロセス」セクションに記載されている手順に従って、resource manager がプローブ リソースの場合は、そのカルチャのリソースがローカライズされておらず、、 [Packaging and Deploying Resources](~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md)記事。 使用できるローカライズされたリソースのセットが見つからない場合、リソース マネージャーの既定のカルチャのリソースにフォールバックします。 メソッドがスローする場合は、リソース マネージャーは、既定のカルチャのリソース セットを読み込むことができません、<xref:System.Resources.MissingManifestResourceException>例外や、サテライト アセンブリ内に存在するリソース セットが予想される場合、<xref:System.Resources.MissingSatelliteAssemblyException>例外。 適切なリソースが設定という名前のリソースを見つけることができませんが、リソース マネージャーが読み込むことができる場合`name`、メソッドを返します`null`します。  
+## <a name="desktop-apps"></a>デスクトップアプリ  
+ デスクトップアプリでは、返されるリソースは、 <xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティで定義されている現在のスレッドの UI カルチャにローカライズされます。 リソースがローカライズされていない場合は、リソースの[パッケージ化とデプロイ](~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md)に関する記事の「リソースフォールバックプロセス」セクションに記載されている手順に従って、リソースをプローブします。 ローカライズされたリソースの使用可能なセットが見つからない場合、リソースマネージャーは既定のカルチャのリソースにフォールバックします。 リソースマネージャーが既定のカルチャのリソースセットを読み込むことができない場合、 <xref:System.Resources.MissingManifestResourceException>メソッドは例外をスローします。また、リソースセットがサテライトアセンブリ<xref:System.Resources.MissingSatelliteAssemblyException>に存在することが予想される場合は、例外をスローします。 リソースマネージャーが適切なリソースセットを読み込むことができても、と`name`いう名前のリソース`null`が見つからない場合、メソッドはを返します。  
   
- <xref:System.Resources.ResourceManager.IgnoreCase%2A>プロパティを決定するかどうかの比較`name`リソースの名前を持つ大文字小文字が (既定値) または大文字小文字を区別します。  
+ プロパティ<xref:System.Resources.ResourceManager.IgnoreCase%2A>は、リソース名との`name`比較で大文字と小文字を区別しないか (既定値)、大文字と小文字を区別するかどうかを決定します。  
   
 > [!CAUTION]
->  このメソッドは、表示されているもの以外の例外をスローできます。 これが発生する理由の 1 つは、このメソッドを呼び出すメソッドが例外をスローするかどうかです。  たとえば、<xref:System.IO.FileLoadException>の配置またはサテライト アセンブリのインストール エラーが行われた場合、例外がスローされる<xref:System.Runtime.Serialization.SerializationException>型が逆シリアル化時に、ユーザー定義型がユーザー定義の例外をスローした場合、例外がスローされる可能性が。  
+>  このメソッドは、一覧表示されているよりも多くの例外をスローすることがあります。 このような場合に発生する原因の1つとして、このメソッドが呼び出すメソッドが例外をスローすることが考えられます。  たとえば、 <xref:System.IO.FileLoadException>サテライトアセンブリを配置またはインストールする際にエラーが発生した場合、 <xref:System.Runtime.Serialization.SerializationException>または型が逆シリアル化されるときにユーザー定義型がユーザー定義の例外をスローした場合に例外がスローされることがあります。  
   
-## <a name="includewin8appnamelongincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
+## <a name="includewin8_appname_longincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
   
 > [!IMPORTANT]
 >  <xref:System.Resources.ResourceManager> クラスは [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリでサポートされていますが、その使用は推奨されていません。 [!INCLUDE[net_portable](~/includes/net-portable-md.md)] アプリで使用できる[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]を開発する場合にのみ、このクラスを使用します。 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリのリソースを取得するには、[Windows.ApplicationModel.Resources.ResourceLoader](https://go.microsoft.com/fwlink/p/?LinkId=238182) クラスを代わりに使用します。  
   
- [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]アプリ、<xref:System.Resources.ResourceManager.GetString%28System.String%29>メソッドの値を返します、`name`文字列リソース、呼び出し元の現在の UI カルチャ設定用にローカライズされています。 カルチャの一覧については、オペレーティング システムの推奨される UI 言語の一覧から派生します。 リソース マネージャーが一致しない場合`name`、メソッドを返します`null`します。  
+ アプリ[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]では、 <xref:System.Resources.ResourceManager.GetString%28System.String%29>メソッドは、呼び出し元の`name`現在の UI カルチャ設定にローカライズされた文字列リソースの値を返します。 カルチャの一覧は、オペレーティングシステムの優先する UI 言語の一覧から取得されます。 リソースマネージャーが一致`name`しない場合、メソッドはを返し`null`ます。  
   
    
   
@@ -1615,10 +1620,10 @@ csc GetStream.cs /resource:AppResources.resources
 |カルチャ|ファイル名|リソース名|リソースの値|  
 |-------------|---------------|-------------------|--------------------|  
 |en-US|DateStrings.txt|`DateStart`|Today is|  
-|fr-FR|DateStrings.fr-FR.txt|`DateStart`|Aujourd'hui, c'est le|  
+|fr-FR|DateStrings.fr-FR.txt|`DateStart`|Aujourd'hui、c' est le|  
 |ru-RU|DateStrings.ru-RU.txt|`DateStart`|Сегодня|  
   
- 次のバッチ ファイルを使用して、c# の例をコンパイルすることができます。 Visual Basic の場合は、 `csc` を `vbc`に変更し、さらにソース コード ファイルの拡張子を `.cs` から `.vb`に変更します。  
+ このC#例をコンパイルするには、次のバッチファイルを使用します。 Visual Basic の場合は、 `csc` を `vbc`に変更し、さらにソース コード ファイルの拡張子を `.cs` から `.vb`に変更します。  
   
 ```  
 resgen DateStrings.txt  
@@ -1633,7 +1638,7 @@ resgen DateStrings.ru-RU.txt
 al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.resources  
 ```  
   
- 次の例では、(Visual Basic バージョンの ShowDate.vb) または ShowDate.cs c# バージョンのソース コードに示します。  
+ 例のソースコードを次に示します (Visual Basic バージョンの場合は ShowDate .vb、 C#バージョンの場合は ShowDate.cs)。  
   
  [!code-csharp[System.Resources.ResourceManager.Class#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.class/cs/showdate.cs#2)]
  [!code-vb[System.Resources.ResourceManager.Class#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.class/vb/showdate.vb#2)]  
@@ -1644,11 +1649,11 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
         <exception cref="T:System.InvalidOperationException">指定されたリソースの値が文字列ではありません。</exception>
         <exception cref="T:System.Resources.MissingManifestResourceException">使用できるリソースのセットが見つからず、既定のカルチャ用のリソースもありません。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
         <exception cref="T:System.Resources.MissingSatelliteAssemblyException">既定のカルチャのリソースがサテライト アセンブリに存在し、そのサテライト アセンブリが見つかりませんでした。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
-        <threadsafe><see cref="M:System.Resources.ResourceManager.GetString(System.String)" />メソッドはスレッド セーフであります。</threadsafe>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <threadsafe><see cref="M:System.Resources.ResourceManager.GetString(System.String)" />メソッドはスレッドセーフです。</threadsafe>
         <altmember cref="T:System.Globalization.CultureInfo" />
         <related type="Article" href="~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md">リソースのパッケージ化と配置</related>
-        <related type="Article" href="https://msdn.microsoft.com/library/eca16922-1c46-4f68-aefe-e7a12283641f">サテライト アセンブリにリソースを取得します。</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/eca16922-1c46-4f68-aefe-e7a12283641f">サテライトアセンブリ内のリソースの取得</related>
       </Docs>
     </Member>
     <Member MemberName="GetString">
@@ -1699,37 +1704,37 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
   
 ## Remarks  
   
-## <a name="desktop-apps"></a>デスクトップ アプリ  
- デスクトップ アプリ場合`culture`は`null`、<xref:System.Resources.ResourceManager.GetString%28System.String%2CSystem.Globalization.CultureInfo%29>メソッドから取得した現在の UI カルチャを使用して、<xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティ。  
+## <a name="desktop-apps"></a>デスクトップアプリ  
+ デスクトップアプリでは、 `culture`が`null`の場合<xref:System.Resources.ResourceManager.GetString%28System.String%2CSystem.Globalization.CultureInfo%29> 、メソッドは、 <xref:System.Globalization.CultureInfo.CurrentUICulture%2A?displayProperty=nameWithType>プロパティから取得した現在の UI カルチャを使用します。  
   
- 返されるリソースがで指定されたカルチャのローカライズ、`culture`パラメーター。 リソースがローカライズされていない場合`culture`、リソースを次の「リソース フォールバック プロセス」セクションに記載されている手順に従って、リソース マネージャーは、プローブ、 [Packaging and Deploying Resources](~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md)トピック。 使用できるリソースのセットが見つからない場合、リソース マネージャーの既定のカルチャのリソースにフォールバックします。 メソッドがスローする場合は、リソース マネージャーは、既定のカルチャのリソース セットを読み込むことができません、<xref:System.Resources.MissingManifestResourceException>例外や、サテライト アセンブリ内に存在するリソース セットが予想される場合、<xref:System.Resources.MissingSatelliteAssemblyException>例外。 適切なリソースが設定という名前のリソースを見つけることができませんが、リソース マネージャーが読み込むことができる場合`name`、メソッドを返します`null`します。  
+ 返されるリソースは、 `culture`パラメーターによって指定されたカルチャにローカライズされます。 リソースがに`culture`ローカライズされていない場合、リソースの[パッケージ化と配置](~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md)に関するトピックの「リソースフォールバックプロセス」に記載されている手順に従って、リソースマネージャーがリソースをプローブします。 使用できるリソースのセットが見つからない場合、リソースマネージャーは既定のカルチャのリソースにフォールバックします。 リソースマネージャーが既定のカルチャのリソースセットを読み込むことができない場合、 <xref:System.Resources.MissingManifestResourceException>メソッドは例外をスローします。また、リソースセットがサテライトアセンブリ<xref:System.Resources.MissingSatelliteAssemblyException>に存在することが予想される場合は、例外をスローします。 リソースマネージャーが適切なリソースセットを読み込むことができても、と`name`いう名前のリソース`null`が見つからない場合、メソッドはを返します。  
   
- <xref:System.Resources.ResourceManager.IgnoreCase%2A>プロパティを決定するかどうかの比較`name`リソースの名前を持つ大文字小文字が (既定値) または大文字小文字を区別します。  
+ プロパティ<xref:System.Resources.ResourceManager.IgnoreCase%2A>は、リソース名との`name`比較で大文字と小文字を区別しないか (既定値)、大文字と小文字を区別するかどうかを決定します。  
   
 > [!CAUTION]
->  このメソッドは、表示されているもの以外の例外をスローできます。 これが発生する理由の 1 つは、このメソッドを呼び出すメソッドが例外をスローするかどうかです。  たとえば、<xref:System.IO.FileLoadException>の配置またはサテライト アセンブリのインストール エラーが行われた場合、例外がスローされる<xref:System.Runtime.Serialization.SerializationException>型が逆シリアル化時に、ユーザー定義型がユーザー定義の例外をスローした場合、例外がスローされる可能性が。  
+>  このメソッドは、一覧表示されているよりも多くの例外をスローすることがあります。 このような場合に発生する原因の1つとして、このメソッドが呼び出すメソッドが例外をスローすることが考えられます。  たとえば、 <xref:System.IO.FileLoadException>サテライトアセンブリを配置またはインストールする際にエラーが発生した場合、 <xref:System.Runtime.Serialization.SerializationException>または型が逆シリアル化されるときにユーザー定義型がユーザー定義の例外をスローした場合に例外がスローされることがあります。  
   
-## <a name="includewin8appnamelongincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
+## <a name="includewin8_appname_longincludeswin8-appname-long-mdmd-apps"></a>[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリ  
   
 > [!IMPORTANT]
 >  <xref:System.Resources.ResourceManager> クラスは [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリでサポートされていますが、その使用は推奨されていません。 [!INCLUDE[net_portable](~/includes/net-portable-md.md)] アプリで使用できる[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]を開発する場合にのみ、このクラスを使用します。 [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリのリソースを取得するには、[Windows.ApplicationModel.Resources.ResourceLoader](https://go.microsoft.com/fwlink/p/?LinkId=238182) クラスを代わりに使用します。  
   
- [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] 、アプリ、<xref:System.Resources.ResourceManager.GetString%28System.String%2CSystem.Globalization.CultureInfo%29>メソッドの値を返します、`name`文字列で指定されたカルチャのローカライズされたリソース、`culture`パラメーター。 リソースがローカライズされていない場合、`culture`全体を使用するカルチャ、ルックアップ[!INCLUDE[win8](~/includes/win8-md.md)]言語フォールバックのリスト、および既定のカルチャで検索した後を停止します。 リソース マネージャーが一致しない場合`name`、メソッドを返します`null`します。  
+ アプリ[!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)]では、 <xref:System.Resources.ResourceManager.GetString%28System.String%2CSystem.Globalization.CultureInfo%29>メソッドは、 `culture`パラメーターによっ`name`て指定されたカルチャにローカライズされた文字列リソースの値を返します。 リソースが`culture`カルチャ用にローカライズされていない場合、参照は[!INCLUDE[win8](~/includes/win8-md.md)]言語フォールバックリスト全体を使用し、既定のカルチャを確認した後に停止します。 リソースマネージャーが一致`name`しない場合、メソッドはを返し`null`ます。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Resources.ResourceManager.GetString%28System.String%2CSystem.Globalization.CultureInfo%29> メソッドを使用して、カルチャ固有のリソースを取得します。 例の既定のカルチャが英語 (en) とフランス語 (フランス) (FR-FR)、ロシア語 (ロシア) (RU-RU) のサテライト アセンブリが含まれていますカルチャ。 例は、変更、現在のカルチャと UI カルチャを現在ロシア語 (ロシア) を呼び出す前に<xref:System.Resources.ResourceManager.GetString%28System.String%2CSystem.Globalization.CultureInfo%29>します。 呼び出して、<xref:System.Resources.ResourceManager.GetString%2A>メソッドと<xref:System.DateTime.ToString%28System.String%2CSystem.IFormatProvider%29?displayProperty=nameWithType>メソッドを呼び出し<xref:System.Globalization.CultureInfo>各メソッドにフランス語 (フランス) とスウェーデン語 (スウェーデン) カルチャを表すオブジェクト。 出力では、月と日、月と同様に、その文字列のために表示、フランス語、<xref:System.Resources.ResourceManager.GetString%2A>メソッドは、フランス語の言語リソースを取得できません。 ただし、スウェーデン語 (スウェーデン) カルチャを使用したときに月と日、月の表示スウェーデン語では英語で入力して、その文字列が。 これは、します代わりに既定の英語カルチャのリソースを返すように、リソース マネージャーが、スウェーデン語のローカライズされたリソースを検出できないため。  
+ 次の例では、<xref:System.Resources.ResourceManager.GetString%28System.String%2CSystem.Globalization.CultureInfo%29> メソッドを使用して、カルチャ固有のリソースを取得します。 この例の既定のカルチャは英語 (en) で、フランス語 (フランス) (fr-fr) カルチャおよびロシア語 (ロシア) (ru) カルチャ用のサテライトアセンブリが含まれています。 この例では、を呼び出す<xref:System.Resources.ResourceManager.GetString%28System.String%2CSystem.Globalization.CultureInfo%29>前に、現在のカルチャと現在の UI カルチャをロシア語 (ロシア) に変更します。 次に、 <xref:System.Resources.ResourceManager.GetString%2A>メソッド<xref:System.DateTime.ToString%28System.String%2CSystem.IFormatProvider%29?displayProperty=nameWithType>とメソッドを呼び出し、フランス<xref:System.Globalization.CultureInfo>語 (フランス) とスウェーデン語 (スウェーデン) のカルチャを表すオブジェクトを各メソッドに渡します。 出力では、月の月と日、およびその前にある文字列がフランス語で表示されます。 <xref:System.Resources.ResourceManager.GetString%2A>これは、メソッドがフランス語の言語リソースを取得できるためです。 ただし、スウェーデン語 (スウェーデン) カルチャが使用されている場合、月の月と日はスウェーデン語で表示されますが、その前にある文字列は英語で表されます。 これは、リソースマネージャーがローカライズされたスウェーデン語のリソースを見つけることができないため、代わりに既定の英語カルチャのリソースを返すためです。  
   
  例には、次の表に記載されたテキスト ベースのリソース ファイルが必要です。 それぞれには `DateStart` という名前の唯一の文字列リソースがあります。  
   
 |カルチャ|ファイル名|リソース名|リソースの値|  
 |-------------|---------------|-------------------|--------------------|  
 |en-US|DateStrings.txt|`DateStart`|Today is|  
-|fr-FR|DateStrings.fr-FR.txt|`DateStart`|Aujourd'hui, c'est le|  
+|fr-FR|DateStrings.fr-FR.txt|`DateStart`|Aujourd'hui、c' est le|  
 |ru-RU|DateStrings.ru-RU.txt|`DateStart`|Сегодня|  
   
- 次のバッチ ファイルを使用して、Visual Basic の例をコンパイルすることができます。 C# でコンパイルする`vbc`に`csc`からソース コード ファイルの拡張子を変更および`.vb`に`.cs`。  
+ 次のバッチファイルを使用すると、Visual Basic の例をコンパイルできます。 C#でコンパイルするには`vbc` 、 `csc`をに変更し、ソースコードファイルの拡張子を`.vb`から`.cs`に変更します。  
   
 ```  
 resgen DateStrings.txt  
@@ -1744,7 +1749,7 @@ resgen DateStrings.ru-RU.txt
 al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.resources  
 ```  
   
- 次の例では、(Visual Basic バージョンの ShowDate.vb) または ShowDate.cs c# バージョンのソース コードに示します。  
+ 例のソースコードを次に示します (Visual Basic バージョンの場合は ShowDate .vb、 C#バージョンの場合は ShowDate.cs)。  
   
  [!code-csharp[System.Resources.ResourceManager.Class#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.resources.resourcemanager.class/cs/showdate2.cs#3)]
  [!code-vb[System.Resources.ResourceManager.Class#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.resources.resourcemanager.class/vb/showdate2.vb#3)]  
@@ -1755,8 +1760,8 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
         <exception cref="T:System.InvalidOperationException">指定されたリソースの値が文字列ではありません。</exception>
         <exception cref="T:System.Resources.MissingManifestResourceException">使用できるリソースのセットが見つからず、既定のカルチャ用のリソースもありません。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
         <exception cref="T:System.Resources.MissingSatelliteAssemblyException">既定のカルチャのリソースがサテライト アセンブリに存在し、そのサテライト アセンブリが見つかりませんでした。 この例外の処理方法の詳細については、<see cref="T:System.Resources.ResourceManager" /> クラスのトピックの MissingManifestResourceException 例外と MissingSatelliteAssemblyException 例外の処理に関するセクションを参照してください。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
-        <threadsafe><see cref="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)" />メソッドはスレッド セーフであります。</threadsafe>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <threadsafe><see cref="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)" />メソッドはスレッドセーフです。</threadsafe>
         <altmember cref="T:System.Globalization.CultureInfo" />
         <related type="Article" href="~/docs/framework/resources/packaging-and-deploying-resources-in-desktop-apps.md">リソースのパッケージ化と配置</related>
       </Docs>
@@ -1829,12 +1834,12 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 場合の値、<xref:System.Resources.ResourceManager.IgnoreCase%2A>プロパティは`false`、「リソース」という名前のリソースが「リソース」という名前のリソースと同じです。 場合<xref:System.Resources.ResourceManager.IgnoreCase%2A>は`true`、「リソース」という名前のリソースは「リソース」という名前のリソースと同じです。 ただし、時に<xref:System.Resources.ResourceManager.IgnoreCase%2A>は`true`、<xref:System.Resources.ResourceManager.GetString%2A?displayProperty=nameWithType>と<xref:System.Resources.ResourceManager.GetObject%2A?displayProperty=nameWithType>メソッドは、インバリアント カルチャを使用して大文字の文字列比較を実行します。 利点は、これらのメソッドによって実行される大文字の文字列比較の結果が、カルチャに関係なくすべてのコンピューターで同じになることです。 欠点は、結果、すべてのカルチャの大文字小文字の規則と一致しないことです。  
+ <xref:System.Resources.ResourceManager.IgnoreCase%2A>プロパティの値が`false`の場合、"resource" という名前のリソースは、"resource" という名前のリソースと同じではありません。 <xref:System.Resources.ResourceManager.IgnoreCase%2A> が`true`の場合、"resource" という名前のリソースは、"resource" という名前のリソースに相当します。 ただし、 <xref:System.Resources.ResourceManager.IgnoreCase%2A>がの場合、メソッド`true` <xref:System.Resources.ResourceManager.GetString%2A?displayProperty=nameWithType>とメソッドで<xref:System.Resources.ResourceManager.GetObject%2A?displayProperty=nameWithType>は、インバリアントカルチャを使用して大文字と小文字を区別しない文字列比較が実行されることに注意してください。 この利点は、これらのメソッドによって実行される大文字と小文字を区別しない文字列比較の結果が、カルチャに関係なくすべてのコンピューターで同じであることです。 欠点は、結果がすべてのカルチャの大文字と小文字の規則と一致しないことです。  
   
- たとえば、トルコ語のアルファベットは、ドットで I の文字の 2 つのバージョンとドットのない 1 つがあります。 トルコ語では、文字 I (Unicode 0049) と見なされます ı (Unicode 0131) 別の文字の大文字バージョン。 文字 i (Unicode 0069) は、さらに別の文字 İ (Unicode 0130) の小文字のバージョンと見なされます。 大文字の文字列比較をこれらの大文字小文字の区別規則に従って文字 (Unicode 0069) を i と I (Unicode 0049) が"TR-TR"(七面鳥のトルコ語) のカルチャの失敗する必要があります。 ただし、インバリアント カルチャの大文字小文字の規則を使用して、比較が実行されるため、<xref:System.Resources.ResourceManager.IgnoreCase%2A>は`true`、この比較は成功します。  
+ たとえば、トルコ語のアルファベットには I という2つのバージョンがあります。1つはドット付きで、もう1つはドットを含んでいません。 トルコ語では、I (Unicode 0049) という文字は、異なる文字ı (Unicode 0131) の大文字版と見なされます。 I (Unicode 0069) という文字は、他の文字 i (Unicode 0130) の小文字バージョンと見なされます。 これらの大文字と小文字の規則に従って、i (Unicode 0069) と I (Unicode 0049) の文字を区別しない文字列比較は、カルチャ "tr-TR" (トルコ語ではトルコ語) で失敗します。 ただし、が<xref:System.Resources.ResourceManager.IgnoreCase%2A> `true`の場合は、インバリアントカルチャの大文字と小文字の規則を使用して比較が行われるため、この比較は成功します。  
   
 > [!NOTE]
->  パフォーマンス上の理由は、常に、リソース名の大文字小文字が正しくを指定することをお勧めします。 設定<xref:System.Resources.ResourceManager.IgnoreCase%2A>に`true`ワーキング セットとパフォーマンスの大幅な低下の大幅な増加が発生することができます。  
+>  パフォーマンス上の理由から、リソース名には常に正しいケースを指定することをお勧めします。 を<xref:System.Resources.ResourceManager.IgnoreCase%2A> に`true`設定すると、ワーキングセットが大幅に増加し、パフォーマンスが著しく低下する可能性があります。  
   
  ]]></format>
         </remarks>
@@ -1888,8 +1893,8 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
         <exception cref="T:System.Resources.MissingManifestResourceException">メイン アセンブリに .resources ファイルが含まれていませんが、これはリソースの検索に必要です。</exception>
         <exception cref="T:System.ExecutionEngineException">ランタイムで、内部エラーが発生しました。</exception>
         <exception cref="T:System.Resources.MissingSatelliteAssemblyException"><paramref name="culture" /> に関連付けられているサテライト アセンブリを配置できません。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
-        <block subset="none" type="overrides"><para>このメソッドは、リソースの設定、ありことは再帰的な再入を検索するために必要なすべての作業を完了します。 アセンブリとトリガーつまり、このメソッドを読み込む可能性があります、<see cref="E:System.AppDomain.AssemblyLoad" />にコールバックする、イベント、<see cref="T:System.Resources.ResourceManager" />オブジェクトを完全に初期化されていません。 過剰なロックを防ぐためにこのメソッドはスレッド セーフではありません。 <see cref="M:System.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo,System.Boolean,System.Boolean)" />、 <see cref="M:System.Resources.ResourceManager.GetString(System.String)" />、および<see cref="M:System.Resources.ResourceManager.GetObject(System.String)" />メソッドは、必要なすべての同期を行います。</para></block>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <block subset="none" type="overrides"><para>このメソッドは、リソースセットを検索するために必要なすべての作業を完了し、再帰的で再入可能にすることができます。 つまり、このメソッドは、アセンブリを読み込み、 <see cref="E:System.AppDomain.AssemblyLoad" />イベントをトリガーし、完全に初期化されていない<see cref="T:System.Resources.ResourceManager" />オブジェクトにコールバックすることがあります。 余分なロックを避けるために、このメソッドはスレッドセーフではありません。 、 <see cref="M:System.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo,System.Boolean,System.Boolean)" /> 、<see cref="M:System.Resources.ResourceManager.GetString(System.String)" />および<see cref="M:System.Resources.ResourceManager.GetObject(System.String)" />の各メソッドでは、すべての必要な同期が実行されます。</para></block>
         <altmember cref="T:System.Globalization.CultureInfo" />
         <related type="Article" href="~/docs/standard/globalization-localization/index.md">.NET アプリケーションのグローバライズとローカライズ</related>
       </Docs>
@@ -1928,11 +1933,11 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 値は、0xBEEFCACE に設定されます。 システムの既定のファイル形式の最初の 4 バイトがリトル エンディアン形式の 32 ビット符号付き整数を含む (を参照してください<xref:System.Text.Encoding>)。  
+ 値は0xBEEFCACE に設定されます。 システムの既定のファイル形式の最初の4バイトには、リトルエンディアン形式の32ビット符号付き<xref:System.Text.Encoding>整数が含まれます (「」を参照してください)。  
   
- 場合、<xref:System.Resources.ResourceManager.MagicNumber>が見つかると、それに続くバイトのバージョン番号になります、<xref:System.Resources.ResourceManager>と過去のこのヘッダーを取得するバイト数をスキップするかを示す番号が続くヘッダー。 次の番号は、のバージョンを示す、<xref:System.Resources.ResourceManager>バージョンについては後に、ヘッダーを作成します。  
+ が見つかった場合、その後に続くバイトは、 <xref:System.Resources.ResourceManager>ヘッダーのバージョン番号になり、その後、このヘッダーを越えるためにスキップするバイト数を示す数値になります。 <xref:System.Resources.ResourceManager.MagicNumber> 次の数値は、ヘッダーを作成<xref:System.Resources.ResourceManager>したのバージョンを示し、その後にバージョン固有の情報を指定します。  
   
- 現在の実装のバージョン番号は、1 つです。 次のバイトは固定長の文字列の名前を含む、 <xref:System.Resources.IResourceReader>、このファイルの読み取りができます。  
+ 現在の実装のバージョン番号は1です。 次のバイトは、このファイルを読み取ることができるの<xref:System.Resources.IResourceReader>名前を含む、長さを示すプレフィックスが付いた文字列です。  
   
  ]]></format>
         </remarks>
@@ -1972,7 +1977,7 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Resources.ResourceManager.MainAssembly>フィールドはから派生した独自のクラスを記述する場合にのみ役立ちますが、<xref:System.Resources.ResourceManager>クラス。  
+ フィールドは、 <xref:System.Resources.ResourceManager>クラスから派生した独自のクラスを記述する場合にのみ役立ちます。 <xref:System.Resources.ResourceManager.MainAssembly>  
   
  ]]></format>
         </remarks>
@@ -2013,19 +2018,19 @@ al /out:ru-RU\Showdate.resources.dll /culture:ru-RU /embed:DateStrings.ru-RU.res
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、実行中のアプリのワーキング セットに縮小されます。 これで、将来のリソース検索<xref:System.Resources.ResourceManager>リソース マネージャーを検索する必要があるためにオブジェクトが最初の参照としてコストがかかるするリソースを再度読み込むとします。 これは、役立ちます、複雑なスレッド シナリオで、新しい<xref:System.Resources.ResourceManager>オブジェクトが適切な動作です。  
+ このメソッドは、実行中のアプリのワーキングセットを圧縮します。 リソースマネージャーはリソースをもう<xref:System.Resources.ResourceManager>一度検索して読み込む必要があるため、このオブジェクトの今後のリソース参照は、最初の参照と同じようにコストが高くなります。 これは、新しい<xref:System.Resources.ResourceManager>オブジェクトの作成が適切な動作である、複雑なスレッド処理のシナリオで役に立ちます。  
   
 > [!NOTE]
->  .NET Framework バージョン 2.0 以降、<xref:System.Resources.ResourceManager.ReleaseAllResources%2A>メソッドはスレッド セーフを<xref:System.Resources.ResourceManager.GetObject%2A>、 <xref:System.Resources.ResourceManager.GetString%2A>、および<xref:System.Resources.ResourceManager.GetStream%2A>操作。 この変更の利点は、リソースにアクセスする複数のスレッドのパフォーマンスの向上です。 ただし、呼び出した場合、<xref:System.Resources.ResourceManager.ReleaseAllResources%2A>メソッド別のスレッドで同時に、リソースを取得中に 1 つのスレッドで、get 操作をスローできます、<xref:System.ObjectDisposedException>例外。  
+>  .NET Framework バージョン 2.0 <xref:System.Resources.ResourceManager.ReleaseAllResources%2A>以降では、メソッドは<xref:System.Resources.ResourceManager.GetString%2A>、、、および<xref:System.Resources.ResourceManager.GetStream%2A>の各操作<xref:System.Resources.ResourceManager.GetObject%2A>に関してスレッドセーフではありません。 この変更の利点は、リソースにアクセスする複数のスレッドのパフォーマンスが向上することです。 ただし、あるスレッドでメソッド<xref:System.Resources.ResourceManager.ReleaseAllResources%2A>を呼び出し、同時に別のスレッドのリソースを取得した場合、get 操作で<xref:System.ObjectDisposedException>例外がスローされることがあります。  
   
- リソース マネージャーは完全にスコープ外に出るし、ガベージ コレクションが待機することがなく、確定的にリリースされる、現在のリソース マネージャーで作成したリソースの管理対象のインスタンスがない状況でこのメソッドを使用することもできます。  
+ また、このメソッドは、リソースマネージャーが完全にスコープ外になってガベージコレクションされるのを待たずに、現在のリソースマネージャーによって作成されたリソースのマネージインスタンスを決定的に解放する必要がある場合にも使用できます。  
   
 > [!NOTE]
->  このメソッドを呼び出す場合、サテライト アセンブリはアンロードされません。 サテライト アセンブリをアンロードするには使用、<xref:System.AppDomain.Unload%2A>メソッド。  
+>  このメソッドを呼び出すと、サテライトアセンブリはアンロードされません。 サテライトアセンブリをアンロードするには<xref:System.AppDomain.Unload%2A> 、メソッドを使用します。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">呼び出されたときに遅延バインディング メカニズムを通じてなど<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />します。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="ResourceSets">

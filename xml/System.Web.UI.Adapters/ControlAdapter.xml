@@ -1,5 +1,5 @@
 <Type Name="ControlAdapter" FullName="System.Web.UI.Adapters.ControlAdapter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0f6fed664b044da1885a7b85efbbbf8911c7ce56" /><Meta Name="ms.sourcegitcommit" Value="2dd0eede6edd6dd3d2aa8f79010848658b967609" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/18/2019" /><Meta Name="ms.locfileid" Value="58875568" /></Metadata><TypeSignature Language="C#" Value="public abstract class ControlAdapter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="32931f959545fbccc955d499802e8801510a11d2" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69047927" /></Metadata><TypeSignature Language="C#" Value="public abstract class ControlAdapter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ControlAdapter extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Web.UI.Adapters.ControlAdapter" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ControlAdapter" />
@@ -20,47 +20,47 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コントロール アダプターは、特定のオーバーライド コンポーネント<xref:System.Web.UI.Control>メソッドおよびブラウザーまたはマークアップに固有の処理を許可する実行のライフ サイクルのイベントのクラスします。 .NET Framework がマップに 1 つの派生コントロール アダプターを<xref:System.Web.UI.Control>クライアント要求ごとのオブジェクト。  
+ コントロールアダプターは、特定<xref:System.Web.UI.Control>のクラスメソッドとその実行ライフサイクル内のイベントをオーバーライドして、ブラウザーやマークアップ固有の処理を可能にするコンポーネントです。 .NET Framework は、1つの派生コントロールアダプターを<xref:System.Web.UI.Control>クライアント要求ごとにオブジェクトにマップします。  
   
- アダプターは、特定のブラウザーまたはブラウザーのクラスのコントロールを変更したりしたりは一部の機能に対しては任意のフィルターとして機能します。 通常、アダプターは、(たとえば、XHTML や HTML 3.2)、ブラウザーを使用するマークアップ言語によって定義されます。 派生する特殊なクラスにカプセル化できるレンダリング動作に適応性の多く、<xref:System.Web.UI.HtmlTextWriter>クラス。 したがって、さまざまなブラウザー クラスの動作やその包含で適応性の 1 つのアダプターを使用できること可能性がありますが、<xref:System.Web.UI.HtmlTextWriter>クラスを不要なコントロール アダプターの使用して使用する可能性があります。  
+ アダプターは、ブラウザーの特定のブラウザーまたはクラスのコントロールを変更するか、一部の機能に対して任意のフィルターとして機能します。 通常、アダプターは、ブラウザーが使用するマークアップ言語 (XHTML、HTML 3.2 など) によって定義されます。 レンダリング動作の適応性の多くは、 <xref:System.Web.UI.HtmlTextWriter>クラスから派生した特殊なクラスにカプセル化できます。 したがって、多くのブラウザークラスの動作で1つのアダプターが使用される可能性があります。また、 <xref:System.Web.UI.HtmlTextWriter>クラスに適応性が含まれていると、コントロールアダプターを使用する必要がなくなります。  
   
- コントロール クラスのアダプターは、専用のアダプターが存在しない限り、そのクラスから継承するすべてのコントロールに適用されます。 たとえば、アダプターの<xref:System.Web.UI.WebControls.BaseValidator>すべてのクラスを使用できます`Validator`オブジェクト。  
+ コントロールクラスのアダプターは、特化されたアダプターが存在しない限り、そのクラスから継承されるすべてのコントロールに適用されます。 たとえば、 <xref:System.Web.UI.WebControls.BaseValidator>クラスのアダプターは、すべて`Validator`のオブジェクトに対して使用できます。  
   
- アダプター通常を継承しませんから直接、<xref:System.Web.UI.Adapters.ControlAdapter>クラスがターゲット固有のアダプターのいずれかからの基本コントロールの種類とターゲットのブラウザーに固有の追加機能を提供するクラスまたは特定の表示が必要です。  
+ 通常、アダプターは<xref:System.Web.UI.Adapters.ControlAdapter>クラスから直接継承しませんが、ターゲット固有のアダプター基底クラスの1つから、コントロールの種類とターゲットブラウザーに固有の追加機能を提供するか、必要なレンダリングを指定します。  
   
- コントロール自体では、アダプターは必ずしも必要はありません。 コンポジションを通じてにコントロールを拡張する場合は通常、子コントロールのアダプターで十分です。  
+ コントロール自体は、必ずしもアダプターを必要としません。 コントロールがコンポジションによって拡張されている場合、一般に子コントロールアダプターで十分です。  
   
- 各コントロールには、.browser 定義ファイルからアダプターへの明示的なマッピングがあります。 そのため、いずれかのアクセス、<xref:System.Web.UI.Control.Adapter%2A?displayProperty=nameWithType>プロパティで使用、<xref:System.Web.HttpBrowserCapabilities>コントロール アダプターのマッピングの参照を実行するブラウザー定義ファイルから抽出されたオブジェクト。  
+ 各コントロールには、ブラウザー定義ファイルを介してアダプターへの明示的なマッピングがあります。 このため、 <xref:System.Web.UI.Control.Adapter%2A?displayProperty=nameWithType>プロパティへのアクセスでは<xref:System.Web.HttpBrowserCapabilities> 、ブラウザー定義ファイルから抽出されたオブジェクトを使用して、アダプターが制御するマッピングの参照を実行します。  
   
- 処理中に、.NET Framework は、ターゲット固有の可能性があるコントロールのオーバーライド可能なメソッドの呼び出しをインターセプトします。 コントロール アダプターがアタッチされている場合、.NET Framework は、関連付けられているアダプターのメソッドを呼び出します。  
+ 処理中、.NET Framework は、ターゲット固有である可能性があるコントロールのオーバーライド可能なメソッドへの呼び出しをインターセプトします。 コントロールアダプターがアタッチされている場合、.NET Framework は、関連付けられているアダプターメソッドを呼び出します。  
   
- アダプターを使用してコントロールのレンダリングを実行する、<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッド。 上書きすると、<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>可能性のある呼び出さないでください。 基本クラスの実装に戻り、呼び出しを実行するため、<xref:System.Web.UI.Control.Render%2A?displayProperty=nameWithType>メソッド。 アダプターが 1 回と、コントロールで 1 回、2 回発生するレンダリングがある可能性があります。  
+ アダプターは、 <xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッドを使用してコントロールのレンダリングを実行します。 オーバーライドされ<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>た場合、は<xref:System.Web.UI.Control.Render%2A?displayProperty=nameWithType>メソッドでコールバックを実行するため、基底クラスの実装を呼び出さないようにする必要があります。 これにより、アダプターによって1回、コントロールによってレンダリングが2回発生する可能性があります。  
   
- <xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッドの呼び出しを基、<xref:System.Web.UI.Control.Render%2A?displayProperty=nameWithType>コントロールのメソッド。 したがって、オーバーライドする場合は<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>を実装するレンダリングがによって提供されるそれに加えていない限り、基本クラスの実装を呼び出す必要がありますいない<xref:System.Web.UI.Control.Render%2A?displayProperty=nameWithType>コントロールの。  
+ 基本<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッドは、コントロールの<xref:System.Web.UI.Control.Render%2A?displayProperty=nameWithType>メソッドをコールバックします。 したがって、をオーバーライド<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>する場合は、実装するレンダリングがコントロールのによっ<xref:System.Web.UI.Control.Render%2A?displayProperty=nameWithType>て提供されるものに加えられていない限り、基本クラスの実装を呼び出さないでください。  
   
- .NET Framework が傍受される子コントロールのアダプターに対して実行することを確認する必要があります。 呼び出すことによってこれを行う、<xref:System.Web.UI.Adapters.ControlAdapter.RenderChildren%2A>基本メソッドを呼び出す、 <xref:System.Web.UI.Control.RenderChildren%2A?displayProperty=nameWithType> 、コントロールのメソッドから、<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>をオーバーライドします。  
+ .NET Framework が子コントロールのアダプターに対してインターセプトを実行するようにする必要があります。 これを行うには、 <xref:System.Web.UI.Adapters.ControlAdapter.RenderChildren%2A> <xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>オーバーライドから、コントロールの<xref:System.Web.UI.Control.RenderChildren%2A?displayProperty=nameWithType>メソッドを呼び出す基本メソッドを呼び出します。  
   
- <xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>と<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>メソッドは、コントロールの呼び出し (それぞれ) の前後にすぐに、コントロールによって呼び出される、<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッド。 前と後のレンダリングの場合は唯一のブラウザー固有の処理を使用して、必要なタスク<xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>と<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>をオーバーライドする必要がない可能性がありますように<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>します。 既定の動作、<xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>と<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>の対応するメソッドを呼び出すためのメソッドは、<xref:System.Web.UI.HtmlTextWriter>します。  
+ メソッド<xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A> <xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>と<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>メソッドは、コントロールがメソッドを呼び出す前後に、コントロールによって呼び出されます。 レンダリング前とレンダリング後の処理タスクのみが必要な場合は、とを使用<xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>する<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>と、のオーバーライド<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>が不要になることがあります。 メソッド<xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A> <xref:System.Web.UI.HtmlTextWriter>と<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>メソッドの既定の動作では、の対応するメソッドを呼び出します。  
   
- コントロール アダプターには、独自の状態情報を保持するには、オーバーライド、 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A>、 <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>、 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>、および<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>メソッド。 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A>、 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>、 <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>、および<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>プライベート コントロールとビューの状態が保存され、読み込まれると、それぞれの場合に呼び出されます。  
+ 独自の状態情報を保持するために、コントロールアダプターは<xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A> <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>、 <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>、、および<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>の各メソッドをオーバーライドできます。 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A>、 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>、 、および<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>は、プライベートコントロールとビューステートがそれぞれ保存および読み込みされるときに呼び出されます。 <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>  
   
- <xref:System.Web.UI.Adapters.ControlAdapter.OnInit%2A>、 <xref:System.Web.UI.Adapters.ControlAdapter.OnLoad%2A>、 <xref:System.Web.UI.Adapters.ControlAdapter.OnPreRender%2A>、および<xref:System.Web.UI.Adapters.ControlAdapter.OnUnload%2A>base メソッドの呼び出しを対応するのには、戻り<xref:System.Web.UI.Control>クラス メソッド。 これらのいずれかにそのため、<xref:System.Web.UI.Adapters.ControlAdapter>がオーバーライドされるメソッドは、基本メソッドを呼び出す必要があります。 それ以外の場合、イベントに関連付けられている、<xref:System.Web.UI.Control>クラスのメソッドは発生しません。  
+ <xref:System.Web.UI.Adapters.ControlAdapter.OnInit%2A> 、<xref:System.Web.UI.Adapters.ControlAdapter.OnLoad%2A>、 <xref:System.Web.UI.Control> 、およびの各基本メソッドは、対応するクラスメソッドに対してコールバックします。<xref:System.Web.UI.Adapters.ControlAdapter.OnUnload%2A> <xref:System.Web.UI.Adapters.ControlAdapter.OnPreRender%2A> したがって、オーバーライドさ<xref:System.Web.UI.Adapters.ControlAdapter>れたこれらのメソッドはいずれも、基本メソッドを呼び出す必要があり<xref:System.Web.UI.Control>ます。それ以外の場合、クラスメソッドに関連付けられているイベントは発生しません。  
   
- コントロールとアダプターが必要に応じて実装、<xref:System.Web.UI.IPostBackDataHandler>と<xref:System.Web.UI.IPostBackEventHandler>インターフェイス。 .NET Framework では、アダプターが存在するかどうかと、アダプターがこれらのインターフェイスを実装するかどうかを決定します。 場合は、アダプターをオーバーライドする必要があります、 <xref:System.Web.UI.IPostBackDataHandler.LoadPostData%2A>、 <xref:System.Web.UI.IPostBackDataHandler.RaisePostDataChangedEvent%2A>、および<xref:System.Web.UI.IPostBackEventHandler.RaisePostBackEvent%2A>メソッドは、必要に応じて。 ポストバック データが、アダプターで認識されない場合は、それを処理するコントロールにコールバックする必要があります。 また後続のイベント ハンドラーは、コントロールに戻る呼び出す必要があります。  
+ コントロールとアダプターは、必要<xref:System.Web.UI.IPostBackDataHandler>に<xref:System.Web.UI.IPostBackEventHandler>応じて、およびインターフェイスを実装します。 .NET Framework は、アダプターが存在するかどうか、およびアダプターがこれらのインターフェイスを実装するかどうかを判断します。 このような場合は、必要に応じ<xref:System.Web.UI.IPostBackDataHandler.LoadPostData%2A>て<xref:System.Web.UI.IPostBackDataHandler.RaisePostDataChangedEvent%2A>、、 <xref:System.Web.UI.IPostBackEventHandler.RaisePostBackEvent%2A> 、およびの各メソッドをアダプターでオーバーライドする必要があります。 ポストバックデータがアダプターで認識されない場合は、そのデータを処理するためにコントロールでコールバックする必要があります。 後続のイベントハンドラーも、コントロールでコールバックする必要があります。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラス、一般的なアダプターの機能を必要とするコントロールは基本クラス、パターンのという名前の対応するアダプターが必要<paramref name="ControlType" /> <see langword="Adapter" /> (たとえば、 <see langword="TextBoxAdapter" />)。 アダプター返す必要がありますには、少なくとも、厳密に型指定されたインスタンスを使用してコントロールの<see cref="P:System.Web.UI.Adapters.ControlAdapter.Control" />プロパティ。  
+    <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承する場合、一般的なアダプターの機能を必要とするコントロールには、対応するアダプターの基本クラス<paramref name="ControlType" /> <see langword="Adapter" />が含まれている<see langword="TextBoxAdapter" />必要があります (たとえば、)。 アダプターは、少なくとも、 <see cref="P:System.Web.UI.Adapters.ControlAdapter.Control" />プロパティを使用してコントロールの厳密に型指定されたインスタンスを返す必要があります。  
   
-1.  パターンの特定のコントロールの種類とマークアップ言語の名前を付けるためのアダプターを制御<paramref name="MarkupControlType" /> <see langword="Adapter" /> (たとえば、 <see langword="XhtmlTextBoxAdapter" />)。 コントロールのアダプターで実装する必要があります、 <see langword="Adapters" /> subnamespace します。  
+1.  特定のコントロール型とマークアップ言語のコントロールアダプターは、パターン<paramref name="MarkupControlType" /> <see langword="Adapter" />で名前を付ける必要が<see langword="XhtmlTextBoxAdapter" />あります (たとえば、)。 コントロールのアダプターは、 <see langword="Adapters" /> subnamespace に実装する必要があります。  
   
-コントロール アダプターを適切な基本クラスから継承し、コントロールと同じ継承モデルに従います。 継承するコントロール用のアダプターなど、<see cref="T:System.Web.UI.Control" />基底クラスは、いずれかから継承する必要があります、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスまたは関連する<paramref name="ControlType" /><see langword="Adapter" />クラス。  
+コントロールアダプターは、適切な基底クラスから継承し、コントロールと同じ継承モデルに従う必要があります。 たとえば、 <see cref="T:System.Web.UI.Control" />基底クラスから継承するコントロールのアダプターは、 <see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスまたは関連<paramref name="ControlType" /> <see langword="Adapter" />するクラスから継承する必要があります。  
   
-専用のアダプターは、.browser 構成ファイル内のデバイス ノードのすべてで特殊なコントロールに対して定義する必要があります。  
+特殊化されたアダプターは、構成のブラウザーファイル内のすべてのデバイスノードにある特殊なコントロールに対して定義する必要があります。  
   
-アダプターが接続されていること、または割り当てられているアダプターが特定のインターフェイスを実装するコントロールを適切に実装されたを想定しないでください。 代わりに、呼び出す前にこれらのことを確認します。  
+適切に実装されたコントロールは、アダプターがアタッチされていること、またはアタッチされたアダプターが特定のインターフェイスを実装していることを想定してはいけません。 代わりに、を呼び出す前に、これらのチェックボックスをオンにする必要があります。  
   
-コントロールでは、保護されているイベントのメソッドをオーバーライドするなどをシミュレートすることができます、<see cref="M:System.Web.UI.WebControls.LinkButton.OnClick(System.EventArgs)" />のメソッド、<see cref="T:System.Web.UI.WebControls.LinkButton" />します。 最初に、使用するアダプター クラスを作成、 <c>OnClick</c>メソッド。 派生した新しいコントロールを作成し、<see cref="T:System.Web.UI.WebControls.LinkButton" />をオーバーライドし、<see cref="M:System.Web.UI.WebControls.LinkButton.OnClick(System.EventArgs)" />メソッド。 オーバーライドされた<see cref="M:System.Web.UI.WebControls.LinkButton.OnClick(System.EventArgs)" />メソッドの呼び出し、 <c>OnClick</c>アダプターのメソッド。 アダプター オブジェクトは、保護された利用<see cref="P:System.Web.UI.Control.Adapter" />のプロパティ、<see cref="T:System.Web.UI.Control" />クラス。 <see cref="P:System.Web.UI.Control.Adapter" />コントロールのプロパティは<see langword="null" />関連付けられているアダプターがない場合は、ため、コードを確認する条件、アダプターのメソッドを呼び出す前にします。</para></block>
+のメソッド<see cref="M:System.Web.UI.WebControls.LinkButton.OnClick(System.EventArgs)" />など、コントロール内の保護されたイベントメソッドのオーバーライドをシミュレートすることができます。<see cref="T:System.Web.UI.WebControls.LinkButton" /> まず、 <c>OnClick</c>メソッドを使用してアダプタークラスを作成します。 次に、から<see cref="T:System.Web.UI.WebControls.LinkButton" />派生した新しいコントロールを作成し、メソッドを<see cref="M:System.Web.UI.WebControls.LinkButton.OnClick(System.EventArgs)" />オーバーライドします。 オーバーライド<see cref="M:System.Web.UI.WebControls.LinkButton.OnClick(System.EventArgs)" />されたメソッドは、アダプターの<c>OnClick</c>メソッドを呼び出します。 アダプターオブジェクトは、 <see cref="P:System.Web.UI.Control.Adapter" /> <see cref="T:System.Web.UI.Control" />クラスの protected プロパティを介して使用できます。 コントロールの<see langword="null" />プロパティは、関連付けられたアダプターが存在しない場合に、アダプターのメソッドを呼び出す前に、その条件をすべてのコードでチェックする必要があることを示します。 <see cref="P:System.Web.UI.Control.Adapter" /></para></block>
     <altmember cref="T:System.Web.UI.Control" />
   </Docs>
   <Members>
@@ -88,7 +88,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- .NET Framework は、対応する、作成時に内部的にはこのアダプターを作成<xref:System.Web.UI.Control>オブジェクト。  
+ .NET Framework は、対応する<xref:System.Web.UI.Control>オブジェクトを作成するときに、このアダプターを内部的に構築します。  
   
  ]]></format>
         </remarks>
@@ -121,13 +121,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>メソッドが直前に呼び出されます、<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッド、およびコントロールのレンダリングの前にターゲット固有の処理を実行するために使用します。  
+ メソッドは、 <xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッドの直前に呼び出され、コントロールのレンダリング前にターゲット固有のプリプロセスを実行するために使用されます。 <xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>  
   
- 使用して、<xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>メソッドと組み合わせて、<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>を開始タグと終了タグの一貫性を確保します。  
+ <xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A> メソッド<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>とメソッドを組み合わせて使用して、タグの一貫性を開始および終了するようにします。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラス、<see cref="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />基本メソッドの呼び出し、<see cref="M:System.Web.UI.HtmlTextWriter.BeginRender" />メソッド。 したがって、オーバーライド、<see cref="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出す必要があります、<see cref="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />の代わりではなくに加え、その処理が場合にのみ、基本メソッド、<see cref="M:System.Web.UI.HtmlTextWriter.BeginRender" />メソッド。</para></block>
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承する場合、基本メソッド<see cref="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />は<see cref="M:System.Web.UI.HtmlTextWriter.BeginRender" />メソッドを呼び出します。 したがって、 <see cref="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />メソッドのオーバーライドでは、 <see cref="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" /> <see cref="M:System.Web.UI.HtmlTextWriter.BeginRender" />メソッドではなく、その処理がに加えられた場合にのみ、基本メソッドを呼び出す必要があります。</para></block>
         <altmember cref="M:System.Web.UI.HtmlTextWriter.BeginRender" />
         <altmember cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />
         <altmember cref="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />
@@ -158,12 +158,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.Web.UI.Adapters.ControlAdapter>オブジェクトからクライアント ブラウザーの機能を決定する、<xref:System.Web.HttpBrowserCapabilities>オブジェクトによって返される、<xref:System.Web.UI.Adapters.ControlAdapter.Browser%2A>プロパティ。 これにより、<xref:System.Web.UI.Adapters.ControlAdapter>ブラウザー固有のマークアップを表示するか、それ以外の場合の動作を変更するオブジェクト、<xref:System.Web.UI.Control>します。  
+ オブジェクト<xref:System.Web.UI.Adapters.ControlAdapter>は、 <xref:System.Web.UI.Adapters.ControlAdapter.Browser%2A>プロパティによって返される<xref:System.Web.HttpBrowserCapabilities>オブジェクトからクライアントのブラウザー機能を決定します。 これにより<xref:System.Web.UI.Adapters.ControlAdapter> 、オブジェクトはブラウザー固有<xref:System.Web.UI.Control>のマークアップをレンダリングでき、それ以外の場合はの動作を変更できます。  
   
    
   
 ## Examples  
- 次のコード例を使用する方法を示しています、<xref:System.Web.UI.Adapters.ControlAdapter.Browser%2A>要求側のブラウザーの詳細にアクセスするプロパティ。 この例で、ブラウザーが、JavaScript との互換性し、その場合にカスタマイズされた出力を表示するために開発者によって、かどうかを判断するコードを確認します。  
+ 次のコード例は、 <xref:System.Web.UI.Adapters.ControlAdapter.Browser%2A>プロパティを使用して、要求元のブラウザーの詳細にアクセスする方法を示しています。 この例では、コードはブラウザーが JavaScript と互換性があるかどうかを確認し、カスタマイズされた出力を開発者がそのケースでレンダリングできるようにします。  
   
  [!code-cpp[ControlAdapter_Browser#1](~/samples/snippets/cpp/VS_Snippets_WebNet/ControlAdapter_Browser/CPP/controladapter_browser.cpp#1)]
  [!code-csharp[ControlAdapter_Browser#1](~/samples/snippets/csharp/VS_Snippets_WebNet/ControlAdapter_Browser/CS/controladapter_browser.cs#1)]
@@ -210,12 +210,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生コントロール アダプターがコントロールに関連付けられている場合、.NET Framework は、コントロールのメンバーではなく特定のアダプター メンバーを呼び出します。  
+ 派生コントロールアダプターがコントロールにアタッチされている場合、.NET Framework は、コントロールメンバーではなく特定のアダプターメンバーを呼び出します。  
   
    
   
 ## Examples  
- 次のコード例からのカスタム コントロールを派生させる方法を示しています、<xref:System.Web.UI.Control>クラス、および継承された対応するアダプターを作成し、<xref:System.Web.UI.Adapters.ControlAdapter>クラス。 アダプターのオーバーライド、<xref:System.Web.UI.Adapters.ControlAdapter.Control%2A>プロパティをコントロールに厳密に型指定された参照を返します。  
+ 次のコード例は、 <xref:System.Web.UI.Control>クラスからカスタムコントロールを派生させ、 <xref:System.Web.UI.Adapters.ControlAdapter>クラスから継承する対応するアダプターを作成する方法を示しています。 アダプターは<xref:System.Web.UI.Adapters.ControlAdapter.Control%2A>プロパティをオーバーライドし、厳密に型指定されたコントロールへの参照を返します。  
   
  [!code-cpp[ControlAdapter.Control#1](~/samples/snippets/cpp/VS_Snippets_WebNet/ControlAdapter.Control/CPP/controladapter.control.cpp#1)]
  [!code-csharp[ControlAdapter.Control#1](~/samples/snippets/csharp/VS_Snippets_WebNet/ControlAdapter.Control/CS/controladapter.control.cs#1)]
@@ -223,7 +223,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスを実装する必要がありますには、少なくとも、<see langword="Control" />例」のセクションで示すように、コントロールの厳密に型指定されたインスタンスが返されるプロパティ。</para></block>
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承する場合は、少なくとも、「例」の<see langword="Control" />セクションに示すように、厳密に型指定されたコントロールのインスタンスを返すプロパティを実装する必要があります。</para></block>
         <altmember cref="T:System.Web.UI.Control" />
       </Docs>
     </Member>
@@ -250,13 +250,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 派生コントロール アダプターがある場合にアタッチされます、<xref:System.Web.UI.Control>オブジェクトと<xref:System.Web.UI.Adapters.ControlAdapter.CreateChildControls%2A>メソッドは、代わりに、上書きと呼ばれる、<xref:System.Web.UI.Control.CreateChildControls%2A?displayProperty=nameWithType>メソッド。 したがって、<xref:System.Web.UI.Adapters.ControlAdapter.CreateChildControls%2A>ターゲット固有の子コントロールのセットを作成するために使用できます。  
+ 派生コントロールアダプターが<xref:System.Web.UI.Control>オブジェクトにアタッチされ<xref:System.Web.UI.Adapters.ControlAdapter.CreateChildControls%2A>ていて、メソッドがオーバーライドされている場合、 <xref:System.Web.UI.Control.CreateChildControls%2A?displayProperty=nameWithType>メソッドの代わりにオーバーライドが呼び出されます。 したがって<xref:System.Web.UI.Adapters.ControlAdapter.CreateChildControls%2A> 、を使用して、ターゲット固有の子コントロールセットを作成できます。  
   
- 新しいコントロールを作成するコントロールを組み合わせることに関する詳細については、次を参照してください。[複合コントロール](https://msdn.microsoft.com/library/fb174677-d845-467c-8bf3-cc096b2490b0)します。  
+ コントロールを組み合わせて新しいコントロールを作成する方法の詳細については、「[複合コントロール](https://msdn.microsoft.com/library/fb174677-d845-467c-8bf3-cc096b2490b0)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承クラスを作成し、オーバーライドした場合、<see cref="M:System.Web.UI.Adapters.ControlAdapter.CreateChildControls" />メソッドを呼び出さない基本メソッドにコントロールを追加する場合、メソッドによって作成された、基本の操作を行います。 それ以外の場合のコントロールの子の 2 つのセットを作成できます。</para></block>
+        <block subset="none" type="overrides"><para>継承クラスを作成し、 <see cref="M:System.Web.UI.Adapters.ControlAdapter.CreateChildControls" />メソッドをオーバーライドする場合、基本メソッドによって作成されたコントロールにコントロールを追加するのでない限り、基本メソッドを呼び出さないでください。 それ以外の場合は、2つの子コントロールのセットを作成できます。</para></block>
         <altmember cref="M:System.Web.UI.Control.CreateChildControls" />
         <altmember cref="T:System.Web.UI.Control" />
       </Docs>
@@ -287,13 +287,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>直後後にメソッドが呼び出されます、<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッド、およびコントロールのレンダリング後にターゲット固有の後処理を実行するために使用します。  
+ メソッドはメソッドの<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>直後に呼び出され、コントロールのレンダリング後に、ターゲット固有の後処理を実行するために使用されます。 <xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>  
   
- 使用して、<xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A>メソッドと組み合わせて、<xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>を開始タグと終了タグの一貫性を確保します。  
+ <xref:System.Web.UI.Adapters.ControlAdapter.EndRender%2A> メソッド<xref:System.Web.UI.Adapters.ControlAdapter.BeginRender%2A>とメソッドを組み合わせて使用して、タグの一貫性を開始および終了するようにします。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラス、<see cref="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />基本メソッドの呼び出し、<see cref="M:System.Web.UI.HtmlTextWriter.EndRender" />メソッド。 したがって、オーバーライド、<see cref="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出す必要があります、<see cref="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />の代わりではなくに加え、その処理が場合にのみ、基本メソッド、<see cref="M:System.Web.UI.HtmlTextWriter.EndRender" />メソッド。</para></block>
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承する場合、基本メソッド<see cref="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />は<see cref="M:System.Web.UI.HtmlTextWriter.EndRender" />メソッドを呼び出します。 したがって、 <see cref="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />メソッドのオーバーライドでは、 <see cref="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" /> <see cref="M:System.Web.UI.HtmlTextWriter.EndRender" />メソッドではなく、その処理がに加えられた場合にのみ、基本メソッドを呼び出す必要があります。</para></block>
         <altmember cref="M:System.Web.UI.HtmlTextWriter.EndRender" />
         <altmember cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />
         <altmember cref="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />
@@ -327,11 +327,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コントロールの状態は、ビュー ステートが無効になっている場合でも必要な重要な状態情報です。 アダプターは、独自のコントロール状態情報を保持する必要があるをオーバーライドできます、<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>と<xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A>メソッド。  
+ コントロールの状態は、ビューステートが無効になっている場合でも必要な状態情報です。 アダプターが独自のコントロール状態情報を保持する必要がある場合は、 <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>メソッド<xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A>とメソッドをオーバーライドできます。  
   
- アダプターは、状態を関連付けられたコントロールの状態から独立して要求間で維持する必要がある機能がある場合は、コントロールの状態情報を維持する必要があります。 大きなテキストの表示とのグループで構成される複合コントロールなど、<xref:System.Web.UI.WebControls.RadioButton>コントロールは、デスクトップ コンピューター ブラウザーの 1 つのビューとしてレンダリング可能性があります。 他のブラウザーで、レンダリングの 1 つのビューのラジオ ボタン グループの他のテキストの表示を分割します。 アダプターは、現在アクティブなビューに関する独自のターゲット固有情報を保持する必要があります。  
+ アダプターは、関連付けられたコントロールの状態とは独立して、状態を保持する必要がある機能がある場合に、コントロールの状態情報を保持する必要があります。 たとえば、大きなテキスト表示とコントロールの<xref:System.Web.UI.WebControls.RadioButton>グループで構成される複合コントロールは、デスクトップコンピューターのブラウザー上で1つのビューとして表示される場合があります。 その他のブラウザーでは、表示を分割して、テキストの表示と、ラジオボタングループの表示を分割する場合があります。 アダプターは、現在アクティブなビューに関する固有のターゲット固有の情報を保持する必要があります。  
   
- <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>後すぐにメソッドが呼び出された、<xref:System.Web.UI.Control.LoadControlState%2A?displayProperty=nameWithType>メソッドで、`LoadState`ライフ サイクル ステージ。 アダプターのコントロールの状態は別とコントロールのコントロールの状態だけでなくです。  
+ メソッドは、メソッドの<xref:System.Web.UI.Control.LoadControlState%2A?displayProperty=nameWithType>直後、 `LoadState`ライフサイクルステージで呼び出されます。 <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A> アダプターコントロールの状態は、コントロールのコントロールの状態に加えて分離されています。  
   
  ]]></format>
         </remarks>
@@ -367,11 +367,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アダプターは、独自のビュー状態情報を保持する必要があるをオーバーライドできます、<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>と<xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>メソッド。  
+ アダプターが独自のビューステート情報を保持する必要がある場合は、 <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>メソッド<xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>とメソッドをオーバーライドできます。  
   
- アダプターは、データが関連付けられたコントロールのビューステートから独立しての要求にわたって保持する必要があるときに状態情報を維持する必要があります。 たとえば、デスクトップ コンピューター ブラウザー上のグリッド コントロールは、行の 1 つのビューと列の値としてレンダリング可能性があります。 その他のブラウザーで、分割行と 1 つの行の詳細の一覧などの複数のビューに表示します。 アダプターが含まれていない現在アクティブなビュー状態ビューのデータを維持する必要があります。  
+ アダプターは、関連付けられたコントロールのビューステートとは独立して、要求間で管理する必要があるデータがある場合に、ビューステート情報を保持する必要があります。 たとえば、デスクトップコンピューターのブラウザー上のグリッドコントロールは、値の行と列の1つのビューとして表示される場合があります。 その他のブラウザーでは、行の一覧や単一行の詳細など、表示が複数の個別のビューに分割される場合があります。 アダプターは、ビューステートで現在アクティブでないビューのデータを維持する必要があります。  
   
- <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>メソッドは、直前に呼び出されますが、<xref:System.Web.UI.Control.LoadViewState%2A?displayProperty=nameWithType>メソッドで、`LoadState`ライフ サイクル ステージ。 アダプターのビューステートは別とコントロールのビュー状態だけでなくです。  
+ メソッドは、 `LoadState`ライフサイクルステージの<xref:System.Web.UI.Control.LoadViewState%2A?displayProperty=nameWithType>メソッドの直前に呼び出されます。 <xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A> アダプターのビューステートは、コントロールのビューステートに加えて分離されています。  
   
  ]]></format>
         </remarks>
@@ -408,14 +408,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 存在する場合、アダプターが接続されている、<xref:System.Web.UI.Control>オブジェクトと<xref:System.Web.UI.Adapters.ControlAdapter.OnInit%2A>メソッドは、オーバーライド メソッドの代わりに、<xref:System.Web.UI.Control.OnInit%2A?displayProperty=nameWithType>メソッド。  
+ <xref:System.Web.UI.Control>オブジェクトに接続され<xref:System.Web.UI.Adapters.ControlAdapter.OnInit%2A>ているアダプターがあり、メソッドがオーバーライドされている場合は、 <xref:System.Web.UI.Control.OnInit%2A?displayProperty=nameWithType>メソッドの代わりにオーバーライドメソッドが呼び出されます。  
   
- オーバーライド<xref:System.Web.UI.Adapters.ControlAdapter.OnInit%2A>でターゲット固有の処理を実行する、`Initialize`コントロールのライフ サイクルの段階です。 通常、これらは、コントロールの作成時に実行される関数です。  
+ を<xref:System.Web.UI.Adapters.ControlAdapter.OnInit%2A>オーバーライドして、コントロールのライフサイクル`Initialize`の段階でターゲット固有の処理を実行します。 通常、これらは、コントロールが作成されるときに実行される関数です。  
   
    
   
 ## Examples  
- 次のコード サンプルからカスタム コントロール アダプターの派生、<xref:System.Web.UI.Adapters.ControlAdapter>クラス。 オーバーライドして、<xref:System.Web.UI.Adapters.ControlAdapter.OnInit%2A>メソッドに関連付けられたコントロールのプロパティを設定し、コントロールの初期化を完了する基本メソッドを呼び出します。  
+ 次のコードサンプルでは、 <xref:System.Web.UI.Adapters.ControlAdapter>クラスからカスタムコントロールアダプターを派生させることができます。 次に、 <xref:System.Web.UI.Adapters.ControlAdapter.OnInit%2A>メソッドをオーバーライドして、関連付けられているコントロールのプロパティを設定し、基本メソッドを呼び出してコントロールの初期化を完了します。  
   
  [!code-cpp[ControlAdapter_OnInit#1](~/samples/snippets/cpp/VS_Snippets_WebNet/ControlAdapter_OnInit/CPP/controladapter_oninit.cpp#1)]
  [!code-csharp[ControlAdapter_OnInit#1](~/samples/snippets/csharp/VS_Snippets_WebNet/ControlAdapter_OnInit/CS/controladapter_oninit.cs#1)]
@@ -423,7 +423,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスとアダプターの上書き、<see cref="M:System.Web.UI.Adapters.ControlAdapter.OnInit(System.EventArgs)" />メソッドでは、アダプターがさらの対応する基本クラス メソッドを呼び出す必要があります、<see cref="M:System.Web.UI.Control.OnInit(System.EventArgs)" />メソッド。 場合、<see cref="M:System.Web.UI.Control.OnInit(System.EventArgs)" />メソッドが呼び出されなかった、<see cref="E:System.Web.UI.Control.Init" />イベントは発生しません。</para></block>
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承し、アダプターが<see cref="M:System.Web.UI.Adapters.ControlAdapter.OnInit(System.EventArgs)" />メソッドをオーバーライドする場合、アダプターは、対応する基底クラスのメソッドを呼び出す必要があり<see cref="M:System.Web.UI.Control.OnInit(System.EventArgs)" />ます。このメソッドは、メソッドを呼び出します。 メソッドが呼び出さ<see cref="E:System.Web.UI.Control.Init" />れなかった場合、イベントは発生しません。 <see cref="M:System.Web.UI.Control.OnInit(System.EventArgs)" /></para></block>
         <altmember cref="E:System.Web.UI.Control.Init" />
         <altmember cref="M:System.Web.UI.Control.OnInit(System.EventArgs)" />
         <altmember cref="T:System.Web.UI.Control" />
@@ -455,13 +455,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 存在する場合、アダプターが接続されている、<xref:System.Web.UI.Control>オブジェクトと<xref:System.Web.UI.Adapters.ControlAdapter.OnLoad%2A>メソッドは、オーバーライド メソッドの代わりに、<xref:System.Web.UI.Control.OnLoad%2A?displayProperty=nameWithType>メソッド。  
+ <xref:System.Web.UI.Control>オブジェクトに接続され<xref:System.Web.UI.Adapters.ControlAdapter.OnLoad%2A>ているアダプターがあり、メソッドがオーバーライドされている場合は、 <xref:System.Web.UI.Control.OnLoad%2A?displayProperty=nameWithType>メソッドの代わりにオーバーライドメソッドが呼び出されます。  
   
- 上書き、<xref:System.Web.UI.Adapters.ControlAdapter.OnLoad%2A>でターゲット固有の処理を実行するメソッド、`Load`コントロールのライフ サイクルの段階です。 通常、これらはクライアント要求ごとに実行される関数です。  
+ メソッドをオーバーライドして、コントロールのライフサイクルの`Load`段階でターゲット固有の処理を実行します。 <xref:System.Web.UI.Adapters.ControlAdapter.OnLoad%2A> 通常、これらの関数は、各クライアント要求に対して実行する必要があります。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスとアダプターの上書き、<see cref="M:System.Web.UI.Adapters.ControlAdapter.OnLoad(System.EventArgs)" />メソッドでは、アダプターがさらの対応する基本クラス メソッドを呼び出す必要があります、<see cref="M:System.Web.UI.Control.OnLoad(System.EventArgs)" />メソッド。 場合<see cref="M:System.Web.UI.Control.OnLoad(System.EventArgs)" />は呼び出されません、<see cref="E:System.Web.UI.Control.Load" />イベントは発生しません。</para></block>
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承し、アダプターが<see cref="M:System.Web.UI.Adapters.ControlAdapter.OnLoad(System.EventArgs)" />メソッドをオーバーライドする場合、アダプターは、対応する基底クラスのメソッドを呼び出す必要があり<see cref="M:System.Web.UI.Control.OnLoad(System.EventArgs)" />ます。このメソッドは、メソッドを呼び出します。 が<see cref="M:System.Web.UI.Control.OnLoad(System.EventArgs)" />呼び出されていない<see cref="E:System.Web.UI.Control.Load" />場合、イベントは発生しません。</para></block>
         <altmember cref="E:System.Web.UI.Control.Load" />
         <altmember cref="M:System.Web.UI.Control.OnLoad(System.EventArgs)" />
         <altmember cref="T:System.Web.UI.Control" />
@@ -493,13 +493,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 存在する場合、アダプターが接続されている、<xref:System.Web.UI.Control>オブジェクトと<xref:System.Web.UI.Adapters.ControlAdapter.OnPreRender%2A>メソッドは、オーバーライド メソッドの代わりに、<xref:System.Web.UI.Control.OnPreRender%2A?displayProperty=nameWithType>メソッド。  
+ <xref:System.Web.UI.Control>オブジェクトに接続され<xref:System.Web.UI.Adapters.ControlAdapter.OnPreRender%2A>ているアダプターがあり、メソッドがオーバーライドされている場合は、 <xref:System.Web.UI.Control.OnPreRender%2A?displayProperty=nameWithType>メソッドの代わりにオーバーライドメソッドが呼び出されます。  
   
- 上書き、<xref:System.Web.UI.Adapters.ControlAdapter.OnPreRender%2A>でターゲット固有の処理を実行するメソッド、`PreRender`コントロールのライフ サイクルの段階です。 通常、これらは、コントロールの出力のレンダリングの直前にある機能です。  
+ メソッドをオーバーライドして、コントロールのライフサイクルの`PreRender`段階でターゲット固有の処理を実行します。 <xref:System.Web.UI.Adapters.ControlAdapter.OnPreRender%2A> 通常、これらは、コントロール出力のレンダリングの直前に配置される関数です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスとアダプターの上書き、<see cref="M:System.Web.UI.Adapters.ControlAdapter.OnPreRender(System.EventArgs)" />メソッドでは、アダプターがさらの対応する基本クラス メソッドを呼び出す必要があります、<see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)" />メソッド。 場合、<see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)" />メソッドが呼び出されなかった、<see cref="E:System.Web.UI.Control.PreRender" />イベントは発生しません。</para></block>
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承し、アダプターが<see cref="M:System.Web.UI.Adapters.ControlAdapter.OnPreRender(System.EventArgs)" />メソッドをオーバーライドする場合、アダプターは、対応する基底クラスのメソッドを呼び出す必要があり<see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)" />ます。このメソッドは、メソッドを呼び出します。 メソッドが呼び出さ<see cref="E:System.Web.UI.Control.PreRender" />れなかった場合、イベントは発生しません。 <see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)" /></para></block>
         <altmember cref="E:System.Web.UI.Control.PreRender" />
         <altmember cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)" />
         <altmember cref="T:System.Web.UI.Control" />
@@ -531,13 +531,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 存在する場合、アダプターが接続されている、<xref:System.Web.UI.Control>オブジェクトと<xref:System.Web.UI.Adapters.ControlAdapter.OnUnload%2A>メソッドは、オーバーライド メソッドの代わりに、<xref:System.Web.UI.Control.OnUnload%2A?displayProperty=nameWithType>メソッド。  
+ <xref:System.Web.UI.Control>オブジェクトに接続され<xref:System.Web.UI.Adapters.ControlAdapter.OnUnload%2A>ているアダプターがあり、メソッドがオーバーライドされている場合は、 <xref:System.Web.UI.Control.OnUnload%2A?displayProperty=nameWithType>メソッドの代わりにオーバーライドメソッドが呼び出されます。  
   
- 上書き、<xref:System.Web.UI.Adapters.ControlAdapter.OnUnload%2A>ターゲット固有の処理を実行するメソッド、`Unload`コントロールのライフ サイクルの段階です。 通常、これらは、コントロールの廃棄の前にクリーンアップ関数です。  
+ メソッドをオーバーライドして、コントロールのライフサイクルの`Unload`段階でターゲット固有の処理を実行します。 <xref:System.Web.UI.Adapters.ControlAdapter.OnUnload%2A> 通常、これらは、コントロールを破棄する前のクリーンアップ関数です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスとアダプターの上書き、<see cref="M:System.Web.UI.Adapters.ControlAdapter.OnUnload(System.EventArgs)" />メソッドでは、アダプターがさらの対応する基本クラス メソッドを呼び出す必要があります、<see cref="M:System.Web.UI.Control.OnUnload(System.EventArgs)" />メソッド。 場合<see cref="M:System.Web.UI.Control.OnUnload(System.EventArgs)" />は呼び出されません、<see cref="E:System.Web.UI.Control.Unload" />イベントは発生しません。</para></block>
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承し、アダプターが<see cref="M:System.Web.UI.Adapters.ControlAdapter.OnUnload(System.EventArgs)" />メソッドをオーバーライドする場合、アダプターは、対応する基底クラスのメソッドを呼び出す必要があり<see cref="M:System.Web.UI.Control.OnUnload(System.EventArgs)" />ます。このメソッドは、メソッドを呼び出します。 が<see cref="M:System.Web.UI.Control.OnUnload(System.EventArgs)" />呼び出されていない<see cref="E:System.Web.UI.Control.Unload" />場合、イベントは発生しません。</para></block>
         <altmember cref="E:System.Web.UI.Control.Unload" />
         <altmember cref="M:System.Web.UI.Control.OnUnload(System.EventArgs)" />
         <altmember cref="T:System.Web.UI.Control" />
@@ -574,7 +574,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.Adapters.ControlAdapter.Page%2A>プロパティへのアクセスを提供する、<xref:System.Web.UI.Page?displayProperty=nameWithType>コントロールが配置されているオブジェクト。  
+ プロパティ<xref:System.Web.UI.Adapters.ControlAdapter.Page%2A>は、コントロールが置か<xref:System.Web.UI.Page?displayProperty=nameWithType>れているオブジェクトへのアクセスを提供します。  
   
  ]]></format>
         </remarks>
@@ -613,9 +613,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.Adapters.ControlAdapter.PageAdapter%2A>プロパティへのアクセスを提供します、<xref:System.Web.UI.Adapters.PageAdapter?displayProperty=nameWithType>オブジェクト、<xref:System.Web.UI.Page>オブジェクトを<xref:System.Web.UI.Control>オブジェクトに関連付けられた現在<xref:System.Web.UI.Adapters.ControlAdapter>オブジェクトが配置されています。  
+ プロパティ<xref:System.Web.UI.Adapters.ControlAdapter.PageAdapter%2A>は、現在<xref:System.Web.UI.Page> <xref:System.Web.UI.Control> <xref:System.Web.UI.Adapters.PageAdapter?displayProperty=nameWithType> のオブジェクトに関連付けられているオブジェクトが置かれているオブジェクトのオブジェクトへのアクセスを提供します。<xref:System.Web.UI.Adapters.ControlAdapter>  
   
- <xref:System.Web.UI.Adapters.ControlAdapter.PageAdapter%2A>ページ アダプター レベルのページで、いくつかのコントロール型に適用できる共通のターゲット固有の関数などの他の項目にアクセスするプロパティを使用できます。  
+ プロパティ<xref:System.Web.UI.Adapters.ControlAdapter.PageAdapter%2A>は、ページアダプターレベルの他の項目にアクセスするために使用できます。たとえば、ページ上の複数のコントロール型に適用できる一般的なターゲット固有の関数などです。  
   
  ]]></format>
         </remarks>
@@ -649,13 +649,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 上書き、<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>クライアント ブラウザーに送信するターゲット固有マークアップを生成するメソッド。 <xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>メソッドの代わりに、<xref:System.Web.UI.Control.Render%2A?displayProperty=nameWithType>メソッド場合、<xref:System.Web.UI.Adapters.ControlAdapter>オブジェクトにアタッチされて、<xref:System.Web.UI.Control>オブジェクト。  
+ メソッドを<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A>オーバーライドして、クライアントブラウザーに送信するターゲット固有のマークアップを生成します。 オブジェクト<xref:System.Web.UI.Adapters.ControlAdapter.Render%2A> <xref:System.Web.UI.Control.Render%2A?displayProperty=nameWithType> <xref:System.Web.UI.Adapters.ControlAdapter>がオブジェクト<xref:System.Web.UI.Control>にアタッチされている場合は、メソッドの代わりにメソッドが呼び出されます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラス、<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />基本メソッドの呼び出し、<see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />メソッド。 したがって、オーバーライド、<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出す必要があります、<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />の代わりではなくに加え、その処理が場合にのみ、基本メソッド、<see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />メソッド。  
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承する場合、基本メソッド<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />は<see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出します。 したがって、 <see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />メソッドのオーバーライドでは、 <see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" /> <see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />メソッドではなく、その処理がに加えられた場合にのみ、基本メソッドを呼び出す必要があります。  
   
-複合コントロールの場合は、アダプター開発者は必要があります、子コントロールを表示することを確認します。 場合、<see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />メソッド原因は、子コントロールをレンダリングするが、マークアップを生成しませんがありますに適した、<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />をそのベース メソッドを呼び出すメソッド。 子コントロールのターゲット固有の表示が必要な場合、アダプターを実装する必要があります、<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出し、<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />からメソッド、<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />メソッド。</para></block>
+複合コントロールの場合、アダプター開発者は子コントロールがレンダリングされていることを確認する必要があります。 メソッドによって子コントロールがレンダリングされるが、マークアップが生成されない場合は、 <see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />メソッドがその基本メソッドを呼び出すことが適切な場合があります。 <see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" /> 子コントロールのターゲット固有のレンダリングが必要な場合は、アダプターがメソッドを<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />実装し、メソッド<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />から<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出す必要があります。</para></block>
         <altmember cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />
         <altmember cref="T:System.Web.UI.Control" />
         <altmember cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />
@@ -689,13 +689,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 上書き、<xref:System.Web.UI.Adapters.ControlAdapter.RenderChildren%2A>メソッド個々 の子コントロールのマークアップにさらに、複合コントロールの子コントロールのセットのターゲット固有マークアップを生成する必要がある場合。  
+ 個々の<xref:System.Web.UI.Adapters.ControlAdapter.RenderChildren%2A>子コントロールのマークアップに加えて、複合コントロールの子コントロールセットのターゲット固有のマークアップを生成する必要がある場合は、メソッドをオーバーライドします。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>継承する場合、<see cref="T:System.Web.UI.Adapters.ControlAdapter" />複合コントロール、アダプター開発者用のクラスでは、子コントロールを表示することを確認する必要があります。 アダプターをオーバーライドする場合、<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出す必要が、<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />メソッドのオーバーライドから、<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />メソッド。  
+        <block subset="none" type="overrides"><para><see cref="T:System.Web.UI.Adapters.ControlAdapter" />クラスから継承する場合、複合コントロールの場合、アダプター開発者は子コントロールがレンダリングされることを確認する必要があります。 アダプターが<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />メソッドをオーバーライドする場合は、メソッドの<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" /> <see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />オーバーライドからメソッドを呼び出す必要があります。  
   
-場合、<see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />子レンダリングを制御します自体が、マークアップを生成しませんが、原因をメソッドがありますに適した、<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出して、基本のメソッドを呼び出す、<see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />のオーバーライドを実装する代わりに、メソッド<see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />メソッド。</para></block>
+メソッドによって子コントロールがレンダリングされるが、それ自体がマークアップを生成しない場合は<see cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" /> 、メソッドがその基本<see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" />メソッドを呼び出すことが適切な場合があります。このメソッドは、のオーバーライドを実装するのではなく、メソッドを呼び出します。 <see cref="M:System.Web.UI.Control.Render(System.Web.UI.HtmlTextWriter)" /><see cref="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />メソッド。</para></block>
         <altmember cref="M:System.Web.UI.Control.RenderChildren(System.Web.UI.HtmlTextWriter)" />
         <altmember cref="T:System.Web.UI.Control" />
         <altmember cref="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />
@@ -726,11 +726,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コントロールの状態は、ビュー ステートが無効になっている場合でも必要な重要な状態情報です。 アダプターは、独自のコントロール状態情報を保持する必要があるをオーバーライドできます、<xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A>と<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>メソッド。  
+ コントロールの状態は、ビューステートが無効になっている場合でも必要な状態情報です。 アダプターが独自のコントロール状態情報を保持する必要がある場合は、 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A>メソッド<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState%2A>とメソッドをオーバーライドできます。  
   
- アダプターは、状態を関連付けられたコントロールの状態から独立して要求間で維持する必要がある機能がある場合は、コントロールの状態情報を維持する必要があります。 大きなテキストの表示とのグループで構成される複合コントロールなど、<xref:System.Web.UI.WebControls.RadioButton>コントロールは、デスクトップ コンピューター ブラウザーの 1 つのビューとしてレンダリング可能性があります。 他のブラウザーで、レンダリングの 1 つのビューのラジオ ボタン グループの他のテキストの表示を分割します。 アダプターは、現在アクティブなビューに関する独自のターゲット固有情報を保持する必要があります。  
+ アダプターは、関連付けられたコントロールの状態とは独立して、状態を保持する必要がある機能がある場合に、コントロールの状態情報を保持する必要があります。 たとえば、大きなテキスト表示とコントロールの<xref:System.Web.UI.WebControls.RadioButton>グループで構成される複合コントロールは、デスクトップコンピューターのブラウザー上で1つのビューとして表示される場合があります。 その他のブラウザーでは、表示を分割して、テキストの表示と、ラジオボタングループの表示を分割する場合があります。 アダプターは、現在アクティブなビューに関する固有のターゲット固有の情報を保持する必要があります。  
   
- <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A>後すぐにメソッドが呼び出された、<xref:System.Web.UI.Control.SaveControlState%2A?displayProperty=nameWithType>メソッドで、`SaveState`ライフ サイクル ステージ。 アダプターのコントロールの状態は別とコントロールのコントロールの状態だけでなくです。  
+ メソッドは、 `SaveState`ライフサイクルステージの<xref:System.Web.UI.Control.SaveControlState%2A?displayProperty=nameWithType>メソッドの直後に呼び出されます。 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState%2A> アダプターコントロールの状態は、コントロールのコントロールの状態に加えて分離されています。  
   
  ]]></format>
         </remarks>
@@ -764,11 +764,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アダプターは、独自のビュー状態情報を保持する必要があるをオーバーライドできます、<xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>と<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>メソッド。  
+ アダプターが独自のビューステート情報を保持する必要がある場合は、 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>メソッド<xref:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState%2A>とメソッドをオーバーライドできます。  
   
- アダプターは、データが関連付けられているコントロールのビューステートから独立しての要求にわたって保持する必要があるときに状態情報を維持する必要があります。 たとえば、デスクトップ コンピューター ブラウザー上のグリッド コントロールは、行の 1 つのビューと列の値としてレンダリング可能性があります。 その他のブラウザーで、分割行と 1 つの行の詳細の一覧などの複数のビューに表示します。 アダプターが含まれていない現在アクティブなビュー状態ビューのデータを維持する必要があります。  
+ アダプターでは、コントロールの関連付けられたビューステートから独立して、要求間で管理する必要があるデータがある場合に、ビューステート情報を保持する必要があります。 たとえば、デスクトップコンピューターのブラウザー上のグリッドコントロールは、値の行と列の1つのビューとして表示される場合があります。 その他のブラウザーでは、行の一覧や単一行の詳細など、表示が複数の個別のビューに分割される場合があります。 アダプターは、ビューステートで現在アクティブでないビューのデータを維持する必要があります。  
   
- <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A>メソッドは、直前に呼び出されますが、<xref:System.Web.UI.Control.SaveViewState%2A?displayProperty=nameWithType>メソッドで、`SaveState`ライフ サイクル ステージ。 アダプターのビューステートは別とコントロールのビュー状態だけでなくです。  
+ メソッドは、 `SaveState`ライフサイクルステージの<xref:System.Web.UI.Control.SaveViewState%2A?displayProperty=nameWithType>メソッドの直前に呼び出されます。 <xref:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState%2A> アダプターのビューステートは、コントロールのビューステートに加えて分離されています。  
   
  ]]></format>
         </remarks>

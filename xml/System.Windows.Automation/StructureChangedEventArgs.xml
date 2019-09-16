@@ -1,5 +1,5 @@
 <Type Name="StructureChangedEventArgs" FullName="System.Windows.Automation.StructureChangedEventArgs">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="75e578899fd896fb4f772a098d91a5d3ebfb525c" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51897250" /></Metadata><TypeSignature Language="C#" Value="public sealed class StructureChangedEventArgs : System.Windows.Automation.AutomationEventArgs" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4b200136baab8b8c8ba34186cb185682e2aab030" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69222638" /></Metadata><TypeSignature Language="C#" Value="public sealed class StructureChangedEventArgs : System.Windows.Automation.AutomationEventArgs" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit StructureChangedEventArgs extends System.Windows.Automation.AutomationEventArgs" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Automation.StructureChangedEventArgs" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class StructureChangedEventArgs&#xA;Inherits AutomationEventArgs" />
@@ -48,24 +48,24 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返される値`structureChangeType`UI オートメーション プロバイダーの実装に依存します。 たとえば、ときに項目が追加または削除から、[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]指定可能性があります、プロバイダーが追加または削除された項目の数を決定できない場合は、リスト ボックス、<xref:System.Windows.Automation.StructureChangeType.ChildrenInvalidated>なく<xref:System.Windows.Automation.StructureChangeType.ChildAdded>または<xref:System.Windows.Automation.StructureChangeType.ChildRemoved>します。  
+ で`structureChangeType`返すことができる値は、UI オートメーションプロバイダーの実装によって異なります。 たとえば、項目[!INCLUDE[TLA2#tla_win32](~/includes/tla2sharptla-win32-md.md)]がリストボックスに追加または削除されたときに、プロバイダーが追加または削除した項目の数を判断できない場合、またはでは<xref:System.Windows.Automation.StructureChangeType.ChildRemoved>なく<xref:System.Windows.Automation.StructureChangeType.ChildAdded> 、が指定<xref:System.Windows.Automation.StructureChangeType.ChildrenInvalidated>されている可能性があります。  
   
- 次の表は、受信したイベントに情報を示します、<xref:System.Windows.Automation.StructureChangedEventHandler>によって異なる構造の変更。  
+ 次の表では、 <xref:System.Windows.Automation.StructureChangedEventHandler>さまざまな構造の変更のためにによって受信されるイベントの情報について説明します。  
   
-|`structureChangeType`|イベント ソース|`runtimeId`|  
+|`structureChangeType`|イベントソース|`runtimeId`|  
 |---------------------------|------------------|-----------------|  
 |<xref:System.Windows.Automation.StructureChangeType.ChildAdded>|追加された子。|追加された子。|  
-|<xref:System.Windows.Automation.StructureChangeType.ChildRemoved>|削除された子の親です。|削除された子。|  
-|<xref:System.Windows.Automation.StructureChangeType.ChildrenBulkAdded>|追加された子の親です。|追加された子の親です。|  
-|<xref:System.Windows.Automation.StructureChangeType.ChildrenBulkRemoved>|削除された子の親です。|削除された子の親です。|  
-|<xref:System.Windows.Automation.StructureChangeType.ChildrenInvalidated>|無効化された子の親です。|無効にされた子の親|  
+|<xref:System.Windows.Automation.StructureChangeType.ChildRemoved>|削除された子の親。|削除された子。|  
+|<xref:System.Windows.Automation.StructureChangeType.ChildrenBulkAdded>|追加された子の親。|追加された子の親。|  
+|<xref:System.Windows.Automation.StructureChangeType.ChildrenBulkRemoved>|削除された子の親。|削除された子の親。|  
+|<xref:System.Windows.Automation.StructureChangeType.ChildrenInvalidated>|無効にされた子の親。|無効化された子の親。|  
   
- カスタム コントロールは、意味のある値を指定できない可能性があります`runtimeId`します。 詳細については、「<xref:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseStructureChangedEvent%2A>」を参照してください。  
+ カスタムコントロールは、に`runtimeId`意味のある値を提供できない場合があります。 詳細については、「<xref:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseStructureChangedEvent%2A>」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、構築し、子が追加されたときにイベントを発生させる方法について説明またはカスタム リスト ボックスから削除します。  
+ 次の例では、カスタムリストボックスに子が追加または削除されたときにイベントを構築および発生させる方法を示します。  
   
  [!code-csharp[FragmentProvider#101](~/samples/snippets/csharp/VS_Snippets_Wpf/FragmentProvider/CSharp/ListFragment.cs#101)]
  [!code-vb[FragmentProvider#101](~/samples/snippets/visualbasic/VS_Snippets_Wpf/FragmentProvider/VisualBasic/ListFragment.vb#101)]  
@@ -99,9 +99,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 戻り値には、追加、削除、または、親の識別子を無効にされている追加または削除された子の場合、多くの子供の識別子があります。 詳細については、「<xref:System.Windows.Automation.StructureChangedEventArgs.%23ctor%2A>」を参照してください。  
+ 戻り値は、追加または削除された子の識別子、または多数の子が追加、削除、または無効化された場合に、親の識別子になります。 詳細については、「<xref:System.Windows.Automation.StructureChangedEventArgs.%23ctor%2A>」を参照してください。  
   
- カスタム コントロールは、有効なランタイム識別子を指定しない場合があります。  
+ カスタムコントロールに有効なランタイム識別子が指定されていない可能性があります。  
   
  ]]></format>
         </remarks>

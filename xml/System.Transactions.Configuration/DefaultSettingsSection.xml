@@ -1,5 +1,5 @@
 <Type Name="DefaultSettingsSection" FullName="System.Transactions.Configuration.DefaultSettingsSection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="bd5b873ee978b954ae9a5356afb20a78e9afd5d6" /><Meta Name="ms.sourcegitcommit" Value="16d2d159872fd213cae4b8f371d7ae9c8b027c89" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/17/2018" /><Meta Name="ms.locfileid" Value="51866219" /></Metadata><TypeSignature Language="C#" Value="public class DefaultSettingsSection : System.Configuration.ConfigurationSection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4b41069f6e012832440ef79ee01e4ea23c9a4eb4" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69143492" /></Metadata><TypeSignature Language="C#" Value="public class DefaultSettingsSection : System.Configuration.ConfigurationSection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DefaultSettingsSection extends System.Configuration.ConfigurationSection" />
   <TypeSignature Language="DocId" Value="T:System.Transactions.Configuration.DefaultSettingsSection" />
   <TypeSignature Language="VB.NET" Value="Public Class DefaultSettingsSection&#xA;Inherits ConfigurationSection" />
@@ -20,7 +20,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- トランザクション アプリケーションで使用される構成ファイルの例を次のように、指定できます。  
+ トランザクションアプリケーションで使用される構成ファイルの例を次に示します。  
   
  `<configuration>`  
   
@@ -34,7 +34,7 @@
   
  `</configuration>`  
   
- この例では、トランザクションの既定値を指定します。 具体的には、コンピューター名、分散トランザクション コーディネーター (MSDTC) ローカルで開始されたすべての分散トランザクションの調整を担当すると、トランザクションがタイムアウトするまで既定の時間を設定します。さらに、最長時間であるコンピューター レベルでのみ変更可能な設定は、トランザクションがタイムアウトする前に許可されていることを指定します。  
+ この例では、トランザクションの既定値を指定します。 具体的には、ローカルで開始されたすべての分散トランザクションの調整を担当する分散トランザクションコーディネーター (MSDTC) のコンピューター名と、トランザクションがタイムアウトする既定の時間を設定します。さらに、コンピューターレベルでのみ変更できる設定を指定します。これは、トランザクションがタイムアウトするまでに許容される最大時間です。  
   
  ]]></format>
     </remarks>
@@ -86,13 +86,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティには、Microsoft 分散トランザクション コーディネーター (MSDTC) が実行されていると、ローカルで開始するすべての分散トランザクションの調整を担当するコンピューターの名前が含まれています。  
+ このプロパティには、Microsoft 分散トランザクションコーディネーター (MSDTC) を実行しているコンピューターの名前が含まれ、ローカルで開始されたすべての分散トランザクションを調整します。  
   
- リモートのトランザクション マネージャーを有効にするには、このプロパティの値を設定する<xref:System.Transactions>します。 このプロパティがある場合`null`または空の文字列が含まれている、ローカル トランザクション マネージャーは、リモート トランザクション マネージャーとして使用されます。 このプロパティを既定の空の文字列以外の値に設定する場合は、Windows Server 2003 Service Pack 1 をインストールする必要があります。 すべてのトランザクション操作は失敗し、それ以外の場合<xref:System.NotSupportedException>します。 エスカレート、MSDTC によって管理されるトランザクションはローカルの MSDTC は使用されませんが、代わりにこのプロパティで指定されたコンピューターの 1 つを使用します。 そのトランザクション マネージャーは何らかの理由では使用できません、例外がスローされます。  
+ このプロパティの値を設定して、のリモートトランザクションマネージャー <xref:System.Transactions>を有効にすることができます。 このプロパティが`null`または空の文字列を含んでいる場合は、ローカルトランザクションマネージャーがリモートトランザクションマネージャーとして使用されます。 このプロパティを既定の空の文字列以外の値に設定した場合は、Windows Server 2003 Service Pack 1 をインストールする必要があります。 それ以外の場合、トランザクション操作<xref:System.NotSupportedException>はで失敗します。 MSDTC によって管理されるようにエスカレートされたトランザクションはローカル MSDTC を使用せず、代わりにこのプロパティで指定されたコンピューター上のトランザクションを使用します。 何らかの理由でそのトランザクションマネージャーが使用できない場合は、例外がスローされます。  
   
- このプロパティは、小文字は区別されません、マシンの短い名前を含める必要がありますのみ。  完全修飾ドメイン名、localhost、または IP アドレスは受け入れられません。 このプロパティに、無効なリモート コンピューター名が含まれている場合は、「構成情報を読み取ることができません」の例外がスローされます。  
+ このプロパティでは大文字と小文字が区別されず、コンピューターの短い名前のみを含める必要があります。  完全修飾ドメイン名、localhost、または IP アドレスは使用できません。 このプロパティに無効なリモートコンピューター名が含まれている場合は、"構成情報を読み取ることができません" という例外がスローされます。  
   
- リモートの MSDTC を使用する適切なセキュリティ アクセス許可が必要です。 DTC セキュリティ設定を構成する方法の詳細についてを参照してください、 [MSDTC の構成のセキュリティ プロパティ](https://msdn.microsoft.com/library/cossdk/html/2627a956-60b3-4d26-bc04-e0676ec97786.asp?frame=true)トピック。  
+ リモート MSDTC を使用するには、適切なセキュリティアクセス許可が必要です。 DTC セキュリティ設定を構成する方法の詳細については、「 [MSDTC セキュリティプロパティの構成](https://msdn.microsoft.com/library/cossdk/html/2627a956-60b3-4d26-bc04-e0676ec97786.asp?frame=true)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -153,9 +153,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、構成ファイルで既定のタイムアウト値からその値を取得します。 によって自動的に調整、<xref:System.Transactions.Configuration.MachineSettingsSection.MaxTimeout%2A>実行時の値。  
+ このプロパティは、構成ファイルの既定のタイムアウト値から値を取得します。 この値は、 <xref:System.Transactions.Configuration.MachineSettingsSection.MaxTimeout%2A>実行時に値によって自動的に調整されます。  
   
- 値は 00時 00分: 00 (または 0) は、無限大として解釈されます。  
+ 値 00:00:00 (またはゼロ) は無限大として解釈されます。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="ManipulationProcessor2D" FullName="System.Windows.Input.Manipulations.ManipulationProcessor2D">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="334bf6eda70ab47cec7b59012a33e50eab9e9cc0" /><Meta Name="ms.sourcegitcommit" Value="756d085f27705e86604f1bba5f2086ee23761acf" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/30/2019" /><Meta Name="ms.locfileid" Value="55354001" /></Metadata><TypeSignature Language="C#" Value="public class ManipulationProcessor2D" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ce14aefe536349ea0f021aafa6370bfce09a4b08" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70369258" /></Metadata><TypeSignature Language="C#" Value="public class ManipulationProcessor2D" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ManipulationProcessor2D extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
   <TypeSignature Language="VB.NET" Value="Public Class ManipulationProcessor2D" />
@@ -19,13 +19,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D>オブジェクトは、マニピュレーターのコレクション、複合オブジェクトとして扱います。 アプリケーションは、追跡および個々 のマニピュレーターを管理する必要があることから解放されます。  
+ オブジェクト<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D>は、マニピュレーターのコレクションを複合オブジェクトとして扱います。 これにより、個々のマニピュレーターを追跡して管理する必要がなくなり、アプリケーションが解放されます。  
   
- 単独の操作プロセッサでは、要素の移動は発生しません。 アプリケーション、必要に応じて操作を開始し、操作プロセッサから情報をリッスンすることにより受信、 <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started>、<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta>と<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed>イベント。 これらのイベントを使用して受信した値には、場所、サイズ、または必要に応じて要素の方向を変更することが有効にします。  
+ 操作プロセッサ自体によって要素が移動されることはありません。 アプリケーションは必要に応じて操作を開始し、、、および<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started> <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed>の各イベントをリッスンすること<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta>によって、操作プロセッサから情報を受け取ります。 これらのイベントを使用して受信した値により、必要に応じて要素の場所、サイズ、または向きを変更できます。  
   
- 操作の種類が許可されている操作プロセッサに通知する (変換、拡大縮小、回転) を設定して、<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.SupportedManipulations%2A>プロパティ。 非条件付きロジックには、操作する要素の変換を行うことができます。 たとえば、要素の方向を変更する前に回転が有効になっていることを確認ではなく無条件に適用できます操作プロセッサから受信した回転率回転が有効でない場合は、回転の変更が発生しなかったこと操作プロセッサが報告されます。  
+ 操作プロセッサに対して、プロパティを<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.SupportedManipulations%2A>設定することによって許可される操作の種類 (平行移動、スケール、回転) を通知します。 その後、操作対象の要素の変換に非条件ロジックを提供できます。 たとえば、要素の向きを変更する前に回転が有効になっているかどうかを確認するのではなく、操作プロセッサから受信した回転係数を無条件で適用することができます。回転が有効になっていない場合、操作プロセッサは、回転の変化が発生していないことを報告します。  
   
- 操作する要素が解放されるときに (すべてのマニピュレーターは削除されます)、摩擦をシミュレートし、徐々 に停止する前にその動きを遅く要素に慣性の処理を使用することができます。 詳細については、<xref:System.Windows.Input.Manipulations.InertiaProcessor2D> クラスを参照してください。  
+ 操作されている要素が解放されると (すべてのマニピュレーターが削除されます)、慣性処理を使用して摩擦をシミュレートし、要素が徐々に動きを遅くしてから停止するようにすることができます。 詳細については、<xref:System.Windows.Input.Manipulations.InertiaProcessor2D> クラスを参照してください。  
   
  ]]></format>
     </remarks>
@@ -95,9 +95,10 @@
       <MemberSignature Language="C#" Value="public event EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs&gt; Completed;" />
       <MemberSignature Language="ILAsm" Value=".event class System.EventHandler`1&lt;class System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs&gt; Completed" />
       <MemberSignature Language="DocId" Value="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed" />
-      <MemberSignature Language="VB.NET" Value="Public Event Completed As EventHandler(Of Manipulation2DCompletedEventArgs) " />
+      <MemberSignature Language="VB.NET" Value="Public Custom Event Completed As EventHandler(Of Manipulation2DCompletedEventArgs) " FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; event EventHandler&lt;System::Windows::Input::Manipulations::Manipulation2DCompletedEventArgs ^&gt; ^ Completed;" />
       <MemberSignature Language="F#" Value="member this.Completed : EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs&gt; " Usage="member this.Completed : System.EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs&gt; " />
+      <MemberSignature Language="VB.NET" Value="Public Event Completed As EventHandler(Of Manipulation2DCompletedEventArgs) " FrameworkAlternate="netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       <MemberType>Event</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Windows.Input.Manipulations</AssemblyName>
@@ -140,9 +141,10 @@
       <MemberSignature Language="C#" Value="public event EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs&gt; Delta;" />
       <MemberSignature Language="ILAsm" Value=".event class System.EventHandler`1&lt;class System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs&gt; Delta" />
       <MemberSignature Language="DocId" Value="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta" />
-      <MemberSignature Language="VB.NET" Value="Public Event Delta As EventHandler(Of Manipulation2DDeltaEventArgs) " />
+      <MemberSignature Language="VB.NET" Value="Public Custom Event Delta As EventHandler(Of Manipulation2DDeltaEventArgs) " FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; event EventHandler&lt;System::Windows::Input::Manipulations::Manipulation2DDeltaEventArgs ^&gt; ^ Delta;" />
       <MemberSignature Language="F#" Value="member this.Delta : EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs&gt; " Usage="member this.Delta : System.EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs&gt; " />
+      <MemberSignature Language="VB.NET" Value="Public Event Delta As EventHandler(Of Manipulation2DDeltaEventArgs) " FrameworkAlternate="netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       <MemberType>Event</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Windows.Input.Manipulations</AssemblyName>
@@ -157,7 +159,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta?displayProperty=nameWithType>イベントと<xref:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta?displayProperty=nameWithType>イベントは、同じ型。 通常、両方のイベントの同じイベント ハンドラーを使用することができます。  
+ <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta?displayProperty=nameWithType> イベント<xref:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta?displayProperty=nameWithType>とイベントは同じ型です。 通常、両方のイベントに同じイベントハンドラーを使用できます。  
   
    
   
@@ -195,11 +197,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- マニピュレーターが非常に現在処理中のマニピュレーターの重心の近くにある場合は、マニピュレーターが非常に小さなモーションにより、回転やスケーリングに非常に大きな変更になります。 この問題を回避するには設定<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius%2A>0 より大きい値にします。 重心には、その距離よりも近いマニピュレーターは、回転とスケーリング操作では含まれません。  
+ マニピュレーターが現在処理されているマニピュレーターの質量の中心に非常に近い場合、マニピュレーターの動きが非常に小さいと、回転やスケーリングに非常に大きな変化が生じます。 この問題を回避するに<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius%2A>は、を0より大きい値に設定します。 質量の中心に近い距離を超えるマニピュレーターは、回転とスケーリングの操作には含まれません。  
   
- 使用する一般的な値は、可能性の高い、マニピュレーターの動作を「誤って」の大きさに基づく必要があります。 たとえば、マニピュレーターが画面に接触する人間指の場合は、センチメートルなどに対応する radius は適切なのようにあります。  
+ 使用する一般的な値は、マニピュレーターの "偶発的な" 動きの大きさに基づいている必要があります。 たとえば、マニピュレーターが画面に触れる人間の指である場合、センチメートルに対応する半径が適している可能性があります。  
   
- 値は、<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius%2A>有限の正の数値でなければなりません。  
+ の<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius%2A>値は、有限の負でない数値である必要があります。  
   
  ]]></format>
         </remarks>
@@ -235,7 +237,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Pivot%2A>単一マニピュレーターの回転のピボット情報を提供するプロパティを使用します。 このプロパティを null に設定すると、単一マニピュレーターの回転が無効にします。  
+ プロパティ<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Pivot%2A>は、単一マニピュレーターの回転のピボット情報を提供するために使用されます。 このプロパティを null に設定すると、単一マニピュレーターの回転が無効になります。  
   
  ]]></format>
         </remarks>
@@ -268,12 +270,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パラメーター`manipulators`リストが空または null にすることがあります。 この結果、ゼロに達したマニピュレーターの数の場合、<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed>イベントが発生します。  
+ パラメーター `manipulators`には、空のリストまたは null を指定できます。 この結果、マニピュレーターの数がゼロに達した場合<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed> 、イベントが発生します。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Windows.UIElement.OnLostMouseCapture%2A>のメソッド、<xref:System.Windows.UIElement>を呼び出すオブジェクトがオーバーライドされる、<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.ProcessManipulators%2A>メソッドの一覧を<xref:System.Windows.Input.Manipulations.Manipulator2D>オブジェクトを null に設定します。  
+ <xref:System.Windows.UIElement.OnLostMouseCapture%2A>次の例で<xref:System.Windows.UIElement> <xref:System.Windows.Input.Manipulations.Manipulator2D>は、オブジェクトのメソッドをオーバーライドして、オブジェクトのリストを null に設定してメソッドを呼び出します。<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.ProcessManipulators%2A>  
   
  [!code-csharp[ManipulationAPI#_ManipulationItem_OnLostMouseCapture](~/samples/snippets/csharp/VS_Snippets_Misc/manipulationapi/cs/manipulationitem.xaml.cs#_manipulationitem_onlostmousecapture)]  
   
@@ -317,9 +319,10 @@
       <MemberSignature Language="C#" Value="public event EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs&gt; Started;" />
       <MemberSignature Language="ILAsm" Value=".event class System.EventHandler`1&lt;class System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs&gt; Started" />
       <MemberSignature Language="DocId" Value="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started" />
-      <MemberSignature Language="VB.NET" Value="Public Event Started As EventHandler(Of Manipulation2DStartedEventArgs) " />
+      <MemberSignature Language="VB.NET" Value="Public Custom Event Started As EventHandler(Of Manipulation2DStartedEventArgs) " FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; event EventHandler&lt;System::Windows::Input::Manipulations::Manipulation2DStartedEventArgs ^&gt; ^ Started;" />
       <MemberSignature Language="F#" Value="member this.Started : EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs&gt; " Usage="member this.Started : System.EventHandler&lt;System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs&gt; " />
+      <MemberSignature Language="VB.NET" Value="Public Event Started As EventHandler(Of Manipulation2DStartedEventArgs) " FrameworkAlternate="netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       <MemberType>Event</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Windows.Input.Manipulations</AssemblyName>
@@ -334,7 +337,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、イベント ハンドラーを<xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started>慣性の処理が実行されている場合とそうである場合に表示するイベントのチェックで停止します。  
+ 次の例では、 <xref:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started>イベントのイベントハンドラーが、慣性処理が実行されているかどうかを確認し、存在する場合はそれを停止します。  
   
  [!code-csharp[ManipulationAPI#_ManipulationItem_OnManipulationStarted](~/samples/snippets/csharp/VS_Snippets_Misc/manipulationapi/cs/manipulationitem.xaml.cs#_manipulationitem_onmanipulationstarted)]  
   

@@ -1,5 +1,5 @@
 <Type Name="PipeReader" FullName="System.IO.Pipelines.PipeReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ba31b62fce504cfaed405a68bb4c957a990f294a" /><Meta Name="ms.sourcegitcommit" Value="7b48428cbeb3a3c0221a3a096013b2659d01348c" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/04/2019" /><Meta Name="ms.locfileid" Value="68776180" /></Metadata><TypeSignature Language="C#" Value="public abstract class PipeReader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6100314f19e4ef4d969c91847e57af1c307dff5b" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70333606" /></Metadata><TypeSignature Language="C#" Value="public abstract class PipeReader" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit PipeReader extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.IO.Pipelines.PipeReader" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class PipeReader" />
@@ -165,6 +165,29 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="CompleteAsync">
+      <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.ValueTask CompleteAsync (Exception exception = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance valuetype System.Threading.Tasks.ValueTask CompleteAsync(class System.Exception exception) cil managed" />
+      <MemberSignature Language="DocId" Value="M:System.IO.Pipelines.PipeReader.CompleteAsync(System.Exception)" />
+      <MemberSignature Language="F#" Value="abstract member CompleteAsync : Exception -&gt; System.Threading.Tasks.ValueTask&#xA;override this.CompleteAsync : Exception -&gt; System.Threading.Tasks.ValueTask" Usage="pipeReader.CompleteAsync exception" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyName>System.IO.Pipelines</AssemblyName>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.ValueTask</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="exception" Type="System.Exception" Index="0" FrameworkAlternate="dotnet-plat-ext-3.0" />
+      </Parameters>
+      <Docs>
+        <param name="exception">読み取りの完了の原因となったエラーを示す省略可能な例外。</param>
+        <summary>現在のパイプの読み取り側のインスタンスを完了済みとしてマークします。これは、これ以上データが読み取られなくなることを意味します。</summary>
+        <returns>非同期の完了操作を表す値タスク。</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="CopyToAsync">
       <MemberSignature Language="C#" Value="public virtual System.Threading.Tasks.Task CopyToAsync (System.IO.Pipelines.PipeWriter destination, System.Threading.CancellationToken cancellationToken = null);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task CopyToAsync(class System.IO.Pipelines.PipeWriter destination, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
@@ -241,12 +264,16 @@
       </Docs>
     </Member>
     <Member MemberName="OnWriterCompleted">
-      <MemberSignature Language="C#" Value="public abstract void OnWriterCompleted (Action&lt;Exception,object&gt; callback, object state);" />
+      <MemberSignature Language="C#" Value="public abstract void OnWriterCompleted (Action&lt;Exception,object&gt; callback, object state);" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void OnWriterCompleted(class System.Action`2&lt;class System.Exception, object&gt; callback, object state) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.IO.Pipelines.PipeReader.OnWriterCompleted(System.Action{System.Exception,System.Object},System.Object)" />
-      <MemberSignature Language="VB.NET" Value="Public MustOverride Sub OnWriterCompleted (callback As Action(Of Exception, Object), state As Object)" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; abstract void OnWriterCompleted(Action&lt;Exception ^, System::Object ^&gt; ^ callback, System::Object ^ state);" />
-      <MemberSignature Language="F#" Value="abstract member OnWriterCompleted : Action&lt;Exception, obj&gt; * obj -&gt; unit" Usage="pipeReader.OnWriterCompleted (callback, state)" />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride Sub OnWriterCompleted (callback As Action(Of Exception, Object), state As Object)" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; abstract void OnWriterCompleted(Action&lt;Exception ^, System::Object ^&gt; ^ callback, System::Object ^ state);" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2" />
+      <MemberSignature Language="F#" Value="abstract member OnWriterCompleted : Action&lt;Exception, obj&gt; * obj -&gt; unit" Usage="pipeReader.OnWriterCompleted (callback, state)" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2" />
+      <MemberSignature Language="C#" Value="public virtual void OnWriterCompleted (Action&lt;Exception,object&gt; callback, object state);" FrameworkAlternate="dotnet-plat-ext-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub OnWriterCompleted (callback As Action(Of Exception, Object), state As Object)" FrameworkAlternate="dotnet-plat-ext-3.0" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void OnWriterCompleted(Action&lt;Exception ^, System::Object ^&gt; ^ callback, System::Object ^ state);" FrameworkAlternate="dotnet-plat-ext-3.0" />
+      <MemberSignature Language="F#" Value="abstract member OnWriterCompleted : Action&lt;Exception, obj&gt; * obj -&gt; unit&#xA;override this.OnWriterCompleted : Action&lt;Exception, obj&gt; * obj -&gt; unit" Usage="pipeReader.OnWriterCompleted (callback, state)" FrameworkAlternate="dotnet-plat-ext-3.0" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.IO.Pipelines</AssemblyName>
@@ -254,6 +281,11 @@
         <AssemblyVersion>4.0.0.1</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="dotnet-plat-ext-3.0">
+          <AttributeName>System.Obsolete("OnWriterCompleted may not be invoked on all implementations of PipeReader. This will be removed in a future release.")</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
@@ -265,8 +297,8 @@
         <param name="callback">登録するコールバック。</param>
         <param name="state">呼び出されたとき、<paramref name="callback" /> に渡す状態オブジェクト。</param>
         <summary>パイプの <see cref="T:System.IO.Pipelines.PipeWriter" /> 側が完了すると実行されるコールバックを登録します。</summary>
-         <remarks>
-           <format type="text/markdown"><![CDATA[
+        <remarks>
+          <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -308,7 +340,7 @@
       <MemberSignature Language="DocId" Value="M:System.IO.Pipelines.PipeReader.TryRead(System.IO.Pipelines.ReadResult@)" />
       <MemberSignature Language="VB.NET" Value="Public MustOverride Function TryRead (ByRef result As ReadResult) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; abstract bool TryRead([Runtime::InteropServices::Out] System::IO::Pipelines::ReadResult % result);" />
-      <MemberSignature Language="F#" Value="abstract member TryRead :  -&gt; bool" Usage="pipeReader.TryRead result" />
+      <MemberSignature Language="F#" Value="abstract member TryRead : ReadResult -&gt; bool" Usage="pipeReader.TryRead result" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.IO.Pipelines</AssemblyName>

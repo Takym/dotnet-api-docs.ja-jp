@@ -1,5 +1,5 @@
 <Type Name="ContextExchangeMechanism" FullName="System.ServiceModel.Channels.ContextExchangeMechanism">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="293cde5c62064964c7e571fb23c33fd7cd92ddc1" /><Meta Name="ms.sourcegitcommit" Value="f1d16425528e237257ca3b58eb49217a514849ea" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="04/24/2019" /><Meta Name="ms.locfileid" Value="64040977" /></Metadata><TypeSignature Language="C#" Value="public enum ContextExchangeMechanism" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="eb1a88db39d805af9ecdb3cf03a48078ff45b899" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69156816" /></Metadata><TypeSignature Language="C#" Value="public enum ContextExchangeMechanism" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed ContextExchangeMechanism extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.ContextExchangeMechanism" />
   <TypeSignature Language="VB.NET" Value="Public Enum ContextExchangeMechanism" />
@@ -31,13 +31,13 @@
   
  サービス エンドポイントでコンテキスト交換プロトコルのサポートを必要とする場合は、公開されたポリシーにこの条件を明示できます。 SOAP レベルでコンテキスト交換プロトコルをサポートするためのクライアント条件を表しているポリシー アサーションや、HTTP クッキー サポートの有効化を必要とするポリシー アサーションはエンドポイントによって発行できます。 このアサーションはサービスのポリシー内に生成されます。生成は次のように、<xref:System.ServiceModel.Channels.ContextBindingElement.ContextExchangeMechanism%2A> プロパティの値によって制御します。  
   
--   HttpCookie の次のアサーションが生成されます。  
+-   HttpCookie の場合、次のアサーションが生成されます。  
   
     ```  
     <HttpUseCookie xmlns="http://schemas.xmlsoap.org/soap/http"/>  
     ```  
   
--   ContextSoapHeader の次のアサーションが生成されます。  
+-   ContextSoapHeader の場合、次のアサーションが生成されます。  
   
     ```  
     <IncludeContext   
@@ -45,9 +45,9 @@
     protectionLevel="Sign" />  
     ```  
   
- HttpCookie 列挙体は、トランスポート層で実装されます。 この列挙体は、クライアントが最初の要求を行い、これに対応する返信サービスによってコンテキストが返信される単一方向通信で使用することができます。 その後サービスとクライアント間でやり取りされるすべてのメッセージには、そのメッセージ交換が持続している間、コンテキストが含まれます。 HTTP トランスポートと HTTP クッキーを使用できるようにすることに同意しているクライアントを使用するサービス エンドポイント、アプリケーション コンテキストを交換 HttpCookie 列挙型を使用できます。 HTTP クッキーを使用してコンテキストを伝達する場合は、トランスポート セキュリティを使用して保護する必要があります。 この機構は HTTP 以外のトランスポートで使用することはできません。  
+ HttpCookie 列挙は、トランスポート層で実装されます。 この列挙体は、クライアントが最初の要求を行い、これに対応する返信サービスによってコンテキストが返信される単一方向通信で使用することができます。 その後サービスとクライアント間でやり取りされるすべてのメッセージには、そのメッセージ交換が持続している間、コンテキストが含まれます。 Http トランスポートを使用するサービスエンドポイントと HTTP クッキーの使用を許可するクライアントに対しては、HttpCookie 列挙を使用してアプリケーションコンテキストを交換できます。 HTTP クッキーを使用してコンテキストを伝達する場合は、トランスポート セキュリティを使用して保護する必要があります。 この機構は HTTP 以外のトランスポートで使用することはできません。  
   
- ContextSoapHeader 列挙体は、カスタム コンテキスト チャネルで実装され、HTTP 以外のトランスポートと要求/応答、双方向セッションなどの他のメッセージ交換パターンで使用できる別の方法を提供します。 このコンテキスト交換プロトコルでは、HTTP クッキーの機能に相当する SOAP ベースの機能がトランスポート層で提供されています。 このプロトコルには、コンテキスト情報を表すための新しい `wsc:Context` SOAP ヘッダーが導入されています。 `wsc:Context` ヘッダーは、WS-Addressing ヘッダーを保護しなければならないのと同じ理由から、送信中に変更されないように保護する必要があります。着信時、これらのヘッダーを使用して正しいワークフロー インスタンスにメッセージがディスパッチされます。 したがって、バインドにメッセージ保護機能がある場合は、SOAP レベルまたはトランスポート レベルで `wsc:Context` ヘッダーにデジタル署名を適用する必要があります。  
+ ContextSoapHeader 列挙体は、カスタムコンテキストチャネルで実装され、HTTP 以外のトランスポートやその他のメッセージ交換パターン (要求/応答、双方向セッションなど) で使用できる代替手段を提供します。 このコンテキスト交換プロトコルでは、HTTP クッキーの機能に相当する SOAP ベースの機能がトランスポート層で提供されています。 このプロトコルには、コンテキスト情報を表すための新しい `wsc:Context` SOAP ヘッダーが導入されています。 `wsc:Context` ヘッダーは、WS-Addressing ヘッダーを保護しなければならないのと同じ理由から、送信中に変更されないように保護する必要があります。着信時、これらのヘッダーを使用して正しいワークフロー インスタンスにメッセージがディスパッチされます。 したがって、バインドにメッセージ保護機能がある場合は、SOAP レベルまたはトランスポート レベルで `wsc:Context` ヘッダーにデジタル署名を適用する必要があります。  
   
  チャネル レイヤーでは、<xref:System.ServiceModel.Channels.ContextMessageProperty> を使用して、アプリケーション層とコンテキストを送受信します。  
   

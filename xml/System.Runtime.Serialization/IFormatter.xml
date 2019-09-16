@@ -1,5 +1,5 @@
 <Type Name="IFormatter" FullName="System.Runtime.Serialization.IFormatter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="23f47f6f000517dc57769bfe04fb4c405b492f4f" /><Meta Name="ms.sourcegitcommit" Value="a3e01ec36374fac54a55add0dcc1e754e394abeb" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/30/2019" /><Meta Name="ms.locfileid" Value="58705087" /></Metadata><TypeSignature Language="C#" Value="public interface IFormatter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="50f410e86381178377bec311147321dc9672db41" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69087461" /></Metadata><TypeSignature Language="C#" Value="public interface IFormatter" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IFormatter" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.IFormatter" />
   <TypeSignature Language="VB.NET" Value="Public Interface IFormatter" />
@@ -34,13 +34,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- フォーマッタとして識別される任意のクラスによってこのインターフェイスを実装する必要があります、<xref:System.Runtime.Serialization>アーキテクチャ。  
+ このインターフェイスは、 <xref:System.Runtime.Serialization>アーキテクチャでフォーマッタとして識別される任意のクラスによって実装する必要があります。  
   
- オブジェクトを独自のシリアル化の制御を行う実装することによって、<xref:System.Runtime.Serialization.ISerializable>インターフェイス。 オブジェクトをシリアル化するためには、シリアル化可能なものとしては、そのオブジェクトをマークする必要があります。 クラスにシリアル化可能な属性を適用することで、これを行うことができます。 グラフの任意のオブジェクトがシリアル化可能でない場合は、シリアル化は失敗します。  
+ 独自のシリアル化を制御するオブジェクトは、 <xref:System.Runtime.Serialization.ISerializable>インターフェイスを実装することによってこれを行うことができます。 オブジェクトをシリアル化するには、そのオブジェクトをシリアル化可能としてマークする必要があります。 これを行うには、serializable 属性をクラスに適用します。 グラフ内のいずれかのオブジェクトがシリアル化できない場合、シリアル化は失敗します。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>すべてのフォーマッタは、このインターフェイスを実装する必要があります。 使用<see cref="M:System.Runtime.Serialization.IFormatter.Serialize(System.IO.Stream,System.Object)" />オブジェクトまたはオブジェクトのグラフをシリアル化します。 使用<see cref="M:System.Runtime.Serialization.IFormatter.Deserialize(System.IO.Stream)" />ストリームを逆シリアル化して元のオブジェクトまたはオブジェクトのグラフのクローンを作成します。</para></block>
+    <block subset="none" type="overrides"><para>すべてのフォーマッタは、このインターフェイスを実装する必要があります。 オブジェクト<see cref="M:System.Runtime.Serialization.IFormatter.Serialize(System.IO.Stream,System.Object)" />またはオブジェクトのグラフをシリアル化するために使用します。 ストリーム<see cref="M:System.Runtime.Serialization.IFormatter.Deserialize(System.IO.Stream)" />を逆シリアル化し、元のオブジェクトまたはオブジェクトのグラフの複製を作成するために使用します。</para></block>
     <altmember cref="T:System.Runtime.Serialization.Formatter" />
     <altmember cref="T:System.Runtime.Serialization.ISerializable" />
     <related type="Article" href="~/docs/standard/serialization/xml-and-soap-serialization.md">XML シリアル化および SOAP シリアル化</related>
@@ -81,9 +81,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ときに情報からの型を解決しようとしてエンコードされたストリーム、フォーマッタで呼び出し、<xref:System.Runtime.Serialization.SerializationBinder.BindToType%2A>メソッドを<xref:System.Runtime.Serialization.SerializationBinder>します。 このメソッドは、これらのパラメーターを解決する<xref:System.Type>オブジェクト。 バインダーを見つけることができます、<xref:System.Type>シリアル化時の場合よりも、別のアセンブリが逆シリアル化時にします。  
+ ストリームでエンコードされた情報から型を解決しようとすると、フォーマッタ<xref:System.Runtime.Serialization.SerializationBinder.BindToType%2A>は<xref:System.Runtime.Serialization.SerializationBinder>に対してメソッドを呼び出します。 このメソッドは、 <xref:System.Type>これらのパラメーターをオブジェクトに解決します。 バインダーは、シリアル化<xref:System.Type>時とは異なるアセンブリにあるの逆シリアル化時にを見つけることができます。  
   
- このプロパティを設定してもシリアル化中には影響しません。  
+ シリアル化中にこのプロパティを設定しても効果はありません。  
   
  ]]></format>
         </remarks>
@@ -124,7 +124,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの値が実装するオブジェクトに渡される<xref:System.Runtime.Serialization.ISerializable>または<xref:System.Runtime.Serialization.ISerializationSurrogate>します。 <xref:System.Runtime.Serialization.StreamingContext> (シリアル化中に) 変換先、または (逆シリアル化) 中、データのソースを示します。 実装するオブジェクト<xref:System.Runtime.Serialization.ISerializable>の値に応じてで送信されたデータを変更できる、<xref:System.Runtime.Serialization.IFormatter.Context%2A>します。  
+ このプロパティの値は、または<xref:System.Runtime.Serialization.ISerializable> <xref:System.Runtime.Serialization.ISerializationSurrogate>を実装している任意のオブジェクトに渡されます。 は<xref:System.Runtime.Serialization.StreamingContext> 、データのシリアル化時 (シリアル化中) またはソース (逆シリアル化中) を示します。 を実装<xref:System.Runtime.Serialization.ISerializable>するオブジェクトは、の値に応じて、 <xref:System.Runtime.Serialization.IFormatter.Context%2A>送信するデータを変更できます。  
   
  ]]></format>
         </remarks>
@@ -169,9 +169,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.IFormatter.Deserialize%2A>ストリームからグラフの情報を読み取ってを元のグラフのクローンを再構築します。 グラフのトポロジは保持されます。  
+ メソッド<xref:System.Runtime.Serialization.IFormatter.Deserialize%2A>は、ストリームからグラフ情報を読み取り、元のグラフの複製を再構築します。 グラフのトポロジが保持されます。  
   
- 逆シリアル化プロセスを選択し、適切な型の空のオブジェクトを割り当てますによって転送されるデータからそのフィールドを再作成、`serializationStream`ストリーム。 コンス トラクターが呼び出されないこと、オブジェクトの逆シリアル化中に注意してください。 重要です。  
+ 逆シリアル化プロセスでは、適切な型の空のオブジェクトが割り当てられ、 `serializationStream`ストリームで送信されるデータからフィールドの情報が再指定されます。 逆シリアル化中にオブジェクトに対して呼び出されるコンストラクターがないことに注意する必要があります。  
   
  ]]></format>
         </remarks>
@@ -218,9 +218,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.IFormatter.Serialize%2A>メソッドは、指定されたオブジェクトを自動的にシリアル化し、指定されたストリームに、すべてのオブジェクトが接続されています。  
+ メソッド<xref:System.Runtime.Serialization.IFormatter.Serialize%2A>は、指定されたオブジェクトと、それに接続されているすべてのオブジェクトを、指定されたストリームに自動的にシリアル化します。  
   
- 既定では、シリアル化プロセスは、(パブリックとプライベート) すべてのフィールドの値を収集することによってオブジェクトの状態を記録します。 これらのフィールドでその型のアセンブリ修飾名などのオブジェクトに関する情報とストリームに保存されます。  
+ 既定では、シリアル化プロセスは、すべてのフィールド (パブリックおよびプライベート) の値を収集することによって、オブジェクトの状態を記録します。 これらのフィールドは、型のアセンブリによって修飾された名前など、オブジェクトに関する情報と共にストリームに保存されます。  
   
  ]]></format>
         </remarks>
@@ -262,7 +262,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- A<xref:System.Runtime.Serialization.ISerializationSurrogate>により、ユーザーが特定のオブジェクトまたはオブジェクトのクラスのシリアル化を処理するために最適なオブジェクトに最適なを指定します。 実装を考えて<xref:System.Runtime.Serialization.ISerializable>別のオブジェクトが用意されています。  
+ を<xref:System.Runtime.Serialization.ISerializationSurrogate>使用すると、特定のオブジェクトまたはオブジェクトのクラスのシリアル化を処理するのに最適なオブジェクトをユーザーが指定できます。 これは、の実装と考える<xref:System.Runtime.Serialization.ISerializable>ことができますが、別のオブジェクトによって提供されます。  
   
  ]]></format>
         </remarks>

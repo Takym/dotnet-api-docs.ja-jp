@@ -1,5 +1,5 @@
 <Type Name="ModelItem" FullName="System.Activities.Presentation.Model.ModelItem">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7a39b35f6b07e39f9c88049e2f4ef710c02000f8" /><Meta Name="ms.sourcegitcommit" Value="bac13a81377b1c4ebf3990e3287a6f1700f73751" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/19/2019" /><Meta Name="ms.locfileid" Value="57951371" /></Metadata><TypeSignature Language="C#" Value="public abstract class ModelItem : System.ComponentModel.INotifyPropertyChanged" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="205965d729f93d133a0aad31770d56f1a8eb3aa4" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70339353" /></Metadata><TypeSignature Language="C#" Value="public abstract class ModelItem : System.ComponentModel.INotifyPropertyChanged" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ModelItem extends System.Object implements class System.ComponentModel.INotifyPropertyChanged" />
   <TypeSignature Language="DocId" Value="T:System.Activities.Presentation.Model.ModelItem" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ModelItem&#xA;Implements INotifyPropertyChanged" />
@@ -23,7 +23,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 項目のプロパティにアクセスすることができます、<xref:System.Activities.Presentation.Model.ModelItem.Properties%2A>プロパティの値を収集して設定を変更します。  
+ <xref:System.Activities.Presentation.Model.ModelItem.Properties%2A>コレクションを使用して項目のプロパティにアクセスし、プロパティの値を変更することができます。  
   
  <xref:System.Activities.Presentation.Model.ModelItem> は、デザイナーの基になるデータ モデルを包むラッパーです。 基になるモデルには、<xref:System.Activities.Presentation.Model.ModelItem.GetCurrentValue%2A> メソッドを使用してアクセスできます。  
   
@@ -370,7 +370,7 @@ Assert.AreEqual(root.Properties["Residence"], location.Source, "sources point to
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- すべての項目は、名前を持つため、これを返す可能性がある必要があります`null`します。 項目の型、および階層におけるその位置に応じ、項目について <xref:System.Activities.Presentation.Model.ModelItem.Name%2A> を設定すること必ずしも有効でない場合があります。 場合、<xref:System.Activities.Presentation.Model.ModelItem.ItemType%2A>この項目の宣言を`RuntimeNamePropertyAttribute`、<xref:System.Activities.Presentation.Model.ModelItem.Name%2A>プロパティは、その属性によって指示されたプロパティに直接マッピングします。  
+ すべての項目に名前が必要なわけではない`null`ので、これはを返す可能性があります。 項目の型、および階層におけるその位置に応じ、項目について <xref:System.Activities.Presentation.Model.ModelItem.Name%2A> を設定すること必ずしも有効でない場合があります。 この項目<xref:System.Activities.Presentation.Model.ModelItem.ItemType%2A>のがを`RuntimeNamePropertyAttribute`宣言する場合、 <xref:System.Activities.Presentation.Model.ModelItem.Name%2A>プロパティは、その属性によって示されるプロパティに直接マッピングされます。  
   
  ]]></format>
         </remarks>
@@ -450,9 +450,10 @@ Assert.AreEqual(root.Properties["Residence"], location.Source, "sources point to
       <MemberSignature Language="C#" Value="public abstract event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;" />
       <MemberSignature Language="ILAsm" Value=".event class System.ComponentModel.PropertyChangedEventHandler PropertyChanged" />
       <MemberSignature Language="DocId" Value="E:System.Activities.Presentation.Model.ModelItem.PropertyChanged" />
-      <MemberSignature Language="VB.NET" Value="Public MustOverride Event PropertyChanged As PropertyChangedEventHandler " />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride Custom Event PropertyChanged As PropertyChangedEventHandler " FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; abstract event System::ComponentModel::PropertyChangedEventHandler ^ PropertyChanged;" />
       <MemberSignature Language="F#" Value="member this.PropertyChanged : System.ComponentModel.PropertyChangedEventHandler " Usage="member this.PropertyChanged : System.ComponentModel.PropertyChangedEventHandler " />
+      <MemberSignature Language="VB.NET" Value="Public MustOverride Event PropertyChanged As PropertyChangedEventHandler " FrameworkAlternate="netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       <MemberType>Event</MemberType>
       <Implements>
         <InterfaceMember>E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged</InterfaceMember>
@@ -519,7 +520,7 @@ Assert.AreEqual(root.Properties["Residence"], location.Source, "sources point to
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返されますかどうか、項目は、オブジェクト グラフのルートを表す、`null`します。 項目がコレクションまたはディクショナリのメンバーである場合、Source プロパティから返されたプロパティは、そのコレクションまたはディクショナリによって指定される擬似プロパティとなります。 その他の値については、Source プロパティは、値が実際に設定されているプロパティを返します。 したがって、値が継承されている場合は、Source プロパティを使用することで、値の本来の提供元を検出できます。  
+ 項目がオブジェクトグラフのルートを表している場合は、を`null`返します。 項目がコレクションまたはディクショナリのメンバーである場合、Source プロパティから返されたプロパティは、そのコレクションまたはディクショナリによって指定される擬似プロパティとなります。 その他の値については、Source プロパティは、値が実際に設定されているプロパティを返します。 したがって、値が継承されている場合は、Source プロパティを使用することで、値の本来の提供元を検出できます。  
   
  ]]></format>
         </remarks>

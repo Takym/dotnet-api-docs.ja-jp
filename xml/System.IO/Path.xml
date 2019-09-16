@@ -1,5 +1,5 @@
 <Type Name="Path" FullName="System.IO.Path">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="38b09f307d7ff385c5bc34bd987870618da3d6ad" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69243185" /></Metadata><TypeSignature Language="C#" Value="public static class Path" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3785566e0d4957f8a6fa5ee5900cc8179064b119" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70343411" /></Metadata><TypeSignature Language="C#" Value="public static class Path" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed Path extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.IO.Path" />
   <TypeSignature Language="VB.NET" Value="Public Class Path" />
@@ -590,10 +590,12 @@ Windows ベースのデスクトップ プラットフォームでは、<paramre
    separator = Path.DirectorySeparatorChar;
    path = $"{separator}users{separator}user1{separator}";
    ```
+
    ```vb
-   separator = Path.DirectorySeparatorChar;
-   path = $"{separator}users{separator}user1{separator}";
+   separator = Path.DirectorySeparatorChar
+   path = $"{separator}users{separator}user1{separator}"
    ``` 
+
    また、 <xref:System.IO.Path.AltDirectorySeparatorChar>プロパティから値を取得することもできます。これは、Windows と Unx ベースのシステムの両方で同じであるためです。
 
 - プロパティを<xref:System.IO.Path.AltDirectorySeparatorChar>取得する
@@ -1179,10 +1181,10 @@ Windows でのファイルパス形式の詳細については、「 [windows �
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> が、長さが 0 の文字列であるか、空白しか含んでいないか、または <see cref="M:System.IO.Path.GetInvalidPathChars" /> で定義されている無効な文字を 1 つ以上含んでいます。  
   
-- または - 
+または 
 システムが絶対パスを取得できませんでした。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="path" /> に、ボリュームの識別子 ("C:\\") の一部ではないコロン (:) が含まれています。</exception>
         <exception cref="T:System.IO.PathTooLongException">指定したパス、ファイル名、またはその両方がシステム定義の最大長を超えています。</exception>
         <permission cref="T:System.Security.Permissions.FileIOPermission">パスへのアクセスに使用します。</permission>
@@ -1244,7 +1246,7 @@ Windows でのファイルパス形式の詳細については、「 [windows �
         <exception cref="T:System.ArgumentNullException"><paramref name="path" /> または <paramref name="basePath" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="basePath" /> が完全修飾パスではありません。
 
-または
+- または -
 
 <paramref name="path" /> または <paramref name="basePath" /> に無効なパス文字 (U+0000 など) が含まれています。</exception>
       </Docs>
@@ -1698,7 +1700,7 @@ Windows でのファイルパス形式の詳細については、「 [windows �
  <xref:System.IO.Path.GetTempPath%2A> メソッドを呼び出す方法を次のコード例に示します。  
   
 ```vb  
-result As String = Path.GetTempPath()  
+Dim result As String = Path.GetTempPath()  
 Console.WriteLine(result)  
 ```  
   
@@ -2211,7 +2213,7 @@ C:\Users\UserName\AppData\Local\Temp\
 次の例は、メソッド<xref:System.IO.Path.Join(System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D)?displayProperty=nameWithType>と<xref:System.IO.Path.Combine(System.String,System.String)?displayProperty=nameWithType>メソッドによって返されるパスの違いを示しています。 最初の文字列がドライブおよびルートディレクトリを含む完全修飾パスで、2番目の文字列が最初のパスからの相対パスである場合、2つのメソッドは同じ結果を生成します。 2回目と3回目の`ShowPathInformation`メソッドの呼び出しでは、2つのメソッドによって返される文字列は分岐します。 2番目のメソッド呼び出しでは、最初の文字列引数はドライブ、2番目の文字列はルート化されたディレクトリです。 メソッド`Join`は、2つの文字列を連結し、重複するパス区切り記号を保持します。 メソッド`Combine`は、ドライブを破棄し、現在のドライブ上のルート化されたディレクトリを返します。 アプリケーションの現在のドライブが C:\ の場合また、この文字列は、ディレクトリ内のファイルにアクセスするために使用され、d: ではなく C: にアクセスします。 最後に、の3番目の呼び出し`ShowPathInformation`の引数は両方ともルート化されているため、メソッドは`Join`単に`Combine`それらを追加して無意味ファイルパスを作成します。メソッドは、最初の文字列を破棄し、2番目の文字列を返します。 ファイルアクセスにこの文字列を使用すると、アプリケーションが機密ファイルに意図せずアクセスする可能性があります。  
 
 [!code-csharp[Path.Join(String,String)](~/samples/snippets/csharp/api/system.io/path/combine2/program.cs)]
-[!code-csharp[Path.Join(String,String)](~/samples/snippets/visualbasic/api/system.io/path/combine2/program.vb)]
+[!code-vb[Path.Join(String,String)](~/samples/snippets/visualbasic/api/system.io/path/combine2/program.vb)]
 
 
        ]]></format>
@@ -2325,7 +2327,7 @@ C:\Users\UserName\AppData\Local\Temp\
 次の例は、メソッド<xref:System.IO.Path.Join(System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D,System.ReadOnlySpan%7BSystem.Char%7D)?displayProperty=nameWithType>と<xref:System.IO.Path.Combine(System.String,System.String,System.String)?displayProperty=nameWithType>メソッドによって返されるパスの違いを示しています。 最初の文字列がドライブおよびルートディレクトリを含む完全修飾パスで、2番目の文字列が最初のパスからの相対パスである場合、2つのメソッドは同じ結果を生成します。 2回目と3回目の`ShowPathInformation`メソッドの呼び出しでは、2つのメソッドによって返される文字列は分岐します。 2番目のメソッド呼び出しでは、最初の文字列引数はドライブ、2番目の文字列はルート化されたディレクトリです。 メソッド`Join`は、2つの文字列を連結し、重複するパス区切り記号を保持します。 <xref:System.IO.Path.GetFullPath%2A>メソッドを呼び出すと、重複が除去されます。 メソッド`Combine`は、ドライブを破棄し、現在のドライブ上のルート化されたディレクトリを返します。 アプリケーションの現在のドライブが C:\ の場合また、この文字列は、ディレクトリ内のファイルにアクセスするために使用され、d: ではなく C: にアクセスします。 最後に、の3番目の呼び出し`ShowPathInformation`の最後の引数がルートになっているため、メソッドは`Join`単にそれを最初の2つの引数`Combine`に追加して無意味ファイルのパスを作成します。メソッドは、最初の2つの文字列を破棄し、を返します。3番目の。 ファイルアクセスにこの文字列を使用すると、アプリケーションが機密ファイルに意図せずアクセスする可能性があります。
 
 [!code-csharp[Path.Join(String,String,String)](~/samples/snippets/csharp/api/system.io/path/combine3/program.cs)]
-[!code-csharp[Path.Join(String,String,String)](~/samples/snippets/visualbasic/api/system.io/path/combine3/program.vb)]
+[!code-vb[Path.Join(String,String,String)](~/samples/snippets/visualbasic/api/system.io/path/combine3/program.vb)]
 
        ]]></format>
         </remarks>
@@ -2633,7 +2635,7 @@ C:\Users\UserName\AppData\Local\Temp\
       <MemberSignature Language="DocId" Value="M:System.IO.Path.TryJoin(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Span{System.Char},System.Int32@)" />
       <MemberSignature Language="VB.NET" Value="Public Shared Function TryJoin (path1 As ReadOnlySpan(Of Char), path2 As ReadOnlySpan(Of Char), destination As Span(Of Char), ByRef charsWritten As Integer) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static bool TryJoin(ReadOnlySpan&lt;char&gt; path1, ReadOnlySpan&lt;char&gt; path2, Span&lt;char&gt; destination, [Runtime::InteropServices::Out] int % charsWritten);" />
-      <MemberSignature Language="F#" Value="static member TryJoin : ReadOnlySpan&lt;char&gt; * ReadOnlySpan&lt;char&gt; * Span&lt;char&gt; *  -&gt; bool" Usage="System.IO.Path.TryJoin (path1, path2, destination, charsWritten)" />
+      <MemberSignature Language="F#" Value="static member TryJoin : ReadOnlySpan&lt;char&gt; * ReadOnlySpan&lt;char&gt; * Span&lt;char&gt; * int -&gt; bool" Usage="System.IO.Path.TryJoin (path1, path2, destination, charsWritten)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Runtime.Extensions</AssemblyName>
@@ -2680,7 +2682,7 @@ C:\Users\UserName\AppData\Local\Temp\
       <MemberSignature Language="DocId" Value="M:System.IO.Path.TryJoin(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Span{System.Char},System.Int32@)" />
       <MemberSignature Language="VB.NET" Value="Public Shared Function TryJoin (path1 As ReadOnlySpan(Of Char), path2 As ReadOnlySpan(Of Char), path3 As ReadOnlySpan(Of Char), destination As Span(Of Char), ByRef charsWritten As Integer) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static bool TryJoin(ReadOnlySpan&lt;char&gt; path1, ReadOnlySpan&lt;char&gt; path2, ReadOnlySpan&lt;char&gt; path3, Span&lt;char&gt; destination, [Runtime::InteropServices::Out] int % charsWritten);" />
-      <MemberSignature Language="F#" Value="static member TryJoin : ReadOnlySpan&lt;char&gt; * ReadOnlySpan&lt;char&gt; * ReadOnlySpan&lt;char&gt; * Span&lt;char&gt; *  -&gt; bool" Usage="System.IO.Path.TryJoin (path1, path2, path3, destination, charsWritten)" />
+      <MemberSignature Language="F#" Value="static member TryJoin : ReadOnlySpan&lt;char&gt; * ReadOnlySpan&lt;char&gt; * ReadOnlySpan&lt;char&gt; * Span&lt;char&gt; * int -&gt; bool" Usage="System.IO.Path.TryJoin (path1, path2, path3, destination, charsWritten)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Runtime.Extensions</AssemblyName>

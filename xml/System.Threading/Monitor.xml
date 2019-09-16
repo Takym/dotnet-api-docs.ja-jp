@@ -1,5 +1,5 @@
 <Type Name="Monitor" FullName="System.Threading.Monitor">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4fb10be5601161de84aea8fd8f2a00a50eba6966" /><Meta Name="ms.sourcegitcommit" Value="5c332e8417c001736f7e2f33a84791feebba2cd7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/30/2019" /><Meta Name="ms.locfileid" Value="68632371" /></Metadata><TypeSignature Language="C#" Value="public static class Monitor" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a291bd5210f3cf06642cbd026f8633cce48fc987" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70363045" /></Metadata><TypeSignature Language="C#" Value="public static class Monitor" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Monitor extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Monitor" />
   <TypeSignature Language="VB.NET" Value="Public Class Monitor" />
@@ -159,7 +159,7 @@
   
  `SyncUpdateResource` メソッドを呼び出すたびに、内部 `SyncResource.Access` メソッドが呼び出され、<xref:System.Threading.Interlocked.Decrement%2A?displayProperty=nameWithType> メソッドが呼び出されて、`numOps` カウンターがデクリメントされます。 <xref:System.Threading.Interlocked.Decrement%2A?displayProperty=nameWithType>メソッドは、カウンターをデクリメントするために使用されます。それ以外の場合、最初のスレッドのデクリメントされた値が変数に格納される前に、2番目のスレッドが値にアクセスすることはありません。 最後に同期されたワーカースレッドがカウンターを0に減らした場合、同期されたすべてのスレッド`SyncUpdateResource`がリソースへ<xref:System.Threading.EventWaitHandle.Set%2A?displayProperty=nameWithType>のアクセスを完了したことを示します。メソッドは、メインスレッドに続行を通知するメソッドを呼び出します。例外.  
   
- `UnSyncUpdateResource` メソッドを呼び出すたびに、内部 `UnSyncResource.Access` メソッドが呼び出され、<xref:System.Threading.Interlocked.Decrement%2A?displayProperty=nameWithType> メソッドが呼び出されて、`numOps` カウンターがデクリメントされます。 この場合も、 <xref:System.Threading.Interlocked.Decrement%2A?displayProperty=nameWithType>メソッドを使用してカウンターをデクリメントすることで、最初のスレッドのデクリメントされた値が変数に割り当てられる前に、2番目のスレッドが値にアクセスしないようにします。 最後の同期されていないワーカースレッドがカウンターをゼロにデクリメントすると、そのリソース`UnSyncUpdateResource`にアクセスする必要がある非同期のスレッドがないことが示されます。このメソッドは、メインスレッドに実行を継続するように通知する<xref:System.Threading.EventWaitHandle.Set%2A?displayProperty=nameWithType>メソッドを呼び出します。  
+ `UnSyncUpdateResource` メソッドを呼び出すたびに、内部 `UnSyncResource.Access` メソッドが呼び出され、<xref:System.Threading.Interlocked.Decrement%2A?displayProperty=nameWithType> メソッドが呼び出されて、`numOps` カウンターがデクリメントされます。 この場合も、 <xref:System.Threading.Interlocked.Decrement%2A?displayProperty=nameWithType>メソッドを使用してカウンターをデクリメントすることで、最初のスレッドのデクリメントされた値が変数に割り当てられる前に、2番目のスレッドが値にアクセスしないようにします。 最後の同期されていないワーカースレッドがカウンターをゼロにデクリメントすると、そのリソース`UnSyncUpdateResource`にアクセスする必要がある非同期のスレッドがないことが示されます。このメソッドは、メインスレッドに実行を継続するように通知する<xref:System.Threading.EventWaitHandle.Set%2A?displayProperty=nameWithType>メソッドを呼び出します。.  
   
  例の出力からわかるように、同期アクセスでは、呼び出し元スレッドが保護リソースを終了してからでないと別のスレッドがそれにアクセスできません。つまり各スレッドはその先行処理を待機します。 その一方で、ロックがない `UnSyncResource.Access` メソッドは、スレッドが到達する順序で呼び出されます。  
   
@@ -258,7 +258,7 @@
       <MemberSignature Language="DocId" Value="M:System.Threading.Monitor.Enter(System.Object,System.Boolean@)" />
       <MemberSignature Language="VB.NET" Value="Public Shared Sub Enter (obj As Object, ByRef lockTaken As Boolean)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static void Enter(System::Object ^ obj, bool % lockTaken);" />
-      <MemberSignature Language="F#" Value="static member Enter : obj *  -&gt; unit" Usage="System.Threading.Monitor.Enter (obj, lockTaken)" />
+      <MemberSignature Language="F#" Value="static member Enter : obj * bool -&gt; unit" Usage="System.Threading.Monitor.Enter (obj, lockTaken)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Threading</AssemblyName>
@@ -444,7 +444,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="obj" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="obj" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="LockContentionCount">
@@ -691,7 +691,7 @@
       <MemberSignature Language="DocId" Value="M:System.Threading.Monitor.TryEnter(System.Object,System.Boolean@)" />
       <MemberSignature Language="VB.NET" Value="Public Shared Sub TryEnter (obj As Object, ByRef lockTaken As Boolean)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static void TryEnter(System::Object ^ obj, bool % lockTaken);" />
-      <MemberSignature Language="F#" Value="static member TryEnter : obj *  -&gt; unit" Usage="System.Threading.Monitor.TryEnter (obj, lockTaken)" />
+      <MemberSignature Language="F#" Value="static member TryEnter : obj * bool -&gt; unit" Usage="System.Threading.Monitor.TryEnter (obj, lockTaken)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Threading</AssemblyName>
@@ -822,7 +822,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="obj" /> パラメーターが <see langword="null" /> です。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> は負の値で、 <see cref="F:System.Threading.Timeout.Infinite" />と等しくありません。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> は負の値で、<see cref="F:System.Threading.Timeout.Infinite" /> と等しくありません。</exception>
         <altmember cref="T:System.Threading.Thread" />
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
       </Docs>
@@ -894,7 +894,7 @@
       <MemberSignature Language="DocId" Value="M:System.Threading.Monitor.TryEnter(System.Object,System.Int32,System.Boolean@)" />
       <MemberSignature Language="VB.NET" Value="Public Shared Sub TryEnter (obj As Object, millisecondsTimeout As Integer, ByRef lockTaken As Boolean)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static void TryEnter(System::Object ^ obj, int millisecondsTimeout, bool % lockTaken);" />
-      <MemberSignature Language="F#" Value="static member TryEnter : obj * int *  -&gt; unit" Usage="System.Threading.Monitor.TryEnter (obj, millisecondsTimeout, lockTaken)" />
+      <MemberSignature Language="F#" Value="static member TryEnter : obj * int * bool -&gt; unit" Usage="System.Threading.Monitor.TryEnter (obj, millisecondsTimeout, lockTaken)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Threading</AssemblyName>
@@ -962,7 +962,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="lockTaken" /> への入力は <see langword="true" /> です。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="obj" /> パラメーターが <see langword="null" /> です。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> は負の値で、 <see cref="F:System.Threading.Timeout.Infinite" />と等しくありません。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> は負の値で、<see cref="F:System.Threading.Timeout.Infinite" /> と等しくありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="TryEnter">
@@ -971,7 +971,7 @@
       <MemberSignature Language="DocId" Value="M:System.Threading.Monitor.TryEnter(System.Object,System.TimeSpan,System.Boolean@)" />
       <MemberSignature Language="VB.NET" Value="Public Shared Sub TryEnter (obj As Object, timeout As TimeSpan, ByRef lockTaken As Boolean)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static void TryEnter(System::Object ^ obj, TimeSpan timeout, bool % lockTaken);" />
-      <MemberSignature Language="F#" Value="static member TryEnter : obj * TimeSpan *  -&gt; unit" Usage="System.Threading.Monitor.TryEnter (obj, timeout, lockTaken)" />
+      <MemberSignature Language="F#" Value="static member TryEnter : obj * TimeSpan * bool -&gt; unit" Usage="System.Threading.Monitor.TryEnter (obj, timeout, lockTaken)" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyName>System.Threading</AssemblyName>
