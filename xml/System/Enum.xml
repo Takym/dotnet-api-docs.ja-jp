@@ -54,9 +54,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
-
- 列挙体は、基になる型が任意の整数型である名前付き定数のセットです。 基になる型が明示的に宣言されていない場合は、<xref:System.Int32>が使用されます。 <xref:System.Enum>は、.NET Framework 内のすべての列挙体の基本クラスです。 列挙型は、C#の`enum`キーワードとVisual Basicの`Enum`...`End Enum`構造で定義します。  
-
+ 列挙は、基になる型が任意の整数型である名前付き定数のセットです。 基になる型が明示的に宣言されていない場合は、<xref:System.Int32>が使用されます。 <xref:System.Enum>は、.NET Framework 内のすべての列挙体の基本クラスです。 列挙型は、C#の`enum`キーワードとVisual Basicの`Enum`...`End Enum`構造で定義します。  
   
  <xref:System.Enum>は、このクラスのインスタンスを比較し、インスタンスの値を文字列形式に変換し、数値の文字列形式をこのクラスのインスタンスに変換し、指定した列挙体と値のインスタンスを作成するメソッドを提供します。  
   
@@ -71,9 +69,9 @@
  [変換の実行](#conversions)  
  [列挙値の解析](#parsing)  
  [列挙値の書式設定](#formatting)  
- [列挙体メンバーの反復処理](#iterating)  
- [非排他的メンバーと Flags 属性](#Flags)  
- [列挙メソッドの追加](#Methods)  
+[列挙体メンバーの反復処理](#iterating)  
+[非排他的メンバーと Flags 属性](#Flags)  
+[列挙メソッドの追加](#Methods)  
   
 <a name="Creating"></a>   
 ## <a name="creating-an-enumeration-type"></a>列挙型の作成  
@@ -87,18 +85,14 @@
   
 <a name="Instantiating"></a>   
 ## <a name="instantiating-an-enumeration-type"></a>列挙型のインスタンス化  
-
- 他の値型をインスタンス化する場合と同様に、列挙型をインスタンス化するには、変数を宣言し、列挙型の定数の1つを割り当てます。 値が`ArrivalStatus.OnTime`である`ArrivalStatus`をインスタンス化する例を次に示します。  
-
+ 他の値型をインスタンス化する場合と同様に、列挙型をインスタンス化するには、変数を宣言し、列挙型の定数の 1 つを割り当てます。 値が`ArrivalStatus.OnTime`である`ArrivalStatus`をインスタンス化する例を次に示します。  
   
  [!code-csharp[System.Enum.Class#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.class/cs/class1.cs#2)]
  [!code-vb[System.Enum.Class#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.class/vb/class1.vb#2)]  
   
  列挙値は、次の方法でインスタンス化することもできます。  
   
-
--   特定のプログラミング言語の機能を使用してキャスト(C#の場合)するか、変換する(Visual Basicの場合)ことで、整数値を列挙値に変換します。 次の例では、この方法で`ArrivalStatus.Early`値を持つ`ArrivalStatus`オブジェクトを作成します。  
-
+-   特定のプログラミング言語の機能を使用してキャスト (C# の場合) するか、変換する (Visual Basic の場合) ことで、整数値を列挙値に変換します。 次の例では、この方法で`ArrivalStatus.Early`値を持つ`ArrivalStatus`オブジェクトを作成します。  
   
      [!code-csharp[System.Enum.Class#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.class/cs/class2.cs#4)]
      [!code-vb[System.Enum.Class#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.class/vb/class2.vb#4)]  
@@ -116,9 +110,7 @@
 ## <a name="enumeration-best-practices"></a>列挙のベストプラクティス  
  列挙型を定義するときは、次のベストプラクティスを使用することをお勧めします。  
   
-
--   値が0の列挙メンバーを定義していない場合は、`None`列挙定数を作成することを検討してください。 既定では、列挙体に使用されるメモリは、共通言語ランタイムによって0に初期化されます。 その結果、値がゼロである定数を定義しなかった場合、列挙体の作成時に無効な値が含まれます。  
-
+-   値が 0 の列挙メンバーを定義していない場合は、`None`列挙定数を作成することを検討してください。 既定では、列挙体に使用されるメモリは、共通言語ランタイムによって 0 に初期化されます。 その結果、値が 0 である定数を定義しなかった場合、列挙体の作成時に無効な値が含まれます。  
   
 -   アプリケーションで表現する必要がある明確な既定のケースがある場合は、それを表すために値が0である列挙定数を使用することを検討してください。 既定のケースが存在しない場合は、その他の列挙定数で表されないケースを指定するために、値が0である列挙定数を使用することを検討してください。  
   
@@ -134,16 +126,12 @@
   
 <a name="conversions"></a>   
 ### <a name="performing-conversions"></a>変換の実行  
-
- キャスト(C#) または変換(Visual Basic) 演算子を使用して、列挙型メンバーとその基になる型の間で変換を行うことができます。 次の例では、キャスト演算子または変換演算子を使用して、整数から列挙値への変換と、列挙値から整数への変換を実行します。  
-
+ キャスト (C#) または変換 ( Visual Basic) 演算子を使用して、列挙型メンバーとその基になる型の間で変換を行うことができます。 次の例では、キャスト演算子または変換演算子を使用して、整数から列挙値への変換と、列挙値から整数への変換を実行します。  
   
  [!code-csharp[System.Enum.Class#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.class/cs/class2.cs#5)]
  [!code-vb[System.Enum.Class#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.class/vb/class2.vb#5)]  
   
-
- <xref:System.Enum>クラスには、任意の整数型の値を列挙値に変換する<xref:System.Enum.ToObject%2A>メソッドも含まれています。 次の例では、<xref:System.Enum.ToObject%28System.Type%2CSystem.Int32%29>メソッドを使用して、<xref:System.Int32>を`ArrivalStatus`値に変換します。 <xref:System.Enum.ToObject%2A>は<xref:System.Object>型の値を返すため、キャスト演算子または変換演算子が、オブジェクトを列挙型にキャストするために必要になる場合があることに注意してください。
-
+ <xref:System.Enum>クラスには、任意の整数型の値を列挙値に変換する<xref:System.Enum.ToObject%2A>メソッドも含まれています。 次の例では、<xref:System.Enum.ToObject%28System.Type%2CSystem.Int32%29> 、メソッドを使用して、<xref:System.Int32>を`ArrivalStatus`値に変換します。 <xref:System.Enum.ToObject%2A>は<xref:System.Object>型の値を返すため、キャスト演算子または変換演算子が、オブジェクトを列挙型にキャストするために必要になる場合があることに注意してください。  
   
  [!code-csharp[System.Enum.Class#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.class/cs/class2.cs#6)]
  [!code-vb[System.Enum.Class#6](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.class/vb/class2.vb#6)]  
@@ -160,7 +148,7 @@
   
 <a name="parsing"></a>   
 ### <a name="parsing-enumeration-values"></a>列挙値の解析  
- <xref:System.Enum.Parse%2A>メソッドと<xref:System.Enum.TryParse%2A>メソッドを使用すると、列挙値の文字列形式をその値に変換できます。 文字列形式には、列挙定数の名前または基になる値を指定できます。 文字列を列挙型の基になる型の値に変換できる場合、解析メソッドは、特定の列挙体のメンバーではない数値の文字列形式を正常に変換することに注意してください。 これを回避するには、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、解析メソッドの結果が有効な列挙値であることを確認します。 この例は、この方法を示し、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドと<xref:System.Enum.TryParse%60%601%28System.String%2C%60%600%40%29?displayProperty=nameWithType>メソッドの両方の呼び出しを示しています。 非ジェネリックのParseメソッドは、適切な列挙型にキャスト(C#の場合) または変換 (Visual Basicの場合) する必要があるオブジェクトを返すことに注意してください。  
+ <xref:System.Enum.Parse%2A>メソッドと<xref:System.Enum.TryParse%2A>メソッドを使用すると、列挙値の文字列形式をその値に変換できます。 文字列形式には、列挙定数の名前または基になる値を指定できます。 文字列を列挙型の基になる型の値に変換できる場合、解析メソッドは、特定の列挙体のメンバーではない数値の文字列形式を正常に変換することに注意してください。 これを回避するには、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、解析メソッドの結果が有効な列挙値であることを確認します。 この例は、この方法を示し、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドと<xref:System.Enum.TryParse%60%601%28System.String%2C%60%600%40%29?displayProperty=nameWithType>メソッドの両方の呼び出しを示しています。 非ジェネリックの Parse メソッドは、適切な列挙型にキャスト (C# の場合) または変換 (Visual Basic の場合) する必要があるオブジェクトを返すことに注意してください。  
   
  [!code-csharp[System.Enum.Class#9](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.class/cs/classparse1.cs#9)]
  [!code-vb[System.Enum.Class#9](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.class/vb/classparse1.vb#9)]  
@@ -174,7 +162,7 @@
   
 <a name="iterating"></a>   
 ### <a name="iterating-enumeration-members"></a>列挙体メンバーの反復処理  
- <xref:System.Enum>型は、`foreach`(C#)または`For Each`(Visual Basic)構造を使用してコレクションのメンバーを反復処理するための、<xref:System.Collections.IEnumerable>または<xref:System.Collections.Generic.IEnumerable%601>インターフェイスを実装していません。 ただし、次の2つの方法のいずれかでメンバーを列挙できます。  
+ <xref:System.Enum>型は、`foreach`(C#) または`For Each`(Visual Basic) 構造を使用してコレクションのメンバーを反復処理するための、<xref:System.Collections.IEnumerable>または<xref:System.Collections.Generic.IEnumerable%601>インターフェイスを実装していません。 ただし、次の 2 つの方法のいずれかでメンバーを列挙できます。  
   
 -   <xref:System.Enum.GetNames%2A>メソッドを呼び出して、列挙体のメンバーの名前を含む文字列配列を取得できます。 次に、文字列配列の各要素に対して、 <xref:System.Enum.Parse%2A>メソッドを呼び出して文字列をそれと等価な列挙値に変換します。 このアプローチの例を次に示します。  
   
@@ -188,7 +176,7 @@
   
 <a name="Flags"></a>   
 ## <a name="non-exclusive-members-and-the-flags-attribute"></a>非排他的メンバーと Flags 属性  
- 列挙型の一般的な用途の1つは、相互に排他的な値のセットを表すことです。 たとえば、`ArrivalStatus`インスタンスは、`Early`、`OnTime`、または`Late`の値を持つことができます。 `ArrivalStatus`インスタンスの値に対して、複数の列挙定数を反映する意味はありません。  
+ 列挙型の一般的な用途の 1 つは、相互に排他的な値のセットを表すことです。 たとえば、`ArrivalStatus` 、インスタンスは、`Early``OnTime`、または`Late`の値を持つことができます。 `ArrivalStatus`インスタンスの値に対して、複数の列挙定数を反映する意味はありません。  
   
  ただし別の場合、列挙オブジェクトの値には複数の列挙体メンバーを含めることができ、各メンバーは列挙値のビットフィールドを表します。 <xref:System.FlagsAttribute>属性を使用して、列挙体がビットフィールドで構成されていることを示すことができます。 たとえば、`Pets`という名前の列挙体を使用して、家族のペットの種類を示すことができます。 次のように定義できます。  
   
@@ -204,9 +192,9 @@
   
 -   数値に対してビットごとの演算 (AND、OR、EXCLUSIVE OR) を実行する場合にのみ、列挙体の<xref:System.FlagsAttribute>カスタム属性を使用します。  
   
--   1、2、4、8など、2の累乗で列挙定数を定義します。 これは、結合された列挙定数内の個々のフラグが重複しないことを意味します。  
+-   1、2、4、8 など、2 の累乗で列挙定数を定義します。 これは、結合された列挙定数内の個々のフラグが重複しないことを意味します。  
   
--   よく使用されるフラグの組み合わせに対して列挙定数を作成することを検討してください。 たとえば、列挙定数`Read = 1`と`Write = 2`を含むファイルI/O 操作に使用する列挙体がある場合、`Read`と`Write`を組み合わせた`ReadWrite = Read OR Write`列挙定数を作成することを検討してください。また、フラグを結合するために使用されるビットごとの OR 演算は、単純なタスクにとって不必要に高度な概念と見なされる場合があります。
+-   よく使用されるフラグの組み合わせに対して列挙定数を作成することを検討してください。 たとえば、列挙定数`Read = 1`と`Write = 2`を含むファイル I/O 操作に使用する列挙体がある場合、`Read`と`Write`を組み合わせた`ReadWrite = Read OR Write`列挙定数を作成することを検討してください。 また、フラグを結合するために使用されるビットごとの OR 演算は、単純なタスクにとって不必要に高度な概念と見なされる場合があります。  
   
 -   フラグの列挙定数として負の数を定義すると、多くのフラグ位置が1に設定されることがあるため、注意してください。これにより、コードの混乱を招く可能性があり、コーディングエラーを助長します。  
   
@@ -220,7 +208,7 @@
      [!code-csharp[System.Enum.Class#16](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.class/cs/classbitwise1.cs#16)]
      [!code-vb[System.Enum.Class#16](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.class/vb/classbitwise1.vb#16)]  
   
--   値が0であるフラグ列挙定数の名前として`None`を使用します。 ビットごとの and 演算では、結果が常に0であるため、`None`列挙定数を使用してフラグをテストすることはできません。 ただし、数値内のビットが設定されているかどうかを判断するために、数値と`None`列挙定数の間でビットごとの比較ではなく論理演算を実行することができます。 このことを次の例で説明します。  
+-   値が 0 であるフラグ列挙定数の名前として`None`を使用します。 ビットごとの and 演算では、結果が常に0であるため、`None`列挙定数を使用してフラグをテストすることはできません。 ただし、数値内のビットが設定されているかどうかを判断するために、数値と`None`に、数値と列挙定数の間でビットごとの比較ではなく論理演算を実行することができます。 このことを次の例で説明します。  
   
      [!code-csharp[System.Enum.Class#17](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.class/cs/classbitwise1.cs#17)]
      [!code-vb[System.Enum.Class#17](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.class/vb/classbitwise1.vb#17)]  
@@ -229,9 +217,9 @@
   
 <a name="Methods"></a>   
 ## <a name="adding-enumeration-methods"></a>列挙メソッドの追加  
- 列挙型は`enum` (C#) や`Enum` (Visual Basic) などの言語構造によって定義されているため、<xref:System.Enum>クラスから継承されたメソッド以外の列挙型のカスタムメソッドを定義することはできません。 ただし、拡張メソッドを使用して、特定の列挙型に機能を追加することができます。  
+ 列挙型は`enum` (C#) や`Enum` (Visual Basic) などの言語構造によって定義されているため、<xref:System.Enum>クラスから継承されたメソッド以外の列挙型のカスタムメソッドを定義することはできません。  ただし、拡張メソッドを使用して、特定の列挙型に機能を追加することができます。  
   
- 次の例では、`Grades` 列挙型は学生が授業で受け取る成績評価を表わしています。`Passing`という名前の拡張機能メソッドが`Grades`型に追加されていて、この型の各インスタンスが合格点を表しているかどうかを自ら "認識" できるようになっています。 `Extensions`クラスには、最小合格評価を定義する静的読み取り/書き込み変数も含まれています。 `Passing`拡張メソッドの戻り値には、その変数の現在の値が反映されます。  
+ 次の例では、`Grades` 列挙型は学生が授業で受け取る成績評価を表わしています。 `Passing`という名前の拡張機能メソッドが`Grades`型に追加されていて、この型の各インスタンスが合格点を表しているかどうかを自ら "認識" できるようになっています。       `Extensions`クラスには、最小合格評価を定義する静的読み取り/書き込み変数も含まれています。 `Passing`拡張メソッドの戻り値には、その変数の現在の値が反映されます。  
   
  [!code-csharp[System.Enum.Class#18](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.class/cs/Extensions.cs#18)]
  [!code-vb[System.Enum.Class#18](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.class/vb/Extensions.vb#18)]  
@@ -353,7 +341,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例は、`Enum`のコンテキストで`CompareTo`を使用する方法を示しています。
+ 次の例は、`Enum`のコンテキストで`CompareTo`を使用する方法を示しています。  
   
  [!code-cpp[enumcompareto#1](~/samples/snippets/cpp/VS_Snippets_CLR/enumcompareto/CPP/EnumCompareTo.cpp#1)]
  [!code-csharp[enumcompareto#1](~/samples/snippets/csharp/VS_Snippets_CLR/enumcompareto/CS/EnumCompareTo.cs#1)]
@@ -426,7 +414,7 @@
  [!code-csharp[enumequals#1](~/samples/snippets/csharp/VS_Snippets_CLR/enumequals/CS/EnumEquals.cs#1)]
  [!code-vb[enumequals#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/enumequals/VB/EnumEquals.vb#1)]  
   
- 次の例では、`SledDog`と`WorkDog`という2つの列挙型を定義しています。 `SledDog`列挙体には、`SledDog.AlaskanMalamute`と`SledDog.Malamute`という2つのメンバーがあり、基になる値が同じです。 <xref:System.Enum.Equals%2A>メソッドの呼び出しは、基になる値が同じであるため、これらの値が等しいことを示しています。 `SledDog.Malamute`メンバーと`WorkDog.Newfoundland`メンバーは、基になる値が同じですが、異なる列挙型を表しています。 <xref:System.Enum.Equals%2A>メソッドの呼び出しは、これらの値が等しくないことを示します。  
+ 次の例では、`SledDog`と`WorkDog`という 2 つの列挙型を定義しています。 `SledDog`列挙体には、`SledDog.AlaskanMalamute`と`SledDog.Malamute`という 2 つのメンバーがあり、基になる値が同じです。 <xref:System.Enum.Equals%2A>メソッドの呼び出しは、基になる値が同じであるため、これらの値が等しいことを示しています。 `SledDog.Malamute`メンバーと`WorkDog.Newfoundland`メンバーは、基になる値が同じですが、異なる列挙型を表しています。 <xref:System.Enum.Equals%2A>メソッドの呼び出しは、これらの値が等しくないことを示します。  
   
  [!code-csharp[System.Enum.Equals#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.equals/cs/enumequals.cs#1)]
  [!code-vb[System.Enum.Equals#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.equals/vb/enumequals.vb#1)]  
@@ -492,12 +480,10 @@
   
 |形式|説明|  
 |------------|-----------------|  
-
-|"G" または "g"|`value`が名前付き列挙定数と等しい場合は、その定数の名前が返されます。それ以外の場合は、`value`に相当する10進数が返されます。<br /><br /> たとえば、唯一の列挙型定数の名前が Red で、その値が1であるとします。 `value`が 1 と指定されている場合、この形式は "Red" を返します。 ただし、`value`が 2 と指定されている場合、この形式は "2" を返します。<br /><br /> または<br /><br /> <xref:System.FlagsAttribute>カスタム属性が列挙に適用されている場合、`value`は1つ以上のビットで構成される1つ以上のフラグを含むビットフィールドとして扱われます。 <br /><br /> `value`が名前付き列挙定数の組み合わせと等しい場合は、その定数の名前の区切り記号で区切られたリストが返されます。 `value`は、最大値を持つフラグから最小値に向かってフラグを検索されます。 `value`のビットフィールドに対応するフラグごとに、定数の名前が区切り記号で区切られたリストに連結されます。 そのフラグの値は、その後の検索から除外され、次のフラグに対して検索が続行されます。<br /><br /> `value`が名前付き列挙定数の組み合わせと等しくない場合は、`value`に相当する10進数が返されます。|  
-|"X" または "x"|`value`を先頭に "0x" がない16進数形式で表します。|  
-|"D" または "d"|`value`を10進数形式で表します。|  
+|"G" または "g"|`value`が名前付き列挙定数と等しい場合は、その定数の名前が返されます。それ以外の場合は、`value`に相当する 10 進数が返されます。<br /><br /> たとえば、唯一の列挙型定数の名前が Red で、その値が 1 であるとします。 `value`が 1 と指定されている場合、この形式は "Red" を返します。 ただし、`value`が 2 と指定されている場合、この形式は "2" を返します。<br /><br /> - または -<br /><br /> <xref:System.FlagsAttribute>カスタム属性が列挙に適用されている場合、`value`は 1 つ以上のビットで構成される 1 つ以上のフラグを含むビットフィールドとして扱われます。<br /><br /> `value`が名前付き列挙定数の組み合わせと等しい場合は、その定数の名前の区切り記号で区切られたリストが返されます。 `value`はフラグを検索し、最も大きい値を持つフラグから最小の値に移動します。 `value`のビットフィールドに対応するフラグごとに、定数の名前が区切り記号で区切られたリストに連結されます。 そのフラグの値は、その後の検索から除外され、次のフラグに対して検索が続行されます。<br /><br /> `value`が名前付き列挙定数の組み合わせと等しくない場合は、`value`に相当する 10 進数が返されます。|  
+|"X" または "x"|`value`を先頭に "0x" がない 16 進数形式で表します。|  
+|"D" または "d"|`value`を 10 進数形式で表します。|  
 |"F" または "f"|"G" または "g" と同じように動作しますが、<xref:System.Enum>宣言に<xref:System.FlagsAttribute>が存在する必要がない点が異なります。|  
-
   
    
   
@@ -619,12 +605,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 複数の列挙メンバーの基になる値が同じである場合、<xref:System.Enum.GetName%2A>メソッドは、列挙体のいずれかのメンバーの名前が返されることを保証します。 ただし、常に同じ列挙メンバーの名前が返されるとは限りません。 その結果、複数の列挙体メンバーが同じ値を持つ場合、アプリケーションコードは、特定のメンバーの名前を返すメソッドに依存しないようにする必要があります。
+ 複数の列挙メンバーの基になる値が同じである場合、<xref:System.Enum.GetName%2A>メソッドは、列挙体のいずれかのメンバーの名前が返されることを保証します。 ただし、常に同じ列挙メンバーの名前が返されるとは限りません。 その結果、複数の列挙体メンバーが同じ値を持つ場合、アプリケーションコードは、特定のメンバーの名前を返すメソッドに依存しないようにする必要があります。  
   
    
   
 ## Examples  
- 次の例は、`GetName`の使用方法を示しています。
+ 次の例は、`GetName`の使用方法を示しています。  
   
  [!code-cpp[enumgetname#1](~/samples/snippets/cpp/VS_Snippets_CLR/enumgetname/CPP/EnumGetName.cpp#1)]
  [!code-csharp[enumgetname#1](~/samples/snippets/csharp/VS_Snippets_CLR/enumgetname/CS/EnumGetName.cs#1)]
@@ -692,7 +678,7 @@
  [!code-csharp[System.Enum.GetNames#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.getnames/cs/getnames1.cs#1)]
  [!code-vb[System.Enum.GetNames#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.getnames/vb/getnames1.vb#1)]  
   
- 同じ値を持つ列挙定数がある場合、対応する名前の順序は不定です。
+ 同じ値を持つ列挙定数がある場合、対応する名前の順序は不定です。  
   
    
   
@@ -875,12 +861,12 @@
   
  <xref:System.Enum.GetValues%2A>メソッドは、 `enumType`列挙体の各メンバーの値を格納する配列を返します。 複数のメンバーが同じ値を持つ場合、返される配列には重複する値が含まれます。 この場合、返された配列内の各値を使用して<xref:System.Enum.GetName%2A>メソッドを呼び出すと、重複する値を持つメンバーに割り当てられた一意の名前は復元されません。 列挙メンバーのすべての名前を正常に取得するには、<xref:System.Enum.GetNames%2A>メソッドを呼び出します。  
   
- リフレクションのみのコンテキストでは、リフレクションを使用して<xref:System.Enum.GetValues%2A>メソッドを呼び出すことはできません。 代わりに、 <xref:System.Type.GetFields%2A?displayProperty=nameWithType>メソッドを使用して列挙体のメンバーを表すオブジェクトの<xref:System.Reflection.FieldInfo>配列を取得し、配列の各要素に対して<xref:System.Reflection.FieldInfo.GetRawConstantValue%2A?displayProperty=nameWithType>メソッドを呼び出すことで、すべての列挙体メンバーの値を取得できます。 次の例は、この手法を示しています。 このためには、Enumerations.dll という名前のアセンブリに次の列挙型を定義する必要があります。  
+ リフレクションのみのコンテキストでは、リフレクションを使用して<xref:System.Enum.GetValues%2A>メソッドを呼び出すことはできません。 代わりに、<xref:System.Type.GetFields%2A?displayProperty=nameWithType>メソッドを使用して列挙体のメンバーを表すオブジェクトの<xref:System.Reflection.FieldInfo>配列を取得し、配列の各要素に対して<xref:System.Reflection.FieldInfo.GetRawConstantValue%2A?displayProperty=nameWithType>メソッドを呼び出すことで、すべての列挙体メンバーの値を取得できます。 次の例は、この手法を示しています。 このためには、Enumerations.dll という名前のアセンブリに次の列挙型を定義する必要があります。  
   
  [!code-csharp[System.Enum.GetValues#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.getvalues/cs/getvalues_reflectiononly.cs#2)]
  [!code-vb[System.Enum.GetValues#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.getvalues/vb/getvalues_reflectiononly.vb#2)]  
   
- アセンブリはリフレクションのみのコンテキストで読み込まれます。 `Pets`列挙体を表す<xref:System.Type>オブジェクトがインスタンス化され、<xref:System.Reflection.FieldInfo>オブジェクトの配列が取得され、フィールド値がコンソールに表示されます。  
+ アセンブリはリフレクションのみのコンテキストで読み込まれます。`Pets`列挙体を表す<xref:System.Type>オブジェクトがインスタンス化され、<xref:System.Reflection.FieldInfo>オブジェクトの配列が取得され、フィールド値がコンソールに表示されます。  
   
  [!code-csharp[System.Enum.GetValues#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.getvalues/cs/getvalues_reflectiononly.cs#3)]
  [!code-vb[System.Enum.GetValues#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.getvalues/vb/getvalues_reflectiononly.vb#3)]  
@@ -955,17 +941,17 @@
 thisInstance And flag = flag   
 ```  
   
- `flag`の基になる値がゼロの場合、メソッドは`true`を返します。 この動作が望ましくない場合は、次の例に示すように、<xref:System.Enum.Equals%2A>メソッドを使用してゼロと等しいかどうかをテストし、`flag`の基になる値が0以外の場合にのみ<xref:System.Enum.HasFlag%2A>を呼び出します。  
+ `flag`の基になる値がゼロの場合、メソッドは`true`を返します。 この動作が望ましくない場合は、次の例に示すように、<xref:System.Enum.Equals%2A>メソッドを使用してゼロと等しいかどうかをテストし、`flag`の基になる値が 0 以外の場合にのみ<xref:System.Enum.HasFlag%2A>を呼び出します。  
   
  [!code-csharp[System.Enum.HasFlag#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.hasflag/cs/hasflag0.cs#1)]
  [!code-vb[System.Enum.HasFlag#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.hasflag/vb/hasflag0.vb#1)]  
   
- <xref:System.Enum.HasFlag%2A>メソッドは、<xref:System.FlagsAttribute>属性でマークされた列挙型と共に使用するように設計されており、複数のビットフィールドが設定されているかどうかを判断するために使用できます。 <xref:System.FlagsAttribute>属性でマークされていない列挙型の場合は、<xref:System.Enum.Equals%2A>メソッドまたは<xref:System.Enum.CompareTo%2A>メソッドのいずれかを呼び出します。  
+ <xref:System.FlagsAttribute>メソッドは、<xref:System.Enum.HasFlag%2A>属性でマークされた列挙型と共に使用するように設計されており、複数のビットフィールドが設定されているかどうかを判断するために使用できます。 <xref:System.FlagsAttribute>属性でマークされていない列挙型の場合は、<xref:System.Enum.Equals%2A>メソッドまたは<xref:System.Enum.CompareTo%2A>メソッドのいずれかを呼び出します。  
   
    
   
 ## Examples  
- 次の例では、顧客がレストランで注文できる項目のカテゴリを反映する`ItemsOrdered`列挙体を定義します。 この例では、顧客が前菜と飲み物の両方を発注したかどうかをテストします。
+ 次の例では、顧客がレストランで注文できる項目のカテゴリを反映する`ItemsOrdered`列挙体を定義します。 この例では、顧客が前菜と飲み物の両方を発注したかどうかをテストします。  
   
  [!code-csharp[System.Enum.HasFlag#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.hasflag/cs/hasflag1.cs#2)]
  [!code-vb[System.Enum.HasFlag#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.hasflag/vb/hasflag1.vb#2)]  
@@ -1037,7 +1023,7 @@ thisInstance And flag = flag
   
 -   `enumType`の基になる型の値。  
   
- `enumType`の定数がビットフィールドのセットを定義し、`value`が複数のビットフィールドの値、名前、または基になる値を含んでいる場合、<xref:System.Enum.IsDefined%2A>メソッドは`false`を返します。 つまり、ビットフィールドのセットを定義する列挙型では、単一のビットフィールドが列挙体に属しているかどうかのみが決定されます。 <xref:System.FlagsAttribute>属性でタグ付けされた列挙型に複数のビットフィールドが設定されているかどうかを確認するには、<xref:System.Enum.HasFlag%2A>メソッドを呼び出します。
+ `enumType`の定数がビットフィールドのセットを定義し、`value`が複数のビットフィールドの値、名前、または基になる値を含んでいる場合、<xref:System.Enum.IsDefined%2A>メソッドは`false`ます。 つまり、ビットフィールドのセットを定義する列挙型では、1つのビットフィールドが列挙体に属しているかどうかのみが決定されます。 <xref:System.FlagsAttribute>属性でタグ付けされた列挙型に複数のビットフィールドが設定されているかどうか<xref:System.Enum.HasFlag%2A>を確認するには、メソッドを呼び出します。  
   
    
   
@@ -1132,9 +1118,9 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `value`パラメーターには、列挙メンバーの基になる値または名前付き定数の文字列形式、またはコンマ (,) で区切られた名前付き定数のリストが含まれます。 `value`では、各値、名前、またはコンマの前または後に1 つ以上の空白文字を含めることができます。 `value`がリストの場合、戻り値は指定された名前の値を、ビットごとに`OR`演算で組み合わせた値となります。  
+ `value`パラメーターには、列挙メンバーの基になる値または名前付き定数の文字列形式、またはコンマ (,) で区切られた名前付き定数のリストが含まれます。 `value`では、各値、名前、またはコンマの前または後に 1 つ以上の空白文字を含めることができます。 `value`がリストの場合、戻り値は指定された名前の値を、ビットごとに`OR`演算で組み合わせた値となります。  
   
- `value`が`enumType`の名前付き定数に対応しない名前である場合、メソッドは<xref:System.ArgumentException>をスローします。 `value`が`enumType`列挙体の基になる値を表さない整数の文字列表現の場合、メソッドは、基になる値が整数型に変換された`value`である列挙体のメンバーを返します。 この動作が望ましくない場合は、 <xref:System.Enum.IsDefined%2A>メソッドを呼び出して、整数の特定の文字列形式が実際に`enumType`のメンバーであることを確認します。 次の例では、`Colors`列挙体を定義し、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドを呼び出して文字列を対応する列挙値に変換し、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、特定の整数値が`Colors`列挙体の基になる値であることを確認します。
+ `value`が`enumType`の名前付き定数に対応しない名前である場合、メソッドは<xref:System.ArgumentException>をスローします。 `value`が`enumType`列挙体の基になる値を表さない整数の文字列表現の場合、メソッドは、基になる値が整数型に変換された`value`である列挙体のメンバーを返します。 この動作が望ましくない場合は、 <xref:System.Enum.IsDefined%2A>メソッドを呼び出して、整数の特定の文字列形式が実際に`enumType`のメンバーであることを確認します。 次の例では、`Colors`列挙体を定義し、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドを呼び出して文字列を対応する列挙値に変換し、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、特定の整数値が`Colors`列挙体の基になる値であることを確認します。  
   
  [!code-csharp[System.Enum.Parse#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Enum.Parse/cs/ParseExample1.cs#1)]
  [!code-vb[System.Enum.Parse#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Enum.Parse/vb/ParseExample1.vb#1)]  
@@ -1144,7 +1130,7 @@ thisInstance And flag = flag
    
   
 ## Examples  
- 次の例では、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドを使用して、 <xref:System.Enum.GetNames%2A>メソッドを呼び出すことによって作成された文字列の配列を解析します。 また、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドを使用して、ビットフィールドで構成される列挙値を解析します。  
+ 次の例では、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドを使用して、<xref:System.Enum.GetNames%2A>メソッドを呼び出すことによって作成された文字列の配列を解析します。 また、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドを使用して、ビットフィールドで構成される列挙値を解析します。  
   
  [!code-cpp[enumparse#1](~/samples/snippets/cpp/VS_Snippets_CLR/enumparse/CPP/EnumParse.cpp#1)]
  [!code-csharp[enumparse#1](~/samples/snippets/csharp/VS_Snippets_CLR/enumparse/CS/EnumParse.cs#1)]
@@ -1216,7 +1202,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `value`パラメーターには、列挙メンバーの基になる値または名前付き定数の文字列形式、またはコンマ (,) で区切られた名前付き定数のリストが含まれます。 `value`では、各値、名前、またはコンマの前または後に1 つ以上の空白文字を含めることができます。 `value`がリストの場合、戻り値は指定された名前の値を、ビットごとに`OR`演算で組み合わせた値となります。  
+ `value`パラメーターには、列挙メンバーの基になる値または名前付き定数の文字列形式、またはコンマ (,) で区切られた名前付き定数のリストが含まれます。 `value`では、各値、名前、またはコンマの前または後に 1 つ以上の空白文字を含めることができます。 `value`がリストの場合、戻り値は指定された名前の値を、ビットごとに`OR`演算で組み合わせた値となります。  
   
  `value`が`enumType`の名前付き定数に対応しない名前である場合、メソッドは<xref:System.ArgumentException>をスローします。 `value`が`enumType`列挙体の基になる値を表さない整数の文字列表現の場合、メソッドは、基になる値が整数型に変換された`value`である列挙体のメンバーを返します。 この動作が望ましくない場合は、 <xref:System.Enum.IsDefined%2A>メソッドを呼び出して、整数の特定の文字列形式が実際に`enumType`のメンバーであることを確認します。 次の例では、`Colors`列挙体を定義し、<xref:System.Enum.Parse%28System.Type%2CSystem.String%2CSystem.Boolean%29>メソッドを呼び出して文字列を対応する列挙値に変換し、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、特定の整数値が`Colors`列挙体の基になる値であることを確認します。  
   
@@ -1228,7 +1214,7 @@ thisInstance And flag = flag
    
   
 ## Examples  
- 次の例では、<xref:System.Enum.Parse%28System.Type%2CSystem.String%2CSystem.Boolean%29>メソッドを使用して、 <xref:System.Enum.GetNames%2A>メソッドを呼び出すことによって作成された文字列の配列を解析します。 また、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドを使用して、ビットフィールドで構成される列挙値を解析します。  
+ 次の例では、<xref:System.Enum.Parse%28System.Type%2CSystem.String%2CSystem.Boolean%29>、メソッドを使用して、<xref:System.Enum.GetNames%2A>メソッドを呼び出すことによって作成された文字列の配列を解析します。 また、<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドを使用して、ビットフィールドで構成される列挙値を解析します。  
   
  [!code-csharp[System.Enum.Parse#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Enum.Parse/cs/ParseExample2.cs#2)]
  [!code-vb[System.Enum.Parse#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Enum.Parse/vb/ParseExample2.vb#2)]  
@@ -2272,7 +2258,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.Byte%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.Byte%29>メソッドは、`value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2332,7 +2318,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.Int16%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.Int16%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2392,7 +2378,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.Int32%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.Int32%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2452,7 +2438,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.Int64%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.Int64%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2513,7 +2499,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.Object%29>メソッドは、 整数値`value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.Object%29>メソッドは、 整数値`value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2579,7 +2565,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.SByte%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.SByte%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2642,7 +2628,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.UInt16%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.UInt16%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2705,7 +2691,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.UInt32%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.UInt32%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2768,7 +2754,7 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.ToObject%28System.Type%2CSystem.UInt64%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。
+ <xref:System.Enum.ToObject%28System.Type%2CSystem.UInt64%29>メソッドは、 `value`を基になる値が`value`である列挙メンバーに変換します。 値が`enumType`メンバーの境界の外側にある場合でも、変換は成功します。 `value`が`enumType`列挙体の有効な基になる値であることを確認するには、それを<xref:System.Enum.IsDefined%2A>メソッドに渡します。  
   
  この変換メソッドは、<xref:System.Object>型の値を返します。 その後、これをキャストするか、`enumType`型のオブジェクトに変換できます。  
   
@@ -2846,14 +2832,12 @@ thisInstance And flag = flag
   
  ]]></format>
         </remarks>
-        <block subset="none" type="usage"><para>複数の列挙体メンバーの基になる値が同じで、その基になる値に基づいて列挙メンバーの名前の文字列形式を取得しようとする場合、コードでは、メソッドが返す名前については想定しないでください。 たとえば、次の列挙体は、同じ基になる値を持つ2つのメンバー (<c>Shade.Gray</c>と<c>Shade.Grey</c>) を定義しています。  
+        <block subset="none" type="usage"><para>複数の列挙体メンバーの基になる値が同じで、その基になる値に基づいて列挙メンバーの名前の文字列形式を取得しようとする場合、コードでは、メソッドが返す名前については想定しないでください。 たとえば、次の列挙体は、同じ基になる値を持つ2つのメンバー (<c>Shade.Gray</c>と<c>Shade.Gray</c>) を定義しています。  
   
-[!code-csharp[System.Enum.ToString#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.tostring/cs/tostringbyvalue1.cs#1)]
-[!code-vb[System.Enum.ToString#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.tostring/vb/tostringbyvalue1.vb#1)] 
-次のメソッド呼び出しは、基になる値が1である、<c>Shade</c>列挙体のメンバーの名前を取得しようとします。 メソッドは、"Gray" または "Grey" を返すことができ、どの文字列が返されるかをコードで想定してはいけません。  
+[!code-csharp[System.Enum.ToString#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.tostring/cs/tostringbyvalue1.cs#1)] [!code-vb[System.Enum.ToString#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.tostring/vb/tostringbyvalue1.vb#1)] 
+次のメソッド呼び出しは、基になる値が 1 である、<c>Shade</c>列挙体のメンバーの名前を取得しようとします。 メソッドは、"Gray" または "Grey" を返すことができ、どの文字列が返されるかをコードで想定してはいけません。  
   
-[!code-csharp[System.Enum.ToString#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.tostring/cs/tostringbyvalue1.cs#2)]
-[!code-vb[System.Enum.ToString#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.tostring/vb/tostringbyvalue1.vb#2)]</para></block>
+[!code-csharp[System.Enum.ToString#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.tostring/cs/tostringbyvalue1.cs#2)] [!code-vb[System.Enum.ToString#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.tostring/vb/tostringbyvalue1.vb#2)]</para></block>
         <altmember cref="M:System.Enum.Format(System.Type,System.Object,System.String)" />
         <altmember cref="M:System.Enum.Parse(System.Type,System.String)" />
       </Docs>
@@ -2967,10 +2951,10 @@ thisInstance And flag = flag
         </remarks>
         <exception cref="T:System.FormatException"><paramref name="format" /> に正しくない仕様が含まれています。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="format" /> は "X" と等しいですが、列挙型が不明です。</exception>
-        <block subset="none" type="usage"><para>複数の列挙体メンバーの基になる値が同じで、その基になる値に基づいて列挙メンバーの名前の文字列形式を取得しようとする場合、コードでは、メソッドが返す名前については想定しないでください。 たとえば、次の列挙体は、同じ基になる値を持つ2つのメンバー (<c>Shade.Gray</c>と<c>Shade.Grey</c>) を定義しています。  
+        <block subset="none" type="usage"><para>複数の列挙体メンバーの基になる値が同じで、その基になる値に基づいて列挙メンバーの名前の文字列形式を取得しようとする場合、コードでは、メソッドが返す名前については想定しないでください。 たとえば、次の列挙体は、同じ基になる値を持つ2つのメンバー (<c>Shade.Gray</c>と<c>Shade.Gray</c>) を定義しています。  
   
 [!code-csharp[System.Enum.ToString#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.tostring/cs/tostringbyvalue1.cs#1)] [!code-vb[System.Enum.ToString#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.tostring/vb/tostringbyvalue1.vb#1)] 
-次のメソッド呼び出しは、基になる値が1である、<c>Shade</c>列挙体のメンバーの名前を取得しようとします。 メソッドは、"Gray" または "Grey" のいずれかを返すことができ、どの文字列が返されるかをコードで想定してはいけません。  
+次のメソッド呼び出しは、基になる値が 1 である、<c>Shade</c>列挙体のメンバーの名前を取得しようとします。 メソッドは、"Gray" または "Grey" を返すことができ、どの文字列が返されるかをコードで想定してはいけません。  
   
 [!code-csharp[System.Enum.ToString#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.tostring/cs/tostringbyvalue1.cs#3)] [!code-vb[System.Enum.ToString#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.tostring/vb/tostringbyvalue1.vb#3)]</para></block>
         <altmember cref="M:System.Enum.Format(System.Type,System.Object,System.String)" />
@@ -3186,16 +3170,16 @@ thisInstance And flag = flag
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Enum.TryParse%60%601%28System.String%2C%60%600%40%29>は<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドと同じですが、例外をスローするのではなく、変換に失敗した場合は`false`を返します。 これにより、列挙値の文字列形式を解析するときに例外処理を行う必要がなくなります。
+ <xref:System.Enum.TryParse%60%601%28System.String%2C%60%600%40%29>は<xref:System.Enum.Parse%28System.Type%2CSystem.String%29>メソッドと同じですが、例外をスローするのではなく、変換に失敗した場合は`false`を返します。 これにより、列挙値の文字列形式を解析するときに例外処理を行う必要がなくなります。  
   
- `value`パラメーターには、列挙メンバーの基になる値または名前付き定数の文字列形式、またはコンマ (,) で区切られた名前付き定数または基になる値のリストが含まれます。 `value`に複数の名前付き定数または値が含まれている場合は、`value`の各値、名前、またはコンマの前または後に1つ以上の空白文字を含めることができます。 `value`がリストの場合、`result`は、指定された名前または基になる値を、ビットごとに`OR`演算で組み合わせた値となります。 `value`が列挙値の名前の文字列表現である場合、`value`と列挙型の比較では大文字と小文字が区別されます。
+ `value`パラメーターには、列挙メンバーの基になる値または名前付き定数の文字列形式、またはコンマ (,) で区切られた名前付き定数または基になる値のリストが含まれます。 `value`に複数の名前付き定数または値が含まれている場合は、`value`の各値、名前、またはコンマの前または後に 1 つ以上の空白文字を含めることができます。 `value`がリストの場合、`result`は、指定された名前または基になる値を、ビットごとに`OR`演算で組み合わせた値となります。 `value`が列挙値の名前の文字列表現である場合、`value`と列挙型の比較では大文字と小文字が区別されます。  
   
  `value`が`TEnum`の名前付き定数に対応しない名前である場合、メソッドは`false`を返します。 `value`が`TEnum`列挙体の基になる値を表さない整数の文字列表現の場合、メソッドは、基になる値が整数型に変換された`value`である列挙体のメンバーを返します。 この動作が望ましくない場合は、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、整数の特定の文字列形式が実際に`TEnum`のメンバーであることを確認します。  
   
    
   
 ## Examples  
- 次の例では、`Colors`列挙体を定義し、<xref:System.Enum.TryParse%60%601%28System.String%2C%60%600%40%29>メソッドを呼び出して文字列を対応する列挙値に変換し、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、特定の整数値が`Colors`列挙体の基になる値であることを確認します。
+ 次の例では、`Colors`列挙体を定義し、<xref:System.Enum.TryParse%60%601%28System.String%2C%60%600%40%29>メソッドを呼び出して文字列を対応する列挙値に変換し、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、特定の整数値が`Colors`列挙体の基になる値であることを確認します。  
   
  [!code-csharp[System.Enum.TryParse#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.enum.tryparse/cs/tryparse1.cs#1)]
  [!code-vb[System.Enum.TryParse#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.enum.tryparse/vb/tryparse1.vb#1)]  
@@ -3268,9 +3252,9 @@ thisInstance And flag = flag
 ## Remarks  
  <xref:System.Enum.TryParse%60%601%28System.String%2CSystem.Boolean%2C%60%600%40%29>は<xref:System.Enum.Parse%28System.Type%2CSystem.String%2CSystem.Boolean%29>メソッドと同じですが、例外をスローするのではなく、変換に失敗した場合は`false`を返します。 これにより、列挙値の文字列形式を解析するときに例外処理を行う必要がなくなります。  
   
- `value`パラメーターには、列挙メンバーの基になる値または名前付き定数の文字列形式、またはコンマ (,) で区切られた名前付き定数または基になる値のリストが含まれます。 `value`に複数の名前付き定数または値が含まれている場合は、`value`の各値、名前、またはコンマの前または後に1つ以上の空白文字を含めることができます。 `value`がリストの場合、`result`は、指定された名前または基になる値を、ビットごとに`OR`演算で組み合わせた値となります。 `value`が列挙値の名前の文字列表現である場合、`value`と列挙名の比較は`ignoreCase`パラメーターによって異なります。 `true`の場合、比較では大文字と小文字が区別されません。`false`の場合は、大文字と小文字が区別されます。  
+ `value`パラメーターには、列挙メンバーの基になる値または名前付き定数の文字列形式、またはコンマ (,) で区切られた名前付き定数または基になる値のリストが含まれます。 `value`に複数の名前付き定数または値が含まれている場合は、`value`の各値、名前、またはコンマの前または後に 1 つ以上の空白文字を含めることができます。 `value`がリストの場合、`result`は、指定された名前または基になる値を、ビットごとに`OR`演算で組み合わせた値となります。 が`value`列挙値の名前の文字列表現である場合、と`ignoreCase`列挙名の`value`比較はパラメーターによって異なります。 の`true`場合、比較では大文字と小`false`文字が区別されません。の場合は、大文字と小文字が区別されます。  
   
- `value`が`TEnum`の名前付き定数に対応しない名前である場合、メソッドは`false`を返します。 `value`が`TEnum`列挙体の基になる値を表さない整数の文字列表現の場合、メソッドは、基になる値が整数型に変換された`value`である列挙体のメンバーを返します。 この動作が望ましくない場合は、 <xref:System.Enum.IsDefined%2A>メソッドを呼び出して、整数の特定の文字列形式が実際に`TEnum`のメンバーであることを確認します。  
+ `value`が`TEnum`の名前付き定数に対応しない名前である場合、メソッドは`false`を返します。 `value`が`TEnum`列挙体の基になる値を表さない整数の文字列表現の場合、メソッドは、基になる値が整数型に変換された`value`である列挙体のメンバーを返します。 この動作が望ましくない場合は、<xref:System.Enum.IsDefined%2A>メソッドを呼び出して、整数の特定の文字列形式が実際に`TEnum`のメンバーであることを確認します。  
   
    
   
