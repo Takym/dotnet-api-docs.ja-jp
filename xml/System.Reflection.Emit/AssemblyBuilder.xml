@@ -1,5 +1,5 @@
 <Type Name="AssemblyBuilder" FullName="System.Reflection.Emit.AssemblyBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7f2dc6655a25bba22e464d93816a82e4d4af3d11" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70326046" /></Metadata><TypeSignature Language="C#" Value="public sealed class AssemblyBuilder : System.Reflection.Assembly, System.Runtime.InteropServices._AssemblyBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="33be0e08f815ea390d3f0bf99a46ca65c101719f" /><Meta Name="ms.sourcegitcommit" Value="e2e4f22ff8833acadc37c42fac186416c7bccd65" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/17/2019" /><Meta Name="ms.locfileid" Value="71055051" /></Metadata><TypeSignature Language="C#" Value="public sealed class AssemblyBuilder : System.Reflection.Assembly, System.Runtime.InteropServices._AssemblyBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit AssemblyBuilder extends System.Reflection.Assembly implements class System.Runtime.InteropServices._AssemblyBuilder" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.Emit.AssemblyBuilder" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class AssemblyBuilder&#xA;Inherits Assembly&#xA;Implements _AssemblyBuilder" />
@@ -42,7 +42,7 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>動的アセンブリを定義および表現します。</summary>
+    <summary>動的アセンブリを定義し、表します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -198,12 +198,12 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="name" /> が既に定義されています。  
+        <exception cref="T:System.ArgumentException"><paramref name="name" /> は以前に定義されています。  
   
 - または - 
 アセンブリには、<paramref name="fileName" /> という名前の別のファイルがあります。  
   
-または 
+- または - 
 <paramref name="name" /> の長さが 0 です。  
   
 - または - 
@@ -251,7 +251,7 @@
       </Parameters>
       <Docs>
         <param name="name">リソースの論理名。</param>
-        <param name="fileName">論理名を割り当てる対象の物理ファイル名 (.resources ファイル)。 これには、パスを含めないようにします。このファイルは、追加先のアセンブリと同じディレクトリに配置する必要があります。</param>
+        <param name="fileName">論理名を割り当てる対象の物理ファイル名 (.resources ファイル)。 これにパスが含まれていてはなりません。ファイルは、追加先アセンブリと同じディレクトリの中になければなりません。</param>
         <param name="attribute">リソースの属性。</param>
         <summary>このアセンブリに既存のリソース ファイルを追加します。</summary>
         <remarks>
@@ -260,7 +260,7 @@
 ## Remarks  
  `fileName`は、他の永続モジュール、スタンドアロンマネージリソース、またはスタンドアロンマニフェストファイルと同じにすることはできません。  
   
- マネージド リソースには属性を指定できます。  
+ 属性には、マネージド リソースを指定できます。  
   
  指定されたリソースファイルは、アセンブリが保存されるディレクトリに存在する必要があります。  
   
@@ -278,7 +278,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="name" /> が既に定義されています。  
+        <exception cref="T:System.ArgumentException"><paramref name="name" /> は以前に定義されています。  
   
 - または - 
 アセンブリには、<paramref name="fileName" /> という名前の別のファイルがあります。  
@@ -515,7 +515,7 @@
       <Docs>
         <param name="name">動的アセンブリの名前。</param>
         <summary>このアセンブリに名前付き遷移動的モジュールを定義します。</summary>
-        <returns>定義する動的モジュールを表す <see cref="T:System.Reflection.Emit.ModuleBuilder" />。</returns>
+        <returns>定義された動的モジュールを表す <see cref="T:System.Reflection.Emit.ModuleBuilder" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -543,20 +543,20 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="name" /> の先頭が空白です。  
+        <exception cref="T:System.ArgumentException"><paramref name="name" /> が空白文字から始まっています。  
   
 - または - 
 <paramref name="name" /> の長さが 0 です。  
   
 - または - 
 <paramref name="name" /> の長さがシステム定義の最大長を超えています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <exception cref="T:System.ExecutionEngineException">既定のシンボル ライターのアセンブリを読み込むことができません。  
+        <exception cref="T:System.ExecutionEngineException">既定のシンボル ライターのアセンブリを読み込めません。  
   
- - または -  
+ または  
   
- 既定のシンボル ライター インターフェイスを実装する型が見つかりません。</exception>
+ 既定のシンボル ライターのインターフェイスを実装する型が見つかりません。</exception>
         <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
@@ -597,7 +597,7 @@
         <param name="name">動的アセンブリの名前。</param>
         <param name="emitSymbolInfo">シンボル情報を生成する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary>このアセンブリに名前付き遷移動的モジュールを定義し、シンボル情報を作成するかどうかを指定します。</summary>
-        <returns>定義する動的モジュールを表す <see cref="T:System.Reflection.Emit.ModuleBuilder" />。</returns>
+        <returns>定義された動的モジュールを表す <see cref="T:System.Reflection.Emit.ModuleBuilder" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -625,17 +625,17 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="name" /> の先頭が空白です。  
+        <exception cref="T:System.ArgumentException"><paramref name="name" /> が空白文字から始まっています。  
   
-または 
+- または - 
 <paramref name="name" /> の長さが 0 です。  
   
-または 
+- または - 
 <paramref name="name" /> の長さがシステム定義の最大長を超えています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" /> です。</exception>
-        <exception cref="T:System.ExecutionEngineException">既定のシンボル ライターのアセンブリを読み込むことができません。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ExecutionEngineException">既定のシンボル ライターのアセンブリを読み込めません。  
   
- - または -  
+ または  
   
  既定のシンボル ライター インターフェイスを実装する型が見つかりません。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -679,7 +679,7 @@
         <param name="name">動的アセンブリの名前。</param>
         <param name="fileName">動的モジュールを保存するファイルの名前。</param>
         <summary>指定したファイルに保存される指定した名前の持続可能動的モジュールを定義します。 シンボル情報は作成されません。</summary>
-        <returns>定義する動的モジュールを表す <see cref="T:System.Reflection.Emit.ModuleBuilder" /> オブジェクト。</returns>
+        <returns>定義された動的モジュールを表す <see cref="T:System.Reflection.Emit.ModuleBuilder" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -712,22 +712,22 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> または <paramref name="fileName" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> または <paramref name="fileName" /> の長さが 0 です。  
   
-または 
+- または - 
 <paramref name="name" /> の長さがシステム定義の最大長を超えています。  
   
-- または - 
+または 
  <paramref name="fileName" /> にパス指定 (ディレクトリ コンポーネントなど) が含まれています。  
   
-- または - 
+または 
 このアセンブリに属する別のファイルの名前と衝突します。</exception>
         <exception cref="T:System.InvalidOperationException">このアセンブリは既に保存されています。</exception>
         <exception cref="T:System.NotSupportedException">このアセンブリは、<see cref="F:System.Reflection.Emit.AssemblyBuilderAccess.Run" /> 属性の動的アセンブリで呼び出されています。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <exception cref="T:System.ExecutionEngineException">既定のシンボル ライターのアセンブリを読み込むことができません。  
+        <exception cref="T:System.ExecutionEngineException">既定のシンボル ライターのアセンブリを読み込めません。  
   
- または  
+ - または -  
   
- 既定のシンボル ライター インターフェイスを実装する型が見つかりません。</exception>
+ 既定のシンボル ライターのインターフェイスを実装する型が見つかりません。</exception>
         <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <permission cref="T:System.Security.Permissions.FileIOPermission">モジュールを保存するには Write = true または Append = true が必要です</permission>
       </Docs>
@@ -768,10 +768,10 @@
       </Parameters>
       <Docs>
         <param name="name">動的アセンブリの名前。</param>
-        <param name="fileName">動的モジュールを保存するファイルの名前。</param>
+        <param name="fileName">動的モジュールの保存先となるファイルの名前。</param>
         <param name="emitSymbolInfo"><see langword="true" /> の場合は、既定のシンボル ライターを使用してシンボリック情報が書き込まれます。</param>
         <summary>モジュール名、モジュールの保存先ファイルの名前、既定のシンボル ライターを使用してシンボル情報を出力するかどうかを指定して、持続可能動的モジュールを定義します。</summary>
-        <returns>定義する動的モジュールを表す <see cref="T:System.Reflection.Emit.ModuleBuilder" /> オブジェクト。</returns>
+        <returns>定義された動的モジュールを表す <see cref="T:System.Reflection.Emit.ModuleBuilder" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -804,10 +804,10 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> または <paramref name="fileName" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> または <paramref name="fileName" /> の長さが 0 です。  
   
-- または - 
+または 
 <paramref name="name" /> の長さがシステム定義の最大長を超えています。  
   
-または 
+- または - 
  <paramref name="fileName" /> にパス指定 (ディレクトリ コンポーネントなど) が含まれています。  
   
 または 
@@ -816,7 +816,7 @@
         <exception cref="T:System.NotSupportedException">このアセンブリは、<see cref="F:System.Reflection.Emit.AssemblyBuilderAccess.Run" /> 属性の動的アセンブリで呼び出されています。</exception>
         <exception cref="T:System.ExecutionEngineException">既定のシンボル ライターのアセンブリを読み込むことができません。  
   
- または  
+ - または -  
   
  既定のシンボル ライター インターフェイスを実装する型が見つかりません。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -871,9 +871,9 @@
       <Docs>
         <param name="name">リソースの論理名。</param>
         <param name="description">文章によるリソースの説明。</param>
-        <param name="fileName">論理名を割り当てる対象の物理ファイル名 (.resources ファイル)。 パスを含めないでください。</param>
+        <param name="fileName">論理名のマップ先物理ファイル名 (.resources ファイル)。 これにはパスを含めないでください。</param>
         <summary>既定のパブリック リソース属性を使用して、このアセンブリのスタンドアロン マネージド リソースを定義します。</summary>
-        <returns>指定したリソースの <see cref="T:System.Resources.ResourceWriter" /> オブジェクト。</returns>
+        <returns>指定されたリソースの <see cref="T:System.Resources.ResourceWriter" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -898,18 +898,18 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="name" /> が既に定義されています。  
+        <exception cref="T:System.ArgumentException"><paramref name="name" /> は以前に定義されています。  
   
 - または - 
 アセンブリには、<paramref name="fileName" /> という名前の別のファイルがあります。  
   
-または 
+- または - 
 <paramref name="name" /> の長さが 0 です。  
   
-または 
+- または - 
 <paramref name="fileName" /> の長さが 0 です。  
   
-- または - 
+または 
  <paramref name="fileName" /> にパスが含まれています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> または <paramref name="fileName" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -955,10 +955,10 @@
       <Docs>
         <param name="name">リソースの論理名。</param>
         <param name="description">文章によるリソースの説明。</param>
-        <param name="fileName">論理名を割り当てる対象の物理ファイル名 (.resources ファイル)。 パスを含めないでください。</param>
+        <param name="fileName">論理名のマップ先物理ファイル名 (.resources ファイル)。 パスを含めないでください。</param>
         <param name="attribute">リソースの属性。</param>
-        <summary>このアセンブリのスタンドアロン マネージド リソースを定義します。 マネージド リソースには属性を指定できます。</summary>
-        <returns>指定したリソースの <see cref="T:System.Resources.ResourceWriter" /> オブジェクト。</returns>
+        <summary>このアセンブリのスタンドアロン マネージド リソースを定義します。 属性には、マネージド リソースを指定できます。</summary>
+        <returns>指定されたリソースの <see cref="T:System.Resources.ResourceWriter" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -974,15 +974,15 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="name" /> が既に定義されています。または、同じ <paramref name="fileName" /> のアセンブリが別のファイルにあります。  
+        <exception cref="T:System.ArgumentException"><paramref name="name" /> は既に定義済みか、<paramref name="fileName" /> という名前のアセンブリに別のファイルが存在する場合。  
   
 - または - 
 <paramref name="name" /> の長さが 0 です。  
   
-- または - 
+または 
 <paramref name="fileName" /> の長さが 0 です。  
   
-- または - 
+または 
  <paramref name="fileName" /> にパスが含まれています。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> または <paramref name="fileName" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -1047,7 +1047,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException">アンマネージ リソースが既に定義されています。</exception>
+        <exception cref="T:System.ArgumentException">アンマネージ リソースは、以前に定義されました。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="resource" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
@@ -1087,7 +1087,7 @@
       </Parameters>
       <Docs>
         <param name="resourceFileName">リソース ファイルの名前。</param>
-        <summary>リソース ファイル名を指定して、このアセンブリのアンマネージ リソース ファイルを定義します。</summary>
+        <summary>リソース ファイルの名前が指定されたこのアセンブリのアンマネージ リソース ファイルを定義します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1108,12 +1108,12 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException">アンマネージ リソースが既に定義されています。  
+        <exception cref="T:System.ArgumentException">アンマネージ リソースは、以前に定義されました。  
   
 - または - 
 ファイル <paramref name="resourceFileName" /> が読み取り可能ではありません。  
   
-または 
+- または - 
  <paramref name="resourceFileName" /> が空の文字列 ("") です。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="resourceFileName" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="resourceFileName" /> が見つかりません。  
@@ -1161,7 +1161,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>アセンブリの AssemblyName オブジェクトおよびアセンブリのカスタム属性で指定された情報を使用して、アンマネージ バージョン情報リソースを定義します。</summary>
+        <summary>アセンブリの AssemblyName オブジェクトと、アセンブリのカスタム属性に指定された情報を使用して、アンマネージ バージョンの情報リソースを定義します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1232,7 +1232,7 @@
         <param name="company">このアセンブリを作成した会社名。</param>
         <param name="copyright">このアセンブリに適用されるすべての著作権表記、商標、および登録商標を記述します。 これには著作権表記の全文、著作権や商標などを示す記号、著作権取得日、商標番号などが含まれます。 英語では、この文字列は "Copyright Microsoft Corp. 1990-2001" という書式になります。1990-2001".</param>
         <param name="trademark">このアセンブリに適用されるすべての商標および登録商標を記述します。 これには著作権表記の全文、著作権や商標などを示す記号、商標番号などが含まれます。 英語では、この文字列は "Windows is a trademark of Microsoft Corporation" という書式になります。</param>
-        <summary>指定された仕様を使用して、このアセンブリのアンマネージ バージョン情報リソースを定義します。</summary>
+        <summary>指定された仕様で、このアセンブリのアンマネージ バージョン情報リソースを定義します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1259,7 +1259,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException">アンマネージ バージョン情報リソースが既に定義されています。  
   
- - または -  
+ または  
   
  アンマネージ バージョン情報が大きすぎて、永続化できません。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -1549,7 +1549,7 @@
         <Parameter Name="name" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="name">要求する動的モジュールの名前。</param>
+        <param name="name">要求された動的モジュールの名前。</param>
         <summary>指定した名前の動的モジュールを返します。</summary>
         <returns>要求された動的モジュールを表す ModuleBuilder オブジェクト。</returns>
         <remarks>To be added.</remarks>
@@ -1876,7 +1876,7 @@
       <Docs>
         <param name="name">要求されているマニフェスト リソースの名前。</param>
         <summary>このアセンブリから、指定されたマニフェスト リソースを読み込みます。</summary>
-        <returns>マニフェスト リソースを表す <see cref="T:System.IO.Stream" />。</returns>
+        <returns>このマニフェスト リソースを表す <see cref="T:System.IO.Stream" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotSupportedException">このメソッドは現在サポートされていません。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -1915,7 +1915,7 @@
         <param name="type">マニフェスト リソース名のスコープを指定するために名前空間を使用する型。</param>
         <param name="name">要求されているマニフェスト リソースの名前。</param>
         <summary>このアセンブリから、指定された型の名前空間によってスコープが指定されている、指定されたマニフェスト リソースを読み込みます。</summary>
-        <returns>マニフェスト リソースを表す <see cref="T:System.IO.Stream" />。</returns>
+        <returns>このマニフェスト リソースを表す <see cref="T:System.IO.Stream" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1932,7 +1932,7 @@
         <exception cref="T:System.NotSupportedException">このメソッドは現在サポートされていません。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
-        <related type="Article" href="~/docs/framework/app-domains/assembly-manifest.md">アセンブリ マニフェスト</related>
+        <related type="Article" href="~/docs/standard/assembly/manifest.md">アセンブリ マニフェスト</related>
       </Docs>
     </Member>
     <Member MemberName="GetModule">
@@ -2065,7 +2065,7 @@
       <Parameters />
       <Docs>
         <summary>この <see cref="T:System.Reflection.Emit.AssemblyBuilder" /> で参照されるアセンブリの <see cref="T:System.Reflection.AssemblyName" /> オブジェクトの不完全なリストを取得します。</summary>
-        <returns>参照アセンブリのアセンブリ名の配列。 この配列は、完全なリストではありません。</returns>
+        <returns>参照アセンブリのアセンブリ名の配列。 この配列は完全な一覧ではありません。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2128,7 +2128,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="culture" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="culture" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.FileNotFoundException">アセンブリが見つかりません。</exception>
         <exception cref="T:System.IO.FileLoadException">ファイル名が一致するサテライト アセンブリが見つかりましたが、<see langword="CultureInfo" /> は指定されているファイル名とは一致しませんでした。</exception>
         <exception cref="T:System.BadImageFormatException">サテライト アセンブリは、有効なアセンブリではありません。</exception>
@@ -2422,7 +2422,7 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>マニフェストを格納している読み込み済みファイルがシャドウ コピーされていない場合に、このファイルの場所をコードベース書式で取得します。</summary>
+        <summary>シャドウ コピーされたファイルではない場合は、マニフェストを格納している読み込み済みファイルの位置をコードベース形式で取得します。</summary>
         <value>マニフェストを格納している読み込み済みファイルの場所。 読み込み済みファイルがシャドウ コピーされている場合、場所はシャドウ コピーされる前のファイルの位置です。<see langword="Location" /></value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotSupportedException">このメソッドは現在サポートされていません。</exception>
@@ -2553,8 +2553,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>その動的アセンブリが、リフレクションのみのコンテキストで使用されるかどうかを示す値を取得します。</summary>
-        <value>その動的アセンブリがリフレクションのみのコンテキストで使用される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <summary>動的アセンブリがリフレクションのみのコンテキストにあるかどうかを示す値を取得します。</summary>
+        <value>動的アセンブリがリフレクションのみのコンテキストにある場合は、<see langword="true" />。それ以外の場合は、<see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2615,7 +2615,7 @@
       </Parameters>
       <Docs>
         <param name="assemblyFileName">アセンブリのファイル名。</param>
-        <summary>この動的アセンブリをディスクに保存します。</summary>
+        <summary>ディスクにこの動的アセンブリを保存します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2650,7 +2650,7 @@
 - または - 
  <paramref name="assemblyFileName" /> が単純なファイル名 (たとえば、ディレクトリまたはドライブのコンポーネントを持つ) でないか、複数のアンマネージ リソース (バージョン情報のリソースを含む) がこのアセンブリで定義されています。  
   
-- または - 
+または 
 <see cref="T:System.Reflection.AssemblyCultureAttribute" /> の <see langword="CultureInfo" /> 文字列が有効な文字列ではなく、かつ、このメソッドを呼び出す前に <see cref="M:System.Reflection.Emit.AssemblyBuilder.DefineVersionInfoResource(System.String,System.String,System.String,System.String,System.String)" /> が呼び出されました。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="assemblyFileName" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.InvalidOperationException">このアセンブリは既に保存されています。  
@@ -2699,7 +2699,7 @@
         <param name="assemblyFileName">アセンブリのファイル名。</param>
         <param name="portableExecutableKind">コードの性質を指定する <see cref="T:System.Reflection.PortableExecutableKinds" /> 値のビットごとの組み合わせ。</param>
         <param name="imageFileMachine">ターゲット プラットフォームを指定する <see cref="T:System.Reflection.ImageFileMachine" /> の値の 1 つ。</param>
-        <summary>アセンブリの実行可能ファイルに含まれるコードの性質、および保存先プラットフォームを指定して、この動的アセンブリをディスクに保存します。</summary>
+        <summary>ディスクにこの動的アセンブリを保存します。その際、アセンブリの実行可能ファイルのコードの性質とターゲット プラットフォームを指定します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2725,7 +2725,7 @@
 - または - 
  <paramref name="assemblyFileName" /> が単純なファイル名 (たとえば、ディレクトリまたはドライブのコンポーネントを持つ) でないか、複数のアンマネージ リソース (バージョン情報のリソースを含む) がこのアセンブリで定義されています。  
   
-または 
+- または - 
 <see cref="T:System.Reflection.AssemblyCultureAttribute" /> の <see langword="CultureInfo" /> 文字列が有効な文字列ではなく、かつ、このメソッドを呼び出す前に <see cref="M:System.Reflection.Emit.AssemblyBuilder.DefineVersionInfoResource(System.String,System.String,System.String,System.String,System.String)" /> が呼び出されました。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="assemblyFileName" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.InvalidOperationException">このアセンブリは既に保存されています。  
@@ -2779,7 +2779,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>このアセンブリのカスタム属性を設定します。</summary>
+        <summary>このアセンブリにカスタム属性を設定します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="SetCustomAttribute">
@@ -2891,7 +2891,7 @@
       <Docs>
         <param name="con">カスタム属性のコンストラクター。</param>
         <param name="binaryAttribute">属性を表すバイト blob。</param>
-        <summary>指定したカスタム属性 BLOB を使用して、このアセンブリのカスタム属性を設定します。</summary>
+        <summary>指定されたカスタム属性 blob を使用して、このアセンブリのカスタム属性を設定します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -3002,7 +3002,7 @@
       <Docs>
         <param name="entryMethod">この動的アセンブリのエントリ ポイントを表すメソッドへの参照。</param>
         <param name="fileKind">構築するアセンブリ実行可能ファイルの型。</param>
-        <summary>このアセンブリのエントリ ポイントを設定し、構築するポータブル実行可能 (PE) ファイルの型を定義します。</summary>
+        <summary>このアセンブリのエントリ ポイントを設定し、ビルド中の移植可能な実行可能 (PE ファイル) の型を定義します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   

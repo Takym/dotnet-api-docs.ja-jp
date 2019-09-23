@@ -1,5 +1,5 @@
 <Type Name="StrongNameIdentityPermission" FullName="System.Security.Permissions.StrongNameIdentityPermission">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f76e27171568e6dd9d9f413781810130507e2699" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69081246" /></Metadata><TypeSignature Language="C#" Value="public sealed class StrongNameIdentityPermission : System.Security.CodeAccessPermission" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4666f904012d59d013187d2780c5ac991fb4dcaa" /><Meta Name="ms.sourcegitcommit" Value="e2e4f22ff8833acadc37c42fac186416c7bccd65" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/17/2019" /><Meta Name="ms.locfileid" Value="71054518" /></Metadata><TypeSignature Language="C#" Value="public sealed class StrongNameIdentityPermission : System.Security.CodeAccessPermission" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit StrongNameIdentityPermission extends System.Security.CodeAccessPermission" />
   <TypeSignature Language="DocId" Value="T:System.Security.Permissions.StrongNameIdentityPermission" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class StrongNameIdentityPermission&#xA;Inherits CodeAccessPermission" />
@@ -50,7 +50,7 @@
   
  .NET Framework バージョン1.0 および1.1 では、呼び出し元のアセンブリが完全に信頼されている場合でも、id アクセス許可に対する要求が有効になります。 つまり、呼び出し元のアセンブリが完全に信頼されている場合でも、アセンブリが要求された条件を満たしていないと、id アクセス許可の要求は失敗します。 .NET Framework バージョン2.0 以降では、呼び出し元のアセンブリに完全な信頼がある場合、id 権限の要求は無効になります。 これにより、すべてのアクセス許可の一貫性が確保され、特殊なケースとしての id アクセス許可の処理が不要になります。  
   
- 厳密な名前の詳細については、 <xref:System.Security.Policy.StrongName>リファレンスページを参照してください。 厳密な名前付きアセンブリの詳細については、「[厳密な名前付きアセンブリ](~/docs/framework/app-domains/strong-named-assemblies.md)」を参照してください。  
+ 厳密な名前の詳細については、 <xref:System.Security.Policy.StrongName>リファレンスページを参照してください。 厳密な名前付きアセンブリの詳細については、「[厳密な名前付きアセンブリ](~/docs/standard/assembly/strong-named.md)」を参照してください。  
   
  <xref:System.Security.Permissions.StrongNameIdentityPermission>クラスは、型のパブリックメンバーにアクセスするための厳密な名前の要件を定義するために使用されます。 属性<xref:System.Security.Permissions.StrongNameIdentityPermissionAttribute>は、アセンブリレベルで厳密な名前の要件を定義するために使用できます。 .NET Framework バージョン2.0 以降では、 <xref:System.Runtime.CompilerServices.InternalsVisibleToAttribute>属性を使用して、そのアセンブリ内のすべての非パブリック型を別のアセンブリから参照できるように指定することもできます。 詳細については、[Friend アセンブリ](https://msdn.microsoft.com/library/df0c70ea-2c2a-4bdc-9526-df951ad2d055)に関するページを参照してください。  
   
@@ -157,14 +157,14 @@
         <param name="blob">厳密な名前 ID 名前空間を定義する公開キー。</param>
         <param name="name">厳密な名前 ID の単純な名前の部分。 これは、アセンブリの名前に対応します。</param>
         <param name="version">ID のバージョン番号。</param>
-        <summary>指定した厳密な名前 ID を使用して、<see cref="T:System.Security.Permissions.StrongNameIdentityPermission" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>指定した厳密な名前 ID の <see cref="T:System.Security.Permissions.StrongNameIdentityPermission" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  パラメーター `name` `null`と`version`パラメーターは、公開キーを使用してアセンブリを識別する場合にのみ指定できます。 の代わりに空の`null`文字列 ("") を使用することはできません。 が`name`空の文字列<xref:System.ArgumentException>の場合は、がスローされます。  
   
- アセンブリの名前とバージョン番号の詳細については、「[厳密な名前付きアセンブリ](~/docs/framework/app-domains/strong-named-assemblies.md)」を参照してください。  
+ アセンブリの名前とバージョン番号の詳細については、「[厳密な名前付きアセンブリ](~/docs/standard/assembly/strong-named.md)」を参照してください。  
   
    
   
@@ -318,7 +318,7 @@
       <Docs>
         <param name="target">現在のアクセス許可との共通部分のあるアクセス許可。 これは、現在のアクセス許可と同じ型であることが必要です。</param>
         <summary>現在のアクセス許可と指定したアクセス許可の積集合となるアクセス許可を作成して返します。</summary>
-        <returns>現在のアクセス許可と指定したアクセス許可の積集合を表すアクセス許可。または、積集合がない場合は <see langword="null" />。</returns>
+        <returns>現在のアクセス許可と指定したアクセス許可の積集合を表す新しいアクセス許可。積集合が空の場合は <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -379,7 +379,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在のアクセス許可が、指定したアクセス許可によって完全に含まれる一連の操作を指定している場合、現在のアクセス許可は、指定したアクセス許可のサブセットになります。 たとえば、他のプロパティが等しい場合、ワイルドカード式 MyCompany <xref:System.Security.Permissions.StrongNameIdentityPermission.Name%2A>を含むプロパティを持つ id は、MyCompany <xref:System.Security.Permissions.StrongNameIdentityPermission.Name%2A>プロパティを持つ id のサブセットとして識別されます。.  
+ 現在のアクセス許可が、指定したアクセス許可によって完全に含まれる一連の操作を指定している場合、現在のアクセス許可は、指定したアクセス許可のサブセットになります。 たとえば、他のプロパティが等しい場合、ワイルドカード式 MyCompany <xref:System.Security.Permissions.StrongNameIdentityPermission.Name%2A>を含むプロパティを持つ id は、MyCompany <xref:System.Security.Permissions.StrongNameIdentityPermission.Name%2A>プロパティを持つ id のサブセットとして識別されます。  
   
    
   
@@ -433,8 +433,8 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException">値が空の文字列 ("") です。</exception>
-        <exception cref="T:System.NotSupportedException">あいまいな ID が含まれるため、プロパティの値を取得できません。</exception>
+        <exception cref="T:System.ArgumentException">値は、空の文字列 ("") です。</exception>
+        <exception cref="T:System.NotSupportedException">不明な ID が含まれているので、プロパティ値を取得できません。</exception>
       </Docs>
     </Member>
     <Member MemberName="PublicKey">
@@ -574,7 +574,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="target" /> パラメーターが <see langword="null" /> でなく、また現在のアクセス許可と同じ型でもありません。  
   
-または 
+- または - 
 アクセス許可は同一ではありません。互いのサブセットでもありません。</exception>
       </Docs>
     </Member>
@@ -606,7 +606,7 @@
         <summary>ID のバージョン番号を取得または設定します。</summary>
         <value>ID のバージョン。</value>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.NotSupportedException">あいまいな ID が含まれるため、プロパティの値を取得できません。</exception>
+        <exception cref="T:System.NotSupportedException">不明な ID が含まれているので、プロパティ値を取得できません。</exception>
       </Docs>
     </Member>
   </Members>
