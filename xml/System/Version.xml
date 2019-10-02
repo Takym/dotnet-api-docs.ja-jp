@@ -1,5 +1,5 @@
 <Type Name="Version" FullName="System.Version">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="57c7ef67da4aee74c30344ae7003e40f05caebd3" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70372154" /></Metadata><TypeSignature Language="C#" Value="public sealed class Version : ICloneable, IComparable, IComparable&lt;Version&gt;, IEquatable&lt;Version&gt;" />
+  <TypeSignature Language="C#" Value="public sealed class Version : ICloneable, IComparable, IComparable&lt;Version&gt;, IEquatable&lt;Version&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit Version extends System.Object implements class System.ICloneable, class System.IComparable, class System.IComparable`1&lt;class System.Version&gt;, class System.IEquatable`1&lt;class System.Version&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Version" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Version&#xA;Implements ICloneable, IComparable, IComparable(Of Version), IEquatable(Of Version)" />
@@ -59,7 +59,7 @@
 ## Remarks  
  バージョン番号は、メジャー、マイナー、ビルド、リビジョンの 2 ~ 4 個のコンポーネントで構成されています。 主要なコンポーネントとマイナーコンポーネントが必要です。ビルドコンポーネントとリビジョンコンポーネントは省略可能ですが、リビジョンコンポーネントが定義されている場合はビルドコンポーネントが必要です。 定義されたすべてのコンポーネントは、0以上の整数である必要があります。 バージョン番号の形式は次のとおりです (オプションのコンポーネントは、角かっこ ([および]) で示されています。  
   
- *major*。*マイナー*[.*ビルド*[.*リビジョン*]]  
+ *major*。*minor*[。*ビルド*[.*リビジョン*]]  
   
  これらのコンポーネントは、次のように規約によって使用されます。  
   
@@ -244,7 +244,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="version" /> の構成要素数が 2 よりも少ないか、または 4 よりも多くなっています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="version" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="version" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException">メジャー、マイナー、ビルド、リビジョンの各構成要素が 0 よりも小さくなっています。</exception>
         <exception cref="T:System.FormatException"><paramref name="version" /> の構成要素のうちの少なくとも 1 つが整数に解析されません。</exception>
         <exception cref="T:System.OverflowException"><paramref name="version" /> の構成要素のうちの少なくとも 1 つが <see cref="F:System.Int32.MaxValue" /> より大きい値を示しています。</exception>
@@ -671,7 +671,7 @@
  </description></item><item><term> 0 より大きい値 
  </term><description> 現在の <see cref="T:System.Version" /> オブジェクトは、<paramref name="value" /> より後のバージョンです。  
   
-または 
+- または - 
  <paramref name="value" /> は <see langword="null" />です。  
   
  </description></item></list></returns>
@@ -1310,7 +1310,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[この演算子の同等の方法は次のようになります。<xref:System.Version.CompareTo%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="v1" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="v1" /> は <see langword="null" />です。</exception>
         <altmember cref="M:System.Version.Equals(System.Object)" />
         <altmember cref="M:System.Version.CompareTo(System.Object)" />
       </Docs>
@@ -1390,10 +1390,26 @@
         <Parameter Name="input" Type="System.ReadOnlySpan&lt;System.Char&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="input">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="input">変換するバージョン番号を含む文字の読み取り専用のスパン。</param>
+        <summary>バージョン番号を表す文字の指定した読み取り専用のスパンを、等価の <see cref="T:System.Version" /> オブジェクトに変換します。</summary>
+        <returns><paramref name="input" /> パラメーターで指定されているバージョン番号と等価のオブジェクト。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+パラメーター `input`の形式は次のとおりでなければなりません。
+
+`major.minor[.build[.revision]]`
+
+`major`、`minor`、`build`、および `revision` は、バージョン番号の4つのコンポーネント (メジャーバージョン番号、マイナーバージョン番号、ビルド番号、リビジョン番号) の文字列形式です。 省略可能なコンポーネントは、角かっこ ([および]) で示されています。 コンポーネントは、指定された順序で表示される必要があり、ピリオドで区切られている必要があります。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException"><paramref name="input" /> のバージョン構成要素数が 2 未満であるか、4 を上回っています。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="input" /> 内の少なくとも 1 つの構成要素が 0 未満です。</exception>
+        <exception cref="T:System.FormatException"><paramref name="input" /> 内の少なくとも 1 つの構成要素が整数ではありません。</exception>
+        <exception cref="T:System.OverflowException"><paramref name="input" /> の構成要素のうちの少なくとも 1 つが <see cref="F:System.Int32.MaxValue" /> より大きい値を示しています。</exception>
       </Docs>
     </Member>
     <Member MemberName="Parse">
@@ -1439,12 +1455,9 @@
 ## Remarks  
  パラメーター `input`の形式は次のとおりでなければなりません。  
   
-```  
+`major.minor[.build[.revision]]`  
   
-major.minor[.build[.revision]]  
-```  
-  
- *major*、 *minor*、 *build*、および*revision*は、バージョン番号の4つのコンポーネント (メジャーバージョン番号、マイナーバージョン番号、ビルド番号、リビジョン番号) の文字列形式です。 省略可能なコンポーネントは、角かっこ ([および]) で示されています。 コンポーネントは、指定された順序で表示される必要があり、ピリオドで区切る必要があります。  
+ `major`、`minor`、`build`、および `revision` は、バージョン番号の4つのコンポーネント (メジャーバージョン番号、マイナーバージョン番号、ビルド番号、リビジョン番号) の文字列形式です。 省略可能なコンポーネントは、角かっこ ([および]) で示されています。 コンポーネントは、指定された順序で表示される必要があり、ピリオドで区切られている必要があります。
   
 > [!IMPORTANT]
 >  バージョン番号の文字列表現は認識されるパターンに準拠している必要があるため、ユーザー入力を解析<xref:System.Version.Parse%2A>するメソッドを呼び出す場合、アプリケーションは常に例外処理を使用する必要があります。 または、 <xref:System.Version.TryParse%2A>メソッドを呼び出して、バージョン番号の文字列形式を解析し、解析操作が成功したかどうかを示す値を返すこともできます。  
@@ -1554,10 +1567,39 @@ major.minor[.build[.revision]]
         <Parameter Name="version" Type="System.Object" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6" />
       </Parameters>
       <Docs>
-        <param name="version">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="version">比較対象のオブジェクト、または <see langword="null" />。</param>
+        <summary>指定したオブジェクトと現在の <see cref="T:System.Version" /> オブジェクトを比較し、これらの相対値を示す値を返します。</summary>
+        <returns>2 つのオブジェクトの相対的な値を示す符号付き整数 (次の表を参照)。 <list type="table">
+            <listheader>
+              <term>戻り値</term>
+              <description>説明</description>
+            </listheader>
+            <item>
+              <term>0 より小さい値</term>
+              <description>現在の <see cref="T:System.Version" /> オブジェクトは、<paramref name="version" /> より前のバージョンです。</description>
+            </item>
+            <item>
+              <term>0</term>
+              <description>現在の <see cref="T:System.Version" /> オブジェクトは、<paramref name="version" /> と同じバージョンです。</description>
+            </item>
+            <item>
+              <term>0 より大きい値</term>
+              <description>現在の <see cref="T:System.Version" /> オブジェクトは、<paramref name="version" /> より後のバージョンです。
+
+- または -
+
+<paramref name="version" /> は <see langword="null" />です。</description>
+            </item>
+          </list></returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+このメンバーは、明示的なインターフェイス メンバーの実装です。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <MemberGroup MemberName="ToString">
@@ -1704,10 +1746,10 @@ major.minor[.build[.revision]]
         <Parameter Name="charsWritten" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="destination">To be added.</param>
-        <param name="charsWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="destination">このメソッドから制御が戻るときに、文字のスパン内にある書式設定されたバージョン。</param>
+        <param name="charsWritten">このメソッドから制御が戻るときに、<paramref name="destination" /> に書き込まれた文字数。</param>
+        <summary>このバージョンのインスタンスの書式を文字のスパンに設定しようとします。</summary>
+        <returns>書式設定が正常に実行された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1739,11 +1781,11 @@ major.minor[.build[.revision]]
         <Parameter Name="charsWritten" Type="System.Int32" RefType="out" Index="2" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="destination">To be added.</param>
-        <param name="fieldCount">To be added.</param>
-        <param name="charsWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="destination">このメソッドから制御が戻るときに、文字のスパン内にある書式設定されたバージョン。</param>
+        <param name="fieldCount">返される構成要素の数。 この値の範囲は 0 から 4 です。</param>
+        <param name="charsWritten">このメソッドから制御が戻るときに、<paramref name="destination" /> に書き込まれた文字数。</param>
+        <summary>このバージョンのインスタンスの書式を文字のスパンに設定しようとします。</summary>
+        <returns>書式設定が正常に実行された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1774,11 +1816,26 @@ major.minor[.build[.revision]]
         <Parameter Name="result" Type="System.Version" RefType="out" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
       </Parameters>
       <Docs>
-        <param name="input">To be added.</param>
-        <param name="result">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="input">変換するバージョン番号を含む文字の読み取り専用のスパン。</param>
+        <param name="result">変換が成功した場合は、このメソッドから制御が戻るときに、<paramref name="input" /> に含まれる数値と等価の <see cref="T:System.Version" />。 <paramref name="input" /> が <see langword="null" /> または <see cref="F:System.String.Empty" /> の場合、または変換が失敗した場合は、メソッドから制御が戻るときの <paramref name="result" /> は <see langword="null" /> です。</param>
+        <summary>バージョン番号を表す文字の指定した読み取り専用スパンから等価の <see cref="T:System.Version" /> オブジェクトへの変換を試行し、変換が成功したかどうかを示す値を返します。</summary>
+        <returns><paramref name="input" /> パラメーターが正常に変換された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown">
+<![CDATA
+
+## Remarks
+
+`TryParse` メソッドは、変換に失敗した場合に例外をスローしない点を除いて、<xref:System.Version.Parse%2A> メソッドに似ています。 代わりに `false` が返されるのは、`input` が `null` であるか、4つ以上のコンポーネントがある場合、少なくとも1つのコンポーネントが0未満であるか、少なくとも1つのコンポーネントが <xref:System.Int32.MaxValue?displayProperty=nameWithType> を超える場合です。
+
+解析操作を成功`input`させるには、パラメーターを次の形式にする必要があります。
+
+`major.minor[.build[.revision]]`
+
+`major`、`minor`、`build`、および `revision` は、バージョン番号の4つのコンポーネント (メジャーバージョン番号、マイナーバージョン番号、ビルド番号、リビジョン番号) の文字列形式です。 省略可能なコンポーネントは、角かっこ ([および]) で示されています。 コンポーネントは順番に表示される必要があり、ピリオドで区切る必要があります。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TryParse">
@@ -1824,16 +1881,13 @@ major.minor[.build[.revision]]
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは<xref:System.Version.Parse%2A>メソッドに似ていますが、変換に失敗した場合に例外をスローしない点が異なります。 <xref:System.Version.TryParse%2A> 代わりに、が null `false`で`input`あるか、2つ以上のコンポーネントがあるか、少なくとも1つのコンポーネントが整数ではないか、少なくとも1つのコンポーネントが0未満であるか、またはより大きいコンポーネントが1つ以上含まれている場合は、を返します。<xref:System.Int32.MaxValue?displayProperty=nameWithType>.  
+ `TryParse` メソッドは、変換に失敗した場合に例外をスローしない点を除いて、<xref:System.Version.Parse%2A> メソッドに似ています。 代わりに `false` が返されるのは、`input` が `null` であるか、4つ以上のコンポーネントがある場合、少なくとも1つのコンポーネントが0未満であるか、少なくとも1つのコンポーネントが <xref:System.Int32.MaxValue?displayProperty=nameWithType> を超える場合です。  
   
  解析操作を成功`input`させるには、パラメーターを次の形式にする必要があります。  
   
-```  
+`major.minor[.build[.revision]]`  
   
-major.minor[.build[.revision]]  
-```  
-  
- *major*、 *minor*、 *build*、および*revision*は、バージョン番号の4つのコンポーネント (メジャーバージョン番号、マイナーバージョン番号、ビルド番号、リビジョン番号) の文字列形式です。 省略可能なコンポーネントは、角かっこ ([および]) で示されています。 コンポーネントは順番に表示される必要があり、ピリオドで区切る必要があります。  
+ `major`、`minor`、`build`、および `revision` は、バージョン番号の4つのコンポーネント (メジャーバージョン番号、マイナーバージョン番号、ビルド番号、リビジョン番号) の文字列形式です。 省略可能なコンポーネントは、角かっこ ([および]) で示されています。 コンポーネントは順番に表示される必要があり、ピリオドで区切る必要があります。  
   
    
   
