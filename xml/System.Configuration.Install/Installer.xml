@@ -29,27 +29,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、.NET Framework 内のすべてのカスタムインストーラーの基本クラスです。 インストーラーは、コンピューターにアプリケーションをインストールするのに役立つコンポーネントです。  
+ これは、すべての.NET Framework のカスタムインストーラーの基底クラスです。 インストーラーは、コンピューターにアプリケーションをインストールするコンポーネントです。  
   
- を使用するには、 <xref:System.Configuration.Install.Installer>次のいくつかの手順を実行する必要があります。  
+ <xref:System.Configuration.Install.Installer>を使用するには、 次の手順を実行する必要があります。  
   
--   クラスを<xref:System.Configuration.Install.Installer>継承します。  
+-   <xref:System.Configuration.Install.Installer>クラスを継承します。  
   
--   、 、、および<xref:System.Configuration.Install.Installer.Install%2A>の<xref:System.Configuration.Install.Installer.Uninstall%2A>各メソッドをオーバーライドします。 <xref:System.Configuration.Install.Installer.Commit%2A> <xref:System.Configuration.Install.Installer.Rollback%2A>  
+-   <xref:System.Configuration.Install.Installer.Install%2A>メソッドと、  <xref:System.Configuration.Install.Installer.Commit%2A>メソッドと、<xref:System.Configuration.Install.Installer.Rollback%2A>メソッドと、<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドをすべてオーバーライドします。  
   
--   を派生クラス`true`に追加し、をに<xref:System.ComponentModel.RunInstallerAttribute>設定します。  
+-   派生クラスに<xref:System.ComponentModel.RunInstallerAttribute>属性を`true`で追加します。  
   
--   アプリケーションをインストールするために、派生クラスをアセンブリに配置します。  
+-   派生クラスおよびインストールするアプリケーションをアセンブリに配置します。  
   
--   インストーラーを呼び出します。 たとえば、Installutil.exe を使用してインストーラーを呼び出します。  
+-   インストーラーを起動します。 たとえば、Installutil.exe を使用してインストーラーを呼び出します。  
   
- プロパティ<xref:System.Configuration.Install.Installer.Installers%2A>は、インストーラーのコレクションを格納します。 の<xref:System.Configuration.Install.Installer>このインスタンスがインストーラーコレクションの一部<xref:System.Configuration.Install.Installer.Parent%2A>である場合、 <xref:System.Configuration.Install.Installer>プロパティは、コレクションを含むインスタンスに設定されます。 <xref:System.Configuration.Install.Installer.Installers%2A>コレクションの使用例につい<xref:System.Configuration.Install.AssemblyInstaller>ては、クラスを参照してください。  
+ <xref:System.Configuration.Install.Installer.Installers%2A>プロパティは、インストーラーのコレクションを格納します。 この<xref:System.Configuration.Install.Installer>のインスタンスがインストーラーコレクションの一部である場合、<xref:System.Configuration.Install.Installer.Parent%2A>プロパティをコレクションを含む<xref:System.Configuration.Install.Installer>インスタンスに設定します。 <xref:System.Configuration.Install.Installer.Installers%2A>コレクションの使用例については、<xref:System.Configuration.Install.AssemblyInstaller>クラスを参照してください。  
   
- <xref:System.Configuration.Install.Installer.Install%2A> <xref:System.Configuration.Install.Installer.Commit%2A>クラスの<xref:System.Configuration.Install.Installer.Rollback%2A> <xref:System.Configuration.Install.Installer.Installers%2A> 、、 、<xref:System.Configuration.Install.Installer.Uninstall%2A>の各メソッドは、プロパティに格納されているインストーラーのコレクションを参照し、各インストーラーの対応するメソッドを呼び出します。 <xref:System.Configuration.Install.Installer>  
+ <xref:System.Configuration.Install.Installer.Install%2A>クラスの<xref:System.Configuration.Install.Installer>メソッド 、<xref:System.Configuration.Install.Installer.Commit%2A>メソッド 、 <xref:System.Configuration.Install.Installer.Rollback%2A>メソッド 、<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドは、<xref:System.Configuration.Install.Installer.Installers%2A>プロパティに格納されているインストーラーのコレクションを参照し、各インストーラーの対応するメソッドを呼び出します。 
   
- <xref:System.Configuration.Install.Installer.Uninstall%2A> <xref:System.Configuration.Install.Installer> 、 <xref:System.Configuration.Install.Installer.Install%2A> 、<xref:System.Configuration.Install.Installer.Commit%2A>、およびの各メソッドは、同じインスタンス上で常に呼び出されるとは限りません。 <xref:System.Configuration.Install.Installer.Rollback%2A> たとえば、アプリケーションの<xref:System.Configuration.Install.Installer>インストールとコミット中に1つのインスタンスが使用され、その後、そのインスタンスへの参照が解放されます。 後で、アプリケーションをアンインストールすると、新しい<xref:System.Configuration.Install.Installer>インスタンスへの参照が作成されます。つまり<xref:System.Configuration.Install.Installer.Uninstall%2A> 、の別<xref:System.Configuration.Install.Installer>のインスタンスによってメソッドが呼び出されます。 このため、派生クラスでは、コンピューターの状態をインストーラーで保存しないでください。 代わりに、呼び出し間<xref:System.Collections.IDictionary>で保持され<xref:System.Configuration.Install.Installer.Install%2A>、 <xref:System.Configuration.Install.Installer.Commit%2A> <xref:System.Configuration.Install.Installer.Rollback%2A>、、、および<xref:System.Configuration.Install.Installer.Uninstall%2A>の各メソッドに渡されるを使用します。  
+<xref:System.Configuration.Install.Installer.Install%2A>メソッド 、<xref:System.Configuration.Install.Installer.Commit%2A>メソッド、<xref:System.Configuration.Install.Installer.Rollback%2A>メソッド、<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドは、常に同じ<xref:System.Configuration.Install.Installer>インスタンス上で呼び出されるとは限りません。  たとえば、アプリケーションのインストールとコミット中に1つの<xref:System.Configuration.Install.Installer>インスタンスが使用され、その後、そのインスタンスへの参照が解放されます。 後で、アプリケーションをアンインストールすると、新しい<xref:System.Configuration.Install.Installer>インスタンスへの参照が作成されます。つまり 、別の<xref:System.Configuration.Install.Installer>のインスタンスによって<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドが呼び出されます。 このため、派生クラスでは、コンピューターの状態をインストーラーで保存しないでください。 代わりに、呼び出し間で保持され、<xref:System.Configuration.Install.Installer.Install%2A>メソッド、 <xref:System.Configuration.Install.Installer.Commit%2A>メソッド、 <xref:System.Configuration.Install.Installer.Rollback%2A>メソッド、 <xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドに渡される<xref:System.Collections.IDictionary>を使用します。  
   
- 2つの状況では、情報をステートセーバー <xref:System.Collections.IDictionary>に保存する必要があることを示しています。 まず、インストーラーによってレジストリキーが設定されているとします。 ここでは、 <xref:System.Collections.IDictionary>キーの元の値をに保存します。 インストールがロールバックされた場合は、元の値を復元できます。 次に、インストーラーによって既存のファイルが置き換えられるとします。 既存のファイルを一時ディレクトリに保存し、その<xref:System.Collections.IDictionary>ファイルの新しい場所をに保存します。 インストールがロールバックされると、新しいファイルが削除され、一時的な場所から元のファイルに置き換えられます。  
+ 次の2つの状況では、情報をステートセーバー <xref:System.Collections.IDictionary>に保存する必要があります。 一つ目は、インストーラーがひとつのレジストリキーを設定する場合です。 このとき、 キーの元の値を<xref:System.Collections.IDictionary>に保存することで、インストールがロールバックされたときに元の値を復元できます。 二つ目は、インストーラーが既存のファイルを置き換えた場合です。 このとき、既存のファイルを一時ディレクトリに保存し、そのファイルの新しい場所を<xref:System.Collections.IDictionary>に保存することで、インストールがロールバックされたときに新しいファイルを削除し、一時的な場所から元のファイルに置換できます。  
   
  プロパティ<xref:System.Configuration.Install.Installer.Context%2A?displayProperty=nameWithType>には、インストールに関する情報が含まれています。 たとえば、インストールのログファイルの場所、 <xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドで必要な情報を保存するファイルの場所、およびインストール実行可能ファイルの実行時に入力されたコマンドラインに関する情報があります。  
   
