@@ -1,5 +1,5 @@
 <Type Name="TypeReference" FullName="System.Reflection.Metadata.TypeReference">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="69c2fa594e8b66265a07e9e385fcba9876e5a20c" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67249095" /></Metadata><TypeSignature Language="C#" Value="public struct TypeReference" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cd53a425f91d805d74bf22213f904fe7088b5588" /><Meta Name="ms.sourcegitcommit" Value="29e16ec8b901bba5af52b835643ae966c67e2d5a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/15/2019" /><Meta Name="ms.locfileid" Value="72323504" /></Metadata><TypeSignature Language="C#" Value="public struct TypeReference" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit TypeReference extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.Metadata.TypeReference" />
   <TypeSignature Language="VB.NET" Value="Public Structure TypeReference" />
@@ -76,7 +76,7 @@
       </ReturnValue>
       <Docs>
         <summary>対象の型が定義されている名前空間の完全名を取得します。</summary>
-        <value>対象の型が定義されている名前空間の完全名またはハンドルを持つ、<see cref="P:System.Reflection.Metadata.StringHandle.IsNil" />プロパティは<see langword="true" />型が入れ子になったか、ルート名前空間で定義されている場合</value>
+        <value>ターゲットの型が定義されている名前空間の完全名。または、型が入れ子になっているかルート名前空間で定義されている場合は、<see cref="P:System.Reflection.Metadata.StringHandle.IsNil" /> の @no__t プロパティを持つハンドル。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -102,8 +102,26 @@
       </ReturnValue>
       <Docs>
         <summary>対象の型が定義され、指定した <see cref="P:System.Reflection.Metadata.TypeReference.Namespace" /> と <see cref="P:System.Reflection.Metadata.TypeReference.Name" /> によって一意に識別される解決スコープを取得します。</summary>
-        <value>対象の型が一意に定義されている解決スコープ。</value>
-        <remarks>To be added.</remarks>
+        <value>対象の型が一意に定義される解決スコープ。</value>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+解決スコープには、次のいずれかのハンドルを指定できます。
+
+- 対象の型が入れ子にされた型の場合は、それを囲む型の <xref:System.Reflection.Metadata.TypeReferenceHandle>。
+
+- <xref:System.Reflection.Metadata.ModuleReferenceHandle> (ターゲットの型が、同じアセンブリ内の別のモジュールで定義されている場合)。
+
+- 対象の型が現在のモジュールで定義されている場合は、<xref:System.Reflection.Metadata.EntityHandle.ModuleDefinition>。 これは、CLI の圧縮されたメタデータモジュールでは発生しません。
+
+- ターゲットの型が現在のモジュールとは別のアセンブリで定義されている場合は、<xref:System.Reflection.Metadata.AssemblyReferenceHandle>。
+
+- `Nil` は、<xref:System.Reflection.Metadata.MetadataReader.ExportedTypes> で一致する <xref:System.Reflection.Metadata.TypeReference.Namespace> および <xref:System.Reflection.Metadata.TypeReference.Name> を検索して、対象の型を解決する必要があるかどうかを処理します。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
   </Members>
