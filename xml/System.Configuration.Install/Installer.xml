@@ -35,7 +35,7 @@
   
 -   <xref:System.Configuration.Install.Installer>クラスを継承します。  
   
--   <xref:System.Configuration.Install.Installer.Install%2A>メソッドと、  <xref:System.Configuration.Install.Installer.Commit%2A>メソッドと、<xref:System.Configuration.Install.Installer.Rollback%2A>メソッドと、<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドをすべてオーバーライドします。  
+- <xref:System.Configuration.Install.Installer.Install%2A>メソッド、<xref:System.Configuration.Install.Installer.Commit%2A>メソッド、<xref:System.Configuration.Install.Installer.Rollback%2A>メソッド、<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドをすべてオーバーライドします。  
   
 -   派生クラスに<xref:System.ComponentModel.RunInstallerAttribute>属性を`true`で追加します。  
   
@@ -47,9 +47,9 @@
   
  <xref:System.Configuration.Install.Installer.Install%2A>クラスの<xref:System.Configuration.Install.Installer>メソッド 、<xref:System.Configuration.Install.Installer.Commit%2A>メソッド 、 <xref:System.Configuration.Install.Installer.Rollback%2A>メソッド 、<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドは、<xref:System.Configuration.Install.Installer.Installers%2A>プロパティに格納されているインストーラーのコレクションを参照し、各インストーラーの対応するメソッドを呼び出します。 
   
-<xref:System.Configuration.Install.Installer.Install%2A>メソッド 、<xref:System.Configuration.Install.Installer.Commit%2A>メソッド、<xref:System.Configuration.Install.Installer.Rollback%2A>メソッド、<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドは、常に同じ<xref:System.Configuration.Install.Installer>インスタンス上で呼び出されるとは限りません。  たとえば、アプリケーションのインストールとコミット中に1つの<xref:System.Configuration.Install.Installer>インスタンスが使用され、その後、そのインスタンスへの参照が解放されます。 後で、アプリケーションをアンインストールすると、新しい<xref:System.Configuration.Install.Installer>インスタンスへの参照が作成されます。つまり 、別の<xref:System.Configuration.Install.Installer>のインスタンスによって<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドが呼び出されます。 このため、派生クラスでは、コンピューターの状態をインストーラーで保存しないでください。 代わりに、呼び出し間で保持され、<xref:System.Configuration.Install.Installer.Install%2A>メソッド、 <xref:System.Configuration.Install.Installer.Commit%2A>メソッド、 <xref:System.Configuration.Install.Installer.Rollback%2A>メソッド、 <xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドに渡される<xref:System.Collections.IDictionary>を使用します。  
+<xref:System.Configuration.Install.Installer.Install%2A>メソッド 、<xref:System.Configuration.Install.Installer.Commit%2A>メソッド、<xref:System.Configuration.Install.Installer.Rollback%2A>メソッド、<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドは、常に同じ<xref:System.Configuration.Install.Installer>インスタンス上で呼び出されるとは限りません。 たとえば、アプリケーションのインストールとコミット中に 1 つの<xref:System.Configuration.Install.Installer>インスタンスが使用され、その後、そのインスタンスへの参照が解放されます。 後で、アプリケーションをアンインストールすると、新しい<xref:System.Configuration.Install.Installer>インスタンスへの参照が作成されます。つまり 、別の<xref:System.Configuration.Install.Installer>のインスタンスによって<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドが呼び出されます。 このため、派生クラスでは、コンピューターの状態をインストーラーで保存しないでください。 代わりに、呼び出し間で保持され、<xref:System.Configuration.Install.Installer.Install%2A>メソッド、 <xref:System.Configuration.Install.Installer.Commit%2A>メソッド、 <xref:System.Configuration.Install.Installer.Rollback%2A>メソッド、 <xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドに渡される<xref:System.Collections.IDictionary>を使用します。  
   
- 次の2つの状況では、情報をステートセーバー <xref:System.Collections.IDictionary>に保存する必要があります。 一つ目は、インストーラーがひとつのレジストリキーを設定する場合です。 このとき、 キーの元の値を<xref:System.Collections.IDictionary>に保存することで、インストールがロールバックされたときに元の値を復元できます。 二つ目は、インストーラーが既存のファイルを置き換えた場合です。 このとき、既存のファイルを一時ディレクトリに保存し、そのファイルの新しい場所を<xref:System.Collections.IDictionary>に保存することで、インストールがロールバックされたときに新しいファイルを削除し、一時的な場所から元のファイルに置換できます。  
+ 次の 2 つの状況では、情報をステートセーバー <xref:System.Collections.IDictionary>に保存する必要があります。 1 つ目は、インストーラーがひとつのレジストリキーを設定する場合です。 このとき、 キーの元の値を<xref:System.Collections.IDictionary>に保存することで、インストールがロールバックされたときに元の値を復元できます。 2 つ目は、インストーラーが既存のファイルを置き換えた場合です。 このとき、既存のファイルを一時ディレクトリに保存し、そのファイルの新しい場所を<xref:System.Collections.IDictionary>に保存することで、インストールがロールバックされたときに新しいファイルを削除し、一時的な場所から元のファイルに置換できます。  
   
  <xref:System.Configuration.Install.Installer.Context%2A?displayProperty=nameWithType>プロパティには、インストールに関する情報が含まれています。 たとえば、インストールのログファイルの場所、 <xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドで必要な情報を保存するファイルの場所、およびインストール実行可能ファイルの実行時に入力されたコマンドラインに関する情報があります。  
   
@@ -649,7 +649,7 @@
         <Parameter Name="savedState" Type="System.Collections.IDictionary" />
       </Parameters>
       <Docs>
-        <param name="savedState"><see cref="T:System.Collections.IDictionary" /> <see cref="P:System.Configuration.Install.Installer.Installers" />プロパティに格納されているすべてのインストーラーがインストールを完了した後のコンピューターの状態を格納する<see cref="T:System.Collections.IDictionary" />。</param>
+        <param name="savedState"><see cref="T:System.Collections.IDictionary" /> <see cref="P:System.Configuration.Install.Installer.Installers" />プロパティに格納されているすべてのインストーラーがインストールを完了した後のコンピューターの状態を格納する。</param>
         <summary><see cref="E:System.Configuration.Install.Installer.AfterInstall" /> イベントを発生させます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -657,7 +657,7 @@
 ## Remarks  
  このメソッドは、このインスタンスの<xref:System.Configuration.Install.InstallerCollection>のすべてのインストーラーの<xref:System.Configuration.Install.Installer.Install%2A>メソッドが実行された後に呼び出されます。  
   
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md)を参照してください。。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.Install.Installer.OnAfterInstall%2A>メソッドは、派生クラスがデリゲートをアタッチせずにイベントを処理できるようにします。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
@@ -711,7 +711,7 @@
 ## Remarks  
  このメソッドは、このインスタンスの<xref:System.Configuration.Install.InstallerCollection>ですべてのインストーラーの<xref:System.Configuration.Install.Installer.Rollback%2A>メソッドが実行された後に呼び出されます。  
   
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md)を参照してください。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.Install.Installer.OnAfterRollback%2A>メソッドは、派生クラスがデリゲートをアタッチせずにイベントを処理できるようにします。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
@@ -756,7 +756,7 @@
 ## Remarks  
  このメソッドは、このインスタンスの<xref:System.Configuration.Install.InstallerCollection>ですべてのインストーラーの<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドが実行された後に呼び出されます。  
   
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md)を参照してください。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.Install.Installer.OnAfterUninstall%2A>メソッドは、派生クラスがデリゲートをアタッチせずにイベントを処理できるようにします。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
@@ -800,7 +800,7 @@
 ## Remarks  
  このメソッドは、このインスタンスの<xref:System.Configuration.Install.InstallerCollection>内のインストーラーの<xref:System.Configuration.Install.Installer.Install%2A>メソッドが呼び出される前に呼び出されます。  
   
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md)を参照してください。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.Install.Installer.OnBeforeInstall%2A>メソッドは、派生クラスがデリゲートをアタッチせずにイベントを処理できるようにします。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
@@ -854,7 +854,7 @@
 ## Remarks  
  このメソッドは、このインスタンスの<xref:System.Configuration.Install.InstallerCollection>内のインストーラーの<xref:System.Configuration.Install.Installer.Rollback%2A>メソッドが呼び出される前に呼び出されます。  
   
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md)を参照してください。
+イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。
   
  <xref:System.Configuration.Install.Installer.OnBeforeRollback%2A>メソッドは、派生クラスがデリゲートをアタッチせずにイベントを処理できるようにします。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
@@ -899,7 +899,7 @@
 ## Remarks  
  このメソッドは、 このインスタンスの<xref:System.Configuration.Install.InstallerCollection>内でインストーラーの<xref:System.Configuration.Install.Installer.Uninstall%2A>メソッドがアンインストールされる前に呼び出されます。  
   
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md)を参照してください。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.Install.Installer.OnBeforeUninstall%2A>メソッドは、派生クラスがデリゲートをアタッチせずにイベントを処理できるようにします。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
@@ -944,7 +944,7 @@
 ## Remarks  
  このメソッドは、このインスタンスのインストーラーコレクションに格納されているすべてのインストーラーの<xref:System.Configuration.Install.Installer.Commit%2A>メソッドが実行された後に呼び出されます。  
   
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md)を参照してください。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.Install.Installer.OnCommitted%2A>メソッドは、派生クラスがデリゲートをアタッチせずにイベントを処理できるようにします。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
@@ -998,7 +998,7 @@
 ## Remarks  
  このメソッドは、このインスタンスの<xref:System.Configuration.Install.InstallerCollection>内でインストーラーの<xref:System.Configuration.Install.Installer.Commit%2A>メソッドが実行される前に呼び出されます。  
   
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md)を参照してください。
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。
   
  <xref:System.Configuration.Install.Installer.OnCommitting%2A>メソッドは、派生クラスがデリゲートをアタッチせずにイベントを処理できるようにします。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
@@ -1169,7 +1169,7 @@
         </remarks>
         <exception cref="T:System.ArgumentException">状態を保存している <see cref="T:System.Collections.IDictionary" /> が破損している可能性があります。</exception>
         <exception cref="T:System.Configuration.Install.InstallException">アンインストール中に例外が発生しました。 この例外は無視され、アンインストールが続行されます。 ただし、アンインストールが完了しても、アプリケーションが完全にはアンインストールされない可能性があります。</exception>
-        <block subset="none" type="overrides"><para>-派生クラスで<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />メソッドをオーバーライドする場合は、最初に派生メソッドで基底クラスの<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />メソッドを呼び出す必要があります。 <see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />メソッドは、この<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />インスタンスの<see cref="P:System.Configuration.Install.Installer.Installers" />プロパティに格納されている各インストーラーのメソッドを呼び出します。 含まれているインストーラーが実行された<see cref="T:System.Collections.IDictionary" />後、このメソッドは<paramref name="stateSaver" /> 、インストールの状態を反映するために、オブジェクト (パラメーターで指定) を更新します。 メソッドに渡される場合、は<see cref="T:System.Collections.IDictionary" />空である必要があります。 <see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" /> すべてのメソッド<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />が成功すると<see cref="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)" /> 、メソッドが呼び出されます。 それ以外の<see cref="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)" />場合は、メソッドが呼び出されます。  
+        <block subset="none" type="overrides"><para>-派生クラスで<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />メソッドをオーバーライドする場合は、最初に派生メソッドで基底クラスの<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />メソッドを呼び出す必要があります。 <see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />メソッドは、この<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />インスタンスの<see cref="P:System.Configuration.Install.Installer.Installers" />プロパティに格納されている各インストーラーのメソッドを呼び出します。 含まれているインストーラーが実行された後、<see cref="T:System.Collections.IDictionary" />メソッドは、インストールの状態を反映するために、<paramref name="stateSaver" /> オブジェクト (パラメーターで指定) を更新します。 メソッドに渡される場合は、<see cref="T:System.Collections.IDictionary" />は空である必要があります。 すべての<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />メソッドが成功すると、<see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" /><see cref="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)" /> メソッドが呼び出されます。 それ以外の場合は、<see cref="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)" />メソッドが呼び出されます。  
   
 -  <see cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />メソッド内の<see cref="P:System.Configuration.Install.Installer.Installers" />コレクションにインストーラーインスタンスを追加する必要がある場合は、 <see cref="M:System.Configuration.Install.Installer.Uninstall(System.Collections.IDictionary)" />メソッド内のコレクションに対して同じ追加機能を必ず実行してください。 ただし、カスタムインストーラーのクラスコンストラクターでインストーラーインスタンスを<see cref="P:System.Configuration.Install.Installer.Installers" />コレクションに追加した場合、両方の方法でコレクションを保持しないようにすることができます。</para></block>
         <altmember cref="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />
