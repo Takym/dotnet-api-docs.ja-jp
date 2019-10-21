@@ -1,5 +1,5 @@
 <Type Name="Binding" FullName="System.ServiceModel.Channels.Binding">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="cf6fbc0915b7135f9d0fb08ed5c824b165ea3d9c" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70322056" /></Metadata><TypeSignature Language="C#" Value="public abstract class Binding : System.ServiceModel.IDefaultCommunicationTimeouts" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1e42bc40311438d44bb3c3f68551c0d4f29da39b" /><Meta Name="ms.sourcegitcommit" Value="2b78f05b0c6fa92adaf5e1dfe5a50388f952efe7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/02/2019" /><Meta Name="ms.locfileid" Value="71810292" /></Metadata><TypeSignature Language="C#" Value="public abstract class Binding : System.ServiceModel.IDefaultCommunicationTimeouts" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit Binding extends System.Object implements class System.ServiceModel.IDefaultCommunicationTimeouts" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.Binding" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Binding&#xA;Implements IDefaultCommunicationTimeouts" />
@@ -19,6 +19,7 @@
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.5.0.1</AssemblyVersion>
     <AssemblyVersion>4.5.0.3</AssemblyVersion>
+    <AssemblyVersion>4.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -50,7 +51,7 @@
   
  各バインド要素は、クライアントでのチャネル ファクトリの構築、およびサービスでのチャネル リスナーの構築に対する仕様を提供します。 たとえば、チャネル ファクトリ スタックを作成するときは、バインド内の各バインド要素に対し、スタック内に 1 つのチャネル ファクトリが存在します。 同様のマッピングが、サービス上のスタックでのチャネル リスナーにも適用されます。 これらのエンドポイントの間でチャネル ベースの接続を確立するには、クライアントとサービスの間の整合性が不可欠です。 その結果、各ファクトリとリスナーは、両者を接続するチャネル スタック内の対応するチャネルの送信と受け入れを処理し、これらのチャネルは通信に使用するメッセージを送受信できます。  
   
- <xref:System.ServiceModel.Channels.Binding> の各インスタンスには、<xref:System.ServiceModel.Channels.Binding.Name%2A> および <xref:System.ServiceModel.Channels.Binding.Namespace%2A> があり、合わせてサービスのメタデータ内でそのインスタンスを一意に識別します。 名前または名前空間が指定されていない場合、WCF によって既定値が追加されます。 既定の名前は`null`で、既定の名前`http://tempuri.org/`空間はです。 バインディングに対するこのユーザー名は、<xref:System.ServiceModel.Channels.Binding.Scheme%2A> プロパティによって指定されるプロトコル名とは異なります。 たとえば、HTTP バインドをさらに追加する場合は、それらに自由に名前を付けて、すべてのスキームを "http" に設定できます。 <xref:System.ServiceModel.Channels.Binding.Scheme%2A> に基づくアプリケーションまたはマシンの固有のディスパッチはありません。 したがって、既知のプロトコルに対して追加のハンドラーを登録できないという、よくある問題は避けられます。 また、複数のバージョンのバインドの並行使用も、各バージョンに異なる名前を付けることで、簡単に処理できます。  
+ <xref:System.ServiceModel.Channels.Binding> の各インスタンスには、<xref:System.ServiceModel.Channels.Binding.Name%2A> および <xref:System.ServiceModel.Channels.Binding.Namespace%2A> があり、合わせてサービスのメタデータ内でそのインスタンスを一意に識別します。 名前または名前空間が指定されていない場合、WCF によって既定値が追加されます。 既定の名前は 0 @no__t、既定の名前空間は `http://tempuri.org/` です。 バインディングに対するこのユーザー名は、<xref:System.ServiceModel.Channels.Binding.Scheme%2A> プロパティによって指定されるプロトコル名とは異なります。 たとえば、HTTP バインドをさらに追加する場合は、それらに自由に名前を付けて、すべてのスキームを "http" に設定できます。 <xref:System.ServiceModel.Channels.Binding.Scheme%2A> に基づくアプリケーションまたはマシンの固有のディスパッチはありません。 したがって、既知のプロトコルに対して追加のハンドラーを登録できないという、よくある問題は避けられます。 また、複数のバージョンのバインドの並行使用も、各バージョンに異なる名前を付けることで、簡単に処理できます。  
   
  <xref:System.ServiceModel.Channels.Binding> クラスは、長時間リソースを停滞させることによるサービス拒否 (DOS) 攻撃を軽減するために、<xref:System.ServiceModel.IDefaultCommunicationTimeouts> インターフェイスを実装します。 この実装により、接続の確立と終了や、メッセージの送受信に関連付けられている読み取りおよび書き込み操作についての通信タイムアウト値が指定されます。 これらのタイムアウト値とその既定の操作を取得および設定するプロパティを、次の表に示します。  
   
@@ -105,6 +106,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -113,7 +115,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定の名前は`null`で、既定の名前`http://tempuri.org/`空間はです。  
+ 既定の名前は 0 @no__t、既定の名前空間は `http://tempuri.org/` です。  
   
    
   
@@ -147,15 +149,16 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="name" Type="System.String" />
         <Parameter Name="ns" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="name">バインドの <see cref="P:System.ServiceModel.Channels.Binding.Name" />。</param>
+        <param name="name">バインディングの <see cref="P:System.ServiceModel.Channels.Binding.Name" />。</param>
         <param name="ns">バインドの <see cref="P:System.ServiceModel.Channels.Binding.Namespace" />。</param>
-        <summary>サービスの指定したバインドを使用して、<see cref="T:System.ServiceModel.Channels.Binding" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>サービスの指定したバインディングを使用して、<see cref="T:System.ServiceModel.Channels.Binding" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -200,6 +203,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.IChannelFactory&lt;TChannel&gt;</ReturnType>
@@ -247,6 +251,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.IChannelFactory&lt;TChannel&gt;</ReturnType>
@@ -261,7 +266,7 @@
         <typeparam name="TChannel">チャネル ファクトリが作成するチャネルの種類。</typeparam>
         <param name="parameters">作成されるチャネル ファクトリの要件を指定する <see cref="T:System.ServiceModel.Channels.BindingParameterCollection" />。</param>
         <summary>指定した種類のチャネルを作成し、バインド パラメーターのコレクションで指定されている機能を満たすチャネル ファクトリ スタックを、クライアント上に構築します。</summary>
-        <returns>コレクションによって指定される機能を満たす <paramref name="TChannel" /> 型の <see cref="T:System.ServiceModel.Channels.IChannelFactory`1" />。</returns>
+        <returns>コレクションによって指定される機能を満たす <see cref="T:System.ServiceModel.Channels.IChannelFactory`1" /> 型の <paramref name="TChannel" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException">トランスポート要素がないか、トランスポート要素の順序が正しくないか、スキームが無効であるか、またはメッセージのバージョンが指定されていません。</exception>
       </Docs>
@@ -692,6 +697,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -745,6 +751,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -897,6 +904,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0">
@@ -945,6 +953,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.BindingElementCollection</ReturnType>
@@ -985,6 +994,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>T</ReturnType>
@@ -1036,12 +1046,13 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.MessageVersion</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>バインドで構成されるクライアントとサービスが使用するメッセージ バージョンを取得します。</summary>
+        <summary>バインディングで構成されるクライアントとサービスが使用するメッセージ バージョンを取得します。</summary>
         <value>バインドで構成されるクライアントとサービスが使用する <see cref="T:System.ServiceModel.Channels.MessageVersion" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1068,6 +1079,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -1110,6 +1122,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -1157,6 +1170,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0">
@@ -1205,6 +1219,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0">
@@ -1234,7 +1249,7 @@
   
  バインドまたはチャネルでトランザクション フローが有効になっている場合は、指定したタイムアウト時間より操作の実行が長くかかる可能性があります。 このような場合は、タイムアウトの時間が経過し、そのためにトランザクションが中止されるため、操作は失敗します。  
   
- セッションでセキュリティを使用する場合は<xref:System.ServiceModel.Channels.Binding.ReceiveTimeout%2A> 、バインディングに設定された値もセッションタイムアウトとして使用されます。  
+ セッションでセキュリティを使用する場合、バインドで設定されている @no__t 0 の値は、セッションのタイムアウトとしても使用されます。  
   
  ]]></format>
         </remarks>
@@ -1263,6 +1278,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -1302,6 +1318,7 @@
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
+        <AssemblyVersion>4.6.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0">

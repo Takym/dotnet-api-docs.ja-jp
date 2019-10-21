@@ -1,5 +1,5 @@
 <Type Name="BlobWriter" FullName="System.Reflection.Metadata.BlobWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b7f5a4fd511925e435fa17dbe88e7eebb3d9c32a" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70353888" /></Metadata><TypeSignature Language="C#" Value="public struct BlobWriter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a442a17be61ef9b71b495ea7c57943370f1932bd" /><Meta Name="ms.sourcegitcommit" Value="d1af8ab61054695d17357d52554f7141e99fc367" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/11/2019" /><Meta Name="ms.locfileid" Value="72275144" /></Metadata><TypeSignature Language="C#" Value="public struct BlobWriter" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit BlobWriter extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.Metadata.BlobWriter" />
   <TypeSignature Language="VB.NET" Value="Public Structure BlobWriter" />
@@ -513,7 +513,7 @@
         <param name="buffer">To be added.</param>
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteBytes">
@@ -628,7 +628,7 @@
         <param name="byteCount">To be added.</param>
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="byteCount" /> が負の値です。</exception>
       </Docs>
     </Member>
@@ -693,7 +693,7 @@
         <param name="byteCount">To be added.</param>
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="start" /> と <paramref name="byteCount" /> で指定された範囲が <paramref name="buffer" /> の境界外になります。</exception>
       </Docs>
     </Member>
@@ -754,7 +754,19 @@
       <Docs>
         <param name="value">To be added.</param>
         <summary>「ECMA-335-II chapter 23.2:Blobs and signatures」 (ECMA-335-II 章 23.2: BLOB と署名) で定義されている符号なし圧縮整数エンコードを実装します。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+値が 0 (0x00) と 127 (0x7F) の間にある場合、1バイトの整数としてエンコードされます (ビット7はクリア、ビット 6 ~ 0 の値が保持されます)。
+
+値が 28 (0x80) と 214-1 (0x3FFF) の間にある場合は、ビット15を設定した2バイトの整数としてエンコードされます (ビット 13 ~ 0 で保持される値)。
+
+それ以外の場合は、4バイトの整数としてエンコードします。ビット31を設定し、ビット30を設定し、bit 29 clear (ビット 28 ~ 0 で保持される値) としてエンコードします。
+
+          ]]></format>
+        </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value" /> は、符号なし圧縮整数として表現できません。</exception>
       </Docs>
     </Member>
@@ -781,8 +793,20 @@
       </Parameters>
       <Docs>
         <param name="value">To be added.</param>
-        <summary>「ECMA-335-II chapter 23.2:Blobs and signatures」 (ECMA-335-II 章 23.2: BLOB と署名) で定義されている符号付き圧縮整数エンコードを実装します。</summary>
-        <remarks>To be added.</remarks>
+        <summary>「ECMA-335-II chapter 23.2:Blobs and signatures」 (ECMA-335-II 章 23.2: BLOB と署名) で定義されている符号なし圧縮整数エンコードを実装します。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+値が-64 (0xFFFFFFC0) と 63 (0x3F) の間にある場合は、1バイトの整数としてエンコードします。ビット7のクリア、値ビット 5 ~ 0 (ビット 6 ~ 1)、符号ビット (値ビット 31) はビット0になります。
+
+値が-8192 (0xFFFFE000) から 8191 (0x1FFF) の範囲内にある場合、2バイトの整数としてエンコードします。ビット0の場合、16セット、ビット14クリア、値ビット 12 ~ 0 (ビット 13 ~ 1)、符号ビット (値ビット 31)。
+
+値が-268435456 (0xF000000) から 268435455 (0x0FFFFFFF) の範囲内にある場合は、4バイトの整数としてエンコードします。31セット、30セット、ビット29クリア、値ビット 27 ~ 0 (ビット 28 ~ 1)、符号ビット (値ビット 31) (ビット 0)。
+
+          ]]></format>
+        </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value" /> は、符号付き圧縮整数として表現できません。</exception>
       </Docs>
     </Member>
@@ -1137,7 +1161,17 @@
       <Docs>
         <param name="str">To be added.</param>
         <summary>SerString 形式で文字列を書き込みます (「ECMA-335-II 23.3 Custom attributes」 (ECMA-335-II 23.3 カスタム属性) を参照してください)。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+文字列は、UTF8 でエンコードされ、プレフィックスのサイズがバイト単位で指定されます。
+
+@No__t 0 の文字列は、1バイトの0xFF として表されます。
+
+          ]]></format>
+        </remarks>
         <exception cref="T:System.InvalidOperationException">ビルダーは書き込み不可です。別のものにリンクされています。</exception>
       </Docs>
     </Member>
@@ -1327,7 +1361,19 @@
       <Docs>
         <param name="value">To be added.</param>
         <summary>User String (#US) ヒープ形式で文字列を書き込みます (「ECMA-335-II 24.2.4 #US and #Blob heaps」 (ECMA-335-II 24.2.4 #US および #Blob ヒープ) を参照してください)。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+文字列は UTF16 でエンコードされ、プレフィックスのサイズがバイト単位で指定されます。
+
+この最後のバイトは、文字列内のいずれかの UTF16 文字が上位バイトのビットを設定しているか、その下位バイトが次のいずれかである場合にのみ、値1を保持します。0x01-0x08、0x0E-0x1F、0x27、0x2D、0x7F。 それ以外の場合は0を保持します。
+
+1は、8ビットエンコードセットで通常提供される処理を必要とする Unicode 文字を示します。
+
+          ]]></format>
+        </remarks>
         <exception cref="T:System.InvalidOperationException">ビルダーは書き込み不可です。別のものにリンクされています。</exception>
       </Docs>
     </Member>
@@ -1356,7 +1402,7 @@
         <param name="value">To be added.</param>
         <summary>現在位置で UTF16 (リトルエンディアン) でエンコードされた文字列を書き込みます。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="value" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="value" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteUTF16">
@@ -1384,7 +1430,7 @@
         <param name="value">To be added.</param>
         <summary>現在位置で UTF16 (リトルエンディアン) でエンコードされた文字列を書き込みます。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="value" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="value" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteUTF8">
@@ -1414,7 +1460,7 @@
         <param name="allowUnpairedSurrogates">To be added.</param>
         <summary>現在位置で UTF8 でエンコードされた文字列を書き込みます。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="value" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="value" /> は <see langword="null" />です。</exception>
       </Docs>
     </Member>
   </Members>
