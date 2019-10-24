@@ -1,5 +1,5 @@
 <Type Name="ResolveAssemblyReference" FullName="Microsoft.Build.Tasks.ResolveAssemblyReference">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5752580ca8c7e61136fd1a0ddf714c85d7ebb59a" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70323066" /></Metadata><TypeSignature Language="C#" Value="public class ResolveAssemblyReference : Microsoft.Build.Tasks.TaskExtension" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="08a05bd946160f911c56ac5465b8026ded2fadaf" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72405342" /></Metadata><TypeSignature Language="C#" Value="public class ResolveAssemblyReference : Microsoft.Build.Tasks.TaskExtension" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ResolveAssemblyReference extends Microsoft.Build.Tasks.TaskExtension" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Build.Tasks.ResolveAssemblyReference" />
   <TypeSignature Language="VB.NET" Value="Public Class ResolveAssemblyReference&#xA;Inherits TaskExtension" />
@@ -86,7 +86,7 @@
       </ReturnValue>
       <Docs>
         <summary>参照解決時に考慮されるアセンブリ拡張子を取得または設定します。</summary>
-        <value>参照解決時に考慮されるアセンブリ拡張子。</value>
+        <value>参照の解決時に考慮されるアセンブリの拡張子。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -176,12 +176,12 @@
       </ReturnValue>
       <Docs>
         <summary>App.Config ファイルのパスを取得または設定します。</summary>
-        <value>App.Config ファイルのパス。</value>
+        <value>App.config ファイルのパス。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティが指定されて<xref:Microsoft.Build.Tasks.ResolveAssemblyReference.AutoUnify%2A>いる場合、プロパティは false である必要があります。  
+ このプロパティを指定する場合は、<xref:Microsoft.Build.Tasks.ResolveAssemblyReference.AutoUnify%2A> プロパティを false にする必要があります。  
   
  ]]></format>
         </remarks>
@@ -304,7 +304,7 @@
       </ReturnValue>
       <Docs>
         <summary>生成された依存関係グラフが、App.Config ファイルが <see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.AppConfigFile" /> プロパティに渡されたかのように、自動的に処理されるかどうかを示す値を取得または設定します。</summary>
-        <value><see langword="true" />生成された依存関係グラフが、 <see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.AppConfigFile" />プロパティに渡される app.config ファイルが存在するかのように自動的に処理される場合は。それ以外の<see langword="false" />場合は。</value>
+        <value>結果として得られる依存関係グラフが、<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.AppConfigFile" /> プロパティに渡された App.config ファイルがあるかのように自動的に処理される場合は、<see langword="true" /> です。それ以外の場合は、<see langword="false" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -356,7 +356,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この一覧のアセンブリは、プロパティに<xref:Microsoft.Build.Tasks.ResolveAssemblyReference.SearchPaths%2A> 、考慮すべきパスの1つとして {CandidateAssemblyFiles} が含まれている場合に考慮されます。  
+ この一覧のアセンブリは、@no__t 0 のプロパティに、考慮すべきパスの1つとして {CandidateAssemblyFiles} が含まれている場合に考慮されます。  
   
  ]]></format>
         </remarks>
@@ -388,13 +388,13 @@
       </ReturnValue>
       <Docs>
         <summary>依存関係の決定方法、および依存関係がローカルにコピーされるかどうかを決定する値が取得または設定されます。</summary>
-        <value><see langword="true" />依存関係をローカルにコピーする必要があるかどうかを判断する場合、実行されるチェックの1つは、プロジェクトファイルの親参照にプライベートメタデータセットがあるかどうかを確認することです。 このメタデータが設定されている場合は、依存関係にも使用します。  
+        <value><see langword="true" /> の場合、依存関係をローカルにコピーする必要があるかどうかを判断するときに、実行されるチェックの1つとして、プロジェクトファイルの親参照にプライベートメタデータセットがあるかどうかが確認されます。 このメタデータが設定されている場合は、依存関係にも使用します。  
   
 メタデータが設定されていない場合、依存関係では、親参照と同じチェックが実行されます。 これらのチェックの 1 つでは、その参照が GAC 内にあるかどうかが確認されます。 参照が GAC に存在する場合、コピー先のコンピューターの GAC にも存在すると見なされるため、ローカルにコピーしません。 ただし、これは特定の参照だけに当てはまり、依存関係には当てはまりません。  
   
 つまり、プロジェクト ファイルの参照は、GAC に存在するためローカルにコピーできない場合がありますが、依存関係は GAC に存在しないためローカルにコピーできます。 これは RAR の既定の動作であり、このプロパティの既定値は true になります。  
   
-プロジェクト<see langword="false" />ファイル参照が GAC 内にあるかどうかを確認し、必要に応じてローカルのコピー状態を設定する場合は、を返します。  
+は <see langword="false" /> を返します。プロジェクトファイルの参照が GAC 内にあるかどうかを確認し、必要に応じてローカルのコピーの状態を設定します。  
   
 ただし、依存関係については、GAC に存在するかどうかだけでなく、プロジェクト ファイルからの親参照が GAC に存在するかどうかもチェックします。  
   
@@ -441,7 +441,7 @@
       </ReturnValue>
       <Docs>
         <summary><see langword="true" /> の値を取る <c>CopyLocal</c> 項目メタデータを持つ <see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.ResolvedFiles" />、<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.ResolvedDependencyFiles" />、<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.RelatedFiles" />、<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.SatelliteFiles" />、<see cref="T:Microsoft.Build.Tasks.ResolveAssemblyReference" /> プロパティのすべてのファイルを返します。</summary>
-        <value><see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.ResolvedFiles" /> <see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.ResolvedDependencyFiles" /> 、、<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.SatelliteFiles" /> <c></c> 、、および<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.ScatterFiles" />の各プロパティのうち<see langword="true" />、値がである CopyLocal 項目のメタデータを持つすべてのファイル。 <see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.RelatedFiles" /></value>
+        <value>@No__t-0、<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.ResolvedDependencyFiles" />、<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.RelatedFiles" />、<see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.SatelliteFiles" />、および <see cref="P:Microsoft.Build.Tasks.ResolveAssemblyReference.ScatterFiles" /> の各プロパティには、<see langword="true" /> の値を持つ<c>CopyLocal</c>項目メタデータが含まれています。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -472,7 +472,7 @@
       <Parameters />
       <Docs>
         <summary><c>ResolveAssemblyReference</c> タスクを実行します。</summary>
-        <returns>タスクの実行が成功した場合は<see langword="true" /> 、それ以外の場合は <see langword="false" />。</returns>
+        <returns>タスクの実行が成功した場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -897,7 +897,7 @@
       </ReturnValue>
       <Docs>
         <summary>アセンブリとターゲット フレームワークの互換性をチェックするときに、フレームワークの属性を無視するかどうかを示す値が取得または設定されます。</summary>
-        <value><see langword="true" />フレームワークの属性を無視する場合は。それ以外<see langword="false" />の場合は。</value>
+        <value><see langword="true" /> の場合、フレームワーク属性は無視されます。それ以外の場合は、<see langword="false" /> です。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -919,7 +919,7 @@
       </ReturnValue>
       <Docs>
         <summary>フレームワーク アセンブリに関するバージョン情報を無視して現在のターゲット フレームワークからフレームワーク アセンブリを実際に解決するかどうかを示す値が取得または設定されます。 フラグは、プライマリ参照がフレームワーク アセンブリである場合に適用されます。</summary>
-        <value><see langword="true" />バージョン情報を無視する場合は。それ以外<see langword="false" />の場合は。</value>
+        <value><see langword="true" />: バージョン情報を無視します。それ以外の場合は、<see langword="false" /> です。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
       </Docs>
@@ -1011,7 +1011,7 @@
         <ReturnType>Microsoft.Build.Framework.ITaskItem[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>ターゲット コンピューターにインストールすることが求められるアセンブリを含む XML ファイルのリストを取得または設定します。</summary>
+        <summary>ターゲット コンピューターにインストールすることが求められるアセンブリを含む XML ファイルの一覧を取得または設定します。</summary>
         <value>ターゲット コンピューターにインストールすることが求められるアセンブリを含む XML ファイルのリスト。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
@@ -1182,7 +1182,7 @@
         <ReturnType>Microsoft.Build.Framework.ITaskItem[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>完全パスに解決されるすべてのプライマリ参照のリストを取得します。</summary>
+        <summary>完全パスに解決されるすべてのプライマリ参照の一覧を取得します。</summary>
         <value>完全パスに解決されるすべてのプライマリ参照のリスト。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
@@ -1244,13 +1244,13 @@
         <ReturnType>Microsoft.Build.Framework.ITaskItem[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>見つかったサテライト ファイルを取得します。</summary>
-        <value>見つかったサテライト ファイル。</value>
+        <summary>検出されるすべてのサテライト ファイルを取得します。</summary>
+        <value>検出されるすべてのサテライト ファイル。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この項目が存在する原因`CopyLocal`となった参照または`true`依存関係の`CopyLocal`項目メタデータもに`true`設定されている場合、サテライトファイルの項目メタデータの値はになります。  
+ サテライトファイルには、この項目が存在する原因となった参照または依存関係に @no__t 2 つの項目のメタデータも `true` に設定されている場合に、値が `true` の @no__t 0 項目のメタデータが含まれます。  
   
  ]]></format>
         </remarks>
@@ -1289,7 +1289,7 @@
         <ReturnType>Microsoft.Build.Framework.ITaskItem[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>指定したアセンブリの 1 つに関連付けられた scatter ファイルを取得します。</summary>
+        <summary>指定したアセンブリのいずれかに関連付けられている散布図ファイルを取得します。</summary>
         <value>指定したアセンブリの 1 つに関連付けられた scatter ファイル。</value>
         <remarks>To be added.</remarks>
         <forInternalUseOnly />
@@ -1570,9 +1570,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、結果とし`CopyLocal`て得られる項目の状態を決定するために必要です。  
+ このプロパティは、結果として得られる項目の @no__t 0 の状態を判断するために必要です。  
   
- このプロパティが指定されていない場合、ソースアイテムの`CopyLocal` `Private`メタデータ`true`値`true`が明示的に設定されていない限り、結果として得られるアイテムの値はになりません。  
+ このプロパティが指定されていない場合、ソース項目に `Private` @no__t のメタデータ値が明示的に設定されていない限り、結果として得られる項目の @no__t 0 の値は `true` になります。  
   
  ]]></format>
         </remarks>
