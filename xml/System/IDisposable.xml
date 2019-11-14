@@ -43,17 +43,17 @@
  このインターフェイスのメソッドを使用して、ガベージコレクターと共にアンマネージリソースを明示的に解放します。 <xref:System.IDisposable.Dispose%2A> オブジェクトのコンシューマーは、オブジェクトが不要になったときにこのメソッドを呼び出すことができます。  
   
 > [!WARNING]
->  これは、既存のクラスに<xref:System.IDisposable>インターフェイスを追加することは互換性に影響する重大な変更です。 型の既存のコンシューマーは<xref:System.IDisposable.Dispose%2A>を呼び出すことができないため、型によって保持されているアンマネージリソースが解放されることは確実ではありません。  
+>  既存のクラスに<xref:System.IDisposable>インターフェイスを追加することは互換性に影響する重大な変更です。 型の既存のコンシューマーは<xref:System.IDisposable.Dispose%2A>を呼び出すことができないため、型によって保持されているアンマネージリソースが解放されることは確実ではありません。  
   
  インスタンスが所有されているリソースが不要になったときに、型のコンシューマーによって<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> 実装が呼び出されるため、マネージオブジェクトを<xref:System.Runtime.InteropServices.SafeHandle> でラップするか(推奨される方法)、コンシューマーが<xref:System.IDisposable.Dispose%2A>を呼び出し忘れた場合にアンマネージリソースを解放するために、<xref:System.Object.Finalize%2A?displayProperty=nameWithType>をオーバーライドする必要があります。  
   
 > [!IMPORTANT]
->  .NET Framework では、C++コンパイラはリソースの決定的な破棄をサポートしており、 <xref:System.IDisposable.Dispose%2A>メソッドを直接実装することはできません。  
+>  .NET Framework では、C++ コンパイラはリソースの決定的な破棄をサポートしており、 <xref:System.IDisposable.Dispose%2A>メソッドを直接実装することはできません。  
   
  このインターフェイスと<xref:System.Object.Finalize%2A?displayProperty=nameWithType>メソッドの使用方法の詳細については、「[ガベージコレクション](~/docs/standard/garbage-collection/index.md)と[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」のトピックを参照してください。  
   
 ## <a name="using-an-object-that-implements-idisposable"></a>IDisposable を実装するオブジェクトの使用  
- アプリケーションで<xref:System.IDisposable>インターフェイスを実装するオブジェクトのみを使用する場合は、オブジェクトの使用が終了したら、そのオブジェクトの<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>実装を呼び出す必要があります。 プログラミング言語によっては、次の2つの方法のいずれかでこれを行うことができます。  
+ アプリケーションで<xref:System.IDisposable>インターフェイスを実装するオブジェクトのみを使用する場合は、オブジェクトの使用が終了したら、そのオブジェクトの<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>実装を呼び出す必要があります。 プログラミング言語によっては、次の 2 つの方法のいずれかでこれを行うことができます。  
   
 -   C# および Visual Basic の `using` ステートメントなどの言語構造を使用する。  
   
@@ -71,7 +71,7 @@
   
  `using`ステートメントは、実際には構文的に便利です。 コンパイル時に、言語コンパイラは`try`/`finally`ブロックの中間言語 (IL) を実装します。  
   
- `using`ステートメントの詳細については、 [Using ステートメント](~/docs/visual-basic/language-reference/statements/using-statement.md)または [using ステートメント](~/docs/csharp/language-reference/keywords/using-statement.md)のトピックを参照してください。  
+ `using`ステートメントの詳細については、 [Using ステートメント](~/docs/visual-basic/language-reference/statements/using-statement.md) または [using ステートメント](~/docs/csharp/language-reference/keywords/using-statement.md) のトピックを参照してください。  
   
 ### <a name="the-tryfinally-block"></a>Try/Finally ブロック  
  使用するプログラミング言語が C# または Visual Basic の `using`ステートメントのような構文をサポートしていない場合、もしくは使用していない場合、`try`/`finally`ステートメントの`finally`ブロックから<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>実装をを呼び出すことができます。 次の例では、前の例の`using`ブロックを `try`/`finally`ブロックに置き換えています。  
@@ -182,17 +182,17 @@
  このメソッドを実装する場合は、包含階層を介して呼び出しを伝達することによって、保持されているすべてのリソースが解放されるようにします。 たとえば、オブジェクト a がオブジェクト b を割り当て、オブジェクト b がオブジェクト C を割り当てる場合、の<xref:System.IDisposable.Dispose%2A>実装は b に対して<xref:System.IDisposable.Dispose%2A>を呼び出す必要があります。 <xref:System.IDisposable.Dispose%2A>この場合、c でを呼び出す必要があります。  
   
 > [!IMPORTANT]
->  C++コンパイラはリソースの決定的な破棄をサポートし、 <xref:System.IDisposable.Dispose%2A>メソッドを直接実装することはできません。  
+>  C++ コンパイラはリソースの決定的な破棄をサポートし、 <xref:System.IDisposable.Dispose%2A>メソッドを直接実装することはできません。  
   
  基底クラスが <xref:System.IDisposable>を実装している場合、オブジェクトはその基底クラスの <xref:System.IDisposable.Dispose%2A>メソッドも呼び出す必要があります。 基底クラスとそのサブクラスに<xref:System.IDisposable>を実装する方法の詳細については、「<xref:System.IDisposable>」の「IDisposable および継承階層」セクションを参照してください。  
   
- オブジェクトの<xref:System.IDisposable.Dispose%2A>メソッドが2回以上呼び出された場合、オブジェクトは、最初の呼び出しの後すべての呼び出しを無視する必要があります。 <xref:System.IDisposable.Dispose%2A>メソッドが複数回呼び出された場合、オブジェクトは例外をスローしません。 リソースが既に破棄されている場合、<xref:System.IDisposable.Dispose%2A>以外のインスタンスメソッドは<xref:System.ObjectDisposedException>をスローする可能性があります。  
+ オブジェクトの<xref:System.IDisposable.Dispose%2A>メソッドが 2 回以上呼び出された場合、オブジェクトは、最初の呼び出しの後すべての呼び出しを無視する必要があります。 <xref:System.IDisposable.Dispose%2A>メソッドが複数回呼び出された場合、オブジェクトは例外をスローしません。 リソースが既に破棄されている場合、<xref:System.IDisposable.Dispose%2A>以外のインスタンスメソッドは<xref:System.ObjectDisposedException>をスローする可能性があります。  
   
  ユーザーは、割り当てられた状態と解放された状態を示すために、リソースの種類が特定の規則を使用することを期待できます。 この例としては、従来は open または closed と考えられるストリームクラスがあります。 このような規則を持つクラスの実装者は、 `Close` <xref:System.IDisposable.Dispose%2A>メソッドを呼び出すなど、カスタマイズされた名前を持つパブリックメソッドを実装することができます。  
   
  <xref:System.IDisposable.Dispose%2A>メソッドを明示的に呼び出す必要があるが、オブジェクトのコンシューマーが<xref:System.IDisposable.Dispose%2A>メソッドを呼び出し忘れ、アンマネージリソースが解放されないという危険性は常にあります。 これを回避するには、次の2つの方法があります。  
   
--   マネージリソースを<xref:System.Runtime.InteropServices.SafeHandle?displayProperty=nameWithType>から派生したオブジェクトでラップします。次に、 <xref:System.IDisposable.Dispose%2A>実装は、 <xref:System.Runtime.InteropServices.SafeHandle?displayProperty=nameWithType>インスタンスの <xref:System.IDisposable.Dispose%2A>メソッドを呼び出します。 詳細については、「<xref:System.Object.Finalize%2A?displayProperty=nameWithType>」の 「SafeHandle 代替」セクションを参照してください。  
+-   マネージリソースを<xref:System.Runtime.InteropServices.SafeHandle?displayProperty=nameWithType>から派生したオブジェクトでラップします。 次に、 <xref:System.IDisposable.Dispose%2A>実装は、 <xref:System.Runtime.InteropServices.SafeHandle?displayProperty=nameWithType>インスタンスの <xref:System.IDisposable.Dispose%2A>メソッドを呼び出します。 詳細については、「<xref:System.Object.Finalize%2A?displayProperty=nameWithType>」の 「SafeHandle 代替」セクションを参照してください。  
   
 -   <xref:System.IDisposable.Dispose%2A>が呼び出されない場合にリソースを解放するには、ファイナライザーを実装します。 既定では、ガベージコレクターは、メモリを再利用する前に、オブジェクトのファイナライザーを自動的に呼び出します。 ただし、 <xref:System.IDisposable.Dispose%2A>メソッドが呼び出された場合は、通常、ガベージコレクターが破棄されたオブジェクトのファイナライザーを呼び出す必要はありません。 自動終了処理を回避するために、 <xref:System.IDisposable.Dispose%2A>実装では<xref:System.GC.SuppressFinalize%2A?displayProperty=nameWithType>メソッドを呼び出すことができます。  
   
