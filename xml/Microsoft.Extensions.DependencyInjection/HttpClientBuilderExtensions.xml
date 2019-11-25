@@ -1,5 +1,5 @@
 <Type Name="HttpClientBuilderExtensions" FullName="Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="27101fdcbbe1e99a51e183f0a11404651c658cdf" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72416914" /></Metadata><TypeSignature Language="C#" Value="public static class HttpClientBuilderExtensions" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="37ddaeb9cda7d8ea0918c4aa74c9809af5d139ad" /><Meta Name="ms.sourcegitcommit" Value="2b0967e04b047f6709322418d97215dfcef6a938" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/20/2019" /><Meta Name="ms.locfileid" Value="74234759" /></Metadata><TypeSignature Language="C#" Value="public static class HttpClientBuilderExtensions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit HttpClientBuilderExtensions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions" />
   <TypeSignature Language="VB.NET" Value="Public Module HttpClientBuilderExtensions" />
@@ -47,10 +47,10 @@
         <summary>名前付き <see cref="T:System.Net.Http.HttpClient" /> の追加メッセージ ハンドラーの作成に使用されるデリゲートを追加します。</summary>
         <returns>クライアントを構成するために使用できる <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</returns>
         <remarks><para>
-@No__t-0 デリゲートは、呼び出されるたびにメッセージハンドラーの新しいインスタンスを返す必要があります。
+<paramref name="configureHandler" /> デリゲートは、呼び出されるたびにメッセージハンドラーの新しいインスタンスを返す必要があります。
             </para>
           <para>
-@No__t-1 に指定された @no__t 0 引数は、構築されているハンドラーの有効期間を共有するスコープ付きサービスプロバイダーへの参照になります。
+<paramref name="configureHandler" /> に指定された <see cref="T:System.IServiceProvider" /> 引数は、構築されているハンドラーの有効期間を共有するスコープ付きサービスプロバイダーへの参照になります。
             </para></remarks>
       </Docs>
     </Member>
@@ -80,7 +80,7 @@
         <param name="configureHandler"><see cref="T:System.Net.Http.DelegatingHandler" /> の作成に使用されるデリゲート。</param>
         <summary>名前付き <see cref="T:System.Net.Http.HttpClient" /> の追加メッセージ ハンドラーの作成に使用されるデリゲートを追加します。</summary>
         <returns>クライアントを構成するために使用できる <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</returns>
-        <remarks>@No__t-0 デリゲートは、呼び出されるたびにメッセージハンドラーの新しいインスタンスを返す必要があります。</remarks>
+        <remarks><paramref name="configureHandler" /> デリゲートは、呼び出されるたびにメッセージハンドラーの新しいインスタンスを返す必要があります。</remarks>
       </Docs>
     </Member>
     <Member MemberName="AddHttpMessageHandler&lt;THandler&gt;">
@@ -116,7 +116,7 @@
         <summary>名前付き <see cref="T:System.Net.Http.HttpClient" /> の依存関係挿入コンテナーからメッセージ ハンドラーを追加します。</summary>
         <returns>クライアントを構成するために使用できる <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</returns>
         <remarks><para>
-@No__t-0 は、構築されているハンドラーの有効期間を共有するスコープサービスプロバイダーから解決されます。
+<typeparamref name="THandler" /> は、構築されているハンドラーの有効期間を共有するスコープサービスプロバイダーから解決されます。
             </para></remarks>
       </Docs>
     </Member>
@@ -148,14 +148,15 @@
         <Parameter Name="builder" Type="Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="TClient">型指定されたクライアントの型。 指定された型は、一時的なサービスとしてサービスコレクションに登録されます。 型指定されたクライアントの作成の詳細については、「<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" />」を参照してください。</typeparam>
+        <typeparam name="TClient">型指定されたクライアントの型。 指定された型は、一時的なサービスとしてサービスコレクションに登録されます。 型指定のあるクライアントの作成の詳細については、「<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" />」を参照してください。</typeparam>
         <param name="builder"><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</param>
-        <summary><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" /> で関連付けられている <typeparamref name="TClient" /> 型と名前付き <see cref="T:System.Net.Http.HttpClient" /> の間のバインドを構成します。</summary>
+        <summary><typeparamref name="TClient" /> で関連付けられている <see cref="T:System.Net.Http.HttpClient" /> 型と名前付き <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" /> の間のバインドを構成します。</summary>
         <returns>To be added.</returns>
-        <remarks><para>適切な <see cref="T:System.Net.Http.HttpClient" /> で構築された @no__t 0 のインスタンスは、サービスの種類として <typeparamref name="TClient" /> を指定することによって <see cref="M:System.IServiceProvider.GetService(System.Type)" /> (および関連するメソッド) から取得できます。
+        <remarks><para>適切な <see cref="T:System.Net.Http.HttpClient" /> で構築された 
+            <typeparamref name="TClient" /> インスタンスは、サービスの種類として <typeparamref name="TClient" /> を提供することにより、<see cref="M:System.IServiceProvider.GetService(System.Type)" /> (および関連するメソッド) から取得できます。
             </para>
           <para>
-@No__t-0 を呼び出すと、<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" /> を使用して <typeparamref name="TClient" /> を作成する型指定されたクライアントバインディングが登録されます。
+<see cref="M:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddTypedClient``1(Microsoft.Extensions.DependencyInjection.IHttpClientBuilder)" /> を呼び出すと、<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" />を使用して <typeparamref name="TClient" /> を作成する型指定されたクライアントバインディングが登録されます。
             </para>
           <para>
 型指定されたクライアントのサービス依存関係は、型指定されたクライアントの解決に使用されるのと同じサービスプロバイダーから解決されます。 メッセージハンドラーにバインドされているスコープからサービスにアクセスすることはできません。これは、個別に管理されます。
@@ -194,12 +195,13 @@
         <typeparam name="TClient">型指定されたクライアントの型。 指定された型は、一時的なサービスとしてサービスコレクションに登録されます。</typeparam>
         <param name="builder"><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</param>
         <param name="factory">型指定されたクライアントの構築に使用されるファクトリ関数。</param>
-        <summary><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" /> で関連付けられている <typeparamref name="TClient" /> 型と名前付き <see cref="T:System.Net.Http.HttpClient" /> の間のバインドを構成します。</summary>
+        <summary><typeparamref name="TClient" /> で関連付けられている <see cref="T:System.Net.Http.HttpClient" /> 型と名前付き <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" /> の間のバインドを構成します。</summary>
         <returns>To be added.</returns>
-        <remarks><para>適切な <see cref="T:System.Net.Http.HttpClient" /> で構築された @no__t 0 のインスタンスは、サービスの種類として <typeparamref name="TClient" /> を指定することによって <see cref="M:System.IServiceProvider.GetService(System.Type)" /> (および関連するメソッド) から取得できます。
+        <remarks><para>適切な <see cref="T:System.Net.Http.HttpClient" /> で構築された 
+            <typeparamref name="TClient" /> インスタンスは、サービスの種類として <typeparamref name="TClient" /> を提供することにより、<see cref="M:System.IServiceProvider.GetService(System.Type)" /> (および関連するメソッド) から取得できます。
             </para>
           <para>
-@No__t-0 を呼び出すと、指定されたファクトリ関数を使用して <typeparamref name="TClient" /> を作成する型指定のあるクライアントバインディングが登録されます。
+<see cref="M:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddTypedClient``1(Microsoft.Extensions.DependencyInjection.IHttpClientBuilder,System.Func{System.Net.Http.HttpClient,System.IServiceProvider,``0})" /> を呼び出すと、指定されたファクトリ関数を使用して <typeparamref name="TClient" /> を作成する型指定されたクライアントバインディングが登録されます。
             </para></remarks>
       </Docs>
     </Member>
@@ -235,12 +237,13 @@
         <typeparam name="TClient">型指定されたクライアントの型。 指定された型は、一時的なサービスとしてサービスコレクションに登録されます。</typeparam>
         <param name="builder"><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</param>
         <param name="factory">型指定されたクライアントの構築に使用されるファクトリ関数。</param>
-        <summary><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" /> で関連付けられている <typeparamref name="TClient" /> 型と名前付き <see cref="T:System.Net.Http.HttpClient" /> の間のバインドを構成します。</summary>
+        <summary><typeparamref name="TClient" /> で関連付けられている <see cref="T:System.Net.Http.HttpClient" /> 型と名前付き <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" /> の間のバインドを構成します。</summary>
         <returns>To be added.</returns>
-        <remarks><para>適切な <see cref="T:System.Net.Http.HttpClient" /> で構築された @no__t 0 のインスタンスは、サービスの種類として <typeparamref name="TClient" /> を指定することによって <see cref="M:System.IServiceProvider.GetService(System.Type)" /> (および関連するメソッド) から取得できます。
+        <remarks><para>適切な <see cref="T:System.Net.Http.HttpClient" /> で構築された 
+            <typeparamref name="TClient" /> インスタンスは、サービスの種類として <typeparamref name="TClient" /> を提供することにより、<see cref="M:System.IServiceProvider.GetService(System.Type)" /> (および関連するメソッド) から取得できます。
             </para>
           <para>
-@No__t-0 を呼び出すと、指定されたファクトリ関数を使用して <typeparamref name="TClient" /> を作成する型指定のあるクライアントバインディングが登録されます。
+<see cref="M:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddTypedClient``1(Microsoft.Extensions.DependencyInjection.IHttpClientBuilder,System.Func{System.Net.Http.HttpClient,``0})" /> を呼び出すと、指定されたファクトリ関数を使用して <typeparamref name="TClient" /> を作成する型指定されたクライアントバインディングが登録されます。
             </para></remarks>
       </Docs>
     </Member>
@@ -278,15 +281,16 @@
         <Parameter Name="builder" Type="Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="TClient">型指定されたクライアントの宣言型。 指定された型は、一時的なサービスとしてサービスコレクションに登録されます。 型指定されたクライアントの作成の詳細については、「<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" />」を参照してください。</typeparam>
-        <typeparam name="TImplementation">型指定されたクライアントの実装型。 によって指定された型は、<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" /> によってインスタンス化されます。</typeparam>
+        <typeparam name="TClient">型指定されたクライアントの宣言型。 指定された型は、一時的なサービスとしてサービスコレクションに登録されます。 型指定のあるクライアントの作成の詳細については、「<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" />」を参照してください。</typeparam>
+        <typeparam name="TImplementation">型指定されたクライアントの実装型。 によって指定された型は、<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" />によってインスタンス化されます。</typeparam>
         <param name="builder"><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</param>
-        <summary><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" /> で関連付けられている <typeparamref name="TClient" /> 型と名前付き <see cref="T:System.Net.Http.HttpClient" /> の間のバインドを構成します。 作成されたインスタンスの型は <typeparamref name="TImplementation" /> になります。</summary>
+        <summary><typeparamref name="TClient" /> で関連付けられている <see cref="T:System.Net.Http.HttpClient" /> 型と名前付き <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" /> の間のバインドを構成します。 作成されたインスタンスの型は <typeparamref name="TImplementation" /> になります。</summary>
         <returns>To be added.</returns>
-        <remarks><para>適切な <see cref="T:System.Net.Http.HttpClient" /> で構築された @no__t 0 のインスタンスは、サービスの種類として <typeparamref name="TClient" /> を指定することによって <see cref="M:System.IServiceProvider.GetService(System.Type)" /> (および関連するメソッド) から取得できます。
+        <remarks><para>適切な <see cref="T:System.Net.Http.HttpClient" /> で構築された 
+            <typeparamref name="TClient" /> インスタンスは、サービスの種類として <typeparamref name="TClient" /> を提供することにより、<see cref="M:System.IServiceProvider.GetService(System.Type)" /> (および関連するメソッド) から取得できます。
             </para>
           <para>
-@No__t-0 を呼び出すと、<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" /> を使用して <typeparamref name="TImplementation" /> を作成する型指定されたクライアントバインディングが登録されます。
+<see cref="M:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddTypedClient``2(Microsoft.Extensions.DependencyInjection.IHttpClientBuilder)" /> を呼び出すと、<see cref="T:Microsoft.Extensions.Http.ITypedHttpClientFactory`1" />を使用して <typeparamref name="TImplementation" /> を作成する型指定されたクライアントバインディングが登録されます。
             </para>
           <para>
 型指定されたクライアントのサービス依存関係は、型指定されたクライアントの解決に使用されるのと同じサービスプロバイダーから解決されます。 メッセージハンドラーにバインドされているスコープからサービスにアクセスすることはできません。これは、個別に管理されます。
@@ -319,7 +323,7 @@
         <param name="configureClient"><see cref="T:System.Net.Http.HttpClient" /> の構成に使用されるデリゲート。</param>
         <summary>名前付き <see cref="T:System.Net.Http.HttpClient" /> の構成に使用されるデリゲートを追加します。</summary>
         <returns>クライアントを構成するために使用できる <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</returns>
-        <remarks>@No__t-1 に指定された @no__t 0 は、同じアプリケーションのルートサービスプロバイダーインスタンスになります。</remarks>
+        <remarks><paramref name="configureClient" /> に提供される <see cref="T:System.IServiceProvider" /> は、同じアプリケーションのルートサービスプロバイダーインスタンスになります。</remarks>
       </Docs>
     </Member>
     <Member MemberName="ConfigureHttpClient">
@@ -375,7 +379,7 @@
       <Docs>
         <param name="builder"><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</param>
         <param name="configureBuilder"><see cref="T:Microsoft.Extensions.Http.HttpMessageHandlerBuilder" /> の構成に使用されるデリゲート。</param>
-        <summary>名前付き <see cref="T:System.Net.Http.HttpClient" /> に対して <see cref="T:Microsoft.Extensions.Http.HttpMessageHandlerBuilder" /> を使用し、メッセージ ハンドラーを構成するために使用されるデリゲートを追加します。</summary>
+        <summary>名前付き <see cref="T:Microsoft.Extensions.Http.HttpMessageHandlerBuilder" /> に対して <see cref="T:System.Net.Http.HttpClient" /> を使用し、メッセージ ハンドラーを構成するために使用されるデリゲートを追加します。</summary>
         <returns>クライアントを構成するために使用できる <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -404,13 +408,13 @@
       <Docs>
         <param name="builder"><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</param>
         <param name="configureHandler"><see cref="T:System.Net.Http.HttpMessageHandler" /> の作成に使用されるデリゲート。</param>
-        <summary>名前付き <see cref="T:System.Net.Http.HttpClient" /> に対してプライマリ <see cref="T:System.Net.Http.HttpMessageHandler" /> を構成するために使用されるデリゲートを追加します。</summary>
+        <summary>名前付き <see cref="T:System.Net.Http.HttpMessageHandler" /> に対してプライマリ <see cref="T:System.Net.Http.HttpClient" /> を構成するために使用されるデリゲートを追加します。</summary>
         <returns>クライアントを構成するために使用できる <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</returns>
         <remarks><para>
-@No__t-0 デリゲートは、呼び出されるたびにメッセージハンドラーの新しいインスタンスを返す必要があります。
+<paramref name="configureHandler" /> デリゲートは、呼び出されるたびにメッセージハンドラーの新しいインスタンスを返す必要があります。
             </para>
           <para>
-@No__t-1 に指定された @no__t 0 引数は、構築されているハンドラーの有効期間を共有するスコープ付きサービスプロバイダーへの参照になります。
+<paramref name="configureHandler" /> に指定された <see cref="T:System.IServiceProvider" /> 引数は、構築されているハンドラーの有効期間を共有するスコープ付きサービスプロバイダーへの参照になります。
             </para></remarks>
       </Docs>
     </Member>
@@ -438,9 +442,9 @@
       <Docs>
         <param name="builder"><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</param>
         <param name="configureHandler"><see cref="T:System.Net.Http.HttpMessageHandler" /> の作成に使用されるデリゲート。</param>
-        <summary>名前付き <see cref="T:System.Net.Http.HttpClient" /> に対してプライマリ <see cref="T:System.Net.Http.HttpMessageHandler" /> を構成するために使用されるデリゲートを追加します。</summary>
+        <summary>名前付き <see cref="T:System.Net.Http.HttpMessageHandler" /> に対してプライマリ <see cref="T:System.Net.Http.HttpClient" /> を構成するために使用されるデリゲートを追加します。</summary>
         <returns>クライアントを構成するために使用できる <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</returns>
-        <remarks>@No__t-0 デリゲートは、呼び出されるたびにメッセージハンドラーの新しいインスタンスを返す必要があります。</remarks>
+        <remarks><paramref name="configureHandler" /> デリゲートは、呼び出されるたびにメッセージハンドラーの新しいインスタンスを返す必要があります。</remarks>
       </Docs>
     </Member>
     <Member MemberName="ConfigurePrimaryHttpMessageHandler&lt;THandler&gt;">
@@ -473,10 +477,10 @@
       <Docs>
         <typeparam name="THandler"><see cref="T:System.Net.Http.DelegatingHandler" /> の型。 ハンドラーの型は、一時的なサービスとして登録する必要があります。</typeparam>
         <param name="builder"><see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</param>
-        <summary>名前付き <see cref="T:System.Net.Http.HttpClient" /> に対して依存関係挿入コンテナーからプライマリ <see cref="T:System.Net.Http.HttpMessageHandler" /> を構成します。</summary>
+        <summary>名前付き <see cref="T:System.Net.Http.HttpMessageHandler" /> に対して依存関係挿入コンテナーからプライマリ <see cref="T:System.Net.Http.HttpClient" /> を構成します。</summary>
         <returns>クライアントを構成するために使用できる <see cref="T:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder" />。</returns>
         <remarks><para>
-@No__t-0 は、構築されているハンドラーの有効期間を共有するスコープサービスプロバイダーから解決されます。
+<typeparamref name="THandler" /> は、構築されているハンドラーの有効期間を共有するスコープサービスプロバイダーから解決されます。
             </para></remarks>
       </Docs>
     </Member>
@@ -507,13 +511,13 @@
         <summary><see cref="T:System.Net.Http.HttpMessageHandler" /> を再利用できる時間を設定します。 名前付きの各クライアントには、独自の構成済みハンドラーの有効期間の値を設定できます。 既定値は 2 分です。 ハンドラーの有効期限を無効にするには、有効期間を <see cref="F:System.Threading.Timeout.InfiniteTimeSpan" /> に設定します。</summary>
         <returns>To be added.</returns>
         <remarks><para>
-@No__t-0 の既定の実装では、リソースの消費量を削減するために、ファクトリによって作成された @no__t インスタンスがプールされます。 この設定では、プールおよび破棄からの削除をスケジュールする前に、ハンドラーをプールできる時間を構成します。
+<see cref="T:System.Net.Http.IHttpClientFactory" /> の既定の実装では、リソースの消費量を削減するために、ファクトリによって作成された <see cref="T:System.Net.Http.HttpMessageHandler" /> インスタンスがプールされます。 この設定では、プールおよび破棄からの削除をスケジュールする前に、ハンドラーをプールできる時間を構成します。
             </para>
           <para>
-通常各ハンドラーは基になる HTTP 接続を独自に管理しており、必要以上に多くのハンドラーを作成すると接続が遅延する可能性があるため、ハンドラーをプールするのは望ましい方法です。 ハンドラーによっては、接続を無期限に開いたままにしておくこともできます。 ネットワーク環境での変更に対応するためのアプリケーションの要件を理解するには、<paramref name="handlerLifetime" /> の値を選択する必要があります。
+通常各ハンドラーは基になる HTTP 接続を独自に管理しており、必要以上に多くのハンドラーを作成すると接続が遅延する可能性があるため、ハンドラーをプールするのは望ましい方法です。 ハンドラーによっては、接続を無期限に開いたままにしておくこともできます。 ネットワーク環境での変更に対応するためのアプリケーションの要件を理解した上で、<paramref name="handlerLifetime" /> の値を選択する必要があります。
             </para>
           <para>
-ハンドラーの有効期限が切れても、ハンドラーはすぐに破棄されません。 有効期限が切れたハンドラーは別のプールに配置されます。このプールは、アクセスできなくなったときにのみハンドラーを破棄するように間隔で処理されます。 有効期間が長い @no__t インスタンスを使用すると、基になる <see cref="T:System.Net.Http.HttpMessageHandler" /> は、すべての参照がガベージコレクトされるまで破棄されません。
+ハンドラーの有効期限が切れても、ハンドラーはすぐに破棄されません。 有効期限が切れたハンドラーは別のプールに配置されます。このプールは、アクセスできなくなったときにのみハンドラーを破棄するように間隔で処理されます。 有効期間が長い <see cref="T:System.Net.Http.HttpClient" /> インスタンスを使用すると、すべての参照がガベージコレクトされるまで、基になる <see cref="T:System.Net.Http.HttpMessageHandler" /> が破棄されるのを防ぐことができます。
             </para></remarks>
       </Docs>
     </Member>

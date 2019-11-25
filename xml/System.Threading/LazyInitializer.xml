@@ -1,5 +1,5 @@
 <Type Name="LazyInitializer" FullName="System.Threading.LazyInitializer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="43cffb2d42f4615cece05e04e3d6c89a3c02e387" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70362950" /></Metadata><TypeSignature Language="C#" Value="public static class LazyInitializer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="19a9cea9a7caa1bb7e43249d9fcee2f86c4d25d8" /><Meta Name="ms.sourcegitcommit" Value="394eb46af92ad32373cd2c7855b688846886ed40" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/23/2019" /><Meta Name="ms.locfileid" Value="74425536" /></Metadata><TypeSignature Language="C#" Value="public static class LazyInitializer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit LazyInitializer extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Threading.LazyInitializer" />
   <TypeSignature Language="VB.NET" Value="Public Class LazyInitializer" />
@@ -59,7 +59,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
   
  ]]></format>
     </remarks>
-    <threadsafe>のメソッドは<see cref="T:System.Threading.LazyInitializer" />スレッドセーフであり、複数のスレッドから同時に呼び出すことができます。</threadsafe>
+    <threadsafe><see cref="T:System.Threading.LazyInitializer" /> のメソッドはスレッドセーフであり、複数のスレッドから同時に呼び出すことができます。</threadsafe>
     <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
   </Docs>
   <Members>
@@ -121,11 +121,11 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、参照型でのみ使用できます。 値型の初期化を確認するには、 `EnsureInitialized`「のその他のオーバーロード」を参照してください。  
+ このメソッドは、参照型でのみ使用できます。 値型の初期化を確認するには、「`EnsureInitialized`の他のオーバーロード」を参照してください。  
   
- このメソッドは、初期化`target`のために複数のスレッドによって同時に使用される場合があります。  
+ このメソッドは、`target`を初期化するために、複数のスレッドによって同時に使用される場合があります。  
   
- 複数のスレッドがこのメソッドに同時にアクセスする場合は、 `T`の複数のインスタンスが作成される可能性があり`target`ますが、に格納されるのは1つだけです。 このような場合、このメソッドは、格納されていないオブジェクトを破棄しません。 このようなオブジェクトを破棄する必要がある場合は、オブジェクトが使用されていないかどうかを判断し、適切にオブジェクトを破棄することが、呼び出し元によって行われます。  
+ 複数のスレッドがこのメソッドに同時にアクセスする場合、`T` の複数のインスタンスが作成される可能性がありますが、`target` に格納されて返されるのは1つだけです。 このような場合、このメソッドは、格納されていないオブジェクトを破棄しません。 このようなオブジェクトを破棄する必要がある場合は、`valueFactory` を受け取るオーバーロードを使用して、同じ格納されたオブジェクトを参照しない場合はオブジェクトを破棄します。
   
  ]]></format>
         </remarks>
@@ -183,11 +183,11 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは参照型`valueFactory`でのみ使用でき、null 参照 (Visual Basic では Nothing) を返すことはできません。 値型の初期化を確実に行う、または null 参照型を使用できるようにするには、「EnsureInitialized のその他のオーバーロード」を参照してください。  
+ このメソッドは参照型でのみ使用でき、`valueFactory` は null 参照 (Visual Basic では Nothing) を返すことはできません。 値型の初期化を確実に行う、または null 参照型を使用できるようにするには、「EnsureInitialized のその他のオーバーロード」を参照してください。  
   
- このメソッドは、初期化`target`のために複数のスレッドによって同時に使用される場合があります。  
+ このメソッドは、`target`を初期化するために、複数のスレッドによって同時に使用される場合があります。  
   
- 複数のスレッドがこのメソッドに同時にアクセスする場合は、 `T`の複数のインスタンスが作成される可能性があり`target`ますが、に格納されるのは1つだけです。 このような場合、このメソッドは、格納されていないオブジェクトを破棄しません。 このようなオブジェクトを破棄する必要がある場合は、オブジェクトが使用されていないかどうかを判断し、適切にオブジェクトを破棄することが、呼び出し元によって行われます。  
+ 複数のスレッドがこのメソッドに同時にアクセスする場合、`T` の複数のインスタンスが作成される可能性がありますが、`target`に格納されるのは1つだけです。 このような場合、このメソッドは、格納されていないオブジェクトを破棄しません。 このようなオブジェクトを破棄する必要がある場合は、オブジェクトが使用されていないかどうかを判断し、適切にオブジェクトを破棄することが、呼び出し元によって行われます。  
   
  ]]></format>
         </remarks>
@@ -243,7 +243,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- を`initialized` true として指定した場合、それ以上の初期化は行われません。  
+ `initialized` が true として指定されている場合、それ以上の初期化は行われません。  
   
  ]]></format>
         </remarks>
@@ -346,7 +346,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- を`initialized` true として指定した場合、それ以上の初期化は行われません。  
+ `initialized` が true として指定されている場合、それ以上の初期化は行われません。  
   
  ]]></format>
         </remarks>
