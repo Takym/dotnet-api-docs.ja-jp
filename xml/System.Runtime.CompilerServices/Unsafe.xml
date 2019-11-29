@@ -1,5 +1,5 @@
 <Type Name="Unsafe" FullName="System.Runtime.CompilerServices.Unsafe">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fbbb5e8f80ffcac3c0eaea6beda1f71de66e8f2e" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70323909" /></Metadata><TypeSignature Language="C#" Value="public static class Unsafe" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3e9292e3319b8e0601da812c84344ffc615286db" /><Meta Name="ms.sourcegitcommit" Value="2b0967e04b047f6709322418d97215dfcef6a938" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/20/2019" /><Meta Name="ms.locfileid" Value="74237455" /></Metadata><TypeSignature Language="C#" Value="public static class Unsafe" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Unsafe extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.CompilerServices.Unsafe" />
   <TypeSignature Language="VB.NET" Value="Public Class Unsafe" />
@@ -1052,21 +1052,21 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-メソッドは、単に IL ボックスのボックスの解除命令のラッパーです。 [](xref:System.Reflection.Emit.OpCodes.Unbox) `Unbox<T>` これは、パフォーマンスの最適化として役立ちます。 を受け取る<xref:System.Object> API を値型の異なる値で繰り返し呼び出す必要がある場合は、毎回作成されたものではなく、同じ box オブジェクトを再利用できます。
+`Unbox<T>` メソッドは、単[に IL ボックス](xref:System.Reflection.Emit.OpCodes.Unbox)のボックスの解除命令のラッパーです。 これは、パフォーマンスの最適化として役立ちます。 <xref:System.Object> を受け取る API を値型の異なる値を使用して繰り返し呼び出す必要がある場合は、毎回作成されたものではなく、同じ box オブジェクトを再利用できます。
 
-`Unbox<T>`メソッドには、言語コンパイラによって適用されない、呼び出し元の責任である重要な使用制約があります。 IL `unbox`命令は、制御可能な、可能な、管理可能なポインターを返します。 .Net および .net 言語コンパイラはこの制約を表すことが`Unbox<T>`できないため、メソッド`ref T`は通常の変更可能なを返します。 ただし、開発者は、変更可能な構造体型で`T`あることが特定されている場合を除き、返された参照を変更することは**できません**。 たとえば、など<xref:System.Int32>の数値プリミティブは変更可能な構造体型ではないため、次のコードはサポートされません。
+`Unbox<T>` メソッドには、言語コンパイラによって適用されず、呼び出し元の責任である重要な使用制約があります。 IL `unbox` 命令は、制御可能な、可能性があるマネージポインターを返します。 .NET および .NET 言語コンパイラはこの制約を表すことができないため、`Unbox<T>` メソッドは通常の変更可能な `ref T`を返します。 ただし、`T` が変更可能な構造体型であることがわかっている場合を除き、返された参照を変更することは**できません**。 たとえば、<xref:System.Int32> などの数値プリミティブは変更可能な構造体型ではないため、次のコードはサポートされません。
 
 ```csharp
 Unsafe.Unbox<int>(obj) = 30;
 ```
 
-これに対し、などの型<xref:System.Drawing.Point?<displayProperty=nameWithType>は、パブリックプロパティ setter を持つ変更可能な構造体であるため、次のコードがサポートされています。
+これに対し、<xref:System.Drawing.Point?<displayProperty=nameWithType> などの型は、パブリックプロパティ setter を持つ変更可能な構造体であるため、次のコードがサポートされています。
 
 ```csharp
 Unsafe.Unbox<System.Drawing.Point>(obj).X = 50;
 ```
 
-詳細については、次を参照してください。 1.8.1.2.2 ("4.32") と III. ("ボックス化解除--ボックス化された値の型を[未加工の形式に変換する") ECMA-335:共通言語基盤 (CLI) では、I](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf)を VI に分割します。
+詳細については、「 [ECMA-335: Common Language Infrastructure (CLI) partition I TO VI (共通言語基盤 (CLI) パーティション I TO VI](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf))」の「1.8.1.2.2 ("4.32")」および「("ボックス化された値型を未加工の形式に変換する")」を参照してください。
 
          ]]></format>
         </remarks>
