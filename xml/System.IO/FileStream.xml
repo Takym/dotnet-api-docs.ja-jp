@@ -1,5 +1,5 @@
 <Type Name="FileStream" FullName="System.IO.FileStream">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e73cd152f46fedf9c6f2efecbc569ad2cab28c8c" /><Meta Name="ms.sourcegitcommit" Value="a6c4dae9c1ba2cfbc4452907ef5697ad1f870c0d" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/30/2019" /><Meta Name="ms.locfileid" Value="73082571" /></Metadata><TypeSignature Language="C#" Value="public class FileStream : System.IO.Stream" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1b9f6bfb4fc3399a4527f017cb12c2dcc00875ee" /><Meta Name="ms.sourcegitcommit" Value="93be4738b3a867ee93eb6ee4b43150302a23b5b5" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/11/2019" /><Meta Name="ms.locfileid" Value="73916804" /></Metadata><TypeSignature Language="C#" Value="public class FileStream : System.IO.Stream" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit FileStream extends System.IO.Stream" />
   <TypeSignature Language="DocId" Value="T:System.IO.FileStream" />
   <TypeSignature Language="VB.NET" Value="Public Class FileStream&#xA;Inherits Stream" />
@@ -52,7 +52,7 @@
  <xref:System.IO.FileStream.Seek%2A> メソッドは、ファイルへのランダムアクセスをサポートします。 <xref:System.IO.FileStream.Seek%2A> を使用すると、読み取り/書き込み位置をファイル内の任意の位置に移動できます。 これは、バイトオフセット参照ポイントパラメーターを使用して行われます。 バイトオフセットは、シーク参照ポイントに対する相対値です。これは、<xref:System.IO.SeekOrigin> 列挙体の3つのメンバーによって表される、先頭、現在位置、または基になるファイルの末尾のいずれかになります。  
   
 > [!NOTE]
->  ディスクファイルは常にランダムアクセスをサポートします。 構築時には、基になるファイルの種類に応じて、<xref:System.IO.FileStream.CanSeek%2A> プロパティの値が `true` または `false` に設定されます。FILE_TYPE_DISK で定義されているように、基になるファイルの種類がである場合は、プロパティ <xref:System.IO.FileStream.CanSeek%2A> の値が `true`になります。 それ以外の場合、<xref:System.IO.FileStream.CanSeek%2A> プロパティ値は `false`です。  
+>  ディスクファイルは常にランダムアクセスをサポートします。 構築時には、基になるファイルの種類に応じて、<xref:System.IO.FileStream.CanSeek%2A> プロパティの値が `true` または `false` に設定されます。基になるファイルの種類が FILE_TYPE_DISK の場合、winbase. h で定義されているように、<xref:System.IO.FileStream.CanSeek%2A> プロパティの値は `true`です。 それ以外の場合、<xref:System.IO.FileStream.CanSeek%2A> プロパティ値は `false`です。  
   
  プロセスがファイルの一部で終了した場合、または未処理のロックがあるファイルを閉じた場合、動作は未定義になります。  
   
@@ -144,7 +144,7 @@
       </Parameters>
       <Docs>
         <param name="handle">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルのファイル ハンドル。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> プロパティと <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する定数。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する列挙値のビットごとの組み合わせ。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定した読み取り/書き込みアクセス許可を使用して、指定したファイル ハンドル用に初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -225,7 +225,7 @@
       </Parameters>
       <Docs>
         <param name="handle">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルのファイル ハンドル。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> プロパティと <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する定数。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する列挙値のビットごとの組み合わせ。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定した読み取り/書き込みアクセス許可を使用して、指定したファイル ハンドル用に初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -299,7 +299,7 @@
       </Parameters>
       <Docs>
         <param name="path">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルの相対パスまたは絶対パス。</param>
-        <param name="mode">ファイルを開く方法または作成する方法を決定する定数。</param>
+        <param name="mode">ファイルを開く方法または作成する方法を決定する列挙値の 1 つ。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定したパスと作成モードを使用して初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -490,7 +490,7 @@
       </Parameters>
       <Docs>
         <param name="handle">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルのファイル ハンドル。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> プロパティと <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する定数。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する列挙値のビットごとの組み合わせ。</param>
         <param name="ownsHandle">この <see langword="FileStream" /> インスタンスがファイル ハンドルを所有する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定した読み取り/書き込みアクセス許可と <see langword="FileStream" /> インスタンスの所有権を使用して、指定したファイル ハンドル用に初期化します。</summary>
         <remarks>
@@ -566,8 +566,8 @@
       </Parameters>
       <Docs>
         <param name="path">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルの相対パスまたは絶対パス。</param>
-        <param name="mode">ファイルを開く方法または作成する方法を決定する定数。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスできる方法を決定する定数。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
+        <param name="mode">ファイルを開く方法または作成する方法を決定する列挙値の 1 つ。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスする方法を決定する列挙値のビットごとの組み合わせ。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定したパス、作成モード、および読み取り/書き込みアクセス許可を使用して初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -657,7 +657,7 @@
       </Parameters>
       <Docs>
         <param name="handle">この <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルのファイル ハンドル。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> プロパティと <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する定数。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する列挙値のビットごとの組み合わせ。</param>
         <param name="bufferSize">バッファー サイズを示す 0 より大きな正の <see cref="T:System.Int32" /> 値。 既定のバッファー サイズは、4096 です。</param>
         <param name="isAsync">ハンドルが非同期的に開かれた場合 (重複 I/O モード用) は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定した読み取り/書き込みアクセス許可、バッファー サイズ、および同期状態または非同期状態を使用して、指定したファイル ハンドル用に初期化します。</summary>
@@ -747,7 +747,7 @@
       </Parameters>
       <Docs>
         <param name="handle">この <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルのファイル ハンドル。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> プロパティと <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する定数。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する列挙値のビットごとの組み合わせ。</param>
         <param name="ownsHandle">この <see langword="FileStream" /> インスタンスがファイル ハンドルを所有する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <param name="bufferSize">バッファー サイズを示す 0 より大きな正の <see cref="T:System.Int32" /> 値。 既定のバッファー サイズは、4096 です。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定した読み取り/書き込みアクセス許可、<see langword="FileStream" /> インスタンスの所有権、およびバッファー サイズを使用して、指定したファイル ハンドル用に初期化します。</summary>
@@ -825,9 +825,9 @@
       </Parameters>
       <Docs>
         <param name="path">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルの相対パスまたは絶対パス。</param>
-        <param name="mode">ファイルを開く方法または作成する方法を決定する定数。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスできる方法を決定する定数。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
-        <param name="share">プロセスによるファイルの共有方法を決定する定数。</param>
+        <param name="mode">ファイルを開く方法または作成する方法を決定する列挙値の 1 つ。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスする方法を決定する列挙値のビットごとの組み合わせ。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
+        <param name="share">ファイルがどのようにプロセスに共有されるかを決定する列挙値のビットごとの組み合わせ。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定したパス、作成モード、読み取り/書き込みアクセス許可、および共有アクセス許可を使用して初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -860,7 +860,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> は空の文字列 ("") であるか、空白のみで構成されているか、または 1 つ以上の正しくない文字を含んでいます。  
   
 - または - 
@@ -936,7 +936,7 @@
       </Parameters>
       <Docs>
         <param name="handle">この <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルのファイル ハンドル。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> プロパティと <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する定数。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティを設定する列挙値のビットごとの組み合わせ。</param>
         <param name="ownsHandle">この <see langword="FileStream" /> インスタンスがファイル ハンドルを所有する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <param name="bufferSize">バッファー サイズを示す 0 より大きな正の <see cref="T:System.Int32" /> 値。 既定のバッファー サイズは、4096 です。</param>
         <param name="isAsync">ハンドルが非同期的に開かれた場合 (重複 I/O モード用) は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
@@ -1017,9 +1017,9 @@
       </Parameters>
       <Docs>
         <param name="path">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルの相対パスまたは絶対パス。</param>
-        <param name="mode">ファイルを開く方法または作成する方法を決定する定数。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスできる方法を決定する定数。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
-        <param name="share">プロセスによるファイルの共有方法を決定する定数。</param>
+        <param name="mode">ファイルを開く方法または作成する方法を決定する列挙値の 1 つ。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスする方法を決定する列挙値のビットごとの組み合わせ。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
+        <param name="share">ファイルがどのようにプロセスに共有されるかを決定する列挙値のビットごとの組み合わせ。</param>
         <param name="bufferSize">バッファー サイズを示す 0 より大きな正の <see cref="T:System.Int32" /> 値。 既定のバッファー サイズは、4096 です。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定したパス、作成モード、読み取り/書き込みアクセス許可、共有アクセス許可、およびバッファー サイズを使用して初期化します。</summary>
         <remarks>
@@ -1042,7 +1042,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> は空の文字列 ("") であるか、空白のみで構成されているか、または 1 つ以上の正しくない文字を含んでいます。  
   
 - または - 
@@ -1115,9 +1115,9 @@
       </Parameters>
       <Docs>
         <param name="path">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルの相対パスまたは絶対パス。</param>
-        <param name="mode">ファイルを開く方法または作成する方法を決定する定数。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスできる方法を決定する定数。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
-        <param name="share">プロセスによるファイルの共有方法を決定する定数。</param>
+        <param name="mode">ファイルを開く方法または作成する方法を決定する列挙値の 1 つ。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスする方法を決定する列挙値のビットごとの組み合わせ。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
+        <param name="share">ファイルがどのようにプロセスに共有されるかを決定する列挙値のビットごとの組み合わせ。</param>
         <param name="bufferSize">バッファー サイズを示す 0 より大きな正の <see cref="T:System.Int32" /> 値。 既定のバッファー サイズは、4096 です。</param>
         <param name="useAsync">非同期 I/O または同期 I/O のどちらを使用するかを指定します。 ただし、基になるオペレーティング システムが非同期 I/O をサポートしていないことがあります。したがって、<see langword="true" /> を指定しても、プラットフォームによってはハンドルが同期的に開かれることがあります。 非同期的に開いた場合、<see cref="M:System.IO.FileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> メソッドと <see cref="M:System.IO.FileStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> メソッドは、大量の読み取りまたは書き込み時にはパフォーマンスがより高くなりますが、少量の読み取りまたは書き込み時にはパフォーマンスが非常に低くなることがあります。 アプリケーションが非同期 I/O を利用するように設計されている場合は、<paramref name="useAsync" /> パラメーターを <see langword="true" /> に設定します。 非同期 I/O を正しく使用すると、アプリケーションが 10 倍ほど高速化することがあります。ただし、非同期 I/O 用にアプリケーションを再設計せずに非同期 I/O を使用すると、パフォーマンスが 10 分の 1 ほど低下することがあります。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定したパス、作成モード、読み取り/書き込みアクセス許可、共有アクセス許可、バッファー サイズ、および同期状態または非同期状態を使用して初期化します。</summary>
@@ -1150,7 +1150,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> は空の文字列 ("") であるか、空白のみで構成されているか、または 1 つ以上の正しくない文字を含んでいます。  
   
 - または - 
@@ -1223,11 +1223,11 @@
       </Parameters>
       <Docs>
         <param name="path">現在の <see langword="FileStream" /> オブジェクトによってカプセル化されるファイルの相対パスまたは絶対パス。</param>
-        <param name="mode">ファイルを開く方法または作成する方法を決定する定数。</param>
-        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスできる方法を決定する定数。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
-        <param name="share">プロセスによるファイルの共有方法を決定する定数。</param>
+        <param name="mode">ファイルを開く方法または作成する方法を決定する列挙値の 1 つ。</param>
+        <param name="access"><see langword="FileStream" /> オブジェクトがファイルにアクセスする方法を決定する列挙値のビットごとの組み合わせ。 これにより、<see langword="FileStream" /> オブジェクトの <see cref="P:System.IO.FileStream.CanRead" /> および <see cref="P:System.IO.FileStream.CanWrite" /> プロパティによって返される値も決まります。 <paramref name="path" /> がディスク ファイルを指定している場合、<see cref="P:System.IO.FileStream.CanSeek" /> は <see langword="true" /> になります。</param>
+        <param name="share">ファイルがどのようにプロセスに共有されるかを決定する列挙値のビットごとの組み合わせ。</param>
         <param name="bufferSize">バッファー サイズを示す 0 より大きな正の <see cref="T:System.Int32" /> 値。 既定のバッファー サイズは、4096 です。</param>
-        <param name="options">追加のファイル オプションを指定する値。</param>
+        <param name="options">その他のファイル オプションを指定する列挙値のビットごとの組み合わせ。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定したパス、作成モード、読み取り/書き込みアクセス許可、共有アクセス許可、同一のファイルに対して他の FileStream が保有できるアクセス、バッファー サイズ、および追加のファイル オプションを使用して初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1326,11 +1326,11 @@
       </Parameters>
       <Docs>
         <param name="path">現在の <see cref="T:System.IO.FileStream" /> オブジェクトによってカプセル化されるファイルの相対パスまたは絶対パス。</param>
-        <param name="mode">ファイルを開く方法または作成する方法を決定する定数。</param>
-        <param name="rights">ファイルのアクセス規則および監査規則の作成時に使用するアクセス権を決定する定数。</param>
-        <param name="share">プロセスによるファイルの共有方法を決定する定数。</param>
+        <param name="mode">ファイルを開く方法または作成する方法を決定する列挙値の 1 つ。</param>
+        <param name="rights">ファイルのアクセス規則および監査規則の作成時に使用するアクセス権を決定する列挙値のビットごとの組み合わせ。</param>
+        <param name="share">ファイルがどのようにプロセスに共有されるかを決定する列挙値のビットごとの組み合わせ。</param>
         <param name="bufferSize">バッファー サイズを示す 0 より大きな正の <see cref="T:System.Int32" /> 値。 既定のバッファー サイズは、4096 です。</param>
-        <param name="options">追加のファイル オプションを指定する定数。</param>
+        <param name="options">その他のファイル オプションを指定する列挙値のビットごとの組み合わせ。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定したパス、作成モード、アクセス権、共有アクセス許可、バッファー サイズ、および追加のファイル オプションを使用して初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1423,12 +1423,12 @@
       </Parameters>
       <Docs>
         <param name="path">現在の <see cref="T:System.IO.FileStream" /> オブジェクトによってカプセル化されるファイルの相対パスまたは絶対パス。</param>
-        <param name="mode">ファイルを開く方法または作成する方法を決定する定数。</param>
-        <param name="rights">ファイルのアクセス規則および監査規則の作成時に使用するアクセス権を決定する定数。</param>
-        <param name="share">プロセスによるファイルの共有方法を決定する定数。</param>
+        <param name="mode">ファイルを開く方法または作成する方法を決定する列挙値の 1 つ。</param>
+        <param name="rights">ファイルのアクセス規則および監査規則の作成時に使用するアクセス権を決定する列挙値のビットごとの組み合わせ。</param>
+        <param name="share">ファイルがどのようにプロセスに共有されるかを決定する列挙値のビットごとの組み合わせ。</param>
         <param name="bufferSize">バッファー サイズを示す 0 より大きな正の <see cref="T:System.Int32" /> 値。 既定のバッファー サイズは、4096 です。</param>
-        <param name="options">追加のファイル オプションを指定する定数。</param>
-        <param name="fileSecurity">ファイルのアクセス制御と監査セキュリティを決定する定数。</param>
+        <param name="options">その他のファイル オプションを指定する列挙値のビットごとの組み合わせ。</param>
+        <param name="fileSecurity">ファイルのアクセス制御と監査セキュリティを決定するオブジェクト。</param>
         <summary><see cref="T:System.IO.FileStream" /> クラスの新しいインスタンスを、指定したパス、作成モード、アクセス権、共有アクセス許可、バッファー サイズ、追加のファイル オプション、アクセス制御、および監査セキュリティを使用して初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1910,7 +1910,7 @@
 
 ## Remarks
 
-`CopyToAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用する i/o 操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `async` および `await` キーワードと組み合わせて使用されます。
+`CopyToAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用する i/o 操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `await` キーワード `async` と組み合わせて使用されます。
 
 操作が完了前にキャンセルされた場合、返されたタスクには、<xref:System.Threading.Tasks.Task.Status?displayProperty=nameWithType> プロパティの <xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType> 値が含まれます。
 
@@ -1975,7 +1975,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック <xref:System.ComponentModel.Component.Dispose%2A> メソッドと <xref:System.Object.Finalize%2A> メソッドによって呼び出されます。 <xref:System.ComponentModel.Component.Dispose%2A> は、`disposing` パラメーターを `true` に設定して、protected <xref:System.IO.FileStream.Dispose%2A> メソッドを呼び出します。 <xref:System.Object.Finalize%2A> は、`disposing` が `false` に設定された <xref:System.IO.FileStream.Dispose%2A> を呼び出します。  
+ このメソッドは、パブリック <xref:System.ComponentModel.Component.Dispose%2A> メソッドと <xref:System.Object.Finalize%2A> メソッドによって呼び出されます。 <xref:System.ComponentModel.Component.Dispose%2A> は、`disposing` パラメーターを `true`に設定して、protected <xref:System.IO.FileStream.Dispose%2A> メソッドを呼び出します。 <xref:System.Object.Finalize%2A> は `disposing` を `false`に設定して <xref:System.IO.FileStream.Dispose%2A> を呼び出します。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.IO.FileStream> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの <xref:System.ComponentModel.Component.Dispose%2A> メソッドを呼び出します。  
   
@@ -2024,7 +2024,7 @@
 
 ## Remarks
 
-`DisposeAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用する dispose 操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `async` および `await` キーワードと組み合わせて使用されます。
+`DisposeAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用する dispose 操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `await` キーワード `async` と組み合わせて使用されます。
 
 このメソッドは、バッキングストアに変更を書き込んでストリームを破棄し、リソースを解放するためにストリームを閉じます。
 
@@ -2173,7 +2173,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="asyncResult" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="asyncResult" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException">この <see cref="T:System.IAsyncResult" /> オブジェクトは、このクラスで <see cref="M:System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> を呼び出すことによって作成されませんでした。</exception>
         <exception cref="T:System.InvalidOperationException"><see cref="M:System.IO.FileStream.EndWrite(System.IAsyncResult)" /> は複数回呼び出されます。</exception>
         <exception cref="T:System.IO.IOException">ストリームが閉じているか、内部エラーが発生しました。</exception>
@@ -2228,7 +2228,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在のオブジェクトを完了する準備ができたら、ガベージコレクターは `Finalize` を呼び出します。 `Finalize` `FileStream`を閉じます。  
+ 現在のオブジェクトを完了する準備が整うと、ガベージコレクターは `Finalize` を呼び出します。 `Finalize` `FileStream`を閉じます。  
   
  ]]></format>
         </remarks>
@@ -2553,7 +2553,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />。</permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードにアクセスするための。 関連付けられた列挙: <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />。</permission>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
@@ -2939,11 +2939,11 @@
 
 ## Remarks
 
-現在のインスタンスが読み取りをサポートしているかどうかを判断するには、<xref:System.IO.FileStream.CanRead%2A> プロパティを使用します。 現在のストリームから非同期的に読み取るには、<xref:System.IO.FileStream.ReadAsync%2A> メソッドを使用します。
+現在のインスタンスが読み取りをサポートしているかどうかを確認するには、<xref:System.IO.FileStream.CanRead%2A> プロパティを使用します。 現在のストリームから非同期的に読み取るには、<xref:System.IO.FileStream.ReadAsync%2A> メソッドを使用します。
 
 このメソッドは、現在のファイルストリームから最大 `buffer.Length` バイトを読み取り、`buffer`に格納します。 ファイルストリーム内の現在位置は、読み取ったバイト数だけ進んでいます。ただし、例外が発生した場合、ファイルストリーム内の現在位置は変更されません。 データが使用できない場合、メソッドは、少なくとも1バイトのデータを読み取ることができるようになるまでブロックします。 `Read` は、ファイルストリームにデータがこれ以上ない場合にのみ0を返します。これ以上のデータは必要ありません (閉じているソケットやファイルの終端など)。 メソッドは、ファイルストリームの末尾に到達していない場合でも、要求されたバイト数よりも小さい値を返すことができます。
 
-プリミティブデータ型を読み取るには <xref:System.IO.BinaryReader> を使用します。
+プリミティブデータ型を読み取るには、<xref:System.IO.BinaryReader> を使用します。
 
           ]]></format>
         </remarks>
@@ -3009,7 +3009,7 @@
   
  <xref:System.IO.FileStream.Read%2A> メソッドは、ストリームの末尾に到達した後にのみ0を返します。 それ以外の場合は、を返す前に、必ずストリームから少なくとも1バイトを読み取る <xref:System.IO.FileStream.Read%2A> ます。 <xref:System.IO.FileStream.Read%2A>の呼び出し時にストリームから使用できるデータがない場合、少なくとも1バイトのデータが返されるまで、メソッドはブロックされます。 の実装では、ストリームの末尾に到達していない場合でも、要求されたバイト数よりも小さい値を返すことができます。  
   
- プリミティブデータ型を読み取るには <xref:System.IO.BinaryReader> を使用します。  
+ プリミティブデータ型を読み取るには、<xref:System.IO.BinaryReader> を使用します。  
   
  読み取り操作を実行しているスレッドを中断しないようにします。 スレッドがブロック解除された後にアプリケーションが正常に実行されているように見える場合でも、中断によってアプリケーションのパフォーマンスと信頼性が低下する可能性があります。  
   
@@ -3025,7 +3025,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> は <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> または <paramref name="count" /> が負の値です。</exception>
         <exception cref="T:System.NotSupportedException">ストリームは読み取りをサポートしません。</exception>
         <exception cref="T:System.IO.IOException">I/O エラーが発生しました。</exception>
@@ -3073,9 +3073,9 @@
 
 ## Remarks
 
-`ReadAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用するファイル操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `async` および `await` キーワードと組み合わせて使用されます。
+`ReadAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用するファイル操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `await` キーワード `async` と組み合わせて使用されます。
 
-現在のインスタンスが読み取りをサポートしているかどうかを判断するには、<xref:System.IO.FileStream.CanRead%2A> プロパティを使用します。
+現在のインスタンスが読み取りをサポートしているかどうかを確認するには、<xref:System.IO.FileStream.CanRead%2A> プロパティを使用します。
 
 操作が完了前にキャンセルされた場合、返されたタスクには、<xref:System.Threading.Tasks.Task.Status?displayProperty=nameWithtype> プロパティの <xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType> 値が含まれます。 ファイルへのハンドルが破棄された場合、返されたタスクには、<xref:System.Threading.Tasks.Task.Exception?displayProperty=nameWithType> プロパティに <xref:System.ObjectDisposedException> 例外が含まれます。
 
@@ -3146,9 +3146,9 @@
 
 ## Remarks
 
-`ReadAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用するファイル操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `async` および `await` キーワードと組み合わせて使用されます。
+`ReadAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用するファイル操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `await` キーワード `async` と組み合わせて使用されます。
 
-現在のインスタンスが読み取りをサポートしているかどうかを判断するには、<xref:System.IO.FileStream.CanRead%2A> プロパティを使用します。
+現在のインスタンスが読み取りをサポートしているかどうかを確認するには、<xref:System.IO.FileStream.CanRead%2A> プロパティを使用します。
 
 操作が完了前にキャンセルされた場合、返されたタスクには、<xref:System.Threading.Tasks.Task.Status?displayProperty=nameWithType> プロパティの <xref:System.Threading.Tasks.TaskStatus.Canceled?displayProperty=nameWithType> 値が含まれます。 ファイルへのハンドルが破棄された場合、返されたタスクには、<xref:System.Threading.Tasks.Task.Exception?displayProperty=nameWithType> プロパティに <xref:System.ObjectDisposedException> 例外が含まれます。
 
@@ -3219,7 +3219,7 @@
  このメソッドは、<xref:System.IO.Stream.ReadByte%2A> をオーバーライドします。  
   
 > [!NOTE]
->  現在のインスタンスが読み取りをサポートしているかどうかを判断するには、<xref:System.IO.FileStream.CanRead%2A> プロパティを使用します。 詳細については、「<xref:System.IO.Stream.CanRead%2A>」を参照してください。  
+>  現在のインスタンスが読み取りをサポートしているかどうかを確認するには、<xref:System.IO.FileStream.CanRead%2A> プロパティを使用します。 詳細については、「<xref:System.IO.Stream.CanRead%2A>」を参照してください。  
   
    
   
@@ -3292,7 +3292,7 @@
         </remarks>
         <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出すためのアクセス許可。  
   
-セキュリティアクション:リンク確認要求 
+セキュリティアクション: リンク確認要求 
 関連付けられた列挙型: <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
@@ -3696,7 +3696,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="offset" /> と <paramref name="count" /> が <paramref name="array" /> の無効な範囲を示しています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> または <paramref name="count" /> が負の値です。</exception>
         <exception cref="T:System.IO.IOException">I/O エラーが発生しました。  
@@ -3748,7 +3748,7 @@
 
 ## Remarks
 
-`WriteAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用する i/o 操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `async` および `await` キーワードと組み合わせて使用されます。
+`WriteAsync` メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用する i/o 操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `await` キーワード `async` と組み合わせて使用されます。
 
 現在のインスタンスが書き込みをサポートしているかどうかを判断するには、<xref:System.IO.FileStream.CanWrite%2A> プロパティを使用します。
 
@@ -3813,7 +3813,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IO.FileStream.WriteAsync%2A> メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用するファイル操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `async` および `await` キーワードと組み合わせて使用されます。  
+ <xref:System.IO.FileStream.WriteAsync%2A> メソッドを使用すると、メインスレッドをブロックせずに、リソースを集中的に使用するファイル操作を実行できます。 このパフォーマンスに関する考慮事項は、時間のかかるストリーム操作によって UI スレッドがブロックされ、アプリが動作していないと見なされる可能性がある [!INCLUDE[win8_appname_long](~/includes/win8-appname-long-md.md)] アプリまたは[!INCLUDE[desktop_appname](~/includes/desktop-appname-md.md)] アプリで特に重要です。 非同期メソッドは Visual Basic およびC#の `await` キーワード `async` と組み合わせて使用されます。  
   
  現在のインスタンスが書き込みをサポートしているかどうかを判断するには、<xref:System.IO.FileStream.CanWrite%2A> プロパティを使用します。  
   
@@ -3829,7 +3829,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> または <paramref name="count" /> が負の値です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="offset" /> と <paramref name="count" /> の合計が、バッファーの長さよりも大きいです。</exception>
         <exception cref="T:System.NotSupportedException">ストリームは書き込みをサポートしません。</exception>
