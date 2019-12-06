@@ -1,5 +1,5 @@
 <Type Name="CryptographicOperations" FullName="System.Security.Cryptography.CryptographicOperations">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0883d315ec56d200b39a2f378386f5e947c3f11d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69059288" /></Metadata><TypeSignature Language="C#" Value="public static class CryptographicOperations" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5e4f73c8c416d58761bb482c878235c14f93494c" /><Meta Name="ms.sourcegitcommit" Value="394eb46af92ad32373cd2c7855b688846886ed40" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/23/2019" /><Meta Name="ms.locfileid" Value="74425147" /></Metadata><TypeSignature Language="C#" Value="public static class CryptographicOperations" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit CryptographicOperations extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.CryptographicOperations" />
   <TypeSignature Language="VB.NET" Value="Public Class CryptographicOperations" />
@@ -18,7 +18,7 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>暗号化を使用して、サイドチャネル情報漏えいのリスクを軽減するためのメソッドを提供します。</summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -57,9 +57,9 @@
 
 このメソッドは、タイミング情報をリークしない方法で2つのバッファーの内容が等しいかどうかを比較し、暗号化ルーチン内での使用に最適です。
 
-このメソッドは、と`false` `right`の長さが異なる場合`left`にのみ、を返します。
+このメソッドは、`left` と `right` の長さが異なる場合にのみ、`false` を返します。
 
-固定時の動作は、と`left` `right`が同じアドレスを参照する場合を含め、他のすべてのケースで保証されます。
+固定時の動作は、`left` と `right` が同じアドレスを参照する場合を含め、その他のすべてのケースで保証されます。
 
  ]]></format>
         </remarks>
@@ -88,9 +88,18 @@
         <Parameter Name="buffer" Type="System.Span&lt;System.Byte&gt;" />
       </Parameters>
       <Docs>
-        <param name="buffer">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="buffer">0 で埋めるバッファー。</param>
+        <summary>指定したバッファーを 0 で埋めます。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+このメソッドは、メモリの読み取りに従わないメモリの書き込みを防ぐことができるように、.NET ランタイムの潜在的な最適化に対して将来の証明を行うために存在します。
+C とC++コンパイラの最適化は似ていますが、.net ではこのような最適化は現時点では計画されていません。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
   </Members>
