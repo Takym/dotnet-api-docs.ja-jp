@@ -1,5 +1,5 @@
 <Type Name="SemaphoreSlim" FullName="System.Threading.SemaphoreSlim">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="90123bc6c711f4739700b8e51f6e2da7873234f5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69098745" /></Metadata><TypeSignature Language="C#" Value="public class SemaphoreSlim : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="140658a3278e6460550e3242f1f7aa5d575543b3" /><Meta Name="ms.sourcegitcommit" Value="47aee60cbc5001a16d5b9cdd0500df890fb1cdec" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/26/2019" /><Meta Name="ms.locfileid" Value="74529850" /></Metadata><TypeSignature Language="C#" Value="public class SemaphoreSlim : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SemaphoreSlim extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.SemaphoreSlim" />
   <TypeSignature Language="VB.NET" Value="Public Class SemaphoreSlim&#xA;Implements IDisposable" />
@@ -44,11 +44,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- セマフォには、ローカルセマフォと名前付きシステムセマフォの2種類があります。 前者はアプリに対してローカルです。 後者はオペレーティングシステム全体に表示され、プロセス間の同期に適しています。 は<xref:System.Threading.SemaphoreSlim> 、Windows カーネルセマフォを使用<xref:System.Threading.Semaphore>しないクラスに代わる軽量の方法です。 クラスとは異なり、 <xref:System.Threading.SemaphoreSlim>クラスは名前付きシステムセマフォをサポートしていません。 <xref:System.Threading.Semaphore> ローカルセマフォとしてのみ使用できます。 <xref:System.Threading.SemaphoreSlim>クラスは、単一のアプリ内で同期するために推奨されるセマフォです。  
+ セマフォには、ローカルセマフォと名前付きシステムセマフォの2種類があります。 前者はアプリに対してローカルです。 後者はオペレーティングシステム全体に表示され、プロセス間の同期に適しています。 <xref:System.Threading.SemaphoreSlim> は、Windows カーネルセマフォを使用しない <xref:System.Threading.Semaphore> クラスに代わる軽量の手段です。 <xref:System.Threading.Semaphore> クラスとは異なり、<xref:System.Threading.SemaphoreSlim> クラスは名前付きシステムセマフォをサポートしていません。 ローカルセマフォとしてのみ使用できます。 <xref:System.Threading.SemaphoreSlim> クラスは、1つのアプリ内で同期するために推奨されるセマフォです。  
   
  ライトウェイトセマフォは、アプリケーションに対してローカルなリソースのプールへのアクセスを制御します。 セマフォをインスタンス化するときに、同時にセマフォに入ることができるスレッドの最大数を指定できます。 また、セマフォに同時に入力できるスレッドの初期数を指定します。 これにより、セマフォのカウントが定義されます。  
   
- スレッドがセマフォに入るたびにカウントがデクリメントされ、スレッドがセマフォを解放するたびに増加します。 セマフォを入力するために、スレッドは<xref:System.Threading.SemaphoreSlim.Wait%2A>または<xref:System.Threading.SemaphoreSlim.WaitAsync%2A>のいずれかのオーバーロードを呼び出します。 セマフォを解放するには<xref:System.Threading.SemaphoreSlim.Release%2A> 、オーバーロードのいずれかを呼び出します。 カウントがゼロになると、後続の`Wait`メソッドの呼び出しは、他のスレッドがセマフォを解放するまでブロックされます。 複数のスレッドがブロックされている場合は、スレッドがセマフォに入るタイミングを制御する FIFO や LIFO などの保証された順序はありません。  
+ スレッドがセマフォに入るたびにカウントがデクリメントされ、スレッドがセマフォを解放するたびに増加します。 セマフォを入力するために、スレッドは <xref:System.Threading.SemaphoreSlim.Wait%2A> または <xref:System.Threading.SemaphoreSlim.WaitAsync%2A> のいずれかのオーバーロードを呼び出します。 セマフォを解放するには、<xref:System.Threading.SemaphoreSlim.Release%2A> のオーバーロードのいずれかを呼び出します。 カウントがゼロになると、後続のいずれかの `Wait` メソッドの呼び出しは、他のスレッドがセマフォを解放するまでブロックされます。 複数のスレッドがブロックされている場合は、スレッドがセマフォに入るタイミングを制御する FIFO や LIFO などの保証された順序はありません。  
   
  セマフォを使用してリソースを保護するコードの基本的な構造は次のとおりです。  
   
@@ -63,22 +63,22 @@ SemaphoreSlim.Release()
   
 ```  
   
- すべてのスレッドがセマフォを解放すると、セマフォの作成時に指定された最大値にカウントされます。 セマフォのカウントは、 <xref:System.Threading.SemaphoreSlim.CurrentCount%2A>プロパティから取得できます。  
+ すべてのスレッドがセマフォを解放すると、セマフォの作成時に指定された最大値にカウントされます。 セマフォのカウントは、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティから取得できます。  
   
 > [!IMPORTANT]
->  クラス<xref:System.Threading.SemaphoreSlim>は、、 <xref:System.Threading.SemaphoreSlim.WaitAsync%2A>、および<xref:System.Threading.SemaphoreSlim.Wait%2A> <xref:System.Threading.SemaphoreSlim.Release%2A>の各メソッドの呼び出しで、スレッド id またはタスク id を強制しません。 また、 <xref:System.Threading.SemaphoreSlim.%23ctor%28System.Int32%29>コンストラクターを使用して<xref:System.Threading.SemaphoreSlim>オブジェクト<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>をインスタンス化する場合、コンストラクターによって設定された値を超えてプロパティが増加する可能性があります。 <xref:System.Threading.SemaphoreSlim.Wait%2A>また<xref:System.Threading.SemaphoreSlim.Release%2A>は<xref:System.Threading.SemaphoreSlim.WaitAsync%2A>メソッドの呼び出しとメソッドの呼び出しが適切に組み合わされていることをプログラマが確認する必要があります。  
+>  <xref:System.Threading.SemaphoreSlim> クラスは、<xref:System.Threading.SemaphoreSlim.Wait%2A>、<xref:System.Threading.SemaphoreSlim.WaitAsync%2A>、および <xref:System.Threading.SemaphoreSlim.Release%2A> メソッドの呼び出しでスレッド id またはタスク id を強制しません。 さらに、<xref:System.Threading.SemaphoreSlim.%23ctor%28System.Int32%29> コンストラクターを使用して <xref:System.Threading.SemaphoreSlim> オブジェクトをインスタンス化する場合、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティは、コンストラクターによって設定された値を超えて増加する可能性があります。 <xref:System.Threading.SemaphoreSlim.Wait%2A> または <xref:System.Threading.SemaphoreSlim.WaitAsync%2A> メソッドへの呼び出しが <xref:System.Threading.SemaphoreSlim.Release%2A> メソッドの呼び出しと適切に組み合わされていることをプログラマが確認する必要があります。  
   
    
   
 ## Examples  
- 次の例では、3つのスレッドの最大数と、ゼロスレッドの初期カウントを使用して、セマフォを作成します。 この例では、5つのタスクを開始し、そのすべてのブロックがセマフォを待機しています。 メインスレッドは、 <xref:System.Threading.SemaphoreSlim.Release%28System.Int32%29>オーバーロードを呼び出して、セマフォ数を最大値に増やします。これにより、3つのタスクがセマフォに入ることができます。 セマフォが解放されるたびに、前のセマフォ数が表示されます。 コンソールメッセージは、セマフォの使用を追跡します。 シミュレートされた作業間隔は、出力が読みやすくなるように、スレッドごとに若干増加します。  
+ 次の例では、3つのスレッドの最大数と、ゼロスレッドの初期カウントを使用して、セマフォを作成します。 この例では、5つのタスクを開始し、そのすべてのブロックがセマフォを待機しています。 メインスレッドは <xref:System.Threading.SemaphoreSlim.Release%28System.Int32%29> オーバーロードを呼び出して、セマフォ数を最大値に増やします。これにより、3つのタスクがセマフォに入ることができます。 セマフォが解放されるたびに、前のセマフォ数が表示されます。 コンソールメッセージは、セマフォの使用を追跡します。 シミュレートされた作業間隔は、出力が読みやすくなるように、スレッドごとに若干増加します。  
   
  [!code-csharp[System.Threading.SemaphoreSlim#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.semaphoreslim/cs/example.cs#1)]
  [!code-vb[System.Threading.SemaphoreSlim#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.semaphoreslim/vb/example.vb#1)]  
   
  ]]></format>
     </remarks>
-    <threadsafe>のすべての<see cref="T:System.Threading.SemaphoreSlim" />パブリックメンバーとプロテクトメンバーはスレッドセーフであり、複数のスレッドから同時に使用すること<see cref="M:System.Threading.SemaphoreSlim.Dispose" />ができます。ただし、の他の<see cref="T:System.Threading.SemaphoreSlim" />すべての操作が完了している場合にのみ使用する必要があります。</threadsafe>
+    <threadsafe><see cref="T:System.Threading.SemaphoreSlim" /> のすべてのパブリックメンバーとプロテクトメンバーはスレッドセーフであり、複数のスレッドから同時に使用することができます。ただし、<see cref="M:System.Threading.SemaphoreSlim.Dispose" />を除き、<see cref="T:System.Threading.SemaphoreSlim" /> の他のすべての操作が完了している場合にのみ使用する必要があります。</threadsafe>
     <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore と SemaphoreSlim</related>
   </Docs>
   <Members>
@@ -128,7 +128,7 @@ SemaphoreSlim.Release()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パラメーター `initialCount`は、許可できるセマフォに入る同時要求の数を定義します。 ただし、同時に許可できる要求の最大数は定義されていません。 この<xref:System.Threading.SemaphoreSlim>コンストラクターを呼び出すことによってインスタンス<xref:System.Threading.SemaphoreFullException>化さ`initialCount`れたオブジェクトは<xref:System.Threading.SemaphoreSlim.Release%2A> 、メソッドの呼び出しによっ<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>てプロパティの値が大きくなると、例外をスローしません。 これは、 <xref:System.Threading.SemaphoreSlim.Release%2A>メソッドまたは<xref:System.Threading.SemaphoreSlim.WaitAsync%2A>メソッドに<xref:System.Threading.SemaphoreSlim.Wait%2A>対する呼び出しの数が多い場合に発生します。 許可できるセマフォに入る同時要求の最大数を設定するには、 <xref:System.Threading.SemaphoreSlim.%23ctor%28System.Int32%2CSystem.Int32%29>コンストラクターを呼び出します。  
+ `initialCount` パラメーターは、許可できるセマフォに入る同時要求の数を定義します。 ただし、同時に許可できる要求の最大数は定義されていません。 このコンストラクターを呼び出すことによってインスタンス化された <xref:System.Threading.SemaphoreSlim> オブジェクトは、<xref:System.Threading.SemaphoreSlim.Release%2A> メソッドを呼び出したときに `initialCount`を超える <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティの値が増加した場合に <xref:System.Threading.SemaphoreFullException> 例外をスローしません。 これは、メソッドを <xref:System.Threading.SemaphoreSlim.Wait%2A> または <xref:System.Threading.SemaphoreSlim.WaitAsync%2A> するよりも <xref:System.Threading.SemaphoreSlim.Release%2A> メソッドへの呼び出しが多い場合に発生します。 許可できるセマフォに入る同時要求の最大数を設定するには、<xref:System.Threading.SemaphoreSlim.%23ctor%28System.Int32%2CSystem.Int32%29> コンストラクターを呼び出します。  
   
  ]]></format>
         </remarks>
@@ -204,12 +204,12 @@ SemaphoreSlim.Release()
       </ReturnValue>
       <Docs>
         <summary>セマフォの待機に使用できる <see cref="T:System.Threading.WaitHandle" /> を返します。</summary>
-        <value>セマフォの待機に使用できる <see cref="T:System.Threading.WaitHandle" />。</value>
+        <value>セマフォの待機に使用できる <see cref="T:System.Threading.WaitHandle" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、SemaphoreSlim で、待機ハンドルが同じ他のカーネルベースの同期オブジェクトと一緒に待機する必要がある場合にのみ使用します。 で<xref:System.Threading.SemaphoreSlim.AvailableWaitHandle%2A>の待機が成功した場合は、 <xref:System.Threading.SemaphoreSlim>それ自体での待機が成功するとは見なされず、セマフォのカウントがデクリメントされることもありません。 使用可能な待機ハンドルがシグナル状態になった後は<xref:System.Threading.SemaphoreSlim> 、特にを待機する必要があります。  
+ このプロパティは、SemaphoreSlim で、待機ハンドルが同じ他のカーネルベースの同期オブジェクトと一緒に待機する必要がある場合にのみ使用します。 <xref:System.Threading.SemaphoreSlim.AvailableWaitHandle%2A> での待機が正常に終了した場合、<xref:System.Threading.SemaphoreSlim> 自体での待機が正常に行われることはありません。また、セマフォのカウントがデクリメントされることもありません。 使用可能な待機ハンドルがシグナル状態になった後は、具体的に <xref:System.Threading.SemaphoreSlim> を待機する必要があります。  
   
  ]]></format>
         </remarks>
@@ -252,7 +252,7 @@ SemaphoreSlim.Release()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.SemaphoreSlim.CurrentCount%2A>プロパティの初期値は、クラスコンストラクターの<xref:System.Threading.SemaphoreSlim.%23ctor%2A>呼び出しによって設定されます。 または<xref:System.Threading.SemaphoreSlim.Wait%2A> <xref:System.Threading.SemaphoreSlim.WaitAsync%2A>メソッドの呼び出しごとにデクリメントされ、メソッドの<xref:System.Threading.SemaphoreSlim.Release%2A>呼び出しごとにインクリメントされます。  
+ <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティの初期値は、<xref:System.Threading.SemaphoreSlim.%23ctor%2A> クラスコンストラクターの呼び出しによって設定されます。 <xref:System.Threading.SemaphoreSlim.Wait%2A> または <xref:System.Threading.SemaphoreSlim.WaitAsync%2A> メソッドの呼び出しごとにデクリメントされ、<xref:System.Threading.SemaphoreSlim.Release%2A> メソッドの各呼び出しによってインクリメントされます。  
   
  ]]></format>
         </remarks>
@@ -358,7 +358,7 @@ SemaphoreSlim.Release()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- の<xref:System.Threading.SemaphoreSlim>ほとんどのメンバーとは異なり<xref:System.Threading.SemaphoreSlim.Dispose%2A> 、はスレッドセーフではなく、このインスタンスの他のメンバーと同時に使用することはできません。  
+ <xref:System.Threading.SemaphoreSlim>のほとんどのメンバーとは異なり、<xref:System.Threading.SemaphoreSlim.Dispose%2A> はスレッドセーフではなく、このインスタンスの他のメンバーと同時に使用することはできません。  
   
  ]]></format>
         </remarks>
@@ -412,7 +412,7 @@ SemaphoreSlim.Release()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.SemaphoreSlim.Release>メソッドを呼び出すと、プロパティ<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>が1ずつインクリメントされます。 このメソッドが呼び出される<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>前にプロパティの値が0の場合、メソッドは、メソッド<xref:System.Threading.SemaphoreSlim.Wait%2A>または<xref:System.Threading.SemaphoreSlim.WaitAsync%2A>メソッドへの呼び出しによってブロックされた1つのスレッドまたはタスクで、セマフォに入ることを許可します。  
+ <xref:System.Threading.SemaphoreSlim.Release> メソッドを呼び出すと、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティが1ずつインクリメントされます。 このメソッドが呼び出される前に <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティの値が0の場合、メソッドは、<xref:System.Threading.SemaphoreSlim.Wait%2A> または <xref:System.Threading.SemaphoreSlim.WaitAsync%2A> メソッドの呼び出しによってブロックされた1つのスレッドまたはタスクがセマフォに入ることを許可します。  
   
  ]]></format>
         </remarks>
@@ -460,7 +460,7 @@ SemaphoreSlim.Release()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.SemaphoreSlim.Release%28System.Int32%29>メソッドを呼び出すと、に<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>よって`releaseCount`プロパティがインクリメントされます。 このメソッドが呼び出される<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>前にプロパティの値が0の場合は、メソッドまた`releaseCount`は<xref:System.Threading.SemaphoreSlim.WaitAsync%2A>メソッドの<xref:System.Threading.SemaphoreSlim.Wait%2A>呼び出しによってブロックされたスレッドまたはタスクも、セマフォに入ることができます。  
+ <xref:System.Threading.SemaphoreSlim.Release%28System.Int32%29> メソッドを呼び出すと、`releaseCount`によって <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティがインクリメントされます。 このメソッドが呼び出される前に <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティの値が0の場合、メソッドは、<xref:System.Threading.SemaphoreSlim.Wait%2A> または <xref:System.Threading.SemaphoreSlim.WaitAsync%2A> メソッドの呼び出しによってブロックされている `releaseCount` スレッドまたはタスクを、セマフォに入ることを許可します。  
   
  ]]></format>
         </remarks>
@@ -511,12 +511,12 @@ SemaphoreSlim.Release()
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> に入るまで、現在のスレッドをブロックします。</summary>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> に入れるようになるまで、現在のスレッドをブロックします。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スレッドまたはタスクがセマフォに入ることができる場合は、 <xref:System.Threading.SemaphoreSlim.CurrentCount%2A>プロパティを1つデクリメントします。  
+ スレッドまたはタスクがセマフォに入ることができる場合は、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティを1ずつデクリメントします。  
   
  ]]></format>
         </remarks>
@@ -567,12 +567,12 @@ SemaphoreSlim.Release()
  
 タイムアウトが0ミリ秒に設定されている場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。
 
-スレッドまたはタスクがセマフォに入ることができる場合は、 <xref:System.Threading.SemaphoreSlim.CurrentCount%2A>プロパティを1つデクリメントします。  
+スレッドまたはタスクがセマフォに入ることができる場合は、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティを1ずつデクリメントします。  
   
-を呼び出し<xref:System.Threading.SemaphoreSlim.Wait%28System.Int32%29>たときにスレッドまたはタスクがブロックされ、に`millisecondsTimeout`よって指定されたタイムアウト間隔が切れる場合は、次のようになります。
+<xref:System.Threading.SemaphoreSlim.Wait%28System.Int32%29> を呼び出すときにスレッドまたはタスクがブロックされ、`millisecondsTimeout` によって指定されたタイムアウト間隔が切れる場合は、次のようになります。
 
 - スレッドまたはタスクがセマフォに入ることはありません。
-- プロパティ<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>はデクリメントされません。  
+- <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティはデクリメントされません。  
   
  ]]></format>
         </remarks>
@@ -613,21 +613,21 @@ SemaphoreSlim.Release()
       </Parameters>
       <Docs>
         <param name="cancellationToken">観察する <see cref="T:System.Threading.CancellationToken" /> トークン。</param>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を観察すると同時に、<see cref="T:System.Threading.CancellationToken" /> に入るまで、現在のスレッドをブロックします。</summary>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を観察すると同時に、<see cref="T:System.Threading.CancellationToken" /> に入れるようになるまで、現在のスレッドをブロックします。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スレッドまたはタスクがセマフォに入ることができる場合は、 <xref:System.Threading.SemaphoreSlim.CurrentCount%2A>プロパティを1つデクリメントします。  
+ スレッドまたはタスクがセマフォに入ることができる場合は、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティを1ずつデクリメントします。  
   
- が`cancellationToken`取り消された場合、スレッドまたはタスクはセマフォに入るの<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>ではなく、プロパティはデクリメントされません。 代わりに、メソッドは例外を<xref:System.OperationCanceledException>スローします。  
+ `cancellationToken` が取り消された場合、スレッドまたはタスクはセマフォに入るのではなく、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティはデクリメントされません。 代わりに、メソッドは <xref:System.OperationCanceledException> 例外をスローします。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken" /> が取り消されました。</exception>
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。  
   
-または 
+- または - 
 <paramref name="cancellationToken" /> を作成した <see cref="T:System.Threading.CancellationTokenSource" /> は既に破棄されています。</exception>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore と SemaphoreSlim</related>
         <related type="Article" href="~/docs/standard/threading/cancellation-in-managed-threads.md">キャンセル</related>
@@ -676,17 +676,21 @@ SemaphoreSlim.Release()
  
 タイムアウトが0ミリ秒に設定されている場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。 
  
-スレッドまたはタスクがセマフォに入ることができる場合は、 <xref:System.Threading.SemaphoreSlim.CurrentCount%2A>プロパティを1つデクリメントします。  
+スレッドまたはタスクがセマフォに入ることができる場合は、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティを1ずつデクリメントします。  
   
-を呼び出し<xref:System.Threading.SemaphoreSlim.Wait%28System.TimeSpan%29>たときにスレッドまたはタスクがブロックされ、に`millisecondsTimeout`よって指定されたタイムアウト間隔が切れる場合は、次のようになります。
+<xref:System.Threading.SemaphoreSlim.Wait%28System.TimeSpan%29> を呼び出すときにスレッドまたはタスクがブロックされ、`millisecondsTimeout` によって指定されたタイムアウト間隔が切れる場合は、次のようになります。
 
 - スレッドまたはタスクがセマフォに入ることはありません。
-- プロパティ<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>はデクリメントされません。   
+- <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティはデクリメントされません。   
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 (無制限のタイムアウト) 以外の負数です。または、タイムアウトが <see cref="F:System.Int32.MaxValue" /> を超えています。</exception>
-        <exception cref="T:System.ObjectDisposedException">semaphoreSlim インスタンスが破棄されました。<paramref name="." /></exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
+
+- または -
+
+<paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
+        <exception cref="T:System.ObjectDisposedException">semaphoreSlim インスタンスが破棄されました。</exception>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore と SemaphoreSlim</related>
       </Docs>
     </Member>
@@ -734,19 +738,23 @@ SemaphoreSlim.Release()
  
 タイムアウトが0ミリ秒に設定されている場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。
 
-スレッドまたはタスクがセマフォに入ることができる場合は、 <xref:System.Threading.SemaphoreSlim.CurrentCount%2A>プロパティを1つデクリメントします。  
+スレッドまたはタスクがセマフォに入ることができる場合は、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティを1ずつデクリメントします。  
   
-が`cancellationToken`取り消された場合、またはを呼び出し<xref:System.Threading.SemaphoreSlim.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29>たときにスレッドまたはタスクがブロックさ`millisecondsTimeout`れ、で指定されたタイムアウト時間が経過した場合は、次のようになります。
+`cancellationToken` が取り消された場合、または <xref:System.Threading.SemaphoreSlim.Wait%28System.Int32%2CSystem.Threading.CancellationToken%29> の呼び出し時にスレッドまたはタスクがブロックされ、`millisecondsTimeout` で指定されたタイムアウト時間が経過した場合は、次のようになります。
 
 - スレッドまたはタスクがセマフォに入ることはありません。
-- プロパティ<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>はデクリメントされません。  
+- <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティはデクリメントされません。  
  
-が`cancellationToken`取り消された場合、メソッドは<xref:System.OperationCanceledException>例外をスローします。  
+`cancellationToken` が取り消された場合、メソッドは <xref:System.OperationCanceledException> 例外をスローします。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken" /> が取り消されました。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 (無制限のタイムアウト) 以外の負数です。または、タイムアウトが <see cref="F:System.Int32.MaxValue" /> を超えています。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
+
+- または -
+
+<paramref name="millisecondsTimeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.SemaphoreSlim" /> インスタンスが破棄されたか、<paramref name="cancellationToken" /> を作成した <see cref="T:System.Threading.CancellationTokenSource" /> が破棄されました。</exception>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore と SemaphoreSlim</related>
       </Docs>
@@ -795,21 +803,27 @@ SemaphoreSlim.Release()
  
 タイムアウトが0ミリ秒に設定されている場合、メソッドはブロックしません。 待機ハンドルの状態をテストし、すぐに制御を戻します。 
 
-スレッドまたはタスクがセマフォに入ることができる場合は、 <xref:System.Threading.SemaphoreSlim.CurrentCount%2A>プロパティを1つデクリメントします。  
+スレッドまたはタスクがセマフォに入ることができる場合は、<xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティを1ずつデクリメントします。  
   
-が`cancellationToken`取り消された場合、またはを呼び出し<xref:System.Threading.SemaphoreSlim.Wait%28System.TimeSpan%2CSystem.Threading.CancellationToken%29>たときにスレッドまたはタスクがブロックさ`millisecondsTimeout`れ、で指定されたタイムアウト時間が経過した場合は、次のようになります。
+`cancellationToken` が取り消された場合、または <xref:System.Threading.SemaphoreSlim.Wait%28System.TimeSpan%2CSystem.Threading.CancellationToken%29> の呼び出し時にスレッドまたはタスクがブロックされ、`millisecondsTimeout` で指定されたタイムアウト時間が経過した場合は、次のようになります。
 
 - スレッドまたはタスクがセマフォに入ることはありません。
-- プロパティ<xref:System.Threading.SemaphoreSlim.CurrentCount%2A>はデクリメントされません。  
+- <xref:System.Threading.SemaphoreSlim.CurrentCount%2A> プロパティはデクリメントされません。  
 
-が`cancellationToken`取り消された場合、メソッドは<xref:System.OperationCanceledException>例外をスローします。  
+`cancellationToken` が取り消された場合、メソッドは <xref:System.OperationCanceledException> 例外をスローします。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken" /> が取り消されました。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 (無制限のタイムアウト) 以外の負数です。または、タイムアウトが <see cref="F:System.Int32.MaxValue" /> を超えています。</exception>
-        <exception cref="T:System.ObjectDisposedException">semaphoreSlim インスタンスが破棄されました。<paramref name="." /><paramref name="-or-" />  
-  
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
+
+- または -
+
+<paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
+        <exception cref="T:System.ObjectDisposedException">semaphoreSlim インスタンスが破棄されました。
+          
+- または -
+
 <paramref name="cancellationToken" /> を作成した <see cref="T:System.Threading.CancellationTokenSource" /> は既に破棄されています。</exception>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore と SemaphoreSlim</related>
         <related type="Article" href="~/docs/standard/threading/cancellation-in-managed-threads.md">キャンセル</related>
@@ -908,7 +922,10 @@ SemaphoreSlim.Release()
  ]]></format>
         </remarks>
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 (無制限のタイムアウト) 以外の負数です。または、タイムアウトが <see cref="F:System.Int32.MaxValue" /> を超えています。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
+          
+- または - 
+<paramref name="millisecondsTimeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
       </Docs>
     </Member>
     <Member MemberName="WaitAsync">
@@ -996,7 +1013,10 @@ SemaphoreSlim.Release()
  ]]></format>
         </remarks>
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 (無制限のタイムアウト) 以外の負数です。または、タイムアウトが <see cref="F:System.Int32.MaxValue" /> を超えています。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
+
+- または - 
+<paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
       </Docs>
     </Member>
     <Member MemberName="WaitAsync">
@@ -1045,7 +1065,11 @@ SemaphoreSlim.Release()
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 (無制限のタイムアウト) 以外の数です。または、タイムアウトが <see cref="F:System.Int32.MaxValue" /> を超えています。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 以外の数です。これは無制限のタイムアウトを表します。
+          
+- または -
+
+<paramref name="millisecondsTimeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。</exception>
         <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken" /> が取り消されました。</exception>
       </Docs>
@@ -1096,7 +1120,11 @@ SemaphoreSlim.Release()
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 (無制限のタイムアウト) 以外の負数です。または、タイムアウトが <see cref="F:System.Int32.MaxValue" /> を超えています。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
+          
+- または -
+
+<paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken" /> が取り消されました。</exception>
         <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.SemaphoreSlim" /> は破棄されています。</exception>
       </Docs>
