@@ -1,5 +1,5 @@
 <Type Name="SqlCommand" FullName="System.Data.SqlClient.SqlCommand">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1382377bd67dc27e1e49eb8b5ca093b4e673c65f" /><Meta Name="ms.sourcegitcommit" Value="6e7795ffb53e7cc489d655f9ee4308569b8763b9" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/26/2019" /><Meta Name="ms.locfileid" Value="72961426" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlCommand : System.Data.Common.DbCommand, ICloneable, IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9b21db39460a7d25e144850816bce8975fee4377" /><Meta Name="ms.sourcegitcommit" Value="0cb8bc0854af5bc6af4211b6cf43cbda48e9f6c8" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/04/2019" /><Meta Name="ms.locfileid" Value="74798050" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlCommand : System.Data.Common.DbCommand, ICloneable, IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlCommand extends System.Data.Common.DbCommand implements class System.Data.IDbCommand, class System.ICloneable, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlCommand" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlCommand&#xA;Inherits DbCommand&#xA;Implements ICloneable, IDisposable" />
@@ -759,11 +759,13 @@ class Program {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドは、ステートメントの実行中に他のタスクを同時に実行できるように、行を返さない [!INCLUDE[tsql](~/includes/tsql-md.md)] ステートメントまたはストアドプロシージャを非同期に実行するプロセスを開始します。 ステートメントが完了したら、開発者は <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッドを呼び出して操作を完了する必要があります。 <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドは直ちに戻ります (<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> は <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A>には影響しません) が、対応する <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッド呼び出しを実行するには、そのコードが、同期または非同期実行を開始する他の呼び出しを実行しないようにする必要があり <xref:System.Data.SqlClient.SqlCommand>素材. コマンドの実行が完了する前に <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> を呼び出すと、実行が完了するまで <xref:System.Data.SqlClient.SqlCommand> オブジェクトがブロックされます。  
+ <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドは、ステートメントの実行中に他のタスクを同時に実行できるように、行を返さない [!INCLUDE[tsql](~/includes/tsql-md.md)] ステートメントまたはストアドプロシージャを非同期に実行するプロセスを開始します。 ステートメントが完了したら、開発者は <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッドを呼び出して操作を完了する必要があります。 <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドは直ちに戻りますが、コードが対応する <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッド呼び出しを実行するまで、同じ <xref:System.Data.SqlClient.SqlCommand> オブジェクトに対して同期または非同期実行を開始する他の呼び出しを実行することはできません。 コマンドの実行が完了する前に <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> を呼び出すと、実行が完了するまで <xref:System.Data.SqlClient.SqlCommand> オブジェクトがブロックされます。  
   
  コマンドテキストとパラメーターはサーバーに同期的に送信されることに注意してください。 大きなコマンドまたは多数のパラメーターが送信された場合、このメソッドは書き込み中にブロックする可能性があります。 コマンドが送信された後、メソッドは、サーバーからの応答を待たずにすぐに制御を戻します。つまり、読み取りは非同期です。  
   
  このオーバーロードではコールバックプロシージャがサポートされないため、開発者は、<xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドによって返された <xref:System.IAsyncResult> の <xref:System.IAsyncResult.IsCompleted%2A> プロパティを使用して、コマンドが完了したかどうかを判断するためにポーリングを行う必要があります。または、返された <xref:System.IAsyncResult>の <xref:System.IAsyncResult.AsyncWaitHandle%2A> プロパティを使用して、1つまたは複数のコマンドが完了するまで待機します。  
+
+ このメソッドは、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティを無視します。
   
    
   
@@ -837,7 +839,7 @@ class Program {
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドは、ステートメントの実行中に他のタスクを同時に実行できるように、行を返さない Transact-sql ステートメントまたはストアドプロシージャを非同期に実行するプロセスを開始します。 ステートメントが完了したら、開発者は <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッドを呼び出して操作を完了する必要があります。 <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドは直ちに戻ります (<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> は <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A>には影響しません) が、対応する <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッド呼び出しを実行するには、そのコードが、同期または非同期実行を開始する他の呼び出しを実行しないようにする必要があり <xref:System.Data.SqlClient.SqlCommand>素材. コマンドの実行が完了する前に <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> を呼び出すと、実行が完了するまで <xref:System.Data.SqlClient.SqlCommand> オブジェクトがブロックされます。  
+ <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドは、ステートメントの実行中に他のタスクを同時に実行できるように、行を返さない Transact-sql ステートメントまたはストアドプロシージャを非同期に実行するプロセスを開始します。 ステートメントが完了したら、開発者は <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッドを呼び出して操作を完了する必要があります。 <xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドは直ちに戻りますが、コードが対応する <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッド呼び出しを実行するまで、同じ <xref:System.Data.SqlClient.SqlCommand> オブジェクトに対して同期または非同期実行を開始する他の呼び出しを実行することはできません。 コマンドの実行が完了する前に <xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> を呼び出すと、実行が完了するまで <xref:System.Data.SqlClient.SqlCommand> オブジェクトがブロックされます。  
   
  `callback` パラメーターを使用すると、ステートメントが完了したときに呼び出される <xref:System.AsyncCallback> デリゲートを指定できます。 このデリゲートプロシージャ内、またはアプリケーション内の他の任意の場所から、<xref:System.Data.SqlClient.SqlCommand.EndExecuteNonQuery%2A> メソッドを呼び出すことができます。 また、`asyncStateObject` パラメーターに任意のオブジェクトを渡すことができ、コールバックプロシージャは <xref:System.IAsyncResult.AsyncState%2A> プロパティを使用してこの情報を取得できます。  
   
@@ -846,6 +848,8 @@ class Program {
  コールバックプロシージャは Microsoft .NET 共通言語ランタイムによって提供されるバックグラウンドスレッド内から実行されるため、アプリケーション内でスレッド間の相互作用を処理するには、厳密なアプローチをとることが非常に重要です。 たとえば、コールバックプロシージャ内からフォームの内容を操作することはできません。フォームを更新する必要がある場合は、作業を行うためにフォームのスレッドに戻す必要があります。 このトピックの例では、この動作について説明します。  
   
  操作の実行中に発生したすべてのエラーは、コールバックプロシージャで例外としてスローされます。 この例外は、メインアプリケーションではなく、コールバックプロシージャで処理する必要があります。 コールバックプロシージャでの例外処理の詳細については、このトピックの例を参照してください。  
+
+ このメソッドは、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティを無視します。
   
    
   
@@ -934,6 +938,8 @@ class Program {
  このオーバーロードではコールバックプロシージャがサポートされないため、開発者は、<xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A> メソッドによって返された <xref:System.IAsyncResult> の <xref:System.IAsyncResult.IsCompleted%2A> プロパティを使用して、コマンドが完了したかどうかを判断するためにポーリングを行う必要があります。または、返された <xref:System.IAsyncResult>の <xref:System.IAsyncResult.AsyncWaitHandle%2A> プロパティを使用して、1つまたは複数のコマンドが完了するまで待機します。  
   
  <xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A> を使用して XML データにアクセスする場合、SQL Server は、2033文字を超える XML 結果をそれぞれ2033文字の複数の行に返します。 この動作を回避するには、<xref:System.Data.SqlClient.SqlCommand.ExecuteXmlReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> を使用して FOR XML クエリを読み取ります。
+
+ このメソッドは、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティを無視します。
   
    
   
@@ -1012,7 +1018,8 @@ class Program {
  このオーバーロードではコールバックプロシージャがサポートされないため、開発者は、<xref:System.Data.SqlClient.SqlCommand.BeginExecuteNonQuery%2A> メソッドによって返された <xref:System.IAsyncResult> の <xref:System.IAsyncResult.IsCompleted%2A> プロパティを使用して、コマンドが完了したかどうかを判断するためにポーリングを行う必要があります。または、返された <xref:System.IAsyncResult>の <xref:System.IAsyncResult.AsyncWaitHandle%2A> プロパティを使用して、1つまたは複数のコマンドが完了するまで待機します。  
   
  <xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A> を使用して XML データにアクセスする場合、SQL Server は、2033文字を超える XML 結果をそれぞれ2033文字の複数の行に返します。 この動作を回避するには、<xref:System.Data.SqlClient.SqlCommand.ExecuteXmlReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> を使用して FOR XML クエリを読み取ります。
-  
+
+ このメソッドは、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティを無視します。
    
   
 ## Examples  
@@ -1096,6 +1103,8 @@ class Program {
  操作の実行中に発生したすべてのエラーは、コールバックプロシージャで例外としてスローされます。 この例外は、メインアプリケーションではなく、コールバックプロシージャで処理する必要があります。 コールバックプロシージャでの例外処理の詳細については、このトピックの例を参照してください。  
   
  <xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A> を使用して XML データにアクセスする場合、SQL Server は、2033文字を超える XML 結果をそれぞれ2033文字の複数の行に返します。 この動作を回避するには、<xref:System.Data.SqlClient.SqlCommand.ExecuteXmlReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> を使用して FOR XML クエリを読み取ります。
+
+ このメソッドは、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティを無視します。
   
    
   
@@ -1186,6 +1195,8 @@ class Program {
  操作の実行中に発生したすべてのエラーは、コールバックプロシージャで例外としてスローされます。 この例外は、メインアプリケーションではなく、コールバックプロシージャで処理する必要があります。 コールバックプロシージャでの例外処理の詳細については、このトピックの例を参照してください。  
   
  <xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A> を使用して XML データにアクセスする場合、SQL Server は、2033文字を超える XML 結果をそれぞれ2033文字の複数の行に返します。 この動作を回避するには、<xref:System.Data.SqlClient.SqlCommand.ExecuteXmlReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> を使用して FOR XML クエリを読み取ります。
+
+ このメソッドは、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティを無視します。
   
    
   
@@ -1290,6 +1301,8 @@ SqlCommand command = new SqlCommand("SELECT ContactID, FirstName, LastName FROM 
  このオーバーロードではコールバックプロシージャはサポートされないため、開発者は、<xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> メソッドによって返された <xref:System.IAsyncResult> の <xref:System.IAsyncResult.IsCompleted%2A> プロパティを使用して、コマンドが完了したかどうかを確認するためにポーリングを行う必要があります。または、返された <xref:System.IAsyncResult>の <xref:System.IAsyncResult.AsyncWaitHandle%2A> プロパティを使用して、1つまたは複数のコマンドが完了するまで待機します。  
   
  <xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A> を使用して XML データにアクセスする場合、SQL Server は、2033文字を超える XML 結果をそれぞれ2033文字の複数の行に返します。 この動作を回避するには、<xref:System.Data.SqlClient.SqlCommand.ExecuteXmlReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> を使用して FOR XML クエリを読み取ります。
+
+ このメソッドは、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティを無視します。
   
    
   
@@ -1384,11 +1397,13 @@ SqlCommand command = new SqlCommand("SELECT ContactID, FirstName, LastName FROM 
  操作の実行中に発生したすべてのエラーは、コールバックプロシージャで例外としてスローされます。 この例外は、メインアプリケーションではなく、コールバックプロシージャで処理する必要があります。 コールバックプロシージャでの例外処理の詳細については、このトピックの例を参照してください。  
   
  <xref:System.Data.SqlClient.SqlCommand.ExecuteReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A> を使用して XML データにアクセスする場合、SQL Server は、2033文字を超える XML 結果をそれぞれ2033文字の複数の行に返します。 この動作を回避するには、<xref:System.Data.SqlClient.SqlCommand.ExecuteXmlReader%2A> または <xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> を使用して FOR XML クエリを読み取ります。
+
+ このメソッドは、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティを無視します。
   
    
   
 ## Examples  
- 次の Windows アプリケーションは、<xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> メソッドを使って、数秒の遅れを伴う (時間のかかるコマンドをエミュレートする) Transact-SQL ステートメントを実行する例を示しています。 この例では、実行中の <xref:System.Data.SqlClient.SqlCommand> オブジェクトを `stateObject` パラメーターとして渡します。これにより、コールバックプロシージャ内から <xref:System.Data.SqlClient.SqlCommand> オブジェクトを簡単に取得できるようになり <xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> の最初の呼び出しに対応する <xref:System.Data.SqlClient.SqlCommand.EndExecuteXmlReader%2A> メソッドをコードで呼び出すことができ_ .  
+ 次の Windows アプリケーションは、<xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A> メソッドを使って、数秒の遅れを伴う (時間のかかるコマンドをエミュレートする) Transact-SQL ステートメントを実行する例を示しています。 この例では、実行中の <xref:System.Data.SqlClient.SqlCommand> オブジェクトを `stateObject` パラメーターとして渡します。これにより、コールバックプロシージャ内から <xref:System.Data.SqlClient.SqlCommand> オブジェクトを簡単に取得できるようになります。これにより、コードは <xref:System.Data.SqlClient.SqlCommand.BeginExecuteXmlReader%2A>の最初の呼び出しに対応する <xref:System.Data.SqlClient.SqlCommand.EndExecuteXmlReader%2A> メソッドを呼び出すことができるようになります。  
   
  この例では、多くの重要な手法を示します。 これには、別のスレッドからフォームと対話するメソッドの呼び出しが含まれます。 また、この例では、ユーザーがコマンドを同時に複数回実行できないようにする方法と、コールバックプロシージャが呼び出される前にフォームが終了しないようにする方法について説明します。  
   
@@ -1703,7 +1718,7 @@ SELECT * FROM dbo.Customers WHERE CustomerID = @CustomerID
  値0は制限がないことを示します (コマンドを実行しようとすると、無制限に待機します)。  
   
 > [!NOTE]
->  <xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティは、<xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A>などの非同期メソッド呼び出しの間は無視されます。  
+>  <xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> プロパティは、以前の APM (非同期プログラミングモデル) の非同期メソッド呼び出し (<xref:System.Data.SqlClient.SqlCommand.BeginExecuteReader%2A>など) によって無視されます。 これは、<xref:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync%2A>などの新しい TAP (タスク非同期プログラミング) メソッドによって受け入れられます。
   
  コンテキスト接続に対してコマンドが実行された場合、<xref:System.Data.SqlClient.SqlCommand.CommandTimeout%2A> は無効になります (接続文字列で "context connection = true" を使用して開いた <xref:System.Data.SqlClient.SqlConnection>)。  
   
@@ -2703,7 +2718,7 @@ public class A {
         <Parameter Name="behavior" Type="System.Data.CommandBehavior" />
       </Parameters>
       <Docs>
-        <param name="behavior"><see cref="T:System.Data.CommandBehavior" /> 値のいずれか。</param>
+        <param name="behavior"><see cref="T:System.Data.CommandBehavior" /> 値のいずれか 1 つ。</param>
         <summary><see cref="P:System.Data.SqlClient.SqlCommand.CommandText" /> を <see cref="P:System.Data.SqlClient.SqlCommand.Connection" /> に送信し、<see cref="T:System.Data.CommandBehavior" /> 値のいずれかを使用して <see cref="T:System.Data.SqlClient.SqlDataReader" /> を構築します。</summary>
         <returns><see cref="T:System.Data.SqlClient.SqlDataReader" /> オブジェクト。</returns>
         <remarks>
@@ -3981,7 +3996,7 @@ SQL Server の .NET Framework Data Provider での非同期プログラミング
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Data.Common.DbDataAdapter" /> の **Update** メソッドで使用するときに、コマンドの結果を <see cref="T:System.Data.DataRow" /> に適用する方法を取得または設定します。</summary>
-        <value><see cref="T:System.Data.UpdateRowSource" /> 値のいずれか。</value>
+        <value><see cref="T:System.Data.UpdateRowSource" /> 値のいずれか 1 つ。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
