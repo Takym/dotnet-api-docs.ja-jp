@@ -1,5 +1,5 @@
 <Type Name="Thread" FullName="System.Threading.Thread">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5b7e1c1671b873a56bc404ee4b6d80d0744ac1cb" /><Meta Name="ms.sourcegitcommit" Value="394eb46af92ad32373cd2c7855b688846886ed40" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/23/2019" /><Meta Name="ms.locfileid" Value="74425526" /></Metadata><TypeSignature Language="C#" Value="public sealed class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.Runtime.InteropServices._Thread" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5e02f15b180c6a26e21feb12d8f74346fb353eb2" /><Meta Name="ms.sourcegitcommit" Value="367e1eae0725e6da7136cd073aaa856ded5d5c29" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/13/2019" /><Meta Name="ms.locfileid" Value="75030708" /></Metadata><TypeSignature Language="C#" Value="public sealed class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.Runtime.InteropServices._Thread" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Thread extends System.Runtime.ConstrainedExecution.CriticalFinalizerObject implements class System.Runtime.InteropServices._Thread" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Thread" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Thread&#xA;Inherits CriticalFinalizerObject&#xA;Implements _Thread" />
@@ -140,7 +140,7 @@
 > <xref:System.Threading.Thread.CurrentCulture> プロパティと <xref:System.Threading.Thread.CurrentUICulture> プロパティは、現在のスレッド以外のスレッドで使用する場合、確実に動作しません。 .NET Framework では、これらのプロパティの読み取りは信頼性がありますが、現在のスレッド以外のスレッドに対してこれらのプロパティを設定することはできません。 .NET Core では、スレッドが別のスレッドでこれらのプロパティの読み取りまたは書き込みを行おうとすると、<xref:System.InvalidOperationException> がスローされます。
 > <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=nameWithType> と <xref:System.Globalization.CultureInfo.CurrentUICulture?displayProperty=nameWithType> のプロパティを使用して、現在のカルチャを取得して設定することをお勧めします。
 
- 新しいスレッドがインスタンス化されると、そのカルチャと UI カルチャは、現在のシステムカルチャと ui カルチャによって定義され、新しいスレッドの作成元のスレッドのカルチャおよび UI カルチャによっては定義されません。 たとえば、現在のシステムカルチャが英語 (米国) で、プライマリアプリケーションスレッドの現在のカルチャがフランス語 (フランス) の場合、プライマリスレッドから <xref:System.Threading.Thread.%23ctor%28System.Threading.ParameterizedThreadStart%29> コンストラクターを呼び出すことによって作成された新しいスレッドのカルチャは、次のようになります。英語 (米国)。フランス語 (フランス) ではありません。 詳細については、<xref:System.Globalization.CultureInfo> クラスのトピックの「カルチャとスレッド」セクションを参照してください。  
+ 新しいスレッドがインスタンス化されると、そのカルチャと UI カルチャは、現在のシステムカルチャと ui カルチャによって定義され、新しいスレッドの作成元のスレッドのカルチャおよび UI カルチャによっては定義されません。 たとえば、現在のシステムカルチャが英語 (米国) で、プライマリアプリケーションスレッドの現在のカルチャがフランス語 (フランス) の場合、プライマリスレッドからの <xref:System.Threading.Thread.%23ctor%28System.Threading.ParameterizedThreadStart%29> コンストラクターを呼び出すことによって作成された新しいスレッドのカルチャは、フランス語 (フランス) ではなく英語 (米国) になります。 詳細については、<xref:System.Globalization.CultureInfo> クラスのトピックの「カルチャとスレッド」セクションを参照してください。  
   
 > [!IMPORTANT]
 >  これは、[!INCLUDE[net_v46](~/includes/net-v46-md.md)] 以降のバージョンを対象とするアプリに対して非同期操作を実行するスレッドには当てはまりません。この場合、カルチャと UI カルチャは非同期操作のコンテキストの一部になります。非同期操作が既定で実行されるスレッドは、非同期操作の開始元のスレッドのカルチャと UI カルチャを継承します。 詳細については、<xref:System.Globalization.CultureInfo> クラスのトピックの「カルチャとタスク ベースの非同期の操作」セクションをご覧ください。  
@@ -512,7 +512,7 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
 ## Remarks  
   
 > [!IMPORTANT]
-> `Thread.Abort` メソッドは注意して使用する必要があります。 特に、このメソッドを呼び出して、現在のスレッド以外のスレッドを中止する場合は、<xref:System.Threading.ThreadAbortException> がスローされたときに実行または失敗したコードを把握していないか、アプリケーションの状態やアプリケーションの状態やユーザーの状態を特定できないことがわかります。保持するために使用することはできません。 たとえば、`Thread.Abort` を呼び出すと、静的コンストラクターがアンマネージリソースの解放を実行したり、解放したりするのを防ぐことができます。
+> `Thread.Abort` メソッドは注意して使用する必要があります。 特に、このメソッドを呼び出して、現在のスレッド以外のスレッドを中止すると、<xref:System.Threading.ThreadAbortException> がスローされたときに実行されたコードや実行に失敗したコードがわからなくなります。また、アプリケーションの状態やアプリケーションとユーザーの状態が保持されているかどうかを特定できません。 たとえば、`Thread.Abort` を呼び出すと、静的コンストラクターがアンマネージリソースの解放を実行したり、解放したりするのを防ぐことができます。
 
        ]]></format>
         </remarks>
@@ -1123,7 +1123,7 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
 > 現在のスレッド以外のスレッドで使用する場合、<xref:System.Threading.Thread.CurrentCulture> プロパティは確実に動作しません。 .NET Framework では、プロパティの読み取りは信頼できますが、現在のスレッド以外のスレッドに対して設定することは可能です。 .NET Core では、スレッドが別のスレッドで <xref:System.Threading.Thread.CurrentCulture> プロパティの読み取りまたは書き込みを行おうとすると、<xref:System.InvalidOperationException> がスローされます。
 > 現在のカルチャを取得して設定するには、<xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=nameWithType> プロパティを使用することをお勧めします。
 
- [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]以降では、<xref:System.Threading.Thread.CurrentCulture%2A> プロパティをニュートラルカルチャに設定できます。 これは、<xref:System.Globalization.CultureInfo> クラスの動作が変更されたためです。ニュートラルカルチャを表す場合、プロパティ値 (特に、<xref:System.Globalization.CultureInfo.Calendar%2A>、<xref:System.Globalization.CultureInfo.CompareInfo%2A>、<xref:System.Globalization.CultureInfo.DateTimeFormat%2A>、<xref:System.Globalization.CultureInfo.NumberFormat%2A>、および <xref:System.Globalization.CultureInfo.TextInfo%2A> の各プロパティ) は、次のような特定のカルチャを反映するようになりました。ニュートラルカルチャに関連付けられています。 以前のバージョンの .NET Framework では、<xref:System.Threading.Thread.CurrentCulture%2A> プロパティは、ニュートラルカルチャが割り当てられたときに <xref:System.NotSupportedException> 例外をスローしました。  
+ [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]以降では、<xref:System.Threading.Thread.CurrentCulture%2A> プロパティをニュートラルカルチャに設定できます。 これは、<xref:System.Globalization.CultureInfo> クラスの動作が変更されたためです。ニュートラルカルチャを表す場合、そのプロパティ値 (特に、<xref:System.Globalization.CultureInfo.Calendar%2A>、<xref:System.Globalization.CultureInfo.CompareInfo%2A>、<xref:System.Globalization.CultureInfo.DateTimeFormat%2A>、<xref:System.Globalization.CultureInfo.NumberFormat%2A>、および <xref:System.Globalization.CultureInfo.TextInfo%2A> の各プロパティ) は、ニュートラルカルチャに関連付けられている特定のカルチャを反映するようになりました。 以前のバージョンの .NET Framework では、<xref:System.Threading.Thread.CurrentCulture%2A> プロパティは、ニュートラルカルチャが割り当てられたときに <xref:System.NotSupportedException> 例外をスローしました。  
   
 ## Examples  
  次の例は、Windows フォームアプリケーションのユーザーインターフェイスを、コントロールパネルで設定されているカルチャで表示できるようにするスレッドステートメントを示しています。 追加のコードが必要です。  
@@ -2878,7 +2878,7 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("Thread.Resume has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  https://go.microsoft.com/fwlink/?linkid=14202", false)</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -2886,6 +2886,9 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("Thread.Resume has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  https://go.microsoft.com/fwlink/?linkid=14202", false)</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
+          <AttributeName>System.Obsolete("Thread.Resume has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  http://go.microsoft.com/fwlink/?linkid=14202", false)</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -3482,7 +3485,7 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("Thread.Suspend has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  https://go.microsoft.com/fwlink/?linkid=14202", false)</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -3490,6 +3493,9 @@ Main thread: ThreadProc.Join has returned.  Press Enter to end program.
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("Thread.Suspend has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  https://go.microsoft.com/fwlink/?linkid=14202", false)</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
+          <AttributeName>System.Obsolete("Thread.Suspend has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  http://go.microsoft.com/fwlink/?linkid=14202", false)</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>

@@ -1,5 +1,5 @@
 <Type Name="SectionHeader" FullName="System.Reflection.PortableExecutable.SectionHeader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7cca36ba4c914701315410d5e452b99bd9e7dfd3" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72406178" /></Metadata><TypeSignature Language="C#" Value="public struct SectionHeader" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="55136e6181968a1a906d019c1143feda42451e9d" /><Meta Name="ms.sourcegitcommit" Value="367e1eae0725e6da7136cd073aaa856ded5d5c29" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/13/2019" /><Meta Name="ms.locfileid" Value="75026106" /></Metadata><TypeSignature Language="C#" Value="public struct SectionHeader" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit SectionHeader extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.PortableExecutable.SectionHeader" />
   <TypeSignature Language="VB.NET" Value="Public Structure SectionHeader" />
@@ -171,13 +171,13 @@ COFF デバッグ情報は非推奨とされるため、イメージの場合、
       <Docs>
         <summary>COFF ファイル内のセクションの先頭ページへのファイル ポインターを取得します。</summary>
         <value>COFF ファイル内のセクションの最初のページへのファイルポインター。</value>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
- PE イメージの場合、これは @no__t 0 の倍数である必要があります。 オブジェクトファイルの場合、最適なパフォーマンスを得るには、値を4バイトの境界に配置する必要があります。 セクションに初期化されていないデータのみが含まれている場合、このフィールドは0にする必要があります。
+ PE イメージの場合、これは <xref:System.Reflection.PortableExecutable.PEHeader.FileAlignment?displayProperty=nameWithType>の倍数である必要があります。 オブジェクトファイルの場合、最適なパフォーマンスを得るには、値を4バイトの境界に配置する必要があります。 セクションに初期化されていないデータのみが含まれている場合、このフィールドは0にする必要があります。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="PointerToRelocations">
@@ -255,17 +255,17 @@ COFF デバッグ情報は非推奨とされるため、イメージの場合、
       <Docs>
         <summary>セクションのサイズ (オブジェクト ファイルの場合) またはディスク上で初期化されたデータのサイズ (イメージ ファイルの場合) を取得します。</summary>
         <value>セクションのサイズ (オブジェクトファイルの場合) またはディスク上で初期化されたデータのサイズ (イメージファイルの場合)。</value>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-PE イメージの場合、`SizeOfRawData` は <xref:System.Reflection.PortableExecutable.PEHeader.FileAlignment?displayProperty=nameWithType> の倍数である必要があります。 @No__t-0 より小さい場合、セクションの残りの部分はゼロで埋められます。
+PE イメージの場合、`SizeOfRawData` は <xref:System.Reflection.PortableExecutable.PEHeader.FileAlignment?displayProperty=nameWithType>の倍数である必要があります。 <xref:System.Reflection.PortableExecutable.SectionHeader.VirtualSize?displayProperty=nameWithType>よりも小さい場合、セクションの残りの部分はゼロで埋められます。
 
-@No__t-0 フィールドは丸められていますが、<xref:System.Reflection.PortableExecutable.SectionHeader.VirtualSize?displayProperty=nameWithType> フィールドは丸められていないため、<xref:System.Reflection.PortableExecutable.SectionHeader.SizeOfRawData> は <xref:System.Reflection.PortableExecutable.SectionHeader.VirtualSize> よりも大きくなる可能性があります。
+<xref:System.Reflection.PortableExecutable.SectionHeader.SizeOfRawData?displayProperty=nameWithType> フィールドは丸められていますが <xref:System.Reflection.PortableExecutable.SectionHeader.VirtualSize?displayProperty=nameWithType> フィールドは丸められていないので、<xref:System.Reflection.PortableExecutable.SectionHeader.SizeOfRawData> が <xref:System.Reflection.PortableExecutable.SectionHeader.VirtualSize> よりも大きくなる可能性があります。
 
 セクションに初期化されていないデータのみが含まれている場合、このフィールドは0にする必要があります。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="VirtualAddress">
@@ -291,13 +291,13 @@ PE イメージの場合、`SizeOfRawData` は <xref:System.Reflection.PortableE
       <Docs>
         <summary>セクションの仮想アドレスを取得します。</summary>
         <value>セクションの仮想アドレス。</value>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-PE イメージの場合、`VirtualAddress` は、セクションがメモリに読み込まれるときに、イメージベースに対して相対的なセクションの最初のバイトのアドレスになります。 オブジェクトファイルの場合は、再配置が適用される前の最初のバイトのアドレスです。わかりやすくするために、コンパイラはこれを0に設定する必要があります。 それ以外の場合は、再配置中にオフセットから減算される任意の値です。
+PE イメージの場合、`VirtualAddress` は、セクションがメモリに読み込まれるときに、イメージベースを基準としたセクションの最初のバイトのアドレスになります。 オブジェクトファイルの場合は、再配置が適用される前の最初のバイトのアドレスです。わかりやすくするために、コンパイラはこれを0に設定する必要があります。 それ以外の場合は、再配置中にオフセットから減算される任意の値です。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="VirtualSize">
@@ -323,13 +323,13 @@ PE イメージの場合、`VirtualAddress` は、セクションがメモリに
       <Docs>
         <summary>メモリに読み込まれるときのセクションの合計サイズを取得します。</summary>
         <value>メモリに読み込まれるときのセクションの合計サイズ。</value>
-        <remarks>  
+        <remarks>
           <format type="text/markdown"><![CDATA[  
 
-@No__t-0 プロパティの値が < xref: SizeOfRawData よりも大きい場合、セクションはゼロで埋められていることになります。 このフィールドは、PE イメージでのみ有効で、オブジェクトファイルの場合は0に設定する必要があります。
+`VirtualSize` プロパティの値が < xref: SizeOfRawData よりも大きい場合、セクションはゼロで埋められていることになります。 このフィールドは、PE イメージでのみ有効で、オブジェクトファイルの場合は0に設定する必要があります。
 
          ]]></format>
-         </remarks>
+        </remarks>
       </Docs>
     </Member>
   </Members>
