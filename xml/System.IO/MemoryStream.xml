@@ -1,5 +1,5 @@
 <Type Name="MemoryStream" FullName="System.IO.MemoryStream">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9af057c6339a53b35de845e9f26e8b4d06f89ef8" /><Meta Name="ms.sourcegitcommit" Value="394eb46af92ad32373cd2c7855b688846886ed40" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/23/2019" /><Meta Name="ms.locfileid" Value="74424855" /></Metadata><TypeSignature Language="C#" Value="public class MemoryStream : System.IO.Stream" />
+  <TypeSignature Language="C#" Value="public class MemoryStream : System.IO.Stream" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit MemoryStream extends System.IO.Stream" />
   <TypeSignature Language="DocId" Value="T:System.IO.MemoryStream" />
   <TypeSignature Language="VB.NET" Value="Public Class MemoryStream&#xA;Inherits Stream" />
@@ -430,7 +430,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> または <paramref name="count" /> が負の値です。</exception>
         <exception cref="T:System.ArgumentException">バッファーの長さから <paramref name="index" /> を引いた値が <paramref name="count" /> 未満です。</exception>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
@@ -1682,7 +1682,7 @@ End Try
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> または <paramref name="count" /> が負の値です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="offset" /> と <paramref name="count" /> の合計が、バッファーの長さよりも大きくなっています。</exception>
         <exception cref="T:System.NotSupportedException">ストリームは読み取りをサポートしません。</exception>
@@ -1875,7 +1875,7 @@ End Try
 ## Remarks  
  このメソッドは、<xref:System.IO.Stream.SetLength%2A> をオーバーライドします。  
   
- 指定した値がストリームの現在の長さよりも小さい場合、ストリームは切り捨てられます。 切り捨ての後、ストリーム内の現在位置がストリームの末尾を越えている場合、<xref:System.IO.MemoryStream.ReadByte%2A> メソッドは-1 を返します。 <xref:System.IO.MemoryStream.Read%2A> メソッドは、指定されたバイト配列に0バイトを読み取り、<xref:System.IO.MemoryStream.Write%2A> および <xref:System.IO.MemoryStream.WriteByte%2A> メソッドは、指定されたバイトをの末尾に追加します。ストリームの長さを増やします。 指定した値が現在の容量よりも大きい場合、ストリームのサイズを変更すると、容量が増加し、ストリーム内の現在位置が変更されません。 長さが増加した場合、古い文字列と新しい長さの間のストリームの内容はゼロに初期化されます。  
+ 指定した値がストリームの現在の長さよりも小さい場合、ストリームは切り捨てられます。 切り捨ての後、ストリーム内の現在位置がストリームの末尾を越える場合、<xref:System.IO.MemoryStream.ReadByte%2A> メソッドは-1 を返します。 <xref:System.IO.MemoryStream.Read%2A> メソッドは、指定されたバイト配列に0バイトを読み取り、<xref:System.IO.MemoryStream.Write%2A> および <xref:System.IO.MemoryStream.WriteByte%2A> メソッドはストリームの末尾に指定されたバイトを追加し、長さを増やします。 指定した値が現在の容量よりも大きい場合、ストリームのサイズを変更すると、容量が増加し、ストリーム内の現在位置が変更されません。 長さが増加した場合、古い文字列と新しい長さの間のストリームの内容はゼロに初期化されます。  
   
 > [!NOTE]
 >  <xref:System.IO.MemoryStream> インスタンスは、このメソッドが機能するための書き込みをサポートしている必要があります。 現在のインスタンスが書き込みをサポートしているかどうかを判断するには、<xref:System.IO.MemoryStream.CanWrite%2A> プロパティを使用します。 詳細については、「<xref:System.IO.Stream.CanWrite%2A>」を参照してください。  
@@ -1988,10 +1988,28 @@ End Try
         <Parameter Name="buffer" Type="System.ArraySegment&lt;System.Byte&gt;" RefType="out" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="buffer">このストリームの作成元のバイト配列セグメント。</param>
+        <param name="buffer">この方法で <see langword="true" /> が返される場合、このストリームの作成元のバイト配列セグメントが返され、この方法で <see langword="false" /> が返される場合は、このパラメーターは <see langword="default" /> に設定されます。</param>
         <summary>このストリームの作成元の符号なしバイトの配列を返します。 戻り値は、変換が成功したかどうかを示します。</summary>
-        <returns>変換が成功した場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
-        <remarks>To be added.</remarks>
+        <returns>バッファーが公開可能な場合は <see langword="true" /> が返され、それ以外の場合は <see langword="false" /> が返されます。</returns>
+        <remarks>
+          <format type="text/markdown">
+  <![CDA
+
+## Remarks
+
+このメソッドは、基になるバッファーが、現在の `MemoryStream` インスタンスがで作成されたときに発生する、exposable としてマークされている場合に `true` を返します。
+
+- <xref:System.IO.MemoryStream.%23ctor>。
+- < xref: System.io.ioexception>. MemoryStream .% 23ctor% 28System %29)。
+- < xref MemoryStream .% 23ctor% 28System% 5B% 5D; system.string, system.string, system.string %29) を `publiclyVisible` パラメーターとして `true`に設定して、この値を指定してください。
+
+現在の `MemoryStream` インスタンスがを使用して作成されている場合、基になるバッファーは公開されません。
+
+- < xref: System.io.ioexception>. MemoryStream .% 23ctor% 28System. Byte% 5B% 5D、system.string %29)。
+- < xref MemoryStream .% 23ctor% 28System% 5B% 5D; system.string, system.string, system.string %29) を `publiclyVisible` パラメーターとして `false`に設定して、この値を指定してください。
+
+          ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Write">
@@ -2206,7 +2224,7 @@ End Try
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="buffer" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset" /> または <paramref name="count" /> が負の値です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="offset" /> と <paramref name="count" /> の合計が、バッファーの長さよりも大きいです。</exception>
         <exception cref="T:System.NotSupportedException">ストリームは書き込みをサポートしません。</exception>
@@ -2330,7 +2348,7 @@ End Try
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ObjectDisposedException">現在のストリームまたは対象のストリームは閉じています。</exception>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
