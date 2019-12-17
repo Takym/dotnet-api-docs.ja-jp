@@ -1,5 +1,5 @@
 <Type Name="PerformanceCounterCategory" FullName="System.Diagnostics.PerformanceCounterCategory">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="54631a180917e1e5b78ba9a87408988e676fd9de" /><Meta Name="ms.sourcegitcommit" Value="a6c4dae9c1ba2cfbc4452907ef5697ad1f870c0d" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/30/2019" /><Meta Name="ms.locfileid" Value="73080447" /></Metadata><TypeSignature Language="C#" Value="public sealed class PerformanceCounterCategory" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c5c76bb19e62769585e151e45c93b0d8b76cfdc9" /><Meta Name="ms.sourcegitcommit" Value="367e1eae0725e6da7136cd073aaa856ded5d5c29" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/13/2019" /><Meta Name="ms.locfileid" Value="75019684" /></Metadata><TypeSignature Language="C#" Value="public sealed class PerformanceCounterCategory" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit PerformanceCounterCategory extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.PerformanceCounterCategory" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class PerformanceCounterCategory" />
@@ -36,7 +36,7 @@
   
  パフォーマンスカウンターは、アプリケーションに関するパフォーマンスデータを公開します。 カテゴリには、物理コンポーネント (プロセッサ、ディスク、メモリなど) とシステムオブジェクト (プロセスやスレッドなど) が含まれます。 同じパフォーマンスオブジェクトに関連付けられているシステムカウンターは、共通のフォーカスを示すカテゴリにグループ化されます。 <xref:System.Diagnostics.PerformanceCounter> クラスのインスタンスを作成するときは、まずコンポーネントが操作するカテゴリを指定し、そのカテゴリのカウンターを選択します。  
   
- たとえば、1つの Windows カウンターカテゴリはメモリカテゴリです。 このカテゴリ内のシステムカウンターは、使用可能なバイト数やキャッシュされたバイト数などのメモリデータを追跡します。 アプリケーションにキャッシュされたバイト数を使用する場合は、<xref:System.Diagnostics.PerformanceCounter> コンポーネントのインスタンスを作成し、メモリカテゴリに接続してから、そのカテゴリから適切なカウンター (この場合はキャッシュされたバイト) を選択します。  
+ たとえば、1つの Windows カウンターカテゴリはメモリカテゴリです。 このカテゴリ内のシステムカウンターは、使用可能なバイト数やキャッシュされたバイト数などのメモリデータを追跡します。 アプリケーションにキャッシュされたバイト数を使用する場合は、<xref:System.Diagnostics.PerformanceCounter> コンポーネントのインスタンスを作成し、そのインスタンスをメモリカテゴリに接続してから、そのカテゴリから適切なカウンター (この場合はキャッシュされたバイト) を選択します。  
   
  システムでは多数のカウンターカテゴリを使用できますが、最も頻繁にやり取りされるカテゴリは、Cache、Memory、Objects、PhysicalDisk、Process、Processor、Server、System、および Thread の各カテゴリです。  
   
@@ -47,7 +47,7 @@
 >  アプリケーションの実行中ではなく、アプリケーションのインストール中に新しいパフォーマンスカウンターカテゴリを作成することを強くお勧めします。 これにより、オペレーティングシステムが登録されているパフォーマンスカウンターカテゴリの一覧を更新できるようになります。 一覧が更新されていない場合は、カテゴリを使用しようとすると失敗します。  
   
 > [!NOTE]
->  [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)] と共にインストールされるパフォーマンスカウンターカテゴリには個別の共有メモリが使用され、各パフォーマンスカウンターカテゴリには独自のメモリがあります。 レジストリキー HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\\*\<category name >*-performance のように、FileMappingSize という名前の DWORD を作成することによって、個別の共有メモリのサイズを指定できます。 FileMappingSize 値は、カテゴリの共有メモリサイズに設定されます。 既定のサイズは 131072 decimal です。 FileMappingSize 値が存在しない場合は、machine.config ファイルで指定された `performanceCounters` 要素の `fileMappingSize` 属性値が使用され、構成ファイルの処理に追加のオーバーヘッドが発生します。 アプリケーションの起動のパフォーマンスを向上させるには、レジストリでファイルマッピングサイズを設定します。 ファイルマッピングサイズの詳細については、「 [&lt;performanceCounters&gt;](~/docs/framework/configure-apps/file-schema/trace-debug/performancecounters-element.md)」を参照してください。  
+>  [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)] と共にインストールされるパフォーマンスカウンターカテゴリには個別の共有メモリが使用され、各パフォーマンスカウンターカテゴリには独自のメモリがあります。 レジストリキーに FileMappingSize という名前の DWORD を作成することによって、個別の共有メモリのサイズを指定することができます。 HKEY_LOCAL_MACHINE \SYSTEM\CurrentControlSet\Services\\*\<カテゴリ名 >*/パフォーマンスです。 FileMappingSize 値は、カテゴリの共有メモリサイズに設定されます。 既定のサイズは 131072 decimal です。 FileMappingSize 値が存在しない場合は、machine.config ファイルで指定された `performanceCounters` 要素の `fileMappingSize` 属性値が使用され、構成ファイルの処理に追加のオーバーヘッドが発生します。 アプリケーションの起動のパフォーマンスを向上させるには、レジストリでファイルマッピングサイズを設定します。 ファイルマッピングサイズの詳細については、「 [&lt;performanceCounters&gt;](~/docs/framework/configure-apps/file-schema/trace-debug/performancecounters-element.md)」を参照してください。  
   
    
   
@@ -595,7 +595,7 @@
         <Attribute FrameworkAlternate="xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use another overload that uses PerformanceCounterCategoryType instead")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.1;netcore-2.2;dotnet-plat-ext-2.2">
+        <Attribute FrameworkAlternate="netcore-2.1;netcore-2.2;dotnet-plat-ext-3.0;netcore-3.0">
           <AttributeName>System.Obsolete("This method has been deprecated.  Please use System.Diagnostics.PerformanceCounterCategory.Create(string categoryName, string categoryHelp, PerformanceCounterCategoryType categoryType, CounterCreationDataCollection counterData) instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -603,6 +603,9 @@
         </Attribute>
         <Attribute FrameworkAlternate="dotnet-plat-ext-3.0;netcore-3.0">
           <AttributeName>System.Obsolete("This method has been deprecated.  Please use System.Diagnostics.PerformanceCounterCategory.Create(string categoryName, string categoryHelp, PerformanceCounterCategoryType categoryType, CounterCreationDataCollection counterData) instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
+          <AttributeName>System.Obsolete("This method has been deprecated.  Please use System.Diagnostics.PerformanceCounterCategory.Create(string categoryName, string categoryHelp, PerformanceCounterCategoryType categoryType, CounterCreationDataCollection counterData) instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -685,10 +688,10 @@
         <ReturnType>System.Diagnostics.PerformanceCounterCategory</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="categoryName" Type="System.String" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
-        <Parameter Name="categoryHelp" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
-        <Parameter Name="categoryType" Type="System.Diagnostics.PerformanceCounterCategoryType" Index="2" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
-        <Parameter Name="counterData" Type="System.Diagnostics.CounterCreationDataCollection" Index="3" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="categoryName" Type="System.String" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="categoryHelp" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="categoryType" Type="System.Diagnostics.PerformanceCounterCategoryType" Index="2" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="counterData" Type="System.Diagnostics.CounterCreationDataCollection" Index="3" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="categoryName">作成してシステムに登録するカスタム パフォーマンス カウンター カテゴリの名前。</param>
@@ -703,7 +706,7 @@
 ## Remarks  
  `categoryType` パラメーターは、パフォーマンスカウンターのカテゴリが単一インスタンスと複数インスタンスのどちらであるかを指定します。 既定では、カテゴリは作成時には単一インスタンスであり、別のインスタンスが追加されると複数インスタンスになります。 カテゴリは、アプリケーションのセットアップ時に作成され、インスタンスは実行時に追加されます。 .NET Framework バージョン1.0 および1.1 では、パフォーマンスカウンターのカテゴリが複数インスタンスであるか単一インスタンスであるかを知る必要はありません。 [!INCLUDE[dnprdnext](~/includes/dnprdnext-md.md)]では、<xref:System.Diagnostics.PerformanceCounterCategoryType> 列挙を使用して、パフォーマンスカウンターが複数のインスタンスを持つことができるかどうかを示します。  
   
- [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)] と共にインストールされるパフォーマンスカウンターカテゴリには個別の共有メモリが使用され、各パフォーマンスカウンターカテゴリには独自のメモリがあります。  レジストリキー HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\\*\<category name >*-performance のように、FileMappingSize という名前の DWORD を作成することによって、個別の共有メモリのサイズを指定できます。 FileMappingSize 値は、カテゴリの共有メモリサイズに設定されます。 既定のサイズは 131072 decimal です。 FileMappingSize 値が存在しない場合は、machine.config ファイルで指定された `performanceCounters` 要素の `fileMappingSize` 属性値が使用され、構成ファイルの処理に追加のオーバーヘッドが発生します。 アプリケーションの起動のパフォーマンスを向上させるには、レジストリでファイルマッピングサイズを設定します。  
+ [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)] と共にインストールされるパフォーマンスカウンターカテゴリには個別の共有メモリが使用され、各パフォーマンスカウンターカテゴリには独自のメモリがあります。  レジストリキーに FileMappingSize という名前の DWORD を作成することによって、個別の共有メモリのサイズを指定することができます。 HKEY_LOCAL_MACHINE \SYSTEM\CurrentControlSet\Services\\*\<カテゴリ名 >*/パフォーマンスです。 FileMappingSize 値は、カテゴリの共有メモリサイズに設定されます。 既定のサイズは 131072 decimal です。 FileMappingSize 値が存在しない場合は、machine.config ファイルで指定された `performanceCounters` 要素の `fileMappingSize` 属性値が使用され、構成ファイルの処理に追加のオーバーヘッドが発生します。 アプリケーションの起動のパフォーマンスを向上させるには、レジストリでファイルマッピングサイズを設定します。  
   
 > [!NOTE]
 >  アプリケーションの実行中ではなく、アプリケーションのインストール中に新しいパフォーマンスカウンターカテゴリを作成することを強くお勧めします。 これにより、オペレーティングシステムが登録されているパフォーマンスカウンターカテゴリの一覧を更新できるようになります。 一覧が更新されていない場合は、カテゴリを使用しようとすると失敗します。  
@@ -773,11 +776,14 @@
         <Attribute FrameworkAlternate="xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use another overload that uses PerformanceCounterCategoryType instead")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.1;netcore-2.2;dotnet-plat-ext-2.2">
+        <Attribute FrameworkAlternate="netcore-2.1;netcore-2.2;dotnet-plat-ext-3.0;netcore-3.0">
           <AttributeName>System.Obsolete("This method has been deprecated.  Please use System.Diagnostics.PerformanceCounterCategory.Create(string categoryName, string categoryHelp, PerformanceCounterCategoryType categoryType, string counterName, string counterHelp) instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="dotnet-plat-ext-3.0;netcore-3.0">
           <AttributeName>System.Obsolete("This method has been deprecated.  Please use System.Diagnostics.PerformanceCounterCategory.Create(string categoryName, string categoryHelp, PerformanceCounterCategoryType categoryType, string counterName, string counterHelp) instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
+          <AttributeName>System.Obsolete("This method has been deprecated.  Please use System.Diagnostics.PerformanceCounterCategory.Create(string categoryName, string categoryHelp, PerformanceCounterCategoryType categoryType, string counterName, string counterHelp) instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -826,7 +832,7 @@
 - または - 
  <paramref name="counterName" /> に無効な構文が含まれています。 円記号文字 ("\\") が含まれているか、長さが 80 文字を超えています。</exception>
         <exception cref="T:System.InvalidOperationException">カテゴリが既にローカル コンピューター上に存在しています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="categoryName" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="categoryName" /> が <see langword="null" /> です。  
   
 - または - 
  <paramref name="counterHelp" /> が <see langword="null" /> です。</exception>
@@ -861,11 +867,11 @@
         <ReturnType>System.Diagnostics.PerformanceCounterCategory</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="categoryName" Type="System.String" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
-        <Parameter Name="categoryHelp" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
-        <Parameter Name="categoryType" Type="System.Diagnostics.PerformanceCounterCategoryType" Index="2" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
-        <Parameter Name="counterName" Type="System.String" Index="3" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
-        <Parameter Name="counterHelp" Type="System.String" Index="4" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="categoryName" Type="System.String" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="categoryHelp" Type="System.String" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="categoryType" Type="System.Diagnostics.PerformanceCounterCategoryType" Index="2" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="counterName" Type="System.String" Index="3" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
+        <Parameter Name="counterHelp" Type="System.String" Index="4" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="categoryName">作成してシステムに登録するカスタム パフォーマンス カウンター カテゴリの名前。</param>
@@ -881,7 +887,7 @@
 ## Remarks  
  `categoryType` パラメーターは、パフォーマンスカウンターのカテゴリが単一インスタンスと複数インスタンスのどちらであるかを指定します。 既定では、カテゴリは作成時には単一インスタンスであり、別のインスタンスが追加されると複数インスタンスになります。 カテゴリは、アプリケーションのセットアップ時に作成され、インスタンスは実行時に追加されます。 .NET Framework バージョン1.0 および1.1 では、パフォーマンスカウンターのカテゴリが複数インスタンスであるか単一インスタンスであるかを知る必要はありません。 [!INCLUDE[dnprdnext](~/includes/dnprdnext-md.md)]では、<xref:System.Diagnostics.PerformanceCounterCategoryType> 列挙を使用して、パフォーマンスカウンターが複数のインスタンスを持つことができるかどうかを示します。  
   
- [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)] と共にインストールされるパフォーマンスカウンターカテゴリには個別の共有メモリが使用され、各パフォーマンスカウンターカテゴリには独自のメモリがあります。 レジストリキー HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\\*\<category name >*-performance のように、FileMappingSize という名前の DWORD を作成することによって、個別の共有メモリのサイズを指定できます。 FileMappingSize 値は、カテゴリの共有メモリサイズに設定されます。 既定のサイズは 131072 decimal です。 FileMappingSize 値が存在しない場合は、machine.config ファイルで指定された `performanceCounters` 要素の `fileMappingSize` 属性値が使用され、構成ファイルの処理に追加のオーバーヘッドが発生します。 アプリケーションの起動のパフォーマンスを向上させるには、レジストリでファイルマッピングサイズを設定します。  
+ [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)] と共にインストールされるパフォーマンスカウンターカテゴリには個別の共有メモリが使用され、各パフォーマンスカウンターカテゴリには独自のメモリがあります。 レジストリキーに FileMappingSize という名前の DWORD を作成することによって、個別の共有メモリのサイズを指定することができます。 HKEY_LOCAL_MACHINE \SYSTEM\CurrentControlSet\Services\\*\<カテゴリ名 >*/パフォーマンスです。 FileMappingSize 値は、カテゴリの共有メモリサイズに設定されます。 既定のサイズは 131072 decimal です。 FileMappingSize 値が存在しない場合は、machine.config ファイルで指定された `performanceCounters` 要素の `fileMappingSize` 属性値が使用され、構成ファイルの処理に追加のオーバーヘッドが発生します。 アプリケーションの起動のパフォーマンスを向上させるには、レジストリでファイルマッピングサイズを設定します。  
   
 > [!NOTE]
 >  アプリケーションの実行中ではなく、アプリケーションのインストール中に新しいパフォーマンスカウンターカテゴリを作成することを強くお勧めします。 これにより、オペレーティングシステムが登録されているパフォーマンスカウンターカテゴリの一覧を更新できるようになります。 一覧が更新されていない場合は、カテゴリを使用しようとすると失敗します。  
@@ -911,7 +917,7 @@
 - または - 
  <paramref name="counterName" /> に無効な構文が含まれています。 円記号文字 ("\\") が含まれているか、長さが 80 文字を超えています。</exception>
         <exception cref="T:System.InvalidOperationException">カテゴリが既にローカル コンピューター上に存在しています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="categoryName" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="categoryName" /> が <see langword="null" /> です。  
   
 - または - 
  <paramref name="counterHelp" /> が <see langword="null" /> です。</exception>
