@@ -1,5 +1,5 @@
 <Type Name="Process" FullName="System.Diagnostics.Process">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fe4170c72b933903f1daac0fcaadbd8f472758a7" /><Meta Name="ms.sourcegitcommit" Value="218a2e36017b9f4ffa6c10e1644404e6d7d6bd1e" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/05/2019" /><Meta Name="ms.locfileid" Value="74839847" /></Metadata><TypeSignature Language="C#" Value="public class Process : System.ComponentModel.Component" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="96bb35a7974092ace0053369ef712dd08404c5fc" /><Meta Name="ms.sourcegitcommit" Value="367e1eae0725e6da7136cd073aaa856ded5d5c29" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/13/2019" /><Meta Name="ms.locfileid" Value="75026938" /></Metadata><TypeSignature Language="C#" Value="public class Process : System.ComponentModel.Component" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Process extends System.ComponentModel.Component" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Process" />
   <TypeSignature Language="VB.NET" Value="Public Class Process&#xA;Inherits Component" />
@@ -65,7 +65,7 @@
   
  <xref:System.Diagnostics.Process>コンポーネントは、アプリの起動、停止、制御、および監視を行うための便利なツールです。 <xref:System.Diagnostics.Process>コンポーネントを使用して、実行中のプロセスの一覧を取得したり、新しいプロセスを開始したりできます。 システム プロセスにアクセスするには、<xref:System.Diagnostics.Process> コンポーネントを使用します。 <xref:System.Diagnostics.Process>コンポーネントを初期化した後は、実行中のプロセスに関する情報を取得するために使用できます。 そのような情報には、スレッドのセットや、読み込まれたモジュール (.dll と .exe ファイル)、プロセスが使用しているメモリの量などのパフォーマンス情報が含まれます。  
   
- この型は <xref:System.IDisposable> インターフェイスを実装します。 型の使用が完了したら、直接的または間接的に型を破棄する必要があります。 直接的に型を破棄するには、`try` / `finally` ブロック内で <xref:System.IDisposable.Dispose%2A> メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
+ この型は <xref:System.IDisposable> インターフェイスを実装します。 型の使用が完了したら、直接的または間接的に型を破棄する必要があります。 直接的に型を破棄するには、<xref:System.IDisposable.Dispose%2A> `try` / ブロック内で `finally` メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
   
 > [!NOTE]
 >  32 ビット プロセスは 64 ビット プロセスのモジュールにアクセスできません。 32 ビット プロセスから 64 ビット プロセスの詳細情報を取得しようとすると、<xref:System.ComponentModel.Win32Exception> 例外が発生します。 一方で、64 ビット プロセスは 32 ビット プロセスのモジュールにアクセスできます。  
@@ -83,11 +83,11 @@
 ## <a name="includenet_coreincludesnet-core-mdmd-notes"></a>[!INCLUDE[net_core](~/includes/net-core-md.md)] での注意  
  .NET Framework では、既定では <xref:System.Diagnostics.Process> クラスは <xref:System.Console> のエンコードを使用します。これは、入力ストリーム、出力ストリーム、およびエラー ストリームについては、通常はコード ページ エンコードです。 コード例では、システムのカルチャが英語 (米国) で、コード ページ 437 が <xref:System.Console> クラスの既定のエンコードです。 しかし、[!INCLUDE[net_core](~/includes/net-core-md.md)] では、これらのエンコードの限られたサブセットしか使用できないことがあります。 その場合は、<xref:System.Text.Encoding.UTF8%2A?displayProperty=nameWithType> を既定のエンコードとして使用します。  
   
- <xref:System.Diagnostics.Process> オブジェクトが特定のコード ページ エンコードに依存している場合、<xref:System.Diagnostics.Process> のメソッドを呼び出す*前に*次の手順を行うと、特定のコード ページ エンコードも利用できます。  
+ <xref:System.Diagnostics.Process> オブジェクトが特定のコード ページ エンコードに依存している場合、 *のメソッドを呼び出す*前に<xref:System.Diagnostics.Process>次の手順を行うと、特定のコード ページ エンコードも利用できます。  
   
 1.  プロジェクトに、参照を追加して、コードページ...........................  
   
-2.  <xref:System.Text.CodePagesEncodingProvider.Instance%2A?displayProperty=nameWithType> プロパティから、<xref:System.Text.EncodingProvider> オブジェクトを取得します。  
+2.  <xref:System.Text.EncodingProvider> プロパティから、<xref:System.Text.CodePagesEncodingProvider.Instance%2A?displayProperty=nameWithType> オブジェクトを取得します。  
   
 3.  <xref:System.Text.EncodingProvider> オブジェクトを <xref:System.Text.Encoding.RegisterProvider%2A?displayProperty=nameWithType> メソッドに渡すと、エンコーディング プロバイダーでサポートされているその他のエンコードを利用できるようになります。  
   
@@ -172,7 +172,7 @@
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="BasePriority">
@@ -254,7 +254,7 @@
  - または -  
   
  プロセスが開始されていないため、プロセス ID はありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PriorityClass" />
         <altmember cref="T:System.Diagnostics.ProcessPriorityClass" />
         <altmember cref="T:System.Diagnostics.ThreadPriorityLevel" />
@@ -306,9 +306,9 @@
   
  <xref:System.Diagnostics.Process> の <xref:System.Diagnostics.Process.StandardError%2A> に対して非同期の読み取り操作を実行するには、次の手順に従います。  
   
-1.  <xref:System.Diagnostics.ProcessStartInfo.UseShellExecute%2A> を `false` に設定します。  
+1.  <xref:System.Diagnostics.ProcessStartInfo.UseShellExecute%2A> を `false`に設定します。  
   
-2.  <xref:System.Diagnostics.ProcessStartInfo.RedirectStandardError%2A> を `true` に設定します。  
+2.  <xref:System.Diagnostics.ProcessStartInfo.RedirectStandardError%2A> を `true`に設定します。  
   
 3.  イベントハンドラーを <xref:System.Diagnostics.Process.ErrorDataReceived> イベントに追加します。 イベントハンドラーは <xref:System.Diagnostics.DataReceivedEventHandler?displayProperty=nameWithType> デリゲートシグネチャと一致する必要があります。  
   
@@ -341,7 +341,7 @@
   
 - または - 
 <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームは、同期読み取り操作によって使用されています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" />
         <altmember cref="P:System.Diagnostics.Process.StandardError" />
         <altmember cref="E:System.Diagnostics.Process.ErrorDataReceived" />
@@ -395,9 +395,9 @@
   
  <xref:System.Diagnostics.Process> の <xref:System.Diagnostics.Process.StandardOutput%2A> に対して非同期の読み取り操作を実行するには、次の手順に従います。  
   
-1.  <xref:System.Diagnostics.ProcessStartInfo.UseShellExecute%2A> を `false` に設定します。  
+1.  <xref:System.Diagnostics.ProcessStartInfo.UseShellExecute%2A> を `false`に設定します。  
   
-2.  <xref:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput%2A> を `true` に設定します。  
+2.  <xref:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput%2A> を `true`に設定します。  
   
 3.  イベントハンドラーを <xref:System.Diagnostics.Process.OutputDataReceived> イベントに追加します。 イベントハンドラーは <xref:System.Diagnostics.DataReceivedEventHandler?displayProperty=nameWithType> デリゲートシグネチャと一致する必要があります。  
   
@@ -432,7 +432,7 @@
   
 - または - 
 <see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームは、同期読み取り操作によって使用されています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />
         <altmember cref="P:System.Diagnostics.Process.StandardOutput" />
         <altmember cref="E:System.Diagnostics.Process.OutputDataReceived" />
@@ -517,7 +517,7 @@ process.BeginErrorReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException"><see cref="P:System.Diagnostics.Process.StandardError" /> ストリームは、非同期読み取り操作では有効になっていません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.BeginErrorReadLine" />
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" />
         <altmember cref="P:System.Diagnostics.Process.StandardError" />
@@ -602,7 +602,7 @@ process.BeginOutputReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException"><see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームは、非同期読み取り操作では有効になっていません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.BeginOutputReadLine" />
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />
         <altmember cref="P:System.Diagnostics.Process.StandardOutput" />
@@ -661,7 +661,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="CloseMainWindow">
@@ -721,7 +721,7 @@ process.BeginOutputReadLine();
   
 - または - 
 この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -845,7 +845,7 @@ process.BeginOutputReadLine();
       </ReturnValue>
       <Docs>
         <summary>プロセスが終了したときに、<see cref="E:System.Diagnostics.Process.Exited" /> イベントを発生させるかどうかを取得または設定します。</summary>
-        <value>正常終了または <see cref="M:System.Diagnostics.Process.Kill" /> の呼び出しによって関連付けられたプロセスが終了したときに <see cref="E:System.Diagnostics.Process.Exited" /> イベントを発生させる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。 <see cref="E:System.Diagnostics.Process.Exited" /> イベントは、ユーザーが <see cref="P:System.Diagnostics.Process.HasExited" /> チェックを実行する前にプロセスが終了したときに <see cref="P:System.Diagnostics.Process.EnableRaisingEvents" /> の値が <see langword="false" /> 場合にも発生します。</value>
+        <value>正常終了または <see langword="true" /> の呼び出しによって関連付けられたプロセスが終了したときに <see cref="E:System.Diagnostics.Process.Exited" /> イベントを発生させる場合は <see cref="M:System.Diagnostics.Process.Kill" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。 <see cref="E:System.Diagnostics.Process.Exited" /> イベントは、ユーザーが <see cref="P:System.Diagnostics.Process.HasExited" /> チェックを実行する前にプロセスが終了したときに <see cref="P:System.Diagnostics.Process.EnableRaisingEvents" /> の値が <see langword="false" /> 場合にも発生します。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -871,7 +871,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.WaitForExit(System.Int32)" />
         <altmember cref="E:System.Diagnostics.Process.Exited" />
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
@@ -921,7 +921,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.LeaveDebugMode" />
       </Docs>
     </Member>
@@ -989,7 +989,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" />
         <altmember cref="P:System.Diagnostics.Process.StandardError" />
         <altmember cref="M:System.Diagnostics.Process.BeginErrorReadLine" />
@@ -1078,7 +1078,7 @@ process.BeginOutputReadLine();
 - または - 
 プロセス <see cref="P:System.Diagnostics.Process.Handle" /> は終了していません。</exception>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.ExitCode" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.HasExited" />
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
         <altmember cref="M:System.Diagnostics.Process.Kill" />
@@ -1153,7 +1153,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="ExitTime">
@@ -1219,7 +1219,7 @@ process.BeginOutputReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.ExitTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.Handle" />
         <altmember cref="P:System.Diagnostics.Process.ExitCode" />
       </Docs>
@@ -1276,7 +1276,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessesByName(System.String)" />
         <altmember cref="M:System.Diagnostics.Process.GetProcesses" />
@@ -1354,7 +1354,7 @@ process.BeginOutputReadLine();
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="processId" /> パラメーターで指定されたプロセスは実行されていません。 識別子の有効期限が切れている可能性があります。</exception>
         <exception cref="T:System.InvalidOperationException">このオブジェクトによってプロセスは開始されませんでした。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.Id" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessesByName(System.String)" />
         <altmember cref="M:System.Diagnostics.Process.GetProcesses" />
@@ -1431,7 +1431,7 @@ process.BeginOutputReadLine();
 <paramref name="machineName" /> パラメーターの構文が正しくありません。 名前の長さがゼロ (0) の可能性があります。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="machineName" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.InvalidOperationException">このオブジェクトによってプロセスは開始されませんでした。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.Id" />
         <altmember cref="P:System.Diagnostics.Process.MachineName" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessesByName(System.String)" />
@@ -1509,7 +1509,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.MachineName" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessesByName(System.String)" />
@@ -1586,7 +1586,7 @@ process.BeginOutputReadLine();
         <exception cref="T:System.PlatformNotSupportedException">リモート コンピューターに対してこの操作を実行することは、オペレーティング システム プラットフォームでサポートされていません。</exception>
         <exception cref="T:System.InvalidOperationException">プロセス情報を取得するために使用するパフォーマンス カウンター API へのアクセスに問題があります。 この例外は、Windows NT、Windows 2000、および Windows XP に固有のものです。</exception>
         <exception cref="T:System.ComponentModel.Win32Exception">基になるシステム API にアクセスしようとして、問題が発生しました。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.MachineName" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessesByName(System.String)" />
@@ -1666,7 +1666,7 @@ process.BeginOutputReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">プロセス情報を取得するために使用するパフォーマンス カウンター API へのアクセスに問題があります。 この例外は、Windows NT、Windows 2000、および Windows XP に固有のものです。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.ProcessName" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)" />
         <altmember cref="M:System.Diagnostics.Process.GetProcesses" />
@@ -1749,7 +1749,7 @@ process.BeginOutputReadLine();
 - または - 
 プロセス情報を取得するために使用するパフォーマンス カウンター API へのアクセスに問題があります。 この例外は、Windows NT、Windows 2000、および Windows XP に固有のものです。</exception>
         <exception cref="T:System.ComponentModel.Win32Exception">基になるシステム API にアクセスしようとして、問題が発生しました。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出す。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <altmember cref="P:System.Diagnostics.Process.ProcessName" />
         <altmember cref="P:System.Diagnostics.Process.MachineName" />
@@ -1820,7 +1820,7 @@ process.BeginOutputReadLine();
 - または - 
 <see cref="T:System.Diagnostics.Process" /> インスタンスは実行中のプロセスにアタッチされていますが、フル アクセス権を持つハンドルを取得するために必要なアクセス許可がありません。</exception>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.Handle" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.Id" />
         <altmember cref="P:System.Diagnostics.Process.ExitCode" />
         <altmember cref="P:System.Diagnostics.Process.ExitTime" />
@@ -1882,7 +1882,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.Handle" />
         <altmember cref="M:System.Diagnostics.Process.Start" />
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
@@ -1934,7 +1934,7 @@ process.BeginOutputReadLine();
       </ReturnValue>
       <Docs>
         <summary>関連付けられているプロセスが終了したかどうかを示す値を取得します。</summary>
-        <value><see cref="T:System.Diagnostics.Process" /> コンポーネントが参照するオペレーティング システム プロセスが終了している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value><see langword="true" /> コンポーネントが参照するオペレーティング システム プロセスが終了している場合は <see cref="T:System.Diagnostics.Process" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1960,7 +1960,7 @@ process.BeginOutputReadLine();
         <exception cref="T:System.InvalidOperationException">オブジェクトに関連付けられているプロセスはありません。</exception>
         <exception cref="T:System.ComponentModel.Win32Exception">プロセスの終了コードを取得できませんでした。</exception>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.HasExited" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.ExitCode" />
         <altmember cref="P:System.Diagnostics.Process.ExitTime" />
         <altmember cref="M:System.Diagnostics.Process.WaitForExit(System.Int32)" />
@@ -2037,7 +2037,7 @@ process.BeginOutputReadLine();
   
 - または - 
 この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.Handle" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)" />
       </Docs>
@@ -2121,7 +2121,7 @@ process.BeginOutputReadLine();
   
 - または - 
 この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Environment.Exit(System.Int32)" />
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
         <altmember cref="M:System.Diagnostics.Process.Start" />
@@ -2170,7 +2170,7 @@ process.BeginOutputReadLine();
 
 呼び出しプロセスは、関連付けられているプロセスの子孫ツリーのメンバーです。</exception>
         <exception cref="T:System.AggregateException">関連付けられているプロセスの子孫ツリーの一部のプロセスを強制終了できませんでした。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Environment.Exit(System.Int32)" />
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
         <altmember cref="M:System.Diagnostics.Process.Start" />
@@ -2216,7 +2216,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.EnterDebugMode" />
       </Docs>
     </Member>
@@ -2286,7 +2286,7 @@ process.BeginOutputReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.GetProcesses" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)" />
         <altmember cref="M:System.Diagnostics.Process.GetProcessesByName(System.String)" />
@@ -2352,7 +2352,7 @@ process.BeginOutputReadLine();
   
 - または - 
 プロセスが終了しています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.Modules" />
       </Docs>
     </Member>
@@ -2411,13 +2411,13 @@ process.BeginOutputReadLine();
   
  プロセスには、プロセスにグラフィカルインターフェイスがある場合にのみ、関連付けられているメインウィンドウがあります。 関連付けられたプロセスにメインウィンドウがない場合、<xref:System.Diagnostics.Process.MainWindowHandle%2A> 値は0になります。 この値は、非表示になっているプロセス (タスクバーに表示されないプロセス) でも0になります。 これは、タスクバーの右端にある通知領域にアイコンとして表示されるプロセスの場合に発生する可能性があります。  
   
- プロセスを開始したばかりで、メインウィンドウハンドルを使用する場合は、<xref:System.Diagnostics.Process.WaitForInputIdle%2A> メソッドを使用して、プロセスの開始を許可し、メインウィンドウハンドルが作成されていることを確認します。 この操作を行わない場合、例外がスローされます。  
+ プロセスを開始したばかりで、メインウィンドウハンドルを使用する場合は、<xref:System.Diagnostics.Process.WaitForInputIdle%2A> メソッドを使用して、プロセスの開始を許可し、メインウィンドウハンドルが作成されていることを確認します。 そうでない場合は、例外がスローされます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">プロセスが終了したため、<see cref="P:System.Diagnostics.Process.MainWindowHandle" /> が定義されていません。</exception>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.MainWindowHandle" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.MainWindowTitle" />
         <altmember cref="P:System.Diagnostics.Process.MainModule" />
       </Docs>
@@ -2489,7 +2489,7 @@ process.BeginOutputReadLine();
         </remarks>
         <exception cref="T:System.InvalidOperationException">プロセスが終了したため、<see cref="P:System.Diagnostics.Process.MainWindowTitle" /> プロパティが定義されていません。</exception>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.MainWindowTitle" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="MaxWorkingSet">
@@ -2563,7 +2563,7 @@ process.BeginOutputReadLine();
   
 - または - 
 プロセスが終了しています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.MinWorkingSet" />
         <altmember cref="P:System.Diagnostics.Process.WorkingSet64" />
         <altmember cref="P:System.Diagnostics.Process.PeakWorkingSet64" />
@@ -2640,7 +2640,7 @@ process.BeginOutputReadLine();
   
 - または - 
 プロセスが終了しています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.MaxWorkingSet" />
         <altmember cref="P:System.Diagnostics.Process.WorkingSet64" />
         <altmember cref="P:System.Diagnostics.Process.PeakWorkingSet64" />
@@ -2707,7 +2707,7 @@ process.BeginOutputReadLine();
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.Modules" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
         <exception cref="T:System.InvalidOperationException">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。</exception>
         <exception cref="T:System.ComponentModel.Win32Exception">システム プロセスまたはアイドル状態のプロセスのいずれかの <see cref="P:System.Diagnostics.Process.Modules" /> プロパティにアクセスしようとしています。 これらのプロセスには、モジュールが存在しません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="T:System.Diagnostics.ProcessModule" />
       </Docs>
     </Member>
@@ -2749,7 +2749,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use NonpagedSystemMemorySize64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.NonpagedSystemMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -2757,6 +2757,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.NonpagedSystemMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.NonpagedSystemMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -2766,7 +2769,7 @@ process.BeginOutputReadLine();
         <summary>関連付けられたプロセスに割り当てられたページングされないシステム メモリの量 (バイト単位) を取得します。</summary>
         <value>システムによって関連付けられたプロセスに割り当てられた、仮想メモリ ページング ファイルに書き込むことができないメモリの容量 (バイト単位)。</value>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.NonpagedSystemMemorySize64" />
       </Docs>
     </Member>
@@ -2837,7 +2840,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PagedSystemMemorySize64" />
       </Docs>
     </Member>
@@ -2896,7 +2899,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="E:System.Diagnostics.Process.Exited" />
       </Docs>
     </Member>
@@ -2966,7 +2969,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />
         <altmember cref="P:System.Diagnostics.Process.StandardOutput" />
         <altmember cref="M:System.Diagnostics.Process.BeginOutputReadLine" />
@@ -3009,7 +3012,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use PagedMemorySize64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PagedMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -3017,6 +3020,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PagedMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PagedMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -3026,7 +3032,7 @@ process.BeginOutputReadLine();
         <summary>関連付けられたプロセスに割り当てられたページ メモリの量 (バイト単位) を取得します。</summary>
         <value>仮想メモリ ページング ファイルに書き込むことができる関連付けられたプロセスによって割り当てられたメモリの容量 (バイト単位)。</value>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PagedMemorySize64" />
       </Docs>
     </Member>
@@ -3094,7 +3100,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PeakPagedMemorySize64" />
         <altmember cref="P:System.Diagnostics.Process.PagedSystemMemorySize64" />
       </Docs>
@@ -3134,7 +3140,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use PagedSystemMemorySize64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PagedSystemMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -3142,6 +3148,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PagedSystemMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PagedSystemMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -3151,7 +3160,7 @@ process.BeginOutputReadLine();
         <summary>関連付けられたプロセスに割り当てられたページング可能なシステム メモリの量 (バイト単位) を取得します。</summary>
         <value>システムによって関連付けられたプロセスに割り当てられた、仮想メモリ ページング ファイルに書き込むことができるメモリの容量 (バイト単位)。</value>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PagedSystemMemorySize64" />
       </Docs>
     </Member>
@@ -3219,7 +3228,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PagedSystemMemorySize64" />
         <altmember cref="P:System.Diagnostics.Process.NonpagedSystemMemorySize64" />
       </Docs>
@@ -3262,7 +3271,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use PeakPagedMemorySize64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakPagedMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -3270,6 +3279,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakPagedMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakPagedMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -3279,7 +3291,7 @@ process.BeginOutputReadLine();
         <summary>関連付けられたプロセスによって使用される、仮想メモリ ページング ファイル内のメモリの最大量を取得します (バイト単位)。</summary>
         <value>関連付けられたプロセスによって割り当てられた、仮想メモリ ページング ファイルに書き込むことができたメモリの最大容量 (バイト単位)。</value>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PeakPagedMemorySize64" />
       </Docs>
     </Member>
@@ -3350,7 +3362,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PagedMemorySize64" />
       </Docs>
     </Member>
@@ -3389,7 +3401,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use PeakVirtualMemorySize64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakVirtualMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -3397,6 +3409,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakVirtualMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakVirtualMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -3406,7 +3421,7 @@ process.BeginOutputReadLine();
         <summary>関連付けられたプロセスによって使用される仮想メモリの最大量を取得します (バイト単位)。</summary>
         <value>関連付けられたプロセスが要求した仮想メモリの最大容量 (バイト単位)。</value>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PeakVirtualMemorySize64" />
       </Docs>
     </Member>
@@ -3474,7 +3489,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.VirtualMemorySize64" />
       </Docs>
     </Member>
@@ -3513,7 +3528,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use PeakWorkingSet64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakWorkingSet64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -3521,6 +3536,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakWorkingSet64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PeakWorkingSet64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -3539,7 +3557,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.WorkingSet64" />
         <altmember cref="P:System.Diagnostics.Process.MinWorkingSet" />
         <altmember cref="P:System.Diagnostics.Process.MaxWorkingSet" />
@@ -3612,7 +3630,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.WorkingSet64" />
         <altmember cref="P:System.Diagnostics.Process.MinWorkingSet" />
         <altmember cref="P:System.Diagnostics.Process.MaxWorkingSet" />
@@ -3663,7 +3681,7 @@ process.BeginOutputReadLine();
       </ReturnValue>
       <Docs>
         <summary>メイン ウィンドウのフォーカス時に、オペレーティング システムによって関連付けられたプロセスの優先順位を一時的に上げるかどうかを示す値を取得または設定します。</summary>
-        <value>待機状態から抜けたときにプロセスの優先順位を動的に上げる場合は<see langword="true" /> 。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value>待機状態から抜けたときにプロセスの優先順位を動的に上げる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -3679,7 +3697,7 @@ process.BeginOutputReadLine();
         <exception cref="T:System.PlatformNotSupportedException">プロセス識別子またはプロセス ハンドルが 0 です。 (プロセスは開始されていません。)</exception>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.PriorityBoostEnabled" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
         <exception cref="T:System.InvalidOperationException">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PriorityClass" />
         <altmember cref="P:System.Diagnostics.Process.BasePriority" />
       </Docs>
@@ -3763,7 +3781,7 @@ process.BeginOutputReadLine();
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.PriorityClass" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
         <exception cref="T:System.InvalidOperationException">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。</exception>
         <exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><see cref="T:System.Diagnostics.ProcessPriorityClass" /> 列挙体で定義されている有効な値が使用されていないため、優先度クラスを設定できません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.BasePriority" />
         <altmember cref="P:System.Diagnostics.Process.PriorityBoostEnabled" />
       </Docs>
@@ -3803,7 +3821,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use PrivateMemorySize64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PrivateMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -3811,6 +3829,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PrivateMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.PrivateMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -3820,7 +3841,7 @@ process.BeginOutputReadLine();
         <summary>関連付けられたプロセスに割り当てられたプライベート メモリの量 (バイト単位) を取得します。</summary>
         <value>関連付けられたプロセスに割り当てられ、他のプロセスと共有できないバイト数。</value>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PrivateMemorySize64" />
       </Docs>
     </Member>
@@ -3888,7 +3909,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="PrivilegedProcessorTime">
@@ -3947,7 +3968,7 @@ process.BeginOutputReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.UserProcessorTime" />
         <altmember cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" />
       </Docs>
@@ -4013,7 +4034,7 @@ process.BeginOutputReadLine();
 - または - 
 関連付けられたプロセスが終了しました。</exception>
         <exception cref="T:System.NotSupportedException">プロセスはこのコンピューター上のものではありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.GetProcessesByName(System.String)" />
       </Docs>
     </Member>
@@ -4092,7 +4113,7 @@ process.BeginOutputReadLine();
   
 - または - 
 プロセスが終了しています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="Refresh">
@@ -4146,7 +4167,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="Responding">
@@ -4215,7 +4236,7 @@ process.BeginOutputReadLine();
         </remarks>
         <exception cref="T:System.InvalidOperationException">この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.Responding" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.MainWindowHandle" />
       </Docs>
     </Member>
@@ -4326,7 +4347,7 @@ process.BeginOutputReadLine();
  - または -  
   
  関連付けられたプロセスが、このコンピューター上にありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="StandardError">
@@ -4424,7 +4445,7 @@ process.BeginOutputReadLine();
   
 - または - 
 <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームが、<see cref="M:System.Diagnostics.Process.BeginErrorReadLine" /> を使用した非同期読み取り操作のために開いています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.StandardInput" />
         <altmember cref="P:System.Diagnostics.Process.StandardOutput" />
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" />
@@ -4497,7 +4518,7 @@ process.BeginOutputReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException"><see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" /> が <see langword="false" /> に設定されているため、<see cref="P:System.Diagnostics.Process.StandardInput" /> ストリームが定義されませんでした。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.StandardOutput" />
         <altmember cref="P:System.Diagnostics.Process.StandardError" />
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" />
@@ -4598,7 +4619,7 @@ process.BeginOutputReadLine();
   
 - または - 
 <see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームが、<see cref="M:System.Diagnostics.Process.BeginOutputReadLine" /> を使用した非同期読み取り操作のために開いています。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.StandardInput" />
         <altmember cref="P:System.Diagnostics.Process.StandardError" />
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />
@@ -4694,7 +4715,7 @@ process.BeginOutputReadLine();
         <exception cref="T:System.ComponentModel.Win32Exception">関連付けられているファイルを開いているときにエラーが発生しました。</exception>
         <exception cref="T:System.ObjectDisposedException">プロセス オブジェクトは既には破棄されています。</exception>
         <exception cref="T:System.PlatformNotSupportedException">メソッドはシェルがサポートされていない Nano Server (.NET Core のみ) などのオペレーティング システムではサポートされていません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.StartInfo" />
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.FileName" />
         <altmember cref="T:System.Diagnostics.ProcessStartInfo" />
@@ -4796,7 +4817,7 @@ process.BeginOutputReadLine();
 - または - 
 引数の長さとプロセスへの完全パスの長さの合計が、2080 文字を超えています。 この例外に関連付けられたエラー メッセージは、次のいずれかになります。"システム コールに渡されるデータ領域が小さすぎます" または「アクセスが拒否されました。」</exception>
         <exception cref="T:System.PlatformNotSupportedException">メソッドはシェルがサポートされていない Nano Server (.NET Core のみ) などのオペレーティング システムではサポートされていません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.StartInfo" />
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.FileName" />
         <altmember cref="T:System.Diagnostics.ProcessStartInfo" />
@@ -4886,7 +4907,7 @@ process.BeginOutputReadLine();
 <paramref name="fileName" /> で指定したファイルが見つかりませんでした。</exception>
         <exception cref="T:System.ObjectDisposedException">プロセス オブジェクトは既には破棄されています。</exception>
         <exception cref="T:System.IO.FileNotFoundException">PATH 環境変数に、引用符を含む文字列があります。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.FileName" />
         <altmember cref="P:System.Diagnostics.Process.StartInfo" />
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
@@ -4977,7 +4998,7 @@ process.BeginOutputReadLine();
 引数の長さとプロセスへの完全パスの長さの合計が、2080 文字を超えています。 この例外に関連付けられたエラー メッセージは、次のいずれかになります。"システム コールに渡されるデータ領域が小さすぎます" または「アクセスが拒否されました。」</exception>
         <exception cref="T:System.ObjectDisposedException">プロセス オブジェクトは既には破棄されています。</exception>
         <exception cref="T:System.IO.FileNotFoundException">PATH 環境変数に、引用符を含む文字列があります。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.FileName" />
         <altmember cref="P:System.Diagnostics.Process.StartInfo" />
         <altmember cref="T:System.Diagnostics.ProcessStartInfo" />
@@ -5069,7 +5090,7 @@ process.BeginOutputReadLine();
 <paramref name="fileName" /> で指定したファイルが見つかりませんでした。</exception>
         <exception cref="T:System.ObjectDisposedException">プロセス オブジェクトは既には破棄されています。</exception>
         <exception cref="T:System.PlatformNotSupportedException">このメンバーは Linux または macOS (.NET Core のみ) ではサポートされていません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="Start">
@@ -5153,7 +5174,7 @@ process.BeginOutputReadLine();
 引数の長さと関連ファイルへの完全パスの長さの合計が、2080 文字を超えています。 この例外に関連付けられたエラー メッセージは、次のいずれかになります。"システム コールに渡されるデータ領域が小さすぎます" または「アクセスが拒否されました。」</exception>
         <exception cref="T:System.ObjectDisposedException">プロセス オブジェクトは既には破棄されています。</exception>
         <exception cref="T:System.PlatformNotSupportedException">このメンバーは Linux または macOS (.NET Core のみ) ではサポートされていません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="StartInfo">
@@ -5231,7 +5252,7 @@ process.BeginOutputReadLine();
         </remarks>
         <exception cref="T:System.ArgumentNullException"><see cref="P:System.Diagnostics.Process.StartInfo" /> を指定する値は <see langword="null" /> です。</exception>
         <exception cref="T:System.InvalidOperationException"><see cref="M:System.Diagnostics.Process.Start" /> メソッドはプロセスを開始するために使用されませんでした。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.Start" />
         <altmember cref="P:System.Diagnostics.ProcessStartInfo.FileName" />
       </Docs>
@@ -5287,7 +5308,7 @@ process.BeginOutputReadLine();
   
  プロセスは開始されていません。</exception>
         <exception cref="T:System.ComponentModel.Win32Exception">Windows 関数の呼び出しでエラーが発生しました。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="SynchronizingObject">
@@ -5337,7 +5358,7 @@ process.BeginOutputReadLine();
       </ReturnValue>
       <Docs>
         <summary>プロセス終了イベントの結果として発行されるイベント ハンドラー呼び出しをマーシャリングするために使用するオブジェクトを取得または設定します。</summary>
-        <value>プロセスの <see cref="E:System.Diagnostics.Process.Exited" /> イベントの結果として発行されるイベント ハンドラー呼び出しをマーシャリングするために使用する <see cref="T:System.ComponentModel.ISynchronizeInvoke" />。</value>
+        <value>プロセスの <see cref="T:System.ComponentModel.ISynchronizeInvoke" /> イベントの結果として発行されるイベント ハンドラー呼び出しをマーシャリングするために使用する <see cref="E:System.Diagnostics.Process.Exited" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -5363,7 +5384,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.SynchronizingObject" />
       </Docs>
     </Member>
@@ -5430,7 +5451,7 @@ process.BeginOutputReadLine();
   
 - または - 
 関連付けられたプロセスが終了しました。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="T:System.Diagnostics.ProcessThread" />
         <altmember cref="P:System.Diagnostics.Process.BasePriority" />
       </Docs>
@@ -5479,7 +5500,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
       </Docs>
     </Member>
     <Member MemberName="TotalProcessorTime">
@@ -5538,7 +5559,7 @@ process.BeginOutputReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.TotalProcessorTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.UserProcessorTime" />
         <altmember cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" />
       </Docs>
@@ -5599,7 +5620,7 @@ process.BeginOutputReadLine();
  ]]></format>
         </remarks>
         <exception cref="T:System.NotSupportedException">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.UserProcessorTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.UserProcessorTime" />
         <altmember cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" />
       </Docs>
@@ -5639,7 +5660,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use VirtualMemorySize64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.VirtualMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -5647,6 +5668,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.VirtualMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.VirtualMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -5656,7 +5680,7 @@ process.BeginOutputReadLine();
         <summary>プロセスの仮想メモリのサイズ (バイト単位) を取得します。</summary>
         <value>関連付けられたプロセスが要求した仮想メモリの容量 (バイト単位)。</value>
         <remarks>To be added.</remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.VirtualMemorySize64" />
         <altmember cref="P:System.Diagnostics.Process.PeakVirtualMemorySize64" />
       </Docs>
@@ -5725,7 +5749,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.PeakVirtualMemorySize64" />
       </Docs>
     </Member>
@@ -5805,7 +5829,7 @@ process.BeginOutputReadLine();
   
 - または - 
 リモート コンピューターで実行されているプロセスの <see cref="M:System.Diagnostics.Process.WaitForExit" /> を呼び出そうとしています。 このメソッドはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
         <altmember cref="M:System.Diagnostics.Process.Kill" />
         <altmember cref="P:System.Diagnostics.Process.Handle" />
@@ -5884,7 +5908,7 @@ process.BeginOutputReadLine();
 - または - 
 リモート コンピューターで実行されているプロセスの <see cref="M:System.Diagnostics.Process.WaitForExit(System.Int32)" /> を呼び出そうとしています。 このメソッドはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="milliseconds" /> は無限のタイムアウトを表す -1 以外の負の数です。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
         <altmember cref="M:System.Diagnostics.Process.Kill" />
         <altmember cref="P:System.Diagnostics.Process.Handle" />
@@ -5964,7 +5988,7 @@ process.BeginOutputReadLine();
   
 - または - 
 この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.Start" />
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
       </Docs>
@@ -6028,7 +6052,7 @@ process.BeginOutputReadLine();
   
 - または - 
 この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="M:System.Diagnostics.Process.Start" />
         <altmember cref="M:System.Diagnostics.Process.CloseMainWindow" />
       </Docs>
@@ -6068,7 +6092,7 @@ process.BeginOutputReadLine();
         <Attribute FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0">
           <AttributeName>System.Obsolete("Use WorkingSet64")</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;netframework-4.8;netcore-2.2">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.WorkingSet64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -6076,6 +6100,9 @@ process.BeginOutputReadLine();
         </Attribute>
         <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
           <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.WorkingSet64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
+        </Attribute>
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0">
+          <AttributeName>System.Obsolete("This property has been deprecated.  Please use System.Diagnostics.Process.WorkingSet64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>
@@ -6103,7 +6130,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.MinWorkingSet" />
         <altmember cref="P:System.Diagnostics.Process.MaxWorkingSet" />
         <altmember cref="P:System.Diagnostics.Process.PeakWorkingSet" />
@@ -6177,7 +6204,7 @@ process.BeginOutputReadLine();
   
  ]]></format>
         </remarks>
-        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーは、部分的に信頼されているコードから使用することはできません。</permission>
+        <permission cref="F:System.Security.Permissions.SecurityAction.LinkDemand">直前の呼び出し元に対する完全な信頼の場合。 このメンバーを部分的に信頼されたコードで使用することはできません。</permission>
         <altmember cref="P:System.Diagnostics.Process.MinWorkingSet" />
         <altmember cref="P:System.Diagnostics.Process.MaxWorkingSet" />
         <altmember cref="P:System.Diagnostics.Process.PeakWorkingSet64" />

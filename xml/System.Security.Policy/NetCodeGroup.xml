@@ -1,5 +1,5 @@
 <Type Name="NetCodeGroup" FullName="System.Security.Policy.NetCodeGroup">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b1fbaf25fda7f26c1371a8e71838b5048406cb2d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69163033" /></Metadata><TypeSignature Language="C#" Value="public sealed class NetCodeGroup : System.Security.Policy.CodeGroup" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7a62fe27e62b34e4a10d0884fd8d60f62435c8f4" /><Meta Name="ms.sourcegitcommit" Value="367e1eae0725e6da7136cd073aaa856ded5d5c29" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/13/2019" /><Meta Name="ms.locfileid" Value="75030461" /></Metadata><TypeSignature Language="C#" Value="public sealed class NetCodeGroup : System.Security.Policy.CodeGroup" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit NetCodeGroup extends System.Security.Policy.CodeGroup" />
   <TypeSignature Language="DocId" Value="T:System.Security.Policy.NetCodeGroup" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class NetCodeGroup&#xA;Inherits CodeGroup" />
@@ -38,9 +38,9 @@
 ## Remarks  
  コードグループは、コードアクセスセキュリティポリシーの構成要素です。 各ポリシーレベルは、1つまたは複数の子コードグループを持つことができるルートコードグループで構成されます。 各子コードグループは、独自の子コードグループを持つことができます。この動作は、ツリーを形成する任意の数のレベルに拡張されます。 各コードグループには、そのアセンブリの証拠に基づいて、特定のアセンブリがグループに属しているかどうかを判断するメンバーシップ条件があります。 指定されたアセンブリとその子コードグループに一致するメンバーシップ条件を持つコードグループのみが、コードアクセスセキュリティポリシーを適用します。  
   
- <xref:System.Security.Policy.NetCodeGroup>は、と同じ<xref:System.Security.Policy.UnionCodeGroup>マージセマンティクスを持ちます。これは、一致するすべての<xref:System.Security.Policy.PolicyStatement>子コードグループの<xref:System.Security.Policy.PolicyStatement>オブジェクトと入力<xref:System.Security.Policy.Url>証拠から生成されるオブジェクトの和集合を形成します。 ただし、 <xref:System.Security.Policy.NetCodeGroup>では、コードが実行さ<xref:System.Net.WebPermission>れるサイトへの接続アクセスを許可する動的に計算されたを含むアクセス許可が返されます。<xref:System.Security.Policy.UnionCodeGroup>静的アクセス許可セットを返すだけです。  
+ <xref:System.Security.Policy.NetCodeGroup> には <xref:System.Security.Policy.UnionCodeGroup>と同じマージセマンティクスがあります。一致するすべての子コードグループの <xref:System.Security.Policy.PolicyStatement> オブジェクトと、入力 <xref:System.Security.Policy.Url> 証拠から生成される <xref:System.Security.Policy.PolicyStatement> の和集合を形成します。 ただし、<xref:System.Security.Policy.NetCodeGroup> は、コードが実行されるサイトへの接続アクセスを許可する動的に計算される <xref:System.Net.WebPermission> を含むアクセス許可を返します。<xref:System.Security.Policy.UnionCodeGroup> は、単純に静的アクセス許可セットを返します。  
   
- <xref:System.Security.Policy.NetCodeGroup>が作成されると、次の表に示す既定の接続アクセスルールが含まれます。  
+ <xref:System.Security.Policy.NetCodeGroup> が作成されると、次の表に示す既定の接続アクセスルールが含まれます。  
   
 |URI スキーム|ルール|  
 |----------------|----------|  
@@ -48,7 +48,7 @@
 |http|送信元ポートを使用して HTTP および HTTPS アクセスを許可します。|  
 |https|HTTPS アクセスは、配信元ポートを使用して許可されます。|  
   
- <xref:System.Security.Policy.CodeConnectAccess> <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>適切な<xref:System.Security.Policy.CodeConnectAccess.Scheme%2A>プロパティ値を持つオブジェクトをメソッドに渡すことによって、コードが元のサイトに接続するときに使用できるスキームとポートを制御できます。 <xref:System.Security.Policy.CodeConnectAccess.Port%2A> 送信元スキームが証拠に存在しない場合、またはスキームとして ("") を指定する<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>ことによって認識されない場合に適用される接続アクセス規則を作成できます。 また、スキームとして ("*") を指定<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>することによって、一致するスキームを持つ接続アクセス規則がない場合に適用される接続アクセス規則を作成することもできます。  
+ 適切な <xref:System.Security.Policy.CodeConnectAccess.Scheme%2A> および <xref:System.Security.Policy.CodeConnectAccess.Port%2A> プロパティ値を持つ <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A> メソッドに渡すことによって、コードが元のサイトに接続するときに使用できるスキームとポートを制御できます。 送信元スキームが証拠に存在しない場合、または <xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme> ("") をスキームとして指定することによって認識されない場合に適用される接続アクセス規則を作成できます。 また、スキームとして <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme> ("*") を指定することによって、一致するスキームを持つ接続アクセス規則がない場合に適用される接続アクセス規則を作成することもできます。  
   
 > [!NOTE]
 >  コードによって URI スキームが証拠として送信されない場合、元のサイトに戻る任意のスキームを使用してアクセスが許可されます。  
@@ -56,7 +56,7 @@
    
   
 ## Examples  
- 次のコード例は、を<xref:System.Security.Policy.NetCodeGroup>作成し<xref:System.Security.Policy.CodeConnectAccess> 、HTTP スキームを使用してダウンロードされたコードのオブジェクトを追加する方法を示しています。  
+ 次のコード例は、<xref:System.Security.Policy.NetCodeGroup> を作成し、HTTP スキームを使用してダウンロードされたコードの <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを追加する方法を示しています。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -96,7 +96,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Policy.NetCodeGroup>が作成されると、次の表に示す既定の接続アクセスルールが含まれます。  
+ <xref:System.Security.Policy.NetCodeGroup> が作成されると、次の表に示す既定の接続アクセスルールが含まれます。  
   
 |Scheme|ルール|  
 |------------|----------|  
@@ -107,7 +107,7 @@
    
   
 ## Examples  
- 次のコード例は、を<xref:System.Security.Policy.NetCodeGroup>作成し<xref:System.Security.Policy.CodeConnectAccess> 、HTTP スキームを使用してダウンロードされたコードのオブジェクトを追加する方法を示しています。  
+ 次のコード例は、<xref:System.Security.Policy.NetCodeGroup> を作成し、HTTP スキームを使用してダウンロードされたコードの <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを追加する方法を示しています。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
@@ -147,11 +147,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>メソッドを呼び出すときに、スキームと関連付けられ<xref:System.Security.Policy.CodeConnectAccess>たオブジェクトを指定します。 オリジンスキームとし<xref:System.Security.Policy.NetCodeGroup>てを使用し<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>てに追加した<xref:System.Security.Policy.NetCodeGroup> オブジェクトは、コードのオリジンスキーマが証拠に存在しない場合、またはオブジェクトによって認識されるスキームではない場合に適用<xref:System.Security.Policy.CodeConnectAccess>されます。  
+ <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A> メソッドを呼び出す場合は、スキームと、関連付けられた <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを指定します。 オリジンスキームとして <xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme> を使用して <xref:System.Security.Policy.NetCodeGroup> に追加した <xref:System.Security.Policy.CodeConnectAccess> オブジェクトは、コードの元のスキームが証拠に存在しない場合、または <xref:System.Security.Policy.NetCodeGroup> オブジェクトによって認識されるスキームではない場合に適用されます。  
   
- コードの元<xref:System.Security.Policy.CodeConnectAccess>のスキームが、現在<xref:System.Security.Policy.NetCodeGroup>のオブジェクトに追加された元のスキームのセットに含まれるスキームのいずれとも一致しない場合に使用<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>するオブジェクトを指定するには、値を使用します。  
+ コードのオリジンスキームが、現在の <xref:System.Security.Policy.NetCodeGroup> オブジェクトに追加された元のスキームのセットに含まれるスキームと一致しない場合に使用する <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを指定するには、<xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme> 値を使用します。  
   
- <xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>フィールドの値が空の文字列 ("") です。  
+ <xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme> フィールドの値が空の文字列 ("") です。  
   
  ]]></format>
         </remarks>
@@ -181,8 +181,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="originScheme" Type="System.String" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="connectAccess" Type="System.Security.Policy.CodeConnectAccess" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="originScheme" Type="System.String" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="connectAccess" Type="System.Security.Policy.CodeConnectAccess" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="originScheme">コードのスキームに一致するスキームを含む <see cref="T:System.String" />。</param>
@@ -192,19 +192,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Policy.CodeConnectAccess> 同じ`origin scheme`に対して複数のオブジェクトを追加できます。 に既に1つ以上のオブジェクト<xref:System.Security.Policy.CodeConnectAccess>が関連付けられ`connectAccess`ている場合、にを指定`null`しても効果はありません。 `origin scheme` 元のスキームに<xref:System.Security.Policy.CodeConnectAccess>関連付けられたオブジェクトがない場合、に`connectAccess`を指定`null`すると、 `originScheme`元のスキーマが一致するコードが元のサーバーにアクセスできなくなります。  
+ 同じ `origin scheme`に複数の <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを追加できます。 `origin scheme` に1つ以上の関連する <xref:System.Security.Policy.CodeConnectAccess> オブジェクトが既に存在する場合、`connectAccess` に `null` を指定しても効果はありません。 オリジンスキームに <xref:System.Security.Policy.CodeConnectAccess> オブジェクトが関連付けられていない場合、`connectAccess` に `null` を指定すると、`originScheme` に一致する元のスキームのコードでは、元のサーバーにアクセスできなくなります。  
   
    
   
 ## Examples  
- <xref:System.Security.Policy.CodeConnectAccess> オブジェクト<xref:System.Security.Policy.NetCodeGroup>を作成してに追加するコード例を次に示します。  
+ 次のコード例は、<xref:System.Security.Policy.CodeConnectAccess> オブジェクトを作成し、<xref:System.Security.Policy.NetCodeGroup>に追加する方法を示しています。  
   
  [!code-cpp[NclCodeGroup#3](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#3)]
  [!code-csharp[NclCodeGroup#3](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#3)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="originScheme" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="originScheme" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="originScheme" /> には、スキームで許可されていない文字が含まれています。  
   
 - または - 
@@ -240,13 +240,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A>メソッドを呼び出すときに、スキームと関連付けられ<xref:System.Security.Policy.CodeConnectAccess>たオブジェクトを指定します。 <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>フィールドの値を使用して、現在<xref:System.Security.Policy.NetCodeGroup>のオブジェクト<xref:System.Security.Policy.CodeConnectAccess>に追加された元のスキームのセットに明示的に含まれていない任意のスキームに使用するオブジェクトを指定できます。  
+ <xref:System.Security.Policy.NetCodeGroup.AddConnectAccess%2A> メソッドを呼び出す場合は、スキームと、関連付けられた <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを指定します。 <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme> フィールドの値を使用して、現在の <xref:System.Security.Policy.NetCodeGroup> オブジェクトに追加された元のスキームのセットに明示的に含まれていない任意のスキームに使用する <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを指定できます。  
   
- フィールドで指定された<xref:System.Security.Policy.NetCodeGroup> オブジェクトは、コードの元のスキームが、現在のオブジェクトに追加された元のスキームのセットに含まれているスキームのいずれとも一致しない場合にのみ使用されます。<xref:System.Security.Policy.CodeConnectAccess> <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>  
+ <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme> フィールドで指定された <xref:System.Security.Policy.CodeConnectAccess> オブジェクトは、コードの元のスキームが、現在の <xref:System.Security.Policy.NetCodeGroup> オブジェクトに追加された元のスキームのセットに含まれているスキームのいずれとも一致しない場合にのみ使用されます。  
   
- コードのオリジン<xref:System.Security.Policy.CodeConnectAccess>スキーマが証拠で利用できない場合、または認識されない場合に適用するオブジェクトを指定<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme>するには、値を使用します。  
+ コードのオリジンスキーマが証拠で利用できない場合、または認識されない場合に適用する <xref:System.Security.Policy.CodeConnectAccess> オブジェクトを指定するには、<xref:System.Security.Policy.NetCodeGroup.AbsentOriginScheme> 値を使用します。  
   
- <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme>フィールドの値は "*" です。  
+ <xref:System.Security.Policy.NetCodeGroup.AnyOtherOriginScheme> フィールドの値は "*" です。  
   
  ]]></format>
         </remarks>
@@ -354,8 +354,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="element" Type="System.Security.SecurityElement" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="level" Type="System.Security.Policy.PolicyLevel" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="element" Type="System.Security.SecurityElement" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="level" Type="System.Security.Policy.PolicyLevel" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="element">To be added.</param>
@@ -393,7 +393,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="o" Type="System.Object" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="o" Type="System.Object" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="o">現在のコード グループと比較する <see cref="T:System.Security.Policy.NetCodeGroup" /> オブジェクト。</param>
@@ -403,13 +403,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 次のデータは、2つ<xref:System.Security.Policy.NetCodeGroup>のオブジェクトが等しいかどうかを判断するために使用されます。  
+ 次のデータは、2つの <xref:System.Security.Policy.NetCodeGroup> オブジェクトが等しいかどうかを判断するために使用されます。  
   
--   プロパティ<xref:System.Security.Policy.CodeGroup.Name%2A> と<xref:System.Security.Policy.CodeGroup.Description%2A>プロパティ。  
+-   <xref:System.Security.Policy.CodeGroup.Name%2A> プロパティと <xref:System.Security.Policy.CodeGroup.Description%2A> プロパティ。  
   
 -   <xref:System.Security.Policy.CodeGroup.MembershipCondition%2A> プロパティ。  
   
--   元のスキームと関連付けられ<xref:System.Security.Policy.CodeConnectAccess>たオブジェクトのセット。  
+-   元のスキームのセットと関連付けられている <xref:System.Security.Policy.CodeConnectAccess> オブジェクト。  
   
  ]]></format>
         </remarks>
@@ -446,12 +446,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 各ディクショナリエントリ<xref:System.Collections.DictionaryEntry.Key%2A>では、プロパティ値はオリジンスキーム<xref:System.Collections.DictionaryEntry.Value%2A>であり、プロパティ値は関連付けられた<xref:System.Security.Policy.CodeConnectAccess>オブジェクトの配列です。 オブジェクトが関連付けられ<xref:System.Security.Policy.CodeConnectAccess>てい<xref:System.Collections.DictionaryEntry.Value%2A?displayProperty=nameWithType>ない場合は、空の配列を返します。  
+ 各ディクショナリエントリでは、<xref:System.Collections.DictionaryEntry.Key%2A> プロパティ値はオリジンスキームであり、<xref:System.Collections.DictionaryEntry.Value%2A> プロパティ値は、関連付けられた <xref:System.Security.Policy.CodeConnectAccess> オブジェクトの配列です。 <xref:System.Security.Policy.CodeConnectAccess> オブジェクトが関連付けられていない場合、<xref:System.Collections.DictionaryEntry.Value%2A?displayProperty=nameWithType> は空の配列を返します。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Security.Policy.NetCodeGroup>オブジェクトの接続アクセス規則を表示する方法を示しています。  
+ 次のコード例は、<xref:System.Security.Policy.NetCodeGroup> オブジェクトの接続アクセス規則を表示する方法を示しています。  
   
  [!code-cpp[NclCodeGroup#8](~/samples/snippets/cpp/VS_Snippets_Remoting/NclCodeGroup/cpp/sample.cpp#8)]
  [!code-csharp[NclCodeGroup#8](~/samples/snippets/csharp/VS_Snippets_Remoting/NclCodeGroup/CS/sample.cs#8)]  
@@ -550,8 +550,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="e" Type="System.Security.SecurityElement" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="level" Type="System.Security.Policy.PolicyLevel" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="e" Type="System.Security.SecurityElement" Index="0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="level" Type="System.Security.Policy.PolicyLevel" Index="1" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="e">To be added.</param>
@@ -690,7 +690,7 @@
   
  このメソッドの操作は次のとおりです。  
   
- メンバーシップ条件が指定した証拠と一致しない場合`null`はを返します。それ以外の場合は、返されるアクセス許可セット (P) をコードグループのポリシーステートメントと同じに設定し、続行します。 各子コードグループについて、同じ証拠でコードグループを解決します。結果がでない`null`場合は、そのポリシーステートメントを返します。 一致する子コードグループがない場合は、P (親のポリシーステートメント) を返します。  
+ メンバーシップ条件が指定した証拠と一致しない場合は `null`を返します。それ以外の場合は、コードグループのポリシーステートメントと等しいアクセス許可セット (P) を設定し、続行します。 各子コードグループについて、同じ証拠でコードグループを解決します。結果が `null`ない場合は、そのポリシーステートメントを返します。 一致する子コードグループがない場合は、P (親のポリシーステートメント) を返します。  
   
  ]]></format>
         </remarks>
