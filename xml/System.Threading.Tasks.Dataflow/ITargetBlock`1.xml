@@ -1,5 +1,5 @@
 <Type Name="ITargetBlock&lt;TInput&gt;" FullName="System.Threading.Tasks.Dataflow.ITargetBlock&lt;TInput&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d3a9796c2127440691212bcdcfc5e2edefdb5acd" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230094" /></Metadata><TypeSignature Language="C#" Value="public interface ITargetBlock&lt;in TInput&gt; : System.Threading.Tasks.Dataflow.IDataflowBlock" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0f742c0fc50d2ce442ca5f5d87ed422dc58c78e3" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75117646" /></Metadata><TypeSignature Language="C#" Value="public interface ITargetBlock&lt;in TInput&gt; : System.Threading.Tasks.Dataflow.IDataflowBlock" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITargetBlock`1&lt;- TInput&gt; implements class System.Threading.Tasks.Dataflow.IDataflowBlock" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.Dataflow.ITargetBlock`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface ITargetBlock(Of In TInput)&#xA;Implements IDataflowBlock" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.6.2.0</AssemblyVersion>
     <AssemblyVersion>4.6.3.0</AssemblyVersion>
     <AssemblyVersion>4.6.4.0</AssemblyVersion>
+    <AssemblyVersion>4.6.5.0</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
     <TypeParameter Name="TInput">
@@ -28,7 +29,7 @@
   </Interfaces>
   <Docs>
     <typeparam name="TInput"><see cref="T:System.Threading.Tasks.Dataflow.ITargetBlock`1" /> によって許容されるデータの種類を指定します。</typeparam>
-    <summary>データのターゲットであるデータ フロー ブロックを表します。</summary>
+    <summary>データのターゲットであるデータフロー ブロックを表します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -55,6 +56,7 @@
         <AssemblyVersion>4.6.2.0</AssemblyVersion>
         <AssemblyVersion>4.6.3.0</AssemblyVersion>
         <AssemblyVersion>4.6.4.0</AssemblyVersion>
+        <AssemblyVersion>4.6.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.Tasks.Dataflow.DataflowMessageStatus</ReturnType>
@@ -69,7 +71,7 @@
         <param name="messageHeader">提供されるメッセージのヘッダーを表す <see cref="T:System.Threading.Tasks.Dataflow.DataflowMessageHeader" /> インスタンス。</param>
         <param name="messageValue">提供されるメッセージの値。</param>
         <param name="source">メッセージを提供している <see cref="T:System.Threading.Tasks.Dataflow.ISourceBlock`1" />。 null でもかまいません。</param>
-        <param name="consumeToAccept">メッセージを使用するために、<see cref="M:System.Threading.Tasks.Dataflow.ISourceBlock`1.ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Boolean@)" /> を返す前に <see cref="M:System.Threading.Tasks.Dataflow.ITargetBlock`1.OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Boolean)" /> の呼び出し中に <see cref="F:System.Threading.Tasks.Dataflow.DataflowMessageStatus.Accepted" /> を同期的に呼び出すようにターゲットに指示する場合は、<see langword="true" /> に設定します。</param>
+        <param name="consumeToAccept">メッセージを使用するために、<see langword="true" /> を返す前に <see cref="M:System.Threading.Tasks.Dataflow.ISourceBlock`1.ConsumeMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,System.Threading.Tasks.Dataflow.ITargetBlock{`0},System.Boolean@)" /> の呼び出し中に <see cref="M:System.Threading.Tasks.Dataflow.ITargetBlock`1.OfferMessage(System.Threading.Tasks.Dataflow.DataflowMessageHeader,`0,System.Threading.Tasks.Dataflow.ISourceBlock{`0},System.Boolean)" /> を同期的に呼び出すようにターゲットに指示する場合は、<see cref="F:System.Threading.Tasks.Dataflow.DataflowMessageStatus.Accepted" /> に設定します。</param>
         <summary>メッセージを <see cref="T:System.Threading.Tasks.Dataflow.ITargetBlock`1" /> に提供し、メッセージを使用または延期する機会をターゲットに与えます。</summary>
         <returns>提供されたメッセージのステータス。 メッセージがターゲットによって受け入れられた場合は、<see cref="F:System.Threading.Tasks.Dataflow.DataflowMessageStatus.Accepted" /> が返されます。メッセージはターゲットに所有されるようになったので、ソースは提供されたメッセージを使用しないようにする必要があります。 メッセージがターゲットによって延期された場合、ターゲットが後でメッセージの使用または予約を試みる可能性があることを示す通知として <see cref="F:System.Threading.Tasks.Dataflow.DataflowMessageStatus.Postponed" /> が返されます。その間、ソースはそのメッセージを引き続き所有し、他のブロックに提供する可能性があります。  
   

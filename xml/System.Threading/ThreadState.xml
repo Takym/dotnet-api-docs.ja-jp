@@ -1,5 +1,5 @@
 <Type Name="ThreadState" FullName="System.Threading.ThreadState">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="091d316ec58a7025e2b2fb8f1c5aeae7df0683be" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69143757" /></Metadata><TypeSignature Language="C#" Value="public enum ThreadState" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="23959ef85d5ad188c16d74a7d67f6b04d5de4410" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75115059" /></Metadata><TypeSignature Language="C#" Value="public enum ThreadState" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed ThreadState extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Threading.ThreadState" />
   <TypeSignature Language="VB.NET" Value="Public Enum ThreadState" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -27,7 +28,7 @@
     <BaseTypeName>System.Enum</BaseTypeName>
   </Base>
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.Flags</AttributeName>
     </Attribute>
     <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -43,37 +44,37 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
-  列挙`ThreadState`体は、スレッドに対して可能なすべての実行状態のセットを定義します。 これは、いくつかのデバッグシナリオでのみ重要です。 スレッドの動作を同期するために、コードでスレッドの状態を使用しないでください。  
+  `ThreadState` 列挙体は、スレッドに対して可能なすべての実行状態のセットを定義します。 これは、いくつかのデバッグシナリオでのみ重要です。 スレッドの動作を同期するために、コードでスレッドの状態を使用しないでください。  
   
-  スレッドが作成されると、スレッドは終了するまで、少なくとも1つの状態になります。 共通言語ランタイム内で作成されたスレッドは<xref:System.Threading.ThreadState.Unstarted> 、最初は状態になりますが、外部またはアンマネージスレッドは、ランタイム<xref:System.Threading.ThreadState.Running>に渡されるスレッドは既に状態にあります。 を呼び出す<xref:System.Threading.ThreadState.Unstarted> <xref:System.Threading.ThreadState.Running> ことによって、スレッドが状態から状態に<xref:System.Threading.Thread.Start%2A?displayProperty=nameWithType>遷移します。 スレッドは、 <xref:System.Threading.ThreadState.Unstarted> への呼び出しの結果として <xref:System.Threading.Thread.Start%2A>状態から出ると、 <xref:System.Threading.ThreadState.Unstarted> 状態に戻ることはできません。  
+  スレッドが作成されると、スレッドは終了するまで、少なくとも1つの状態になります。 共通言語ランタイム内で作成されたスレッドは、初期状態では <xref:System.Threading.ThreadState.Unstarted> 状態になりますが、外部またはアンマネージスレッドは、ランタイムに入るスレッドは既に <xref:System.Threading.ThreadState.Running> 状態にあります。 スレッドは <xref:System.Threading.Thread.Start%2A?displayProperty=nameWithType>を呼び出すことによって、<xref:System.Threading.ThreadState.Unstarted> 状態から <xref:System.Threading.ThreadState.Running> 状態に遷移します。 スレッドは、 <xref:System.Threading.ThreadState.Unstarted> への呼び出しの結果として <xref:System.Threading.Thread.Start%2A>状態から出ると、 <xref:System.Threading.ThreadState.Unstarted> 状態に戻ることはできません。  
 
-  スレッドは、特定の時点で複数の状態になることがあります。 たとえば<xref:System.Threading.Monitor.Wait%2A?displayProperty=nameWithType>、の呼び出しでスレッドがブロックされ、別のスレッドがブロックされたスレッドでを呼び出す<xref:System.Threading.Thread.Abort%2A?displayProperty=nameWithType>場合、ブロックさ<xref:System.Threading.ThreadState.WaitSleepJoin>れたスレッド<xref:System.Threading.ThreadState.AbortRequested>はとの両方の状態になります。 この場合、スレッドがの呼び出し<xref:System.Threading.Monitor.Wait%2A?displayProperty=nameWithType>から戻るか、中断されるとすぐに、の<xref:System.Threading.ThreadAbortException>中止を開始するを受け取ります。 値のすべての`ThreadState`組み合わせが有効であるとは限りません。たとえば、スレッド<xref:System.Threading.ThreadState.Aborted>が<xref:System.Threading.ThreadState.Unstarted>状態と状態の両方になることはできません。  
+  スレッドは、特定の時点で複数の状態になることがあります。 たとえば、<xref:System.Threading.Monitor.Wait%2A?displayProperty=nameWithType>への呼び出しでスレッドがブロックされ、別のスレッドがブロックされたスレッドで <xref:System.Threading.Thread.Abort%2A?displayProperty=nameWithType> を呼び出すと、ブロックされたスレッドは同時に <xref:System.Threading.ThreadState.WaitSleepJoin> と <xref:System.Threading.ThreadState.AbortRequested> の両方の状態になります。 この場合、スレッドが <xref:System.Threading.Monitor.Wait%2A?displayProperty=nameWithType> への呼び出しから戻るか、中断されるとすぐに、中止を開始する <xref:System.Threading.ThreadAbortException> が返されます。 `ThreadState` 値のすべての組み合わせが有効であるとは限りません。たとえば、スレッドを <xref:System.Threading.ThreadState.Aborted> と <xref:System.Threading.ThreadState.Unstarted> の両方の状態にすることはできません。  
 
   また、スレッドは <xref:System.Threading.ThreadState.Stopped> 状態から出ることはできません。  
   
 > [!IMPORTANT]
-> スレッド状態の列挙体<xref:System.Threading.ThreadState?displayProperty=nameWithType>には、と<xref:System.Diagnostics.ThreadState?displayProperty=nameWithType>の2つがあります。  
+> スレッド状態の列挙体には、<xref:System.Threading.ThreadState?displayProperty=nameWithType> と <xref:System.Diagnostics.ThreadState?displayProperty=nameWithType>の2つがあります。  
   
  次の表に、状態の変更を引き起こすアクションを示します。  
   
-|アクション|ThreadState|  
+|操作|ThreadState|  
 |------------|-----------------|  
 |スレッドは、共通言語ランタイム内で作成されます。|<xref:System.Threading.ThreadState.Unstarted>|  
-|別のスレッドが<xref:System.Threading.Thread.Start%2A?displayProperty=nameWithType>新しいスレッドでメソッドを呼び出すと、が返されます。<br /><br /> メソッド<xref:System.Threading.Thread.Start%2A>は、新しいスレッドが実行を開始するまでは戻りません。 の呼び出し<xref:System.Threading.Thread.Start%2A>中に、新しいスレッドがどの時点で実行を開始するかを知る方法はありません。|<xref:System.Threading.ThreadState.Running>|  
-|スレッドがを呼び出します。<xref:System.Threading.Thread.Sleep%2A>|<xref:System.Threading.ThreadState.WaitSleepJoin>|  
+|別のスレッドが新しいスレッドで <xref:System.Threading.Thread.Start%2A?displayProperty=nameWithType> メソッドを呼び出すと、呼び出しはを返します。<br /><br /> <xref:System.Threading.Thread.Start%2A> メソッドは、新しいスレッドが実行を開始するまでは戻りません。 <xref:System.Threading.Thread.Start%2A>の呼び出し中に、新しいスレッドがどの時点で実行を開始するかを知る方法はありません。|<xref:System.Threading.ThreadState.Running>|  
+|スレッドはを呼び出し <xref:System.Threading.Thread.Sleep%2A>|<xref:System.Threading.ThreadState.WaitSleepJoin>|  
 |スレッドが別のオブジェクトで <xref:System.Threading.Monitor.Wait%2A?displayProperty=nameWithType> を呼び出す。|<xref:System.Threading.ThreadState.WaitSleepJoin>|  
 |スレッドが別のスレッドで <xref:System.Threading.Thread.Join%2A> を呼び出す。|<xref:System.Threading.ThreadState.WaitSleepJoin>|  
-|別のスレッド呼び出し<xref:System.Threading.Thread.Interrupt%2A>|<xref:System.Threading.ThreadState.Running>|  
-|別のスレッド呼び出し<xref:System.Threading.Thread.Suspend%2A>|<xref:System.Threading.ThreadState.SuspendRequested>|  
+|別のスレッドがを呼び出す <xref:System.Threading.Thread.Interrupt%2A>|<xref:System.Threading.ThreadState.Running>|  
+|別のスレッドがを呼び出す <xref:System.Threading.Thread.Suspend%2A>|<xref:System.Threading.ThreadState.SuspendRequested>|  
 |スレッドが <xref:System.Threading.Thread.Suspend%2A> 要求に応答する。|<xref:System.Threading.ThreadState.Suspended>|  
-|別のスレッド呼び出し<xref:System.Threading.Thread.Resume%2A>|<xref:System.Threading.ThreadState.Running>|  
-|別のスレッド呼び出し<xref:System.Threading.Thread.Abort%2A>|<xref:System.Threading.ThreadState.AbortRequested>|  
-|スレッドが<xref:System.Threading.Thread.Abort%2A>要求に応答します。|<xref:System.Threading.ThreadState.Stopped>|  
+|別のスレッドがを呼び出す <xref:System.Threading.Thread.Resume%2A>|<xref:System.Threading.ThreadState.Running>|  
+|別のスレッドがを呼び出す <xref:System.Threading.Thread.Abort%2A>|<xref:System.Threading.ThreadState.AbortRequested>|  
+|スレッドが <xref:System.Threading.Thread.Abort%2A> 要求に応答します。|<xref:System.Threading.ThreadState.Stopped>|  
 |スレッドが終了しました。|<xref:System.Threading.ThreadState.Stopped>|  
   
- 上記の状態に加えて、スレッドがバックグラウンドとフォアグラウンド<xref:System.Threading.ThreadState.Background>のどちらで実行されているかを示す状態もあります。 詳細については、「[フォアグラウンド スレッドとバックグラウンド スレッド](~/docs/standard/threading/foreground-and-background-threads.md)」を参照してください。  
+ 上記の状態に加えて、スレッドがバックグラウンドとフォアグラウンドのどちらで実行されているかを示す <xref:System.Threading.ThreadState.Background> 状態もあります。 詳細については、「[フォアグラウンド スレッドとバックグラウンド スレッド](~/docs/standard/threading/foreground-and-background-threads.md)」を参照してください。  
    
- スレッド<xref:System.Threading.Thread.ThreadState%2A?displayProperty=nameWithType>のプロパティは、スレッドの現在の状態を提供します。 アプリケーションは、スレッドが実行されているかどうかを判断するためにビットマスクを使用する必要があります。 の<xref:System.Threading.ThreadState.Running>値がゼロ (0) であるため、スレッドが次のコードで実行されているかどうかをテストします。
+ スレッドの <xref:System.Threading.Thread.ThreadState%2A?displayProperty=nameWithType> プロパティは、スレッドの現在の状態を提供します。 アプリケーションは、スレッドが実行されているかどうかを判断するためにビットマスクを使用する必要があります。 <xref:System.Threading.ThreadState.Running> の値がゼロ (0) であるため、スレッドが次のコードで実行されているかどうかをテストします。
 
 ```csharp
 (myThread.ThreadState & (ThreadState.Stopped | ThreadState.Unstarted)) == 0
@@ -101,6 +102,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -135,6 +137,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -169,6 +172,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -203,6 +207,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -237,6 +242,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -271,6 +277,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -305,6 +312,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -339,6 +347,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -373,6 +382,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -407,6 +417,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
