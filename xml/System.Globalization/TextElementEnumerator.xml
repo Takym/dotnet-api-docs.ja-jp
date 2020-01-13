@@ -1,5 +1,5 @@
 <Type Name="TextElementEnumerator" FullName="System.Globalization.TextElementEnumerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0838f7ad92cf5191b15275b5370a9120bc2435d3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69245678" /></Metadata><TypeSignature Language="C#" Value="public class TextElementEnumerator : System.Collections.IEnumerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="60ff4b97ab9d06c173eb311d7b5d72d260a4c400" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75133493" /></Metadata><TypeSignature Language="C#" Value="public class TextElementEnumerator : System.Collections.IEnumerator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit TextElementEnumerator extends System.Object implements class System.Collections.IEnumerator" />
   <TypeSignature Language="DocId" Value="T:System.Globalization.TextElementEnumerator" />
   <TypeSignature Language="VB.NET" Value="Public Class TextElementEnumerator&#xA;Implements IEnumerator" />
@@ -26,6 +26,7 @@
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -51,32 +52,32 @@
 ## Remarks  
  .NET Framework は、テキスト要素を1つの文字 (書記素) として表示されるテキストの単位として定義します。 テキスト要素には、次のいずれかを指定できます。  
   
--   1つ<xref:System.Char>の値として表される基本文字。 たとえば、ラテン文字の大文字 A (U + 0041 という) とラテン小文字 AE (U + 00E6) は基本文字です。  
+-   1つの <xref:System.Char> 値として表される基本文字。 たとえば、ラテン文字の大文字 A (U + 0041 という) とラテン小文字 AE (U + 00E6) は基本文字です。  
   
 -   基本文字と1つ以上の組み合わせ文字で構成される結合文字シーケンス。 たとえば、例として、LATIN の大文字 A (U + 0041 という) と、MACRON (U + 0304) を組み合わせた文字のシーケンスがあります。  
   
 -   サロゲートペア。 [Unicode 標準](https://go.microsoft.com/fwlink/?linkid=37123)では、上位サロゲートと下位サロゲートという2つのコード単位のシーケンスで構成される単一の抽象文字のコード化された文字表現として定義されます。 サロゲートペアは、UTF-16 でエンコードされた文字として、Unicode 基本多言語プレーン以外の文字を表すために使用されます。 たとえば、ゴシック文字の SAUIL (U + 10343) は、値が0xD800 で下位サロゲートで、値が0xDF43 である上位サロゲートとして UTF-16 エンコードで表されます。 サロゲートペアは、基本文字または組み合わせ文字を表すことができます。  
   
- クラスを使用すると、単一<xref:System.Char>のオブジェクトではなく、文字列のテキスト要素を操作できます。 <xref:System.Globalization.TextElementEnumerator>  
+ <xref:System.Globalization.TextElementEnumerator> クラスを使用すると、単一の <xref:System.Char> オブジェクトではなく、文字列のテキスト要素を操作できます。  
   
- 文字列を<xref:System.Globalization.StringInfo.GetTextElementEnumerator%2A?displayProperty=nameWithType>メソッド<xref:System.Globalization.TextElementEnumerator>に渡すことによって、特定の文字列を表すオブジェクトをインスタンス化します。 これにより、文字列内の最初のテキスト要素の前に配置された列挙子が返されます。 また、 <xref:System.Globalization.TextElementEnumerator.Reset%2A>メソッドを呼び出すと、列挙子がこの位置に戻ります。 これは無効な状態を表して<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> <xref:System.Globalization.TextElementEnumerator.Current%2A>いるため、を呼び出して、列挙子を文字列の最初のテキスト要素に進めてから、プロパティの値を読み取って現在のテキスト要素を返す必要があります。  
+ 文字列を <xref:System.Globalization.StringInfo.GetTextElementEnumerator%2A?displayProperty=nameWithType> メソッドに渡すことによって、特定の文字列を表す <xref:System.Globalization.TextElementEnumerator> オブジェクトをインスタンス化します。 これにより、文字列内の最初のテキスト要素の前に配置された列挙子が返されます。 <xref:System.Globalization.TextElementEnumerator.Reset%2A> メソッドを呼び出すと、列挙子もこの位置に戻ります。 これは無効な状態を表しているため、<xref:System.Globalization.TextElementEnumerator.Current%2A> プロパティの値を読み取って現在のテキスト要素を返す前に、<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> を呼び出して、列挙子を文字列の最初のテキスト要素に進めます。  
   
- <xref:System.Globalization.TextElementEnumerator>オブジェクトを使用する場合は、列挙子を配置する必要があります。 プロパティは、または<xref:System.Globalization.TextElementEnumerator.Reset%2A>のいずれか<xref:System.Globalization.TextElementEnumerator.MoveNext%2A>を呼び出すまで、同じテキスト要素を返します。 <xref:System.Globalization.TextElementEnumerator.Current%2A> 列挙子は、最初のテキスト要素の前、または文字列内の最後のテキスト要素の後に配置されている場合、無効な状態になります。 列挙子の状態が無効である場合、 <xref:System.Globalization.TextElementEnumerator.Current%2A>プロパティの値を取得しようとすると例外がスローされます。 <xref:System.Globalization.TextElementEnumerator.MoveNext%2A>プロパティの戻り値が`false`であるかどうかをテストすることで、列挙子が無効な状態であるかどうかを確認できます。  
+ <xref:System.Globalization.TextElementEnumerator> オブジェクトを使用する場合は、列挙子を配置する必要があります。 <xref:System.Globalization.TextElementEnumerator.Current%2A> プロパティは、<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> または <xref:System.Globalization.TextElementEnumerator.Reset%2A>のいずれかを呼び出すまで、同じテキスト要素を返します。 列挙子は、最初のテキスト要素の前、または文字列内の最後のテキスト要素の後に配置されている場合、無効な状態になります。 列挙子が無効な状態にある場合、<xref:System.Globalization.TextElementEnumerator.Current%2A> プロパティの値を取得しようとすると、例外がスローされます。 <xref:System.Globalization.TextElementEnumerator.MoveNext%2A> プロパティの戻り値が `false`かどうかをテストすることで、列挙子が無効な状態であるかどうかを確認できます。  
   
- オブジェクトは、 <xref:System.Globalization.TextElementEnumerator>オブジェクトがインスタンス化される時点での文字列変数または文字列リテラルの現在の状態のスナップショットを表します。 <xref:System.Globalization.TextElementEnumerator> 次の点に注意してください。  
+ <xref:System.Globalization.TextElementEnumerator> オブジェクトは、<xref:System.Globalization.TextElementEnumerator> オブジェクトがインスタンス化された時点での文字列変数または文字列リテラルの現在の状態のスナップショットを表します。 次の点に注意してください。  
   
 -   テキスト要素の列挙子は、文字列内のデータの読み取りにのみ使用できます。 基になる文字列を変更することはできません。  
   
 -   列挙子には、それが表す文字列への排他アクセス権がありません。 文字列変数は、列挙子の作成後に変更できます。  
   
--   オブジェクトは、 <xref:System.Globalization.TextElementEnumerator>オブジェクトがインスタンス化されたときに文字列内に存在するテキスト要素を列挙します。 <xref:System.Globalization.TextElementEnumerator> 後でその変数が変更された場合、文字列変数に対する後続の変更は反映されません。  
+-   <xref:System.Globalization.TextElementEnumerator> オブジェクトは、<xref:System.Globalization.TextElementEnumerator> オブジェクトがインスタンス化されたときに文字列に存在するテキスト要素を列挙します。 後でその変数が変更された場合、文字列変数に対する後続の変更は反映されません。  
   
--   クラスはをオーバーライド<xref:System.Object.Equals%2A?displayProperty=nameWithType>しないため、 <xref:System.Globalization.TextElementEnumerator>同じ文字列を表す2つのオブジェクトが等しくないと見なされます。 <xref:System.Globalization.TextElementEnumerator>  
+-   <xref:System.Globalization.TextElementEnumerator> クラスは <xref:System.Object.Equals%2A?displayProperty=nameWithType>をオーバーライドしないため、同じ文字列を表す2つの <xref:System.Globalization.TextElementEnumerator> オブジェクトは等しくないと見なされます。  
   
    
   
 ## Examples  
- 次の例では<xref:System.Globalization.TextElementEnumerator> 、クラスを使用して、文字列のテキスト要素を列挙します。  
+ 次の例では、<xref:System.Globalization.TextElementEnumerator> クラスを使用して、文字列のテキスト要素を列挙します。  
   
  [!code-cpp[System.Globalization.TextElementEnumerator.Summary#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Globalization.TextElementEnumerator.Summary/CPP/tee_summary.cpp#1)]
  [!code-csharp[System.Globalization.TextElementEnumerator.Summary#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Globalization.TextElementEnumerator.Summary/CS/tee_summary.cs#1)]
@@ -119,6 +120,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -130,11 +132,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 列挙子が作成された後<xref:System.Globalization.TextElementEnumerator.Reset%2A> 、または<xref:System.Globalization.TextElementEnumerator.MoveNext%2A>が呼び出された後、の<xref:System.Globalization.TextElementEnumerator.Current%2A>値を読み取る前に、を呼び出して、列挙子を文字列の最初のテキスト要素に進める必要があります。 それ以外<xref:System.Globalization.TextElementEnumerator.Current%2A>の場合、は定義されていません。  
+ 列挙子が作成された後、または <xref:System.Globalization.TextElementEnumerator.Reset%2A> が呼び出された後に、<xref:System.Globalization.TextElementEnumerator.Current%2A>の値を読み取る前に、<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> を呼び出して、列挙子を文字列の最初のテキスト要素に進める必要があります。 それ以外の場合、<xref:System.Globalization.TextElementEnumerator.Current%2A> は定義されていません。  
   
- <xref:System.Globalization.TextElementEnumerator.Current%2A>また、は、文字列の末尾を示す<xref:System.Globalization.TextElementEnumerator.MoveNext%2A>最後`false`の呼び出しが返された場合にも例外をスローします。  
+ また <xref:System.Globalization.TextElementEnumerator.Current%2A> は、文字列の末尾を示す `false`<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> の最後の呼び出しが返された場合にも例外をスローします。  
   
- <xref:System.Globalization.TextElementEnumerator.Current%2A>は、列挙子の位置を移動せず、を<xref:System.Globalization.TextElementEnumerator.Current%2A>連続して呼び出すと、 <xref:System.Globalization.TextElementEnumerator.MoveNext%2A>また<xref:System.Globalization.TextElementEnumerator.Reset%2A>はが呼び出されるまで同じオブジェクトを返します。  
+ <xref:System.Globalization.TextElementEnumerator.Current%2A> は列挙子の位置を移動しません。また、<xref:System.Globalization.TextElementEnumerator.Current%2A> を連続して呼び出すと、<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> または <xref:System.Globalization.TextElementEnumerator.Reset%2A> が呼び出されるまで、同じオブジェクトが返されます。  
   
  ]]></format>
         </remarks>
@@ -174,6 +176,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -216,6 +219,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -228,7 +232,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 <xref:System.Globalization.TextElementEnumerator.Current%2A>プロパティと同じテキスト要素を返します。  
+ このメソッドは、<xref:System.Globalization.TextElementEnumerator.Current%2A> プロパティと同じテキスト要素を返します。  
   
  ]]></format>
         </remarks>
@@ -269,6 +273,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -286,11 +291,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 列挙子が作成された後<xref:System.Globalization.TextElementEnumerator.Reset%2A> 、またはが呼び出された後、列挙子は文字列の最初のテキスト要素の前に<xref:System.Globalization.TextElementEnumerator.MoveNext%2A>配置され、の最初の呼び出しでは、列挙子が文字列の最初のテキスト要素に移されます。  
+ 列挙子が作成された後、または <xref:System.Globalization.TextElementEnumerator.Reset%2A> が呼び出された後、列挙子は文字列の最初のテキスト要素の前に配置され、<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> の最初の呼び出しでは、列挙子を文字列の最初のテキスト要素に移動します。  
   
- この列挙子が作成された後に文字列<xref:System.Globalization.TextElementEnumerator.MoveNext%2A>が変更された場合、は例外をスローします。  
+ この列挙子が作成された後に文字列が変更された場合、<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> は例外をスローします。  
   
- 文字列の末尾が渡された後、が呼び出される<xref:System.Globalization.TextElementEnumerator.MoveNext%2A>まで`false` <xref:System.Globalization.TextElementEnumerator.Reset%2A> 、後続のの呼び出しが返されます。  
+ 文字列の末尾が渡された後、後続の <xref:System.Globalization.TextElementEnumerator.MoveNext%2A> を呼び出すと、<xref:System.Globalization.TextElementEnumerator.Reset%2A> が呼び出されるまで `false` が返されます。  
   
  ]]></format>
         </remarks>
@@ -330,6 +335,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -346,7 +352,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Globalization.TextElementEnumerator.Reset%2A>は、最初のテキスト要素の前に、列挙子を文字列の先頭に移動します。 を呼び出した後<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> <xref:System.Globalization.TextElementEnumerator.Current%2A> 、を呼び出して最初のテキスト要素の値を読み取る前に、を呼び出して、列挙子を文字列の最初のテキスト要素に進めておく必要があります。 <xref:System.Globalization.TextElementEnumerator.Reset%2A>  
+ <xref:System.Globalization.TextElementEnumerator.Reset%2A> メソッドは、最初のテキスト要素の前に列挙子を文字列の先頭に移動します。 <xref:System.Globalization.TextElementEnumerator.Reset%2A>を呼び出した後、<xref:System.Globalization.TextElementEnumerator.Current%2A> を呼び出して最初のテキスト要素の値を読み取る前に、<xref:System.Globalization.TextElementEnumerator.MoveNext%2A> を呼び出して、列挙子を文字列の最初のテキスト要素に進めます。  
   
  ]]></format>
         </remarks>

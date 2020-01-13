@@ -1,5 +1,5 @@
 <Type Name="TraceFilter" FullName="System.Diagnostics.TraceFilter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5888bf7681cd6d6b4f34e2052e251616ff240f27" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69075411" /></Metadata><TypeSignature Language="C#" Value="public abstract class TraceFilter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1587703667dd6e28ff04c081c6262fa02534187e" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75137081" /></Metadata><TypeSignature Language="C#" Value="public abstract class TraceFilter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit TraceFilter extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.TraceFilter" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class TraceFilter" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System</AssemblyName>
@@ -32,9 +33,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- トレースフィルターはトレースリスナーによって使用され、トレーススイッチによって提供されるもの以外のフィルター処理レイヤーを追加できます。 トレースリスナーのトレースフィルターは、リスナーの<xref:System.Diagnostics.TraceListener.Filter%2A>プロパティにあります。 トレーススイッチは、トレースがトレースリスナーに送信されるかどうかを決定します。 トレースフィルターを使用すると、個々のトレースリスナーは、関連付けられた出力メディアにトレースを書き込むかどうかを判断できます。 たとえば、トレースフィルターごとに決定されるように、トレースはによって<xref:System.Diagnostics.ConsoleTraceListener>コンソールに書き込まれ<xref:System.Diagnostics.EventLogTraceListener>ますが、によってイベントログに書き込まれることはありません。  
+ トレースフィルターはトレースリスナーによって使用され、トレーススイッチによって提供されるもの以外のフィルター処理レイヤーを追加できます。 トレースリスナーのトレースフィルターは、リスナーの <xref:System.Diagnostics.TraceListener.Filter%2A> プロパティにあります。 トレーススイッチは、トレースがトレースリスナーに送信されるかどうかを決定します。 トレースフィルターを使用すると、個々のトレースリスナーは、関連付けられた出力メディアにトレースを書き込むかどうかを判断できます。 たとえば、トレースフィルターごとに決定されるように、トレースは、<xref:System.Diagnostics.ConsoleTraceListener>によってコンソールに書き込まれますが、<xref:System.Diagnostics.EventLogTraceListener>によってイベントログには書き込まれません。  
   
- クラスを継承<xref:System.Diagnostics.TraceFilter>するフィルターは、トレースされるイベントのフィルター処理を実行<xref:System.Diagnostics.TraceListener>するために、クラスを継承するトレースリスナーによって使用されます。 <xref:System.Diagnostics.TraceFilter>には、イベントデータ<xref:System.Diagnostics.TraceFilter.ShouldTrace%2A>を受け取り、イベントをトレースする必要があるかどうかを示すフラグを返す、1つのメソッドが含まれています。  
+ <xref:System.Diagnostics.TraceFilter> クラスから継承されるフィルターは、トレースリスナーが <xref:System.Diagnostics.TraceListener> クラスを継承して、トレース対象のイベントのフィルター処理を実行する場合に使用できます。 <xref:System.Diagnostics.TraceFilter> には、<xref:System.Diagnostics.TraceFilter.ShouldTrace%2A>という1つのメソッドが含まれています。このメソッドはイベントデータを受け取り、イベントをトレースする必要があるかどうかを示すフラグを返します。  
   
  ]]></format>
     </remarks>
@@ -52,6 +53,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -88,6 +90,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -128,7 +131,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、 <xref:System.Diagnostics.TraceFilter.ShouldTrace%2A>メソッドをオーバーライドして、イベントのトレースイベントの種類がと<xref:System.Diagnostics.TraceEventType.Error?displayProperty=nameWithType>等しい場合にトレースを実行するように指定する方法を示しています。  
+ 次のコード例では、<xref:System.Diagnostics.TraceFilter.ShouldTrace%2A> メソッドをオーバーライドして、イベントのトレースイベントの種類が <xref:System.Diagnostics.TraceEventType.Error?displayProperty=nameWithType>と等しい場合にトレースを実行するように指定する方法を示します。  
   
  [!code-cpp[System.Diagnostics.TraceFilter#2](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.diagnostics.tracefilter/cpp/source.cpp#2)]
  [!code-csharp[System.Diagnostics.TraceFilter#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.diagnostics.tracefilter/cs/source.cs#2)]
@@ -136,18 +139,18 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>渡されたパラメーターによっ<see langword="true" />て指定されたイベントをトレースする必要がある場合、このメソッドの実装はを返す必要があります。 それ以外の場合、 <see langword="false" />メソッドはを返します。 たとえば、エラーイベントのみがリスナーに渡されるようにするフィルターで<paramref name="eventType" />は、パラメーターを調べて、トレースイベントの種類レベルが以上に<see cref="F:System.Diagnostics.TraceEventType.Error" />設定されている場合はを返し<see langword="false" /> <see langword="true" />ます。それ以外の場合は、を返します。  
+        <block subset="none" type="overrides"><para>渡されたパラメーターによって指定されたイベントをトレースする必要がある場合、このメソッドの実装は <see langword="true" /> を返す必要があります。 それ以外の場合、メソッドは <see langword="false" />を返します。 たとえば、エラーイベントのみがリスナーに渡すことを許可するフィルターは、<paramref name="eventType" /> パラメーターを調べて、トレースイベントの種類のレベルが <see cref="F:System.Diagnostics.TraceEventType.Error" /> 以上に設定されている場合に <see langword="true" /> を返す必要があります。それ以外の場合は <see langword="false" />を返します。  
   
-メソッドの<see langword="null" />実装は<paramref name="args" />、 <paramref name="data1" /> 、、<paramref name="formatOrMessage" />、、および<paramref name="cache" />の各パラメーターで処理できるように準備する必要があります。 <paramref name="data" /> パラメーター値が<see langword="null" />の場合、パラメーターはイベントの一部ではありません。 たとえば、 <paramref name="args" />パラメーターが<see langword="null" />の場合は、イベントに引数がないことを意味します。 <paramref name="data" />パラメーターが<see langword="null" />の場合は、いずれかのデータオブジェクトが存在します。 1つのデータオブジェクトがある場合は、 <paramref name="data1" />パラメーターに格納されます。 1つのデータオブジェクトとデータオブジェクトの配列が区別される理由は、パフォーマンスのためです。 オブジェクトが1つしかトレースされない場合は、通常の場合と同様に、オブジェクト配列を作成する理由はありません。 パラメーターがでない<see langword="null" />場合は、 <paramref name="data1" />パラメーターも<see langword="null" />である必要があります。 <paramref name="data" />  
+メソッドの実装は、<paramref name="args" />、<paramref name="data1" />、<paramref name="data" />、<paramref name="formatOrMessage" />、および <paramref name="cache" />のパラメーターの <see langword="null" /> を処理できるように準備する必要があります。 パラメーター値が <see langword="null" />場合、パラメーターはイベントの一部ではありません。 たとえば、<paramref name="args" /> パラメーターが <see langword="null" />の場合、イベントには引数がないことを意味します。 <paramref name="data" /> パラメーターが <see langword="null" />の場合は、データオブジェクトが1つでも存在していないかのいずれかです。 データオブジェクトが1つある場合は、<paramref name="data1" /> パラメーターに格納されます。 1つのデータオブジェクトとデータオブジェクトの配列が区別される理由は、パフォーマンスのためです。 オブジェクトが1つしかトレースされない場合は、通常の場合と同様に、オブジェクト配列を作成する理由はありません。 <paramref name="data" /> パラメーターが <see langword="null" />でない場合は、<paramref name="data1" /> パラメーターも <see langword="null" />である必要があります。  
   
-パラメーターが空の文字列 ("") ではなく、かつ空であることが保証されます。<see langword="null" /> <paramref name="source" />  
+<paramref name="source" /> パラメーターが <see langword="null" /> ではなく、空の文字列 ("") ではないことが保証されています。  
   
-メソッドの実装では、必要に応じて次の例外をスローできます。 
--   <see cref="T:System.ArgumentNullException" />が<paramref name="source" /> の<see langword="null" />場合。  
+メソッドの実装では、必要に応じて次の例外をスローできます。 <paramref name="source" /> が <see langword="null" />場合は、
+-   <see cref="T:System.ArgumentNullException" /> ます。  
+  <paramref name="eventType" /> が <see cref="T:System.Diagnostics.TraceEventType" /> 値のいずれでもない場合は、<see cref="T:System.ArgumentException" /> を 
+-   します。  
   
--   <see cref="T:System.ArgumentException" />が<paramref name="eventType" /> 値<see cref="T:System.Diagnostics.TraceEventType" />のいずれでもない場合。  
-  
--メソッドの実装に関連付けられていない例外。 たとえば、 <see cref="T:System.Threading.ThreadAbortException" />のようになります。</para></block>
+-メソッドの実装に関連付けられていない例外。 たとえば、<see cref="T:System.Threading.ThreadAbortException" />のようになります。</para></block>
       </Docs>
     </Member>
   </Members>

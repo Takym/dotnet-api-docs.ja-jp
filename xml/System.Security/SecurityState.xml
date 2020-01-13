@@ -1,5 +1,5 @@
 <Type Name="SecurityState" FullName="System.Security.SecurityState">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="011df8cd5a661c18666906f987afb474f35269bc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69161285" /></Metadata><TypeSignature Language="C#" Value="public abstract class SecurityState" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="6465db0d7857f55947962366d0c0de6705c84e4f" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75067219" /></Metadata><TypeSignature Language="C#" Value="public abstract class SecurityState" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SecurityState extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.SecurityState" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SecurityState" />
@@ -16,6 +16,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -32,9 +33,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実行するセキュリティを重視したアクションを指定するプロパティを含むクラスを提供するには、このクラスから継承する必要があります。 派生クラスからインスタンス化された<xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType> オブジェクトは、そのアクションの実行をホストで許可するかどうかを判断するためにメソッドに渡されます。<xref:System.Security.SecurityState> <xref:System.AppDomainManager.CheckSecuritySettings%2A>メソッドの既定の実装は、常`false`にを返します。  許可されているアクションを検出するには、メソッドをオーバーライドする必要があります。  
+ 実行するセキュリティを重視したアクションを指定するプロパティを含むクラスを提供するには、このクラスから継承する必要があります。 派生クラスからインスタンス化された <xref:System.Security.SecurityState> オブジェクトは <xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType> メソッドに渡され、ホストがそのアクションを実行できるかどうかを判断します。 <xref:System.AppDomainManager.CheckSecuritySettings%2A> メソッドの既定の実装では、常に `false`が返されます。  許可されているアクションを検出するには、メソッドをオーバーライドする必要があります。  
   
- たとえば、ライブラリコード内の web カメラにアクセスする場合は、オブジェクトを`WebcamSecurityState`作成し、 <xref:System.Security.SecurityState.EnsureState%2A>メソッドを呼び出して、次の例に示すように、ホストが web カメラへのアクセスを許可しているかどうかを判断します。  (のコードについ`WebcamSecurityState`ては、「例」を参照してください)。  
+ たとえば、ライブラリコードで Web カメラにアクセスする場合は、次の例に示すように、`WebcamSecurityState` オブジェクトを作成し、<xref:System.Security.SecurityState.EnsureState%2A> メソッドを呼び出して、ホストが Web カメラへのアクセスを許可しているかどうかを判断します。  (`WebcamSecurityState` のコードについては、「例」セクションを参照してください)。  
   
 ```  
 WebcamSecurityState securityState = new WebcamSecurityState("Safe access to Webcam", WebcamSecurityOptions.SafeAccess);  
@@ -50,7 +51,7 @@ catch (ApplicationException e)
 }  
 ```  
   
- この呼び出しを処理する<xref:System.AppDomainManager>には、次の`WebcamSecurityState`例に示すように<xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType> 、メソッドのオーバーライドによってが認識されている必要があります。  
+ 呼び出しを処理するには、次の例に示すように、<xref:System.AppDomainManager> が <xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType> メソッドのオーバーライドによって `WebcamSecurityState` を認識している必要があります。  
   
 ```  
 [SecurityCritical]  
@@ -83,7 +84,7 @@ private bool PromptUser(string text)
    
   
 ## Examples  
- <xref:System.Security.SecurityState>クラスをオーバーライドする方法を次の例に示します。  
+ 次の例は、<xref:System.Security.SecurityState> クラスをオーバーライドする方法を示しています。  
   
 ```  
 [SecurityCritical]  
@@ -135,6 +136,7 @@ public class WebcamSecurityState : SecurityState
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -162,6 +164,7 @@ public class WebcamSecurityState : SecurityState
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -207,6 +210,7 @@ public override void EnsureState()
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -224,9 +228,9 @@ public override void EnsureState()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.SecurityState.IsStateAvailable%2A><xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType>メソッドを呼び出して、このクラスによって表される状態がホストで使用可能かどうかを確認します。  
+ <xref:System.Security.SecurityState.IsStateAvailable%2A> は、このクラスによって表される状態がホストで使用できるかどうかを判断するために、<xref:System.AppDomainManager.CheckSecuritySettings%2A?displayProperty=nameWithType> メソッドを呼び出します。  
   
- メソッドの実装例については、 <xref:System.Security.SecurityState>クラスを参照してください。 <xref:System.AppDomainManager.CheckSecuritySettings%2A>  
+ <xref:System.AppDomainManager.CheckSecuritySettings%2A> メソッドの実装例については、<xref:System.Security.SecurityState> クラスを参照してください。  
   
  ]]></format>
         </remarks>

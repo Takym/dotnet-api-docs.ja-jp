@@ -1,5 +1,5 @@
 <Type Name="DefaultSettingValueAttribute" FullName="System.Configuration.DefaultSettingValueAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c33d3b98eda212fd4a4e8acd0ff6084aeee0da82" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69378358" /></Metadata><TypeSignature Language="C#" Value="public sealed class DefaultSettingValueAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c3161ed55245997c28806bdf82959e67ca97bd14" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75144387" /></Metadata><TypeSignature Language="C#" Value="public sealed class DefaultSettingValueAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit DefaultSettingValueAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Configuration.DefaultSettingValueAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DefaultSettingValueAttribute&#xA;Inherits Attribute" />
@@ -15,13 +15,14 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Attribute</BaseTypeName>
   </Base>
   <Interfaces />
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0">
+    <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;netcore-3.1">
       <AttributeName>System.AttributeUsage(System.AttributeTargets.Property)</AttributeName>
     </Attribute>
   </Attributes>
@@ -33,11 +34,11 @@
 ## Remarks  
   
 > [!IMPORTANT]
->  <xref:System.Configuration.DefaultSettingValueAttribute>個々の設定プロパティにのみ適用できます。この属性をアプリケーション設定クラス全体に適用することはできません。  
+>  <xref:System.Configuration.DefaultSettingValueAttribute> は、個々の設定プロパティにのみ適用できます。この属性をアプリケーション設定クラス全体に適用することはできません。  
   
- 設定プロバイダーによって、 <xref:System.Configuration.DefaultSettingValueAttribute>の使用に関する要件や制限が異なる場合があります。 たとえば<xref:System.Configuration.LocalFileSettingsProvider> 、では、この属性は必要ありません。また、データストアに既に存在する値 (既定値またはユーザーが変更された値) がある場合、はこの属性によって提供される任意の値をオーバーライドします。  
+ 設定プロバイダーによって、<xref:System.Configuration.DefaultSettingValueAttribute>の使用に関する要件や制限が異なる場合があります。 たとえば、<xref:System.Configuration.LocalFileSettingsProvider> では、この属性は必要ありません。また、データストアに既に存在する値 (default または user modified) がある場合、この属性によって提供される値はすべてオーバーライドされます。  
   
- <xref:System.Configuration.DefaultSettingValueAttribute>では、既定値を文字列として表すことが必要です。 このため、XML シリアル化を使用する設定では、この属性を使用して既定値を指定することはできません。 プロバイダーによっては、を使用してコンパイル時に指定できる複数の<xref:System.Configuration.SettingsSerializeAsAttribute>シリアル化方式をサポートする場合があります。  
+ <xref:System.Configuration.DefaultSettingValueAttribute> には、既定値を文字列として表すことが必要です。 このため、XML シリアル化を使用する設定では、この属性を使用して既定値を指定することはできません。 プロバイダーによっては、<xref:System.Configuration.SettingsSerializeAsAttribute>を使用してコンパイル時に指定できる複数のシリアル化方式をサポートする場合があります。  
   
 > [!CAUTION]
 >  この属性によって指定された既定値は、結果のコンパイル済みの .exe または .dll ファイルにプレーンテキストとして格納されます。 そのため、これらの既定値は本質的に安全ではありません。  
@@ -45,9 +46,9 @@
    
   
 ## Examples  
- 次のコード例では、 <xref:System.Configuration.DefaultSettingValueAttribute> <xref:System.Configuration.ApplicationSettingsBase>クラスから派生した`FormSettings`ラッパークラスの4つのプロパティのうち、3つに適用されるを使用する方法を示します。 このクラスは、場所、サイズ、背景色、およびフォームのテキストを永続化するために使用されます。 これらのフォームプロパティの最初の3つには、既定値が関連付けられています。  
+ 次のコード例は、<xref:System.Configuration.ApplicationSettingsBase> クラスから派生した `FormSettings` ラッパークラスの4つのプロパティのうち、3つのプロパティに適用される <xref:System.Configuration.DefaultSettingValueAttribute> の使用方法を示しています。 このクラスは、場所、サイズ、背景色、およびフォームのテキストを永続化するために使用されます。 これらのフォームプロパティの最初の3つには、既定値が関連付けられています。  
   
- 完全なコード例については<xref:System.Configuration.ApplicationSettingsBase> 、クラスの概要に記載されています。  
+ 完全なコード例については、「<xref:System.Configuration.ApplicationSettingsBase> クラスの概要」をご覧ください。  
   
  [!code-cpp[AppSettingsSample#9](~/samples/snippets/cpp/VS_Snippets_Winforms/AppSettingsSample/cpp/AppSettingsSample.cpp#9)]
  [!code-csharp[AppSettingsSample#9](~/samples/snippets/csharp/VS_Snippets_Winforms/AppSettingsSample/CS/AppSettingsSample.cs#9)]
@@ -79,6 +80,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -95,7 +97,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 指定された文字列は、プロパティの型に関連付けられている使用可能なシリアル化機構と互換性のある値である必要があります。 たとえば、プロパティが型<xref:System.Drawing.Color>である場合、の`"Azure"`は`value`有効です。  
+ 指定された文字列は、プロパティの型に関連付けられている使用可能なシリアル化機構と互換性のある値である必要があります。 たとえば、プロパティの型が <xref:System.Drawing.Color>の場合、`"Azure"` の `value` が有効になります。  
   
 > [!CAUTION]
 >  この属性によって指定された既定値は、結果のコンパイル済みの .exe または .dll ファイルにプレーンテキストとして格納されます。 そのため、これらの既定値は本質的に安全ではありません。  
@@ -124,6 +126,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -140,9 +143,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティは、 <xref:System.Configuration.DefaultSettingValueAttribute.%23ctor%2A>コンストラクターで設定されます。 <xref:System.Configuration.DefaultSettingValueAttribute.Value%2A>  
+ <xref:System.Configuration.DefaultSettingValueAttribute.Value%2A> プロパティは、<xref:System.Configuration.DefaultSettingValueAttribute.%23ctor%2A> コンストラクターで設定されます。  
   
- プロバイダーを設定すると、 <xref:System.Configuration.SettingsSerializeAsAttribute>で指定できる複数のシリアル化スキームがサポートされる場合があります。  
+ プロバイダーを設定すると、<xref:System.Configuration.SettingsSerializeAsAttribute>で指定できる複数のシリアル化スキームがサポートされる場合があります。  
   
  ]]></format>
         </remarks>
