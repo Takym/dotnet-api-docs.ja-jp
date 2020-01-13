@@ -1,5 +1,5 @@
 <Type Name="IEventBindingService" FullName="System.ComponentModel.Design.IEventBindingService">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="36f4cf1760ee47c6479ee238b1573bcc4727d273" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69329777" /></Metadata><TypeSignature Language="C#" Value="public interface IEventBindingService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3132010c097400e84cbab4a59294e0d4adb61b67" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75148521" /></Metadata><TypeSignature Language="C#" Value="public interface IEventBindingService" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IEventBindingService" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.IEventBindingService" />
   <TypeSignature Language="VB.NET" Value="Public Interface IEventBindingService" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Attributes>
@@ -36,14 +37,14 @@
 ## Remarks  
  イベントバインディングサービスは、デザイナーコードからコンポーネントイベントにイベントハンドラーをリンクする方法を提供します。  
   
- を使用して<xref:System.ComponentModel.Design.IEventBindingService>イベントハンドラーをコンポーネントイベントにリンクするには、最初に、リンクするコンポーネントのイベント<xref:System.ComponentModel.EventDescriptor>のを取得する必要があります。 には、を<xref:System.ComponentModel.EventDescriptor>に<xref:System.ComponentModel.PropertyDescriptor>変換できるメソッドが用意されています。このメソッドを使用して、イベントハンドラーメソッド名でイベントを構成できます。<xref:System.ComponentModel.Design.IEventBindingService>  
+ <xref:System.ComponentModel.Design.IEventBindingService>を使用してイベントハンドラーをコンポーネントイベントにリンクするには、最初に、リンクするコンポーネントのイベントの <xref:System.ComponentModel.EventDescriptor> を取得する必要があります。 <xref:System.ComponentModel.Design.IEventBindingService> には、<xref:System.ComponentModel.EventDescriptor> を <xref:System.ComponentModel.PropertyDescriptor> に変換できるメソッドが用意されています。このメソッドを使用して、イベントハンドラーメソッド名でイベントを構成できます。  
   
- オブジェクト<xref:System.ComponentModel.TypeDescriptor>には、 <xref:System.ComponentModel.TypeDescriptor.GetEvents%2A>コンポーネントの各イベントの<xref:System.ComponentModel.EventDescriptorCollection>格納<xref:System.ComponentModel.EventDescriptor>オブジェクトを取得するために使用できるメソッドが用意されています。 <xref:System.ComponentModel.Design.IEventBindingService.GetEventProperties%2A> <xref:System.ComponentModel.PropertyDescriptor> <xref:System.ComponentModel.EventDescriptor>のメソッド<xref:System.ComponentModel.Design.IEventBindingService.GetEventProperty%2A>およびメソッド<xref:System.ComponentModel.Design.IEventBindingService>は、いずれかのメソッドに渡されたそれぞれのを返します。 また<xref:System.ComponentModel.PropertyDescriptor> <xref:System.ComponentModel.Design.IEventBindingService.GetEventProperty%2A>はから<xref:System.ComponentModel.Design.IEventBindingService.GetEventProperties%2A>返された各には、文字列のプロパティ型があります。 この文字列には、 <xref:System.ComponentModel.PropertyDescriptor.SetValue%2A> <xref:System.ComponentModel.PropertyDescriptor>のメソッドを使用して、イベントをリンクするイベントハンドラーメソッドの名前を示す値を設定できます。  
+ <xref:System.ComponentModel.TypeDescriptor> オブジェクトには、コンポーネントの各イベントの <xref:System.ComponentModel.EventDescriptor> オブジェクトを含む <xref:System.ComponentModel.EventDescriptorCollection> を取得するために使用できる <xref:System.ComponentModel.TypeDescriptor.GetEvents%2A> メソッドが用意されています。 <xref:System.ComponentModel.Design.IEventBindingService> の <xref:System.ComponentModel.Design.IEventBindingService.GetEventProperty%2A> および <xref:System.ComponentModel.Design.IEventBindingService.GetEventProperties%2A> メソッドは、いずれかのメソッドに渡された各 <xref:System.ComponentModel.EventDescriptor> に対して <xref:System.ComponentModel.PropertyDescriptor> を返します。 <xref:System.ComponentModel.Design.IEventBindingService.GetEventProperty%2A> または <xref:System.ComponentModel.Design.IEventBindingService.GetEventProperties%2A> から返された各 <xref:System.ComponentModel.PropertyDescriptor> には、string 型のプロパティがあります。 この文字列を、<xref:System.ComponentModel.PropertyDescriptor>の <xref:System.ComponentModel.PropertyDescriptor.SetValue%2A> メソッドを使用して、イベントをリンクするイベントハンドラーメソッドの名前を示す値に設定できます。  
   
    
   
 ## Examples  
- 次の例は、デザイナーがコンポーネント用<xref:System.ComponentModel.Design.IEventBindingService>に追加したカスタムショートカットメニューコマンドが呼び出されたときに、デザイン時にを使用してコンポーネントのイベントをイベントハンドラーにリンクするデザイナーを示しています。 この例を使用するには、クラスライブラリにコンパイルし、Windows フォームプロジェクトから参照を追加します。次に、ツールボックスを右クリックして [ツール**** **ボックスのカスタマイズ**] を選択し、クラスライブラリを選択して、クラスライブラリのコンポーネントをツールボックスに追加します。[ **OK]** をクリックし、eventcontrol のインスタンスをフォームに追加します。 次に、EventControl を右クリックし、[testEvent の接続] ショートカットメニューコマンドをクリックします。 空のイベントハンドラーメソッドが作成され、フォームの初期化コードで EventControl の testEvent メソッドがこのイベントハンドラーに初期化されます。  
+ 次の例は、デザイナーがコンポーネントに追加したカスタムショートカットメニューコマンドが呼び出されたときに、デザイン時にコンポーネントのイベントをイベントハンドラーにリンクするために <xref:System.ComponentModel.Design.IEventBindingService> を使用するデザイナーを示しています。 この例を使用するには、クラスライブラリにコンパイルし、Windows フォームプロジェクトから参照を追加します。次に、ツールボックスを右**クリックし、** **[ツールボックスのカスタマイズ]** をクリックしてツールボックスにクラスライブラリのコンポーネントを追加し、クラスライブラリを選択して **[OK]** をクリックし、eventcontrol のインスタンスをフォームに追加します。 次に、EventControl を右クリックし、[testEvent の接続] ショートカットメニューコマンドをクリックします。 空のイベントハンドラーメソッドが作成され、フォームの初期化コードで EventControl の testEvent メソッドがこのイベントハンドラーに初期化されます。  
   
  [!code-cpp[IEventBindingServiceExample#1](~/samples/snippets/cpp/VS_Snippets_Winforms/IEventBindingServiceExample/CPP/source.cpp#1)]
  [!code-csharp[IEventBindingServiceExample#1](~/samples/snippets/csharp/VS_Snippets_Winforms/IEventBindingServiceExample/CS/source.cs#1)]
@@ -81,6 +82,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -128,6 +130,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.ICollection</ReturnType>
@@ -173,6 +176,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ComponentModel.EventDescriptor</ReturnType>
@@ -211,6 +215,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ComponentModel.PropertyDescriptorCollection</ReturnType>
@@ -226,7 +231,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返される<xref:System.ComponentModel.PropertyDescriptor>各は<xref:System.ComponentModel.PropertyDescriptor.PropertyType%2A> 、文字列のを持ちます。  
+ 返される各 <xref:System.ComponentModel.PropertyDescriptor> には、文字列の <xref:System.ComponentModel.PropertyDescriptor.PropertyType%2A> があります。  
   
  ]]></format>
         </remarks>
@@ -256,6 +261,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ComponentModel.PropertyDescriptor</ReturnType>
@@ -271,7 +277,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 返される<xref:System.ComponentModel.PropertyDescriptor>は、 <xref:System.ComponentModel.PropertyDescriptor.PropertyType%2A>文字列のを持ちます。  
+ 返される <xref:System.ComponentModel.PropertyDescriptor> には、文字列の <xref:System.ComponentModel.PropertyDescriptor.PropertyType%2A> が含まれています。  
   
  ]]></format>
         </remarks>
@@ -311,6 +317,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -353,6 +360,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -398,6 +406,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>

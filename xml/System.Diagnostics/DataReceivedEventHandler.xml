@@ -1,5 +1,5 @@
 <Type Name="DataReceivedEventHandler" FullName="System.Diagnostics.DataReceivedEventHandler">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b7aa46fdc138eb94a4175a381ff6f85a4fbb0827" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69076942" /></Metadata><TypeSignature Language="C#" Value="public delegate void DataReceivedEventHandler(object sender, DataReceivedEventArgs e);" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7cd88ec06597f90147b40418d0d5d36f43698f9f" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75138095" /></Metadata><TypeSignature Language="C#" Value="public delegate void DataReceivedEventHandler(object sender, DataReceivedEventArgs e);" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed DataReceivedEventHandler extends System.MulticastDelegate" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DataReceivedEventHandler" />
   <TypeSignature Language="VB.NET" Value="Public Delegate Sub DataReceivedEventHandler(sender As Object, e As DataReceivedEventArgs)" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System</AssemblyName>
@@ -40,16 +41,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Diagnostics.DataReceivedEventHandler> デリゲートを作成する場合は、イベントを処理するメソッドを指定します。 イベントをイベント ハンドラーに関連付けるには、デリゲートのインスタンスをイベントに追加します。 デリゲートを削除しない限り、そのイベントが発生すると常にイベント ハンドラーが呼び出されます。 イベントハンドラーデリゲートの詳細については、「[イベントの処理と発生](~/docs/standard/events/index.md)」を参照してください。  
+ <xref:System.Diagnostics.DataReceivedEventHandler> デリゲートを作成する場合は、イベントを処理するメソッドを指定します。 イベント ハンドラーにイベントを関連付けるには、イベントにデリゲートのインスタンスを追加します。 イベント ハンドラーは、デリゲートを削除しない限り、イベントが発生するたびに呼び出されます。 イベントハンドラーデリゲートの詳細については、「[イベントの処理と発生](~/docs/standard/events/index.md)」を参照してください。  
   
- プロセスのリダイレクト<xref:System.Diagnostics.Process.StandardOutput%2A>または<xref:System.Diagnostics.Process.StandardError%2A>ストリーム出力を非同期に収集するに<xref:System.Diagnostics.Process.OutputDataReceived>は、イベントハンドラーをイベント<xref:System.Diagnostics.Process.ErrorDataReceived>またはイベントに追加します。 これらのイベントは、プロセスが、対応するリダイレクトされたストリームに行を書き込むたびに発生します。 リダイレクトされたストリームが閉じられると、null 行がイベントハンドラーに送信されます。 <xref:System.Diagnostics.DataReceivedEventArgs.Data%2A>プロパティにアクセスする前に、イベントハンドラーがこの条件を確認するようにしてください。 たとえば、 `static`メソッド<xref:System.String.IsNullOrEmpty%2A?displayProperty=nameWithType>を使用して、イベントハンドラーの<xref:System.Diagnostics.DataReceivedEventArgs.Data%2A>プロパティを検証できます。  
+ プロセスのリダイレクトされた <xref:System.Diagnostics.Process.StandardOutput%2A> または <xref:System.Diagnostics.Process.StandardError%2A> ストリーム出力を非同期に収集するには、イベントハンドラーを <xref:System.Diagnostics.Process.OutputDataReceived> または <xref:System.Diagnostics.Process.ErrorDataReceived> イベントに追加します。 これらのイベントは、プロセスが、対応するリダイレクトされたストリームに行を書き込むたびに発生します。 リダイレクトされたストリームが閉じられると、null 行がイベントハンドラーに送信されます。 <xref:System.Diagnostics.DataReceivedEventArgs.Data%2A> プロパティにアクセスする前に、イベントハンドラーがこの条件を確認するようにしてください。 たとえば、`static` メソッド <xref:System.String.IsNullOrEmpty%2A?displayProperty=nameWithType> を使用して、イベントハンドラーの <xref:System.Diagnostics.DataReceivedEventArgs.Data%2A> プロパティを検証できます。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Diagnostics.Process.StandardOutput%2A> **sort**コマンドのリダイレクトされたストリームに対して非同期読み取り操作を実行する方法を示しています。 **Sort**コマンドは、テキスト入力の読み取りと並べ替えを行うコンソールアプリケーションです。  
+ 次のコード例は、 **sort**コマンドのリダイレクトされた <xref:System.Diagnostics.Process.StandardOutput%2A> ストリームに対して非同期読み取り操作を実行する方法を示しています。 **Sort**コマンドは、テキスト入力の読み取りと並べ替えを行うコンソールアプリケーションです。  
   
- この例では<xref:System.Diagnostics.DataReceivedEventHandler> 、 `SortOutputHandler`イベントハンドラーのデリゲートを作成し、デリゲートを<xref:System.Diagnostics.Process.OutputDataReceived>イベントに関連付けます。 イベントハンドラーは、リダイレクト<xref:System.Diagnostics.Process.StandardOutput%2A>されたストリームからテキスト行を受け取り、テキストを書式設定して、画面にテキストを書き込みます。  
+ この例では、`SortOutputHandler` イベントハンドラーの <xref:System.Diagnostics.DataReceivedEventHandler> デリゲートを作成し、デリゲートを <xref:System.Diagnostics.Process.OutputDataReceived> イベントに関連付けます。 イベントハンドラーは、リダイレクトされた <xref:System.Diagnostics.Process.StandardOutput%2A> ストリームからテキスト行を受信し、テキストを書式設定して、画面にテキストを書き込みます。  
   
  [!code-cpp[Process_AsyncStreams#1](~/samples/snippets/cpp/VS_Snippets_CLR/process_asyncstreams/CPP/sort_async.cpp#1)]
  [!code-csharp[Process_AsyncStreams#1](~/samples/snippets/csharp/VS_Snippets_CLR/process_asyncstreams/CS/sort_async.cs#1)]

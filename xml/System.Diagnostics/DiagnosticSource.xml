@@ -1,5 +1,5 @@
 <Type Name="DiagnosticSource" FullName="System.Diagnostics.DiagnosticSource">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="36d1fc3ae1a35c938f450b27267d3c67bd697490" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69076528" /></Metadata><TypeSignature Language="C#" Value="public abstract class DiagnosticSource" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ca0175415a9b3efa6744d302dadd2224067d1ce1" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75137848" /></Metadata><TypeSignature Language="C#" Value="public abstract class DiagnosticSource" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DiagnosticSource extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.DiagnosticSource" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DiagnosticSource" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.0.2.1</AssemblyVersion>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
     <AssemblyVersion>4.0.4.0</AssemblyVersion>
+    <AssemblyVersion>4.0.5.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -38,6 +39,7 @@
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -61,6 +63,7 @@
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -75,7 +78,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[
 
-通知に対して高額なセットアップが行われている場合は、このセットアップを実行する前に IsEnabled を呼び出すことができます。 コンシューマーは、IsEnabled が true の場合にのみ通知を受け取ることを想定しないでください。 ただし、プロデューサーがこの API を呼び出す場合は省略可能です。 名前は、に<see cref="M:System.Diagnostics.DiagnosticSource.Write(System.String,System.Object)" />渡されたものと同じである必要があります。
+通知に対して高額なセットアップが行われている場合は、このセットアップを実行する前に IsEnabled を呼び出すことができます。 コンシューマーは、IsEnabled が true の場合にのみ通知を受け取ることを想定しないでください。 ただし、プロデューサーがこの API を呼び出す場合は省略可能です。 名前は <see cref="M:System.Diagnostics.DiagnosticSource.Write(System.String,System.Object)" />に渡されたものと同じである必要があります。
 
            ]]></format>
         </remarks>
@@ -94,19 +97,20 @@
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
-        <Parameter Name="arg1" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
-        <Parameter Name="arg2" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="name" Type="System.String" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1" />
+        <Parameter Name="arg1" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1" />
+        <Parameter Name="arg2" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="name">書き込まれるイベントの名前です。</param>
         <param name="arg1">IsEnabled の追加のコンテキストを表すオブジェクトです。 コンシューマーは <see langword="null" /> を受け取ります。これは、プロデューサーが純粋な IsEnabled(string) を呼び出し、コンシューマーがそのようなイベントの通知をそもそも受け取りたいかを確認したことを示している場合があります。 これに基づいて、プロデューサーが非 <see langword="null" /> コンテキストを使用して再度 IsEnabled(string, object, object) を呼び出す場合があります。</param>
-        <param name="arg2">任意。 IsEnabled の追加のコンテキストを表すオブジェクトです。 既定では <see langword="null" /> です。 コンシューマーは <see langword="null" /> を受け取ります。これは、プロデューサーが純粋な IsEnabled(string) を呼び出したか、プロデューサーが必要なすべてのコンテキストを <paramref name="arg1" /> で渡していることを示している場合があります。</param>
+        <param name="arg2">省略可。 IsEnabled の追加のコンテキストを表すオブジェクトです。 既定では <see langword="null" /> です。 コンシューマーは <see langword="null" /> を受け取ります。これは、プロデューサーが純粋な IsEnabled(string) を呼び出したか、プロデューサーが必要なすべてのコンテキストを <paramref name="arg1" /> で渡していることを示している場合があります。</param>
         <summary>通知イベントが有効になったかどうかを確認します。</summary>
         <returns>通知イベントが有効な場合は <see langword="true" /> で、それ以外の場合は <see langword="false" /> です。</returns>
         <remarks>
@@ -128,13 +132,14 @@
       <AssemblyInfo>
         <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-3.0" />
-        <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+        <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="activity">外部イベントの影響を受けるアクティビティ。</param>
@@ -145,14 +150,14 @@
 
 インストルメンテーションサイトが、アクティビティがプロセスを終了する場所 (送信 HTTP 要求など) にある場合、そのサイトはアクティビティから発信要求に状態を転送する必要があります。
 
-これは、インストルメンテーションサイトの<xref:System.Diagnostics.Activity>との間にコントラクトがあるため、インストルメンテーションサイトで可能な限り実行する必要があります。   ただし、インストルメンテーションサイトではポリシーを処理できません (たとえば、互換性上の理由から、アクティビティ情報を無効にするか、以前の形式で記述する必要があるかなど)。
-この場合、インストルメンテーションサイトでは、ログシステムにコールバックし、ポリシーを解決するように要求する必要があります。 これは、 `OnActivityExport`メソッドの目的です。
+可能な限り、インストルメンテーションサイトではこれを行う必要があります。これは、インストルメンテーションサイトでの <xref:System.Diagnostics.Activity> と ougoing の要求ロジックとの間にコントラクトがあるためです。   ただし、インストルメンテーションサイトではポリシーを処理できません (たとえば、互換性上の理由から、アクティビティ情報を無効にするか、以前の形式で記述する必要があるかなど)。
+この場合、インストルメンテーションサイトでは、ログシステムにコールバックし、ポリシーを解決するように要求する必要があります。 これは、`OnActivityExport` メソッドの目的です。
 
-メソッド`OnActivityExport`には、 <xref:System.Diagnostics.Activity>送信要求を表すペイロードオブジェクトと共にが与えられます。 サブスクライバー <xref:System.Diagnostics.DiagnosticSource>は、送信前に送信要求を更新することができます。
+`OnActivityExport` メソッドには、<xref:System.Diagnostics.Activity>、および発信要求を表すペイロードオブジェクトが与えられます。 <xref:System.Diagnostics.DiagnosticSource> のサブスクライバーには、送信前に送信要求を更新する機能があります。
  
-この方法は、インストルメンテーションサイト (プロセスの送信境界上にあるサイトのみ) ではほとんど使用されないことに注意してください。   さらに、通常、インストルメンテーションサイトで実行される既定のポリシー (特定の送信規則ですべてのアクティビティ状態を転送する場合など) は、問題ありません。 このメソッドは、問題が発生した場合にのみ使用します。 このため、このメソッドはごくまれに使用する必要がありますが`OnActivityImport` 、ほとんどの場合、symetry と将来の校正に使用します。
+この方法は、インストルメンテーションサイト (プロセスの送信境界上にあるサイトのみ) ではほとんど使用されないことに注意してください。   さらに、通常、インストルメンテーションサイトで実行される既定のポリシー (特定の送信規則ですべてのアクティビティ状態を転送する場合など) は、問題ありません。 このメソッドは、問題が発生した場合にのみ使用します。 このため、このメソッドはごくまれに使用する必要がありますが、ほとんどの場合、`OnActivityImport` と将来の symetry との互換性があります。
 
-`payload`は<xref:System.Object>ここではとして型指定されていますが、特定のインストルメンテーションサイトとサブスクライバーはペイロードの種類を認識している必要があるため、必要に応じてキャストしてデコードします。
+ここでは `payload` が <xref:System.Object> として入力されることに注意してくださいが、特定のインストルメンテーションサイトとサブスクライバーはペイロードの種類を認識し、必要に応じてキャストおよびデコードする必要があります。
 
          ]]></format>
         </remarks>
@@ -168,13 +173,14 @@
       <AssemblyInfo>
         <AssemblyName>System.Diagnostics.DiagnosticSource</AssemblyName>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-3.0" />
-        <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+        <Parameter Name="payload" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="activity">外部イベントの影響を受けるアクティビティ。</param>
@@ -183,13 +189,13 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-インストルメンテーションサイトが、プロセス外の HTTP 要求`OnActivityImport`などの何らかのイベントに応答して新しいアクティビティを作成する場合、メソッドによって、そのサイトは新しいアクティビティを作成し、受信要求から演習. 
+インバウンド HTTP 要求など、プロセス外のイベントに応答して、インストルメンテーションサイトが新しいアクティビティを作成する場合、`OnActivityImport` 方法では、そのサイトで新しいアクティビティを作成し、受信要求からアクティビティに状態を転送することができます。 
 
-インストルメンテーションサイトでは、 <xref:System.Diagnostics.Activity>との間の要求ロジックとの間にコントラクトがあるため、これは可能な限りインストルメンテーションサイトで行う必要があります。   ただし、インストルメンテーションサイトではポリシーを処理できません。 (たとえば、サンプリングが実行された場合は、どの要求をサンプリングする必要がありますか。)このような場合、インストルメンテーションサイトでは、ログシステムにコールバックし、ポリシーを解決するように要求する必要があります (たとえば、アクティビティの "サンプリング" ビットを設定する必要があるかどうかを判断する場合など)。 これは、 `OnActivityImport`メソッドの目的です。 これには、アクティビティと、着信要求を表すペイロードオブジェクトが付与されます。 その後、の<xref:System.Diagnostics.DiagnosticSource>サブスクライバーは、このアクティビティを必要に応じて更新できます。 
+この処理は、インストルメンテーションサイトで実行する必要があります。これは、インストルメンテーションサイトでの <xref:System.Diagnostics.Activity> と着信の要求ロジックとの間にコントラクトがあるためです。   ただし、インストルメンテーションサイトではポリシーを処理できません。 (たとえば、サンプリングが実行された場合は、どの要求をサンプリングする必要がありますか。)このような場合、インストルメンテーションサイトでは、ログシステムにコールバックし、ポリシーを解決するように要求する必要があります (たとえば、アクティビティの "サンプリング" ビットを設定する必要があるかどうかを判断する場合など)。 これは、`OnActivityImport` メソッドの目的です。 これには、アクティビティと、着信要求を表すペイロードオブジェクトが付与されます。 その後、<xref:System.Diagnostics.DiagnosticSource> のサブスクライバーが、必要に応じてこのアクティビティを更新できるようになります。 
 
-この方法は、インストルメンテーションサイト (プロセスの境界上にあるサイトのみ) で使用されることはほとんどなく、instrumetation サイトはいくつかの既定のポリシー (*何らか*の方法でアクティビティを設定します) を実装します。したがって、このメソッドをオーバーライドする必要はありません。この既定のポリシーは問題ありません。 つまり、このメソッドは非常にまれなケースでオーバーライドする必要があります。
+この方法は、ほとんどの場合、インストルメンテーションサイト (プロセスの境界上にあるサイトのみ) で使用され、instrumetation サイトはいくつかの既定のポリシー (*何らか*の方法でアクティビティを設定します) を実装します。そのため、既定のポリシーが正常な場合は、このメソッドをオーバーライドする必要はありません。 つまり、このメソッドは非常にまれなケースでオーバーライドする必要があります。
 
-がここ`payload`で入力さ<xref:System.Object>れていることに注意してください。ただし、特定のインストルメンテーションサイトとサブスクライバーはペイロードの種類を認識するため、必要に応じてキャストしてデコードします。
+ここでは `payload` が <xref:System.Object> として入力されていますが、特定のインストルメンテーションサイトとサブスクライバーはペイロードの種類を認識しているため、必要に応じてキャストしてデコードします。
 
          ]]></format>
         </remarks>
@@ -208,13 +214,14 @@
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Diagnostics.Activity</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
-        <Parameter Name="args" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1" />
+        <Parameter Name="args" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="activity">開始する <see cref="T:System.Diagnostics.Activity" /> です。</param>
@@ -224,9 +231,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[
            
-は<xref:System.Diagnostics.Activity> 、論理操作、そのコンテキスト、および親の関係を記述し<xref:System.Diagnostics.Activity>ます。現在のは操作処理を通じてフローします。
+<xref:System.Diagnostics.Activity> には、論理操作、そのコンテキスト、および親の関係が記述されています。現在の <xref:System.Diagnostics.Activity> は、操作の処理を通過します。
 
-このメソッドは、指定<xref:System.Diagnostics.Activity>されたを<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>開始<xref:System.Diagnostics.Activity.Parent?displayProperty=nameWithType>し、指定さ<xref:System.Diagnostics.Activity>れたのグローバルおよびアクティビティを<xref:System.Diagnostics.Activity>保持し、新しいが開始されたことをコンシューマーに通知します。 コンシューマーは、 <xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>にアクセスしてコンテキストを追加したり、テレメトリを補強したりすることができます。
+このメソッドは、指定された <xref:System.Diagnostics.Activity>を開始し、指定された <xref:System.Diagnostics.Activity>のグローバル <xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType> と <xref:System.Diagnostics.Activity.Parent?displayProperty=nameWithType> アクティビティを保持し、新しい <xref:System.Diagnostics.Activity> が開始されたことをコンシューマーに通知します。 コンシューマーは、<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType> にアクセスしてコンテキストを追加したり、テレメトリを補強したりすることができます。
 
 プロデューサーは、ペイロード内のコンシューマーに追加の詳細を渡すことができます。
 
@@ -247,13 +254,14 @@
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
-        <Parameter Name="args" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0" />
+        <Parameter Name="activity" Type="System.Diagnostics.Activity" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1" />
+        <Parameter Name="args" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="activity">停止するアクティビティです。</param>
@@ -264,7 +272,7 @@
 
 プロデューサーは、ペイロード内のコンシューマーに追加の詳細を渡すことができます。
 
-コンシューマーは、 <xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType>にアクセスしてコンテキストを追加したり、テレメトリを補強したりすることができます。
+コンシューマーは、<xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType> にアクセスしてコンテキストを追加したり、テレメトリを補強したりすることができます。
 
 
          ]]></format>
@@ -287,6 +295,7 @@
         <AssemblyVersion>4.0.2.1</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -304,9 +313,9 @@
 
 各通知には、それを識別する名前と、通知に渡す任意の情報を提供するオブジェクト (通常は匿名型) が与えられます。  
 
-`name`短くする必要があります。 あいまいさを避ける必要がある場合は、グローバルに一意である`name`必要があるため、完全修飾名は使用しないでください。 通常、 *componentName*は、 *componentName*と*eventName*が10文字未満の文字列であるため、適切なセキュリティ侵害が発生します。
+`name` は短くする必要があります。 `name` はグローバルに一意である必要があるため、あいまいさを避ける必要がある場合を除き、完全修飾名は使用しないでください。 通常、 *componentName*は、 *componentName*と*eventName*が10文字未満の文字列であるため、適切なセキュリティ侵害が発生します。
 
-コンポーネント名にドットが`.`含まれていて、その両方にドットがあるとあいまいさが生じるため、通知名には含まれません。 代わりにを使用`_`することをお勧めします。
+コンポーネント名にドットが含まれており、それらの両方にドットがあるため、あいまいさが生じるため、通知名には `.` を含めることはできません。 代わりに `_` を使用することをお勧めします。
 
 リスナーが文字列プレフィックスを使用してグループをフィルター処理するとします。 したがって、コンポーネント名の階層構造を用意することをお勧めします。
 

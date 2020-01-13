@@ -1,5 +1,5 @@
 <Type Name="OperationContext" FullName="System.ServiceModel.OperationContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="729be64e5b17da9b926ef2e19dca7abb0ccdf552" /><Meta Name="ms.sourcegitcommit" Value="2b78f05b0c6fa92adaf5e1dfe5a50388f952efe7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/02/2019" /><Meta Name="ms.locfileid" Value="71805759" /></Metadata><TypeSignature Language="C#" Value="public sealed class OperationContext : System.ServiceModel.IExtensibleObject&lt;System.ServiceModel.OperationContext&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f3daab1c0aa273b72dff79116df132528a7a1ab3" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75159831" /></Metadata><TypeSignature Language="C#" Value="public sealed class OperationContext : System.ServiceModel.IExtensibleObject&lt;System.ServiceModel.OperationContext&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit OperationContext extends System.Object implements class System.ServiceModel.IExtensibleObject`1&lt;class System.ServiceModel.OperationContext&gt;" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.OperationContext" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class OperationContext&#xA;Implements IExtensibleObject(Of OperationContext)" />
@@ -20,6 +20,7 @@
     <AssemblyVersion>4.5.0.1</AssemblyVersion>
     <AssemblyVersion>4.5.0.3</AssemblyVersion>
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
+    <AssemblyVersion>4.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -30,12 +31,12 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>サービス メソッドの実行コンテキストへのアクセスを提供します。</summary>
+    <summary>サービス メソッドの実行コンテキストにアクセスします。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.OperationContext> を使用して、サービス操作の中から現在の操作実行環境にアクセスします。 特に、操作コンテキストは、双方向サービスでのコールバック チャネルへのアクセス、操作の複数部分に関係する特別な状態データの保存、受信メッセージ ヘッダーとプロパティへのアクセス、および送信メッセージ ヘッダーとプロパティの追加を行うために使用されます。  
+ 現在の操作実行環境にアクセスするには、サービス操作内から <xref:System.ServiceModel.OperationContext> を使用します。 特に、操作コンテキストは、双方向サービスでのコールバック チャネルへのアクセス、操作の複数部分に関係する特別な状態データの保存、受信メッセージ ヘッダーとプロパティへのアクセス、および送信メッセージ ヘッダーとプロパティの追加を行うために使用されます。  
   
  拡張機能を使用して状態データを格納する方法の詳細については、「[拡張オブジェクト](~/docs/framework/wcf/extending/extensible-objects.md)」を参照してください。  
   
@@ -45,42 +46,42 @@
   
 -   <xref:System.ServiceModel.OperationContext.ServiceSecurityContext%2A> プロパティは、メソッドが実行されるセキュリティ環境を返します。  
   
--   <xref:System.ServiceModel.OperationContext.EndpointDispatcher%2A> プロパティは、操作の <xref:System.ServiceModel.Dispatcher.EndpointDispatcher?displayProperty=nameWithType> を取得します。  
+-   <xref:System.ServiceModel.OperationContext.EndpointDispatcher%2A> プロパティは、操作の <xref:System.ServiceModel.Dispatcher.EndpointDispatcher?displayProperty=nameWithType>を取得します。  
   
--   <xref:System.ServiceModel.OperationContext.Extensions%2A> プロパティは、現在の <xref:System.ServiceModel.OperationContext> の拡張のコレクションを返します。  
+-   <xref:System.ServiceModel.OperationContext.Extensions%2A> プロパティは、現在の <xref:System.ServiceModel.OperationContext>の拡張コレクションを返します。  
   
 -   <xref:System.ServiceModel.OperationContext.Host%2A> プロパティは、サービスを管理する <xref:System.ServiceModel.ServiceHostBase> オブジェクトを返します。  
   
--   <xref:System.ServiceModel.OperationContext.HasSupportingTokens%2A> プロパティは、メソッドがトークンをサポートしているかどうかを示す値を返し、サポートしている場合は、<xref:System.ServiceModel.OperationContext.SupportingTokens%2A> プロパティがトークンを取得します。  
+-   <xref:System.ServiceModel.OperationContext.HasSupportingTokens%2A> プロパティは、メソッドにサポートトークンがあるかどうかを示す値を返します。存在する場合は、<xref:System.ServiceModel.OperationContext.SupportingTokens%2A> プロパティによって取得されます。  
   
--   <xref:System.ServiceModel.OperationContext.IncomingMessageHeaders%2A>、<xref:System.ServiceModel.OperationContext.IncomingMessageProperties%2A>、および <xref:System.ServiceModel.OperationContext.IncomingMessageVersion%2A> の各プロパティは、対応する項目を受信メッセージから取得します。  
+-   <xref:System.ServiceModel.OperationContext.IncomingMessageHeaders%2A>、<xref:System.ServiceModel.OperationContext.IncomingMessageProperties%2A>、および <xref:System.ServiceModel.OperationContext.IncomingMessageVersion%2A> の各プロパティは、これらの項目を受信メッセージから取得します。  
   
--   <xref:System.ServiceModel.OperationContext.OperationCompleted> イベントは、操作が完了したときに発生します。  
+-   操作が完了すると、<xref:System.ServiceModel.OperationContext.OperationCompleted> イベントが発生します。  
   
--   <xref:System.ServiceModel.OperationContext.OutgoingMessageHeaders%2A> プロパティと <xref:System.ServiceModel.OperationContext.OutgoingMessageProperties%2A> プロパティは、送信メッセージの対応する項目を取得します。  
+-   <xref:System.ServiceModel.OperationContext.OutgoingMessageHeaders%2A> プロパティと <xref:System.ServiceModel.OperationContext.OutgoingMessageProperties%2A> プロパティは、送信メッセージに対してこれらの項目を取得します。  
   
--   <xref:System.ServiceModel.OperationContext.RequestContext%2A> プロパティは、メソッドの <xref:System.ServiceModel.Channels.RequestContext> 実装を返します。  
+-   <xref:System.ServiceModel.OperationContext.RequestContext%2A> プロパティは、メソッドの <xref:System.ServiceModel.Channels.RequestContext> の実装を返します。  
   
 -   <xref:System.ServiceModel.OperationContext.InstanceContext%2A> プロパティは、操作に関連付けられた <xref:System.ServiceModel.InstanceContext> を返します。  
   
--   <xref:System.ServiceModel.OperationContext.SessionId%2A> プロパティは、現在のチャネルとオブジェクトのセッション ID を返します。  
+-   <xref:System.ServiceModel.OperationContext.SessionId%2A> プロパティは、現在のチャネルとオブジェクトのセッション識別子を返します。  
   
--   <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> メソッドは、双方向通信の場合に、呼び出し元へのコールバック チャネルを返します。  
+-   双方向通信の場合は、<xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> メソッドによって呼び出し元にコールバックチャネルが返されます。  
   
 -   <xref:System.ServiceModel.OperationContext.SetTransactionComplete%2A> メソッドは、現在のトランザクションをコミットします。  
   
    
   
 ## Examples  
- <xref:System.ServiceModel.OperationContext.Current%2A> プロパティと <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> メソッドを使用して、メソッドの中から呼び出し元に戻るチャネルを取得するコード例を次に示します。 この例のすべてのメソッドは一方向メソッドであり、サービスおよびクライアントが独立して双方向通信できます。 この場合、サンプルのクライアント アプリケーションは、終了するまでに 1 つのリターン コールだけが期待されますが、別のクライアント (Windows フォーム クライアントなど) は、サービスからの呼び出しをいくつでも受信できます。  
+ 次のコード例では、<xref:System.ServiceModel.OperationContext.Current%2A> プロパティと <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> メソッドを使用して、メソッド内から呼び出し元へのチャネルを取得します。 この例のすべてのメソッドは一方向メソッドであり、サービスおよびクライアントが独立して双方向通信できます。 この場合、クライアントアプリケーションの例では、終了する前に1つの戻り値の呼び出しだけが想定されますが、別のクライアント (たとえば、Windows フォームクライアント) はサービスから任意の数の呼び出しを受け取ることができます。  
   
  [!code-csharp[SCA.CallbackContract#1](~/samples/snippets/csharp/VS_Snippets_CFX/sca.callbackcontract/cs/services.cs#1)]
  [!code-vb[SCA.CallbackContract#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/sca.callbackcontract/vb/services.vb#1)]  
   
- 次のクライアントは、コールバック メッセージを受信するために `SampleDuplexHelloCallback` を実装しています。 インポートされたコールバック コントラクトは、前の例で <xref:System.ServiceModel.ServiceContractAttribute.Name%2A> プロパティを使用しているため、サービスのコントラクトと同じ名前ではありません。 クライアントがコールバックを受信するかどうか、または受信タイミングに関する前提はないので、サーバー コールバックがクライアントの送信呼び出しからは完全に独立していることに注意してください。  
+ 次のクライアントは、コールバックメッセージを受信するための `SampleDuplexHelloCallback` を実装します。 インポートされたコールバックコントラクトは、前の例の <xref:System.ServiceModel.ServiceContractAttribute.Name%2A> プロパティを使用しているため、サービス内のものと同じ名前ではありません。 クライアントがコールバックを受信するかどうか、または受信タイミングに関する前提はないので、サーバー コールバックがクライアントの送信呼び出しからは完全に独立していることに注意してください。  
   
 > [!NOTE]
->  クライアント シナリオで <xref:System.ServiceModel.OperationContext> クラスを使用する例については、「<xref:System.ServiceModel.OperationContextScope>」を参照してください。  
+>  クライアントシナリオで <xref:System.ServiceModel.OperationContext> クラスを使用する例については、「<xref:System.ServiceModel.OperationContextScope>」を参照してください。  
   
  [!code-csharp[SCA.CallbackContract#3](~/samples/snippets/csharp/VS_Snippets_CFX/sca.callbackcontract/cs/client.cs#3)]
  [!code-vb[SCA.CallbackContract#3](~/samples/snippets/visualbasic/VS_Snippets_CFX/sca.callbackcontract/vb/client.vb#3)]  
@@ -112,6 +113,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="channel" Type="System.ServiceModel.IContextChannel" />
@@ -123,7 +125,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.OperationContext.%23ctor%2A> コンストラクターを使用して、ヘッダーなどの送信項目を変更するためにプロキシに関連付けられているスコープの中に、新しい操作コンテキストを作成します。  
+ <xref:System.ServiceModel.OperationContext.%23ctor%2A> コンストラクターを使用して、ヘッダーなどの送信項目を変更するために、プロキシが関連付けられているスコープ内に新しい操作コンテキストを作成します。  
   
    
   
@@ -158,6 +160,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -193,7 +196,7 @@
       </ReturnValue>
       <Docs>
         <summary>操作に関連付けられているクレーム ベースのプリンシパルを取得します。</summary>
-        <value>クレーム プリンシパル。</value>
+        <value>要求のプリンシパル。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -220,6 +223,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.OperationContext</ReturnType>
@@ -231,12 +235,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.OperationContext.Current%2A> プロパティを使用して、現在のメソッドの実行コンテキストとメッセージ コンテキストを取得します。  
+ 現在のメソッドの実行およびメッセージコンテキストを取得するには、<xref:System.ServiceModel.OperationContext.Current%2A> プロパティを使用します。  
   
    
   
 ## Examples  
- <xref:System.ServiceModel.OperationContext.Current%2A> プロパティと <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> メソッドを使用してメソッドから呼び出し元へのチャネルを作成するコード例を次に示します。 この例のすべてのメソッドは一方向メソッドであり、サービスおよびクライアントが独立して双方向通信できます。 この場合、サンプルのクライアント アプリケーションは、終了するまでに 1 つのリターン コールだけが期待されますが、別のクライアント (Windows フォーム クライアントなど) は、サービスからの呼び出しをいくつでも受信できます。  
+ 次のコード例では、<xref:System.ServiceModel.OperationContext.Current%2A> プロパティと <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> メソッドを使用して、メソッド内から呼び出し元へのチャネルを作成します。 この例のすべてのメソッドは一方向メソッドであり、サービスおよびクライアントが独立して双方向通信できます。 この場合、クライアントアプリケーションの例では、終了する前に1つの戻り値の呼び出しだけが想定されますが、別のクライアント (たとえば、Windows フォームクライアント) はサービスから任意の数の呼び出しを受け取ることができます。  
   
  [!code-csharp[SCA.CallbackContract#1](~/samples/snippets/csharp/VS_Snippets_CFX/sca.callbackcontract/cs/services.cs#1)]
  [!code-vb[SCA.CallbackContract#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/sca.callbackcontract/vb/services.vb#1)]  
@@ -304,6 +308,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.IExtensionCollection&lt;System.ServiceModel.OperationContext&gt;</ReturnType>
@@ -315,7 +320,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.OperationContext.Extensions%2A> プロパティを使用して、コンテキストの変更、またはカスタム状態の追加に使用される <xref:System.ServiceModel.OperationContext> のすべての拡張のコレクションを取得します。 拡張機能の詳細については、「[拡張オブジェクト](~/docs/framework/wcf/extending/extensible-objects.md)」を参照してください。  
+ <xref:System.ServiceModel.OperationContext.Extensions%2A> プロパティを使用して、コンテキストの変更またはカスタム状態の追加に使用される <xref:System.ServiceModel.OperationContext> のすべての拡張機能のコレクションを取得します。 拡張機能の詳細については、「[拡張オブジェクト](~/docs/framework/wcf/extending/extensible-objects.md)」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -340,6 +345,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>T</ReturnType>
@@ -356,20 +362,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> プロパティを呼び出して、このサービスを呼び出したクライアント インスタンス上の操作を呼び出すために使用できるチャネルを取得します。  
+ <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> プロパティを呼び出して、サービスを呼び出したクライアントインスタンスで操作を呼び出すために使用できるチャネルを取得します。  
   
    
   
 ## Examples  
- 次のコード例では、<xref:System.ServiceModel.OperationContext.Current%2A> プロパティと <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> メソッドを使用して、操作の中から呼び出し元に戻るチャネルを作成する方法を示しています。 この例のすべての操作は一方向操作であり、サービスとクライアントが独立して双方向通信できます。 この場合、サンプルのクライアント アプリケーションは、終了するまでに 1 つのリターン コールだけが期待されますが、別のクライアント (Windows フォーム クライアントなど) は、サービスからの呼び出しをいくつでも受信できます。  
+ 次のコード例では、<xref:System.ServiceModel.OperationContext.Current%2A> プロパティと <xref:System.ServiceModel.OperationContext.GetCallbackChannel%2A> メソッドを使用して、操作内から呼び出し元へのチャネルを作成します。 この例のすべての操作は一方向操作であり、サービスとクライアントが独立して双方向通信できます。 この場合、クライアントアプリケーションの例では、終了する前に1つの戻り値の呼び出しだけが想定されますが、別のクライアント (たとえば、Windows フォームクライアント) はサービスから任意の数の呼び出しを受け取ることができます。  
   
  [!code-csharp[SCA.CallbackContract#1](~/samples/snippets/csharp/VS_Snippets_CFX/sca.callbackcontract/cs/services.cs#1)]
  [!code-vb[SCA.CallbackContract#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/sca.callbackcontract/vb/services.vb#1)]  
   
- 次のクライアントは、コールバック メッセージを受信するために `SampleDuplexHelloCallback` を実装しています。 インポートされたコールバック コントラクトは、前の例で <xref:System.ServiceModel.ServiceContractAttribute.Name%2A> プロパティを使用しているため、サービスのコントラクトと同じ名前ではありません。 クライアントがコールバックを受信するかどうか、または受信タイミングに関する前提はないので、サーバー コールバックがクライアントの送信呼び出しからは完全に独立していることに注意してください。  
+ 次のクライアントは、コールバックメッセージを受信するための `SampleDuplexHelloCallback` を実装します。 インポートされたコールバックコントラクトは、前の例の <xref:System.ServiceModel.ServiceContractAttribute.Name%2A> プロパティを使用しているため、サービス内のものと同じ名前ではありません。 クライアントがコールバックを受信するかどうか、または受信タイミングに関する前提はないので、サーバー コールバックがクライアントの送信呼び出しからは完全に独立していることに注意してください。  
   
 > [!NOTE]
->  クライアント シナリオで <xref:System.ServiceModel.OperationContext> クラスを使用する例については、「<xref:System.ServiceModel.OperationContextScope>」を参照してください。  
+>  クライアントシナリオで <xref:System.ServiceModel.OperationContext> クラスを使用する例については、「<xref:System.ServiceModel.OperationContextScope>」を参照してください。  
   
  [!code-csharp[SCA.CallbackContract#3](~/samples/snippets/csharp/VS_Snippets_CFX/sca.callbackcontract/cs/client.cs#3)]
  [!code-vb[SCA.CallbackContract#3](~/samples/snippets/visualbasic/VS_Snippets_CFX/sca.callbackcontract/vb/client.vb#3)]  
@@ -429,7 +435,7 @@
       </ReturnValue>
       <Docs>
         <summary>現在のサービス オブジェクトの <see cref="T:System.ServiceModel.ServiceHost" /> を取得します。</summary>
-        <value><see cref="T:System.ServiceModel.ServiceHost" /> オブジェクト。</value>
+        <value><see cref="T:System.ServiceModel.ServiceHost" /> オブジェクトです。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -456,6 +462,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.MessageHeaders</ReturnType>
@@ -504,6 +511,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.MessageProperties</ReturnType>
@@ -544,6 +552,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.MessageVersion</ReturnType>
@@ -593,7 +602,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.OperationContext.InstanceContext%2A> プロパティを使用して、現在のサービス オブジェクトを管理するランタイム オブジェクトにアクセスします。  
+ 現在のサービスオブジェクトを管理するランタイムオブジェクトにアクセスするには、<xref:System.ServiceModel.OperationContext.InstanceContext%2A> プロパティを使用します。  
   
  ]]></format>
         </remarks>
@@ -622,13 +631,14 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>このプロパティはシステムによる使用を目的としています。ユーザーが呼び出すためのものではありません。</summary>
-        <value><see langword="true" />。</value>
+        <value><see langword="true" /> で初期化します。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -636,7 +646,7 @@
       <MemberSignature Language="C#" Value="public event EventHandler OperationCompleted;" />
       <MemberSignature Language="ILAsm" Value=".event class System.EventHandler OperationCompleted" />
       <MemberSignature Language="DocId" Value="E:System.ServiceModel.OperationContext.OperationCompleted" />
-      <MemberSignature Language="VB.NET" Value="Public Custom Event OperationCompleted As EventHandler " FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Custom Event OperationCompleted As EventHandler " FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; event EventHandler ^ OperationCompleted;" />
       <MemberSignature Language="F#" Value="member this.OperationCompleted : EventHandler " Usage="member this.OperationCompleted : System.EventHandler " />
       <MemberSignature Language="VB.NET" Value="Public Event OperationCompleted As EventHandler " FrameworkAlternate="netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
@@ -656,6 +666,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.EventHandler</ReturnType>
@@ -666,7 +677,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.OperationContext.OperationCompleted> を <xref:System.ServiceModel.OperationBehaviorAttribute.AutoDisposeParameters%2A?displayProperty=nameWithType> に設定した場合は、`false` イベントを使用して、パラメーターまたは戻り値を破棄します。 通常、パラメーターと戻り値のオブジェクトで WCF が @no__t を呼び出さないようにするには、<xref:System.ServiceModel.OperationBehaviorAttribute.AutoDisposeParameters%2A?displayProperty=nameWithType> を `false` に設定します。  ただし、保持する必要があるパラメーターと破棄する必要があるパラメーターが混在する場合、このイベントは、パラメーターを破棄するための最善の場所です。  
+ <xref:System.ServiceModel.OperationBehaviorAttribute.AutoDisposeParameters%2A?displayProperty=nameWithType> を `false`に設定した場合は、<xref:System.ServiceModel.OperationContext.OperationCompleted> イベントを使用して、パラメーターまたは戻り値を破棄します。 通常は、<xref:System.ServiceModel.OperationBehaviorAttribute.AutoDisposeParameters%2A?displayProperty=nameWithType> を `false` に設定して、WCF がパラメーターおよび戻り値オブジェクトに対して <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> を呼び出さないようにします。  ただし、保持する必要があるパラメーターと破棄する必要があるパラメーターが混在する場合、このイベントは、パラメーターを破棄するための最善の場所です。  
   
  さらに、双方向バインドでは、現在の操作に対する応答が送信された後で、このイベントを使用して、コールバック チャネル上に要求を送信できます。  
   
@@ -700,6 +711,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.MessageHeaders</ReturnType>
@@ -748,6 +760,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.MessageProperties</ReturnType>
@@ -788,6 +801,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -834,7 +848,7 @@
       </ReturnValue>
       <Docs>
         <summary>このメソッドが実行される <see cref="T:System.ServiceModel.ServiceSecurityContext" /> を取得または設定します。</summary>
-        <value><see cref="T:System.ServiceModel.ServiceSecurityContext" /> オブジェクト。</value>
+        <value><see cref="T:System.ServiceModel.ServiceSecurityContext" /> オブジェクトです。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

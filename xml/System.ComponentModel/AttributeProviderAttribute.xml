@@ -1,5 +1,5 @@
 <Type Name="AttributeProviderAttribute" FullName="System.ComponentModel.AttributeProviderAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="962f12be490a2a3472a588962def82a316f231e3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69348171" /></Metadata><TypeSignature Language="C#" Value="public class AttributeProviderAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a2d7b0680bda441982b1ded3e78bdc75b5e6d1f7" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75148053" /></Metadata><TypeSignature Language="C#" Value="public class AttributeProviderAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit AttributeProviderAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.AttributeProviderAttribute" />
   <TypeSignature Language="VB.NET" Value="Public Class AttributeProviderAttribute&#xA;Inherits Attribute" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System</AssemblyName>
@@ -27,7 +28,7 @@
   </Base>
   <Interfaces />
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.AttributeUsage(System.AttributeTargets.Property)</AttributeName>
     </Attribute>
   </Attributes>
@@ -37,11 +38,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- .NET Framework オブジェクトモデルには、あいまいになるようにプロパティが意図的に型指定されているケースがいくつかあります。 たとえば、 <xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>プロパティはとして`object`型指定されます。 その理由は、このプロパティは複数の種類の入力を受け入れることができるためです。 残念ながら、この方法では、プロパティの特性を記述するメタデータを追加する一般的な場所はありません。 .NET Framework `DataSource`全体の各プロパティには、型コンバーター、UI 型エディター、およびメタデータを必要とするその他のサービスのメタデータが同一である必要があります。 は<xref:System.ComponentModel.AttributeProviderAttribute> 、この状況を解決します。  
+ .NET Framework オブジェクトモデルには、あいまいになるようにプロパティが意図的に型指定されているケースがいくつかあります。 たとえば、<xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType> プロパティは `object`として型指定されます。 その理由は、このプロパティは複数の種類の入力を受け入れることができるためです。 残念ながら、この方法では、プロパティの特性を記述するメタデータを追加する一般的な場所はありません。 .NET Framework 全体の各 `DataSource` プロパティには、型コンバーター、UI 型エディター、およびメタデータを必要とするその他のサービスのメタデータが同一である必要があります。 <xref:System.ComponentModel.AttributeProviderAttribute> は、この状況を解決します。  
   
- この属性がプロパティに配置されると、プロパティ記述子の<xref:System.ComponentModel.MemberDescriptor.Attributes%2A?displayProperty=nameWithType>コレクションの属性を取得するための規則が異なります。 通常、プロパティ記述子は、ローカル属性を収集し、プロパティ型の属性とマージします。 この場合、属性は、実際の<xref:System.ComponentModel.AttributeProviderAttribute>プロパティ型ではなく、から返された型から取得されます。 <xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>この属性は、 <xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType>オブジェクトの特定の型をに<xref:System.ComponentModel.IListSource>指定するためにで使用されます。 <xref:System.ComponentModel.IListSource>適切なメタデータは、データバインディングを有効にするために配置されます。 そのため、外部のパーティは、すべてのデータソースに簡単にメタデータを追加できます。  
+ この属性がプロパティに配置されると、プロパティ記述子の <xref:System.ComponentModel.MemberDescriptor.Attributes%2A?displayProperty=nameWithType> コレクションの属性を取得するための規則が異なります。 通常、プロパティ記述子は、ローカル属性を収集し、プロパティ型の属性とマージします。 この場合、属性は、実際のプロパティ型からではなく、<xref:System.ComponentModel.AttributeProviderAttribute>から返された型から取得されます。 この属性は <xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType> で使用され、<xref:System.Windows.Forms.DataGridView.DataSource%2A?displayProperty=nameWithType> オブジェクトの特定の型を <xref:System.ComponentModel.IListSource>にポイントし、適切なメタデータを <xref:System.ComponentModel.IListSource> に配置してデータバインディングを有効にします。 そのため、外部のパーティは、すべてのデータソースに簡単にメタデータを追加できます。  
   
- で宣言された型から取得<xref:System.ComponentModel.AttributeProviderAttribute>された属性には、プロパティの型の属性とプロパティの属性の間の優先順位があります。 次の一覧は、使用可能なマージされた属性の完全なセットを示しています。  
+ <xref:System.ComponentModel.AttributeProviderAttribute> で宣言された型から取得された属性には、プロパティの型の属性とプロパティの属性の間の優先順位があります。 次の一覧は、使用可能なマージされた属性の完全なセットを示しています。  
   
 -   プロパティの属性  
   
@@ -52,7 +53,7 @@
    
   
 ## Examples  
- 次のコード例では<xref:System.ComponentModel.AttributeProviderAttribute> 、を使用`DataSource`して、特定の型<xref:System.ComponentModel.IListSource>のを持つプロパティをマークします。 完全なコードリストについて[は、「方法:Windows フォームコントロール](~/docs/framework/winforms/controls/how-to-apply-attributes-in-windows-forms-controls.md)に属性を適用します。  
+ 次のコード例では、<xref:System.ComponentModel.AttributeProviderAttribute> を使用して、`DataSource` プロパティに特定の種類の <xref:System.ComponentModel.IListSource>をマークする方法を示します。 完全なコードリストについては、「[方法: Windows フォームコントロールに属性を適用する](~/docs/framework/winforms/controls/how-to-apply-attributes-in-windows-forms-controls.md)」を参照してください。  
   
  [!code-csharp[System.ComponentModel.AttributesDemoControl#25](~/samples/snippets/csharp/VS_Snippets_Winforms/System.ComponentModel.AttributesDemoControl/CS/attributesdemocontrol.cs#25)]
  [!code-vb[System.ComponentModel.AttributesDemoControl#25](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.ComponentModel.AttributesDemoControl/VB/attributesdemocontrol.vb#25)]  
@@ -86,6 +87,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -105,7 +107,7 @@
         <param name="typeName">指定する型の名前。</param>
         <summary>指定した型名を使用して <see cref="T:System.ComponentModel.AttributeProviderAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> は <see langword="null" /> です。</exception>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <related type="Article" href="https://msdn.microsoft.com/library/e81b8e2f-e06e-44fa-8129-7bdb0230101f">型記述子の概要</related>
       </Docs>
@@ -122,6 +124,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -144,14 +147,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例では<xref:System.ComponentModel.AttributeProviderAttribute> 、を使用`DataSource`して、特定の型<xref:System.ComponentModel.IListSource>のを持つプロパティをマークします。 完全なコードリストについて[は、「方法:Windows フォームコントロール](~/docs/framework/winforms/controls/how-to-apply-attributes-in-windows-forms-controls.md)に属性を適用します。  
+ 次のコード例では、<xref:System.ComponentModel.AttributeProviderAttribute> を使用して、`DataSource` プロパティに特定の種類の <xref:System.ComponentModel.IListSource>をマークする方法を示します。 完全なコードリストについては、「[方法: Windows フォームコントロールに属性を適用する](~/docs/framework/winforms/controls/how-to-apply-attributes-in-windows-forms-controls.md)」を参照してください。  
   
  [!code-csharp[System.ComponentModel.AttributesDemoControl#25](~/samples/snippets/csharp/VS_Snippets_Winforms/System.ComponentModel.AttributesDemoControl/CS/attributesdemocontrol.cs#25)]
  [!code-vb[System.ComponentModel.AttributesDemoControl#25](~/samples/snippets/visualbasic/VS_Snippets_Winforms/System.ComponentModel.AttributesDemoControl/VB/attributesdemocontrol.vb#25)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> は <see langword="null" /> です。</exception>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <related type="Article" href="https://msdn.microsoft.com/library/e81b8e2f-e06e-44fa-8129-7bdb0230101f">型記述子の概要</related>
       </Docs>
@@ -169,6 +172,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -190,7 +194,7 @@
         <param name="propertyName">属性を取得するプロパティの名前。</param>
         <summary>指定した型名とプロパティ名を使用して、<see cref="T:System.ComponentModel.AttributeProviderAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="propertyName" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="propertyName" /> は <see langword="null" /> です。</exception>
         <altmember cref="T:System.ComponentModel.TypeDescriptor" />
         <related type="Article" href="https://msdn.microsoft.com/library/e81b8e2f-e06e-44fa-8129-7bdb0230101f">型記述子の概要</related>
       </Docs>
@@ -208,6 +212,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -249,6 +254,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
