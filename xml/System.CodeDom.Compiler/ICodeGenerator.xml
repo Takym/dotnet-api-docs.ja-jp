@@ -1,5 +1,5 @@
 <Type Name="ICodeGenerator" FullName="System.CodeDom.Compiler.ICodeGenerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="2ada64a8fb7c5c57e5e82b5bdadc29184e9eae33" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69336539" /></Metadata><TypeSignature Language="C#" Value="public interface ICodeGenerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="665b36583f3a3e6fd80e5d9b9401c7eab8296e71" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75153383" /></Metadata><TypeSignature Language="C#" Value="public interface ICodeGenerator" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ICodeGenerator" />
   <TypeSignature Language="DocId" Value="T:System.CodeDom.Compiler.ICodeGenerator" />
   <TypeSignature Language="VB.NET" Value="Public Interface ICodeGenerator" />
@@ -16,6 +16,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -26,11 +27,11 @@
 ## Remarks  
   
 > [!NOTE]
->  .NET Framework バージョン1.0 および1.1 では、コード<xref:System.CodeDom.Compiler.CodeDomProvider>プロバイダーは<xref:System.CodeDom.Compiler.ICodeParser>、 <xref:System.CodeDom.Compiler.ICodeGenerator>、、および<xref:System.CodeDom.Compiler.ICodeCompiler>の実装で構成されます。 [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)] <xref:System.CodeDom.Compiler.CodeDomProvider> <xref:System.CodeDom.Compiler.ICodeCompiler>では、、 <xref:System.CodeDom.Compiler.ICodeGenerator> 、および<xref:System.CodeDom.Compiler.CodeDomProvider.CreateCompiler%2A>の各メソッドは互換性のために残されています。また、およびのメソッドは、クラスで直接使用できます。 <xref:System.CodeDom.Compiler.CodeDomProvider.CreateParser%2A> <xref:System.CodeDom.Compiler.CodeDomProvider.CreateGenerator%2A> これらのメソッドは、基本メソッドを呼び出さずに、コードプロバイダーの実装でオーバーライドする必要があります。  
+>  .NET Framework バージョン1.0 および1.1 では、コードプロバイダーは <xref:System.CodeDom.Compiler.CodeDomProvider>、<xref:System.CodeDom.Compiler.ICodeGenerator>、<xref:System.CodeDom.Compiler.ICodeParser>、および <xref:System.CodeDom.Compiler.ICodeCompiler>の実装で構成されています。 [!INCLUDE[dnprdnlong](~/includes/dnprdnlong-md.md)]では、<xref:System.CodeDom.Compiler.CodeDomProvider.CreateGenerator%2A>、<xref:System.CodeDom.Compiler.CodeDomProvider.CreateParser%2A>、および <xref:System.CodeDom.Compiler.CodeDomProvider.CreateCompiler%2A> の各メソッドは互換性のために残されており、<xref:System.CodeDom.Compiler.ICodeGenerator> クラスで直接使用できます。<xref:System.CodeDom.Compiler.ICodeCompiler><xref:System.CodeDom.Compiler.CodeDomProvider> これらのメソッドは、基本メソッドを呼び出さずに、コードプロバイダーの実装でオーバーライドする必要があります。  
   
  コンパイラの開発者は、このインターフェイスを実装して、特定の言語でコードを動的に生成できるようにすることができます。 これは、コード生成ウィザードを作成する、デバッグ可能なコンテンツを含む動的アセンブリを作成する、ASP.NET などのコードを埋め込んだテンプレートドキュメントを作成するなど、さまざまな目的で使用できます。  
   
- の実装は、通常、の<xref:System.CodeDom.Compiler.CodeDomProvider.CreateGenerator%2A> <xref:System.CodeDom.Compiler.CodeDomProvider>メソッドの呼び出しによって取得されます。 <xref:System.CodeDom.Compiler.ICodeGenerator>  
+ <xref:System.CodeDom.Compiler.ICodeGenerator> の実装は、通常 <xref:System.CodeDom.Compiler.CodeDomProvider>の <xref:System.CodeDom.Compiler.CodeDomProvider.CreateGenerator%2A> メソッドの呼び出しによって取得されます。  
   
  ]]></format>
     </remarks>
@@ -55,6 +56,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -70,7 +72,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.CodeDom.Compiler.ICodeGenerator.CreateEscapedIdentifier%2A>識別子が予約語または言語キーワードと競合しているかどうかをテストします。存在する場合は、言語固有のエスケープコード書式を使用して同等の名前を返します。 これは、エスケープされた識別子と呼ばれます。 エスケープされた識別子は同じ`value`を含みますが、キーワードから識別子を区別するためにエスケープコードの書式設定が追加されます。 2つの実装例で`value`は、の前に "@ `value` " を付けます。または、を "[" および "]" にします。  
+ 識別子が予約語または言語キーワードと競合しているかどうかをテスト <xref:System.CodeDom.Compiler.ICodeGenerator.CreateEscapedIdentifier%2A>、その場合は、言語固有のエスケープコード書式を使用して同等の名前を返します。 これは、エスケープされた識別子と呼ばれます。 エスケープされた識別子は同じ `value` を含みますが、キーワードから識別子を区別するためにエスケープコードの書式設定が追加されます。 2つの実装例は、"@" を使用して `value` の前、または `value` を "[" および "]" で角かっこで示しています。  
   
  ]]></format>
         </remarks>
@@ -98,6 +100,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -113,7 +116,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.CodeDom.Compiler.ICodeGenerator.CreateValidIdentifier%2A>識別子が予約キーワードまたは言語キーワードと競合しているかどうかをテストし、競合しない有効な識別子名を返します。 返される識別子には同じ`value`ものが含まれますが、予約語または言語キーワードと競合する場合は、キーワードから識別子を区別するためにエスケープコードの書式が追加されます。 通常、値の変更が必要な場合は、前にアンダースコア "_" が付いた値が返されます。  
+ 識別子が予約キーワードまたは言語キーワードと競合しているかどうかを <xref:System.CodeDom.Compiler.ICodeGenerator.CreateValidIdentifier%2A> テストし、競合しない有効な識別子名を返します。 返される識別子には同じ `value` が含まれますが、予約語または言語のキーワードと競合する場合は、キーワードから識別子を区別するためにエスケープコードの書式が追加されます。 通常、値の変更が必要な場合は、前にアンダースコア "_" が付いた値が返されます。  
   
  ]]></format>
         </remarks>
@@ -141,6 +144,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -182,6 +186,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -223,6 +228,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -264,6 +270,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -305,6 +312,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -346,6 +354,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -381,6 +390,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -391,12 +401,12 @@
       <Docs>
         <param name="value">有効な識別子かどうかをテストする対象の値。</param>
         <summary>指定した値が現在の言語で有効な識別子かどうかを示す値を取得します。</summary>
-        <returns><paramref name="value" /> パラメーターが有効な識別子である場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> パラメーターが有効な識別子である場合は <paramref name="value" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、識別子が有効かどうかをテストします。 派生クラス<xref:System.CodeDom.Compiler.ICodeGenerator.IsValidIdentifier%2A>でを実装する場合は、渡された値をテストするメソッドを設計し`true` 、値が言語の規則に適合し、キーワードと競合しない場合にのみを返します。  
+ このメソッドは、識別子が有効かどうかをテストします。 派生クラスで <xref:System.CodeDom.Compiler.ICodeGenerator.IsValidIdentifier%2A> を実装する場合は、渡された値をテストするメソッドを設計し、値が言語の規則に適合し、キーワードと競合しない場合にのみ `true` を返します。  
   
  ]]></format>
         </remarks>
@@ -423,6 +433,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -438,7 +449,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、適切な機能フラグの<xref:System.CodeDom.Compiler.GeneratorSupport>セットとバイナリ "or" 演算子 (&#124;) を結合することによって、一連の機能をテストするために一度に複数のフラグを使用して呼び出すことができます。  
+ このメソッドは、適切な機能フラグのセットとバイナリ "Or" 演算子 (&#124;) を結合することで、一連の機能をテストするために、一度に複数の <xref:System.CodeDom.Compiler.GeneratorSupport> フラグを使用して呼び出すことができます。  
   
  ]]></format>
         </remarks>
@@ -465,6 +476,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -479,7 +491,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、値を返すのではなく、メソッドの実装に従って指定された識別子が有効でない場合に例外をスローします。 通常、例外は<xref:System.ArgumentException>です。 このメソッドは、このメソッドを実装するコードジェネレーターが、無効な識別子の値に基づいて有益なエラーメッセージを生成できるようにします。  
+ このメソッドは、値を返すのではなく、メソッドの実装に従って指定された識別子が有効でない場合に例外をスローします。 通常、例外は <xref:System.ArgumentException>です。 このメソッドは、このメソッドを実装するコードジェネレーターが、無効な識別子の値に基づいて有益なエラーメッセージを生成できるようにします。  
   
  ]]></format>
         </remarks>

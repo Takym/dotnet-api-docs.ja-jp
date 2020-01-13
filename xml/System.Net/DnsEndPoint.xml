@@ -1,5 +1,5 @@
 <Type Name="DnsEndPoint" FullName="System.Net.DnsEndPoint">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="704b25183572954736710ce65bfa2a97c52bc422" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69091358" /></Metadata><TypeSignature Language="C#" Value="public class DnsEndPoint : System.Net.EndPoint" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="37f8d07d59e68f809f7b2ee16daa9d68803b7faf" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75170244" /></Metadata><TypeSignature Language="C#" Value="public class DnsEndPoint : System.Net.EndPoint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DnsEndPoint extends System.Net.EndPoint" />
   <TypeSignature Language="DocId" Value="T:System.Net.DnsEndPoint" />
   <TypeSignature Language="VB.NET" Value="Public Class DnsEndPoint&#xA;Inherits EndPoint" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System</AssemblyName>
@@ -29,12 +30,12 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>ネットワーク エンドポイントをホスト名か、IP アドレスおよびポート番号の文字列表現で表します。</summary>
+    <summary>ネットワーク エンドポイントを、ホスト名として、または IP アドレスとポート番号の文字列表記として表します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クラス<xref:System.Net.DnsEndPoint>には、ホスト上のサービスに接続するためにアプリケーションが必要とするホスト名または IP アドレスとリモートポート情報が含まれています。 サービスのホスト名または IP アドレスとポート番号を組み合わせることにより<xref:System.Net.DnsEndPoint> 、クラスはサービスへのコネクションポイントを形成します。  
+ <xref:System.Net.DnsEndPoint> クラスには、ホスト名、またはアプリケーションがホスト上のサービスに接続するために必要な IP アドレスとリモートポート情報が含まれています。 サービスのホスト名または IP アドレスとポート番号を組み合わせることによって、<xref:System.Net.DnsEndPoint> クラスはサービスへのコネクションポイントを形成します。  
   
  ]]></format>
     </remarks>
@@ -63,6 +64,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -94,9 +96,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コンストラクターを使用すると、ホスト名<xref:System.Net.DnsEndPoint>または IP アドレスとポートを表す文字列を使用して、クラスを初期化できます。 <xref:System.Net.DnsEndPoint.%23ctor%28System.String%2CSystem.Int32%29> このコンストラクターは、 <xref:System.Net.DnsEndPoint.AddressFamily%2A>プロパティを<xref:System.Net.Sockets.AddressFamily.Unknown>に設定します。  
+ <xref:System.Net.DnsEndPoint.%23ctor%28System.String%2CSystem.Int32%29> コンストラクターを使用して、ホスト名または IP アドレスとポートを表す文字列を使用して <xref:System.Net.DnsEndPoint> クラスを初期化できます。 このコンストラクターは、<xref:System.Net.DnsEndPoint.AddressFamily%2A> プロパティを <xref:System.Net.Sockets.AddressFamily.Unknown>に設定します。  
   
- このコンストラクターと、 <xref:System.Net.DnsEndPoint> IP アドレスの文字列表現ではなくホスト名を使用する場合、のアドレスファミリは使用後も保持<xref:System.Net.Sockets.AddressFamily.Unknown>されます。 メソッドの<xref:System.Net.Sockets.Socket> <xref:System.Net.DnsEndPoint.AddressFamily%2A> 呼び出しによって作成されたのプロパティは、接続を正常に確立できる最初のアドレスのアドレスファミリになります(解決される最初の<xref:System.Net.Sockets.Socket.ConnectAsync%2A>アドレスとは限りません)。  
+ このコンストラクターを IP アドレスの文字列表現ではなくホスト名と共に使用する場合、<xref:System.Net.DnsEndPoint> のアドレスファミリは、使用後も <xref:System.Net.Sockets.AddressFamily.Unknown> のままになります。 <xref:System.Net.Sockets.Socket.ConnectAsync%2A> メソッドの呼び出しによって作成されたすべての <xref:System.Net.Sockets.Socket> の <xref:System.Net.DnsEndPoint.AddressFamily%2A> プロパティは、接続を正常に確立できる最初のアドレスのアドレスファミリになります (必ずしも解決される最初のアドレスではありません)。  
   
  ]]></format>
         </remarks>
@@ -104,7 +106,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="host" /> パラメーターは <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="port" /> は <see cref="F:System.Net.IPEndPoint.MinPort" /> より小さい値です。  
   
-- または - 
+または 
  <paramref name="port" /> が <see cref="F:System.Net.IPEndPoint.MaxPort" /> より大きくなっています。</exception>
       </Docs>
     </Member>
@@ -120,6 +122,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -142,26 +145,26 @@
       <Docs>
         <param name="host">ホスト名、または IP アドレスの文字列表現。</param>
         <param name="port">アドレスに関連付けられているポート番号。または、使用できる任意のポートを指定する場合は 0。 <paramref name="port" /> は、ホスト順です。</param>
-        <param name="addressFamily"><see cref="T:System.Net.Sockets.AddressFamily" /> 値のいずれか 1 つ。</param>
+        <param name="addressFamily"><see cref="T:System.Net.Sockets.AddressFamily" /> 値の 1 つ。</param>
         <summary><see cref="T:System.Net.DnsEndPoint" /> クラスの新しいインスタンスをホスト名で、または IP アドレス、ポート番号、およびアドレス ファミリの文字列表現で初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コンストラクターを使用すると、ホスト名<xref:System.Net.DnsEndPoint>または IP アドレス、ポート、およびアドレスファミリを表す文字列を使用して、クラスを初期化できます。 <xref:System.Net.DnsEndPoint.%23ctor%28System.String%2CSystem.Int32%2CSystem.Net.Sockets.AddressFamily%29>  
+ <xref:System.Net.DnsEndPoint.%23ctor%28System.String%2CSystem.Int32%2CSystem.Net.Sockets.AddressFamily%29> コンストラクターを使用すると、ホスト名または IP アドレス、ポート、およびアドレスファミリを表す文字列を使用して、<xref:System.Net.DnsEndPoint> クラスを初期化できます。  
   
- IP アドレスの文字列表現ではなくホスト名を使用してコンストラクターを使用する場合、アドレスファミリは、指定されたアドレスファミリ値のアドレスを優先するように DNS 解決を制限します。 として<xref:System.Net.Sockets.AddressFamily.Unknown>指定されたアドレスファミリでコンストラクターを使用する場合、のアドレス<xref:System.Net.Sockets.AddressFamily.Unknown>ファミリ<xref:System.Net.DnsEndPoint>は使用後も保持されます。 メソッドの<xref:System.Net.Sockets.Socket> <xref:System.Net.DnsEndPoint.AddressFamily%2A> 呼び出しによって作成されたのプロパティは、接続を正常に確立できる最初のアドレスのアドレスファミリになります(解決される最初の<xref:System.Net.Sockets.Socket.ConnectAsync%2A>アドレスとは限りません)。  
+ IP アドレスの文字列表現ではなくホスト名を使用してコンストラクターを使用する場合、アドレスファミリは、指定されたアドレスファミリ値のアドレスを優先するように DNS 解決を制限します。 <xref:System.Net.Sockets.AddressFamily.Unknown>として指定されたアドレスファミリと共にコンストラクターを使用する場合、<xref:System.Net.DnsEndPoint> のアドレスファミリは、使用後も <xref:System.Net.Sockets.AddressFamily.Unknown> のままになります。 <xref:System.Net.Sockets.Socket.ConnectAsync%2A> メソッドの呼び出しによって作成されたすべての <xref:System.Net.Sockets.Socket> の <xref:System.Net.DnsEndPoint.AddressFamily%2A> プロパティは、接続を正常に確立できる最初のアドレスのアドレスファミリになります (必ずしも解決される最初のアドレスではありません)。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="host" /> パラメーターに空の文字列が含まれています。  
   
 または 
- <paramref name="addressFamily" /> は <see cref="F:System.Net.Sockets.AddressFamily.Unknown" />です。</exception>
+ <paramref name="addressFamily" /> は <see cref="F:System.Net.Sockets.AddressFamily.Unknown" /> です。</exception>
         <exception cref="T:System.ArgumentNullException"><paramref name="host" /> パラメーターは <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="port" /> は <see cref="F:System.Net.IPEndPoint.MinPort" /> より小さい値です。  
   
-- または - 
+または 
  <paramref name="port" /> が <see cref="F:System.Net.IPEndPoint.MaxPort" /> より大きくなっています。</exception>
       </Docs>
     </Member>
@@ -178,6 +181,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -202,12 +206,12 @@
       </ReturnValue>
       <Docs>
         <summary>インターネット プロトコル (IP: Internet Protocol) アドレス ファミリを取得します。</summary>
-        <value><see cref="T:System.Net.Sockets.AddressFamily" /> 値のいずれか 1 つ。</value>
+        <value><see cref="T:System.Net.Sockets.AddressFamily" /> 値の 1 つ。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティ<xref:System.Net.DnsEndPoint.AddressFamily%2A>は、 <xref:System.Net.DnsEndPoint>クラスのインスタンスのアドレスファミリを示します。  
+ <xref:System.Net.DnsEndPoint.AddressFamily%2A> プロパティは、<xref:System.Net.DnsEndPoint> クラスのインスタンスのアドレスファミリを示します。  
   
  ]]></format>
         </remarks>
@@ -226,6 +230,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -249,12 +254,12 @@
       <Docs>
         <param name="comparand">現在のインスタンスと比較する <see cref="T:System.Net.DnsEndPoint" /> インスタンス。</param>
         <summary>2 つの <see cref="T:System.Net.DnsEndPoint" /> オブジェクトを比較します。</summary>
-        <returns>2 つの <see cref="T:System.Net.DnsEndPoint" /> インスタンスが等しい場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>2 つの <see langword="true" /> インスタンスが等しい場合は <see cref="T:System.Net.DnsEndPoint" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Net.DnsEndPoint.Equals%2A>は、現在<xref:System.Net.DnsEndPoint>のインスタンス`comparand`とパラメーターを比較し`true` 、2つのインスタンスに同じエンドポイントが含まれている場合はを返します。  
+ <xref:System.Net.DnsEndPoint.Equals%2A> メソッドは、現在の <xref:System.Net.DnsEndPoint> インスタンスと `comparand` パラメーターを比較し、2つのインスタンスに同じエンドポイントが含まれている場合は `true` を返します。  
   
  ]]></format>
         </remarks>
@@ -273,6 +278,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -298,7 +304,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Net.DnsEndPoint.GetHashCode%2A>は、 <xref:System.Net.DnsEndPoint>のハッシュコードを返します。 この値は、ハッシュテーブルのキーとして使用できます。  
+ <xref:System.Net.DnsEndPoint.GetHashCode%2A> メソッドは、<xref:System.Net.DnsEndPoint>のハッシュコードを返します。 この値は、ハッシュテーブルのキーとして使用できます。  
   
  ]]></format>
         </remarks>
@@ -317,6 +323,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -346,7 +353,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティ<xref:System.Net.DnsEndPoint.Host%2A>は、 <xref:System.Net.DnsEndPoint>クラスのインスタンスのホスト名または IP アドレスの文字列表現を示します。  
+ <xref:System.Net.DnsEndPoint.Host%2A> プロパティは、<xref:System.Net.DnsEndPoint> クラスのインスタンスのホスト名または IP アドレスの文字列表現を示します。  
   
  ]]></format>
         </remarks>
@@ -365,6 +372,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -406,6 +414,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -431,7 +440,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Net.DnsEndPoint.ToString%2A>は、アドレスファミリ、ホスト名または IP アドレス文字列、およびポート番号を含む文字列を返します。  
+ <xref:System.Net.DnsEndPoint.ToString%2A> メソッドは、アドレスファミリ、ホスト名または IP アドレス文字列、およびポート番号を含む文字列を返します。  
   
  ]]></format>
         </remarks>

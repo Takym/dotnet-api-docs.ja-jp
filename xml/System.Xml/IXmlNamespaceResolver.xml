@@ -1,5 +1,5 @@
 <Type Name="IXmlNamespaceResolver" FullName="System.Xml.IXmlNamespaceResolver">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f11ed8ffcab4b763ef4734e7e2b79b78bde24830" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69439934" /></Metadata><TypeSignature Language="C#" Value="public interface IXmlNamespaceResolver" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b6bb774442fe980278a8bee947d14e9c5873a878" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75174222" /></Metadata><TypeSignature Language="C#" Value="public interface IXmlNamespaceResolver" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IXmlNamespaceResolver" />
   <TypeSignature Language="DocId" Value="T:System.Xml.IXmlNamespaceResolver" />
   <TypeSignature Language="VB.NET" Value="Public Interface IXmlNamespaceResolver" />
@@ -12,6 +12,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Xml</AssemblyName>
@@ -26,7 +27,7 @@
   </AssemblyInfo>
   <Interfaces />
   <Docs>
-    <summary>プレフィックスと名前空間の一連の割り当てに対する読み取り専用アクセスを提供します。</summary>
+    <summary>プレフィックスと名前空間のマッピングのセットに対する読み取り専用アクセスを提供します。</summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -45,6 +46,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml</AssemblyName>
@@ -73,13 +75,13 @@
 ## Remarks  
  コレクションはプレフィックスによってキー指定され、現在スコープ内にある名前空間を列挙するために使用できます。 コレクションは、現在の名前空間リストの切断されたコピーです。  
   
- 次の表に、 <xref:System.Xml.XmlNamespaceScope>の値と、既定の名前空間と組み込みの名前空間が<xref:System.Xml.IXmlNamespaceResolver.GetNamespacesInScope%2A>メソッドによって返されるかどうかを示します。  
+ 次の表に、<xref:System.Xml.XmlNamespaceScope> の値と、既定の名前空間と組み込みの名前空間が <xref:System.Xml.IXmlNamespaceResolver.GetNamespacesInScope%2A> メソッドによって返されるかどうかを示します。  
   
 |XmlNamespaceScope 値|xmlns:xml|xmlns:xmlns|xmlns=""|  
 |-----------------------------|---------------|-----------------|---------------|  
-|<xref:System.Xml.XmlNamespaceScope.All>|可|Ｘ|Ｘ|  
-|<xref:System.Xml.XmlNamespaceScope.ExcludeXml>|Ｘ|Ｘ|Ｘ|  
-|<xref:System.Xml.XmlNamespaceScope.Local>|Ｘ|Ｘ|可|  
+|<xref:System.Xml.XmlNamespaceScope.All>|可|no|no|  
+|<xref:System.Xml.XmlNamespaceScope.ExcludeXml>|no|no|no|  
+|<xref:System.Xml.XmlNamespaceScope.Local>|no|no|可|  
   
  ]]></format>
         </remarks>
@@ -100,6 +102,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml</AssemblyName>
@@ -130,14 +133,14 @@
 > [!NOTE]
 >  名前空間 URI からプレフィックスへのマッピングは、XML ドキュメント内のノード間で変更できます。 1つのノードから次のノードに一貫性がある参照の結果に依存することはできません。  
   
- 次の表は、既定の名前空間と組み込みの名前空間が<xref:System.Xml.IXmlNamespaceResolver.LookupNamespace%2A>メソッドによってどのように処理されるかを示しています。  
+ 次の表は、既定の名前空間と組み込みの名前空間が <xref:System.Xml.IXmlNamespaceResolver.LookupNamespace%2A> メソッドによってどのように処理されるかを示しています。  
   
-|プレフィックス|戻り値|  
+|［プレフィックス］|戻り値|  
 |------------|------------------|  
 |xml|http://www.w3.org/XML/1998/namespace|  
 |xmlns|http://www.w3.org/2000/xmlns/|  
-|`String.Empty`(既定の名前空間が割り当てられています)。|現在割り当てられている既定の名前空間。|  
-|`String.Empty`(既定の名前空間は明示的に割り当てられていません)。|`String.Empty`(空白のプレフィックスは、どの名前空間にも存在しない要素に関連付けられています)。|  
+|`String.Empty` (既定の名前空間が割り当てられています)。|現在割り当てられている既定の名前空間。|  
+|`String.Empty` (既定の名前空間は明示的に割り当てられていません)。|`String.Empty` (空白のプレフィックスは、どの名前空間にも存在しない要素に関連付けられています)。|  
   
  ]]></format>
         </remarks>
@@ -158,6 +161,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml</AssemblyName>
@@ -189,9 +193,9 @@
 > [!NOTE]
 >  プレフィックスマッピングへの名前空間 URI は、XML ドキュメント内のノード間で変更できます。 1つのノードから次のノードに一貫性がある参照の結果に依存することはできません。  
   
- 次の表は、既定の名前空間と組み込みの名前空間が<xref:System.Xml.IXmlNamespaceResolver.LookupPrefix%2A>メソッドによってどのように処理されるかを示しています。  
+ 次の表は、既定の名前空間と組み込みの名前空間が <xref:System.Xml.IXmlNamespaceResolver.LookupPrefix%2A> メソッドによってどのように処理されるかを示しています。  
   
-|名前空間|戻り値|  
+|Namespace|戻り値|  
 |---------------|------------------|  
 |http://www.w3.org/XML/1998/namespace|xml|  
 |http://www.w3.org/2000/xmlns/|xmlns|  

@@ -1,5 +1,5 @@
 <Type Name="XName" FullName="System.Xml.Linq.XName">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ad262d23cfa2aa12cb3bd0f2f7e2ba0c71a863e0" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69426745" /></Metadata><TypeSignature Language="C#" Value="public sealed class XName : IEquatable&lt;System.Xml.Linq.XName&gt;, System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0053d2fc533e31d7991966191315d87239e52709" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75181190" /></Metadata><TypeSignature Language="C#" Value="public sealed class XName : IEquatable&lt;System.Xml.Linq.XName&gt;, System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit XName extends System.Object implements class System.IEquatable`1&lt;class System.Xml.Linq.XName&gt;, class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Xml.Linq.XName" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class XName&#xA;Implements IEquatable(Of XName), ISerializable" />
@@ -11,6 +11,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -51,7 +52,7 @@
  XML 名には、名前空間とローカル名が含まれます。 *完全修飾名*は、名前空間とローカル名を組み合わせたものです。  
   
 ## <a name="creating-an-xname-object"></a>XName オブジェクトの作成  
- <xref:System.Xml.Linq.XName>にパブリックコンストラクターが含まれていません。 代わりに、このクラスは、を<xref:System.String> <xref:System.Xml.Linq.XName>作成するためのからの暗黙の型変換を提供します。 この変換を使用する最も一般的な場所は、要素または属性を構築する場合です。コンストラクターの<xref:System.Xml.Linq.XElement>最初の引数<xref:System.Xml.Linq.XName>はです。 文字列を渡すことにより、暗黙的な変換を利用できます。 次のコードでは、名前空間にない名前の要素が作成されます。  
+ <xref:System.Xml.Linq.XName> には、パブリックコンストラクターが含まれていません。 代わりに、このクラスは、<xref:System.Xml.Linq.XName>を作成するための <xref:System.String> からの暗黙の型変換を提供します。 この変換を使用する最も一般的な場所は、要素または属性を構築する場合です。 <xref:System.Xml.Linq.XElement> コンストラクターの最初の引数は <xref:System.Xml.Linq.XName>です。 文字列を渡すことにより、暗黙的な変換を利用できます。 次のコードでは、名前空間にない名前の要素が作成されます。  
   
 ```csharp  
 XElement root = new XElement("ElementName", "content");  
@@ -71,16 +72,16 @@ Console.WriteLine(root)
 <ElementName>content</ElementName>  
 ```  
   
- に<xref:System.Xml.Linq.XName>文字列を割り当てると、からの<xref:System.String>暗黙的な変換が使用されます。  
+ 文字列を <xref:System.Xml.Linq.XName> に割り当てると、<xref:System.String>からの暗黙的な変換が使用されます。  
   
- Visual Basic の例では<xref:System.Xml.Linq.XElement> 、XML リテラルを使用してを作成します。 XML リテラルが使用<xref:System.Xml.Linq.XName>されている場合でも、 <xref:System.Xml.Linq.XElement>に対してオブジェクトが作成されます。  
+ Visual Basic の例では、XML リテラルを使用して <xref:System.Xml.Linq.XElement> を作成します。 XML リテラルが使用されている場合でも、<xref:System.Xml.Linq.XElement>に対して <xref:System.Xml.Linq.XName> オブジェクトが作成されます。  
   
- また、 <xref:System.Xml.Linq.XName.Get%2A> <xref:System.Xml.Linq.XName>オブジェクトに対してメソッドを呼び出すこともできます。 ただし、string からの暗黙的な変換を使用することをお勧めします。  
+ また、<xref:System.Xml.Linq.XName> オブジェクトの <xref:System.Xml.Linq.XName.Get%2A> メソッドを呼び出すこともできます。 ただし、string からの暗黙的な変換を使用することをお勧めします。  
   
 ## <a name="creating-an-xname-in-a-namespace"></a>名前空間での XName の作成  
- XML の場合と同様<xref:System.Xml.Linq.XName>に、は名前空間に存在することも、名前空間に含まれないこともあります。  
+ XML の場合と同様に、<xref:System.Xml.Linq.XName> は名前空間に存在することも、名前空間に含まれないこともあります。  
   
- でC#は、名前空間<xref:System.Xml.Linq.XName>でを作成するための推奨<xref:System.Xml.Linq.XNamespace>される方法は、オブジェクトを宣言してから、加算演算子のオーバーライドを使用することです。  
+ でC#は、名前空間の <xref:System.Xml.Linq.XName> を作成するための推奨される方法は、<xref:System.Xml.Linq.XNamespace> オブジェクトを宣言してから、加算演算子のオーバーライドを使用することです。  
   
  Visual Basic には、XML リテラルとグローバル名前空間宣言を使用して、名前空間に含まれる XML を作成することをお勧めします。  
   
@@ -108,7 +109,7 @@ End Module
 ```  
   
 ## <a name="creating-an-xname-in-no-namespace"></a>名前空間なしでの XName の作成  
- オブジェクトのプロパティは、 <xref:System.Xml.Linq.XName.Namespace%2A> null でないことが保証されます。 <xref:System.Xml.Linq.XName> が名前空間<xref:System.Xml.Linq.XName.Namespace%2A>に含まれていない場合、プロパティはに<xref:System.Xml.Linq.XNamespace.None%2A>設定されます。 <xref:System.Xml.Linq.XName> 次のコードはこれを示しています。  
+ <xref:System.Xml.Linq.XName> オブジェクトの <xref:System.Xml.Linq.XName.Namespace%2A> プロパティは、null でないことが保証されます。 <xref:System.Xml.Linq.XName> が名前空間にない場合、<xref:System.Xml.Linq.XName.Namespace%2A> プロパティは <xref:System.Xml.Linq.XNamespace.None%2A>に設定されます。 次のコードはこれを示しています。  
   
 ```csharp  
 XElement root = new XElement("ElementName", "content");  
@@ -134,7 +135,7 @@ The element is in no namespace.
 ```  
   
 ## <a name="using-expanded-names"></a>拡張名の使用  
- 次の形式`{namespace}localname`で、 <xref:System.Xml.Linq.XName>拡張 XML 名からを作成することもできます。  
+ また、`{namespace}localname`の形式で拡張 XML 名から <xref:System.Xml.Linq.XName> を作成することもできます。  
   
 ```csharp  
 XElement root = new XElement("{http://www.adventure-works.com}ElementName", "content");  
@@ -152,12 +153,12 @@ Console.WriteLine(root)
 <ElementName xmlns="http://www.adventure-works.com">content</ElementName>  
 ```  
   
- 拡張名を<xref:System.Xml.Linq.XName>使用してを作成することは、 <xref:System.Xml.Linq.XNamespace>オブジェクトを作成し、加算演算子のオーバーライドを使用するよりも効率が悪くなることに注意してください。 また、グローバル名前空間をインポートし、Visual Basic で XML リテラルを使用するよりも効率が悪くなります。  
+ 拡張名を使用して <xref:System.Xml.Linq.XName> を作成する方が、<xref:System.Xml.Linq.XNamespace> オブジェクトを作成し、加算演算子のオーバーライドを使用するよりも効率が悪くなることに注意してください。 また、グローバル名前空間をインポートし、Visual Basic で XML リテラルを使用するよりも効率が悪くなります。  
   
- 展開された<xref:System.Xml.Linq.XName>名前を使用してを作成した場合、LINQ to XML は、分割されていない名前空間のインスタンスを検索する必要があります。 この作業は、展開された名前を使用するたびに繰り返す必要があります。 この追加の時間は、LINQ クエリを記述するときにはほとんど発生しません。ただし、大きな XML ツリーを作成する場合は重要な場合があります。  
+ 展開された名前を使用して <xref:System.Xml.Linq.XName> を作成する場合、LINQ to XML によって、アトミック化された名前空間のインスタンスを検索する必要があります。 この作業は、展開された名前を使用するたびに繰り返す必要があります。 この追加の時間は、LINQ クエリを記述するときにはほとんど発生しません。ただし、大きな XML ツリーを作成する場合は重要な場合があります。  
   
 ## <a name="xname-objects-are-atomized"></a>XName オブジェクトを最小化する  
- <xref:System.Xml.Linq.XName>オブジェクトは、最小化されることが保証されます。つまり、2つ<xref:System.Xml.Linq.XName>のオブジェクトの名前空間がまったく同じで、ローカル名が同じ場合は、同じインスタンスが共有されます。 等値演算子と比較演算子も、この目的のために明示的に指定されています。  
+ <xref:System.Xml.Linq.XName> オブジェクトは、最小化されることが保証されます。つまり、2つの <xref:System.Xml.Linq.XName> オブジェクトの名前空間がまったく同じで、ローカル名が同じ場合、それらのオブジェクトは同じインスタンスを共有します。 等値演算子と比較演算子も、この目的のために明示的に指定されています。  
   
  他にも利点があります。この機能を使用すると、クエリをより迅速に実行できます。 要素または属性の名前に基づいてフィルター処理を行う場合、述語で表される比較では、値の比較ではなく、id 比較が使用されます。 2つの文字列を比較するよりも、2つの参照が同じオブジェクトを実際に参照していることを確認する方がはるかに高速です。  
   
@@ -180,6 +181,7 @@ Console.WriteLine(root)
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -201,12 +203,12 @@ Console.WriteLine(root)
       <Docs>
         <param name="obj">現在の <see cref="T:System.Xml.Linq.XName" /> と比較する <see cref="T:System.Xml.Linq.XName" />。</param>
         <summary>指定した <see cref="T:System.Xml.Linq.XName" /> が、この <see cref="T:System.Xml.Linq.XName" /> と等しいかどうかを判断します。</summary>
-        <returns>指定した <see cref="T:System.Xml.Linq.XName" /> が現在の <see cref="T:System.Xml.Linq.XName" /> と等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns>指定した <see langword="true" /> が現在の <see cref="T:System.Xml.Linq.XName" /> と等しい場合は <see cref="T:System.Xml.Linq.XName" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2つ<xref:System.Xml.Linq.XName>のオブジェクトが等しい場合は、同じ展開名を持つ必要があります。  
+ 2つの <xref:System.Xml.Linq.XName> オブジェクトが等しい場合は、同じ展開名を持つ必要があります。  
   
  ]]></format>
         </remarks>
@@ -225,15 +227,15 @@ Console.WriteLine(root)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 <xref:System.Xml.Linq.XName>拡張 XML 名からを作成できるようにするオーバーロードを提供します。 を作成<xref:System.Xml.Linq.XName>するには、形式`{namespace}localname`の文字列、または名前空間とローカル名を別に指定します。  
+ このメソッドは、拡張 XML 名から <xref:System.Xml.Linq.XName> を作成できるようにするオーバーロードを提供します。 `{namespace}localname`形式の文字列、または名前空間とローカル名を別に指定して、<xref:System.Xml.Linq.XName> を作成できます。  
   
- を作成<xref:System.Xml.Linq.XName>するには、文字列からの暗黙的な変換を使用する方が、より一般的で簡単な方法があります。 名前空間に含まれる名前を作成するには、一般的な方法として、 <xref:System.Xml.Linq.XNamespace>オブジェクトと文字列を組み合わせることができる加算演算子オーバーロードを使用します。  
+ <xref:System.Xml.Linq.XName> を作成するためのより一般的で簡単な方法は、文字列からの暗黙的な変換を使用することです。 名前空間に含まれる名前を作成するには、一般的な方法として、<xref:System.Xml.Linq.XNamespace> オブジェクトと文字列を組み合わせることができる加算演算子オーバーロードを使用します。  
   
- 詳細情報と例については、「[方法: 名前空間 (C#) (LINQ to XML)](https://msdn.microsoft.com/library/af4a595e-ffb2-4187-a61b-d5ed71642c4c)を持つドキュメントを作成します。  
+ 詳細と例については、「[方法: 名前空間を持つドキュメントC#を作成する (LINQ to XML)](https://msdn.microsoft.com/library/af4a595e-ffb2-4187-a61b-d5ed71642c4c)」を参照してください。  
   
  Visual Basic での名前空間の使用の詳細については、「 [Visual Basic の名前空間 (LINQ to XML)](https://msdn.microsoft.com/library/10b7ba7b-518c-4f14-899f-892575d14dcc)」を参照してください。  
   
- オブジェクト<xref:System.Xml.Linq.XName>は最小単位に分割されるため、 <xref:System.Xml.Linq.XName>まったく同じ名前の既存のが存在する場合、割り当てられ<xref:System.Xml.Linq.XName>た変数は既存のを参照します。 既存<xref:System.Xml.Linq.XName>のが存在しない場合は、新しいものが作成され、初期化されます。  
+ <xref:System.Xml.Linq.XName> オブジェクトは最小単位に分割されるため、まったく同じ名前の既存の <xref:System.Xml.Linq.XName> がある場合、割り当てられた変数は既存の <xref:System.Xml.Linq.XName>を参照します。 既存の <xref:System.Xml.Linq.XName>がない場合は、新しいものが作成され、初期化されます。  
   
  ]]></format>
         </remarks>
@@ -254,6 +256,7 @@ Console.WriteLine(root)
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -273,18 +276,18 @@ Console.WriteLine(root)
         <Parameter Name="expandedName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="expandedName"><c>{namespace}localname</c> という形式の拡張 XML 名を含む <see cref="T:System.String" />。</param>
+        <param name="expandedName"><see cref="T:System.String" />{namespace}localname<c>という形式の拡張 XML 名を含む</c>。</param>
         <summary><see cref="T:System.Xml.Linq.XName" /> オブジェクトを拡張名から取得します。</summary>
         <returns>拡張名から作成された <see cref="T:System.Xml.Linq.XName" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドには、 <xref:System.Xml.Linq.XName>を作成できるオーバーロードが含まれています。 これは、フォーム`{namespace}localname`内の拡張 XML 名、または別に指定された名前空間とローカル名から作成できます。  
+ このメソッドには、<xref:System.Xml.Linq.XName>を作成できるオーバーロードが含まれています。 これは、`{namespace}localname`の形式で展開された XML 名から作成するか、名前空間とローカル名を個別に指定して作成できます。  
   
- を作成<xref:System.Xml.Linq.XName>するには、文字列からの暗黙的な変換を使用する方が、より一般的で簡単な方法があります。  
+ <xref:System.Xml.Linq.XName> を作成するためのより一般的で簡単な方法は、文字列からの暗黙的な変換を使用することです。  
   
- は<xref:System.Xml.Linq.XName>最小単位に分割されるため、 <xref:System.Xml.Linq.XName>まったく同じ名前の既存のが存在する場合、割り当てられ<xref:System.Xml.Linq.XName>た変数は既存のを参照します。 既存<xref:System.Xml.Linq.XName>のが存在しない場合は、新しいものが作成され、初期化されます。  
+ <xref:System.Xml.Linq.XName> は最小単位に分割されるため、同じ名前の既存の <xref:System.Xml.Linq.XName> がある場合、割り当てられた変数は既存の <xref:System.Xml.Linq.XName>を参照します。 既存の <xref:System.Xml.Linq.XName>がない場合は、新しいものが作成され、初期化されます。  
   
    
   
@@ -346,6 +349,7 @@ End Module
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -374,11 +378,11 @@ End Module
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドには、 <xref:System.Xml.Linq.XName>を作成できるオーバーロードが含まれています。 これは、フォーム`{namespace}localname`内の拡張 XML 名、または別に指定された名前空間とローカル名から作成できます。  
+ このメソッドには、<xref:System.Xml.Linq.XName>を作成できるオーバーロードが含まれています。 これは、`{namespace}localname`の形式で展開された XML 名から作成するか、名前空間とローカル名を個別に指定して作成できます。  
   
- を作成<xref:System.Xml.Linq.XName>するには、文字列からの暗黙的な変換を使用する方が、より一般的で簡単な方法があります。  
+ <xref:System.Xml.Linq.XName> を作成するためのより一般的で簡単な方法は、文字列からの暗黙的な変換を使用することです。  
   
- は<xref:System.Xml.Linq.XName>最小単位に分割されるため、 <xref:System.Xml.Linq.XName>まったく同じ名前の既存のが存在する場合、割り当てられ<xref:System.Xml.Linq.XName>た変数は既存のを参照します。 既存<xref:System.Xml.Linq.XName>のが存在しない場合は、新しいものが作成され、初期化されます。  
+ <xref:System.Xml.Linq.XName> は最小単位に分割されるため、同じ名前の既存の <xref:System.Xml.Linq.XName> がある場合、割り当てられた変数は既存の <xref:System.Xml.Linq.XName>を参照します。 既存の <xref:System.Xml.Linq.XName>がない場合は、新しいものが作成され、初期化されます。  
   
    
   
@@ -439,6 +443,7 @@ End Module
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -462,7 +467,7 @@ End Module
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、の<xref:System.Xml.Linq.XName>ハッシュ関数として機能します。 は、ハッシュ<xref:System.Xml.Linq.XName.GetHashCode%2A>アルゴリズムや、ハッシュテーブルなどのデータ構造で使用できます。  
+ このメソッドは、<xref:System.Xml.Linq.XName>のハッシュ関数として機能します。 <xref:System.Xml.Linq.XName.GetHashCode%2A> は、ハッシュアルゴリズムや、ハッシュテーブルなどのデータ構造で使用できます。  
   
  ]]></format>
         </remarks>
@@ -483,6 +488,7 @@ End Module
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -510,7 +516,7 @@ End Module
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、ではない`null`ことが保証されます。  
+ このプロパティは `null`されていないことが保証されます。  
   
    
   
@@ -566,6 +572,7 @@ http://www.adventure-works.com
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -593,7 +600,7 @@ http://www.adventure-works.com
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.Linq.XName.Namespace%2A> プロパティが `null` になることはありません。 が名前空間に含まれていない場合<xref:System.Xml.Linq.XNamespace.None%2A>、このプロパティはを返します。 <xref:System.Xml.Linq.XName>  
+ <xref:System.Xml.Linq.XName.Namespace%2A> プロパティが `null` になることはありません。 <xref:System.Xml.Linq.XName> が名前空間にない場合、このプロパティは <xref:System.Xml.Linq.XNamespace.None%2A>を返します。  
   
    
   
@@ -648,6 +655,7 @@ http://www.adventure-works.com
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -670,7 +678,7 @@ http://www.adventure-works.com
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、 <xref:System.Xml.Linq.XName>から名前空間名を取得するための便利なプロパティです。  
+ これは、<xref:System.Xml.Linq.XName>から名前空間名を取得するための便利なプロパティです。  
   
    
   
@@ -719,6 +727,7 @@ http://www.adventure-works.com
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -742,15 +751,15 @@ http://www.adventure-works.com
         <param name="left">比較対象となる最初の <see cref="T:System.Xml.Linq.XName" />。</param>
         <param name="right">比較対象となる 2 番目の <see cref="T:System.Xml.Linq.XName" />。</param>
         <summary><see cref="T:System.Xml.Linq.XName" /> の 2 つのインスタンスが等しいかどうかを示す値を返します。</summary>
-        <returns><paramref name="left" /> と <paramref name="right" /> が等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> と <paramref name="left" /> が等しい場合は <paramref name="right" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 演算子との`==`オーバーロード`!=`は、との<xref:System.Xml.Linq.XName> `string`間の比較を可能にするために含まれています。`element.Name == "SomeElementName"` の定義済みの参照等C#値演算子では、参照変換のみを使用して1つのオペランドを他方の型に変換可能にする必要があります。 これらの演算子では、文字列からへ<xref:System.Xml.Linq.XName>の暗黙の型変換は考慮されません。  
+ 演算子のオーバーロード `==` と `!=` は、<xref:System.Xml.Linq.XName> と `string`(`element.Name == "SomeElementName"`など) との比較を可能にするために含まれています。 の定義済みの参照等C#値演算子では、参照変換のみを使用して1つのオペランドを他方の型に変換可能にする必要があります。 これらの演算子では、文字列から <xref:System.Xml.Linq.XName>への暗黙的な変換は考慮されません。  
   
 ## Examples  
- 次の例では、オブジェクト<xref:System.Xml.Linq.XName>と文字列の比較を示します。  
+ 次の例では、<xref:System.Xml.Linq.XName> オブジェクトと文字列の比較を示します。  
   
 ```csharp  
 XName xn;  
@@ -803,6 +812,7 @@ True
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -816,7 +826,7 @@ True
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -834,10 +844,10 @@ True
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xml.Linq.XElement>または<xref:System.Xml.Linq.XAttribute>を作成するときに、適切なコンストラクターに文字列を渡すことによって、この暗黙の演算子を使用します。  
+ この暗黙の演算子は、適切なコンストラクターに文字列を渡すことによって <xref:System.Xml.Linq.XElement> または <xref:System.Xml.Linq.XAttribute> を作成するときに使用します。  
   
 ## Examples  
- 次の例では<xref:System.Xml.Linq.XName> 、文字列を割り当ててを作成し、この暗黙の変換演算子を呼び出します。  
+ 次の例では、文字列を割り当てることによって <xref:System.Xml.Linq.XName> を作成し、この暗黙の変換演算子を呼び出します。  
   
 ```csharp  
 XElement el = new XElement("{http://www.adventure-works.com}Root", "content");  
@@ -892,6 +902,7 @@ End Module
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -915,15 +926,15 @@ End Module
         <param name="left">比較対象となる最初の <see cref="T:System.Xml.Linq.XName" />。</param>
         <param name="right">比較対象となる 2 番目の <see cref="T:System.Xml.Linq.XName" />。</param>
         <summary><see cref="T:System.Xml.Linq.XName" /> の 2 つのインスタンスが等しくないかどうかを示す値を返します。</summary>
-        <returns><paramref name="left" /> と <paramref name="right" /> が等しくない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> と <paramref name="left" /> が等しくない場合は <paramref name="right" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 演算子とオーバーロード`==` `!=`は、となどの文字列`element.Name == "SomeElementName"`を<xref:System.Xml.Linq.XName>比較できるようにするために用意されています。 の定義済みの参照等C#値演算子では、参照変換のみを使用して1つのオペランドを他方の型に変換可能にする必要があります。 これらの演算子では、文字列からへ<xref:System.Xml.Linq.XName>の暗黙の型変換は考慮されません。  
+ 演算子のオーバーロード `==` と `!=` は、<xref:System.Xml.Linq.XName> と文字列 (`element.Name == "SomeElementName"`など) との比較を可能にするために含まれています。 の定義済みの参照等C#値演算子では、参照変換のみを使用して1つのオペランドを他方の型に変換可能にする必要があります。 これらの演算子では、文字列から <xref:System.Xml.Linq.XName>への暗黙的な変換は考慮されません。  
   
 ## Examples  
- 次C#の例では<xref:System.Xml.Linq.XName> 、オブジェクトと文字列を比較して、この演算子を呼び出します。  
+ 次C#の例では、この演算子を呼び出す文字列と <xref:System.Xml.Linq.XName> オブジェクトを比較します。  
   
 ```csharp  
 XNamespace aw = "http://www.adventure-works.com";  
@@ -977,6 +988,7 @@ False
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -997,8 +1009,8 @@ False
       </Parameters>
       <Docs>
         <param name="other">この <see cref="T:System.Xml.Linq.XName" /> と比較する <see cref="T:System.Xml.Linq.XName" />。</param>
-        <summary>現在の <see cref="T:System.Xml.Linq.XName" /> が、指定した <see cref="T:System.Xml.Linq.XName" /> と等しいかどうかを示します。</summary>
-        <returns>この <see cref="T:System.Xml.Linq.XName" /> が、指定した <see cref="T:System.Xml.Linq.XName" /> と等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <summary>現在の <see cref="T:System.Xml.Linq.XName" /> が指定した <see cref="T:System.Xml.Linq.XName" /> と等しいかどうかを示します。</summary>
+        <returns>この <see langword="true" /> が指定した <see cref="T:System.Xml.Linq.XName" /> に等しい場合は、<see cref="T:System.Xml.Linq.XName" />。それ以外の場合は、<see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1027,18 +1039,19 @@ False
         <AssemblyName>System.Xml.XDocument</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="info">データの読み込み先となる <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
         <param name="context">このシリアル化のシリアル化先 (<see cref="T:System.Runtime.Serialization.StreamingContext" /> を参照)。</param>
-        <summary><see cref="T:System.Runtime.Serialization.SerializationInfo" /> に、対象のオブジェクトをシリアル化するために必要なデータを設定します。</summary>
+        <summary><see cref="T:System.Runtime.Serialization.SerializationInfo" /> に、ターゲット オブジェクトをシリアル化するために必要なデータを設定します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1063,6 +1076,7 @@ False
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Xml.Linq</AssemblyName>
@@ -1081,12 +1095,12 @@ False
       <Parameters />
       <Docs>
         <summary><c>{namespace}localname</c> という形式の拡張 XML 名を返します。</summary>
-        <returns><c>{namespace}localname</c> という形式の拡張 XML 名を含む <see cref="T:System.String" />。</returns>
+        <returns><see cref="T:System.String" />{namespace}localname<c>という形式の拡張 XML 名を含む</c>。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例で<xref:System.Console.WriteLine%2A>は、を<xref:System.Xml.Linq.XName>渡してを呼び出します。 これにより<xref:System.Xml.Linq.XName.ToString%2A> 、メソッドが呼び出されます。  
+ 次の例では、<xref:System.Console.WriteLine%2A>を呼び出し、<xref:System.Xml.Linq.XName>を渡します。 これにより、<xref:System.Xml.Linq.XName.ToString%2A> メソッドが呼び出されます。  
   
 ```csharp  
 XNamespace ns = "http://www.adventure-works.com";  

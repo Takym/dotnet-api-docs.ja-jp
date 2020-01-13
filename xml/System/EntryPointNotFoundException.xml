@@ -1,5 +1,5 @@
 <Type Name="EntryPointNotFoundException" FullName="System.EntryPointNotFoundException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f3dfa65755ebbf6d8ce66e27b2e6e85ed9b83f80" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69421082" /></Metadata><TypeSignature Language="C#" Value="public class EntryPointNotFoundException : TypeLoadException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e47e1fc56def2c8846fcccaaad30aaf948db484d" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75173169" /></Metadata><TypeSignature Language="C#" Value="public class EntryPointNotFoundException : TypeLoadException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit EntryPointNotFoundException extends System.TypeLoadException" />
   <TypeSignature Language="DocId" Value="T:System.EntryPointNotFoundException" />
   <TypeSignature Language="VB.NET" Value="Public Class EntryPointNotFoundException&#xA;Inherits TypeLoadException" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.TypeLoadException</BaseTypeName>
@@ -40,30 +41,30 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.EntryPointNotFoundException>例外は、アセンブリのエントリポイントを識別できないために、共通言語ランタイムがアセンブリを読み込むことができない場合にスローされます。  この例外は、次の状況でスローされる場合があります。  
+ <xref:System.EntryPointNotFoundException> 例外は、アセンブリのエントリポイントを識別できないために、共通言語ランタイムがアセンブリを読み込むことができない場合にスローされます。  この例外は、次の状況でスローされる場合があります。  
   
--   共通言語ランタイムは、実行可能アセンブリにアプリケーションのエントリポイント (通常`Main`はメソッド) を見つけることができません。 アプリケーションのエントリポイントは、唯一のパラメーター `static`としてパラメーターまたは文字列の配列を持たないグローバルメソッドまたはメソッドである必要があります。 エントリポイントはを返す`void`ことができます。また<xref:System.Int32>は<xref:System.UInt32> 、または終了コードを返すことができます。 アプリケーションアセンブリで複数のエントリポイントを定義することはできません。  
+-   共通言語ランタイムは、実行可能アセンブリにアプリケーションのエントリポイント (通常は `Main` メソッド) を見つけることができません。 アプリケーションのエントリポイントは、唯一のパラメーターとしてパラメーターまたは文字列の配列を持たない、グローバルメソッドまたは `static` メソッドである必要があります。 エントリポイントは `void`を返すことができます。または、<xref:System.Int32> または <xref:System.UInt32> 終了コードを返すことができます。 アプリケーションアセンブリで複数のエントリポイントを定義することはできません。  
   
--   関数が見つからないため、Windows DLL 内の関数の呼び出しを解決できません。 次の例では、 <xref:System.EntryPointNotFoundException> user32.dll にという名前`GetMyNumber`の関数が含まれていないため、例外がスローされます。  
+-   関数が見つからないため、Windows DLL 内の関数の呼び出しを解決できません。 次の例では、User32.dll に `GetMyNumber`という名前の関数が含まれていないため、<xref:System.EntryPointNotFoundException> 例外がスローされます。  
   
      [!code-csharp[System.EntryPointNotFoundException.Class#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/cs/nofunction1.cs#1)]
      [!code-vb[System.EntryPointNotFoundException.Class#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/vb/nofunction1.vb#1)]  
   
--   メソッドの呼び出しで使用されている名前がアセンブリ内で見つかった名前と一致しないため、Windows DLL 内の関数の呼び出しを解決できません。 多くの場合、このエラー <xref:System.Runtime.InteropServices.DllImportAttribute.ExactSpelling?displayProperty=nameWithType>は、フィールドが暗黙的または明示`true`的にに設定されているために発生します。呼び出されたメソッドには、1つまたは複数の文字列パラメーターが含まれ、ANSI と Unicode の両方のバージョンがあり、メソッド呼び出しで使用されている名前がこの ANSI バージョンまたは Unicode バージョンの名前に対応します。 次の例では、user32.dll で Windows `MessageBox`関数を呼び出そうとしています。 最初のメソッド定義では<xref:System.Runtime.InteropServices.CharSet.Unicode?displayProperty=nameWithType>文字列のマーシャリングにを指定しているため、共通言語は、メソッド呼び出し`MessageBox`で`MessageBoxW`使用される名前ではなく、関数のワイド文字バージョンを検索します。  2番目のメソッド定義では、 `MessageBoxW` `MessageBox`関数の代わりにを呼び出して、この問題を修正します。  
+-   メソッドの呼び出しで使用されている名前がアセンブリ内で見つかった名前と一致しないため、Windows DLL 内の関数の呼び出しを解決できません。 多くの場合、このエラーが発生するのは、<xref:System.Runtime.InteropServices.DllImportAttribute.ExactSpelling?displayProperty=nameWithType> フィールドが暗黙的または明示的に `true`に設定されているためです。呼び出されたメソッドには、1つまたは複数の文字列パラメーターが含まれ、ANSI と Unicode の両方のバージョンが含まれています。メソッドの呼び出しで使用される名前は、この ANSI または Unicode の 次の例では、User32.dll で Windows `MessageBox` 関数を呼び出そうとしています。 最初のメソッド定義では文字列のマーシャリングに <xref:System.Runtime.InteropServices.CharSet.Unicode?displayProperty=nameWithType> が指定されているため、共通言語では、メソッドの `MessageBox`呼び出しで使用されている名前ではなく、関数のワイド文字バージョンの `MessageBoxW`が検索されます。  2番目のメソッド定義では、`MessageBox` 関数の代わりに `MessageBoxW` を呼び出すことによって、この問題を修正します。  
   
      [!code-csharp[System.EntryPointNotFoundException.Class#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/cs/badcall1.cs#2)]
      [!code-vb[System.EntryPointNotFoundException.Class#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/vb/badcall1.vb#2)]  
   
--   ダイナミックリンクライブラリ内の関数を、その装飾名ではなく単純な名前で呼び出そうとしています。 通常、コンパイラC++は DLL 関数の装飾名を生成します。 たとえば、次C++のコードでは、testdll `Double` .dll という名前のライブラリ内にという名前の関数を定義しています。  
+-   ダイナミックリンクライブラリ内の関数を、その装飾名ではなく単純な名前で呼び出そうとしています。 通常、コンパイラC++は DLL 関数の装飾名を生成します。 たとえば、次C++のコードでは、testdll .dll という名前のライブラリに `Double` という名前の関数が定義されています。  
   
      [!code-cpp[System.EntryPointNotFoundException.Class#6](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/cpp/testdll.cpp#6)]  
   
-     次の例のコードで関数<xref:System.EntryPointNotFoundException>を呼び出そうとすると、 `Double`関数が見つからないため、例外がスローされます。  
+     次の例のコードで関数を呼び出そうとすると、`Double` 関数が見つからないため、<xref:System.EntryPointNotFoundException> 例外がスローされます。  
   
      [!code-csharp[System.EntryPointNotFoundException.Class#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/cs/mangle1.cs#7)]
      [!code-vb[System.EntryPointNotFoundException.Class#7](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/vb/mangle1.vb#7)]  
   
-     ただし、次の例に示すように、関数が装飾名 (この場合`?Double@@YAHH@Z`は) を使用して呼び出された場合、関数呼び出しは成功します。  
+     ただし、次の例に示すように、関数が装飾名 (この場合は `?Double@@YAHH@Z`) を使用して呼び出された場合、関数呼び出しは成功します。  
   
      [!code-csharp[System.EntryPointNotFoundException.Class#8](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/cs/mangle2.cs#8)]
      [!code-vb[System.EntryPointNotFoundException.Class#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/vb/mangle2.vb#8)]  
@@ -75,17 +76,17 @@
      [!code-csharp[System.EntryPointNotFoundException.Class#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/cs/stringutilities.cs#3)]
      [!code-vb[System.EntryPointNotFoundException.Class#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/vb/stringutilities.vb#3)]  
   
-     次の例をコンパイルして実行します。これは`StringUtilities.SayGoodMorning` 、アンマネージコードであるかのように stringutilities dll ダイナミックリンクライブラリ内のメソッドを呼び出そうとします。 結果は<xref:System.EntryPointNotFoundException>例外です。  
+     次に、次の例をコンパイルして実行します。この例では、アンマネージコードのように StringUtilities dll ダイナミックリンクライブラリ内の `StringUtilities.SayGoodMorning` メソッドを呼び出そうとしています。 結果は <xref:System.EntryPointNotFoundException> 例外になります。  
   
      [!code-csharp[System.EntryPointNotFoundException.Class#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/cs/importassembly1.cs#4)]
      [!code-vb[System.EntryPointNotFoundException.Class#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/vb/importassembly1.vb#4)]  
   
-     例外を排除するには、マネージアセンブリへの参照を追加し`StringUtilities.SayGoodMorning` 、マネージコード内の他のメソッドにアクセスするのと同じようにメソッドにアクセスします。次の例を参照してください。  
+     例外を排除するには、マネージアセンブリへの参照を追加し、マネージコード内の他のメソッドにアクセスするのと同じように `StringUtilities.SayGoodMorning` メソッドにアクセスします。次の例を参照してください。  
   
      [!code-csharp[System.EntryPointNotFoundException.Class#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/cs/fiximportassembly1.cs#5)]
      [!code-vb[System.EntryPointNotFoundException.Class#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.entrypointnotfoundexception.class/vb/fiximportassembly1.vb#5)]  
   
--   COM DLL 内のメソッドを、Windows DLL であるかのように呼び出そうとしています。 COM DLL にアクセスするには、Visual Studio の **[参照の追加]** オプションを選択してプロジェクトへの参照を追加し、**[COM]** タブからタイプライブラリを選択します。  
+-   COM DLL 内のメソッドを、Windows DLL であるかのように呼び出そうとしています。 COM DLL にアクセスするには、Visual Studio の [**参照の追加**] オプションを選択してプロジェクトへの参照を追加し、[ **COM** ] タブからタイプライブラリを選択します。  
   
  <xref:System.EntryPointNotFoundException>インスタンスの初期プロパティ値の一覧については、<xref:System.EntryPointNotFoundException.%23ctor%2A>コンストラクターを参照してください。  
   
@@ -102,7 +103,8 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary><see cref="T:System.EntryPointNotFoundException" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>
+          <see cref="T:System.EntryPointNotFoundException" /> クラスの新しいインスタンスを初期化します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName=".ctor">
@@ -128,22 +130,24 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.EntryPointNotFoundException" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>
+          <see cref="T:System.EntryPointNotFoundException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、 <xref:System.Exception.Message%2A>新しいインスタンスのプロパティを、"エントリポイントが見つかりませんでした" などのエラーを説明するシステム提供のメッセージに初期化します。 このメッセージには、現在のシステムのカルチャが考慮されます。  
+ このコンストラクターは、"エントリポイントが見つかりませんでした" などのエラーを説明するシステム提供のメッセージに、新しいインスタンスの <xref:System.Exception.Message%2A> プロパティを初期化します。 このメッセージは、システムの現在のカルチャを考慮して指定します。  
   
  <xref:System.EntryPointNotFoundException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
 |<xref:System.Exception.InnerException%2A>|null 参照 (Visual Basic の場合は `Nothing`)。|  
-|<xref:System.TypeLoadException.Message%2A>|ローカライズされたエラー メッセージ文字列。|  
+|<xref:System.TypeLoadException.Message%2A>|ローカライズされたエラー メッセージの文字列です。|  
   
  ]]></format>
         </remarks>
@@ -173,6 +177,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="message" Type="System.String" />
@@ -184,14 +189,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `message` の内容は、ユーザーが理解できる内容にします。 このコンストラクターの呼び出し元は、この文字列が現在のシステムのカルチャに合わせてローカライズ済みであることを確認しておく必要があります。  
+ `message` の内容は、ユーザーが理解できる内容にします。 このコンストラクターの呼び出し元は、この文字列が現在のシステム環境向けにローカライズされていることを確認する必要があります。  
   
  <xref:System.EntryPointNotFoundException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
 |<xref:System.Exception.InnerException%2A>|null 参照 (Visual Basic の場合は `Nothing`)。|  
-|<xref:System.TypeLoadException.Message%2A>|エラー メッセージ文字列。|  
+|<xref:System.TypeLoadException.Message%2A>|エラー メッセージ文字列です。|  
   
  ]]></format>
         </remarks>
@@ -221,6 +226,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -232,14 +238,14 @@
         <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" />
       </Parameters>
       <Docs>
-        <param name="info">シリアル化されたオブジェクト データを保持するオブジェクト。</param>
-        <param name="context">転送元または転送先に関するコンテキスト情報。</param>
-        <summary>シリアル化したデータを使用して、<see cref="T:System.EntryPointNotFoundException" /> クラスの新しいインスタンスを初期化します。</summary>
+        <param name="info">シリアル化されたオブジェクトのデータを保持するオブジェクト。</param>
+        <param name="context">転送元または転送先に関するコンテキスト情報です。</param>
+        <summary>シリアル化されたデータを使用して <see cref="T:System.EntryPointNotFoundException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、逆シリアル化中に、ストリームで送信された例外オブジェクトを再構築するために呼び出されます。  
+ このコンストラクターは、シリアル化解除の際に呼び出されて、ストリームで送信された例外オブジェクトを再構成します。  
   
  ]]></format>
         </remarks>
@@ -269,6 +275,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="message" Type="System.String" />
@@ -276,20 +283,20 @@
       </Parameters>
       <Docs>
         <param name="message">例外の原因を説明するエラー メッセージ。</param>
-        <param name="inner">現在の例外の原因となった例外。 <paramref name="inner" /> パラメーターが null 参照 (Visual Basic の場合は <see langword="Nothing" />) でない場合は、内部例外を処理する <see langword="catch" /> ブロックで現在の例外が発生します。</param>
+        <param name="inner">現在の例外の原因になった例外。 <paramref name="inner" /> パラメーターが null 参照 (Visual Basic の場合は <see langword="Nothing" />) でない場合は、内部例外を処理する <see langword="catch" /> ブロックで現在の例外が発生します。</param>
         <summary>指定したエラー メッセージおよびこの例外の原因となった内部例外への参照を使用して、<see cref="T:System.EntryPointNotFoundException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 前の例外の直接の結果としてスローされる例外については、<xref:System.Exception.InnerException%2A> プロパティに、前の例外への参照を含める必要があります。 <xref:System.Exception.InnerException%2A> プロパティは、コンストラクターに渡されたものと同じ値を返します。内部例外値がコンストラクターに渡されなかった場合、<xref:System.Exception.InnerException%2A> プロパティはnull 参照 (Visual Basic の場合は `Nothing`) を返します。  
+ 前の例外の直接の結果としてスローされる例外については、<xref:System.Exception.InnerException%2A> プロパティに、前の例外への参照を含める必要があります。 <xref:System.Exception.InnerException%2A> プロパティは、コンストラクターに渡されたものと同じ値を返します。内部例外値がコンストラクターに渡されなかった場合、`Nothing` プロパティはnull 参照 (Visual Basic の場合は <xref:System.Exception.InnerException%2A>) を返します。  
   
  <xref:System.EntryPointNotFoundException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
-|<xref:System.Exception.InnerException%2A>|内部例外の参照。|  
-|<xref:System.TypeLoadException.Message%2A>|エラー メッセージ文字列。|  
+|<xref:System.Exception.InnerException%2A>|内部例外の参照です。|  
+|<xref:System.TypeLoadException.Message%2A>|エラー メッセージ文字列です。|  
   
  ]]></format>
         </remarks>

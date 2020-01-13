@@ -1,5 +1,5 @@
 <Type Name="XmlEntity" FullName="System.Xml.XmlEntity">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f5a001cdb0f213e76df4de482c383d0c35e138bb" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69422444" /></Metadata><TypeSignature Language="C#" Value="public class XmlEntity : System.Xml.XmlNode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fc17512dc02dc9ffed8b5162f4cbfadb480e59c1" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75174018" /></Metadata><TypeSignature Language="C#" Value="public class XmlEntity : System.Xml.XmlNode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit XmlEntity extends System.Xml.XmlNode" />
   <TypeSignature Language="DocId" Value="T:System.Xml.XmlEntity" />
   <TypeSignature Language="VB.NET" Value="Public Class XmlEntity&#xA;Inherits XmlNode" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Xml.XmlNode</BaseTypeName>
@@ -57,6 +58,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -73,7 +75,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ネットワークに接続された XML ドキュメントは、さまざまな World Wide Web コンソーシアム (W3C) 標準の包含機構を使用して集計されたデータのチャンクで構成されるため、さまざまな場所からのノードが含まれます。 は`BaseURI` 、これらのノードがどこから来たかを示します。  
+ ネットワークに接続された XML ドキュメントは、さまざまな World Wide Web コンソーシアム (W3C) 標準の包含機構を使用して集計されたデータのチャンクで構成されるため、さまざまな場所からのノードが含まれます。 `BaseURI` は、これらのノードがどこから来たかを示します。  
   
  このプロパティの値は、ノードの種類によって異なります。 外部 EntityReference ノードの子であるノードは、エンティティ自体の位置を返します。 たとえば、次の XML ドキュメントについて考えてみます。  
   
@@ -84,22 +86,22 @@
 <item num='123'>&xyz;</item>  
 ```  
   
- 外部エンティティ`a/b.xml`に XML テキスト`<test>123</test>`が含まれています。  
+ 外部エンティティ `a/b.xml` に XML テキスト `<test>123</test>`が含まれています。  
   
- ドキュメントがから`http://server/mydata.xml`読み込まれている`BaseURI`場合、は次の値を返します。  
+ ドキュメントが `http://server/mydata.xml`から読み込まれた場合、`BaseURI` は次のものを返します。  
   
-|ノード型|name|BaseURI|  
+|ノード型|Name|BaseURI|  
 |--------------|----------|-------------|  
 |属性|num|`http://server/mydata.xml`|  
 |ドキュメント|#document|`http://server/mydata.xml`|  
-|DocumentType|項目|`http://server/mydata.xml`|  
-|エンティティ|xyz|`http://server/mydata.xml`|  
-|要素|項目|`http://server/mydata.xml`|  
-|EntityReference|xyz|`http://server/mydata.xml`|  
+|DocumentType|item|`http://server/mydata.xml`|  
+|エンティティ|XYZ|`http://server/mydata.xml`|  
+|要素|item|`http://server/mydata.xml`|  
+|EntityReference|XYZ|`http://server/mydata.xml`|  
 |要素|テスト|`http://server/a/b.xml`|  
-|テキスト|#text|`http://server/a/b.xml`|  
+|Text|#text|`http://server/a/b.xml`|  
   
- `BaseURI`エンティティ参照の境界を検索します。そのため、エンティティが展開されている場合、この情報は保持`XmlDocument`されず、このプロパティは常にオブジェクトの場所を返します。  
+ `BaseURI` はエンティティ参照の境界を検索するため、エンティティが展開されている場合、この情報は保持されず、このプロパティは常に `XmlDocument` オブジェクトの場所を返します。  
   
  2番目の例として、次の XML ドキュメントがあるとします。  
   
@@ -116,15 +118,15 @@
 <!ATTLIST baa attr1 "woof">  
 ```  
   
- XML ドキュメントがからhttp://localhost/mydata.xml読み込まれている場合、 `BaseURI`は各ノードに対して次を返します。  
+ XML ドキュメントが http://localhost/mydata.xmlから読み込まれた場合、`BaseURI` は各ノードに対して次の値を返します。  
   
-|ノード型|name|BaseURI|  
+|ノード型|Name|BaseURI|  
 |--------------|----------|-------------|  
 |ドキュメント|#document|http://localhost/mydata.xml|  
 |DocumentType|Mydata|http://localhost/doctype.dtd|  
 |要素|baa|http://localhost/mydata.xml|  
-|エンティティ|xyz|http://localhost/doctype.dtd|  
-|EntityReference|xyz|http://localhost/mydata.xml|  
+|エンティティ|XYZ|http://localhost/doctype.dtd|  
+|EntityReference|XYZ|http://localhost/mydata.xml|  
 |属性|woof|http://localhost/mydata.xml|  
   
 > [!NOTE]
@@ -160,6 +162,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Xml.XmlNode</ReturnType>
@@ -199,6 +202,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -210,7 +214,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `XmlEntity`ノードは読み取り専用です。 このプロパティを設定すると、例外がスローされます。  
+ `XmlEntity` ノードは読み取り専用です。 このプロパティを設定すると、例外がスローされます。  
   
  このプロパティは、ドキュメント オブジェクト モデル (DOM) の Microsoft 拡張機能です。  
   
@@ -243,6 +247,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -259,7 +264,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `XmlEntity`ノードは読み取り専用です。 このプロパティを設定すると、例外がスローされます。  
+ `XmlEntity` ノードは読み取り専用です。 このプロパティを設定すると、例外がスローされます。  
   
  このプロパティは、ドキュメント オブジェクト モデル (DOM) の Microsoft 拡張機能です。  
   
@@ -292,13 +297,14 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>ノードが読み取り専用かどうかを示す値を取得します。</summary>
-        <value><see langword="true" />ノードが読み取り専用の場合は。それ以外<see langword="false" />の場合は。  
+        <value>ノードが読み取り専用の場合は <see langword="true" /> します。それ以外の場合は、<see langword="false" />ます。  
   
 <see langword="XmlEntity" /> ノードは読み取り専用であるため、このプロパティは常に <see langword="true" /> を返します。</value>
         <remarks>
@@ -335,6 +341,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -374,6 +381,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -396,7 +404,7 @@
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- この例では、 `doment.xml`入力としてファイルを使用します。  
+ この例では、ファイル `doment.xml` を入力として使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -429,13 +437,14 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Xml.XmlNodeType</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>ノードの種類を取得します。</summary>
-        <value>ノード型。 <see langword="XmlEntity" /> ノードの場合、値は XmlNodeType.Entity です。</value>
+        <value>ノードの種類。 <see langword="XmlEntity" /> ノードの場合、値は XmlNodeType.Entity です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -446,7 +455,7 @@
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- この例では、 `doment.xml`入力としてファイルを使用します。  
+ この例では、ファイル `doment.xml` を入力として使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -479,6 +488,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -501,7 +511,7 @@
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- この例では、ファイル`doment.xml`を入力として使用します。  
+ この例では、ファイル `doment.xml`を入力として使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -534,6 +544,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -580,6 +591,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -602,7 +614,7 @@
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- この例では、ファイル`doment.xml`を入力として使用します。  
+ この例では、ファイル `doment.xml`を入力として使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -635,6 +647,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -657,7 +670,7 @@
  [!code-csharp[XmlEntity#1](~/samples/snippets/csharp/VS_Snippets_Data/XmlEntity/CS/entities.cs#1)]
  [!code-vb[XmlEntity#1](~/samples/snippets/visualbasic/VS_Snippets_Data/XmlEntity/VB/entities.vb#1)]  
   
- この例では、 `doment.xml`入力としてファイルを使用します。  
+ この例では、ファイル `doment.xml` を入力として使用します。  
   
  [!code-xml[XmlEntity#2](~/samples/snippets/xml/VS_Snippets_Data/XmlEntity/XML/doment.xml#2)]  
   
@@ -690,6 +703,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -734,6 +748,7 @@
         <AssemblyName>System.Xml.ReaderWriter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>

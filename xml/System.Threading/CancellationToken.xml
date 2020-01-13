@@ -1,5 +1,5 @@
 <Type Name="CancellationToken" FullName="System.Threading.CancellationToken">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="46671aabc589af213b55a39d94ee6bfa476647e2" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72404477" /></Metadata><TypeSignature Language="C#" Value="public struct CancellationToken" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="58841345f1327ef71c91d5d0be31d13c0a6c091c" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75158817" /></Metadata><TypeSignature Language="C#" Value="public struct CancellationToken" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit CancellationToken extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Threading.CancellationToken" />
   <TypeSignature Language="VB.NET" Value="Public Structure CancellationToken" />
@@ -24,6 +24,7 @@
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.ValueType</BaseTypeName>
@@ -36,17 +37,17 @@
     <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
       <AttributeName>System.Runtime.InteropServices.ComVisible(false)</AttributeName>
     </Attribute>
-    <Attribute FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>操作を取り消す通知を配信します。</summary>
+    <summary>操作を取り消す必要があるという通知を伝達します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 を使用すると、スレッド、スレッドプール作業項目、または @no__t オブジェクト間で協調取り消しを行うことができます。 キャンセルトークンを作成するには、@no__t 0 のオブジェクトをインスタンス化します。このオブジェクトは、<xref:System.Threading.CancellationTokenSource.Token%2A?displayProperty=nameWithType> プロパティから取得されたキャンセルトークンを管理します。 次に、キャンセルの通知を受け取る必要がある任意の数のスレッド、タスク、または操作にキャンセルトークンを渡します。 トークンを使用してキャンセルを開始することはできません。 所有オブジェクトが <xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType> を呼び出すと、キャンセルトークンのすべてのコピーの <xref:System.Threading.CancellationToken.IsCancellationRequested%2A> プロパティが `true` に設定されます。 通知を受信するオブジェクトは、適切な方法で応答できます。  
+ <xref:System.Threading.CancellationToken> を使用すると、スレッド、スレッドプール作業項目、または <xref:System.Threading.Tasks.Task> オブジェクト間の協調的な取り消しが可能になります。 キャンセルトークンを作成するには、<xref:System.Threading.CancellationTokenSource> オブジェクトをインスタンス化します。このオブジェクトは、<xref:System.Threading.CancellationTokenSource.Token%2A?displayProperty=nameWithType> プロパティから取得されたキャンセルトークンを管理します。 次に、キャンセルの通知を受け取る必要がある任意の数のスレッド、タスク、または操作にキャンセルトークンを渡します。 トークンを使用してキャンセルを開始することはできません。 所有オブジェクトが <xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType>を呼び出すと、キャンセルトークンのすべてのコピーの <xref:System.Threading.CancellationToken.IsCancellationRequested%2A> プロパティが `true`に設定されます。 通知を受信するオブジェクトは、適切な方法で応答できます。  
   
  詳細とコード例については、「[マネージスレッドでのキャンセル](~/docs/standard/threading/cancellation-in-managed-threads.md)」を参照してください。  
   
@@ -55,14 +56,14 @@
 ## Examples  
  次の例では、乱数ジェネレーターを使用して、11個の異なる音色から10個の整数値を読み取るデータコレクションアプリケーションをエミュレートします。 値が0の場合は、測定が1つの音色で失敗したことを示します。この場合、操作はキャンセルされ、全体的な平均は計算されません。  
   
- 操作の取り消しを処理するために、この例では、<xref:System.Threading.Tasks.TaskFactory> オブジェクトに渡されるキャンセルトークンを生成する @no__t 0 オブジェクトをインスタンス化します。 @No__t-0 オブジェクトは、特定のインストルメントの読み取りを収集する各タスクにキャンセルトークンを渡します。 すべての読み取りが正常に収集された後にのみ平均が計算されるように、<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%60%602%28System.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2CSystem.Func%7BSystem.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2C%60%601%7D%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType> メソッドが呼び出されます。 タスクが取り消されたことが原因でタスクが完了していない場合、<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%2A?displayProperty=nameWithType> メソッドを呼び出すと例外がスローされます。  
+ 操作の取り消しを処理するために、この例では、<xref:System.Threading.Tasks.TaskFactory> オブジェクトに渡されるキャンセルトークンを生成する <xref:System.Threading.CancellationTokenSource> オブジェクトをインスタンス化します。 <xref:System.Threading.Tasks.TaskFactory> オブジェクトは、特定のインストルメントの読み取りを収集する各タスクにキャンセルトークンを渡します。 <xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%60%602%28System.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2CSystem.Func%7BSystem.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2C%60%601%7D%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType> メソッドは、すべての読み取りが正常に収集された後にのみ平均が計算されるようにするために呼び出されます。 タスクが取り消されたことが原因でタスクが完了していない場合、<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%2A?displayProperty=nameWithType> メソッドの呼び出しでは例外がスローされます。  
   
  [!code-csharp[System.Threading.CancellationTokenSource.Class#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.cancellationtokensource.class/cs/cancel1.cs#1)]
  [!code-vb[System.Threading.CancellationTokenSource.Class#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.cancellationtokensource.class/vb/cancel1.vb#1)]  
   
  ]]></format>
     </remarks>
-    <threadsafe>@No__t-0 のすべてのパブリックメンバーとプロテクトメンバーはスレッドセーフであり、複数のスレッドから同時に使用できます。</threadsafe>
+    <threadsafe><see cref="T:System.Threading.CancellationToken" /> のパブリックメンバーとプロテクトメンバーはすべてスレッドセーフであり、複数のスレッドから同時に使用することができます。</threadsafe>
     <related type="Article" href="~/docs/standard/threading/cancellation-in-managed-threads.md">キャンセル</related>
     <related type="Article" href="~/docs/standard/parallel-programming/task-cancellation.md">タスクのキャンセル</related>
   </Docs>
@@ -94,6 +95,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="canceled" Type="System.Boolean" />
@@ -105,9 +107,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターを使用して作成されたトークンは、`canceled` パラメーターによって指定された canceled 状態のままになります。 @No__t-0 が `false` の場合、<xref:System.Threading.CancellationToken.CanBeCanceled%2A> と <xref:System.Threading.CancellationToken.IsCancellationRequested%2A> の両方が @no__t 4 になります。  
+ このコンストラクターを使用して作成されたトークンは、`canceled` パラメーターによって指定された canceled 状態のままになります。 `canceled` が `false`場合、<xref:System.Threading.CancellationToken.CanBeCanceled%2A> と <xref:System.Threading.CancellationToken.IsCancellationRequested%2A> の両方が `false`されます。  
   
- @No__t-0 が `true` の場合、<xref:System.Threading.CancellationToken.CanBeCanceled%2A> と <xref:System.Threading.CancellationToken.IsCancellationRequested%2A> の両方が @no__t 4 になります。  
+ `canceled` が `true`場合、<xref:System.Threading.CancellationToken.CanBeCanceled%2A> と <xref:System.Threading.CancellationToken.IsCancellationRequested%2A> の両方が `true`されます。  
   
  ]]></format>
         </remarks>
@@ -142,6 +144,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2">
@@ -158,9 +161,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 が `false` を返した場合は、トークンが取り消された状態にならないことが保証されます。つまり、<xref:System.Threading.CancellationToken.IsCancellationRequested%2A> が `true` を返すことはありません。 キャンセルできないキャンセルトークンは、静的な <xref:System.Threading.CancellationToken.None%2A?displayProperty=nameWithType> プロパティによって返されます。  
+ <xref:System.Threading.CancellationToken.CanBeCanceled%2A> が `false`を返す場合、トークンが取り消された状態に遷移することはありません。つまり、<xref:System.Threading.CancellationToken.IsCancellationRequested%2A> は `true`を返しません。 キャンセルできないキャンセルトークンは、静的な <xref:System.Threading.CancellationToken.None%2A?displayProperty=nameWithType> プロパティによって返されます。  
   
- 必要に応じて、このプロパティを使用して、キャンセルトークンをキャンセルできるかどうかを判断してから、<xref:System.Threading.CancellationToken.IsCancellationRequested%2A> プロパティの値を調べて、キャンセルされたかどうかを判断することができます。  
+ 必要に応じて、このプロパティを使用して、キャンセルトークンをキャンセルできるかどうかを判断するために、<xref:System.Threading.CancellationToken.IsCancellationRequested%2A> プロパティの値を調べる前にキャンセルトークンを取り消すかどうかを決定できます。  
   
  ]]></format>
         </remarks>
@@ -205,6 +208,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -215,18 +219,18 @@
       <Docs>
         <param name="other">このインスタンスと比較する対象のオブジェクト。</param>
         <summary>現在の <see cref="T:System.Threading.CancellationToken" /> インスタンスが指定された <see cref="T:System.Object" /> と等しいかどうかを判断します。</summary>
-        <returns><paramref name="other" /> が <see cref="T:System.Threading.CancellationToken" /> であり、2 つのインスタンスが等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 詳細については、次の「解説」を参照してください。</returns>
+        <returns><see langword="true" /> が <paramref name="other" /> であり、2 つのインスタンスが等しい場合は <see cref="T:System.Threading.CancellationToken" />。それ以外の場合は <see langword="false" />。 詳細については、次の「解説」を参照してください。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 ## Remarks  
 
 次のいずれかの条件に該当する場合、2つのキャンセルトークンは等しくなります。 
 
-- これらは同じ @no__t 0 に関連付けられています。
+- これらは同じ <xref:System.Threading.CancellationTokenSource>に関連付けられています。
 
-- これらは両方ともパブリック <xref:System.Threading.CancellationToken> コンストラクターから構築されており、それらの <xref:System.Threading.CancellationToken.IsCancellationRequested?displayProperty=nameWithType> の値は同じです。
+- これらは両方ともパブリック <xref:System.Threading.CancellationToken> コンストラクターから構築されており、<xref:System.Threading.CancellationToken.IsCancellationRequested?displayProperty=nameWithType> 値は同じです。
 
-- 両方のキャンセルトークンの値が <xref:System.Threading.CancellationToken.None?displayProperty=nameWithType> です。
+- 両方のキャンセルトークンの値が <xref:System.Threading.CancellationToken.None?displayProperty=nameWithType>ます。
 
        ]]></format>
         </remarks>
@@ -262,6 +266,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -279,11 +284,11 @@
 
 次のいずれかの条件に該当する場合、2つのキャンセルトークンは等しくなります。 
 
-- これらは同じ @no__t 0 に関連付けられています。
+- これらは同じ <xref:System.Threading.CancellationTokenSource>に関連付けられています。
 
-- これらは両方ともパブリック <xref:System.Threading.CancellationToken> コンストラクターから構築されており、それらの <xref:System.Threading.CancellationToken.IsCancellationRequested?displayProperty=nameWithType> の値は同じです。
+- これらは両方ともパブリック <xref:System.Threading.CancellationToken> コンストラクターから構築されており、<xref:System.Threading.CancellationToken.IsCancellationRequested?displayProperty=nameWithType> 値は同じです。
 
-- 両方のキャンセルトークンの値が <xref:System.Threading.CancellationToken.None?displayProperty=nameWithType> です。
+- 両方のキャンセルトークンの値が <xref:System.Threading.CancellationToken.None?displayProperty=nameWithType>ます。
 
        ]]></format>
         </remarks>
@@ -318,6 +323,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -356,6 +362,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2">
@@ -372,19 +379,19 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、このトークンに対して取り消しが要求されているかどうかを示します。これは、最初にキャンセル状態で作成されているトークンを使用するか、または関連付けられている <xref:System.Threading.CancellationTokenSource> で @no__t 0 を呼び出すことによって行われます。  
+ このプロパティは、このトークンに対して取り消しが要求されているかどうかを示します。これには、最初にキャンセル状態で作成されるトークンを使用するか、トークンに関連付けられている <xref:System.Threading.CancellationTokenSource>に対して <xref:System.Threading.CancellationTokenSource.Cancel%2A> を呼び出します。  
   
- このプロパティが `true` の場合は、キャンセルが要求されただけです。 すべての登録済みハンドラーの実行が完了したことを保証するわけではなく、すべての登録済みハンドラーにキャンセル要求が反映されたことも保証されません。 特に関連オブジェクトが同時にキャンセルされる場合は、追加の同期が必要になることがあります。  
+ このプロパティが `true`場合、キャンセルが要求されただけです。 すべての登録済みハンドラーの実行が完了したことを保証するわけではなく、すべての登録済みハンドラーにキャンセル要求が反映されたことも保証されません。 特に関連オブジェクトが同時にキャンセルされる場合は、追加の同期が必要になることがあります。  
   
    
   
 ## Examples  
- @No__t-0 プロパティが `true` を返すまでサーバープロセスを実行する簡単な例を次に示します。  
+ <xref:System.Threading.CancellationToken.IsCancellationRequested%2A> プロパティが `true`を返すまでサーバープロセスを実行する簡単な例を次に示します。  
   
  [!code-csharp[System.Threading.Tasks.CancellationToken.IsCancellationRequested#12](~/samples/snippets/csharp/VS_Snippets_CLR_System/System.Threading.Tasks.CancellationToken.IsCancellationRequested/cs/cancellation.cs#12)]
  [!code-vb[System.Threading.Tasks.CancellationToken.IsCancellationRequested#12](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/System.Threading.Tasks.CancellationToken.IsCancellationRequested/vb/cancelthreads.vb#12)]  
   
- この例では、キャンセルトークンへのアクセスを制御する @no__t 0 オブジェクトをインスタンス化します。 次に、2つのスレッドプロシージャを定義します。 最初のは、キーボードをプールするラムダ式として定義され、"C" キーが押されたときには <xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType> を呼び出してキャンセルトークンをキャンセル状態に設定します。 2番目のパラメーター化されたメソッドである @no__t 0 は、<xref:System.Threading.CancellationToken.IsCancellationRequested%2A> プロパティが @no__t されるまでループを実行します。  
+ この例では、<xref:System.Threading.CancellationTokenSource> オブジェクトをインスタンス化して、キャンセルトークンへのアクセスを制御します。 次に、2つのスレッドプロシージャを定義します。 最初のは、キーボードをプールするラムダ式として定義され、"C" キーが押されたときに <xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType> を呼び出してキャンセルトークンをキャンセル状態に設定します。 2つ目は、パラメーター化されたメソッド `ServerClass.StaticMethod`で、<xref:System.Threading.CancellationToken.IsCancellationRequested%2A> プロパティが `true`されるまでループを実行します。  
   
  次に、メインスレッドは、2つのスレッドを開始し、`ServerClass.StaticMethod` メソッドを実行するスレッドが終了するまでブロックします。  
   
@@ -421,6 +428,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2">
@@ -437,7 +445,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティによって返されたキャンセルトークンを取り消すことはできません。つまり、@no__t 0 のプロパティは-1 @no__t ます。  
+ このプロパティによって返されたキャンセルトークンを取り消すことはできません。つまり、その <xref:System.Threading.CancellationToken.CanBeCanceled%2A> プロパティは `false`です。  
   
  C#[既定の (CancellationToken)](~/docs/csharp/language-reference/keywords/default.md)ステートメントを使用して、空のキャンセルトークンを作成することもできます。 
 
@@ -476,6 +484,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -495,11 +504,11 @@
 
 次のいずれかの条件に該当する場合、2つのキャンセルトークンは等しくなります。 
 
-- これらは同じ @no__t 0 に関連付けられています。
+- これらは同じ <xref:System.Threading.CancellationTokenSource>に関連付けられています。
 
-- これらは両方ともパブリック <xref:System.Threading.CancellationToken> コンストラクターから構築されており、それらの <xref:System.Threading.CancellationToken.IsCancellationRequested?displayProperty=nameWithType> の値は同じです。
+- これらは両方ともパブリック <xref:System.Threading.CancellationToken> コンストラクターから構築されており、<xref:System.Threading.CancellationToken.IsCancellationRequested?displayProperty=nameWithType> 値は同じです。
 
-- 両方のキャンセルトークンの値が <xref:System.Threading.CancellationToken.None?displayProperty=nameWithType> です。
+- 両方のキャンセルトークンの値が <xref:System.Threading.CancellationToken.None?displayProperty=nameWithType>ます。
        ]]></format>
         </remarks>
         <exception cref="T:System.ObjectDisposedException">関連付けられている <see cref="T:System.Threading.CancellationTokenSource" /> は破棄されています。</exception>
@@ -534,6 +543,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -598,6 +608,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.CancellationTokenRegistration</ReturnType>
@@ -655,6 +666,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.CancellationTokenRegistration</ReturnType>
@@ -676,7 +688,7 @@
   
  現在の <xref:System.Threading.ExecutionContext> はデリゲートと共にキャプチャされ、実行時に使用されます。 
 
- @No__t-0 が `true` の場合、現在の <xref:System.Threading.SynchronizationContext> (存在する場合) もデリゲートと共にキャプチャされ、実行時に使用されます。 それ以外の場合、<xref:System.Threading.SynchronizationContext> はキャプチャされません。
+ `useSynchronizationContext` が `true`場合、現在の <xref:System.Threading.SynchronizationContext>(存在する場合) もデリゲートと共にキャプチャされ、実行時に使用されます。 それ以外の場合、<xref:System.Threading.SynchronizationContext> はキャプチャされません。
   
  ]]></format>
         </remarks>
@@ -714,6 +726,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.CancellationTokenRegistration</ReturnType>
@@ -773,6 +786,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.CancellationTokenRegistration</ReturnType>
@@ -796,7 +810,7 @@
   
  現在の <xref:System.Threading.ExecutionContext> はデリゲートと共にキャプチャされ、実行時に使用されます。 
 
- @No__t-0 が `true` の場合、現在の <xref:System.Threading.SynchronizationContext> (存在する場合) もデリゲートと共にキャプチャされ、実行時に使用されます。 それ以外の場合、<xref:System.Threading.SynchronizationContext> はキャプチャされません。
+ `useSynchronizationContext` が `true`場合、現在の <xref:System.Threading.SynchronizationContext>(存在する場合) もデリゲートと共にキャプチャされ、実行時に使用されます。 それ以外の場合、<xref:System.Threading.SynchronizationContext> はキャプチャされません。
   
  ]]></format>
         </remarks>
@@ -834,6 +848,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2">
@@ -885,6 +900,7 @@ End If
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks</AssemblyName>
@@ -899,8 +915,8 @@ End If
         <ReturnType>System.Threading.CancellationTokenRegistration</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callback" Type="System.Action&lt;System.Object&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
-        <Parameter Name="state" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="callback" Type="System.Action&lt;System.Object&gt;" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+        <Parameter Name="state" Type="System.Object" Index="1" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="callback"><see cref="T:System.Threading.CancellationToken" /> が取り消されたときに実行されるデリゲート。</param>
@@ -912,7 +928,7 @@ End If
             If this token is already in the canceled state, the delegate is run immediately and synchronously.
             Any exception the delegate generates is propagated out of this method call.
             
-@No__t-0 はキャプチャされず、コールバックの呼び出しにフローされません。
+<xref:System.Threading.ExecutionContext> がキャプチャされていないか、コールバックの呼び出しにフローされていません。
             ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="callback" /> が null です。</exception>
@@ -945,6 +961,7 @@ End If
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Threading.WaitHandle</ReturnType>
@@ -956,7 +973,7 @@ End If
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティにアクセスすると、@no__t 0 がインスタンス化されます。 必要に応じてこのプロパティを使用することをお勧めします。その後、関連付けられている @no__t 0 インスタンスを最も早い機会に破棄します (ソースを破棄すると、この割り当てられたハンドルが破棄されます)。 ハンドルを閉じたり、直接破棄したりしないでください。  
+ このプロパティにアクセスすると、<xref:System.Threading.WaitHandle> がインスタンス化されます。 このプロパティは必要な場合にのみ使用し、その後、関連付けられている <xref:System.Threading.CancellationTokenSource> インスタンスを最も早い機会に破棄することをお勧めします (ソースを破棄すると、この割り当てられたハンドルが破棄されます)。 ハンドルを閉じたり、直接破棄したりしないでください。  
   
  ]]></format>
         </remarks>

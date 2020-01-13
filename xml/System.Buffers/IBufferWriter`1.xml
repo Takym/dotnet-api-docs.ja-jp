@@ -1,5 +1,5 @@
 <Type Name="IBufferWriter&lt;T&gt;" FullName="System.Buffers.IBufferWriter&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d652e388e680187d6b3ba95ec73275e726e0cc2d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69342425" /></Metadata><TypeSignature Language="C#" Value="public interface IBufferWriter&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f197293aeeaad672a44378eeb96020fab6417a09" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75153760" /></Metadata><TypeSignature Language="C#" Value="public interface IBufferWriter&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IBufferWriter`1&lt;T&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Buffers.IBufferWriter`1" />
   <TypeSignature Language="VB.NET" Value="Public Interface IBufferWriter(Of T)" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <AssemblyVersion>4.2.1.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>netstandard</AssemblyName>
@@ -20,7 +21,7 @@
   </TypeParameters>
   <Interfaces />
   <Docs>
-    <typeparam name="T">内の項目の型<see cref="T:System.Buffers.IBufferWriter`1" />。</typeparam>
+    <typeparam name="T"><see cref="T:System.Buffers.IBufferWriter`1" />内の項目の型。</typeparam>
     <summary><typeparamref name="T" /> データを書き込むことができる出力シンクを表します。</summary>
     <remarks>To be added.</remarks>
   </Docs>
@@ -38,6 +39,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.1.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -51,7 +53,7 @@
       </Parameters>
       <Docs>
         <param name="count"><see cref="T:System.Span`1" /> または <see cref="T:System.Memory`1" /> に書き込まれたデータ項目の数。</param>
-        <summary><paramref name="count" /> データ項目が出力 <see cref="T:System.Span`1" /> または <see cref="T:System.Memory`1" /> に書き込まれたことを <see cref="T:System.Buffers.IBufferWriter`1" /> に通知します。</summary>
+        <summary><see cref="T:System.Buffers.IBufferWriter`1" /> データ項目が出力 <paramref name="count" /> または <see cref="T:System.Span`1" /> に書き込まれたことを <see cref="T:System.Memory`1" /> に通知します。</summary>
         <remarks>さらに多くのデータの書き込みを続行するには、事前に呼び出した後に新しいバッファーを要求する必要があります。以前に取得したバッファーに書き込むことはできません。</remarks>
       </Docs>
     </Member>
@@ -67,6 +69,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.1.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -80,14 +83,14 @@
       </Parameters>
       <Docs>
         <param name="sizeHint">返される <see cref="T:System.Memory`1" /> の最小の長さ。 0 の場合は、空でないバッファーが返されます。</param>
-        <summary>少なくとも要求されたサイズを持つ (<paramref name="sizeHint" /> で指定します)、書き込み先の <see cref="T:System.Memory`1" /> を返します。</summary>
-        <returns>少なくとも <paramref name="sizeHint" /> のサイズを持つ <see cref="T:System.Memory`1" />。 <paramref name="sizeHint" /> が 0 の場合は、空でないバッファーを返します。</returns>
+        <summary>少なくとも要求されたサイズを持つ (<see cref="T:System.Memory`1" /> で指定します)、書き込み先の <paramref name="sizeHint" /> を返します。</summary>
+        <returns>少なくとも <see cref="T:System.Memory`1" /> のサイズを持つ <paramref name="sizeHint" />。 <paramref name="sizeHint" /> が 0 の場合は、空でないバッファーを返します。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 連続する呼び出しが同じバッファーまたは同じサイズのバッファーを返すという保証はありません。
 
-これは、を<xref:System.Span%601.Empty?displayProperty=nameWithType>返すことはできませんが、要求されたバッファーサイズが使用できない場合はをスローすることがあります。
+これは <xref:System.Span%601.Empty?displayProperty=nameWithType>を返さないようにする必要がありますが、要求されたバッファーサイズが使用できない場合は、をスローすることができます。
 
 さらにデータの書き込みを続けるには、`Advance` を呼び出した後に新しいバッファーを要求する必要があります。前に取得したバッファーに書き込むことはできません。
 
@@ -108,6 +111,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
+        <AssemblyVersion>4.2.1.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -121,14 +125,14 @@
       </Parameters>
       <Docs>
         <param name="sizeHint">返される <see cref="T:System.Span`1" /> の最小の長さ。 0 の場合は、空でないバッファーが返されます。</param>
-        <summary>少なくとも要求されたサイズを持つ (<paramref name="sizeHint" /> で指定します)、書き込み先の <see cref="T:System.Span`1" /> を返します。</summary>
-        <returns>少なくとも <paramref name="sizeHint" /> のサイズを持つ <see cref="T:System.Span`1" />。 <paramref name="sizeHint" /> が 0 の場合は、空でないバッファーを返します。</returns>
+        <summary>少なくとも要求されたサイズを持つ (<see cref="T:System.Span`1" /> で指定します)、書き込み先の <paramref name="sizeHint" /> を返します。</summary>
+        <returns>少なくとも <see cref="T:System.Span`1" /> のサイズを持つ <paramref name="sizeHint" />。 <paramref name="sizeHint" /> が 0 の場合は、空でないバッファーを返します。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
   
 連続する呼び出しが同じバッファーまたは同じサイズのバッファーを返すという保証はありません。
 
-このメソッドはを返さ<xref:System.Span%601.Empty?displayProperty=nameWithType>ないようにする必要がありますが、要求されたバッファーサイズが使用できない場合は、をスローすることができます。
+このメソッドは <xref:System.Span%601.Empty?displayProperty=nameWithType>を返さないようにする必要がありますが、要求されたバッファーサイズが使用できない場合は、をスローすることができます。
 
 さらにデータの書き込みを続けるには、`Advance` を呼び出した後に新しいバッファーを要求する必要があります。前に取得したバッファーに書き込むことはできません。
          ]]></format>

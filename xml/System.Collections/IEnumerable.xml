@@ -1,5 +1,5 @@
 <Type Name="IEnumerable" FullName="System.Collections.IEnumerable">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8f319b2dfd452956a57bc8b41c7ee94dc979255b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69351819" /></Metadata><TypeSignature Language="C#" Value="public interface IEnumerable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="eec554d9036fdcce4eca628799de6b8279d782e0" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75150497" /></Metadata><TypeSignature Language="C#" Value="public interface IEnumerable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.Collections.IEnumerable" />
   <TypeSignature Language="VB.NET" Value="Public Interface IEnumerable" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -41,16 +42,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.IEnumerable>は、列挙できるすべての非ジェネリックコレクションの基本インターフェイスです。 このインターフェイスのジェネリックバージョンについて<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>は、「」を参照してください。 <xref:System.Collections.IEnumerable>に1つのメソッド<xref:System.Collections.IEnumerable.GetEnumerator%2A>が含まれて<xref:System.Collections.IEnumerator>います。これはを返します。 <xref:System.Collections.IEnumerator><xref:System.Collections.IEnumerator.Current%2A> プロパティ<xref:System.Collections.IEnumerator.MoveNext%2A>とメソッドを公開することによって、コレクションを反復処理する機能を提供します。<xref:System.Collections.IEnumerator.Reset%2A>  
+ <xref:System.Collections.IEnumerable> は、列挙可能なすべての非ジェネリックコレクションの基本インターフェイスです。 このインターフェイスのジェネリックバージョンについては、「<xref:System.Collections.Generic.IEnumerable%601?displayProperty=nameWithType>」を参照してください。 <xref:System.Collections.IEnumerable> には、<xref:System.Collections.IEnumerator>を返す1つのメソッド <xref:System.Collections.IEnumerable.GetEnumerator%2A>が含まれています。 <xref:System.Collections.IEnumerator> は、<xref:System.Collections.IEnumerator.Current%2A> のプロパティと <xref:System.Collections.IEnumerator.MoveNext%2A> および <xref:System.Collections.IEnumerator.Reset%2A> メソッドを公開することによって、コレクションを反復処理する機能を提供します。  
   
- `foreach` ( <xref:System.Collections.IEnumerable> <xref:System.Collections.IEnumerator> <xref:System.Collections.IEnumerable> Visual Basic)構文を有効にするためにとをコレクションクラスに実装することをお勧めします。ただし、を実装する必要はありません。`For Each` コレクションがを実装<xref:System.Collections.IEnumerable>していない場合でも、インターフェイス、クラス、または構造体を返すメソッドを`GetEnumerator`指定することによって、反復子パターンに従う必要があります。 Visual Basic を使用する場合は、 <xref:System.Collections.IEnumerator>実装を指定する必要があります。これは、によって`GetEnumerator`返されます。 でC#開発する場合`Current`は、プロパティ`MoveNext`を含むクラス、および`Reset`で<xref:System.Collections.IEnumerator>説明されているメソッドを提供する必要がありますが、 <xref:System.Collections.IEnumerator>クラスはを実装する必要はありません。  
+ `foreach` (`For Each` Visual Basic) 構文を有効にするには、<xref:System.Collections.IEnumerable> を実装し、コレクションクラスに <xref:System.Collections.IEnumerator> を実装することをお勧めします。ただし、<xref:System.Collections.IEnumerable> を実装する必要はありません。 コレクションに <xref:System.Collections.IEnumerable>が実装されていない場合でも、インターフェイス、クラス、または構造体を返す `GetEnumerator` メソッドを指定することで、この構文をサポートするために反復子パターンに従う必要があります。 Visual Basic を使用する場合は、<xref:System.Collections.IEnumerator> の実装を指定する必要があります。これは `GetEnumerator`によって返されます。 でC#開発する場合は、`Current` プロパティを含むクラスを指定する必要があります。また、<xref:System.Collections.IEnumerator>で説明されているようにメソッドを `MoveNext` および `Reset` しますが、クラスで <xref:System.Collections.IEnumerator>を実装する必要はありません。  
   
    
   
 ## Examples  
- 次のコード例は、インターフェイス<xref:System.Collections.IEnumerable>と<xref:System.Collections.IEnumerator>インターフェイスを実装することによってカスタムコレクションを反復処理するためのベストプラクティスを示しています。 この例では、これらのインターフェイスのメンバーは明示的に呼び出されませんが、コレクションを`foreach`反復`For Each`処理するための (Visual Basic) の使用をサポートするように実装されています。 この例は、完全なコンソールアプリケーションです。 Visual Basic アプリをコンパイルするには、プロジェクトの**プロパティ**ページで**Startup オブジェクト**を**Sub Main**に変更します。  
+ 次のコード例は、<xref:System.Collections.IEnumerable> と <xref:System.Collections.IEnumerator> インターフェイスを実装することによってカスタムコレクションを反復処理するためのベストプラクティスを示しています。 この例では、これらのインターフェイスのメンバーは明示的に呼び出されませんが、コレクションを反復処理するために `foreach` (Visual Basic で`For Each`) の使用をサポートするように実装されています。 この例は、完全なコンソールアプリケーションです。 Visual Basic アプリをコンパイルするには、プロジェクトの**プロパティ**ページで**Startup オブジェクト**を**Sub Main**に変更します。  
   
- <xref:System.Collections.IEnumerable>インターフェイスを実装する方法を示すサンプルについては、「[コレクションクラスでの IEnumerable インターフェイスの実装](https://code.msdn.microsoft.com/Implementing-the-e1708a24)」を参照してください。  
+ <xref:System.Collections.IEnumerable> インターフェイスの実装方法を示すサンプルについては、「[コレクションクラスでの IEnumerable インターフェイスの実装](https://code.msdn.microsoft.com/Implementing-the-e1708a24)」を参照してください。  
   
  [!code-csharp[System.Collections_EnumeratorInterfaces#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/cs/ienumerator.cs#1)]
  [!code-vb[System.Collections_EnumeratorInterfaces#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/vb/ienumerator.vb#1)]  
@@ -79,6 +80,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -102,7 +104,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>コレクションを反復処理する列挙子を返します。</summary>
+        <summary>コレクションを繰り返し処理する列挙子を返します。</summary>
         <returns>コレクションを反復処理するために使用できる <see cref="T:System.Collections.IEnumerator" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -112,7 +114,7 @@
   
  列挙子を使用すると、コレクション内のデータを読み取ることができますが、基になるコレクションを変更することはできません。  
   
- 最初に、列挙子はコレクション内の 1 番目の要素の前に位置付けられます。 <xref:System.Collections.IEnumerator.Reset%2A> メソッドは、この位置に列挙子を戻します。  この位置では、<xref:System.Collections.IEnumerator.Current%2A> プロパティは定義されていません。 そのため、<xref:System.Collections.IEnumerator.Current%2A> の値を読み取る前に、<xref:System.Collections.IEnumerator.MoveNext%2A> メソッドを呼び出し、列挙子をコレクションの最初の要素に進める必要があります。  
+ 最初、列挙子はコレクションの先頭の要素の前に位置付けられます。 <xref:System.Collections.IEnumerator.Reset%2A> メソッドは、この位置に列挙子を戻します。  この位置では、<xref:System.Collections.IEnumerator.Current%2A> プロパティは定義されていません。 そのため、<xref:System.Collections.IEnumerator.MoveNext%2A> の値を読み取る前に、<xref:System.Collections.IEnumerator.Current%2A> メソッドを呼び出し、列挙子をコレクションの最初の要素に進める必要があります。  
   
  <xref:System.Collections.IEnumerator.Current%2A> は、<xref:System.Collections.IEnumerator.MoveNext%2A> または <xref:System.Collections.IEnumerator.Reset%2A> が呼び出されるまでは同じオブジェクトを返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> は、<xref:System.Collections.IEnumerator.Current%2A> を次の要素に設定します。  
   
@@ -120,12 +122,12 @@
   
  要素の追加、変更、削除などの変更がコレクションに対して行われた場合、列挙子の動作は未定義になります。  
   
- 列挙子にはコレクションへの排他アクセス権限はないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。  列挙処理でスレッド セーフを確保するために、列挙処理が終わるまでコレクションをロックできます。  コレクションに対し複数のスレッドがアクセスして読み取りや書き込みを行うことができるようにするには、独自に同期化を実装する必要があります。  
+ 列挙子はコレクションに排他アクセスできないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。  列挙処理でスレッド セーフを確保するために、列挙処理が終わるまでコレクションをロックできます。  コレクションに対し複数のスレッドがアクセスして読み取りや書き込みを行うことができるようにするには、独自に同期化を実装する必要があります。  
   
    
   
 ## Examples  
- 次のコード例は、カスタムコレクションの<xref:System.Collections.IEnumerable>インターフェイスの実装を示しています。 この例では<xref:System.Collections.IEnumerable.GetEnumerator%2A> 、は明示的に呼び出されませんが、(`For Each` Visual Basic) `foreach`の使用をサポートするように実装されています。 このコード例は、 <xref:System.Collections.IEnumerable>インターフェイスのより大きな例の一部です。  
+ 次のコード例は、カスタムコレクションの <xref:System.Collections.IEnumerable> インターフェイスの実装を示しています。 この例では、<xref:System.Collections.IEnumerable.GetEnumerator%2A> は明示的に呼び出されませんが、`foreach` (Visual Basic で`For Each`) の使用をサポートするように実装されています。 このコード例は、<xref:System.Collections.IEnumerable> インターフェイスのより大きな例の一部です。  
   
  [!code-csharp[System.Collections_EnumeratorInterfaces#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/cs/ienumerator.cs#1)]
  [!code-vb[System.Collections_EnumeratorInterfaces#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/vb/ienumerator.vb#1)]  

@@ -1,5 +1,5 @@
 <Type Name="Debugger" FullName="System.Diagnostics.Debugger">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d77aee6ab9823595142c3bf3f4e86bed247afa6e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69384230" /></Metadata><TypeSignature Language="C#" Value="public sealed class Debugger" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d97f492c8fa744e5c157aeb5d47eef7a5bd2119f" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75138043" /></Metadata><TypeSignature Language="C#" Value="public sealed class Debugger" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Debugger extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Diagnostics.Debugger" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Debugger" />
@@ -11,6 +11,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -86,6 +87,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -109,7 +111,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>アタッチされたデバッガーにブレークポイントを示します。</summary>
+        <summary>アタッチされたデバッガーにブレークポイントを通知します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -117,12 +119,12 @@
  デバッガーがアタッチされていない場合は、デバッガーをアタッチするかどうかを確認するメッセージがユーザーに表示されます。 ユーザーが [はい] と言うと、デバッガーが起動します。 デバッガーがアタッチされている場合、デバッガーはユーザーブレークポイントイベントで通知され、デバッガーはデバッガーのブレークポイントにヒットした場合と同様にプロセスの実行を中断します。  
   
 > [!WARNING]
->  以降では<xref:System.Diagnostics.Debugger.Break%2A> [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]、ランタイムは、メソッドのデバッガーの起動を厳密に制御するのではなく、Windows エラー報告 (WER) サブシステムにエラーを報告します。 WER には、問題の報告エクスペリエンスをカスタマイズする多くの設定が用意されているので、多くの要因が、オペレーティングシステムのバージョン、プロセス、セッション、ユーザー、コンピューター、ドメインなどのエラーに対する WER の反応に影響を及ぼします。 メソッドの<xref:System.Diagnostics.Debugger.Break%2A>呼び出し時に予期しない結果が発生する場合は、コンピューターの WER 設定を確認してください。 WER をカスタマイズする方法の詳細については、「 [Wer Settings](https://msdn.microsoft.com/library/windows/desktop/bb513638.aspx)」を参照してください。 WER の設定に関係なくデバッガーを起動する場合は、代わりに<xref:System.Diagnostics.Debugger.Launch%2A>メソッドを呼び出すようにしてください。  
+>  [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]以降では、ランタイムは、<xref:System.Diagnostics.Debugger.Break%2A> メソッドに対してデバッガーを起動する厳密な制御を実行しなくなりましたが、代わりに Windows エラー報告 (WER) サブシステムにエラーを報告します。 WER には、問題の報告エクスペリエンスをカスタマイズする多くの設定が用意されているので、多くの要因が、オペレーティングシステムのバージョン、プロセス、セッション、ユーザー、コンピューター、ドメインなどのエラーに対する WER の反応に影響を及ぼします。 <xref:System.Diagnostics.Debugger.Break%2A> メソッドを呼び出したときに予期しない結果が発生する場合は、コンピューターの WER 設定を確認してください。 WER をカスタマイズする方法の詳細については、「 [Wer Settings](https://msdn.microsoft.com/library/windows/desktop/bb513638.aspx)」を参照してください。 WER の設定に関係なくデバッガーが起動されるようにするには、代わりに <xref:System.Diagnostics.Debugger.Launch%2A> メソッドを呼び出してください。  
   
    
   
 ## Examples  
- 次のコード例は、の呼び出し<xref:System.Console.WriteLine%2A>でデバッガーを停止する方法を示しています。  
+ 次のコード例は、<xref:System.Console.WriteLine%2A>の呼び出しでデバッガーを停止する方法を示しています。  
   
 ```vb  
 Debugger.Break()  
@@ -136,9 +138,9 @@ Console.WriteLine("Hello, world.");
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.Security.SecurityException">デバッガーに割り込むために <see cref="T:System.Security.Permissions.UIPermission" /> が設定されていません。</exception>
-        <permission cref="T:System.Security.Permissions.UIPermission">デバッガーを起動するためのアクセス許可。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを操作するために使用します。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。</permission>
+        <exception cref="T:System.Security.SecurityException"><see cref="T:System.Security.Permissions.UIPermission" /> は、デバッガーで中断するようには設定されていません。</exception>
+        <permission cref="T:System.Security.Permissions.UIPermission">デバッガーを起動するためのアクセス許可。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを操作するために使用します。 関連付けられた列挙: <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。</permission>
       </Docs>
     </Member>
     <Member MemberName="DefaultCategory">
@@ -165,6 +167,7 @@ Console.WriteLine("Hello, world.");
         <AssemblyName>System.Diagnostics.Debug</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -175,7 +178,7 @@ Console.WriteLine("Hello, world.");
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この既定の定数の値は`null`です。 <xref:System.Diagnostics.Debugger.DefaultCategory> は <xref:System.Diagnostics.Debugger.Log%2A> によって使用されます。  
+ この既定の定数の値は `null`です。 <xref:System.Diagnostics.Debugger.DefaultCategory> は <xref:System.Diagnostics.Debugger.Log%2A> によって使用されます。  
   
  ]]></format>
         </remarks>
@@ -195,6 +198,7 @@ Console.WriteLine("Hello, world.");
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -246,6 +250,7 @@ Console.WriteLine("Hello, world.");
         <AssemblyName>System.Diagnostics.Debug</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -276,6 +281,7 @@ Console.WriteLine("Hello, world.");
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -310,8 +316,8 @@ Console.WriteLine("Hello, world.");
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">デバッガーを起動する <see cref="T:System.Security.Permissions.UIPermission" /> が設定されていません。</exception>
-        <permission cref="T:System.Security.Permissions.UIPermission">デバッガーを起動するためのアクセス許可。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを操作するために使用します。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" />セキュリティアクション:<see cref="F:System.Security.Permissions.SecurityAction.Demand" /></permission>
+        <permission cref="T:System.Security.Permissions.UIPermission">デバッガーを起動するためのアクセス許可。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.PermissionState.Unrestricted" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを操作するために使用します。 関連付けられた列挙: <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.Demand" /></permission>
         <altmember cref="T:System.Security.Permissions.UIPermission" />
       </Docs>
     </Member>
@@ -339,6 +345,7 @@ Console.WriteLine("Hello, world.");
         <AssemblyName>System.Diagnostics.Debug</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -349,15 +356,15 @@ Console.WriteLine("Hello, world.");
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="level" Type="System.Int32" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="category" Type="System.String" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="message" Type="System.String" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="level" Type="System.Int32" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="category" Type="System.String" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="message" Type="System.String" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
-        <param name="level">メッセージの重要性の記述。</param>
+        <param name="level">メッセージの重要度の記述。</param>
         <param name="category">メッセージのカテゴリ。</param>
         <param name="message">表示するメッセージ。</param>
-        <summary>アタッチされたデバッガーのメッセージをポストします。</summary>
+        <summary>アタッチされたデバッガーのメッセージを送信します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -393,6 +400,7 @@ Console.WriteLine("Hello, world.");
         <AssemblyName>System.Diagnostics.Debug</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -407,14 +415,14 @@ Console.WriteLine("Hello, world.");
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>スレッド間の依存関係を伴う実行パスに入ろうとしていることをデバッガーに通知します。</summary>
+        <summary>実行が、スレッド間の依存関係を含むパスに入ろうとしていることをデバッガーに通知します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  デバッガーでは、受信するコールバックを明示的に有効にする必要があります。 スレッド間の依存関係コールバックを受信するデバッガーは、 [ICorDebugProcess3:: SetEnableCustomNotification](~/docs/framework/unmanaged-api/debugging/icordebugprocess3-setenablecustomnotification-method.md)メソッドを呼び出す必要があります。  
   
- 選択し<xref:System.Diagnostics.Debugger.NotifyOfCrossThreadDependency%2A>たデバッガーは、通知時に適切な操作を行うことができます。 たとえば、関数の評価を実行するには、通常、評価を実行するスレッド以外のすべてのスレッドを凍結する必要があります。 複数のスレッドで関数の評価を実行する必要がある場合は、リモート処理のシナリオで発生する可能性がありますが、評価はブロックされます。 通知<xref:System.Diagnostics.Debugger.NotifyOfCrossThreadDependency%2A>は、スレッドを解放するか関数の評価を中止する必要があることをデバッガーに通知します。 このメソッドから制御が戻った後、通知はコレクションの対象となります。  
+ <xref:System.Diagnostics.Debugger.NotifyOfCrossThreadDependency%2A> を選択したデバッガーは、通知時に適切な操作を行うことができます。 たとえば、関数の評価を実行するには、通常、評価を実行するスレッド以外のすべてのスレッドを凍結する必要があります。 複数のスレッドで関数の評価を実行する必要がある場合は、リモート処理のシナリオで発生する可能性がありますが、評価はブロックされます。 <xref:System.Diagnostics.Debugger.NotifyOfCrossThreadDependency%2A> 通知は、スレッドを解放するか関数の評価を中止する必要があることをデバッガーに通知します。 このメソッドから制御が戻った後、通知はコレクションの対象となります。  
   
  ]]></format>
         </remarks>
