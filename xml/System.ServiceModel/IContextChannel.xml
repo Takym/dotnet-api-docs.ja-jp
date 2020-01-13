@@ -1,5 +1,5 @@
 <Type Name="IContextChannel" FullName="System.ServiceModel.IContextChannel">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="216f5bd3638ea71b44b757db6277e59f0535803d" /><Meta Name="ms.sourcegitcommit" Value="2b78f05b0c6fa92adaf5e1dfe5a50388f952efe7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/02/2019" /><Meta Name="ms.locfileid" Value="71806478" /></Metadata><TypeSignature Language="C#" Value="public interface IContextChannel : System.ServiceModel.Channels.IChannel, System.ServiceModel.IExtensibleObject&lt;System.ServiceModel.IContextChannel&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="07dbe975f75d1dc8cba52668c15bde2c944efa71" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75159961" /></Metadata><TypeSignature Language="C#" Value="public interface IContextChannel : System.ServiceModel.Channels.IChannel, System.ServiceModel.IExtensibleObject&lt;System.ServiceModel.IContextChannel&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IContextChannel implements class System.ServiceModel.Channels.IChannel, class System.ServiceModel.ICommunicationObject, class System.ServiceModel.IExtensibleObject`1&lt;class System.ServiceModel.IContextChannel&gt;" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.IContextChannel" />
   <TypeSignature Language="VB.NET" Value="Public Interface IContextChannel&#xA;Implements IChannel, IExtensibleObject(Of IContextChannel)" />
@@ -20,6 +20,7 @@
     <AssemblyVersion>4.5.0.1</AssemblyVersion>
     <AssemblyVersion>4.5.0.3</AssemblyVersion>
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
+    <AssemblyVersion>4.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces>
     <Interface>
@@ -41,7 +42,7 @@
 
 [!INCLUDE [untrusted-data-interface-note](~/includes/untrusted-data-interface-note.md)]
 
- <xref:System.ServiceModel.IContextChannel> は、チャネルのコンテキストのコントロールを定義します。 この中には、チャネルの <xref:System.ServiceModel.IContextChannel.SessionId%2A>、<xref:System.ServiceModel.IContextChannel.InputSession%2A>、<xref:System.ServiceModel.IContextChannel.OutputSession%2A>、および <xref:System.ServiceModel.IContextChannel.AllowOutputBatching%2A> と、セッションに参加するエンドポイントの <xref:System.ServiceModel.IContextChannel.LocalAddress%2A> と <xref:System.ServiceModel.IContextChannel.RemoteAddress%2A> が含まれます。 <xref:System.ServiceModel.IContextChannel> インターフェイスは、<xref:System.ServiceModel.IServiceChannel>、<xref:System.ServiceModel.IClientChannel>、および <xref:System.ServiceModel.IDuplexContextChannel> の各インターフェイスの一部を形成します。  
+ <xref:System.ServiceModel.IContextChannel> は、チャネルのコンテキストのコントロールを定義します。 これには、チャネルの <xref:System.ServiceModel.IContextChannel.SessionId%2A>、<xref:System.ServiceModel.IContextChannel.InputSession%2A>、<xref:System.ServiceModel.IContextChannel.OutputSession%2A>、および <xref:System.ServiceModel.IContextChannel.AllowOutputBatching%2A>、およびセッションに参加しているエンドポイントの <xref:System.ServiceModel.IContextChannel.LocalAddress%2A> と <xref:System.ServiceModel.IContextChannel.RemoteAddress%2A> が含まれます。 <xref:System.ServiceModel.IContextChannel> インターフェイスは、<xref:System.ServiceModel.IDuplexContextChannel> インターフェイスの <xref:System.ServiceModel.IServiceChannel> および <xref:System.ServiceModel.IClientChannel> インターフェイスの一部を形成します。  
   
  ]]></format>
     </remarks>
@@ -70,6 +71,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -81,7 +83,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- バッチ処理のレベルは、システムのパフォーマンスに影響します。 この値を `true` に設定することは、可能であればメッセージをローカル バッファーに保持し、他のシリアル化されたメッセージと一緒に送信するようにシステムに指示することです。 メッセージのスループットが重要な場合は、<xref:System.ServiceModel.IContextChannel.AllowOutputBatching%2A> プロパティを `true` に、待ち時間の短縮が重要な場合は `false` に設定します。 サービスを構成するために使用されるバイディング要素からアクセスできるメッセージのバッチ処理を管理する方法は他にもあります。 パフォーマンスを調整するために使用される TCP や名前付きパイプなどの接続指向トランスポートに共通するプロパティは、たとえば <xref:System.ServiceModel.Channels.ConnectionOrientedTransportBindingElement> に配置されます。 <xref:System.ServiceModel.Channels.ConnectionOrientedTransportBindingElement.MaxOutputDelay%2A> は、メッセージのチャンクまたは完全なメッセージを、送信前にメモリ内のバッファーに残したままにできる最長期間を設定するために使用し、<xref:System.ServiceModel.Channels.ConnectionOrientedTransportBindingElement.ConnectionBufferSize%2A> は、このローカル バッファーのサイズと、基になるネットワーク オブジェクトによって使用されるバッファー サイズを決定します。  
+ バッチ処理のレベルは、システムのパフォーマンスに影響します。 値を `true`に設定すると、可能であれば、このメッセージをローカルバッファーに保持し、他のシリアル化されたメッセージと共に送信するようにシステムに指示することになります。 メッセージのスループットが重要な場合は、<xref:System.ServiceModel.IContextChannel.AllowOutputBatching%2A> プロパティを `true` に設定します。待機時間を短縮することが重要な場合は、`false` に設定します。 サービスを構成するために使用されるバイディング要素からアクセスできるメッセージのバッチ処理を管理する方法は他にもあります。 パフォーマンスを調整するために使用される TCP や名前付きパイプなどの接続指向トランスポートに共通するプロパティは、たとえば <xref:System.ServiceModel.Channels.ConnectionOrientedTransportBindingElement> に配置されます。 <xref:System.ServiceModel.Channels.ConnectionOrientedTransportBindingElement.MaxOutputDelay%2A> は、メッセージのチャンクまたは完全なメッセージを、送信前にメモリ内のバッファーに残したままにできる最長期間を設定するために使用し、<xref:System.ServiceModel.Channels.ConnectionOrientedTransportBindingElement.ConnectionBufferSize%2A> は、このローカル バッファーのサイズと、基になるネットワーク オブジェクトによって使用されるバッファー サイズを決定します。  
   
  <xref:System.ServiceModel.IContextChannel.AllowOutputBatching%2A> の値は、チャネル レベルで設定される <xref:System.ServiceModel.Channels.MessageProperties.AllowOutputBatching%2A> プロパティの値をオーバーライドしません。 たとえば、特定のメッセージに対して <xref:System.ServiceModel.Channels.MessageProperties.AllowOutputBatching%2A> を `true` に設定した場合、そのメッセージは、<xref:System.ServiceModel.IContextChannel.AllowOutputBatching%2A> の値とは無関係に直ちに送信されます。  
   
@@ -115,6 +117,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.IInputSession</ReturnType>
@@ -148,6 +151,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.EndpointAddress</ReturnType>
@@ -181,6 +185,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.TimeSpan</ReturnType>
@@ -221,13 +226,14 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.IOutputSession</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>チャネルに関連付けられている出力セッションがあれば、それを取得します。</summary>
-        <value>入力セッションが存在する場合は、<see cref="T:System.ServiceModel.Channels.IOutputSession" /> の実装。それ以外の場合は <see langword="null" />。</value>
+        <value>出力セッションが存在する場合は、<see cref="T:System.ServiceModel.Channels.IOutputSession" /> の実装。それ以外の場合は <see langword="null" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -254,6 +260,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.EndpointAddress</ReturnType>
@@ -287,6 +294,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>

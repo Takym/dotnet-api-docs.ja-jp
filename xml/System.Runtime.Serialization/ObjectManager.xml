@@ -1,5 +1,5 @@
 <Type Name="ObjectManager" FullName="System.Runtime.Serialization.ObjectManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d92aafa257bd571710c2129d245109033ca0697d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69087185" /></Metadata><TypeSignature Language="C#" Value="public class ObjectManager" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bdd23004e8c5c47902445c9e56f043088bf4b05b" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75164563" /></Metadata><TypeSignature Language="C#" Value="public class ObjectManager" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi ObjectManager extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.Serialization.ObjectManager" />
   <TypeSignature Language="VB.NET" Value="Public Class ObjectManager" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
+    <AssemblyVersion>4.0.4.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -37,14 +38,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 逆シリアル化<xref:System.Runtime.Serialization.Formatter>中に、 <xref:System.Runtime.Serialization.ObjectManager>はにクエリを実行して、シリアル化ストリーム内のオブジェクトへの参照が、既に逆シリアル化されている (後方参照) オブジェクトを参照しているか、まだ存在していないオブジェクトを参照しているかを判断します。逆シリアル化 (前方参照)。 シリアル化されたストリーム内の参照が前方参照である<xref:System.Runtime.Serialization.Formatter>場合、は<xref:System.Runtime.Serialization.ObjectManager>に修正を登録できます。 シリアル化されたストリーム内の参照が後方参照の<xref:System.Runtime.Serialization.Formatter>場合、はすぐに参照を完了します。 Fixup は、オブジェクトの逆シリアル化プロセス中に既に完了していないオブジェクト参照を終了するプロセスを指します。 必要なオブジェクトが逆シリアル化<xref:System.Runtime.Serialization.ObjectManager>されると、によって参照が完了します。  
+ 逆シリアル化中に、<xref:System.Runtime.Serialization.Formatter> は <xref:System.Runtime.Serialization.ObjectManager> を照会して、シリアル化されたストリーム内のオブジェクトへの参照が、既に逆シリアル化されたオブジェクト (後方参照) であるか、逆シリアル化されていないオブジェクト (前方参照) を参照するかを判断します。 シリアル化されたストリーム内の参照が前方参照の場合、<xref:System.Runtime.Serialization.Formatter> は、<xref:System.Runtime.Serialization.ObjectManager>に修正を登録できます。 シリアル化されたストリーム内の参照が後方参照の場合、<xref:System.Runtime.Serialization.Formatter> はすぐに参照を完了します。 Fixup は、オブジェクトの逆シリアル化プロセス中に既に完了していないオブジェクト参照を終了するプロセスを指します。 必要なオブジェクトが逆シリアル化された後、<xref:System.Runtime.Serialization.ObjectManager> によって参照が完了します。  
   
- は<xref:System.Runtime.Serialization.ObjectManager> 、修正順序を決定する一連の規則に従います。 を実装<xref:System.Runtime.Serialization.ISerializable>する、またはを<xref:System.Runtime.Serialization.ISerializationSurrogate>持つすべてのオブジェクトは、オブジェクトツリーが逆シリアル<xref:System.Runtime.Serialization.SerializationInfo>化されたときに、使用可能な経由で送信されるすべてのオブジェクトを持つことを期待できます。 ただし、親オブジェクトは、完全に逆シリアル化されると、すべての子オブジェクトが完全に完了するとは仮定できません。 すべての子オブジェクトが存在しますが、すべての孫オブジェクトが存在するとは限りません。 オブジェクトが子オブジェクトのコードの実行に依存する特定のアクションを実行する必要がある場合は、これらのアクション<xref:System.Runtime.Serialization.IDeserializationCallback>を遅延させ、インターフェイスを実装し、このインターフェイスでコールバックしたときにのみコードを実行できます。  
+ <xref:System.Runtime.Serialization.ObjectManager> は、修正順序を決定する一連の規則に従います。 <xref:System.Runtime.Serialization.ISerializable> を実装するオブジェクトまたは <xref:System.Runtime.Serialization.ISerializationSurrogate> があるすべてのオブジェクトは、オブジェクトツリーが逆シリアル化されたときに、送信されるすべてのオブジェクト <xref:System.Runtime.Serialization.SerializationInfo> 使用できることを期待できます。 ただし、親オブジェクトは、完全に逆シリアル化されると、すべての子オブジェクトが完全に完了するとは仮定できません。 すべての子オブジェクトが存在しますが、すべての孫オブジェクトが存在するとは限りません。 オブジェクトが子オブジェクトのコードの実行に依存する特定のアクションを実行する必要がある場合は、これらのアクションを遅延させ、<xref:System.Runtime.Serialization.IDeserializationCallback> インターフェイスを実装し、このインターフェイスでコールバックされるときにのみコードを実行できます。  
   
    
   
 ## Examples  
- <xref:System.Runtime.Serialization.ObjectManager>クラスを使用してオブジェクトグラフを走査し、各オブジェクトを1回だけ走査する方法を次のコード例に示します。  
+ 次のコード例では、<xref:System.Runtime.Serialization.ObjectManager> クラスを使用してオブジェクトグラフを順番に処理し、各オブジェクトを1回だけ走査する方法を示します。  
   
  [!code-csharp[ObjectManager#1](~/samples/snippets/csharp/VS_Snippets_Misc/ObjectManager/CS/ObjectManager.cs#1)]  
   
@@ -76,6 +77,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -88,8 +90,9 @@
       </Parameters>
       <Docs>
         <param name="selector">使用するサロゲート セレクター。 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> は、指定された型のオブジェクトを逆シリアル化するときに使用する現在のサロゲートを決定します。 逆シリアル化時に、サロゲート セレクターは、ストリームで送信された情報からオブジェクトの新しいインスタンスを作成します。</param>
-        <param name="context">ストリーム コンテキスト。 <see cref="T:System.Runtime.Serialization.StreamingContext" /> は <see langword="ObjectManager" /> によっては使用されませんが、<see cref="T:System.Runtime.Serialization.ISerializable" /> を実装している任意のオブジェクト、または <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" /> を持っている任意のオブジェクトにパラメーターとして渡されます。 これらのオブジェクトは、逆シリアル化する情報の元のオブジェクトに応じて特定のアクションを実行できます。</param>
-        <summary><see cref="T:System.Runtime.Serialization.ObjectManager" /> クラスの新しいインスタンスを初期化します。</summary>
+        <param name="context">ストリーミング コンテキスト。 <see cref="T:System.Runtime.Serialization.StreamingContext" /> は <see langword="ObjectManager" /> によっては使用されませんが、<see cref="T:System.Runtime.Serialization.ISerializable" /> を実装している任意のオブジェクト、または <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" /> を持っている任意のオブジェクトにパラメーターとして渡されます。 これらのオブジェクトは、逆シリアル化する情報の元のオブジェクトに応じて特定のアクションを実行できます。</param>
+        <summary>
+          <see cref="T:System.Runtime.Serialization.ObjectManager" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <permission cref="T:System.Security.Permissions.SecurityPermission">シリアル化サービスを提供します。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter" /> (関連する列挙体)</permission>
@@ -119,6 +122,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -135,7 +139,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 修正は、適切なサロゲート、オブジェクト自体 (実装<xref:System.Runtime.Serialization.ISerializable>されている場合)、または既定の実装によって実行されます。  
+ 修正は、適切なサロゲート、オブジェクト自体 (<xref:System.Runtime.Serialization.ISerializable>を実装している場合)、または既定の実装によって実行されます。  
   
  ]]></format>
         </remarks>
@@ -166,6 +170,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -181,7 +186,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オブジェクトは、メソッドの<xref:System.Runtime.Serialization.ObjectManager.RegisterObject%2A>呼び出しを使用して登録し、オブジェクト ID を発行できます。  
+ オブジェクトは、<xref:System.Runtime.Serialization.ObjectManager.RegisterObject%2A> メソッドの呼び出しを使用して登録し、オブジェクト ID を発行できます。  
   
  ]]></format>
         </remarks>
@@ -212,6 +217,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -245,12 +251,13 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="obj">呼び出すメソッドを保持する型のインスタンス。</param>
@@ -292,6 +299,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -310,7 +318,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Fixup は、指定された配列の指定された要素を対象としています。 修正プロセス中に使用される値は、 `objectRequired`パラメーターで指定されます。  
+ Fixup は、指定された配列の指定された要素を対象としています。 修正プロセス中に使用される値は、`objectRequired` パラメーターに指定されます。  
   
  ]]></format>
         </remarks>
@@ -342,6 +350,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -360,7 +369,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Fixup は、指定された配列の指定された要素に対して行います。 修正プロセス中に使用される値は、 `objectRequired`パラメーターで指定されます。  
+ Fixup は、指定された配列の指定された要素に対して行います。 修正プロセス中に使用される値は、`objectRequired` パラメーターに指定されます。  
   
  ]]></format>
         </remarks>
@@ -392,6 +401,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -410,7 +420,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Fixup は、指定されたオブジェクトの指定されたメンバーを対象としています。 修正プロセス中に使用される値は、 `objectRequired`引数として指定されます。  
+ Fixup は、指定されたオブジェクトの指定されたメンバーを対象としています。 修正プロセス中に使用される値は、`objectRequired` 引数として提供されます。  
   
  ]]></format>
         </remarks>
@@ -442,6 +452,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -460,7 +471,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- Fixup は、指定されたオブジェクトの指定されたメンバーを対象としています。 修正プロセス中に使用される値は、 `objectRequired`パラメーターとして提供されます。  
+ Fixup は、指定されたオブジェクトの指定されたメンバーを対象としています。 修正プロセス中に使用される値は、`objectRequired` パラメーターとして提供されます。  
   
  ]]></format>
         </remarks>
@@ -502,6 +513,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -523,7 +535,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.ObjectManager>オブジェクトとその ID の両方に関する情報を保持します。 逆シリアル化中<xref:System.Runtime.Serialization.ObjectManager.GetObject%2A>に、特定のオブジェクト ID が既に逆シリアル化されているかどうか、または逆シリアル化されていないオブジェクトへの前方参照かどうかを判断するために、を使用できます。  
+ <xref:System.Runtime.Serialization.ObjectManager> には、オブジェクトとその ID の両方に関する情報が保持されます。 逆シリアル化中に、<xref:System.Runtime.Serialization.ObjectManager.GetObject%2A> を使用して、特定のオブジェクト ID が既に逆シリアル化されているかどうか、または逆シリアル化されていないオブジェクトへの前方参照であるかどうかを判断できます。  
   
  ]]></format>
         </remarks>
@@ -556,6 +568,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -573,13 +586,13 @@
       <Docs>
         <param name="obj">登録するオブジェクト。</param>
         <param name="objectID">登録するオブジェクトの ID。</param>
-        <param name="info"><paramref name="obj" /> が <see cref="T:System.Runtime.Serialization.SerializationInfo" /> を実装するか、または <see cref="T:System.Runtime.Serialization.ISerializable" /> を持っている場合に使用される <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />。 <paramref name="info" /> は、必要な任意のフィックスアップ情報によって完成され、必要なオブジェクトが完成すると、そのオブジェクトに渡されます。</param>
+        <param name="info"><see cref="T:System.Runtime.Serialization.SerializationInfo" /> が <paramref name="obj" /> を実装するか、または <see cref="T:System.Runtime.Serialization.ISerializable" /> を持っている場合に使用される <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />。 <paramref name="info" /> は、必要な任意のフィックスアップ情報によって完成され、必要なオブジェクトが完成すると、そのオブジェクトに渡されます。</param>
         <summary>オブジェクトが逆シリアル化されたときに、そのオブジェクトを <paramref name="objectID" /> に関連付けて登録し、そのオブジェクトと共に使用する <see cref="T:System.Runtime.Serialization.SerializationInfo" /> を記録します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.Serialization.ObjectManager>オブジェクトとその ID の両方に関する情報を保持します。 逆シリアル化中に、を<xref:System.Runtime.Serialization.ObjectManager.GetObject%2A>使用して、特定のオブジェクト ID が既に逆シリアル化されているかどうか、または逆シリアル化されていないオブジェクトへの前方参照であるかどうかを調べることができます。  
+ <xref:System.Runtime.Serialization.ObjectManager> には、オブジェクトとその ID の両方に関する情報が保持されます。 逆シリアル化中に、<xref:System.Runtime.Serialization.ObjectManager.GetObject%2A> を使用して、特定のオブジェクト ID が既に逆シリアル化されているかどうか、または逆シリアル化されていないオブジェクトへの前方参照であるかどうかを調べることができます。  
   
  ]]></format>
         </remarks>
@@ -612,6 +625,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -631,7 +645,7 @@
       <Docs>
         <param name="obj">登録するオブジェクト。</param>
         <param name="objectID">登録するオブジェクトの ID。</param>
-        <param name="info"><paramref name="obj" /> が <see cref="T:System.Runtime.Serialization.SerializationInfo" /> を実装するか、または <see cref="T:System.Runtime.Serialization.ISerializable" /> を持っている場合に使用される <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />。 <paramref name="info" /> は、必要な任意のフィックスアップ情報によって完成され、必要なオブジェクトが完成すると、そのオブジェクトに渡されます。</param>
+        <param name="info"><see cref="T:System.Runtime.Serialization.SerializationInfo" /> が <paramref name="obj" /> を実装するか、または <see cref="T:System.Runtime.Serialization.ISerializable" /> を持っている場合に使用される <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />。 <paramref name="info" /> は、必要な任意のフィックスアップ情報によって完成され、必要なオブジェクトが完成すると、そのオブジェクトに渡されます。</param>
         <param name="idOfContainingObj"><paramref name="obj" /> を格納するオブジェクトの ID。 このパラメーターは、<paramref name="obj" /> が値型の場合にだけ必要です。</param>
         <param name="member"><paramref name="obj" /> が存在するコンテナーとなるオブジェクト内のフィールド。 このパラメーターは、<paramref name="obj" /> が値型の場合にだけ有効です。</param>
         <summary>オブジェクトが逆シリアル化されたときに、そのオブジェクトのメンバーを <paramref name="objectID" /> に関連付けて登録し、<see cref="T:System.Runtime.Serialization.SerializationInfo" /> を記録します。</summary>
@@ -639,9 +653,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オブジェクト`member`に対する`obj` <xref:System.ValueType> `idOfContainingObj` フィックスアップの実行方法によってがである場合は、パラメーターとパラメーターを指定する必要があります。<xref:System.ValueType> に関する情報<xref:System.ValueType>を格納する領域は、そのコンテナーのオブジェクトと共にインラインで割り当てられます。 ただし、 <xref:System.ValueType>がに登録<xref:System.Runtime.Serialization.ObjectManager>されるように設定されている場合は、そのコンテナーオブジェクトとの接続が失われます。 ボックス化<xref:System.ValueType>されたインスタンスではなく、包含するオブジェクトに格納されているのインスタンスで修正<xref:System.Runtime.Serialization.ObjectManager>が行われることを保証するために、はいくつかの追加情報を保持します。  
+ <xref:System.ValueType> オブジェクトに対してフィックスアップを実行する方法により `obj` が <xref:System.ValueType> の場合は、`member` パラメーターと `idOfContainingObj` パラメーターを指定する必要があります。 <xref:System.ValueType> の情報を格納する領域は、その格納先オブジェクトと共にインラインで割り当てられます。 ただし、<xref:System.ValueType> が <xref:System.Runtime.Serialization.ObjectManager>に登録されるようにボックス化されている場合は、それを含むオブジェクトとの接続が失われます。 ボックス化されたインスタンスではなく、含んでいるオブジェクトに格納されている <xref:System.ValueType> のインスタンスでフィックスアップが行われることを保証するために、<xref:System.Runtime.Serialization.ObjectManager> にはいくつかの追加情報が保持されます。  
   
- <xref:System.Runtime.Serialization.ObjectManager>オブジェクトとその ID の両方に関する情報を保持します。 逆シリアル化中<xref:System.Runtime.Serialization.ObjectManager.GetObject%2A>に、特定のオブジェクト ID が既に逆シリアル化されているかどうか、または逆シリアル化されていないオブジェクトへの前方参照かどうかを検出するために、を使用できます。  
+ <xref:System.Runtime.Serialization.ObjectManager> には、オブジェクトとその ID の両方に関する情報が保持されます。 逆シリアル化中に、<xref:System.Runtime.Serialization.ObjectManager.GetObject%2A> を使用して、特定のオブジェクト ID が既に逆シリアル化されているかどうか、または逆シリアル化されていないオブジェクトへの前方参照であるかどうかを調べることができます。  
   
  ]]></format>
         </remarks>
@@ -674,6 +688,7 @@
         <AssemblyName>System.Runtime.Serialization.Formatters</AssemblyName>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -694,18 +709,18 @@
       <Docs>
         <param name="obj">登録するオブジェクト。</param>
         <param name="objectID">登録するオブジェクトの ID。</param>
-        <param name="info"><paramref name="obj" /> が <see cref="T:System.Runtime.Serialization.SerializationInfo" /> を実装するか、または <see cref="T:System.Runtime.Serialization.ISerializable" /> を持っている場合に使用される <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />。 <paramref name="info" /> は、必要な任意のフィックスアップ情報によって完成され、必要なオブジェクトが完成すると、そのオブジェクトに渡されます。</param>
+        <param name="info"><see cref="T:System.Runtime.Serialization.SerializationInfo" /> が <paramref name="obj" /> を実装するか、または <see cref="T:System.Runtime.Serialization.ISerializable" /> を持っている場合に使用される <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />。 <paramref name="info" /> は、必要な任意のフィックスアップ情報によって完成され、必要なオブジェクトが完成すると、そのオブジェクトに渡されます。</param>
         <param name="idOfContainingObj"><paramref name="obj" /> を格納するオブジェクトの ID。 このパラメーターは、<paramref name="obj" /> が値型の場合にだけ必要です。</param>
         <param name="member"><paramref name="obj" /> が存在するコンテナーとなるオブジェクト内のフィールド。 このパラメーターは、<paramref name="obj" /> が値型の場合にだけ有効です。</param>
-        <param name="arrayIndex"><paramref name="obj" /> が <see cref="T:System.ValueType" /> および配列のメンバーである場合<paramref name="arrayIndex" /> は <paramref name="obj" /> が存在する配列内のインデックスを格納します。 <paramref name="arrayIndex" /> が <see cref="T:System.ValueType" /> および配列のメンバーのいずれでもない場合、<paramref name="obj" /> は無視されます。</param>
+        <param name="arrayIndex"><paramref name="obj" /> が <see cref="T:System.ValueType" /> および配列のメンバーである場合<paramref name="arrayIndex" /> は <paramref name="obj" /> が存在する配列内のインデックスを格納します。 <paramref name="arrayIndex" /> が <paramref name="obj" /> および配列のメンバーのいずれでもない場合、<see cref="T:System.ValueType" /> は無視されます。</param>
         <summary>オブジェクトが逆シリアル化されているときに、そのオブジェクトに格納された配列のメンバーを <paramref name="objectID" /> に関連付けて登録し、<see cref="T:System.Runtime.Serialization.SerializationInfo" /> を記録します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オブジェクト`member`に対する`obj` <xref:System.ValueType> `idOfContainingObj` フィックスアップの実行方法によってがである場合は、パラメーターとパラメーターを指定する必要があります。<xref:System.ValueType> に関する情報<xref:System.ValueType>を格納する領域は、そのコンテナーのオブジェクトと共にインラインで割り当てられます。 ただし、 <xref:System.ValueType>がに登録<xref:System.Runtime.Serialization.ObjectManager>されるように設定されている場合は、そのコンテナーオブジェクトとの接続が失われます。 ボックス化<xref:System.ValueType>されたインスタンスではなく、包含するオブジェクトに格納されているのインスタンスで修正<xref:System.Runtime.Serialization.ObjectManager>が行われることを保証するために、はいくつかの追加情報を保持します。  
+ <xref:System.ValueType> オブジェクトに対してフィックスアップを実行する方法により `obj` が <xref:System.ValueType> の場合は、`member` パラメーターと `idOfContainingObj` パラメーターを指定する必要があります。 <xref:System.ValueType> の情報を格納する領域は、その格納先オブジェクトと共にインラインで割り当てられます。 ただし、<xref:System.ValueType> が <xref:System.Runtime.Serialization.ObjectManager>に登録されるようにボックス化されている場合は、それを含むオブジェクトとの接続が失われます。 ボックス化されたインスタンスではなく、含んでいるオブジェクトに格納されている <xref:System.ValueType> のインスタンスでフィックスアップが行われることを保証するために、<xref:System.Runtime.Serialization.ObjectManager> にはいくつかの追加情報が保持されます。  
   
- <xref:System.Runtime.Serialization.ObjectManager>オブジェクトとその ID の両方に関する情報を保持します。 逆シリアル化中<xref:System.Runtime.Serialization.ObjectManager.GetObject%2A>に、特定のオブジェクト ID が既に逆シリアル化されているかどうか、または逆シリアル化されていないオブジェクトへの前方参照かどうかを検出するために、を使用できます。  
+ <xref:System.Runtime.Serialization.ObjectManager> には、オブジェクトとその ID の両方に関する情報が保持されます。 逆シリアル化中に、<xref:System.Runtime.Serialization.ObjectManager.GetObject%2A> を使用して、特定のオブジェクト ID が既に逆シリアル化されているかどうか、または逆シリアル化されていないオブジェクトへの前方参照であるかどうかを調べることができます。  
   
  ]]></format>
         </remarks>

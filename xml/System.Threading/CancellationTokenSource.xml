@@ -1,5 +1,5 @@
 <Type Name="CancellationTokenSource" FullName="System.Threading.CancellationTokenSource">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="509f734265234b6b9cc1e250226f10c318bb1629" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68541278" /></Metadata><TypeSignature Language="C#" Value="public class CancellationTokenSource : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="59e0628d3780d3ffc5ea245486d0ac56e92f2e1a" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75158804" /></Metadata><TypeSignature Language="C#" Value="public class CancellationTokenSource : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CancellationTokenSource extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.CancellationTokenSource" />
   <TypeSignature Language="VB.NET" Value="Public Class CancellationTokenSource&#xA;Implements IDisposable" />
@@ -11,6 +11,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -43,9 +44,9 @@
 ## Remarks  
  [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)]以降、.NET Framework は、次の2つのオブジェクトを含む非同期または長時間実行される同期操作の共同キャンセルに統合モデルを使用します。  
   
--   オブジェクト。 <xref:System.Threading.CancellationTokenSource.Token%2A>プロパティを使用してキャンセルトークンを提供し、メソッド<xref:System.Threading.CancellationTokenSource.Cancel%2A>または<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>メソッドを呼び出すことによってキャンセルメッセージを送信します。 <xref:System.Threading.CancellationTokenSource>  
+-   <xref:System.Threading.CancellationTokenSource.Token%2A> プロパティを通じてキャンセルトークンを提供し、その <xref:System.Threading.CancellationTokenSource.Cancel%2A> または <xref:System.Threading.CancellationTokenSource.CancelAfter%2A> メソッドを呼び出すことによってキャンセルメッセージを送信する <xref:System.Threading.CancellationTokenSource> オブジェクト。  
   
--   キャンセルが要求されたかどうかを示すオブジェクト。<xref:System.Threading.CancellationToken>  
+-   キャンセルが要求されたかどうかを示す <xref:System.Threading.CancellationToken> オブジェクト。  
   
  連携によるキャンセル処理モデルを実装するための一般的なパターンは次のとおりです。  
   
@@ -53,30 +54,30 @@
   
 -   <xref:System.Threading.CancellationTokenSource.Token%2A?displayProperty=nameWithType> プロパティによって返されるトークンを、キャンセルをリッスンしているそれぞれのタスクまたはスレッドに渡します。  
   
--   キャンセルトークンを受け取る操作からメソッドを呼び出します。<xref:System.Threading.CancellationToken.IsCancellationRequested%2A?displayProperty=nameWithType> 各タスクまたはスレッドがキャンセル要求に応答するためのメカニズムを提供します。 操作の取り消しを選択したかどうかは、アプリケーションロジックによって異なります。  
+-   キャンセルトークンを受け取る操作から <xref:System.Threading.CancellationToken.IsCancellationRequested%2A?displayProperty=nameWithType> メソッドを呼び出します。 各タスクまたはスレッドがキャンセル要求に応答するためのメカニズムを提供します。 操作の取り消しを選択したかどうかは、アプリケーションロジックによって異なります。  
   
--   キャンセルの通知を提供する <xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType> メソッドを呼び出します。 これにより<xref:System.Threading.CancellationToken.IsCancellationRequested%2A?displayProperty=nameWithType> 、キャンセルトークンのすべてのコピーのプロパティ`true`がに設定されます。  
+-   キャンセルの通知を提供する <xref:System.Threading.CancellationTokenSource.Cancel%2A?displayProperty=nameWithType> メソッドを呼び出します。 これにより、キャンセルトークンのすべてのコピーの <xref:System.Threading.CancellationToken.IsCancellationRequested%2A?displayProperty=nameWithType> プロパティが `true`に設定されます。  
   
--   オブジェクトの<xref:System.Threading.CancellationTokenSource.Dispose%2A> <xref:System.Threading.CancellationTokenSource>使用が終了したら、メソッドを呼び出します。  
+-   <xref:System.Threading.CancellationTokenSource> オブジェクトの使用が終了したら、<xref:System.Threading.CancellationTokenSource.Dispose%2A> メソッドを呼び出します。  
   
  詳細については、「[マネージド スレッドのキャンセル](~/docs/standard/threading/cancellation-in-managed-threads.md)」を参照してください。  
   
 > [!IMPORTANT]
->  この型は <xref:System.IDisposable> インターフェイスを実装します。 型のインスタンスの使用が完了したら、直接または間接的に破棄する必要があります。 直接的に型を破棄するには、`try` / `catch` ブロック内で <xref:System.IDisposable.Dispose%2A> メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
+>  この型は <xref:System.IDisposable> インターフェイスを実装します。 型のインスタンスの使用が完了したら、直接または間接的に破棄する必要があります。 直接的に型を破棄するには、<xref:System.IDisposable.Dispose%2A>`try`/ ブロック内で `catch` メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
   
    
   
 ## Examples  
  次の例では、乱数ジェネレーターを使用して、11個の異なる音色から10個の整数値を読み取るデータコレクションアプリケーションをエミュレートします。 値が0の場合は、測定が1つの音色で失敗したことを示します。この場合、操作はキャンセルされ、全体的な平均は計算されません。  
   
- この例では、操作の取り消しの可能性を処理する<xref:System.Threading.CancellationTokenSource>ために、 <xref:System.Threading.Tasks.TaskFactory>オブジェクトに渡されるキャンセルトークンを生成するオブジェクトをインスタンス化します。 その<xref:System.Threading.Tasks.TaskFactory>後、オブジェクトは、特定のインストルメントの読み取りを収集する各タスクにキャンセルトークンを渡します。 この<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%60%602%28System.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2CSystem.Func%7BSystem.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2C%60%601%7D%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>メソッドは、すべての読み取りが正常に収集された後にのみ平均が計算されるようにするために呼び出されます。 タスクが取り消されたことが原因でタスクが完了してい<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%2A?displayProperty=nameWithType>ない場合、メソッドの呼び出しは例外をスローします。  
+ 操作の取り消しを処理するために、この例では、<xref:System.Threading.Tasks.TaskFactory> オブジェクトに渡されるキャンセルトークンを生成する <xref:System.Threading.CancellationTokenSource> オブジェクトをインスタンス化します。 <xref:System.Threading.Tasks.TaskFactory> オブジェクトは、特定のインストルメントの読み取りを収集する各タスクにキャンセルトークンを渡します。 <xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%60%602%28System.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2CSystem.Func%7BSystem.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2C%60%601%7D%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType> メソッドは、すべての読み取りが正常に収集された後にのみ平均が計算されるようにするために呼び出されます。 タスクが取り消されたことが原因でタスクが完了していない場合、<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%2A?displayProperty=nameWithType> メソッドの呼び出しでは例外がスローされます。  
   
  [!code-csharp[System.Threading.CancellationTokenSource.Class#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.cancellationtokensource.class/cs/cancel1.cs#1)]
  [!code-vb[System.Threading.CancellationTokenSource.Class#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.cancellationtokensource.class/vb/cancel1.vb#1)]  
   
  ]]></format>
     </remarks>
-    <threadsafe>の<see cref="T:System.Threading.CancellationTokenSource" />パブリックメンバーとプロテクトメンバーはすべてスレッドセーフであり、複数のスレッドから同時に使用することが<see cref="M:System.Threading.CancellationTokenSource.Dispose" />できます。ただし、は、 <see cref="T:System.Threading.CancellationTokenSource" />オブジェクトの他のすべての操作が完了している場合にのみ使用する必要があります。</threadsafe>
+    <threadsafe><see cref="T:System.Threading.CancellationTokenSource" /> のすべてのパブリックメンバーとプロテクトメンバーはスレッドセーフであり、複数のスレッドから同時に使用することができます。ただし、<see cref="M:System.Threading.CancellationTokenSource.Dispose" />は例外であり、<see cref="T:System.Threading.CancellationTokenSource" /> オブジェクトの他のすべての操作が完了している場合にのみ使用する必要があります。</threadsafe>
     <related type="Article" href="~/docs/standard/threading/cancellation-in-managed-threads.md">キャンセル</related>
     <related type="Article" href="~/docs/standard/parallel-programming/task-cancellation.md">タスクのキャンセル</related>
   </Docs>
@@ -105,6 +106,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -143,6 +145,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -155,18 +158,18 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="millisecondsDelay" Type="System.Int32" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="millisecondsDelay" Type="System.Int32" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="millisecondsDelay">この <see cref="T:System.Threading.CancellationTokenSource" /> を取り消すまで待機する時間間隔 (ミリ秒単位)。</param>
-        <summary>指定した遅延 (ミリ秒単位) が経過した後にキャンセルされる <see cref="T:System.Threading.CancellationTokenSource" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>指定した遅延 (ミリ秒単位) が経過した後に取り消される <see cref="T:System.Threading.CancellationTokenSource" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- のカウントダウン`millisecondsDelay`は、コンストラクターの呼び出し中に開始されます。  が`millisecondsDelay`期限切れになると<xref:System.Threading.CancellationTokenSource> 、構築されたが取り消されます (まだキャンセルされていない場合)。  
+ コンストラクターの呼び出し中に、`millisecondsDelay` のカウントダウンが開始されます。  `millisecondsDelay` の有効期限が切れると、構築された <xref:System.Threading.CancellationTokenSource> が取り消されます (まだキャンセルされていない場合)。  
   
- その後の<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>への呼び出し`millisecondsDelay`では、 <xref:System.Threading.CancellationTokenSource>既にキャンセルされていない場合に、構築されたのがリセットされます。  
+ その後 <xref:System.Threading.CancellationTokenSource.CancelAfter%2A> を呼び出すと、構築された <xref:System.Threading.CancellationTokenSource>の `millisecondsDelay` がリセットされます (まだキャンセルされていない場合)。  
   
  ]]></format>
         </remarks>
@@ -187,6 +190,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -199,18 +203,18 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="delay" Type="System.TimeSpan" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="delay" Type="System.TimeSpan" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="delay">この <see cref="T:System.Threading.CancellationTokenSource" /> を取り消すまで待機する時間間隔。</param>
-        <summary>指定した時間間隔の後にキャンセルされる <see cref="T:System.Threading.CancellationTokenSource" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>指定した期間の後に取り消される <see cref="T:System.Threading.CancellationTokenSource" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 遅延のカウントダウンは、コンストラクターの呼び出し中に開始されます。 遅延が期限切れになると<xref:System.Threading.CancellationTokenSource> 、構築されたが取り消されます (まだキャンセルされていない場合)。  
+ 遅延のカウントダウンは、コンストラクターの呼び出し中に開始されます。 遅延が期限切れになると、構築された <xref:System.Threading.CancellationTokenSource> は取り消されます (まだ取り消されていない場合)。  
   
- に<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>対する後続の呼び出しでは、既に<xref:System.Threading.CancellationTokenSource>キャンセルされていない場合に、構築されたの遅延がリセットされます。  
+ その後 <xref:System.Threading.CancellationTokenSource.CancelAfter%2A> を呼び出すと、構築された <xref:System.Threading.CancellationTokenSource>がまだキャンセルされていなければ、その遅延がリセットされます。  
   
  ]]></format>
         </remarks>
@@ -244,6 +248,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -277,7 +282,7 @@
 ## Examples  
  次の例では、乱数ジェネレーターを使用して、11個の異なる音色から10個の整数値を読み取るデータコレクションアプリケーションをエミュレートします。 値が0の場合は、測定が1つの音色で失敗したことを示します。この場合、操作はキャンセルされ、全体的な平均は計算されません。  
   
- この例では、操作の取り消しの可能性を処理する<xref:System.Threading.CancellationTokenSource>ために、 <xref:System.Threading.Tasks.TaskFactory>オブジェクトに渡されるキャンセルトークンを生成するオブジェクトをインスタンス化します。 その<xref:System.Threading.Tasks.TaskFactory>後、オブジェクトは、特定のインストルメントの読み取りを収集する各タスクにキャンセルトークンを渡します。 この<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%60%602%28System.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2CSystem.Func%7BSystem.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2C%60%601%7D%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType>メソッドは、すべての読み取りが正常に収集された後にのみ平均が計算されるようにするために呼び出されます。 タスクが取り消されたことが原因でタスクが完了してい<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%2A?displayProperty=nameWithType>ない場合、メソッドの呼び出しは例外をスローします。  
+ 操作の取り消しを処理するために、この例では、<xref:System.Threading.Tasks.TaskFactory> オブジェクトに渡されるキャンセルトークンを生成する <xref:System.Threading.CancellationTokenSource> オブジェクトをインスタンス化します。 <xref:System.Threading.Tasks.TaskFactory> オブジェクトは、特定のインストルメントの読み取りを収集する各タスクにキャンセルトークンを渡します。 <xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%60%602%28System.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2CSystem.Func%7BSystem.Threading.Tasks.Task%7B%60%600%7D%5B%5D%2C%60%601%7D%2CSystem.Threading.CancellationToken%29?displayProperty=nameWithType> メソッドは、すべての読み取りが正常に収集された後にのみ平均が計算されるようにするために呼び出されます。 タスクが取り消されたことが原因でタスクが完了していない場合、<xref:System.Threading.Tasks.TaskFactory.ContinueWhenAll%2A?displayProperty=nameWithType> メソッドの呼び出しでは例外がスローされます。  
   
  [!code-csharp[System.Threading.CancellationTokenSource.Class#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.threading.cancellationtokensource.class/cs/cancel1.cs#1)]
  [!code-vb[System.Threading.CancellationTokenSource.Class#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.threading.cancellationtokensource.class/vb/cancel1.vb#1)]  
@@ -304,6 +309,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -371,6 +377,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -386,18 +393,18 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="millisecondsDelay" Type="System.Int32" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="millisecondsDelay" Type="System.Int32" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="millisecondsDelay">この <see cref="T:System.Threading.CancellationTokenSource" /> を取り消す前に待機する時間。</param>
-        <summary>指定したミリ秒数の経過後に、この <see cref="T:System.Threading.CancellationTokenSource" /> のキャンセル操作を設定します。</summary>
+        <param name="millisecondsDelay">この <see cref="T:System.Threading.CancellationTokenSource" /> を取り消すまで待機する時間。</param>
+        <summary>指定したミリ秒数が経過した後の、この <see cref="T:System.Threading.CancellationTokenSource" /> の取り消し操作をスケジュールします。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この呼び出し中に`millisecondsDelay` 、のカウントダウンが開始されます。 が`millisecondsDelay`期限切れになる<xref:System.Threading.CancellationTokenSource>と、この処理は取り消されます (まだキャンセルされていない場合)。  
+ この呼び出し中に、`millisecondsDelay` のカウントダウンが開始されます。 `millisecondsDelay` が期限切れになると、この <xref:System.Threading.CancellationTokenSource> は取り消されます (まだキャンセルされていない場合)。  
   
- その後の cancelafter の呼び出しで`millisecondsDelay`は、 <xref:System.Threading.CancellationTokenSource>既にキャンセルされていない場合、こののがリセットされます。  
+ その後、CancelAfter を呼び出すと、既にキャンセルされていない場合に、この <xref:System.Threading.CancellationTokenSource>の `millisecondsDelay` がリセットされます。  
   
  ]]></format>
         </remarks>
@@ -419,6 +426,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -434,11 +442,11 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="delay" Type="System.TimeSpan" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="delay" Type="System.TimeSpan" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="delay">この <see cref="T:System.Threading.CancellationTokenSource" /> を取り消す前に待機する時間。</param>
-        <summary>指定した時間間隔の経過後に、この <see cref="T:System.Threading.CancellationTokenSource" /> のキャンセル操作を設定します。</summary>
+        <param name="delay">この <see cref="T:System.Threading.CancellationTokenSource" /> を取り消すまで待機する時間。</param>
+        <summary>指定した期間が経過した後の、この <see cref="T:System.Threading.CancellationTokenSource" /> の取り消し操作を設定します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[
             The countdown for the delay starts during this call.  When the delay expires, 
@@ -478,6 +486,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -507,7 +516,7 @@
         <returns>ソース トークンにリンクされている <see cref="T:System.Threading.CancellationTokenSource" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ObjectDisposedException">ソース トークンのいずれかに関連付けられている <see cref="T:System.Threading.CancellationTokenSource" /> は破棄されました。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="tokens" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="tokens" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="tokens" /> が空です。</exception>
         <related type="Article" href="~/docs/standard/threading/cancellation-in-managed-threads.md">キャンセル</related>
         <related type="Article" href="~/docs/standard/parallel-programming/task-cancellation.md">タスクのキャンセル</related>
@@ -528,6 +537,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -586,6 +596,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -607,12 +618,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.CancellationTokenSource> を使い終わったら、`Dispose`を呼び出します。 `Dispose`メソッドによって、<xref:System.Threading.CancellationTokenSource> は使用不可の状態になります。 `Dispose`呼び出し後は、<xref:System.Threading.CancellationTokenSource>によって占有されていたメモリをガベージ コレクターがクリアできるよう、<xref:System.Threading.CancellationTokenSource> へのすべての参照を解放する必要があります。  
+ `Dispose` を使い終わったら、<xref:System.Threading.CancellationTokenSource>を呼び出します。 `Dispose`メソッドによって、<xref:System.Threading.CancellationTokenSource> は使用不可の状態になります。 `Dispose`呼び出し後は、<xref:System.Threading.CancellationTokenSource>によって占有されていたメモリをガベージ コレクターがクリアできるよう、<xref:System.Threading.CancellationTokenSource> へのすべての参照を解放する必要があります。  
   
  詳細については、[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)および[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)を参照してください。  
   
 > [!NOTE]
->  <xref:System.Threading.CancellationTokenSource>への最後の参照を解放する前に、必ず`Dispose`を呼び出してください。 そうしないと、ガベージ コレクターが <xref:System.Threading.CancellationTokenSource> オブジェクトの `Finalize` メソッドを呼び出すまで、使用されているリソースは解放されません。  
+>  `Dispose`への最後の参照を解放する前に、必ず<xref:System.Threading.CancellationTokenSource>を呼び出してください。 そうしないと、ガベージ コレクターが <xref:System.Threading.CancellationTokenSource> オブジェクトの `Finalize` メソッドを呼び出すまで、使用されているリソースは解放されません。  
   
  ]]></format>
         </remarks>
@@ -632,6 +643,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -647,7 +659,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="disposing" Type="System.Boolean" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="disposing" Type="System.Boolean" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="disposing">マネージド リソースとアンマネージド リソースの両方を解放する場合は <see langword="true" />。アンマネージド リソースだけを解放する場合は <see langword="false" />。</param>
@@ -669,6 +681,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -690,14 +703,14 @@
       </ReturnValue>
       <Docs>
         <summary>この <see cref="T:System.Threading.CancellationTokenSource" /> に対して取り消しが要求されているかどうかを取得します。</summary>
-        <value>この <see cref="T:System.Threading.CancellationTokenSource" /> に対して取り消しが要求されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value>この <see langword="true" /> に対して取り消しが要求されている場合は <see cref="T:System.Threading.CancellationTokenSource" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、 <xref:System.Threading.CancellationTokenSource.Cancel%2A>メソッドの呼び出しなどによって、このトークンソースに対してキャンセルが要求されているかどうかを示します。  
+ このプロパティは、<xref:System.Threading.CancellationTokenSource.Cancel%2A> メソッドの呼び出しなどによって、このトークンソースに対してキャンセルが要求されているかどうかを示します。  
   
- このプロパティがを`true`返す場合、キャンセルが要求されただけです。 対応するトークンに登録されているすべてのハンドラーが実行を完了したことを保証するわけではなく、すべての登録済みハンドラーへのキャンセル要求の反映も完了していません。 特に関連オブジェクトが同時にキャンセルされる場合は、追加の同期が必要になることがあります。  
+ このプロパティが `true`を返す場合、キャンセルが要求されただけです。 対応するトークンに登録されているすべてのハンドラーが実行を完了したことを保証するわけではなく、すべての登録済みハンドラーへのキャンセル要求の反映も完了していません。 特に関連オブジェクトが同時にキャンセルされる場合は、追加の同期が必要になることがあります。  
   
  ]]></format>
         </remarks>
@@ -719,6 +732,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>

@@ -1,5 +1,5 @@
 <Type Name="Format" FullName="Microsoft.SqlServer.Server.Format">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ffca0cda31e32a79ce7ab852c13be008741be0df" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69303791" /></Metadata><TypeSignature Language="C#" Value="public enum Format" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4349d39b5042e0a2da26407506d6bc6c169d47a9" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75156646" /></Metadata><TypeSignature Language="C#" Value="public enum Format" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed Format extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:Microsoft.SqlServer.Server.Format" />
   <TypeSignature Language="VB.NET" Value="Public Enum Format" />
@@ -16,6 +16,7 @@
     <AssemblyVersion>4.4.0.0</AssemblyVersion>
     <AssemblyVersion>4.5.0.0</AssemblyVersion>
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
+    <AssemblyVersion>4.6.1.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Enum</BaseTypeName>
@@ -27,39 +28,39 @@
   
 ## Remarks  
 
-この列挙体は、 <xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute>ユーザー <xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute>定義型 (UDT) または集計のシリアル化形式を示すために、およびによって使用されます。 `Native` と`UserDefined`列挙型のメンバーの使用には特別な要件があります。   
+この列挙体は、ユーザー定義型 (UDT) または集計のシリアル化形式を示すために <xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute> および <xref:Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute> によって使用されます。 `Native` と `UserDefined` 列挙型メンバーの使用には特別な要件があります。   
 
 - `Format.Native`
 
-   この`Format.Native`形式の要件は次のとおりです。  
+   `Format.Native` 形式の要件は次のとおりです。  
   
-   - の<xref:System.Runtime.InteropServices.StructLayoutAttribute> プロパティ値<xref:System.Runtime.InteropServices.StructLayoutAttribute.Value>がであるは、構造体ではなくクラスで定義されている場合、集計または UDT に適用する必要があります。 <xref:System.Runtime.InteropServices.LayoutKind.Sequential?displayProperty=nameWithType> これは、データフィールドの物理的なレイアウトを制御し、メンバーが表示される順序で順番に配置されるようにするために使用されます。 SQL Server は、この属性を使用して、複数のフィールドを持つ Udt のフィールドの順序を決定します。
+   - <xref:System.Runtime.InteropServices.StructLayoutAttribute.Value> プロパティ値が <xref:System.Runtime.InteropServices.LayoutKind.Sequential?displayProperty=nameWithType> の <xref:System.Runtime.InteropServices.StructLayoutAttribute> は、構造体ではなくクラスで定義されている場合は、集計または UDT に適用する必要があります。 これは、データフィールドの物理的なレイアウトを制御し、メンバーが表示される順序で順番に配置されるようにするために使用されます。 SQL Server は、この属性を使用して、複数のフィールドを持つ Udt のフィールドの順序を決定します。
   
    - 型には少なくとも1つのメンバーが含まれている必要があります (シリアル化された値のサイズは0バイトにはできません)。  
   
    - 集計のすべてのフィールドは*blittable*型である必要があります。つまり、マネージメモリとアンマネージメモリの両方に共通の表現が必要であり、相互運用マーシャラーによる特別な処理は必要ありません。  
   
-   - UDT の`bool`すべてのフィールドは`long` `ulong` `byte` `sbyte`、シリアル化可能な次のいずれかの型である必要があり`short`ます。 `int`、 `uint`、、 `ushort` `float` 、、、、、、`double` 、、<xref:System.Data.SqlTypes.SqlInt32>、 <xref:System.Data.SqlTypes.SqlByte> 、、<xref:System.Data.SqlTypes.SqlInt64>、、、、のいずれかのフィールドを含むユーザーが定義した、、、、、、、、、、またはその他の値の型<xref:System.Data.SqlTypes.SqlInt16> <xref:System.Data.SqlTypes.SqlDateTime> <xref:System.Data.SqlTypes.SqlSingle> <xref:System.Data.SqlTypes.SqlDouble> <xref:System.Data.SqlTypes.SqlMoney>な.  
+   - UDT のすべてのフィールドは、シリアル化可能な次のいずれかの型である必要があります。 `bool`、`byte`、`sbyte`、`short`、`ushort`、`int`、`uint`、`long`、`ulong`、`float`、`double`、<xref:System.Data.SqlTypes.SqlByte>、<xref:System.Data.SqlTypes.SqlInt16>、<xref:System.Data.SqlTypes.SqlInt32>、<xref:System.Data.SqlTypes.SqlInt64>、またはこれらの型のいずれかのフィールドを含むユーザーが定義したその他の値の型です。<xref:System.Data.SqlTypes.SqlDateTime><xref:System.Data.SqlTypes.SqlSingle><xref:System.Data.SqlTypes.SqlDouble><xref:System.Data.SqlTypes.SqlMoney>  
 
-   - 集計では、の`MaxByteSize`値を指定することはできません。  
+   - 集計で `MaxByteSize`の値を指定することはできません。  
   
    - 集計には [シリアル化されていません] フィールドを含めることはできません。  
   
-   - フィールドを明示的なレイアウトとしてマークすること<xref:System.Runtime.InteropServices.StructLayoutAttribute.Value?displayProperty=nameWithType>は<xref:System.Runtime.InteropServices.LayoutKind.Explicit?displayProperty=nameWithType>できません (の場合)。  
+   - フィールドを明示的なレイアウトとしてマークすることはできません (<xref:System.Runtime.InteropServices.StructLayoutAttribute.Value?displayProperty=nameWithType> <xref:System.Runtime.InteropServices.LayoutKind.Explicit?displayProperty=nameWithType>)。  
 
 - `Format.UserDefined`
 
-   この`Format.UserDefined`形式の要件は次のとおりです。
+   `Format.UserDefined` 形式の要件は次のとおりです。
 
-   - 集計では、の`MaxByteSize`値を指定する必要があります。  
+   - 集計では `MaxByteSize`の値を指定する必要があります。  
   
-   - 属性の<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.IsByteOrdered%2A?displayProperty=nameWithType>プロパティを指定します。 既定値は `false` です。  
+   - <xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.IsByteOrdered%2A?displayProperty=nameWithType> 属性のプロパティを指定します。 既定値は `false`です。  
   
-   - メソッド<xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A?displayProperty=nameWithType>または<xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A?displayProperty=nameWithType>メソッドでフィールドを省略した場合、そのフィールドの状態はシリアル化されません。  
+   - <xref:Microsoft.SqlServer.Server.IBinarySerialize.Read%2A?displayProperty=nameWithType> または <xref:Microsoft.SqlServer.Server.IBinarySerialize.Write%2A?displayProperty=nameWithType> メソッドでフィールドを省略した場合、そのフィールドの状態はシリアル化されません。  
 
 ## Examples  
 
-次の例は、 `UserDefinedType` Point UDT の属性を示しています。  UDT はバイト順で、"Point" という名前が付けられ、"ValidatePoint" という名前の検証メソッドを持ち、ネイティブシリアル化形式を使用します。  
+次の例は、Point UDT の `UserDefinedType` 属性を示しています。  UDT はバイト順で、"Point" という名前が付けられ、"ValidatePoint" という名前の検証メソッドを持ち、ネイティブシリアル化形式を使用します。  
   
 [!code-csharp[DataWorks SqlUserDefinedTypeAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlUserDefinedTypeAttribute Example/CS/source.cs#1)]
 [!code-vb[DataWorks SqlUserDefinedTypeAttribute Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlUserDefinedTypeAttribute Example/VB/source.vb#1)]  
@@ -87,6 +88,7 @@
         <AssemblyVersion>4.4.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.0</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.6.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.SqlServer.Server.Format</ReturnType>
@@ -115,6 +117,7 @@
         <AssemblyVersion>4.4.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.0</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.6.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.SqlServer.Server.Format</ReturnType>
@@ -143,6 +146,7 @@
         <AssemblyVersion>4.4.0.0</AssemblyVersion>
         <AssemblyVersion>4.5.0.0</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.6.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>Microsoft.SqlServer.Server.Format</ReturnType>

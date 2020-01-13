@@ -1,5 +1,5 @@
 <Type Name="ReadOnlyArrayAttribute" FullName="System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0a84dda4bdc70f09baf79514bed41c49c8cc6b50" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69271149" /></Metadata><TypeSignature Language="C#" Value="public sealed class ReadOnlyArrayAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="646bb497caae22e67d7a1a7447018235745f2193" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75165642" /></Metadata><TypeSignature Language="C#" Value="public sealed class ReadOnlyArrayAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ReadOnlyArrayAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ReadOnlyArrayAttribute&#xA;Inherits Attribute" />
@@ -9,6 +9,7 @@
     <AssemblyName>System.Runtime.InteropServices.WindowsRuntime</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
+    <AssemblyVersion>4.0.4.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -20,7 +21,7 @@
   </Base>
   <Interfaces />
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0;netcore-3.0">
+    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netcore-3.1">
       <AttributeName>System.AttributeUsage(System.AttributeTargets.Parameter, AllowMultiple=false, Inherited=false)</AttributeName>
     </Attribute>
   </Attributes>
@@ -30,20 +31,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- [!INCLUDE[wrt](~/includes/wrt-md.md)]コンポーネントの配列パラメーターが値 (`ByVal` Visual Basic) で渡される場合は、次の属性のいずれかを適用する必要があります。  
+ [!INCLUDE[wrt](~/includes/wrt-md.md)] コンポーネントの配列パラメーターが値 (`ByVal` Visual Basic) によって渡される場合は、次の属性のいずれかを適用する必要があります。  
   
--   配列の<xref:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute>内容が入力のみに使用されるようにする場合は、属性を適用します。  
+-   配列の内容を入力のみに使用する場合は、<xref:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute> 属性を適用します。  
   
--   配列の<xref:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute>内容が出力のみに使用されるようにする場合は、属性を適用します (つまり、メソッドは配列の内容を設定しますが、読み取ることはできません)。  
+-   配列の内容が出力のみに使用されるようにする場合は、<xref:System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute> 属性を適用します (つまり、メソッドは配列の内容を設定しますが、それを読み取ることはできません)。  
   
  パラメーターに両方の属性を適用すると、エラーが発生します。 配列を変更するための標準パターンを含む詳細については、Windows デベロッパーセンターの「 [Windows ランタイムコンポーネントへの配列の引き渡し](https://go.microsoft.com/fwlink/?LinkId=251026)」を参照してください。  
   
 > [!IMPORTANT]
->  属性を持つパラメーター <xref:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute>の動作は、呼び出し元がネイティブコードとマネージコードのどちらで記述されているかによって異なります。 呼び出し元がネイティブコード (JavaScript または Visual C++ component extension) の場合、呼び出しがアプリケーションバイナリインターフェイス (ABI) の境界を越えたときに配列がコピーされます。 要素は必要に応じて変換されます。 そのため、誤ってメソッドによって入力専用配列に変更が加えられたとしても、呼び出し元からは見えません。  
+>  <xref:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute> 属性を持つパラメーターの動作は、呼び出し元がネイティブコードとマネージコードのどちらで記述されているかによって異なります。 呼び出し元がネイティブコード (JavaScript または Visual C++ component extension) の場合、呼び出しがアプリケーションバイナリインターフェイス (ABI) の境界を越えたときに配列がコピーされます。 要素は必要に応じて変換されます。 そのため、誤ってメソッドによって入力専用配列に変更が加えられたとしても、呼び出し元からは見えません。  
 >   
 >  呼び出し元がマネージコードの場合、配列はコピーされません。 呼び出されたメソッドでは、元の配列を使用できます。これは、.NET Framework のメソッド呼び出しの場合と同様です。 配列の内容は .NET Framework コードで変更可能なので、配列に対してメソッドによって行われる変更は呼び出し元から見えます。 これは [!INCLUDE[wrt](~/includes/wrt-md.md)] コンポーネントに対して作成される単体テストに影響を与えるので、忘れずに覚えておいてください。 マネージド コードでテストが作成される場合、配列の内容はテスト中に変更可能であることが示されます。  
   
- <xref:System.Runtime.InteropServices.InAttribute>または<xref:System.Runtime.InteropServices.OutAttribute>属性を持つパラメーターにこの属性を適用すると、モジュールのエクスポート時にエラーが発生します。 `out`パラメーターに属性を適用すると、エラーが発生します。  
+ <xref:System.Runtime.InteropServices.InAttribute> または <xref:System.Runtime.InteropServices.OutAttribute> の属性を持つパラメーターにこの属性を適用すると、モジュールのエクスポート時にエラーが発生します。 `out` パラメーターに属性を適用すると、エラーが発生します。  
   
  ]]></format>
     </remarks>
@@ -64,6 +65,7 @@
         <AssemblyName>System.Runtime.InteropServices.WindowsRuntime</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
+        <AssemblyVersion>4.0.4.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -72,7 +74,8 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>
+          <see cref="T:System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

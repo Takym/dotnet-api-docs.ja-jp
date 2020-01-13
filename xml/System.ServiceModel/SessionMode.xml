@@ -1,5 +1,5 @@
 <Type Name="SessionMode" FullName="System.ServiceModel.SessionMode">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="23e8fa9172a48a65b021d988a1812316b9fd73ad" /><Meta Name="ms.sourcegitcommit" Value="2b78f05b0c6fa92adaf5e1dfe5a50388f952efe7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/02/2019" /><Meta Name="ms.locfileid" Value="71805445" /></Metadata><TypeSignature Language="C#" Value="public enum SessionMode" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="57a8414b2cb6441de1da16d5ce4be56d4c9d6c34" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75159740" /></Metadata><TypeSignature Language="C#" Value="public enum SessionMode" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SessionMode extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.SessionMode" />
   <TypeSignature Language="VB.NET" Value="Public Enum SessionMode" />
@@ -17,6 +17,7 @@
     <AssemblyVersion>4.5.0.1</AssemblyVersion>
     <AssemblyVersion>4.5.0.3</AssemblyVersion>
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
+    <AssemblyVersion>4.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Enum</BaseTypeName>
@@ -27,26 +28,26 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.SessionMode> 列挙体と <xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A?displayProperty=nameWithType> プロパティを使用して、サービス コントラクトに接続する、またはサービス コントラクトをサポートするエンドポイント間でバイディングがセッションをどのように使用するか (セッションの使用を要求する、許可する、または禁止する) を設定します。 セッションとは、2 つ以上のエンドポイント間で交換される一連のメッセージを相互に関連付ける方法のことです。 セッションの詳細については、「[セッションの使用](~/docs/framework/wcf/using-sessions.md)」を参照してください。  
+ <xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A?displayProperty=nameWithType> プロパティと共に <xref:System.ServiceModel.SessionMode> 列挙体を使用して、サービスコントラクトに接続またはサポートするエンドポイント間でのセッションの使用をバインド要求、許可、または禁止します。 セッションとは、2 つ以上のエンドポイント間で交換される一連のメッセージを相互に関連付ける方法のことです。 セッションの詳細については、「[セッションの使用](~/docs/framework/wcf/using-sessions.md)」を参照してください。  
   
- サービスがセッションをサポートする場合は、<xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> プロパティを使用して、サービス コントラクトの実装とチャネル セッションのインスタンス間の関係を指定できます。  
+ サービスがセッションをサポートしている場合は、<xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> プロパティを使用して、サービスコントラクト実装とチャネルセッションのインスタンス間の関係を指定できます。  
   
- たとえば、<xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A?displayProperty=nameWithType> プロパティを `Allowed` に、<xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> プロパティを <xref:System.ServiceModel.InstanceContextMode.PerSession?displayProperty=nameWithType> に設定した場合、クライアントは、信頼できるセッションをサポートするバインドを使用して、同じサービス オブジェクトを繰り返し呼び出すことができます。  
+ たとえば、<xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A?displayProperty=nameWithType> プロパティが `Allowed` に設定されていて、<xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> プロパティが <xref:System.ServiceModel.InstanceContextMode.PerSession?displayProperty=nameWithType>に設定されている場合、クライアントは、信頼できるセッションをサポートするバインディングを使用して、同じサービスオブジェクトに対して繰り返し呼び出しを行うことができます。  
   
- セッションはアプリケーション モデルで使用するチャネル レベルの概念であるので、チャネルと特定サービス オブジェクト間の関連性を制御する <xref:System.ServiceModel.SessionMode> プロパティと、コントラクト内の <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> 列挙との間には相互に影響があります。  
+ セッションは、アプリケーションモデルで使用されるチャネルレベルの概念であるため、コントラクト内の <xref:System.ServiceModel.SessionMode> 列挙と、チャネルと特定のサービスオブジェクト間の関連付けを制御する <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> プロパティとの間に相互作用があります。  
   
- <xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A?displayProperty=nameWithType> プロパティと <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> プロパティの値のサービスの組み合わせが指定されているという条件で、信頼できるセッションをサポートしている受信チャネルまたはサポートしていない受信チャネルの結果を次の表に示します。  
+ 次の表は、信頼できるセッションをサポートしている受信チャネルまたは信頼できるセッションをサポートしていない受信チャネルの結果を示しています。これには、サービスの <xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A?displayProperty=nameWithType> プロパティと <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> プロパティの値の組み合わせが指定されます。  
   
 |InstanceContextMode 値|必須|Allowed|NotAllowed|  
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|  
-|PerCall|-セッションフルチャネルでの動作:各呼び出しのセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレスチャネルでの動作:例外がスローされる。|-セッションフルチャネルでの動作:各呼び出しのセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレスチャネルでの動作:各呼び出しの <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|-セッションフルチャネルでの動作:例外がスローされる。<br />-セッションレスチャネルでの動作:各呼び出しの <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|  
-|PerSession|-セッションフルチャネルでの動作:各チャネルのセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレスチャネルでの動作:例外がスローされる。|-セッションフルチャネルでの動作:各チャネルのセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレスチャネルでの動作:各呼び出しの <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|-セッションフルチャネルでの動作:例外がスローされる。<br />-セッションレスチャネルでの動作:各呼び出しの <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|  
-|Single|-セッションフルチャネルでの動作:1つのセッションと 1 @no__t、すべての呼び出しに対して0です。<br />-セッションレスチャネルでの動作:例外がスローされる。|-セッションフルチャネルでの動作:セッション。作成されたシングルトンまたはユーザー指定のシングルトンごとに0を @no__t します。<br />-セッションレスチャネルでの動作:作成されたシングルトンまたはユーザー指定のシングルトンごとに <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|-セッションフルチャネルでの動作:例外がスローされる。<br />-セッションレスチャネルでの動作:作成されたシングルトンまたはユーザー指定のシングルトンごとに <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|  
+|PerCall|-セッションフルチャネルでの動作: 呼び出しごとにセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレスチャネルでの動作: 例外がスローされます。|-セッションフルチャネルでの動作: 呼び出しごとにセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレス channel での動作: 呼び出しごとに <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|-セッションフルチャネルでの動作: 例外がスローされます。<br />-セッションレス channel での動作: 呼び出しごとに <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|  
+|PerSession|-セッションフルチャネルでの動作: 各チャネルのセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレスチャネルでの動作: 例外がスローされます。|-セッションフルチャネルでの動作: 各チャネルのセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレス channel での動作: 呼び出しごとに <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|-セッションフルチャネルでの動作: 例外がスローされます。<br />-セッションレス channel での動作: 呼び出しごとに <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|  
+|Single|-セッションフルチャネルでの動作: 1 つのセッションと、すべての呼び出しの <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレスチャネルでの動作: 例外がスローされます。|-セッションフル channel での動作: 作成されたシングルトンまたはユーザー指定のシングルトンごとにセッションと <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。<br />-セッションレス channel での動作: 作成されたシングルトンまたはユーザー指定のシングルトンごとに <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|-セッションフルチャネルでの動作: 例外がスローされます。<br />-セッションレス channel での動作: 作成されたシングルトンまたはユーザー指定のシングルトンごとに <xref:System.ServiceModel.InstanceContext?displayProperty=nameWithType>。|  
   
    
   
 ## Examples  
- 次のコード例では、<xref:System.ServiceModel.ServiceContractAttribute> の <xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A> プロパティを使用して、@no__t 2 のサービスコントラクトにセッション状態をサポートするバインドが必要であることを指定する方法を示します。  
+ 次のコード例では、<xref:System.ServiceModel.ServiceContractAttribute> の <xref:System.ServiceModel.ServiceContractAttribute.SessionMode%2A> プロパティを使用して、`IMyService` サービスコントラクトにセッション状態をサポートするバインディングが必要であることを指定する方法を示します。  
   
  [!code-csharp[SCA.Session#1](~/samples/snippets/csharp/VS_Snippets_CFX/sca.session/cs/services.cs#1)]
  [!code-vb[SCA.Session#1](~/samples/snippets/visualbasic/VS_Snippets_CFX/sca.session/vb/services.vb#1)]  
@@ -75,6 +76,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.SessionMode</ReturnType>
@@ -104,6 +106,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.SessionMode</ReturnType>
@@ -133,6 +136,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.SessionMode</ReturnType>
