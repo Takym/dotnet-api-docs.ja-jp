@@ -1,5 +1,5 @@
 <Type Name="MetadataAssemblyResolver" FullName="System.Reflection.MetadataAssemblyResolver">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fafd31106ff69b2cc404819d43f9bbc3b3cb00cd" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69276194" /></Metadata><TypeSignature Language="C#" Value="public abstract class MetadataAssemblyResolver" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="14ba347ba4a880965bed6d0c890fa4a6a87610d6" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75096183" /></Metadata><TypeSignature Language="C#" Value="public abstract class MetadataAssemblyResolver" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit MetadataAssemblyResolver extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.MetadataAssemblyResolver" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class MetadataAssemblyResolver" />
@@ -8,6 +8,7 @@
   <AssemblyInfo>
     <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyVersion>4.0.1.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -28,6 +29,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -45,6 +47,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Assembly</ReturnType>
@@ -57,23 +60,23 @@
         <param name="context">検査のみの目的で読み込まれる <see cref="T:System.Type" /> オブジェクトの閉ざされた領域を表すメタデータ読み込みコンテキスト オブジェクト。</param>
         <param name="assemblyName">アセンブリの名前。</param>
         <summary>指定したアセンブリ名からアセンブリを返します。</summary>
-        <returns>提供されている <paramref name="assemblyName" /> 用のアセンブリ。</returns>
+        <returns>指定された <paramref name="assemblyName" /> のアセンブリ。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
-アセンブリ名のアセンブリへのバインドは、 <xref:System.Reflection.MetadataLoadContext.LoadFromAssemblyName%2A>が呼び出されたとき、またはあるアセンブリの型が別のアセンブリに依存しているときに発生します。 をオーバーライド`Resolve`するハンドラーは、、また<xref:System.Reflection.MetadataLoadContext.LoadFromByteArray%2A?displayProperty=nameWithType>はを使用<xref:System.Reflection.MetadataLoadContext.LoadFromStream%2A?displayProperty=nameWithType>して、 <xref:System.Reflection.MetadataLoadContext.LoadFromAssemblyPath%2A?displayProperty=nameWithType>要求されたアセンブリを読み込み、それを返す必要があります。
+アセンブリ名のアセンブリへのバインドは、<xref:System.Reflection.MetadataLoadContext.LoadFromAssemblyName%2A> が呼び出された場合、またはあるアセンブリの型が別のアセンブリに依存している場合に発生します。 `Resolve` をオーバーライドするハンドラーは、<xref:System.Reflection.MetadataLoadContext.LoadFromStream%2A?displayProperty=nameWithType>、<xref:System.Reflection.MetadataLoadContext.LoadFromAssemblyPath%2A?displayProperty=nameWithType> または <xref:System.Reflection.MetadataLoadContext.LoadFromByteArray%2A?displayProperty=nameWithType> を使用して、要求されたアセンブリを読み込み、それを返す必要があります。
 
-アセンブリの検出に失敗したことを示すために、 `null`ハンドラーは例外をスローするのではなく、を返す必要があります。 を`null`返すと、エラーが発生します。これにより、後でその名前を読み込もうとすると、ハンドラーが再起動されずに失敗します。
+アセンブリの検出に失敗したことを示すために、ハンドラーは例外をスローするのではなく、`null` を返す必要があります。 `null` を返すと、エラーが発生します。これにより、後でその名前を読み込もうとすると、ハンドラーが再起動されずに失敗します。
 
-ハンドラーが例外をスローした場合は、バインディングをトリガーした操作を呼び出したアプリケーションに例外が渡されます。 <xref:System.Reflection.MetadataLoadContext>はそれをキャッチせず、バインドも行われません。
+ハンドラーが例外をスローした場合は、バインディングをトリガーした操作を呼び出したアプリケーションに例外が渡されます。 <xref:System.Reflection.MetadataLoadContext> はそれをキャッチせず、バインドも行われません。
 
 2つのスレッドが同じアセンブリを読み込んだ場合を除き、通常、このハンドラーは同じ名前に対して複数回呼び出されることはありません。 その場合でも、1つの結果が優先され、その名前にアトミックにバインドされます。
 
-は<xref:System.Reflection.MetadataLoadContext> 、参照 def 一致がポリシーであるため、返されたアセンブリに対する ref def 一致を意図的に実行しません。 また、これを回避するために必要<xref:System.Reflection.MetadataLoadContext>な任意の制限もあります。
+参照定義の一致がポリシーであるため、<xref:System.Reflection.MetadataLoadContext> は、返されるアセンブリに対して ref def 一致を意図的に実行しません。 また、これは <xref:System.Reflection.MetadataLoadContext> 回避するために必要な任意の制限の一種でもあります。
 
-は<xref:System.Reflection.MetadataLoadContext> 、他のメタデータ読み込みコンテキストまたはその他の型プロバイダー (基になるランタイムの独自のリフレクションシステムなど) からアセンブリを使用することはできません。 ハンドラーがこのようなアセンブリを返す場合<xref:System.Reflection.MetadataLoadContext> 、は<xref:System.IO.FileLoadException>をスローします。
+<xref:System.Reflection.MetadataLoadContext> は、他のメタデータ読み込みコンテキストまたはその他の型プロバイダー (基になるランタイムの独自のリフレクションシステムなど) からのアセンブリを使用できません。 このようなアセンブリがハンドラーによって返された場合、<xref:System.Reflection.MetadataLoadContext> は <xref:System.IO.FileLoadException>をスローします。
 
           ]]></format>
         </remarks>
