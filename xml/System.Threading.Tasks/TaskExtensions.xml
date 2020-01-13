@@ -1,5 +1,5 @@
 <Type Name="TaskExtensions" FullName="System.Threading.Tasks.TaskExtensions">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ded5bef3e9d0d529126f1c9a01e5e695a331dd44" /><Meta Name="ms.sourcegitcommit" Value="8544f14c8194a55eb22d46721b0bbe46f345c063" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/21/2019" /><Meta Name="ms.locfileid" Value="69669960" /></Metadata><TypeSignature Language="C#" Value="public static class TaskExtensions" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="13ab474ca01d154f9bbc92a478ac426357b673cf" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75117152" /></Metadata><TypeSignature Language="C#" Value="public static class TaskExtensions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit TaskExtensions extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.TaskExtensions" />
   <TypeSignature Language="VB.NET" Value="Public Module TaskExtensions" />
@@ -11,6 +11,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Core</AssemblyName>
@@ -47,6 +48,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Core</AssemblyName>
@@ -72,7 +74,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 多くの場合、内部タスクは、外側<xref:System.Threading.Tasks.Task%601> <xref:System.Threading.Tasks.Task%601>のの一部として実行された作業を表す、からタスクを返すことができます。 ただし、これを行うと、 `Task<Task>` (C#) また`Task (Of Task)`は (Visual Basic) が発生します。この場合、慎重に処理しないと、予期しない動作が発生する可能性があります。 ラップ解除は、このようなタスクの非同期操作全体を表すプロキシタスクを作成することによって、この問題を解決します。  
+ 多くの場合、<xref:System.Threading.Tasks.Task%601>からタスクを返すことができます。内側のタスクは、外側の <xref:System.Threading.Tasks.Task%601>の一部として実行された作業を表します。 ただし、これを行うと、`Task<Task>` (C#) または `Task (Of Task)` (Visual Basic) が発生します。これは、慎重に処理しないと、予期しない動作が生じる可能性があります。 ラップ解除は、このようなタスクの非同期操作全体を表すプロキシタスクを作成することによって、この問題を解決します。  
   
    
   
@@ -104,6 +106,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Core</AssemblyName>
@@ -127,13 +130,13 @@
       <Docs>
         <typeparam name="TResult">タスクの結果の型。</typeparam>
         <param name="task">ラップを解除する <see langword="Task&lt;Task&lt;T&gt;&gt;" /> (C#) または <see langword="Task (Of Task(Of T))" /> (Visual Basic)。</param>
-        <summary><see langword="Task&lt;Task&lt;T&gt;&gt;" /> (C#) または <see langword="Task (Of Task(Of T))" /> (Visual Basic) の非同期操作を表すプロキシ <see cref="T:System.Threading.Tasks.Task" /> を作成します。</summary>
-        <returns>指定された <see langword="Task&lt;Task&lt;T&gt;&gt;" /> (C#) または <see langword="Task (Of Task(Of T))" /> (Visual Basic) の非同期操作を表す <see cref="T:System.Threading.Tasks.Task" />。</returns>
+        <summary><see cref="T:System.Threading.Tasks.Task" /> (C#) または <see langword="Task&lt;Task&lt;T&gt;&gt;" /> (Visual Basic) の非同期操作を表すプロキシ <see langword="Task (Of Task(Of T))" /> を作成します。</summary>
+        <returns>指定された <see cref="T:System.Threading.Tasks.Task" /> (C#) または <see langword="Task&lt;Task&lt;T&gt;&gt;" /> (Visual Basic) の非同期操作を表す <see langword="Task (Of Task(Of T))" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 多くの場合<xref:System.Threading.Tasks.Task> 、内部<xref:System.Threading.Tasks.Task>が外部<xref:System.Threading.Tasks.Task>のの一部とし<xref:System.Threading.Tasks.Task>て実行された作業を表す、からを返すことができると便利です。 ただし、これを行うと、 `Task<Task<T>>` (C#) また`Task (Of Task(Of T))`は (Visual Basic) が発生します。この場合、慎重に処理しないと、予期しない動作が発生する可能性があります。 ラップ解除は<xref:System.Threading.Tasks.Task%601> 、このような`Task<Task<T>>` (C#) または`Task (Of Task(Of T))` (Visual Basic) の非同期操作全体を表すプロキシを作成することによって、この問題を解決します。  
+ 多くの場合、<xref:System.Threading.Tasks.Task>から <xref:System.Threading.Tasks.Task> を返すことができます。内側の <xref:System.Threading.Tasks.Task> は、外側の <xref:System.Threading.Tasks.Task>の一部として実行された作業を表します。 ただし、これを行うと、`Task<Task<T>>` (C#) または `Task (Of Task(Of T))` (Visual Basic) が発生します。これは、慎重に処理しないと、予期しない動作が生じる可能性があります。 ラップ解除は、このような `Task<Task<T>>` (C#) または `Task (Of Task(Of T))` (Visual Basic) の非同期操作全体を表すプロキシ <xref:System.Threading.Tasks.Task%601> を作成することによって、この問題を解決します。  
   
  ]]></format>
         </remarks>
