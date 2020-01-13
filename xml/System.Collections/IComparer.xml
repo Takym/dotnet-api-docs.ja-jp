@@ -1,5 +1,5 @@
 <Type Name="IComparer" FullName="System.Collections.IComparer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8f78bf6a73cb979ca4867dccab0b85ba5530c1a4" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72406828" /></Metadata><TypeSignature Language="C#" Value="public interface IComparer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="60101aec8e6080da4569bae11d1cdd91ab58a1cd" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75150523" /></Metadata><TypeSignature Language="C#" Value="public interface IComparer" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IComparer" />
   <TypeSignature Language="DocId" Value="T:System.Collections.IComparer" />
   <TypeSignature Language="VB.NET" Value="Public Interface IComparer" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -38,15 +39,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このインターフェイスは、<xref:System.Array.Sort%2A?displayProperty=nameWithType> および <xref:System.Array.BinarySearch%2A?displayProperty=nameWithType> メソッドと共に使用されます。 コレクションの並べ替え順序をカスタマイズする方法を提供します。 パラメーターと戻り値については、<xref:System.Collections.IComparer.Compare%2A> メソッドを参照してください。  これに相当するのは、@no__t 0 のインターフェイスです。   
+ このインターフェイスは、<xref:System.Array.Sort%2A?displayProperty=nameWithType> および <xref:System.Array.BinarySearch%2A?displayProperty=nameWithType> メソッドと組み合わせて使用されます。 コレクションの並べ替え順序をカスタマイズする方法を提供します。 パラメーターと戻り値に関する注意事項については、<xref:System.Collections.IComparer.Compare%2A> メソッドを参照してください。  これと同等のものが <xref:System.Collections.Generic.IComparer%601?displayProperty=nameWithType> インターフェイスです。   
   
- このインターフェイスの既定の実装は @no__t 0 クラスです。 このインターフェイスのジェネリックバージョンについては、「<xref:System.Collections.Generic.IComparer%601?displayProperty=nameWithType>」を参照してください。  
+ このインターフェイスの既定の実装は <xref:System.Collections.Comparer> クラスです。 このインターフェイスのジェネリックバージョンについては、「<xref:System.Collections.Generic.IComparer%601?displayProperty=nameWithType>」を参照してください。  
   
    
   
 ## Examples  
 
-次の例では、<xref:System.Collections.IComparer> インターフェイスを使用して、文字列の配列を並べ替えます。 この例では、<xref:System.Collections.IComparer.Compare%2A> メソッドは、配列の内容の順序を逆にするために、<xref:System.Collections.CaseInsensitiveComparer> クラスを使用して実装されます。  
+次の例では、<xref:System.Collections.IComparer> インターフェイスを使用して、文字列の配列を並べ替えます。 この例では、<xref:System.Collections.IComparer.Compare%2A> メソッドが <xref:System.Collections.CaseInsensitiveComparer> クラスを使用して実装され、配列の内容の順序を逆にしています。  
   
 [!code-csharp[sorting-an-array](~/samples/snippets/csharp/api/system.collections/icomparer/reverse.cs)]
 [!code-vb[sorting-an-array](~/samples/snippets/visualbasic/api/system.collections/icomparer/reverse.vb)]  
@@ -76,6 +77,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -102,20 +104,20 @@
         <summary>2 つのオブジェクトを比較して、一方が他方より小さいか、同じか、または大きいかを示す値を返します。</summary>
         <returns><paramref name="x" /> と <paramref name="y" /> の相対値を示す符号付き整数。<br />   - 0 より小さい場合、<paramref name="x" /> は <paramref name="y" /> よりも小さくなります。<br />   - 0 の場合、<paramref name="x" /> は <paramref name="y" /> と等しくなります。<br />   - 0 より大きい場合、<paramref name="x" /> は <paramref name="y" /> よりも大きくなります。 
   
-.</returns>
+。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  いずれかのパラメーターの <xref:System.IComparable.CompareTo%2A> メソッドを使用することをお勧めします。  
   
- @No__t-0 と任意の型を比較することはできますが、<xref:System.IComparable> を使用する場合は例外が発生しません。 並べ替えを行う場合、`null` は他のオブジェクトより小さいと見なされます。  
+ `null` と任意の型の比較は許可されており、<xref:System.IComparable>を使用する場合、例外は生成されません。 並べ替えを行う場合、`null` は他のオブジェクトより小さいと見なされます。  
   
    
   
 ## Examples  
 
-次の例では、<xref:System.Collections.IComparer> インターフェイスを使用して、文字列の配列を並べ替えます。 この例では、<xref:System.Collections.IComparer.Compare%2A> メソッドは、配列の内容の順序を逆にするために、<xref:System.Collections.CaseInsensitiveComparer> クラスを使用して実装されます。  
+次の例では、<xref:System.Collections.IComparer> インターフェイスを使用して、文字列の配列を並べ替えます。 この例では、<xref:System.Collections.IComparer.Compare%2A> メソッドが <xref:System.Collections.CaseInsensitiveComparer> クラスを使用して実装され、配列の内容の順序を逆にしています。  
   
 [!code-csharp[sorting-an-array](~/samples/snippets/csharp/api/system.collections/icomparer/reverse.cs)]
 [!code-vb[sorting-an-array](~/samples/snippets/visualbasic/api/system.collections/icomparer/reverse.vb)]

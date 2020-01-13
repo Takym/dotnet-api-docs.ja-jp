@@ -1,5 +1,5 @@
 <Type Name="FrameworkElement" FullName="System.Windows.FrameworkElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ad57920204dd6eb21659f24f630348b37d27fe3c" /><Meta Name="ms.sourcegitcommit" Value="9058026d5788c19bed0a767fc52b40a1eac8ebfe" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/24/2019" /><Meta Name="ms.locfileid" Value="72848290" /></Metadata><TypeSignature Language="C#" Value="public class FrameworkElement : System.Windows.UIElement, System.ComponentModel.ISupportInitialize, System.Windows.IFrameworkInputElement, System.Windows.Markup.IQueryAmbient" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="33c1d6e762a8088e93db26a255ebecc17ec8a4a1" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75051450" /></Metadata><TypeSignature Language="C#" Value="public class FrameworkElement : System.Windows.UIElement, System.ComponentModel.ISupportInitialize, System.Windows.IFrameworkInputElement, System.Windows.Markup.IQueryAmbient" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi FrameworkElement extends System.Windows.UIElement implements class System.ComponentModel.ISupportInitialize, class System.Windows.IFrameworkInputElement, class System.Windows.IInputElement, class System.Windows.Markup.IQueryAmbient" />
   <TypeSignature Language="DocId" Value="T:System.Windows.FrameworkElement" />
   <TypeSignature Language="VB.NET" Value="Public Class FrameworkElement&#xA;Inherits UIElement&#xA;Implements IFrameworkInputElement, IQueryAmbient, ISupportInitialize" />
@@ -57,7 +57,7 @@
   
 -   **オブジェクトの有効期間イベント:** 多くの場合、要素がいつ初期化されるか (コンストラクターが呼び出されます)、または要素が最初に論理ツリーに読み込まれるタイミングを知ることが役立ちます。 <xref:System.Windows.FrameworkElement> は、オブジェクトの有効期間に関連するいくつかのイベントを定義します。これにより、子要素の追加など、要素を含む分離コード操作に便利なフックが提供されます。 詳細については、「[オブジェクトの有効期間イベント](~/docs/framework/wpf/advanced/object-lifetime-events.md)」を参照してください。  
   
--   **データバインディングと動的リソース参照のサポート:** データバインディングとリソースのプロパティレベルのサポートは <xref:System.Windows.DependencyProperty> クラスによって実装され、プロパティシステムに組み込まれますが、<xref:System.Windows.Expression> として格納されているメンバー値 (両方のデータバインディングの基になるプログラミング構成体) を解決する機能があります。および動的リソース) は、<xref:System.Windows.FrameworkElement>によって実装されます。 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」と「 [XAML リソース](~/docs/framework/wpf/advanced/xaml-resources.md)」を参照してください。  
+-   **データバインディングと動的リソース参照のサポート:** データバインディングとリソースのプロパティレベルのサポートは <xref:System.Windows.DependencyProperty> クラスによって実装され、プロパティシステムに組み込まれていますが、<xref:System.Windows.Expression> として格納されているメンバー値を解決する機能 (データバインディングと動的リソースの両方の基になるプログラミング構成要素) は <xref:System.Windows.FrameworkElement>によって実装されます。 詳細については、「[データバインディングの概要](~/docs/framework/wpf/data/data-binding-overview.md)」と「 [XAML リソース](~/docs/framework/wpf/advanced/xaml-resources.md)」を参照してください。  
   
 -   **Styles:** <xref:System.Windows.FrameworkElement> <xref:System.Windows.FrameworkElement.Style%2A> プロパティを定義します。 ただし、<xref:System.Windows.FrameworkElement> では、テンプレートのサポートがまだ定義されていないか、デコレーターをサポートしていません。 これらの機能は、<xref:System.Windows.Controls.Control> や <xref:System.Windows.Controls.ContentControl>などのコントロールクラスによって導入されています。  
   
@@ -512,7 +512,7 @@
   
 -   プロパティからすべてのクロックを削除するには、アニメーション化されたオブジェクトの <xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29> または <xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29> メソッドを使用します。 最初のパラメーターとしてアニメーション化するプロパティを指定し、2番目のパラメーターとして `null` します。 これにより、プロパティからすべてのアニメーションクロックが削除されます。  
   
--   特定の <xref:System.Windows.Media.Animation.AnimationClock> をクロックの一覧から削除するには、<xref:System.Windows.Media.Animation.AnimationClock> の <xref:System.Windows.Media.Animation.Clock.Controller%2A> プロパティを使用して <xref:System.Windows.Media.Animation.ClockController>を取得し、次に <xref:System.Windows.Media.Animation.ClockController.Remove%2A> の <xref:System.Windows.Media.Animation.ClockController>メソッドを呼び出します。 これは通常、クロックの <xref:System.Windows.Media.Animation.Clock.Completed> イベントハンドラーで実行されます。 <xref:System.Windows.Media.Animation.ClockController>によって制御できるのはルートクロックのみであることに注意してください。子クロックの <xref:System.Windows.Media.Animation.Clock.Controller%2A> プロパティは `null`を返します。 また、クロックの有効期間が無期限の場合は、<xref:System.Windows.Media.Animation.Clock.Completed> イベントが発生しないことにも注意してください。  その場合、ユーザーは <xref:System.Windows.Media.Animation.ClockController.Remove%2A> を呼び出すタイミングを決定する必要があります。  
+-   特定の <xref:System.Windows.Media.Animation.AnimationClock> をクロックの一覧から削除するには、<xref:System.Windows.Media.Animation.AnimationClock> の <xref:System.Windows.Media.Animation.Clock.Controller%2A> プロパティを使用して <xref:System.Windows.Media.Animation.ClockController>を取得し、次に <xref:System.Windows.Media.Animation.ClockController.Remove%2A> の <xref:System.Windows.Media.Animation.ClockController>メソッドを呼び出します。 これは通常、クロックの <xref:System.Windows.Media.Animation.Clock.Completed> イベントハンドラーで実行されます。 <xref:System.Windows.Media.Animation.ClockController>によって制御できるのはルートクロックのみであることに注意してください。子クロックの <xref:System.Windows.Media.Animation.Clock.Controller%2A> プロパティは `null`を返します。 また、クロックの有効期間が無期限の場合は、<xref:System.Windows.Media.Animation.Clock.Completed> イベントが発生しないことにも注意してください。  その場合、ユーザーは <xref:System.Windows.Media.Animation.ClockController.Remove%2A>を呼び出すタイミングを決定する必要があります。  
   
  これは主に、有効期間が長いオブジェクトでのアニメーションの問題です。  オブジェクトがガベージコレクションされると、そのクロックも切断され、ガベージコレクトされます。  
   
@@ -572,7 +572,7 @@
   
 -   プロパティからすべてのクロックを削除するには、アニメーション化されたオブジェクトの <xref:System.Windows.Media.Animation.Animatable.ApplyAnimationClock%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationClock%29> または <xref:System.Windows.Media.Animation.Animatable.BeginAnimation%28System.Windows.DependencyProperty%2CSystem.Windows.Media.Animation.AnimationTimeline%29> メソッドを使用します。 最初のパラメーターとしてアニメーション化するプロパティを指定し、2番目のパラメーターとして `null` します。 これにより、プロパティからすべてのアニメーションクロックが削除されます。  
   
--   特定の <xref:System.Windows.Media.Animation.AnimationClock> をクロックの一覧から削除するには、<xref:System.Windows.Media.Animation.AnimationClock> の <xref:System.Windows.Media.Animation.Clock.Controller%2A> プロパティを使用して <xref:System.Windows.Media.Animation.ClockController>を取得し、次に <xref:System.Windows.Media.Animation.ClockController.Remove%2A> の <xref:System.Windows.Media.Animation.ClockController>メソッドを呼び出します。 これは通常、クロックの <xref:System.Windows.Media.Animation.Clock.Completed> イベントハンドラーで実行されます。 <xref:System.Windows.Media.Animation.ClockController>によって制御できるのはルートクロックのみであることに注意してください。子クロックの <xref:System.Windows.Media.Animation.Clock.Controller%2A> プロパティは `null`を返します。 また、クロックの有効期間が無期限の場合は、<xref:System.Windows.Media.Animation.Clock.Completed> イベントが発生しないことにも注意してください。  その場合、ユーザーは <xref:System.Windows.Media.Animation.ClockController.Remove%2A> を呼び出すタイミングを決定する必要があります。  
+-   特定の <xref:System.Windows.Media.Animation.AnimationClock> をクロックの一覧から削除するには、<xref:System.Windows.Media.Animation.AnimationClock> の <xref:System.Windows.Media.Animation.Clock.Controller%2A> プロパティを使用して <xref:System.Windows.Media.Animation.ClockController>を取得し、次に <xref:System.Windows.Media.Animation.ClockController.Remove%2A> の <xref:System.Windows.Media.Animation.ClockController>メソッドを呼び出します。 これは通常、クロックの <xref:System.Windows.Media.Animation.Clock.Completed> イベントハンドラーで実行されます。 <xref:System.Windows.Media.Animation.ClockController>によって制御できるのはルートクロックのみであることに注意してください。子クロックの <xref:System.Windows.Media.Animation.Clock.Controller%2A> プロパティは `null`を返します。 また、クロックの有効期間が無期限の場合は、<xref:System.Windows.Media.Animation.Clock.Completed> イベントが発生しないことにも注意してください。  その場合、ユーザーは <xref:System.Windows.Media.Animation.ClockController.Remove%2A>を呼び出すタイミングを決定する必要があります。  
   
  これは主に、有効期間が長いオブジェクトでのアニメーションの問題です。  オブジェクトがガベージコレクションされると、そのクロックも切断され、ガベージコレクトされます。  
   
@@ -844,7 +844,7 @@
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.ContextMenuClosingEvent>|  
 |ルーティング方法|バブリング|  
-|Delegate|<xref:System.Windows.Controls.ContextMenuEventHandler>|  
+|デリゲート|<xref:System.Windows.Controls.ContextMenuEventHandler>|  
   
 -   派生クラスでこのイベントのクラス処理を実装するには、<xref:System.Windows.FrameworkElement.OnContextMenuClosing%2A> をオーバーライドします。  
   
@@ -905,7 +905,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コンテキストメニューを手動で開くには、イベントのハンドラーが関連するイベントを処理済みとしてマークする必要があります。 それ以外の場合は、[<xref:System.Windows.FrameworkElement.ContextMenu%2A>] プロパティの既存の値を使用して、ショートカットメニューが自動的に開きます。 イベントを処理済みとしてマークすると、既定のアクションが実質的にキャンセルされます。また、<xref:System.Windows.FrameworkElement.ContextMenu%2A> プロパティの値をリセットし、新しい <xref:System.Windows.Controls.ContextMenu>を開くことができます。 ただし、タイミングの問題に注意する必要があります。 コンテキストメニューを <xref:System.Windows.FrameworkElement.ContextMenuOpening> ハンドラーで完全に置き換えるには、最初のコンテキストメニューを null または空にすることはできません。 または、イベントを処理し、新しいコンテキストメニューを手動で開く必要がある場合もあります。 詳細については、「[方法: ContextMenuOpening イベント](~/docs/framework/wpf/advanced/how-to-handle-the-contextmenuopening-event.md)を処理します。  
+ コンテキストメニューを手動で開くには、イベントのハンドラーが関連するイベントを処理済みとしてマークする必要があります。 それ以外の場合は、[<xref:System.Windows.FrameworkElement.ContextMenu%2A>] プロパティの既存の値を使用して、ショートカットメニューが自動的に開きます。 イベントを処理済みとしてマークすると、既定のアクションが実質的にキャンセルされます。また、<xref:System.Windows.FrameworkElement.ContextMenu%2A> プロパティの値をリセットし、新しい <xref:System.Windows.Controls.ContextMenu>を開くことができます。 ただし、タイミングの問題に注意する必要があります。 コンテキストメニューを <xref:System.Windows.FrameworkElement.ContextMenuOpening> ハンドラーで完全に置き換えるには、最初のコンテキストメニューを null または空にすることはできません。 または、イベントを処理し、新しいコンテキストメニューを手動で開く必要がある場合もあります。 詳細については、「[方法: ContextMenuOpening イベントを処理する](~/docs/framework/wpf/advanced/how-to-handle-the-contextmenuopening-event.md)」を参照してください。  
   
  このイベントをスタイルの <xref:System.Windows.EventTrigger> として使用するには、基になる添付イベントを参照する必要があります。  
   
@@ -924,7 +924,7 @@
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.ContextMenuOpeningEvent>|  
 |ルーティング方法|バブリング|  
-|Delegate|<xref:System.Windows.Controls.ContextMenuEventHandler>|  
+|デリゲート|<xref:System.Windows.Controls.ContextMenuEventHandler>|  
   
 -   派生クラスでこのイベントのクラス処理を実装するには、<xref:System.Windows.FrameworkElement.OnContextMenuOpening%2A> をオーバーライドします。  
   
@@ -1106,11 +1106,11 @@
   
  または、<xref:System.Windows.Data.Binding> クラスの次のいずれかのプロパティを使用して、バインドソースを明示的に指定することもできます。
   
-    - <xref:System.Windows.Data.Binding.ElementName%2A>。
-    - <xref:System.Windows.Data.Binding.Source%2A>.
-    - <xref:System.Windows.Data.Binding.RelativeSource%2A>。 
+    - <xref:System.Windows.Data.Binding.ElementName%2A> で初期化します。
+    - <xref:System.Windows.Data.Binding.Source%2A> で初期化します。
+    - <xref:System.Windows.Data.Binding.RelativeSource%2A> で初期化します。 
   
-  詳細については、[バインドソース](~/docs/framework/wpf/data/how-to-specify-the-binding-source.md)を指定します。  
+  詳細については、「[方法: バインディングソースを指定](~/docs/framework/wpf/data/how-to-specify-the-binding-source.md)する」を参照してください。  
   
  XAML では、通常、<xref:System.Windows.FrameworkElement.DataContext%2A> は <xref:System.Windows.Data.Binding> 宣言として設定されます。 プロパティ要素の構文または属性構文を使用できます。 属性の構文については、このページの例を参照してください。 コードを使用して <xref:System.Windows.FrameworkElement.DataContext%2A>を設定することもできます。  
   
@@ -1128,20 +1128,20 @@
 ```  
   
 <a name="xamlAttributeUsage_DataContext"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```xaml  
 <object DataContext="bindingUsage"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object DataContext="{resourceExtension contextResourceKey}"/>  
 ```
   
 <a name="xamlValues_DataContext"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *dataContextObject*  
  親要素内の任意のバインドのデータコンテキストとして機能する直接埋め込まれたオブジェクト。 通常、このオブジェクトは <xref:System.Windows.Data.Binding> または別の <xref:System.Windows.Data.BindingBase> 派生クラスです。 また、バインドを目的としたオブジェクトの種類の生データをここに配置し、実際のバインドを後で定義することもできます。  
   
@@ -1268,7 +1268,7 @@
    
   
 ## Examples  
- 次の例は、「解説」で説明されている依存関係プロパティメタデータオーバーライドの使用方法を示しています。 このコードでは、専用のコントロールライブラリアセンブリから使用することを意図した `NumericUpDown` カスタムコントロールクラスを定義します。 図に示されている静的コンストラクターは、いくつかのプライベート初期化関数を参照し、クラスハンドラーを登録します (もう1つの一般的なコントロールのサブクラス化については、「ルーティングイベントを処理済みとしてマークする [」および「クラス処理](~/docs/framework/wpf/advanced/marking-routed-events-as-handled-and-class-handling.md))」、および「`NumericUpDown` クラスの <xref:System.Windows.FrameworkElement.DefaultStyleKey%2A> 依存関係プロパティのメタデータ。 <xref:System.Windows.FrameworkElement.DefaultStyleKey%2A> は常に、意図したキーとして独自の型を返します。これは、テーマスタイルシステムが、任意のスタイルではないコントロールのスタイルを検索するために使用する規則です。 完全なサンプルでは、そのキーによって参照される実際のコントロールのテーマスタイルも定義します。「 [NumericUpDown Custom Control With Theme AND UI Automation Support Sample」を](https://go.microsoft.com/fwlink/?LinkID=160025)参照してください。  
+ 次の例は、「解説」で説明されている依存関係プロパティメタデータオーバーライドの使用方法を示しています。 このコードでは、専用のコントロールライブラリアセンブリから使用することを意図した `NumericUpDown` カスタムコントロールクラスを定義します。 図に示す静的コンストラクターは、いくつかのプライベート初期化関数を参照し、クラスハンドラーを登録します (もう1つの一般的なコントロールのサブクラス化に関する説明を参照してください。[ルーティングイベントを処理済みとしてマークし、クラスを処理](~/docs/framework/wpf/advanced/marking-routed-events-as-handled-and-class-handling.md)します)。最後に、`NumericUpDown` クラスの <xref:System.Windows.FrameworkElement.DefaultStyleKey%2A> 依存関係プロパティのメタデータをオーバーライド <xref:System.Windows.FrameworkElement.DefaultStyleKey%2A> は常に、意図したキーとして独自の型を返します。これは、テーマスタイルシステムが、任意のスタイルではないコントロールのスタイルを検索するために使用する規則です。 完全なサンプルでは、そのキーによって参照される実際のコントロールのテーマスタイルも定義します。「 [NumericUpDown Custom Control With Theme AND UI Automation Support Sample」を](https://go.microsoft.com/fwlink/?LinkID=160025)参照してください。  
   
  [!code-csharp[CustomControlNumericUpDown#StaticCtorOfCustomClassCommonTasks](~/samples/snippets/csharp/VS_Snippets_Wpf/CustomControlNumericUpDown/CSharp/CustomControlLibrary/NumericUpDown2.cs)]
  [!code-vb[CustomControlNumericUpDown#StaticCtorOfCustomClassCommonTasks](~/samples/snippets/visualbasic/VS_Snippets_Wpf/CustomControlNumericUpDown/visualbasic/customcontrollibrary/numericupdown2.vb)]  
@@ -1425,9 +1425,9 @@
         </remarks>
         <exception cref="T:System.Windows.ResourceReferenceKeyNotFoundException"><paramref name="resourceKey" /> が見つからず、<see cref="E:System.Windows.Threading.Dispatcher.UnhandledException" /> イベントのイベント ハンドラーが存在しません。  
   
-- または - 
- <paramref name="resourceKey" /> が見つからず、<see cref="P:System.Windows.Threading.DispatcherUnhandledExceptionEventArgs.Handled" /> イベントで <see cref="E:System.Windows.Threading.Dispatcher.UnhandledException" /> プロパティが <see langword="false" /> です。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="resourceKey" /> が <see langword="null" /> です。</exception>
+または 
+ <paramref name="resourceKey" /> が見つからず、<see cref="P:System.Windows.Threading.DispatcherUnhandledExceptionEventArgs.Handled" /> イベントで <see langword="false" /> プロパティが <see cref="E:System.Windows.Threading.Dispatcher.UnhandledException" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="resourceKey" /> は <see langword="null" /> です。</exception>
         <altmember cref="M:System.Windows.FrameworkElement.TryFindResource(System.Object)" />
       </Docs>
     </Member>
@@ -1454,7 +1454,7 @@
       </ReturnValue>
       <Docs>
         <summary>レイアウトを制御する親要素内でのテキストやその他の [!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)] 要素のフロー方向を取得または設定します。</summary>
-        <value>テキストやその他の [!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)] 要素の親要素内でのフロー方向を示す列挙値。 既定値は <see cref="F:System.Windows.FlowDirection.LeftToRight" /> です。</value>
+        <value>テキストやその他の [!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)] 要素の親要素内でのフロー方向を示す列挙値。 既定値は <see cref="F:System.Windows.FlowDirection.LeftToRight" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1466,7 +1466,7 @@
  このプロパティには [!INCLUDE[TLA#tla_clr](~/includes/tlasharptla-clr-md.md)] プロパティアクセサーが定義されているため、依存関係プロパティとして機能します。 ただし、添付ファイルとして登録されているので、添付プロパティとしても機能することができます。 アタッチされた登録は、主にプロパティ値の継承がサポートされるようにするために使用されますが、プロパティを添付プロパティとして使用することもできます。 添付プロパティの使用は、フローの方向を設定する対象のオブジェクトが、レイアウトを実行する <xref:System.Windows.FrameworkElement> 親要素を持ち、それ自体が <xref:System.Windows.FrameworkElement>ではなく、`FlowDirection` プロパティが直接定義されていない場合にのみ関連します。 (<xref:System.Windows.Documents.Block> や <xref:System.Windows.Documents.Inline> などのフロードキュメントクラスの中には、独自の `FlowDirection`を定義するものもあれば、フローの方向を設定することもできます。 プロパティ値は、添付プロパティの使用を必要とせずに最終的なコンテンツホストによって読み取られます)。  
   
 <a name="xamlAttributeUsage_FlowDirection"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
  \<*オブジェクト* **system.windows.flowdirection>**= "<xref:System.Windows.FlowDirection>"/>  
   
 <a name="xamlTextUsage_FlowDirection"></a>   
@@ -1481,7 +1481,7 @@
 |||  
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.FlowDirectionProperty>|  
-|メタデータプロパティが `true` に設定される|<xref:System.Windows.FrameworkPropertyMetadata.AffectsMeasure%2A>、<xref:System.Windows.FrameworkPropertyMetadata.AffectsParentArrange%2A>、<xref:System.Windows.FrameworkPropertyMetadata.Inherits%2A>|  
+|メタデータプロパティが `true` に設定される|<xref:System.Windows.FrameworkPropertyMetadata.AffectsMeasure%2A>、 <xref:System.Windows.FrameworkPropertyMetadata.AffectsParentArrange%2A>、 <xref:System.Windows.FrameworkPropertyMetadata.Inherits%2A>|  
   
  このプロパティは、依存関係プロパティと添付プロパティの両方です。「解説」を参照してください。  
   
@@ -1535,10 +1535,10 @@
 ## Remarks  
  このプロパティはビジュアルの外観に影響しますが、メタデータ内の <xref:System.Windows.FrameworkPropertyMetadata.AffectsRender%2A> を報告しません。 これは、視覚的な外観の変更はイベントドリブンであり、常に適用されない可能性があるため、通常はビジュアルやレイアウト情報をメタデータに報告しないようにしてください。  
   
- 概念的には、コントロールに適用されるフォーカスの視覚的な動作は、コントロールからコントロールまで一貫している必要があります。 一貫性を適用する最も合理的な方法は、テーマ全体を作成する場合にのみフォーカスの視覚スタイルを変更することです。 このプロパティをテーマの一部としてではなく、個々のコントロールスタイルで設定することは、このプロパティを使用するためのものではありません。これは、キーボードフォーカスに関してユーザーエクスペリエンスが混乱する可能性があるためです。 テーマ全体で一貫していないコントロール固有の動作を行う場合は、<xref:System.Windows.UIElement.IsFocused%2A> や <xref:System.Windows.UIElement.IsKeyboardFocusWithin%2A>など、個々の入力状態プロパティのスタイルでトリガーを使用したり、視覚的にはない方法でトリガーを使用したりできます。既存のフォーカスの visual スタイルに干渉します。 <xref:System.Windows.FrameworkElement.FocusVisualStyle%2A> と代替のフォーカスプロパティの設計目的の詳細については、「[コントロールのフォーカスのスタイル設定」および FocusVisualStyle](~/docs/framework/wpf/advanced/styling-for-focus-in-controls-and-focusvisualstyle.md)を参照してください。  
+ 概念的には、コントロールに適用されるフォーカスの視覚的な動作は、コントロールからコントロールまで一貫している必要があります。 一貫性を適用する最も合理的な方法は、テーマ全体を作成する場合にのみフォーカスの視覚スタイルを変更することです。 このプロパティをテーマの一部としてではなく、個々のコントロールスタイルで設定することは、このプロパティを使用するためのものではありません。これは、キーボードフォーカスに関してユーザーエクスペリエンスが混乱する可能性があるためです。 テーマ全体で一貫していないコントロール固有の動作を行う場合は、<xref:System.Windows.UIElement.IsFocused%2A> や <xref:System.Windows.UIElement.IsKeyboardFocusWithin%2A>など、個々の入力状態プロパティのスタイルでトリガーを使用し、既存のフォーカスの視覚スタイルを視覚的に干渉しないようにする方法があります。 <xref:System.Windows.FrameworkElement.FocusVisualStyle%2A> と代替のフォーカスプロパティの設計目的の詳細については、「[コントロールのフォーカスのスタイル設定」および FocusVisualStyle](~/docs/framework/wpf/advanced/styling-for-focus-in-controls-and-focusvisualstyle.md)を参照してください。  
   
 <a name="xamlAttributeUsage_FocusVisualStyle"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```  
 <object FocusVisualStyle="{resourceExtension styleResourceKey}"/>  
@@ -1548,7 +1548,7 @@
 ## <a name="xaml-property-element-usage"></a>XAML プロパティ要素の使用  
   
 <a name="xamlValues_FocusVisualStyle"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *resourceExtension*  
  次のいずれか:、または。 「 [XAML リソース](~/docs/framework/wpf/advanced/xaml-resources.md)」を参照してください。  
   
@@ -1609,8 +1609,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>この <see cref="T:System.Windows.FrameworkElement" /> でカーソルを <see cref="P:System.Windows.FrameworkElement.Cursor" /> プロパティの宣言に従って描画するように[!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)] を強制するかどうかを示す値を取得または設定します。</summary>
-        <value>この要素の上にあるときのカーソルの表示に <see cref="P:System.Windows.FrameworkElement.Cursor" /> の現在の設定を強制的に使用する場合は <see langword="true" /> (すべての子要素を含む)。それ以外の場合は <see langword="false" />。 既定値は <see langword="false" /> です。</value>
+        <summary>この <see cref="T:System.Windows.FrameworkElement" /> でカーソルを [!INCLUDE[TLA#tla_ui](~/includes/tlasharptla-ui-md.md)] プロパティの宣言に従って描画するように<see cref="P:System.Windows.FrameworkElement.Cursor" /> を強制するかどうかを示す値を取得または設定します。</summary>
+        <value>この要素の上にあるときのカーソルの表示に <see langword="true" /> の現在の設定を強制的に使用する場合は <see cref="P:System.Windows.FrameworkElement.Cursor" /> (すべての子要素を含む)。それ以外の場合は <see langword="false" />。 既定値は <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1715,7 +1715,7 @@
       </Parameters>
       <Docs>
         <param name="element"><see cref="P:System.Windows.FrameworkElement.FlowDirection" /> を返す要素。</param>
-        <summary>指定した <see cref="T:System.Windows.DependencyObject" /> の <see cref="P:System.Windows.FrameworkElement.FlowDirection" /> 添付プロパティの値を取得します。</summary>
+        <summary>指定した <see cref="P:System.Windows.FrameworkElement.FlowDirection" /> の <see cref="T:System.Windows.DependencyObject" /> 添付プロパティの値を取得します。</summary>
         <returns>列挙体の値としての要求されたフローの方向。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1905,7 +1905,7 @@
       </ReturnValue>
       <Docs>
         <summary>要素の推奨される高さを取得または設定します。</summary>
-        <value>要素の高さ ([!INCLUDE[TLA#tla_dipixel#plural](~/includes/tlasharptla-dipixelsharpplural-md.md)] 単位)。 既定値は <see cref="F:System.Double.NaN" /> です。 この値は 0.0 以上にする必要があります。</value>
+        <value>要素の高さ ([!INCLUDE[TLA#tla_dipixel#plural](~/includes/tlasharptla-dipixelsharpplural-md.md)] 単位)。 既定値は <see cref="F:System.Double.NaN" />です。 この値は 0.0 以上にする必要があります。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1923,26 +1923,26 @@
  検証チェックに加えて、レイアウトシステムによって適用される <xref:System.Windows.FrameworkElement.Height%2A> に対して非決定的な上限が設定されています (これは、<xref:System.Single.MaxValue?displayProperty=nameWithType> よりも大きいが <xref:System.Double.MaxValue?displayProperty=nameWithType>よりも小さい非常に大きい数値です)。 この制約を超えた場合、要素はレンダリングされず、例外はスローされません。 ビジュアル表示の最大サイズよりも大幅に大きい値に <xref:System.Windows.FrameworkElement.Height%2A> を設定しないか、またはこの非決定的な上限を超えることができます。  
   
 <a name="xamlAttributeUsage_Height"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```xaml
 <object Height="double"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object Height="qualifiedDouble"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object Height="Auto"/>  
 ```  
   
 <a name="xamlValues_Height"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *double*  
  <xref:System.Double>  
   
@@ -2083,7 +2083,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要素ツリーセット内の特定の境界は、継承の動作のスコープを意図的に制限したり、リソースの参照を強制してアプリケーションのリソースをチェックしたり、RelativeSource FindAncestor の参照が現在の要素または任意のに対してクエリを実行したりしないように <xref:System.Windows.FrameworkElement.InheritanceBehavior%2A> します。一歩. RelativeSource FindAncestor 参照は、<xref:System.Windows.Data.RelativeSource.Mode%2A> プロパティが <xref:System.Windows.Data.RelativeSourceMode.FindAncestor?displayProperty=nameWithType> 値に設定されている <xref:System.Windows.Data.RelativeSource> をバインドが使用する場合に発生します。  
+ 要素ツリーセット内の特定の境界は、継承動作のスコープを意図的に制限したり、リソースの参照を強制してアプリケーションのリソースをチェックしたり、RelativeSource FindAncestor の参照が現在の要素またはその他の要素に対してクエリを実行したりしないように <xref:System.Windows.FrameworkElement.InheritanceBehavior%2A> します。 RelativeSource FindAncestor 参照は、<xref:System.Windows.Data.RelativeSource.Mode%2A> プロパティが <xref:System.Windows.Data.RelativeSourceMode.FindAncestor?displayProperty=nameWithType> 値に設定されている <xref:System.Windows.Data.RelativeSource> をバインドが使用する場合に発生します。  
   
  派生クラスでこのプロパティを設定する場合は、静的コンストラクターまたは他の初期化ルーチン内で実行する必要があります。  
   
@@ -2218,7 +2218,7 @@
       </ReturnValue>
       <Docs>
         <summary>この要素が、[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)] プロセッサによって処理されている間、またはこの要素の <see cref="M:System.Windows.FrameworkElement.EndInit" /> メソッドが明示的に呼び出されたときに初期化されたかどうかを示す値を取得します。</summary>
-        <value>前述の [!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)] 処理やメソッド呼び出しごとに要素が初期化された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value>前述の <see langword="true" /> 処理やメソッド呼び出しごとに要素が初期化された場合は [!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)]。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2288,12 +2288,12 @@
       </ReturnValue>
       <Docs>
         <summary>要素に適用されるローカライズ/グローバリゼーション言語情報を取得または設定します。</summary>
-        <value>この要素の言語情報。 既定値は、<see cref="P:System.Windows.Markup.XmlLanguage.IetfLanguageTag" /> 値が文字列 "en-US" に設定されている <see cref="T:System.Windows.Markup.XmlLanguage" /> です。</value>
+        <value>この要素の言語情報。 既定値は、<see cref="T:System.Windows.Markup.XmlLanguage" /> 値が文字列 "en-US" に設定されている <see cref="P:System.Windows.Markup.XmlLanguage.IetfLanguageTag" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 文字列の形式は RFC 3066 標準に従います。 たとえば、米国の英語は "en-us" です。 値と形式の詳細については、「<xref:System.Windows.Markup.XmlLanguage>」を参照してください。  
+ 文字列の形式は RFC 3066 標準に従います。 たとえば、英語 (米国) は "en-us" です。 値と形式の詳細については、「<xref:System.Windows.Markup.XmlLanguage>」を参照してください。  
   
  この依存関係プロパティは、プロパティ値を継承します。 ローカル値またはスタイルによって確立された <xref:System.Windows.FrameworkElement.Language%2A> の他の値を持たない子要素がある場合、プロパティシステムは、この値が割り当てられている最も近い祖先要素の <xref:System.Windows.FrameworkElement.Language%2A> 値になるように値を設定します。  
   
@@ -2444,7 +2444,7 @@
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.LoadedEvent>|  
 |ルーティング方法|直接|  
-|Delegate|<xref:System.Windows.RoutedEventHandler>|  
+|デリゲート|<xref:System.Windows.RoutedEventHandler>|  
   
  ]]></format>
         </remarks>
@@ -2547,19 +2547,19 @@
  余白が設定されている要素は、割り当てられた四角形の領域が余白と要素のコンテンツ領域に十分な大きさでない場合は、通常、指定された <xref:System.Windows.FrameworkElement.Margin%2A> のサイズを制限しません。 要素のコンテンツ領域は、レイアウトが計算されるときに制約されます。 余白が制限されるのは、コンテンツが既にゼロに制限されている場合のみです。  
   
 <a name="xamlAttributeUsage_Margin"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```xaml  
 <object Margin="left,top,right,bottom"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object Margin="left,top"/>  
 ```
 
-- または -  
+または  
 
 ```xaml
 <object Margin="thicknessReference"/>  
@@ -2577,7 +2577,7 @@
 ```  
   
 <a name="xamlValues_Margin"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *left、top、right、bottom*  
  <xref:System.Windows.Thickness> 構造体の4つの可能なディメンションプロパティを指定する0から <xref:System.Double.PositiveInfinity> までの数値。  
   
@@ -2650,7 +2650,7 @@
       </ReturnValue>
       <Docs>
         <summary>要素の高さの最大値を取得または設定します。</summary>
-        <value>要素の最大高 ([!INCLUDE[TLA#tla_dipixel#plural](~/includes/tlasharptla-dipixelsharpplural-md.md)] 単位)。 既定値は <see cref="F:System.Double.PositiveInfinity" /> です。 この値は、0.0 以上の任意の値を指定できます。 <see cref="F:System.Double.PositiveInfinity" /> も有効です。</value>
+        <value>要素の最大高 ([!INCLUDE[TLA#tla_dipixel#plural](~/includes/tlasharptla-dipixelsharpplural-md.md)] 単位)。 既定値は <see cref="F:System.Double.PositiveInfinity" />です。 この値は、0.0 以上の任意の値を指定できます。 <see cref="F:System.Double.PositiveInfinity" /> も有効です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2660,20 +2660,20 @@
  <xref:System.Double> 値の値の制限は、<xref:System.Windows.ValidateValueCallback> メカニズムによって適用されます。 無効な値を設定しようとすると、実行時例外がスローされます。  
   
 <a name="xamlAttributeUsage_MaxHeight"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```xaml  
 <object MaxHeight="double"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object MaxHeight ="qualifiedDouble"/>  
 ```
 
 <a name="xamlValues_MaxHeight"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *double*  
  <xref:System.Double>  
   
@@ -2751,7 +2751,7 @@
       </ReturnValue>
       <Docs>
         <summary>要素の幅の最大値を取得または設定します。</summary>
-        <value>要素の最大の幅 ([!INCLUDE[TLA#tla_dipixel#plural](~/includes/tlasharptla-dipixelsharpplural-md.md)] 単位)。 既定値は <see cref="F:System.Double.PositiveInfinity" /> です。 この値は、0.0 以上の任意の値を指定できます。 <see cref="F:System.Double.PositiveInfinity" /> も有効です。</value>
+        <value>要素の最大の幅 ([!INCLUDE[TLA#tla_dipixel#plural](~/includes/tlasharptla-dipixelsharpplural-md.md)] 単位)。 既定値は <see cref="F:System.Double.PositiveInfinity" />です。 この値は、0.0 以上の任意の値を指定できます。 <see cref="F:System.Double.PositiveInfinity" /> も有効です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2761,20 +2761,20 @@
  <xref:System.Double> 値の値の制限は、<xref:System.Windows.ValidateValueCallback> メカニズムによって適用されます。 無効な値を設定しようとすると、実行時例外がスローされます。  
   
 <a name="xamlAttributeUsage_MaxWidth"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```xaml 
 <object MaxWidth="double"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object MaxWidth="qualifiedDouble"/>  
 ```
 
 <a name="xamlValues_MaxWidth"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *double*  
  <xref:System.Double>  
   
@@ -2944,20 +2944,20 @@
  <xref:System.Double> 値の値の制限は、<xref:System.Windows.ValidateValueCallback> メカニズムによって適用されます。 無効な値を設定しようとすると、実行時例外がスローされます。  
   
 <a name="xamlAttributeUsage_MinHeight"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```xaml
 <object MinHeight="double"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object MinHeight="qualifiedDouble"/>  
 ```
 
 <a name="xamlValues_MinHeight"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *double*  
  <xref:System.Double>  
   
@@ -3045,20 +3045,20 @@
  <xref:System.Double> 値の値の制限は、<xref:System.Windows.ValidateValueCallback> メカニズムによって適用されます。 無効な値を設定しようとすると、実行時例外がスローされます。  
   
 <a name="xamlAttributeUsage_MinWidth"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```xaml 
 <object MinWidth="double"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object MinWidth="qualifiedDouble"/>  
 ```
   
 <a name="xamlValues_MinWidth"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *double*  
  <xref:System.Double>  
   
@@ -3176,7 +3176,7 @@
         <Attribute>
           <AttributeName>System.Windows.Localizability(System.Windows.LocalizationCategory.NeverLocalize)</AttributeName>
         </Attribute>
-        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netcore-3.0">
+        <Attribute FrameworkAlternate="netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netcore-3.0;netcore-3.1">
           <AttributeName>System.Windows.Markup.DesignerSerializationOptions(System.Windows.Markup.DesignerSerializationOptions.SerializeAsAttribute)</AttributeName>
         </Attribute>
       </Attributes>
@@ -3185,7 +3185,7 @@
       </ReturnValue>
       <Docs>
         <summary>要素の識別名を取得または設定します。 この名前は参照を提供するため、イベント ハンドラー コードなどの分離コードは、[!INCLUDE[TLA2#tla_xaml](~/includes/tla2sharptla-xaml-md.md)] プロセッサによる処理の際に、構築された後のマークアップ要素を参照できます。</summary>
-        <value>要素の名前。 既定値は空の文字列です。</value>
+        <value>要素の名前です。 既定値は空の文字列です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -3430,7 +3430,7 @@
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>この仮想メソッドの既定の実装は、上で説明したようにイベントを発生させます。 オーバーライドでは、この動作を保持するために基本実装を呼び出す必要があります。 基本実装を呼び出すことができない場合、通常は <see cref="T:System.Windows.FrameworkElement" /> 派生クラスで期待されるように <see cref="E:System.Windows.FrameworkElement.Initialized" /> イベントが発生しないだけでなく、このによって実装される2つの重要なスタイルとテーマのスタイル初期化操作も抑制します。基本実装。</para></block>
+        <block subset="none" type="overrides"><para>この仮想メソッドの既定の実装は、上で説明したようにイベントを発生させます。 オーバーライドでは、この動作を保持するために基本実装を呼び出す必要があります。 基本の実装を呼び出すことができない場合は、<see cref="T:System.Windows.FrameworkElement" /> 派生クラスの <see cref="E:System.Windows.FrameworkElement.Initialized" /> イベントが発生するだけでなく、この基本実装によって実装されている2つの重要なスタイルとテーマスタイルの初期化操作も抑制します。</para></block>
         <altmember cref="M:System.Windows.FrameworkElement.OnApplyTemplate" />
         <altmember cref="E:System.Windows.FrameworkElement.Initialized" />
       </Docs>
@@ -3640,7 +3640,7 @@
         <Parameter Name="oldParent" Type="System.Windows.DependencyObject" />
       </Parameters>
       <Docs>
-        <param name="oldParent">前の親要素。 <see langword="null" /> は要素に前のビジュアル親が存在しないことを示します。</param>
+        <param name="oldParent">前の親要素。 以前、要素にビジュアル親が存在していなかったことを示す <see langword="null" /> である可能性があります。</param>
         <summary>ビジュアル ツリー内のこの要素の親が変更されたときに呼び出されます。 <see cref="M:System.Windows.UIElement.OnVisualParentChanged(System.Windows.DependencyObject)" /> をオーバーライドします。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -3919,7 +3919,7 @@
         <Parameter Name="child" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="child">削除する要素。</param>
+        <param name="child">削除する要素です。</param>
         <summary>指定されたオブジェクトをこの要素の論理ツリーから削除します。 <see cref="T:System.Windows.FrameworkElement" /> は、この削除との同期を維持するために影響を受ける論理ツリーの親ポインターを更新します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -3973,7 +3973,7 @@
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.RequestBringIntoViewEvent>|  
 |ルーティング方法|バブリング|  
-|Delegate|<xref:System.Windows.RequestBringIntoViewEventHandler>|  
+|デリゲート|<xref:System.Windows.RequestBringIntoViewEventHandler>|  
   
  ]]></format>
         </remarks>
@@ -4019,7 +4019,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netcore-3.0">
+        <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netcore-3.0;netcore-3.1">
           <AttributeName>System.Windows.Markup.Ambient</AttributeName>
         </Attribute>
       </Attributes>
@@ -4055,7 +4055,7 @@
 ```  
   
 <a name="xamlValues_Resources"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *oneOrMoreResourceElements*  
  1つ以上のオブジェクト要素。それぞれがリソースを定義します。 各 <xref:System.Windows.ResourceDictionary> 内の各リソースプロパティ要素には、<xref:System.Windows.ResourceDictionary>から値を取得するときに一意のキーとして機能する、 [X:Key ディレクティブ](~/docs/framework/xaml-services/x-key-directive.md)に対して一意の値を指定する必要があります。  
   
@@ -4362,7 +4362,7 @@
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.SizeChangedEvent>|  
 |ルーティング方法|直接|  
-|Delegate|<xref:System.Windows.SizeChangedEventHandler>|  
+|デリゲート|<xref:System.Windows.SizeChangedEventHandler>|  
   
  ]]></format>
         </remarks>
@@ -4425,7 +4425,7 @@
  このイベントは、この要素に関連付けられている <xref:System.Windows.Data.Binding> によって発生する <xref:System.Windows.Data.Binding.SourceUpdated> イベントのエイリアスを作成します。  
   
 <a name="xamlAttributeUsage_SourceUpdated"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```  
 <object SourceUpdated="eventHandler"/>  
@@ -4459,7 +4459,7 @@
       </ReturnValue>
       <Docs>
         <summary>この要素が使用するスタイルを、表示されるときに取得または設定します。</summary>
-        <value>要素に適用される既定以外のスタイル (存在する場合)。 それ以外の場合は <see langword="null" />。 既定で構築された <see cref="T:System.Windows.FrameworkElement" /> の既定値は <see langword="null" /> です。</value>
+        <value>要素に適用される既定以外のスタイル (存在する場合)。 それ以外の場合は、<see langword="null" /> になります。 既定で構築された <see cref="T:System.Windows.FrameworkElement" /> の既定値は <see langword="null" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -4471,7 +4471,7 @@
  <xref:System.Windows.FrameworkElement.Style%2A> は、特殊な優先順位を持つ依存関係プロパティです。 ローカルで設定されたスタイルは、一般に、プロパティシステムで最も優先順位が高いものになります。 この時点で <xref:System.Windows.FrameworkElement.Style%2A> が null の場合、プロパティシステムの読み込み中に、その型を指定するローカルリソースまたはアプリケーションリソースの暗黙的なスタイルを確認します。 この手順の後でスタイルが null の場合は、通常、プレゼンテーション目的で動作するスタイルは既定 (テーマ) のスタイルから取得されますが、<xref:System.Windows.FrameworkElement.Style%2A> のプロパティ値では既定のスタイルは返されません。 「[依存関係プロパティ値の優先順位](~/docs/framework/wpf/advanced/dependency-property-value-precedence.md)」 [、「スタイルとテンプレート」を](~/docs/framework/wpf/controls/styling-and-templating.md)参照してください。  
   
 <a name="xamlAttributeUsage_Style"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```  
 <object Style="{resourceExtension styleResourceKey}"/>  
@@ -4481,7 +4481,7 @@
 ## <a name="xaml-property-element-usage"></a>XAML プロパティ要素の使用  
   
 <a name="xamlValues_Style"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *resourceExtension*  
  次のいずれか:、または。 「 [XAML リソース](~/docs/framework/wpf/advanced/xaml-resources.md)」を参照してください。  
   
@@ -4552,12 +4552,12 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="propertyName" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+        <Parameter Name="propertyName" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
       </Parameters>
       <Docs>
         <param name="propertyName">要求されたアンビエント プロパティの名前。</param>
         <summary>このメンバーの説明については、<see cref="M:System.Windows.Markup.IQueryAmbient.IsAmbientPropertyAvailable(System.String)" /> メソッドのトピックを参照してください。</summary>
-        <returns><paramref name="propertyName" /> を使用できる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> を使用できる場合は <paramref name="propertyName" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -4591,7 +4591,7 @@
       </ReturnValue>
       <Docs>
         <summary>この要素に関するユーザー定義情報の格納に使用できる任意のオブジェクト値を取得または設定します。</summary>
-        <value>任意の値。 このプロパティには既定値はありません。</value>
+        <value>任意の値。 このプロパティに既定値はありません。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -4661,7 +4661,7 @@
  <xref:System.Windows.FrameworkElement.TargetUpdated> イベントのイベントデータを使用して、対象の値の更新を報告している特定のプロパティを特定します。  
   
 <a name="xamlAttributeUsage_TargetUpdated"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```  
 <object TargetUpdated="eventHandler"/>  
@@ -4695,7 +4695,7 @@
       </ReturnValue>
       <Docs>
         <summary>この要素の親テンプレートへの参照を取得します。 このプロパティは、要素がテンプレートによって作成されていない場合は無効です。</summary>
-        <value>この要素が作成される原因となった <see cref="T:System.Windows.FrameworkTemplate" /><see cref="P:System.Windows.FrameworkTemplate.VisualTree" /> が属する要素。 この値は、 <see langword="null" />です。</value>
+        <value>この要素が作成される原因となった <see cref="T:System.Windows.FrameworkTemplate" /><see cref="P:System.Windows.FrameworkTemplate.VisualTree" /> が属する要素。 多くの場合、この値は <see langword="null" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -4744,10 +4744,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティの値が <xref:System.Windows.Controls.ToolTip>型の場合、その値は [!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]で使用されるツールヒントです。  値が他の型の場合は、その値がシステムによって提供 (構築) される <xref:System.Windows.Controls.ToolTip> の*コンテンツ*として使用されます。 詳細については、「<xref:System.Windows.Controls.ToolTipService>」を参照してください。 サービスクラスには、<xref:System.Windows.Controls.ToolTip>をさらにカスタマイズするために使用できる添付プロパティが用意されています。  
+ このプロパティの値が <xref:System.Windows.Controls.ToolTip>型の場合、その値は [!INCLUDE[TLA2#tla_ui](~/includes/tla2sharptla-ui-md.md)]で使用されるツールヒントです。  値が他の型の場合は、その値がシステムによって提供 (構築) される <xref:System.Windows.Controls.ToolTip> の*コンテンツ*として使用されます。 詳細については、「 <xref:System.Windows.Controls.ToolTipService>」を参照してください。 サービスクラスには、<xref:System.Windows.Controls.ToolTip>をさらにカスタマイズするために使用できる添付プロパティが用意されています。  
   
 <a name="xamlAttributeUsage_ToolTip"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```  
 <object ToolTip="toolTipContent"/>  
@@ -4764,7 +4764,7 @@
 </object>
 ```
 
-- または -
+または
 
 ```xaml
 <object>  
@@ -4775,7 +4775,7 @@
 ```  
   
 <a name="xamlValues_ToolTip"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *toolTipContent*  
  <xref:System.Windows.FrameworkElement.ToolTip%2A>の表示テキストになる文字列。  
   
@@ -4838,7 +4838,7 @@
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.ToolTipClosingEvent>|  
 |ルーティング方法|直接|  
-|Delegate|<xref:System.Windows.Controls.ToolTipEventHandler>|  
+|デリゲート|<xref:System.Windows.Controls.ToolTipEventHandler>|  
   
 -   派生クラスでこのイベントのクラス処理を実装するには、<xref:System.Windows.FrameworkElement.OnToolTipClosing%2A> をオーバーライドします。  
   
@@ -4912,7 +4912,7 @@
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.ToolTipOpeningEvent>|  
 |ルーティング方法|直接|  
-|Delegate|<xref:System.Windows.Controls.ToolTipEventHandler>|  
+|デリゲート|<xref:System.Windows.Controls.ToolTipEventHandler>|  
   
 -   派生クラスでこのイベントのクラス処理を実装するには、<xref:System.Windows.FrameworkElement.OnToolTipClosing%2A> をオーバーライドします。  
   
@@ -5022,7 +5022,7 @@
 ```  
   
 <a name="xamlValues_Triggers"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *oneOrMoreTriggers*  
  1つ以上の定義済みの <xref:System.Windows.EventTrigger> 要素。 このようなトリガーには、有効なストーリーボードアクションと参照が含まれている必要があります。 このコレクションは、ページのルート要素でのみ設定できることに注意してください。 詳細については、「[ストーリーボードの概要](~/docs/framework/wpf/graphics-multimedia/storyboards-overview.md)」を参照してください。  
   
@@ -5053,7 +5053,7 @@
       <Docs>
         <param name="resourceKey">検索するリソースのキー識別子。</param>
         <summary>指定されたキーを使用してリソースを検索し、見つかった場合はそのリソースを返します。</summary>
-        <returns>見つかったリソース。指定した <paramref name="key" /> のリソースが見つからない場合は <see langword="null" />。</returns>
+        <returns>見つかったリソース。指定した <see langword="null" /> のリソースが見つからない場合は <paramref name="key" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -5112,7 +5112,7 @@
 |-|-|  
 |識別子フィールド|<xref:System.Windows.FrameworkElement.UnloadedEvent>|  
 |ルーティング方法|直接|  
-|Delegate|<xref:System.Windows.RoutedEventHandler>|  
+|デリゲート|<xref:System.Windows.RoutedEventHandler>|  
   
  ]]></format>
         </remarks>
@@ -5240,7 +5240,7 @@
  レイアウトの丸め処理や <xref:System.Windows.GridUnitType.Star> サイズ変更を使用する場合、サブピクセルレンダリングを避けるために、レイアウトシステムは列または行の測定値に小さいバリエーションを作成します。 たとえば、1つのグリッドの合計幅が100で、<xref:System.Windows.GridUnitType.Star>サイズがそれぞれ3列に設定されている場合、幅33.3 が等しい3つの列を作成するのではなく、幅が33、幅が34の2つの列がレイアウトシステムによって作成されます。  
   
 > [!NOTE]
->  .NET 4.6 では、境界があるコントロールでのクリッピングのインスタンスを減らすために、レイアウトの丸め処理が行われました。 既定では、ターゲットフレームワークが4.6 以上 .NET Framework 場合、この機能は有効になっています。 以前のバージョンのフレームワークを対象とするアプリケーションでは、app.config ファイルに次の設定を追加することで、新しい動作を選択できます。`<runtime><AppContextSwitchOverrides value="Switch.MS.Internal.DoNotApplyLayoutRoundingToMarginsAndBorderThickness=false"/></runtime>`、この設定は、アプリケーションが .NET Framework 4.6 で実行されている場合にのみ有効になります。  
+>  .NET 4.6 では、境界があるコントロールでのクリッピングのインスタンスを減らすために、レイアウトの丸め処理が行われました。 既定では、ターゲットフレームワークが4.6 以上 .NET Framework 場合、この機能は有効になっています。 以前のバージョンのフレームワークを対象とするアプリケーションでは、app.config ファイルに次の設定を追加することで新しい動作を選択できます。 `<runtime><AppContextSwitchOverrides value="Switch.MS.Internal.DoNotApplyLayoutRoundingToMarginsAndBorderThickness=false"/></runtime>` は、アプリケーションが .NET Framework 4.6 で実行されている場合にのみ有効になります。  
   
    
   
@@ -5437,7 +5437,7 @@
       </ReturnValue>
       <Docs>
         <summary>要素の幅を取得または設定します。</summary>
-        <value>要素の幅 ([!INCLUDE[TLA#tla_dipixel#plural](~/includes/tlasharptla-dipixelsharpplural-md.md)] 単位)。 既定値は <see cref="F:System.Double.NaN" /> です。 この値は 0.0 以上にする必要があります。 上限については、「解説」を参照してください。</value>
+        <value>要素の幅 ([!INCLUDE[TLA#tla_dipixel#plural](~/includes/tlasharptla-dipixelsharpplural-md.md)] 単位)。 既定値は <see cref="F:System.Double.NaN" />です。 この値は 0.0 以上にする必要があります。 上限については、「解説」を参照してください。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -5451,26 +5451,26 @@
  検証チェックに加えて、レイアウトシステムによって適用される <xref:System.Windows.FrameworkElement.Width%2A> に対して非決定的な上限が設定されています (これは、<xref:System.Single.MaxValue?displayProperty=nameWithType> よりも大きいが <xref:System.Double.MaxValue?displayProperty=nameWithType>よりも小さい非常に大きい数値です)。 この制約を超えた場合、要素はレンダリングされず、例外はスローされません。 ビジュアル表示の最大サイズよりも大幅に大きい値に <xref:System.Windows.FrameworkElement.Width%2A> を設定しないか、またはこの非決定的な上限を超えることができます。  
   
 <a name="xamlAttributeUsage_Width"></a>   
-## <a name="xaml-attribute-usage"></a>XAML 属性の使用方法  
+## <a name="xaml-attribute-usage"></a>XAML 属性の使用  
   
 ```xaml 
 <object Width="double"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object Width ="qualifiedDouble"/>  
 ```
 
-- または -
+または
 
 ```xaml
 <object Width ="Auto"/>  
 ```  
 
 <a name="xamlValues_Width"></a>   
-## <a name="xaml-values"></a>XAML 値  
+## <a name="xaml-values"></a>XAML の値  
  *double*  
  <xref:System.Double>  
   

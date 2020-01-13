@@ -1,5 +1,5 @@
 <Type Name="ITypeDescriptorFilterService" FullName="System.ComponentModel.Design.ITypeDescriptorFilterService">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="19f185dc54e30b22d5d6351c4fced703878dc52a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69348639" /></Metadata><TypeSignature Language="C#" Value="public interface ITypeDescriptorFilterService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a611ff3fda62b39068ea2bab340898c8b5e40de9" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75148352" /></Metadata><TypeSignature Language="C#" Value="public interface ITypeDescriptorFilterService" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITypeDescriptorFilterService" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.ITypeDescriptorFilterService" />
   <TypeSignature Language="VB.NET" Value="Public Interface ITypeDescriptorFilterService" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -29,9 +30,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インターフェイス<xref:System.ComponentModel.Design.ITypeDescriptorFilterService>は、デザイン時にコンポーネントのプロパティ、イベント、およびクラスレベルの属性を変更できるようにするインターフェイスを提供します。 この変更は、コンポーネントがを<xref:System.ComponentModel.TypeDescriptor>通じて提供する一連の記述子を通じて行われます。 型記述子は、 <xref:System.ComponentModel.Design.ITypeDescriptorFilterService>サービスに対してコンポーネントのサイトを照会し、存在する場合は、このサービスに対して収集されたすべてのメタデータを型記述子が渡します。 このサービスは、コンポーネントの既存の特性を追加、削除、および変更することでメタデータを変更できます。  
+ <xref:System.ComponentModel.Design.ITypeDescriptorFilterService> インターフェイスは、デザイン時にコンポーネントのプロパティ、イベント、およびクラスレベルの属性を変更できるようにするインターフェイスを提供します。 この変更は、コンポーネントが <xref:System.ComponentModel.TypeDescriptor>を通じて提供する一連の記述子を通じて行われます。 型記述子は、コンポーネントのサイトに対してクエリを実行し、<xref:System.ComponentModel.Design.ITypeDescriptorFilterService> サービスを検索します。存在する場合、型記述子は、このサービスに対して収集されたすべてのメタデータを渡します。 このサービスは、コンポーネントの既存の特性を追加、削除、および変更することでメタデータを変更できます。  
   
- たとえば、コンポーネントのプロパティは、メソッドの<xref:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterProperties%2A>呼び出しによって変更できます。 フィルターサービスは、型<xref:System.ComponentModel.PropertyDescriptor>のプロパティ名とそのプロパティ記述子を含むディクショナリを取得します。 変更は、次のロジックを使用して実装されます。  
+ たとえば、コンポーネントのプロパティは、<xref:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterProperties%2A> メソッドを呼び出すことによって変更できます。 フィルターサービスは、<xref:System.ComponentModel.PropertyDescriptor>型のプロパティ名とそのプロパティ記述子を含むディクショナリを取得します。 変更は、次のロジックを使用して実装されます。  
   
 |変更|実装|  
 |------------------|--------------------|  
@@ -39,18 +40,18 @@
 |加算|適切なエントリを辞書に追加します。|  
 |変更|既存のプロパティ記述子メソッドを呼び出すか、関連付けられているプロパティ記述子のエントリを置き換えるか、またはディクショナリ内のプロパティのキーと値のペア全体を置き換えます。|  
   
- このプロパティのセット<xref:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterProperties%2A>が固定されているかどうかは、の戻り値によって決まります。 このメソッドがを`true`返す場合<xref:System.ComponentModel.TypeDescriptor> 、このコンポーネントのは結果をキャッシュできます。 このキャッシュは、コンポーネントがガベージコレクション<xref:System.ComponentModel.TypeDescriptor.Refresh%2A>されるか、型記述子のメソッドが呼び出されるまで保持されます。  
+ このプロパティのセットが固定されているかどうかは、<xref:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterProperties%2A> の戻り値によって決まります。 このメソッドが `true`を返す場合、このコンポーネントの <xref:System.ComponentModel.TypeDescriptor> によって結果がキャッシュされます。 このキャッシュは、コンポーネントがガベージコレクションされるか、型記述子の <xref:System.ComponentModel.TypeDescriptor.Refresh%2A> メソッドが呼び出されるまで保持されます。  
   
    
   
 ## Examples  
- 次のコード例は、を使用して<xref:System.ComponentModel.Design.ITypeDescriptorFilterService> 、新しいまたは既存<xref:System.Windows.Forms.Button>のの属性コレクションをフィルター処理して、新しいデザイナーのデザイナー属性を追加するデザイナーを示しています。これを行うには、ボタンのデザイナーを読み込みまたは再読み込みします。  
+ 次のコード例では、<xref:System.ComponentModel.Design.ITypeDescriptorFilterService> を使用して、新しいまたは既存の <xref:System.Windows.Forms.Button> の attributes コレクションをフィルター処理し、ボタンのデザイナーを読み込んだり再度読み込んだりする前に、新しいデザイナーのデザイナー属性を追加します。  
   
  この例を使用するには、コードを Windows フォームプロジェクトに追加し、コンポーネントをクラスライブラリからツールボックスに読み込みます。  
   
- [チュートリアル: ツールボックスにカスタムコンポーネント](https://msdn.microsoft.com/library/fw694kde\(v=vs.110\).aspx)を自動的に設定します。  
+ 「[チュートリアル: ツールボックスにカスタムコンポーネントを自動的に設定する](https://msdn.microsoft.com/library/fw694kde\(v=vs.110\).aspx)」も参照してください。  
   
- いくつかのボタンをフォームに追加します。 `ButtonDesignerFilterComponent`フォームにを追加すると、コンポーネントトレイにが表示されます。 は、を実装`ButtonDesignerFilterService` <xref:System.ComponentModel.Design.ITypeDescriptorFilterService>するをデザインモードのサービスプロバイダーとして追加します。 `ButtonDesignerFilterComponent` フォーム上の<xref:System.Windows.Forms.Button>既存のオブジェクトまたは新しいオブジェクトは、に`ButtonDesignerFilterService`よって、既存のボタン`ColorCycleButtonDesigner`と新規のボタンのデザイナーがによって置き換えられた後、カラーサイクルを開始します。 ボタンは、マウスポインターを上に移動したときに色が切り替わるようになります。また、イベントの`MouseLeave`背景色と前景色を引き続き切り替えたりリセットしたりすることもできます。 新しい<xref:System.Windows.Forms.Button>オブジェクトは、 `ButtonDesignerFilterComponent`が破棄`ColorCycleButtonDesigner`され<xref:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterAttributes%2A> 、元<xref:System.ComponentModel.Design.ITypeDescriptorFilterService>の`ButtonDesignerFilterService`を置き換えられるまで、読み込まれたのメソッドを通じてに渡されます。 この例の`ColorCycleButtonDesigner` <xref:System.Windows.Forms.Button> `ColorCycleButton`クラスは、に関連付けられています。  
+ いくつかのボタンをフォームに追加します。 フォームに `ButtonDesignerFilterComponent` を追加すると、コンポーネントトレイに表示されます。 `ButtonDesignerFilterComponent` によって、<xref:System.ComponentModel.Design.ITypeDescriptorFilterService>を実装する `ButtonDesignerFilterService`がデザインモードのサービスプロバイダーとして追加されます。 フォーム上の既存または新規の <xref:System.Windows.Forms.Button> オブジェクトは、`ButtonDesignerFilterService` によって、既存および新規の各ボタンのデザイナーが `ColorCycleButtonDesigner`で置き換えられた後、カラーサイクルを開始します。 ボタンは、マウスポインターを上に移動したときに色が切り替わるようになります。また、`MouseLeave` イベントの背景色と前景色を引き続き切り替えたりリセットしたりすることもできます。 新しい <xref:System.Windows.Forms.Button> オブジェクトには、`ButtonDesignerFilterComponent` が破棄され、元の <xref:System.ComponentModel.Design.ITypeDescriptorFilterService>が置換されるまで、読み込まれた `ButtonDesignerFilterService` の <xref:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterAttributes%2A> メソッドによって `ColorCycleButtonDesigner` が与えられます。 この例の `ColorCycleButton` クラスは、`ColorCycleButtonDesigner`に関連付けられている <xref:System.Windows.Forms.Button> です。  
   
  [!code-cpp[ITypeDescriptorFilterService#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ITypeDescriptorFilterService/CPP/source.cpp#1)]
  [!code-csharp[ITypeDescriptorFilterService#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ITypeDescriptorFilterService/CS/source.cs#1)]
@@ -58,7 +59,7 @@
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para><see cref="T:System.ComponentModel.TypeDescriptor" />によって公開されるメンバー記述子をフィルター処理するには、コンポーネントにこのインターフェイスを実装<see cref="M:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterProperties(System.ComponentModel.IComponent,System.Collections.IDictionary)" />し、属性、イベント、またはプロパティをフィルター処理するために、このクラスの<see cref="M:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterAttributes(System.ComponentModel.IComponent,System.Collections.IDictionary)" />、 <see cref="M:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterEvents(System.ComponentModel.IComponent,System.Collections.IDictionary)" />、またはの各メソッドをオーバーライドします。</para></block>
+    <block subset="none" type="overrides"><para><see cref="T:System.ComponentModel.TypeDescriptor" />によって公開されるメンバー記述子をフィルター処理するには、コンポーネントにこのインターフェイスを実装し、属性、イベント、またはプロパティをフィルター処理するために、このクラスの <see cref="M:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterAttributes(System.ComponentModel.IComponent,System.Collections.IDictionary)" />、<see cref="M:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterEvents(System.ComponentModel.IComponent,System.Collections.IDictionary)" />、または <see cref="M:System.ComponentModel.Design.ITypeDescriptorFilterService.FilterProperties(System.ComponentModel.IComponent,System.Collections.IDictionary)" /> メソッドをオーバーライドします。</para></block>
     <altmember cref="T:System.ComponentModel.TypeDescriptor" />
     <altmember cref="T:System.ComponentModel.EventDescriptor" />
     <altmember cref="T:System.ComponentModel.PropertyDescriptor" />
@@ -90,6 +91,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -107,11 +109,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、ユーザーがコンポーネントの一連の属性を要求したときに呼び出されます。 属性は、キーと<xref:System.Attribute.TypeId%2A>して属性を持ち、値として実際の属性を使用してディクショナリに追加されます。 このサービスの実装者は、辞書内の既存の属性エントリを追加、削除、または変更できます。  
+ このメソッドは、ユーザーがコンポーネントの一連の属性を要求したときに呼び出されます。 属性は、キーとして属性 <xref:System.Attribute.TypeId%2A>、値として実際の属性と共にディクショナリに追加されます。 このサービスの実装者は、辞書内の既存の属性エントリを追加、削除、または変更できます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>型<see langword="false" />記述子フィルターサービスに対して繰り返しクエリを実行すると、パフォーマンスが低下する可能性があるため、必要な場合にのみを返します。</para></block>
+        <block subset="none" type="overrides"><para>型記述子フィルターサービスに対してクエリを繰り返し実行すると、パフォーマンスが低下する可能性があるため、必要な場合にのみ <see langword="false" /> を返します。</para></block>
         <altmember cref="T:System.Attribute" />
         <altmember cref="P:System.Attribute.TypeId" />
         <altmember cref="T:System.Collections.IDictionary" />
@@ -141,6 +143,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -158,11 +161,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、ユーザーがコンポーネントの一連のイベントを要求したときに呼び出されます。 イベントは、キーとしてのイベント名と、値として対応<xref:System.ComponentModel.EventDescriptor>するオブジェクトと共にディクショナリに追加されます。 このサービスの実装者は、ディクショナリ内のイベントエントリを追加、削除、または変更できます。  
+ このメソッドは、ユーザーがコンポーネントの一連のイベントを要求したときに呼び出されます。 イベントは、キーとしてのイベント名と、値として対応する <xref:System.ComponentModel.EventDescriptor> オブジェクトと共にディクショナリに追加されます。 このサービスの実装者は、ディクショナリ内のイベントエントリを追加、削除、または変更できます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>型<see langword="false" />記述子フィルターサービスに対して繰り返しクエリを実行すると、パフォーマンスが低下する可能性があるため、必要な場合にのみを返します。</para></block>
+        <block subset="none" type="overrides"><para>型記述子フィルターサービスに対してクエリを繰り返し実行すると、パフォーマンスが低下する可能性があるため、必要な場合にのみ <see langword="false" /> を返します。</para></block>
         <altmember cref="T:System.ComponentModel.EventDescriptor" />
         <altmember cref="T:System.Collections.IDictionary" />
       </Docs>
@@ -191,6 +194,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -208,11 +212,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、ユーザーがコンポーネントの一連のプロパティを要求したときに呼び出されます。 プロパティは、キーとしてプロパティ名を持ち、対応する<xref:System.ComponentModel.PropertyDescriptor>オブジェクトが値としてディクショナリに追加されます。 このサービスの実装者は、ディクショナリ内のプロパティエントリを追加、削除、または変更できます。  
+ このメソッドは、ユーザーがコンポーネントの一連のプロパティを要求したときに呼び出されます。 プロパティは、プロパティ名をキーとして持ち、対応する <xref:System.ComponentModel.PropertyDescriptor> オブジェクトを値としてディクショナリに追加されます。 このサービスの実装者は、ディクショナリ内のプロパティエントリを追加、削除、または変更できます。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>型<see langword="false" />記述子フィルターサービスに対して繰り返しクエリを実行すると、パフォーマンスが低下する可能性があるため、必要な場合にのみを返します。</para></block>
+        <block subset="none" type="overrides"><para>型記述子フィルターサービスに対してクエリを繰り返し実行すると、パフォーマンスが低下する可能性があるため、必要な場合にのみ <see langword="false" /> を返します。</para></block>
         <altmember cref="T:System.ComponentModel.PropertyDescriptor" />
         <altmember cref="T:System.Collections.IDictionary" />
       </Docs>
