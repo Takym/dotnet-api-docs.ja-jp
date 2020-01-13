@@ -1,5 +1,5 @@
 <Type Name="SEHException" FullName="System.Runtime.InteropServices.SEHException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ea41dc93c2e01bf42d43564efb1e9ca2e69d7b01" /><Meta Name="ms.sourcegitcommit" Value="29e16ec8b901bba5af52b835643ae966c67e2d5a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/15/2019" /><Meta Name="ms.locfileid" Value="72322143" /></Metadata><TypeSignature Language="C#" Value="public class SEHException : System.Runtime.InteropServices.ExternalException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4e0ca7072945b4f360abde8e5347e55b341c8b52" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75165161" /></Metadata><TypeSignature Language="C#" Value="public class SEHException : System.Runtime.InteropServices.ExternalException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit SEHException extends System.Runtime.InteropServices.ExternalException" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.SEHException" />
   <TypeSignature Language="VB.NET" Value="Public Class SEHException&#xA;Inherits ExternalException" />
@@ -14,6 +14,7 @@
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -46,7 +47,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 クラスは、アンマネージコードからスローされたが、別の .NET Framework 例外に割り当てられていない SEH エラーを処理します。 @No__t-0 クラスは、`HRESULT` `E_FAIL` (0x80004005) にも対応しています。  
+ <xref:System.Runtime.InteropServices.SEHException> クラスは、アンマネージコードからスローされ、別の .NET Framework 例外に割り当てられていない SEH エラーを処理します。 <xref:System.Runtime.InteropServices.SEHException> クラスは、`HRESULT` `E_FAIL` (0x80004005) にも対応しています。  
   
  .NET Framework は、多くの場合、マネージドに相当する SEH 例外を検出します。 一般的なアンマネージ SEH 例外が2つあります。  
   
@@ -54,17 +55,17 @@
   
 -   `STATUS_ACCESS_VIOLATION` の例外は、次のように自動的にマップされます。  
   
-    -   @No__t-0 が適用されている場合は、すべてのアクセス違反が <xref:System.NullReferenceException> クラスにマップされます。  
+    -   `legacyNullReferencePolicy` が適用されている場合は、すべてのアクセス違反が <xref:System.NullReferenceException> クラスにマップされます。  
   
     -   読み取り/書き込みが試行されたアドレスが JIT コンパイルコードに含まれていない場合、例外は <xref:System.AccessViolationException> クラスにマップされます。  
   
     -   読み取り/書き込みが試行されたアドレスが JIT でコンパイルされたコード内にあり、それが OS の Null パーティション領域にない場合、例外は <xref:System.AccessViolationException> クラスにマップされます。  
   
-    -   @No__t が0でなく、読み取り/書き込みが試行されたアドレスが JIT コンパイルコード内であり、OS の Null パーティション領域にある場合は、例外が <xref:System.NullReferenceException> クラスにマップされます。  
+    -   `legacyNullReferencePolicy`がなく、読み取り/書き込みが試行されたアドレスが JIT コンパイルコード内であり、OS の Null パーティション領域にある場合は、例外が <xref:System.NullReferenceException> クラスにマップされます。  
   
- 特定の例外に自動的にマップされない SEH 例外は、既定では @no__t 0 クラスにマップされます。  
+ 特定の例外に自動的にマップされない SEH 例外は、既定では <xref:System.Runtime.InteropServices.SEHException> クラスにマップされます。  
   
- @No__t-0 クラスでは、アンマネージC++例外デストラクターが呼び出されないことに注意してください。 アンマネージC++例外のデストラクターが呼び出されるようにするには、`catch` ブロックで次の構文を使用します。  
+ <xref:System.Runtime.InteropServices.SEHException> クラスでは、アンマネージC++例外デストラクターが呼び出されないことに注意してください。 アンマネージC++例外デストラクターが呼び出されるようにするには、`catch` ブロックで次の構文を使用します。  
   
 ```vb  
 Catch   
@@ -124,6 +125,7 @@ catch(…)
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -146,7 +148,7 @@ catch(…)
 ## Remarks  
  <xref:System.Runtime.InteropServices.SEHException> クラスは、<xref:System.Runtime.InteropServices.ExternalException> クラスを継承します。 このコンストラクターは、<xref:System.Exception> オブジェクトのプロパティを次の表の値に設定します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
 |<xref:System.Exception.InnerException%2A>|null 参照 (Visual Basic の場合は `Nothing`)。|  
 |<xref:System.Exception.Message%2A>|ローカライズされたエラーメッセージ文字列。|  
@@ -172,6 +174,7 @@ catch(…)
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -195,12 +198,12 @@ catch(…)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.InteropServices.SEHException> は <xref:System.Runtime.InteropServices.ExternalException>を継承します。 次の表に示すように、このコンストラクターは @no__t 0 オブジェクトのプロパティを設定します。  
+ <xref:System.Runtime.InteropServices.SEHException> は <xref:System.Runtime.InteropServices.ExternalException> を継承します。 次の表に示すように、このコンストラクターは <xref:System.Exception> オブジェクトのプロパティを設定します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
 |<xref:System.Exception.InnerException%2A>|null 参照 (Visual Basic の場合は `Nothing`)。|  
-|<xref:System.Exception.Message%2A>|`message`。|  
+|<xref:System.Exception.Message%2A>|`message` で初期化します。|  
   
  ]]></format>
         </remarks>
@@ -230,6 +233,7 @@ catch(…)
         <AssemblyName>System.Runtime.InteropServices</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -237,24 +241,24 @@ catch(…)
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
-        <param name="info">シリアル化されたオブジェクト データを保持するオブジェクト。</param>
-        <param name="context">転送元または転送先に関するコンテキスト情報。</param>
+        <param name="info">シリアル化されたオブジェクトのデータを保持するオブジェクト。</param>
+        <param name="context">転送元または転送先に関するコンテキスト情報です。</param>
         <summary>シリアル化データから、<see cref="T:System.Runtime.InteropServices.SEHException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、逆シリアル化中に、ストリームで送信された例外オブジェクトを再構築するために呼び出されます。 詳細については、「<xref:System.Runtime.Serialization>」を参照してください。  
+ このコンストラクターは、シリアル化解除の際に呼び出されて、ストリームで送信された例外オブジェクトを再構成します。 詳細については、「<xref:System.Runtime.Serialization>」を参照してください。  
   
- <xref:System.Runtime.InteropServices.SEHException> は <xref:System.Runtime.InteropServices.ExternalException>を継承します。  
+ <xref:System.Runtime.InteropServices.SEHException> は <xref:System.Runtime.InteropServices.ExternalException> を継承します。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -274,6 +278,7 @@ catch(…)
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -293,7 +298,7 @@ catch(…)
       </Parameters>
       <Docs>
         <param name="message">例外の原因を説明するエラー メッセージ。</param>
-        <param name="inner">現在の例外の原因となった例外。 <paramref name="inner" /> パラメーターが <see langword="null" /> でない場合は、内部例外を処理する <see langword="catch" /> ブロックで現在の例外が発生します。</param>
+        <param name="inner">現在の例外の原因になった例外。 <paramref name="inner" /> パラメーターが <see langword="null" /> でない場合は、内部例外を処理する <see langword="catch" /> ブロックで現在の例外が発生します。</param>
         <summary>指定したエラー メッセージおよびこの例外の原因となった内部例外への参照を使用して、<see cref="T:System.Runtime.InteropServices.SEHException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -303,10 +308,10 @@ catch(…)
   
  <xref:System.Runtime.InteropServices.SEHException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
-|<xref:System.Exception.InnerException%2A>|内部例外の参照。|  
-|<xref:System.Exception.Message%2A>|エラー メッセージ文字列。|  
+|<xref:System.Exception.InnerException%2A>|内部例外の参照です。|  
+|<xref:System.Exception.Message%2A>|エラー メッセージ文字列です。|  
   
  ]]></format>
         </remarks>
@@ -331,6 +336,7 @@ catch(…)
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -355,7 +361,7 @@ catch(…)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 が `true` を返した場合は、フィルター処理された例外ハンドラーが例外の原因となった問題を修正し、例外がスローされた時点からコードを続行できます。  
+ <xref:System.Runtime.InteropServices.SEHException.CanResume%2A> が `true`を返した場合は、フィルター処理された例外ハンドラーが例外の原因となった問題を修正し、例外がスローされた時点からコードを続行できます。  
   
  ]]></format>
         </remarks>
