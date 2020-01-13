@@ -1,5 +1,5 @@
 <Type Name="LocalDataStoreSlot" FullName="System.LocalDataStoreSlot">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e641c106b3852dea1c5ad702247daf66765000ef" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405715" /></Metadata><TypeSignature Language="C#" Value="public sealed class LocalDataStoreSlot" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="8826d82c281ebf034116cd6e1539c835a1acd6f1" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75172662" /></Metadata><TypeSignature Language="C#" Value="public sealed class LocalDataStoreSlot" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit LocalDataStoreSlot extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.LocalDataStoreSlot" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class LocalDataStoreSlot" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.Threading.Thread</AssemblyName>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -39,19 +40,19 @@
 ## Remarks  
  .NET Framework には、スレッドローカルストレージ (TLS) を使用するための2つのメカニズム (スレッド相対静的フィールドとデータスロット) が用意されています。  
   
--   スレッド相対静的フィールドは`static` 、 <xref:System.ThreadStaticAttribute>属性で`Shared`マークされたフィールド (Visual Basic 内のフィールド) です。 データスロットより優れたパフォーマンスを提供し、コンパイル時の型チェックを有効にします。  
+-   スレッド相対静的フィールドは、<xref:System.ThreadStaticAttribute> 属性でマークされた `static` フィールド (Visual Basic の`Shared` フィールド) です。 データスロットより優れたパフォーマンスを提供し、コンパイル時の型チェックを有効にします。  
   
--   データスロットは、スレッド相対静的フィールドよりも低速で使いにくい。 また、データは型<xref:System.Object>として格納されるため、使用する前に正しい型にキャストする必要があります。 ただし、コンパイル時に静的フィールドを割り当てるのに十分な情報がない場合は、データスロットを使用できます。  
+-   データスロットは、スレッド相対静的フィールドよりも低速で使いにくい。 また、データは <xref:System.Object>型として格納されるため、使用する前に正しい型にキャストする必要があります。 ただし、コンパイル時に静的フィールドを割り当てるのに十分な情報がない場合は、データスロットを使用できます。  
   
- TLS の使用方法の詳細につい[ては、「Thread Local Storage (スレッドローカルストレージ)」を参照してください。スレッド相対静的フィールドとデータスロット](~/docs/standard/threading/thread-local-storage-thread-relative-static-fields-and-data-slots.md)。  
+ TLS の使用の詳細については、「[スレッドローカルストレージ: スレッド相対静的フィールドとデータスロット](~/docs/standard/threading/thread-local-storage-thread-relative-static-fields-and-data-slots.md)」を参照してください。  
   
- 同様に、.NET Framework にはコンテキストローカルストレージを使用するための2つのメカニズムがあります。コンテキスト相対静的フィールドとデータスロットです。 コンテキスト相対静的フィールドは、 <xref:System.ContextStaticAttribute>属性でマークされた静的フィールドです。 これら2つのメカニズムを使用する間のトレードオフは、スレッド相対静的フィールドとデータスロットを使用する場合のトレードオフに似ています。  
+ 同様に、.NET Framework にはコンテキストローカルストレージを使用するための2つのメカニズムがあります。コンテキスト相対静的フィールドとデータスロットです。 コンテキスト相対静的フィールドは、<xref:System.ContextStaticAttribute> 属性でマークされた静的フィールドです。 これら2つのメカニズムを使用する間のトレードオフは、スレッド相対静的フィールドとデータスロットを使用する場合のトレードオフに似ています。  
   
- この<xref:System.LocalDataStoreSlot>構造体は、スレッドとコンテキストがスレッド固有のデータとコンテキスト固有のデータを格納するために使用できるローカルストアのメモリ機構として機能します。 共通言語ランタイムは、作成時に各プロセスに複数スロットのデータストア配列を割り当てます。 スレッドまたはコンテキストは、データストアにデータスロットを割り当てたり、スロットにデータ値を格納および取得したり、スレッドまたはコンテキストオブジェクトの有効期限が切れた後で再利用できるようにデータスロットを解放したりするために、さまざまな関数を呼び出します。  
+ <xref:System.LocalDataStoreSlot> 構造体は、スレッドとコンテキストがスレッド固有のデータとコンテキスト固有のデータを格納するために使用できるローカルストアのメモリ機構として機能します。 共通言語ランタイムは、作成時に各プロセスに複数スロットのデータストア配列を割り当てます。 スレッドまたはコンテキストは、データストアにデータスロットを割り当てたり、スロットにデータ値を格納および取得したり、スレッドまたはコンテキストオブジェクトの有効期限が切れた後で再利用できるようにデータスロットを解放したりするために、さまざまな関数を呼び出します。  
   
  データスロットはスレッドまたはコンテキストごとに一意です。これらの値は、スレッドまたはコンテキストオブジェクト間で共有されません。 データスロットは、名前またはインデックス番号によって割り当てることができます。  
   
- ローカルデータの格納の詳細について<xref:System.Threading.Thread>は<xref:System.Runtime.Remoting.Contexts.Context>、「」または「」を参照してください。 <xref:System.Threading.Thread.AllocateNamedDataSlot%2A?displayProperty=nameWithType>クラスは<xref:System.Runtime.Remoting.Contexts.Context.AllocateNamedDataSlot%2A?displayProperty=nameWithType>、 、、<xref:System.Runtime.Remoting.Contexts.Context.GetData%2A?displayProperty=nameWithType>、などのメソッドで使用されます。独自のメソッドを使用する必要はありません。 <xref:System.Threading.Thread.GetData%2A?displayProperty=nameWithType> <xref:System.LocalDataStoreSlot>  
+ ローカルデータの格納の詳細については、「<xref:System.Threading.Thread>」または「<xref:System.Runtime.Remoting.Contexts.Context>」を参照してください。 <xref:System.LocalDataStoreSlot> クラスは、<xref:System.Threading.Thread.AllocateNamedDataSlot%2A?displayProperty=nameWithType>、<xref:System.Runtime.Remoting.Contexts.Context.AllocateNamedDataSlot%2A?displayProperty=nameWithType>、<xref:System.Threading.Thread.GetData%2A?displayProperty=nameWithType>、<xref:System.Runtime.Remoting.Contexts.Context.GetData%2A?displayProperty=nameWithType>などのメソッドで使用されます。独自のメソッドを使用する必要はありません。  
   
  ]]></format>
     </remarks>
@@ -78,6 +79,7 @@
         <AssemblyName>System.Threading.Thread</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -92,7 +94,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在のオブジェクトを<xref:System.LocalDataStoreSlot.Finalize%2A>完了する準備が整うと、ガベージコレクターはを呼び出します。  
+ 現在のオブジェクトを完了する準備が整うと、ガベージコレクターは <xref:System.LocalDataStoreSlot.Finalize%2A> を呼び出します。  
   
  ]]></format>
         </remarks>

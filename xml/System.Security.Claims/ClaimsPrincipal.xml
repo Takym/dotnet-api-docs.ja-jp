@@ -1,5 +1,5 @@
 <Type Name="ClaimsPrincipal" FullName="System.Security.Claims.ClaimsPrincipal">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5297973974ddf63280b8734ac32d87b4ad85e18d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69263932" /></Metadata><TypeSignature Language="C#" Value="public class ClaimsPrincipal : System.Security.Principal.IPrincipal" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="294d5fef82f97da2cf865d2ea7165ae9154f62a3" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75163978" /></Metadata><TypeSignature Language="C#" Value="public class ClaimsPrincipal : System.Security.Principal.IPrincipal" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit ClaimsPrincipal extends System.Object implements class System.Security.Principal.IPrincipal" />
   <TypeSignature Language="DocId" Value="T:System.Security.Claims.ClaimsPrincipal" />
   <TypeSignature Language="VB.NET" Value="Public Class ClaimsPrincipal&#xA;Implements IPrincipal" />
@@ -11,6 +11,7 @@
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -39,38 +40,38 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>複数のクレームベースの ID をサポートする <see cref="T:System.Security.Principal.IPrincipal" /> の実装。</summary>
+    <summary>複数の要求ベース ID をサポートする <see cref="T:System.Security.Principal.IPrincipal" /> 実装。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- .NET Framework 4.5 以降では、Windows Identity Foundation (WIF) とクレームベースの id が .NET Framework に完全に統合されています。 これは、.NET Framework 内のプリンシパルを表す多くのクラスが、単<xref:System.Security.Claims.ClaimsPrincipal>にインターフェイスを<xref:System.Security.Principal.IPrincipal>実装するのではなく、から派生するようになったことを意味します。 では、 <xref:System.Security.Principal.IPrincipal>インターフェイスを実装する<xref:System.Security.Claims.ClaimsPrincipal>だけでなく、クレームを操作するのに役立つプロパティとメソッドを公開しています。  
+ .NET Framework 4.5 以降では、Windows Identity Foundation (WIF) とクレームベースの id が .NET Framework に完全に統合されています。 これは、.NET Framework 内のプリンシパルを表す多くのクラスが、単に <xref:System.Security.Principal.IPrincipal> インターフェイスを実装するのではなく、<xref:System.Security.Claims.ClaimsPrincipal> から派生するようになったことを意味します。 <xref:System.Security.Principal.IPrincipal> インターフェイスの実装に加えて、<xref:System.Security.Claims.ClaimsPrincipal> は、クレームを操作するのに役立つプロパティとメソッドを公開します。  
   
- <xref:System.Security.Claims.ClaimsPrincipal>id のコレクションを公開<xref:System.Security.Claims.ClaimsIdentity>します。各 id はです。 一般的なケースでは、 <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>プロパティを介してアクセスされるこのコレクションには、要素が1つだけ含まれます。  
+ <xref:System.Security.Claims.ClaimsPrincipal> は、それぞれが <xref:System.Security.Claims.ClaimsIdentity>である id のコレクションを公開します。 一般的なケースでは、このコレクションには、<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> プロパティを使用してアクセスすると、1つの要素のみが含まれます。  
   
- .Net 4.5 で<xref:System.Security.Claims.ClaimsPrincipal>は、ほとんどのプリンシパルクラスの派生元であるプリンシパルとしてが導入されているため、id を処理する方法で何も変更する必要がありません。 ただし、より多くの可能性があり、より詳細なアクセス制御を実行する可能性が高くなります。 次に例を示します。  
+ ほとんどのプリンシパルクラスの派生元であるプリンシパルとして .NET 4.5 の <xref:System.Security.Claims.ClaimsPrincipal> を導入することで、id の処理方法を変更する必要がなくなります。 ただし、より多くの可能性があり、より詳細なアクセス制御を実行する可能性が高くなります。 例 :  
   
 -   アプリケーションコード自体は、現在のプリンシパルに含まれるクレームを直接操作して、認証、承認、およびパーソナル化の追加タスクを実行できます。  
   
--   リソースの前に要求処理パイプラインを使用できます。これにより、実行がコードに到達する前であっても認証要求と承認ポリシーを処理できます。 たとえば、 <xref:System.Security.Claims.ClaimsAuthenticationManager>クラスから派生したクラスのインスタンスであるカスタムクレーム認証マネージャーを使用して、web ベースのアプリケーションまたはサービスを構成できます。 このように構成されている場合、 <xref:System.Security.Claims.ClaimsAuthenticationManager.Authenticate%2A>要求処理パイプラインは、要求認証マネージャーで<xref:System.Security.Claims.ClaimsPrincipal>メソッドを呼び出して、受信要求のコンテキストを表すを渡します。 要求認証マネージャーは、入力方向の要求の値に基づいて認証を実行できます。 また、要求をフィルター処理、変換、または入力方向の要求セットに追加することもできます。 たとえば、ローカルユーザープロファイルなど、ローカルデータソースから作成された新しい要求で入力方向の要求セットを強化するために使用できます。  
+-   リソースの前に要求処理パイプラインを使用できます。これにより、実行がコードに到達する前であっても認証要求と承認ポリシーを処理できます。 たとえば、<xref:System.Security.Claims.ClaimsAuthenticationManager> クラスから派生したクラスのインスタンスであるカスタムクレーム認証マネージャーを使用して、web ベースのアプリケーションまたはサービスを構成できます。 このように構成されている場合、要求処理パイプラインは、要求認証マネージャーの <xref:System.Security.Claims.ClaimsAuthenticationManager.Authenticate%2A> メソッドを呼び出して、受信要求のコンテキストを表す <xref:System.Security.Claims.ClaimsPrincipal> を渡します。 要求認証マネージャーは、入力方向の要求の値に基づいて認証を実行できます。 また、要求をフィルター処理、変換、または入力方向の要求セットに追加することもできます。 たとえば、ローカルユーザープロファイルなど、ローカルデータソースから作成された新しい要求で入力方向の要求セットを強化するために使用できます。  
   
--   カスタムクレーム承認マネージャー ( <xref:System.Security.Claims.ClaimsAuthorizationManager>クラスから派生したクラスのインスタンス) を使用して、web ベースのアプリケーションを構成できます。 このように構成されている場合、要求<xref:System.Security.Claims.ClaimsPrincipal>処理パイプライン<xref:System.Security.Claims.AuthorizationContext>は、受信<xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A>をでパッケージ化し、要求承認マネージャーでメソッドを呼び出します。 要求承認マネージャーは、入力方向の要求に基づいて承認を強制できます。  
+-   <xref:System.Security.Claims.ClaimsAuthorizationManager> クラスから派生するクラスのインスタンスであるカスタムクレーム承認マネージャーを使用して、web ベースのアプリケーションを構成できます。 このように構成されている場合、要求処理パイプラインは、受信 <xref:System.Security.Claims.ClaimsPrincipal> を <xref:System.Security.Claims.AuthorizationContext> にパッケージ化し、要求承認マネージャーで <xref:System.Security.Claims.ClaimsAuthorizationManager.CheckAccess%2A> メソッドを呼び出します。 要求承認マネージャーは、入力方向の要求に基づいて承認を強制できます。  
   
--   インライン要求ベースのコードアクセスチェックを実行するには、カスタムクレーム承認マネージャーを使用してアプリケーションを構成<xref:System.IdentityModel.Services.ClaimsPrincipalPermission>し、クラスを使用して強制<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute>アクセスチェックを実行するか、またはを使用して宣言型アクセスを実行します。チェックイン. 要求ベースのコードアクセスチェックは、処理パイプラインの外部でインラインで実行されます。そのため、要求承認マネージャーが構成されていれば、すべてのアプリケーションで使用できます。  
+-   インライン要求ベースのコードアクセスチェックを実行するには、カスタムクレーム承認マネージャーを使用してアプリケーションを構成し、<xref:System.IdentityModel.Services.ClaimsPrincipalPermission> クラスを使用して命令型アクセスチェックを実行するか、<xref:System.IdentityModel.Services.ClaimsPrincipalPermissionAttribute> を使用して宣言型アクセスチェックを実行します。 要求ベースのコードアクセスチェックは、処理パイプラインの外部でインラインで実行されます。そのため、要求承認マネージャーが構成されていれば、すべてのアプリケーションで使用できます。  
   
- RP アプリケーション (また<xref:System.Security.Claims.ClaimsPrincipal>はスレッドが実行されているプリンシパル) 内の要求に関連付けられているプリンシパルのインスタンスを取得する<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType>には<xref:System.Security.Claims.ClaimsPrincipal>、プロパティをにキャストします。 <xref:System.Security.Claims.ClaimsPrincipal>オブジェクトに関連付けられている要求は<xref:System.Security.Claims.ClaimsPrincipal.Claims%2A> 、そのプロパティを通じて取得できます。 プロパティ<xref:System.Security.Claims.ClaimsPrincipal.Claims%2A>は、プリンシパルに関連付けられている id に含まれるすべてのクレームを返します。 <xref:System.Security.Claims.ClaimsPrincipal>に複数<xref:System.Security.Claims.ClaimsIdentity>のインスタンスが含まれている一般的なケースでは、 <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>プロパティを使用するか、 <xref:System.Security.Claims.ClaimsPrincipal.Identity%2A>プロパティを使用してプライマリ id にアクセスすることができます。 <xref:System.Security.Claims.ClaimsPrincipal>には、これらの要求を検索して、統合言語クエリ (LINQ) を完全にサポートするための方法がいくつか用意されています。 Id <xref:System.Security.Claims.ClaimsPrincipal.AddIdentities%2A>は、メソッドまたは<xref:System.Security.Claims.ClaimsPrincipal.AddIdentity%2A>メソッドを使用してプリンシパルに追加できます。  
+ RP アプリケーションの要求に関連付けられているプリンシパルの <xref:System.Security.Claims.ClaimsPrincipal> インスタンス (または、スレッドが実行されているプリンシパル) を取得するには、<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType> プロパティを <xref:System.Security.Claims.ClaimsPrincipal>にキャストします。 <xref:System.Security.Claims.ClaimsPrincipal> オブジェクトに関連付けられている要求は、<xref:System.Security.Claims.ClaimsPrincipal.Claims%2A> プロパティを通じて取得できます。 <xref:System.Security.Claims.ClaimsPrincipal.Claims%2A> プロパティは、プリンシパルに関連付けられている id に含まれるすべてのクレームを返します。 <xref:System.Security.Claims.ClaimsPrincipal> に複数の <xref:System.Security.Claims.ClaimsIdentity> インスタンスが含まれている一般的なケースでは、<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> プロパティを使用するか、<xref:System.Security.Claims.ClaimsPrincipal.Identity%2A> プロパティを使用してプライマリ id にアクセスすることができます。 <xref:System.Security.Claims.ClaimsPrincipal> には、これらの要求を検索して、統合言語クエリ (LINQ) を完全にサポートするための方法がいくつか用意されています。 <xref:System.Security.Claims.ClaimsPrincipal.AddIdentities%2A> または <xref:System.Security.Claims.ClaimsPrincipal.AddIdentity%2A> メソッドを使用して、プリンシパルに id を追加できます。  
   
 > [!NOTE]
->  に<xref:System.Security.Claims.ClaimsPrincipal>id を追加するには、呼び出し元に完全信頼が必要です。  
+>  <xref:System.Security.Claims.ClaimsPrincipal>に id を追加するには、呼び出し元に完全信頼が必要です。  
   
- 既定では、WIF <xref:System.Security.Principal.WindowsIdentity>は、 <xref:System.Security.Claims.ClaimsPrincipal.Identity%2A>プロパティを通じて返すプライマリ id を選択するときに、オブジェクトの優先順位を設定します。 この動作を変更するには、 <xref:System.Security.Claims.ClaimsPrincipal.PrimaryIdentitySelector%2A>プロパティを通じてデリゲートを指定して、選択を実行します。 プロパティ<xref:System.Security.Claims.ClaimsPrincipal.ClaimsPrincipalSelector%2A>は、 <xref:System.Security.Claims.ClaimsPrincipal.Current%2A>プロパティと同様の機能を提供します。  
+ 既定では、WIF は <xref:System.Security.Claims.ClaimsPrincipal.Identity%2A> プロパティを通じて返すプライマリ id を選択するときに、<xref:System.Security.Principal.WindowsIdentity> オブジェクトの優先順位を設定します。 この動作を変更するには、<xref:System.Security.Claims.ClaimsPrincipal.PrimaryIdentitySelector%2A> プロパティを使用してデリゲートを指定し、選択を実行します。 <xref:System.Security.Claims.ClaimsPrincipal.ClaimsPrincipalSelector%2A> プロパティは、<xref:System.Security.Claims.ClaimsPrincipal.Current%2A> プロパティと同様の機能を提供します。  
   
- 要求ベースのモデルでは、指定されたロールにプリンシパルがあるかどうかは、基になる id によって提示される要求によって決まります。 この<xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A>メソッドは、基本的にプリンシパルに関連付けられている各 id を調べて、指定されたロール値を持つクレームを所有しているかどうかを判断します。 ロールチェック中に検査する要求を決定<xref:System.Security.Claims.Claim.Type%2A?displayProperty=nameWithType>するために使用されるクレームの種類 (プロパティによって表されます) は、 <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A?displayProperty=nameWithType>そのプロパティを通じて id に対して指定されます。 このため、ロールチェック中に検査される要求は、プリンシパルに関連付けられている異なる id に対して異なる種類にすることができます。  
+ 要求ベースのモデルでは、指定されたロールにプリンシパルがあるかどうかは、基になる id によって提示される要求によって決まります。 <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A> メソッドは、基本的にプリンシパルに関連付けられている各 id を調べて、指定されたロール値を持つクレームを所有しているかどうかを判断します。 ロールチェック中に検査する要求を決定するために使用されるクレームの種類 (<xref:System.Security.Claims.Claim.Type%2A?displayProperty=nameWithType> プロパティによって表されます) は、<xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A?displayProperty=nameWithType> プロパティを通じて id に対して指定されます。 このため、ロールチェック中に検査される要求は、プリンシパルに関連付けられている異なる id に対して異なる種類にすることができます。  
   
    
   
 ## Examples  
- 次の例では、HTTP 要求でユーザーによって提示されたクレームを抽出し、HTTP 応答に書き込みます。 現在のユーザーは、 <xref:System.Web.HttpContext>から<xref:System.Security.Claims.ClaimsPrincipal>として読み取られます。 その後、クレームが読み取られ、応答に書き込まれます。  
+ 次の例では、HTTP 要求でユーザーによって提示されたクレームを抽出し、HTTP 応答に書き込みます。 現在のユーザーは、<xref:System.Web.HttpContext> から <xref:System.Security.Claims.ClaimsPrincipal>として読み取られます。 その後、クレームが読み取られ、応答に書き込まれます。  
   
 ```csharp
 ClaimsPrincipal principal = HttpContext.Current.User as ClaimsPrincipal;  
@@ -114,6 +115,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -132,7 +134,7 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- 新しいインスタンスに関連付けられている id がありません。 <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> (コレクションが空です)。
+ 新しいインスタンスに関連付けられている id がありません。 (<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクションが空です)。
 
           ]]></format>
         </remarks>
@@ -152,6 +154,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -173,7 +176,7 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>コレクションは、指定された id で初期化されます。
+ <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクションは、指定された id で初期化されます。
 
           ]]></format>
         </remarks>
@@ -194,6 +197,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -206,20 +210,20 @@ if (null != principal)
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="reader" Type="System.IO.BinaryReader" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="reader" Type="System.IO.BinaryReader" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="reader"><see cref="T:System.Security.Claims.ClaimsPrincipal" /> を示す <see cref="T:System.IO.BinaryReader" />。</param>
-        <summary><see cref="T:System.IO.BinaryReader" /> を指定して、<see cref="T:System.Security.Claims.ClaimsPrincipal" /> のインスタンスを初期化します。</summary>
+        <param name="reader"><see cref="T:System.IO.BinaryReader" /> を示す <see cref="T:System.Security.Claims.ClaimsPrincipal" />。</param>
+        <summary><see cref="T:System.Security.Claims.ClaimsPrincipal" /> を指定して、<see cref="T:System.IO.BinaryReader" /> のインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- 通常、は、から<xref:System.Security.Claims.ClaimsIdentity.WriteTo%2A>のバイトを使用して構築<xref:System.IO.BinaryWriter>され、と同じ方法で初期化されます。<xref:System.IO.BinaryReader>
+ 通常、<xref:System.IO.BinaryReader> は <xref:System.Security.Claims.ClaimsIdentity.WriteTo%2A> のバイトを使用して構築され、<xref:System.IO.BinaryWriter>と同じ方法で初期化されます。
 
           ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="reader" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="reader" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -236,6 +240,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -257,7 +262,7 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- 指定した id がから<xref:System.Security.Claims.ClaimsIdentity>割り当て可能な場合は、 <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>コレクションを初期化するために使用されます。 それ以外の<xref:System.Security.Claims.ClaimsIdentity>場合、は指定された id を使用して作成され、コレクションを初期化するために使用されます。
+ 指定した id が <xref:System.Security.Claims.ClaimsIdentity>から割り当て可能な場合は、<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクションを初期化するために使用されます。 それ以外の場合は、指定された id を使用して <xref:System.Security.Claims.ClaimsIdentity> が作成され、コレクションの初期化に使用されます。
 
           ]]></format>
         </remarks>
@@ -278,6 +283,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -299,7 +305,7 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- 指定したプリンシパルをから<xref:System.Security.Claims.ClaimsPrincipal>割り当てることが<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>できる場合は、そのすべての id がコレクションに追加されます。 指定したプリンシパル<xref:System.Security.Claims.ClaimsPrincipal>をから割り当てることができない場合は、その<xref:System.Security.Principal.IIdentity> <xref:System.Security.Principal.IPrincipal.Identity%2A?displayProperty=nameWithType>プロパティのから新しい<xref:System.Security.Claims.ClaimsIdentity>が作成さ<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>れ、コレクションに追加されます。
+ 指定したプリンシパルが <xref:System.Security.Claims.ClaimsPrincipal>から割り当て可能な場合、そのすべての id が <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクションに追加されます。 指定したプリンシパルを <xref:System.Security.Claims.ClaimsPrincipal>から割り当てることができない場合は、<xref:System.Security.Principal.IPrincipal.Identity%2A?displayProperty=nameWithType> プロパティの <xref:System.Security.Principal.IIdentity> から新しい <xref:System.Security.Claims.ClaimsIdentity> が作成され、<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクションに追加されます。
 
           ]]></format>
         </remarks>
@@ -328,6 +334,7 @@ if (null != principal)
         <AssemblyName>System.Security.Claims</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -335,13 +342,13 @@ if (null != principal)
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
-        <param name="info">シリアル化されたデータ。</param>
+        <param name="info">シリアル化データ。</param>
         <param name="context">シリアル化のコンテキスト。</param>
-        <summary><see cref="T:System.Security.Claims.ClaimsPrincipal" /> を使用して作成したシリアル化ストリームから <see cref="T:System.Runtime.Serialization.ISerializable" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary><see cref="T:System.Security.Claims.ClaimsPrincipal" /> を使用して作成されたシリアル化ストリームから、<see cref="T:System.Runtime.Serialization.ISerializable" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks></remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="info" /> が **null** です。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
@@ -361,6 +368,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -390,7 +398,7 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- Id は<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>コレクションに追加されます。
+ Id は <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクションに追加されます。
 
           ]]></format>
         </remarks>
@@ -412,6 +420,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -435,13 +444,13 @@ if (null != principal)
         <Parameter Name="identity" Type="System.Security.Claims.ClaimsIdentity" />
       </Parameters>
       <Docs>
-        <param name="identity">追加するクレーム ID。</param>
-        <summary>このクレーム プリンシパルに指定されたクレーム ID を追加します。</summary>
+        <param name="identity">追加する要求 ID。</param>
+        <summary>指定された要求 ID をこの要求プリンシパルに追加します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- Id が<xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>コレクションに追加されます。
+ Id が <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクションに追加されます。
 
           ]]></format>
         </remarks>
@@ -463,6 +472,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -492,9 +502,9 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- 要求プリンシパルには、identity プロパティ<xref:System.Security.Claims.ClaimsIdentity>を通じてアクセスできるオブジェクトのコレクションがあります。 コレクション<xref:System.Security.Claims.ClaimsIdentity>内の各には、1つまたは複数のクレームが含まれます。 プロパティ<xref:System.Security.Claims.ClaimsPrincipal.Claims%2A>は、このコレクション内のすべてのクレーム id からのすべてのクレームを返します。  
+ 要求プリンシパルには、Identity プロパティを介してアクセスできる <xref:System.Security.Claims.ClaimsIdentity> オブジェクトのコレクションがあります。 コレクション内の各 <xref:System.Security.Claims.ClaimsIdentity> には、1つまたは複数のクレームが含まれます。 <xref:System.Security.Claims.ClaimsPrincipal.Claims%2A> プロパティは、このコレクション内のすべてのクレーム id からのすべてのクレームを返します。  
   
- クラスのカスタム実装によって<xref:System.Security.Claims.ClaimsAuthorizationManager> プロパティを調べることによって、認証を決定したり、入力方向の要求セットをフィルター処理、変換、または強化したり、クラスのカスタム実装によって適用することができます。<xref:System.Security.Claims.ClaimsPrincipal.Claims%2A> <xref:System.Security.Claims.ClaimsAuthenticationManager>承認ポリシー;または、アプリケーションコードによって、承認に関する決定を行ったり、コレクション内に存在する要求に基づいてユーザーエクスペリエンスをカスタマイズしたりすることができます。
+ <xref:System.Security.Claims.ClaimsPrincipal.Claims%2A> プロパティは、<xref:System.Security.Claims.ClaimsAuthenticationManager> クラスのカスタム実装によって調べることができます。これにより、認証の決定や、入力方向の要求セットのフィルター処理、変換、強化を行うことができます。<xref:System.Security.Claims.ClaimsAuthorizationManager> クラスのカスタム実装により、承認ポリシーを適用します。または、アプリケーションコードによって、承認に関する決定を行ったり、コレクション内に存在する要求に基づいてユーザーエクスペリエンスをカスタマイズしたりすることができます。
 
           ]]></format>
         </remarks>
@@ -514,6 +524,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -540,7 +551,7 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- このプロパティを設定すると、 <xref:System.Security.Claims.ClaimsPrincipal.Current%2A>プロパティの既定の動作をオーバーライドできます。
+ このプロパティを設定すると、<xref:System.Security.Claims.ClaimsPrincipal.Current%2A> プロパティの既定の動作をオーバーライドできます。
 
           ]]></format>
         </remarks>
@@ -562,6 +573,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -597,6 +609,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -612,14 +625,14 @@ if (null != principal)
         <ReturnType>System.Security.Claims.ClaimsIdentity</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="reader" Type="System.IO.BinaryReader" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="reader" Type="System.IO.BinaryReader" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="reader">バイナリ リーダー。</param>
-        <summary>新しいクレーム ID を作成します。</summary>
-        <returns>作成されたクレーム ID。</returns>
+        <summary>新しい要求の ID を作成します。</summary>
+        <returns>作成された要求 ID。</returns>
         <remarks></remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="reader" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="reader" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="Current">
@@ -636,6 +649,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -657,7 +671,7 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- 既定では<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType> 、が返されます。 この動作を変更するには、 <xref:System.Security.Claims.ClaimsPrincipal.ClaimsPrincipalSelector%2A>プロパティを設定して、現在のプリンシパルを決定するために呼び出すデリゲートを指定します。
+ 既定では <xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType> が返されます。 この動作を変更するには、<xref:System.Security.Claims.ClaimsPrincipal.ClaimsPrincipalSelector%2A> プロパティを設定して、現在のプリンシパルを決定するために呼び出すデリゲートを指定します。
 
           ]]></format>
         </remarks>
@@ -678,6 +692,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -694,7 +709,7 @@ if (null != principal)
       </ReturnValue>
       <Docs>
         <summary>派生型によって提供される追加データが含まれています。 通常、<see cref="M:System.Security.Claims.ClaimsIdentity.WriteTo(System.IO.BinaryWriter,System.Byte[])" /> の呼び出し時に設定されます。</summary>
-        <value>追加のシリアル化されたデータを表す配列。<see cref="T:System.Byte" /></value>
+        <value>追加のシリアル化されたデータを表す <see cref="T:System.Byte" /> 配列。</value>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -705,7 +720,7 @@ if (null != principal)
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>指定した条件に一致するすべてのクレームを取得します。</summary>
+        <summary>指定した条件に一致する要求をすべて取得します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="FindAll">
@@ -722,6 +737,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -740,9 +756,9 @@ if (null != principal)
         <Parameter Name="match" Type="System.Predicate&lt;System.Security.Claims.Claim&gt;" />
       </Parameters>
       <Docs>
-        <param name="match">一致ロジックを実行する関数。</param>
-        <summary>指定した述語に一致するすべてのクレームを取得します。</summary>
-        <returns>一致するクレーム。</returns>
+        <param name="match">一致するロジックを実行する関数。</param>
+        <summary>指定された述語と一致するすべての要求を取得します。</summary>
+        <returns>一致する要求。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -768,6 +784,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -786,14 +803,14 @@ if (null != principal)
         <Parameter Name="type" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="type">クレームに一致するクレームの種類。</param>
-        <summary>すべてのクレームまたは指定されたクレーム型のすべてのクレームを取得します。</summary>
-        <returns>一致するクレーム。</returns>
+        <param name="type">要求の照合対象となる要求の種類。</param>
+        <summary>すべての要求、または指定された要求の種類を持つ要求を取得します。</summary>
+        <returns>一致する要求。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- クレームプリンシパルに関連付けられているすべての id からのクレームを返します。 この比較を行うには、で大文字と`type`小文字を区別します。
+ クレームプリンシパルに関連付けられているすべての id からのクレームを返します。 `type`では、序数に基づく大文字小文字の区別を使用して比較が行われます。
 
           ]]></format>
         </remarks>
@@ -807,7 +824,7 @@ if (null != principal)
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>指定した条件に一致する最初のクレームを取得します。</summary>
+        <summary>指定した条件に一致する最初の要求を取得します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="FindFirst">
@@ -824,6 +841,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -842,17 +860,17 @@ if (null != principal)
         <Parameter Name="match" Type="System.Predicate&lt;System.Security.Claims.Claim&gt;" />
       </Parameters>
       <Docs>
-        <param name="match">一致ロジックを実行する関数。</param>
-        <summary>指定した述語に一致する最初のクレームを取得します。</summary>
-        <returns>最初に一致するクレーム。一致が見つからない場合は <see langword="null" />。</returns>
+        <param name="match">一致するロジックを実行する関数。</param>
+        <summary>指定された述語と一致した最初の要求を取得します。</summary>
+        <returns>一致が検出されない場合は、最初に一致する要求または <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
-各<xref:System.Security.Claims.ClaimsIdentity>が呼び出されます。 
+各 <xref:System.Security.Claims.ClaimsIdentity> が呼び出されます。 
 
-## <a name="see-also"></a>関連項目
+## <a name="see-also"></a>参照
 <xref:System.Security.Claims.ClaimsIdentity.FindFirst(System.String)?displayProperty=nameWithType>
 
           ]]></format>
@@ -874,6 +892,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -892,19 +911,19 @@ if (null != principal)
         <Parameter Name="type" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="type">一致するクレームの種類。</param>
-        <summary>指定したクレームの種類の最初のクレームを取得します。</summary>
-        <returns>最初に一致するクレーム。一致が見つからない場合は <see langword="null" />。</returns>
+        <param name="type">一致する要求の種類。</param>
+        <summary>指定した要求の種類を持つ最初の要求を取得します。</summary>
+        <returns>一致が検出されない場合は、最初に一致する要求または <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
-各<xref:System.Security.Claims.ClaimsIdentity>が呼び出されます。
+各 <xref:System.Security.Claims.ClaimsIdentity> が呼び出されます。
 
- ## <a name="see-also"></a>関連項目
+ ## <a name="see-also"></a>参照
  
-  <xref:System.Security.Claims.ClaimsIdentity.FindFirst(System.Predicate{System.Security.Claims.Claim})?displayProperty=nameWithType>。
+  <xref:System.Security.Claims.ClaimsIdentity.FindFirst(System.Predicate{System.Security.Claims.Claim})?displayProperty=nameWithType> で初期化します。
 
           ]]></format>
         </remarks>
@@ -933,6 +952,7 @@ if (null != principal)
         <AssemblyName>System.Security.Claims</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -943,15 +963,15 @@ if (null != principal)
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
-        <param name="info">データを読み込む先のオブジェクト。</param>
-        <param name="context">このシリアル化のシリアル化先。 <see langword="null" /> の可能性があります。</param>
-        <summary><see cref="T:System.Runtime.Serialization.SerializationInfo" /> オブジェクトに、現在の <see cref="T:System.Security.Claims.ClaimsPrincipal" /> オブジェクトをシリアル化するために必要なデータを格納します。</summary>
+        <param name="info">データを読み込む先の オブジェクトです。</param>
+        <param name="context">このシリアル化のシリアル化先です。 <see langword="null" /> の可能性があります。</param>
+        <summary><see cref="T:System.Runtime.Serialization.SerializationInfo" /> に、現在の <see cref="T:System.Security.Claims.ClaimsPrincipal" /> オブジェクトをシリアル化するために必要なすべてのデータを格納します。</summary>
         <remarks></remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> は <see langword="null" /> です。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
@@ -962,7 +982,7 @@ if (null != principal)
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>このクレーム プリンシパルに関連付けられたいずれかのクレーム ID が、指定した条件に一致するクレームを含んでいるかどうかを判断します。</summary>
+        <summary>この要求プリンシパルに関連付けられているクレーム ID のいずれかに、指定された条件と一致する要求が含まれているかどうかを判断します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="HasClaim">
@@ -979,6 +999,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -997,19 +1018,19 @@ if (null != principal)
         <Parameter Name="match" Type="System.Predicate&lt;System.Security.Claims.Claim&gt;" />
       </Parameters>
       <Docs>
-        <param name="match">一致ロジックを実行する関数。</param>
-        <summary>このクレーム プリンシパルに関連付けられたいずれかのクレーム ID が、指定した述語に一致するクレームを含んでいるかどうかを判断します。</summary>
-        <returns>一致するクレームが存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <param name="match">一致するロジックを実行する関数。</param>
+        <summary>この要求プリンシパルに関連付けられている要求 ID のいずれかに、指定された述語と一致する要求が含まれているかどうかを判断します。</summary>
+        <returns>一致する要求が存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
-各<xref:System.Security.Claims.ClaimsIdentity>が呼び出されます。 
+各 <xref:System.Security.Claims.ClaimsIdentity> が呼び出されます。 
 
-## <a name="see-also"></a>関連項目
+## <a name="see-also"></a>参照
 
-<xref:System.Security.Claims.ClaimsIdentity.HasClaim(System.String,System.String)?displayProperty=nameWithType>。
+<xref:System.Security.Claims.ClaimsIdentity.HasClaim(System.String,System.String)?displayProperty=nameWithType> で初期化します。
 
           ]]></format>
         </remarks>
@@ -1030,6 +1051,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1049,15 +1071,15 @@ if (null != principal)
         <Parameter Name="value" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="type">一致するクレームの種類。</param>
-        <param name="value">一致させるクレームの値。</param>
-        <summary>このクレーム プリンシパルに関連付けられたいずれかのクレーム ID が、指定したクレームの種類および値のクレームを含んでいるかどうかを判断します。</summary>
-        <returns>一致するクレームが存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <param name="type">一致する要求の種類。</param>
+        <param name="value">一致する要求の値。</param>
+        <summary>この要求プリンシパルに関連付けられているクレーム ID のいずれかに、指定された要求の種類と値を持つ要求が含まれているかどうかを判断します。</summary>
+        <returns>一致する要求が存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- は、プロパティまた<xref:System.Security.Claims.Claim.Issuer%2A>は<xref:System.Security.Claims.Claim.OriginalIssuer%2A>プロパティをチェックしません。 比較は序数を使用して行われます。大文字と小文字は区別されます。型で大文字と小文字を区別します。
+ では、<xref:System.Security.Claims.Claim.Issuer%2A> または <xref:System.Security.Claims.Claim.OriginalIssuer%2A> プロパティは確認されません。 比較は序数を使用して行われます。大文字と小文字は区別されます。型で大文字と小文字を区別します。
 
           ]]></format>
         </remarks>
@@ -1081,6 +1103,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1096,7 +1119,7 @@ if (null != principal)
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Security.Claims.ClaimsIdentity&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このクレーム プリンシパルに関連付けられたすべてのクレーム ID を含むコレクションを取得します。</summary>
+        <summary>このクレーム プリンシパルと関連付けられているクレーム ID をすべて含むコレクションを取得します。</summary>
         <value>クレーム ID のコレクション。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
@@ -1104,7 +1127,7 @@ if (null != principal)
 ## Remarks  
  一般的なケースでは、コレクションに含まれる要素は1つだけです。  
   
- コレクションには`null`、といういくつかの要素を含めることができます。
+ コレクションには、`null`されるいくつかの要素を含めることができます。
 
           ]]></format>
         </remarks>
@@ -1127,6 +1150,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1142,15 +1166,15 @@ if (null != principal)
         <ReturnType>System.Security.Principal.IIdentity</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このクレーム プリンシパルに関連付けられているプライマリ クレーム ID を取得します。</summary>
-        <value>このクレーム プリンシパルに関連付けられているプライマリ クレーム ID。</value>
+        <summary>この要求プリンシパルに関連付けられたプライマリ要求 ID を取得します。</summary>
+        <value>この要求プリンシパルに関連付けられたプライマリ要求 ID。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- 既定では、フレームワークは、id を<xref:System.Security.Principal.WindowsIdentity>返すときに型の id の優先順位を設定します。 コレクション内で最初<xref:System.Security.Principal.WindowsIdentity>に見つかったが返されます。 <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクション<xref:System.Security.Principal.WindowsIdentity>内にが存在しない場合は、から<xref:System.Security.Claims.ClaimsIdentity>割り当て可能な最初の id が返されます。 がない<xref:System.Security.Claims.ClaimsIdentity>場合は、 `null`が返されます。 コレクションが空<xref:System.ArgumentNullException>の場合は、がスローされます。 <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A>  
+ 既定では、フレームワークは、id を返すときに <xref:System.Security.Principal.WindowsIdentity> 型の id の優先順位を設定します。 <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクション内の最初の <xref:System.Security.Principal.WindowsIdentity> が返されます。 コレクションに <xref:System.Security.Principal.WindowsIdentity> がない場合は、<xref:System.Security.Claims.ClaimsIdentity> から割り当て可能な最初の id が返されます。 <xref:System.Security.Claims.ClaimsIdentity>がない場合は、`null` が返されます。 <xref:System.Security.Claims.ClaimsPrincipal.Identities%2A> コレクションが空の場合、<xref:System.ArgumentNullException> がスローされます。  
   
- 既定の動作を変更するには、 <xref:System.Security.Claims.ClaimsPrincipal.PrimaryIdentitySelector%2A>プロパティを設定して、id を決定するために呼び出すデリゲートを指定します。
+ 既定の動作を変更するには、<xref:System.Security.Claims.ClaimsPrincipal.PrimaryIdentitySelector%2A> プロパティを設定して、id を決定するために呼び出すデリゲートを指定します。
 
           ]]></format>
         </remarks>
@@ -1174,6 +1198,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1192,17 +1217,17 @@ if (null != principal)
         <Parameter Name="role" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="role">確認対象のロール。</param>
-        <summary>このクレーム プリンシパルによって表されるエンティティ (ユーザー) に指定されたロールが課されているかどうかを示す値を返します。</summary>
-        <returns>クレーム プリンシパルが指定したロールになっている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <param name="role">確認するロール。</param>
+        <summary>この要求プリンシパルが表すエンティティ (ユーザー) が、指定したロールにあるかどうかを示す値を返します。</summary>
+        <returns>要求プリンシパルが指定したロールにある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- メソッド<xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A>は、このクレームプリンシパルが所有する id に、要求の値が<xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A?displayProperty=nameWithType> `role`パラメーターで指定された値と等しい型のクレームが含まれているかどうかを確認します。  
+ <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A> メソッドは、このクレームプリンシパルが所有する id に <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A?displayProperty=nameWithType> 型のクレームが含まれているかどうかを確認します。この場合、クレームの値は `role` パラメーターで指定された値と等しくなります。  
   
 > [!NOTE]
->  各<xref:System.Security.Claims.ClaimsIdentity>には、ロールを表すクレームの種類の独自の定義があります。 この要求の種類にアクセスし、プロパティを<xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A?displayProperty=nameWithType>使用して設定できます。
+>  各 <xref:System.Security.Claims.ClaimsIdentity> には、ロールを表すクレームの種類の独自の定義があります。 この要求の種類には、<xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A?displayProperty=nameWithType> プロパティを使用してアクセスし、設定することができます。
 
           ]]></format>
         </remarks>
@@ -1222,6 +1247,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1248,7 +1274,7 @@ if (null != principal)
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
- このプロパティを設定すると、 <xref:System.Security.Claims.ClaimsPrincipal.Identity%2A>プロパティの既定の動作をオーバーライドできます。
+ このプロパティを設定すると、<xref:System.Security.Claims.ClaimsPrincipal.Identity%2A> プロパティの既定の動作をオーバーライドできます。
 
           ]]></format>
         </remarks>
@@ -1270,6 +1296,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1285,13 +1312,13 @@ if (null != principal)
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="writer" Type="System.IO.BinaryWriter" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="writer" Type="System.IO.BinaryWriter" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="writer">データ ストレージに使用するライター。</param>
         <summary><see cref="T:System.IO.BinaryWriter" /> を使用してシリアル化します。</summary>
         <remarks></remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="WriteTo">
@@ -1308,6 +1335,7 @@ if (null != principal)
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1323,15 +1351,15 @@ if (null != principal)
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="writer" Type="System.IO.BinaryWriter" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="userData" Type="System.Byte[]" Index="1" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="writer" Type="System.IO.BinaryWriter" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="userData" Type="System.Byte[]" Index="1" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="writer">データ ストレージに使用するライター。</param>
         <param name="userData">派生型によって提供される追加データ。</param>
         <summary><see cref="T:System.IO.BinaryWriter" /> を使用してシリアル化します。</summary>
         <remarks></remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="writer" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
   </Members>

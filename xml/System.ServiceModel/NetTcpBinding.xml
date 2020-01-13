@@ -1,5 +1,5 @@
 <Type Name="NetTcpBinding" FullName="System.ServiceModel.NetTcpBinding">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c773c8a0daa84cdbf92ad37fecdc044ef89fbbab" /><Meta Name="ms.sourcegitcommit" Value="2b78f05b0c6fa92adaf5e1dfe5a50388f952efe7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/02/2019" /><Meta Name="ms.locfileid" Value="71805881" /></Metadata><TypeSignature Language="C#" Value="public class NetTcpBinding : System.ServiceModel.Channels.Binding, System.ServiceModel.Channels.IBindingRuntimePreferences" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1d95464a43cc4ce1bf3947374f785df30eeff1e8" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75159844" /></Metadata><TypeSignature Language="C#" Value="public class NetTcpBinding : System.ServiceModel.Channels.Binding, System.ServiceModel.Channels.IBindingRuntimePreferences" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit NetTcpBinding extends System.ServiceModel.Channels.Binding implements class System.ServiceModel.Channels.IBindingRuntimePreferences" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.NetTcpBinding" />
   <TypeSignature Language="VB.NET" Value="Public Class NetTcpBinding&#xA;Inherits Binding&#xA;Implements IBindingRuntimePreferences" />
@@ -20,6 +20,7 @@
     <AssemblyVersion>4.5.0.1</AssemblyVersion>
     <AssemblyVersion>4.5.0.3</AssemblyVersion>
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
+    <AssemblyVersion>4.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.ServiceModel.Channels.Binding</BaseTypeName>
@@ -35,17 +36,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.NetTcpBinding> は、既定ではランタイム通信スタックを生成し、トランスポート セキュリティ、メッセージ配信用 TCP、およびバイナリ メッセージ エンコーディングを使用します。 このバインディングは、イントラネット経由で通信するための適切な Windows Communication Foundation (WCF) システム提供の選択肢です。  
+ <xref:System.ServiceModel.NetTcpBinding> は、既定では、トランスポートセキュリティ、メッセージ配信用 TCP、およびバイナリメッセージエンコーディングを使用するランタイム通信スタックを生成します。 このバインディングは、イントラネット経由で通信するための適切な Windows Communication Foundation (WCF) システム提供の選択肢です。  
   
- @No__t-0 の既定の構成は、<xref:System.ServiceModel.WSHttpBinding> で提供される構成よりも高速ですが、WCF 通信のみを目的としています。 セキュリティ動作は、コンストラクターの省略可能な `securityMode` パラメーターを使用して設定できます。 WS-ReliableMessaging を使用するかどうかは、省略可能な `reliableSessionEnabled` パラメーターを使用して設定できます。 ただし、信頼できるメッセージングは、既定ではオフです。 <xref:System.ServiceModel.WSHttpBinding> や <xref:System.ServiceModel.BasicHttpBinding> などの HTTP システム指定のバインディングは、既定では設定をオンにするように構成され、<xref:System.ServiceModel.NetTcpBinding> バインディングは、既定では設定をオフにするように構成されているのが一般的であるため、たとえば、いずれかの WS-* 仕様のサポートを得るには、サポートを選択する必要があります。 これは、TCP の既定の構成の方が、HTTP バインド用の既定の構成より、エンドポイント間でのメッセージ交換が高速になることを意味します。  
+ <xref:System.ServiceModel.NetTcpBinding> の既定の構成は、<xref:System.ServiceModel.WSHttpBinding>によって提供される構成よりも高速ですが、WCF 通信のみを目的としています。 セキュリティ動作は、コンストラクターの省略可能な `securityMode` パラメーターを使用して設定できます。 WS-ReliableMessaging を使用するかどうかは、省略可能な `reliableSessionEnabled` パラメーターを使用して設定できます。 ただし、信頼できるメッセージングは、既定ではオフです。 <xref:System.ServiceModel.WSHttpBinding> や <xref:System.ServiceModel.BasicHttpBinding> などの HTTP システム指定のバインディングは、既定では設定をオンにするように構成され、<xref:System.ServiceModel.NetTcpBinding> バインディングは、既定では設定をオフにするように構成されているのが一般的であるため、たとえば、いずれかの WS-* 仕様のサポートを得るには、サポートを選択する必要があります。 これは、TCP の既定の構成の方が、HTTP バインド用の既定の構成より、エンドポイント間でのメッセージ交換が高速になることを意味します。  
   
 > [!WARNING]
->  @No__t-0 は、サービスのホスト DNS 名と、サービスがリッスンしているポート番号に基づいて、TCP 接続プールを使用します。 これは、クライアントが異なるポートで異なるサービスを呼び出す場合、またはサービスが1つのプロセスでホストされ、ポートを共有する場合に適しています。 1つのクライアントが複数のサービスを呼び出して、別のプロセスでホストされているポートを共有する場合、または WAS/IIS でホストされている場合は、クライアント側のプーリングによって、サービス A への接続がサービス B に再利用され、例外がスローされるという問題が発生する可能性があります。、接続が中止され、新しいチャネルが作成されました。 この問題を回避するには、CustomBinding を使用して、クライアントが通信するサービスごとに異なる ConnectionPoolSettings を指定します。  
+>  この <xref:System.ServiceModel.NetTcpBinding> は、サービスのホスト DNS 名と、サービスがリッスンしているポート番号に基づいて、TCP 接続プールを使用します。 これは、クライアントが異なるポートで異なるサービスを呼び出す場合、またはサービスが1つのプロセスでホストされ、ポートを共有する場合に適しています。 1つのクライアントが複数のサービスを呼び出して、別のプロセスでホストされているポートを共有している場合や、WAS/IIS でホストされている場合は、クライアント側のプーリングによって、サービス A への接続がサービス B に再利用され、例外がスローされ、接続が中止され、新しいチャネルが作成 この問題を回避するには、CustomBinding を使用して、クライアントが通信するサービスごとに異なる ConnectionPoolSettings を指定します。  
   
    
   
 ## Examples  
- 次の例は、セキュリティ モードとトランスポート資格情報の種類を設定して、<xref:System.ServiceModel.NetTcpBinding> を作成する方法を示します。  
+ この例では、<xref:System.ServiceModel.NetTcpBinding>を作成し、セキュリティモードとトランスポート資格情報の種類を設定する方法を示します。  
   
  [!code-csharp[S_UENetTcpBinding#1](~/samples/snippets/csharp/VS_Snippets_CFX/s_uenettcpbinding/cs/source.cs#1)]  
   
@@ -93,6 +94,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -101,12 +103,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定では、トランスポート セキュリティはセキュリティ保護された通信 (つまり、<xref:System.ServiceModel.SecurityMode> の値が <xref:System.ServiceModel.SecurityMode.Transport> に設定されている) で使用され、信頼できるセッションは無効です (つまり、<xref:System.ServiceModel.OptionalReliableSession.Enabled%2A> は `false` です)。  
+ 既定では、トランスポートセキュリティは、通信をセキュリティで保護するために使用されます (つまり、<xref:System.ServiceModel.SecurityMode> の値は <xref:System.ServiceModel.SecurityMode.Transport>に設定され、信頼できるセッションは無効になっています (<xref:System.ServiceModel.OptionalReliableSession.Enabled%2A> は `false`)。  
   
    
   
 ## Examples  
- 次の例は、セキュリティ モードとトランスポート資格情報の種類を設定して、<xref:System.ServiceModel.NetTcpBinding> を作成する方法を示します。  
+ この例では、<xref:System.ServiceModel.NetTcpBinding>を作成し、セキュリティモードとトランスポート資格情報の種類を設定する方法を示します。  
   
  [!code-csharp[S_UENETTCPBINDING#1](~/samples/snippets/csharp/VS_Snippets_CFX/s_uenettcpbinding/cs/source.cs#1)]  
   
@@ -136,6 +138,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="securityMode" Type="System.ServiceModel.SecurityMode" />
@@ -147,12 +150,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、セキュリティを構成する場合に使用します。 セキュリティを構成し、信頼できるセッションを有効にするには、<xref:System.ServiceModel.NetTcpBinding.%23ctor%28System.ServiceModel.SecurityMode%2CSystem.Boolean%29?displayProperty=nameWithType> を使用します。  
+ このコンストラクターは、セキュリティを構成する場合に使用します。 セキュリティを構成し、信頼できるセッションを有効にする場合は、<xref:System.ServiceModel.NetTcpBinding.%23ctor%28System.ServiceModel.SecurityMode%2CSystem.Boolean%29?displayProperty=nameWithType>を使用します。  
   
    
   
 ## Examples  
- 次のコード例は、セキュリティ モード パラメーターを使用して <xref:System.ServiceModel.NetTcpBinding> を作成する方法を示しています。  
+ この例では、セキュリティモードパラメーターを使用して <xref:System.ServiceModel.NetTcpBinding> を作成する方法を示します。  
   
  [!code-csharp[S_UENETTCPBINDING#3](~/samples/snippets/csharp/VS_Snippets_CFX/s_uenettcpbinding/cs/source.cs#3)]  
   
@@ -183,7 +186,13 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute FrameworkAlternate="dotnet-plat-ext-3.1">
+          <AttributeName>System.ComponentModel.EditorBrowsable</AttributeName>
+        </Attribute>
+      </Attributes>
       <Parameters>
         <Parameter Name="configurationName" Type="System.String" />
       </Parameters>
@@ -199,7 +208,7 @@
    
   
 ## Examples  
- 次の例は、<xref:System.ServiceModel.NetTcpBinding> パラメーターを使用して、`configurationName` を作成する方法を示します。  
+ この例では、`configurationName` パラメーターを使用して <xref:System.ServiceModel.NetTcpBinding> を作成する方法を示します。  
   
  [!code-csharp[S_UENETTCPBINDING#4](~/samples/snippets/csharp/VS_Snippets_CFX/s_uenettcpbinding/cs/source.cs#4)]  
   
@@ -241,7 +250,7 @@
    
   
 ## Examples  
- 次の例は、<xref:System.ServiceModel.NetTcpBinding> パラメーターと `securityMode` パラメーターを使用して、`reliableSessionEnabled` を作成する方法を示します。  
+ この例では、`securityMode` パラメーターと `reliableSessionEnabled` パラメーターを使用して <xref:System.ServiceModel.NetTcpBinding> を作成する方法を示します。  
   
  [!code-csharp[S_UENETTCPBINDING#5](~/samples/snippets/csharp/VS_Snippets_CFX/s_uenettcpbinding/cs/source.cs#5)]  
   
@@ -272,6 +281,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.Channels.BindingElementCollection</ReturnType>
@@ -284,7 +294,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、<xref:System.ServiceModel.NetTcpBinding.CreateBindingElements%2A> メソッドを使用して、バインド用のバインド要素のコレクションを作成する方法を示します。  
+ この例では、<xref:System.ServiceModel.NetTcpBinding.CreateBindingElements%2A> メソッドを使用して、バインディングのバインド要素を含むコレクションを作成する方法を示します。  
   
  [!code-csharp[S_UENetTcpBinding#20](~/samples/snippets/csharp/VS_Snippets_CFX/s_uenettcpbinding/cs/source.cs#20)]  
   
@@ -315,6 +325,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ServiceModel.EnvelopeVersion</ReturnType>
@@ -365,7 +376,7 @@
         <ReturnType>System.ServiceModel.HostNameComparisonMode</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>URI が一致した場合にサービスに到達するためにホスト名を使用するかどうかを示す値を取得または設定します。</summary>
+        <summary>URI の照合時にサービスに到達するためにホスト名を使用するかどうかを示す値を取得または設定します。</summary>
         <value>URI が一致する場合にサービスに到達するためにホスト名を使用するかどうかを示す <see cref="P:System.ServiceModel.Configuration.WSDualHttpBindingElement.HostNameComparisonMode" /> 値のいずれか。 既定値は <see cref="F:System.ServiceModel.HostNameComparisonMode.StrongWildcard" /> で、一致しているホスト名を無視します。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -448,9 +459,10 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1">
           <AttributeName>System.ComponentModel.DefaultValue(524288)</AttributeName>
         </Attribute>
       </Attributes>
@@ -500,9 +512,10 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1">
           <AttributeName>System.ComponentModel.DefaultValue(65536)</AttributeName>
         </Attribute>
       </Attributes>
@@ -521,7 +534,7 @@
    
   
 ## Examples  
- 次の例では、<xref:System.ServiceModel.NetTcpBinding.MaxBufferSize%2A> の値を取得する方法を示します。  
+ この例では、<xref:System.ServiceModel.NetTcpBinding.MaxBufferSize%2A>の値を取得する方法を示します。  
   
  [!code-csharp[S_UENetTcpBinding#10](~/samples/snippets/csharp/VS_Snippets_CFX/s_uenettcpbinding/cs/source.cs#10)]  
   
@@ -597,9 +610,10 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1">
           <AttributeName>System.ComponentModel.DefaultValue(65536)</AttributeName>
         </Attribute>
       </Attributes>
@@ -647,8 +661,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このバインドを使用して構成された接続で、TCP ポート共有を有効にするかどうかを示す値を取得または設定します。</summary>
-        <value>TCP ポート共有が有効な場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は <see langword="false" /> です。</value>
+        <summary>このバインディングを使用して構成された接続で、TCP ポート共有を有効にするかどうかを示す値を取得または設定します。</summary>
+        <value>TCP ポート共有が有効な場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -691,6 +705,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Xml.XmlDictionaryReaderQuotas</ReturnType>
@@ -756,7 +771,7 @@
       </ReturnValue>
       <Docs>
         <summary>チャネルのエンドポイント間に信頼できるセッションを確立するかどうかを示す構成要素を取得します。</summary>
-        <value>チャネルのエンドポイント間に WS-RM セッションを確立するかどうかを示す <see cref="T:System.ServiceModel.OptionalReliableSession" />。 <see cref="P:System.ServiceModel.OptionalReliableSession.Enabled" /> の既定値は <see langword="false" />です。</value>
+        <value>チャネルのエンドポイント間に WS-RM セッションを確立するかどうかを示す <see cref="T:System.ServiceModel.OptionalReliableSession" />。 <see cref="P:System.ServiceModel.OptionalReliableSession.Enabled" /> の既定値は <see langword="false" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -792,6 +807,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -817,12 +833,12 @@
       </Docs>
     </Member>
     <Member MemberName="Security">
-      <MemberSignature Language="C#" Value="public System.ServiceModel.NetTcpSecurity Security { get; set; }" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C#" Value="public System.ServiceModel.NetTcpSecurity Security { get; set; }" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="ILAsm" Value=".property instance class System.ServiceModel.NetTcpSecurity Security" />
       <MemberSignature Language="DocId" Value="P:System.ServiceModel.NetTcpBinding.Security" />
-      <MemberSignature Language="VB.NET" Value="Public Property Security As NetTcpSecurity" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::ServiceModel::NetTcpSecurity ^ Security { System::ServiceModel::NetTcpSecurity ^ get(); void set(System::ServiceModel::NetTcpSecurity ^ value); };" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-      <MemberSignature Language="F#" Value="member this.Security : System.ServiceModel.NetTcpSecurity with get, set" Usage="System.ServiceModel.NetTcpBinding.Security" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Property Security As NetTcpSecurity" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::ServiceModel::NetTcpSecurity ^ Security { System::ServiceModel::NetTcpSecurity ^ get(); void set(System::ServiceModel::NetTcpSecurity ^ value); };" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="F#" Value="member this.Security : System.ServiceModel.NetTcpSecurity with get, set" Usage="System.ServiceModel.NetTcpBinding.Security" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="C#" Value="public System.ServiceModel.NetTcpSecurity Security { get; }" FrameworkAlternate="netframework-3.0;netframework-3.5" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property Security As NetTcpSecurity" FrameworkAlternate="netframework-3.0;netframework-3.5" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::ServiceModel::NetTcpSecurity ^ Security { System::ServiceModel::NetTcpSecurity ^ get(); };" FrameworkAlternate="netframework-3.0;netframework-3.5" />
@@ -843,6 +859,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -1077,12 +1094,12 @@
       </ReturnValue>
       <Docs>
         <summary>受信要求を同期処理するか、または非同期処理するかを示す値を取得します。</summary>
-        <value>要求が同期処理される場合は <see langword="true" />。非同期処理される場合は <see langword="false" />。 既定値は <see langword="false" /> です。</value>
+        <value>要求が同期処理される場合は <see langword="true" />。非同期処理される場合は <see langword="false" />。 既定値は <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- サービスまたはクライアントアプリケーションでメッセージを受信するためのこの実行時の動作は[、&lt;synchronousReceive @ no__t-2](~/docs/framework/configure-apps/file-schema/wcf/synchronousreceive-element.md)を使用して変更できます。  
+ サービスまたはクライアントアプリケーションでメッセージを受信するためのこの実行時の動作は、 [&lt;synchronousReceive&gt;](~/docs/framework/configure-apps/file-schema/wcf/synchronousreceive-element.md)を使用して変更できます。  
   
    
   
@@ -1122,7 +1139,7 @@
       </ReturnValue>
       <Docs>
         <summary>トランザクション フローが有効かどうかを決定する値を取得または設定します。</summary>
-        <value>トランザクション フローを有効にする場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は <see langword="false" /> です。</value>
+        <value>トランザクション フローを有効にする場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1192,9 +1209,10 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-uwp-10.0;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1">
           <AttributeName>System.ComponentModel.DefaultValue(Mono.Cecil.CustomAttributeArgument)</AttributeName>
         </Attribute>
       </Attributes>

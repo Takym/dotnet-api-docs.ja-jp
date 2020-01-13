@@ -1,5 +1,5 @@
 <Type Name="IEnumerator" FullName="System.Collections.IEnumerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e52740bfca2c0adef30a217c9a92802ae1ecb6e3" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69333789" /></Metadata><TypeSignature Language="C#" Value="public interface IEnumerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="57ece1576ae05d0b48c761981c00c70ac85b37b3" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75150471" /></Metadata><TypeSignature Language="C#" Value="public interface IEnumerator" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IEnumerator" />
   <TypeSignature Language="DocId" Value="T:System.Collections.IEnumerator" />
   <TypeSignature Language="VB.NET" Value="Public Interface IEnumerator" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -41,30 +42,30 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.IEnumerator>は、すべての非ジェネリック列挙子の基本インターフェイスです。 これと同等のもの<xref:System.Collections.Generic.IEnumerator%601?displayProperty=nameWithType>がインターフェイスです。  
+ <xref:System.Collections.IEnumerator> は、すべての非ジェネリック列挙子の基本インターフェイスです。 これと同等のものが <xref:System.Collections.Generic.IEnumerator%601?displayProperty=nameWithType> インターフェイスです。  
   
- C# 言語の `foreach` ステートメント (Visual Basic の場合は `for each`) を使用することで列挙子の複雑さを回避できます。  そのため、 `foreach`列挙子を直接操作するのではなく、を使用することをお勧めします。  
+ C# 言語の `foreach` ステートメント (Visual Basic の場合は `for each`) を使用することで列挙子の複雑さを回避できます。  そのため、列挙子を直接操作するのではなく、`foreach` を使用することをお勧めします。  
   
  列挙子を使用すると、コレクション内のデータを読み取ることができますが、基になるコレクションを変更することはできません。  
   
- メソッドは COM 相互運用性のために用意されているため、完全に実装する必要はありませ<xref:System.NotSupportedException>ん。代わりに、実装者がをスローできます。 <xref:System.Collections.IEnumerator.Reset%2A>  
+ <xref:System.Collections.IEnumerator.Reset%2A> メソッドは COM 相互運用性のために用意されており、完全に実装する必要はありません。代わりに、実装者は <xref:System.NotSupportedException>をスローすることができます。  
   
- 最初に、列挙子はコレクション内の 1 番目の要素の前に位置付けられます。 の<xref:System.Collections.IEnumerator.MoveNext%2A> <xref:System.Collections.IEnumerator.Current%2A>値を読み取る前に、メソッドを呼び出して、列挙子をコレクションの最初の要素に進める必要があります。それ以外の場合、は定義されません。 <xref:System.Collections.IEnumerator.Current%2A>  
+ 最初、列挙子はコレクションの先頭の要素の前に位置付けられます。 <xref:System.Collections.IEnumerator.Current%2A>の値を読み取る前に、<xref:System.Collections.IEnumerator.MoveNext%2A> メソッドを呼び出して、列挙子をコレクションの最初の要素に進めておく必要があります。それ以外の場合、<xref:System.Collections.IEnumerator.Current%2A> は定義されていません。  
   
  <xref:System.Collections.IEnumerator.Current%2A> は、<xref:System.Collections.IEnumerator.MoveNext%2A> または <xref:System.Collections.IEnumerator.Reset%2A> が呼び出されるまでは同じオブジェクトを返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> は、<xref:System.Collections.IEnumerator.Current%2A> を次の要素に設定します。  
   
- <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、後続の <xref:System.Collections.IEnumerator.MoveNext%2A> 呼び出しも `false` を返します。 の最後の呼び出し<xref:System.Collections.IEnumerator.MoveNext%2A>が返さ`false`れた場合、 <xref:System.Collections.IEnumerator.Current%2A>が未定義になります。  
+ <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、後続の <xref:System.Collections.IEnumerator.MoveNext%2A> 呼び出しも `false` を返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> の最後の呼び出しが `false`を返した場合、<xref:System.Collections.IEnumerator.Current%2A> は定義されていません。  
   
- コレクションの<xref:System.Collections.IEnumerator.Current%2A>最初の要素を再びに設定するには、を<xref:System.Collections.IEnumerator.Reset%2A>呼び出すことができます (実装<xref:System.Collections.IEnumerator.MoveNext%2A>されている場合)。その後にが続きます。 が<xref:System.Collections.IEnumerator.Reset%2A>実装されていない場合は、コレクションの最初の要素に戻るために新しい列挙子インスタンスを作成する必要があります。  
+ <xref:System.Collections.IEnumerator.Current%2A> をコレクションの最初の要素に再度設定するには、<xref:System.Collections.IEnumerator.Reset%2A>を呼び出すことができます (実装されている場合)。その後に <xref:System.Collections.IEnumerator.MoveNext%2A>が続きます。 <xref:System.Collections.IEnumerator.Reset%2A> が実装されていない場合は、コレクションの最初の要素に戻るために新しい列挙子インスタンスを作成する必要があります。  
   
  要素の追加、変更、削除などの変更がコレクションに対して行われた場合、列挙子の動作は未定義になります。  
   
- 列挙子にはコレクションへの排他アクセス権限はないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
+ 列挙子はコレクションに排他アクセスできないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。 コレクションが同期されていても、他のスレッドがコレクションを変更する場合があり、このときは列挙子から例外がスローされます。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
   
    
   
 ## Examples  
- 次のコード例は、カスタムコレクションの<xref:System.Collections.IEnumerable>インターフェイス<xref:System.Collections.IEnumerator>とインターフェイスの実装を示しています。 この例では、これらのインターフェイスのメンバーは明示的に呼び出されませんが、コレクションを`foreach`反復`for each`処理するための (Visual Basic) の使用をサポートするように実装されています。  
+ 次のコード例は、カスタムコレクションの <xref:System.Collections.IEnumerable> および <xref:System.Collections.IEnumerator> インターフェイスの実装を示しています。 この例では、これらのインターフェイスのメンバーは明示的に呼び出されませんが、コレクションを反復処理するために `foreach` (Visual Basic で`for each`) の使用をサポートするように実装されています。  
   
  [!code-csharp[System.Collections_EnumeratorInterfaces#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/cs/ienumerator.cs#1)]
  [!code-vb[System.Collections_EnumeratorInterfaces#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/vb/ienumerator.vb#1)]  
@@ -92,6 +93,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -115,11 +117,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.IEnumerator.Current%2A>は、次のいずれかの条件下では未定義です。  
+ <xref:System.Collections.IEnumerator.Current%2A> は、次のいずれかの条件で定義されていません。  
   
--   列挙子は、列挙子が作成された直後に、コレクション内の最初の要素の前に配置されます。   <xref:System.Collections.IEnumerator.MoveNext%2A>の<xref:System.Collections.IEnumerator.Current%2A>値を読み取る前に、列挙子をコレクションの最初の要素に進めるには、を呼び出す必要があります。  
+-   列挙子は、列挙子が作成された直後に、コレクション内の最初の要素の前に配置されます。   <xref:System.Collections.IEnumerator.Current%2A>の値を読み取る前に、<xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出して、列挙子をコレクションの最初の要素に進めておく必要があります。  
   
--   コレクションの末尾を<xref:System.Collections.IEnumerator.MoveNext%2A>示す`false`、返されたの最後の呼び出し。  
+-   最後に <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出したときに `false`が返されます。これはコレクションの末尾を示します。  
   
 -   コレクションに加えられた変更 (要素の追加、変更、削除など) が原因で、列挙子が無効になります。  
   
@@ -128,7 +130,7 @@
    
   
 ## Examples  
- 次のコード例は、カスタムコレクションの<xref:System.Collections.IEnumerator>インターフェイスの実装を示しています。 この例では<xref:System.Collections.IEnumerator.Current%2A> 、は明示的に呼び出されませんが、(`for each` Visual Basic) `foreach`の使用をサポートするように実装されています。 このコード例は、 <xref:System.Collections.IEnumerator>インターフェイスのより大きな例の一部です。  
+ 次のコード例は、カスタムコレクションの <xref:System.Collections.IEnumerator> インターフェイスの実装を示しています。 この例では、<xref:System.Collections.IEnumerator.Current%2A> は明示的に呼び出されませんが、`foreach` (Visual Basic で`for each`) の使用をサポートするように実装されています。 このコード例は、<xref:System.Collections.IEnumerator> インターフェイスのより大きな例の一部です。  
   
  [!code-csharp[System.Collections_EnumeratorInterfaces#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/cs/ienumerator.cs#2)]
  [!code-vb[System.Collections_EnumeratorInterfaces#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/vb/ienumerator.vb#2)]  
@@ -155,6 +157,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -179,16 +182,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 列挙子が作成された後<xref:System.Collections.IEnumerator.Reset%2A> 、またはメソッドが呼び出された後、列挙子はコレクションの最初の要素の前に配置<xref:System.Collections.IEnumerator.MoveNext%2A>され、メソッドの最初の呼び出しでは、列挙子をコレクションの最初の要素に移動します。  
+ 列挙子が作成された後、または <xref:System.Collections.IEnumerator.Reset%2A> メソッドが呼び出された後、列挙子はコレクションの最初の要素の前に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> メソッドの最初の呼び出しでは、列挙子はコレクションの最初の要素に移動します。  
   
- <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、後続の<xref:System.Collections.IEnumerator.MoveNext%2A>を呼び`false`出す<xref:System.Collections.IEnumerator.Reset%2A>と、が呼び出されるまでが返されます。  
+ <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、<xref:System.Collections.IEnumerator.MoveNext%2A> の後続の呼び出しでは、<xref:System.Collections.IEnumerator.Reset%2A> が呼び出されるまで `false` も返されます。  
   
- 要素の追加、変更、削除などの変更がコレクションに対して行われた場合、の<xref:System.Collections.IEnumerator.MoveNext%2A>動作は未定義になります。  
+ 要素の追加、変更、削除などの変更がコレクションに対して行われた場合、<xref:System.Collections.IEnumerator.MoveNext%2A> の動作は定義されていません。  
   
    
   
 ## Examples  
- 次のコード例は、カスタムコレクションの<xref:System.Collections.IEnumerator>インターフェイスの実装を示しています。 この例では<xref:System.Collections.IEnumerator.MoveNext%2A> 、は明示的に呼び出されませんが、(`for each` Visual Basic) `foreach`の使用をサポートするように実装されています。 このコード例は、 <xref:System.Collections.IEnumerator>インターフェイスのより大きな例の一部です。  
+ 次のコード例は、カスタムコレクションの <xref:System.Collections.IEnumerator> インターフェイスの実装を示しています。 この例では、<xref:System.Collections.IEnumerator.MoveNext%2A> は明示的に呼び出されませんが、`foreach` (Visual Basic で`for each`) の使用をサポートするように実装されています。 このコード例は、<xref:System.Collections.IEnumerator> インターフェイスのより大きな例の一部です。  
   
  [!code-csharp[System.Collections_EnumeratorInterfaces#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/cs/ienumerator.cs#2)]
  [!code-vb[System.Collections_EnumeratorInterfaces#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/vb/ienumerator.vb#2)]  
@@ -216,6 +219,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -239,21 +243,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要素の追加、変更、削除などの変更がコレクションに対して行われた場合、の<xref:System.Collections.IEnumerator.Reset%2A>動作は未定義になります。  
+ 要素の追加、変更、削除などの変更がコレクションに対して行われた場合、<xref:System.Collections.IEnumerator.Reset%2A> の動作は定義されていません。  
   
- メソッド<xref:System.Collections.IEnumerator.Reset%2A>は、COM 相互運用性のために用意されています。 必ずしも実装する必要はありません。代わりに、実装者はを<xref:System.NotSupportedException>スローするだけで済みます。  
+ <xref:System.Collections.IEnumerator.Reset%2A> メソッドは、COM 相互運用性のために用意されています。 必ずしも実装する必要はありません。代わりに、実装者は単に <xref:System.NotSupportedException>をスローすることができます。  
   
    
   
 ## Examples  
- 次のコード例は、カスタムコレクションの<xref:System.Collections.IEnumerator>インターフェイスの実装を示しています。 この例では<xref:System.Collections.IEnumerator.Reset%2A> 、は明示的に呼び出されませんが、(`for each` Visual Basic) `foreach`の使用をサポートするように実装されています。 このコード例は、 <xref:System.Collections.IEnumerator>インターフェイスのより大きな例の一部です。  
+ 次のコード例は、カスタムコレクションの <xref:System.Collections.IEnumerator> インターフェイスの実装を示しています。 この例では、<xref:System.Collections.IEnumerator.Reset%2A> は明示的に呼び出されませんが、`foreach` (Visual Basic で`for each`) の使用をサポートするように実装されています。 このコード例は、<xref:System.Collections.IEnumerator> インターフェイスのより大きな例の一部です。  
   
  [!code-csharp[System.Collections_EnumeratorInterfaces#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/cs/ienumerator.cs#2)]
  [!code-vb[System.Collections_EnumeratorInterfaces#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Collections_EnumeratorInterfaces/vb/ienumerator.vb#2)]  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>へ<see cref="M:System.Collections.IEnumerator.Reset" />のすべての呼び出しは、列挙子に対して同じ状態になる必要があります。 最初の要素の前に、列挙子をコレクションの先頭に移動することをお勧めします。 列挙子の作成後にコレクションが変更されている場合は、列挙子が無効<see cref="M:System.Collections.IEnumerator.MoveNext" />に<see cref="P:System.Collections.IEnumerator.Current" />なります。これは、ととの一貫性があります。</para></block>
+        <block subset="none" type="overrides"><para><see cref="M:System.Collections.IEnumerator.Reset" /> のすべての呼び出しで、列挙子と同じ状態になる必要があります。 列挙子をコレクションの先頭、つまり先頭の要素の前に移動するような実装を推奨します。 これにより、列挙子の作成後にコレクションが変更された場合は、列挙子が無効になります。これは <see cref="M:System.Collections.IEnumerator.MoveNext" /> と <see cref="P:System.Collections.IEnumerator.Current" />と一貫性があります。</para></block>
         <altmember cref="M:System.Collections.IEnumerator.MoveNext" />
         <altmember cref="P:System.Collections.IEnumerator.Current" />
         <exception cref="T:System.InvalidOperationException">コレクションは、列挙子の作成後に変更されました。</exception>

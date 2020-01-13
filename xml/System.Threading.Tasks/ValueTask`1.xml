@@ -1,5 +1,5 @@
 <Type Name="ValueTask&lt;TResult&gt;" FullName="System.Threading.Tasks.ValueTask&lt;TResult&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7d944c7bf458154d39d4d54370d616073ce64d8e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69229850" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask&lt;TResult&gt; : IEquatable&lt;System.Threading.Tasks.ValueTask&lt;TResult&gt;&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="57ceaecd156de7b3698b591bba81971d234f6424" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75158908" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask&lt;TResult&gt; : IEquatable&lt;System.Threading.Tasks.ValueTask&lt;TResult&gt;&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit ValueTask`1&lt;TResult&gt; extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Threading.Tasks.ValueTask`1&lt;!TResult&gt;&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.ValueTask`1" />
   <TypeSignature Language="VB.NET" Value="Public Structure ValueTask(Of TResult)&#xA;Implements IEquatable(Of ValueTask(Of TResult))" />
@@ -14,6 +14,7 @@
   <AssemblyInfo>
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>netstandard</AssemblyName>
@@ -31,10 +32,10 @@
     </Interface>
   </Interfaces>
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.Runtime.CompilerServices.AsyncMethodBuilder(typeof(System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder`1))</AttributeName>
     </Attribute>
-    <Attribute FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
     </Attribute>
   </Attributes>
@@ -45,27 +46,27 @@
       <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-インスタンス<xref:System.Threading.Tasks.ValueTask%601>は、を使用して待機するか<xref:System.Threading.Tasks.Task%601> 、 <xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>を使用してに変換することができます。 インスタンス<xref:System.Threading.Tasks.ValueTask%601>を待機できるのは1回だけで、インスタンスが<xref:System.Threading.Tasks.ValueTask%601.GetAwaiter>完了するまでコンシューマーがを呼び出すことはできません。 これらの制限が許容されない<xref:System.Threading.Tasks.ValueTask%601>場合は<xref:System.Threading.Tasks.Task%601> 、を<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>呼び出して、をに変換します。
+<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>を使用して、<xref:System.Threading.Tasks.ValueTask%601> インスタンスを待機するか、<xref:System.Threading.Tasks.Task%601> に変換することができます。 <xref:System.Threading.Tasks.ValueTask%601> インスタンスは1回だけ待機できます。また、インスタンスが完了するまでコンシューマーが <xref:System.Threading.Tasks.ValueTask%601.GetAwaiter> を呼び出すことはできません。 これらの制限が許容されない場合は、<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>を呼び出して、<xref:System.Threading.Tasks.ValueTask%601> を <xref:System.Threading.Tasks.Task%601> に変換します。
 
-<xref:System.Threading.Tasks.ValueTask%601>インスタンスに対して次の操作を実行することはできません。
+<xref:System.Threading.Tasks.ValueTask%601> インスタンスでは、次の操作を実行しないでください。
 
   - インスタンスを複数回待機しています。
-  - を<xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>複数回呼び出す。
-  - 操作`.Result`が`.GetAwaiter().GetResult()`まだ完了していない場合、または複数回使用する場合は、またはを使用します。
+  - <xref:System.Threading.Tasks.ValueTask%601.AsTask%2A> を複数回呼び出す。
+  - 操作がまだ完了していない場合、または操作を複数回使用する場合は、`.Result` または `.GetAwaiter().GetResult()` を使用します。
   - インスタンスを使用するために、これらの手法の1つ以上を使用します。
 
 上記のいずれかを実行すると、結果は未定義になります。
 
-メソッドは、この値型のインスタンスを返すことがあります。その操作の結果が同期的に使用可能になる可能性があり、呼び出しごとに新しい<xref:System.Threading.Tasks.Task%601>を割り当てるコストが非常に高くなることが予想される場合です。   
+メソッドは、この値型のインスタンスを返すことがあります。その操作の結果が同期的に使用可能になる可能性があり、呼び出しごとに新しい <xref:System.Threading.Tasks.Task%601> を割り当てるコストが膨大になることが予想される場合があります。   
 
-の代わり<xref:System.Threading.Tasks.ValueTask%601>にを使用すると、トレードオフが発生します。<xref:System.Threading.Tasks.Task%601> たとえば、は、正常<xref:System.Threading.Tasks.ValueTask%601>に実行された結果が同期的に使用可能な場合には割り当てを回避するのに役立ちます<xref:System.Threading.Tasks.Task%601>が、参照型としては1つのフィールドであるのに対し、は複数のフィールドを含みます。 これは、メソッドから<xref:System.Threading.Tasks.ValueTask%601>を返すと、より多くのデータがコピーされることを意味します。 また、を<xref:System.Threading.Tasks.ValueTask%601>返すメソッドが非同期メソッド内で待機している場合、その非同期メソッドのステートマシンは、1つの参照ではなく複数のフィールドを含む構造体を格納する必要があるため、より大きなサイズになります。   
+<xref:System.Threading.Tasks.Task%601>ではなく <xref:System.Threading.Tasks.ValueTask%601> を使用すると、トレードオフが発生します。 たとえば、<xref:System.Threading.Tasks.ValueTask%601> は、正常に実行された結果が同期的に使用可能な場合、割り当てを回避するのに役立ちますが、参照型として <xref:System.Threading.Tasks.Task%601> は1つのフィールドであるのに対し、複数のフィールドが含まれています。 これは、メソッドから <xref:System.Threading.Tasks.ValueTask%601> を返すと、より多くのデータがコピーされることを意味します。 また、<xref:System.Threading.Tasks.ValueTask%601> を返すメソッドが非同期メソッド内で待機している場合は、1つの参照ではなく複数のフィールドを含む構造体を格納する必要があるため、その非同期メソッドのステートマシンのサイズは大きくなります。   
 
-Await を使用した非同期操作の結果を使用する以外の<xref:System.Threading.Tasks.ValueTask%601>用途では、より多くの割り当てを必要とするより複雑なプログラミングモデルになる可能性があります。 たとえば、共通の結果<xref:System.Threading.Tasks.Task%601> <xref:System.Threading.Tasks.ValueTask%601>またはとしてキャッシュされたタスクを含むを返すメソッドがあるとします。 結果のコンシューマー <xref:System.Threading.Tasks.Task%601>が、 <xref:System.Threading.Tasks.Task.WhenAll%2A>や<xref:System.Threading.Tasks.Task.WhenAny%2A> <xref:System.Threading.Tasks.Task%601> <xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>などのメソッドでをとして使用する場合は、まずを使用してをに変換する必要があります。これは、<xref:System.Threading.Tasks.ValueTask%601>最初<xref:System.Threading.Tasks.Task%601>の場所でキャッシュが使用されました。   
+Await を使用した非同期操作の結果を使用する以外の用途では、より多くの割り当てを必要とする、より複雑なプログラミングモデルに <xref:System.Threading.Tasks.ValueTask%601> ことがあります。 たとえば、共通の結果または <xref:System.Threading.Tasks.ValueTask%601>としてキャッシュされたタスクを含む <xref:System.Threading.Tasks.Task%601> を返すメソッドがあるとします。 結果のコンシューマーが <xref:System.Threading.Tasks.Task.WhenAll%2A> や <xref:System.Threading.Tasks.Task.WhenAny%2A>などのメソッドで <xref:System.Threading.Tasks.Task%601> として使用する場合は、まず <xref:System.Threading.Tasks.Task%601> を使用して <xref:System.Threading.Tasks.ValueTask%601> を <xref:System.Threading.Tasks.ValueTask%601.AsTask%2A>に変換し、キャッシュされた <xref:System.Threading.Tasks.Task%601> が最初に使用された場合には回避された割り当てにする必要があります。   
 
-そのため、任意の非同期メソッドの既定の選択肢は、または<xref:System.Threading.Tasks.Task> <xref:System.Threading.Tasks.Task%601>を返すことです。 パフォーマンス分析では、 <xref:System.Threading.Tasks.ValueTask%601> <xref:System.Threading.Tasks.Task%601>ではなくを使用する必要があることが証明されている場合にのみ使用します。 の<xref:System.Threading.Tasks.ValueTask>非ジェネリックバージョンは、ほとんどのシナリオでは推奨されません。 <xref:System.Threading.Tasks.Task.CompletedTask> を<xref:System.Threading.Tasks.Task>返すメソッドが同期的かつ正常に完了した場合に、正常に完了したシングルトンを戻すには、プロパティを使用する必要があります。
+そのため、任意の非同期メソッドの既定の選択肢は、<xref:System.Threading.Tasks.Task> または <xref:System.Threading.Tasks.Task%601>を返す必要があります。 パフォーマンス分析では、<xref:System.Threading.Tasks.Task%601>ではなく <xref:System.Threading.Tasks.ValueTask%601> 使用する必要があることが証明されている場合にのみ使用してください。 <xref:System.Threading.Tasks.ValueTask> の非ジェネリックバージョンは、ほとんどのシナリオでは推奨されません。 <xref:System.Threading.Tasks.Task> を返すメソッドが同期的に正常に完了した場合に、正常に完了したシングルトンを戻すには、<xref:System.Threading.Tasks.Task.CompletedTask> プロパティを使用する必要があります。
 
 > [!NOTE]
->  この<xref:System.Threading.Tasks.ValueTask%601>型の使用はC# 7.0 以降でサポートされており、Visual Basic のどのバージョンでもサポートされていません。
+>  <xref:System.Threading.Tasks.ValueTask%601> 型の使用はC# 7.0 以降でサポートされており、Visual Basic のどのバージョンでもサポートされていません。
  ]]></format>
     </remarks>
   </Docs>
@@ -87,6 +88,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -119,6 +121,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -144,6 +147,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -153,13 +157,13 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="source" Type="System.Threading.Tasks.Sources.IValueTaskSource&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
-        <Parameter Name="token" Type="System.Int16" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
+        <Parameter Name="source" Type="System.Threading.Tasks.Sources.IValueTaskSource&lt;TResult&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="token" Type="System.Int16" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="source">ソース。</param>
         <param name="token"><see cref="T:System.Threading.Tasks.Sources.IValueTaskSource" /> に渡される非透過的な値。</param>
-        <summary>操作を表す <see cref="T:System.Threading.Tasks.Sources.IValueTaskSource`1" /> オブジェクトを使用して、<see cref="T:System.Threading.Tasks.ValueTask`1" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>操作を表す <see cref="T:System.Threading.Tasks.ValueTask`1" /> オブジェクトを使用して、<see cref="T:System.Threading.Tasks.Sources.IValueTaskSource`1" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -180,6 +184,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -190,8 +195,8 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>この <see cref="T:System.Threading.Tasks.ValueTask`1" /> を表す <see cref="T:System.Threading.Tasks.Task`1" /> オブジェクトを取得します。</summary>
-        <returns>この <see cref="T:System.Threading.Tasks.ValueTask`1" /> でラップされる <see cref="T:System.Threading.Tasks.Task`1" /> オブジェクト (存在する場合)、または、結果を表す新しい <see cref="T:System.Threading.Tasks.Task`1" /> オブジェクト。</returns>
+        <summary>この <see cref="T:System.Threading.Tasks.Task`1" /> を表す <see cref="T:System.Threading.Tasks.ValueTask`1" /> オブジェクトを取得します。</summary>
+        <returns>この <see cref="T:System.Threading.Tasks.Task`1" /> でラップされる <see cref="T:System.Threading.Tasks.ValueTask`1" /> オブジェクト (存在する場合)、または、結果を表す新しい <see cref="T:System.Threading.Tasks.Task`1" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 このメソッドは、ラップされたタスクオブジェクト (存在する場合) を返すか、または結果を表す新しい task オブジェクトを作成します。
@@ -216,6 +221,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -289,6 +295,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -302,7 +309,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       </Parameters>
       <Docs>
         <param name="obj">現在のオブジェクトと比較するオブジェクト。</param>
-        <summary>指定したオブジェクトが、現在のオブジェクトと等しいかどうかを判断します。</summary>
+        <summary>指定されたオブジェクトが現在のオブジェクトと等しいかどうかを判定します。</summary>
         <returns>指定したオブジェクトが現在のオブジェクトと等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />です。</returns>
         <remarks></remarks>
       </Docs>
@@ -327,6 +334,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -362,6 +370,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -394,6 +403,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -405,7 +415,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <Parameters />
       <Docs>
         <summary>このインスタンスのハッシュ コードを返します。</summary>
-        <returns>現在のオブジェクトのハッシュ コード。</returns>
+        <returns>現在のオブジェクトのハッシュ コードです。</returns>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -426,6 +436,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -436,10 +447,10 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       </ReturnValue>
       <Docs>
         <summary>このオブジェクトが取り消された操作を表すかどうかを示す値を取得します。</summary>
-        <value><see langword="true" />このオブジェクトが取り消された操作を表している場合は。それ以外<see langword="false" />の場合は。</value>
+        <value>このオブジェクトが取り消された操作を表している場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
-が結果また<xref:System.Threading.Tasks.Sources.IValueTaskSource`1>はによってサポートされている場合、この`false`は常にを返します。 <xref:System.Threading.Tasks.ValueTask`1>  によって<xref:System.Threading.Tasks.Task>サポートされている場合は、タスクの<xref:System.Threading.Tasks.Task.IsCanceled>プロパティの値が返されます。
+<xref:System.Threading.Tasks.ValueTask`1> が結果または <xref:System.Threading.Tasks.Sources.IValueTaskSource`1>によってサポートされている場合は、常に `false`が返されます。  <xref:System.Threading.Tasks.Task>によってサポートされている場合は、タスクの <xref:System.Threading.Tasks.Task.IsCanceled> プロパティの値が返されます。
           ]]></format>
         </remarks>
       </Docs>
@@ -461,6 +472,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -471,7 +483,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       </ReturnValue>
       <Docs>
         <summary>このオブジェクトが完了した操作を表すかどうかを示す値を取得します。</summary>
-        <value><see langword="true" />このオブジェクトが完了した操作を表している場合は。それ以外<see langword="false" />の場合は。</value>
+        <value>このオブジェクトが完了した操作を表している場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -492,6 +504,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -502,7 +515,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       </ReturnValue>
       <Docs>
         <summary>このオブジェクトが正常に完了した操作を表すかどうかを示す値を取得します。</summary>
-        <value><see langword="true" />このオブジェクトが正常に完了した操作を表している場合は。それ以外<see langword="false" />の場合は。</value>
+        <value>このオブジェクトが正常に完了した操作を表している場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -523,6 +536,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -533,7 +547,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       </ReturnValue>
       <Docs>
         <summary>このオブジェクトが失敗した操作を表すかどうかを示す値を取得します。</summary>
-        <value><see langword="true" />このオブジェクトが失敗した操作を表している場合は。それ以外<see langword="false" />の場合は。</value>
+        <value>このオブジェクトが失敗した操作を表している場合は <see langword="true" /> します。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -554,6 +568,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -570,7 +585,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
         <param name="left">比較する最初の値です。</param>
         <param name="right">比較する 2 番目の値です。</param>
         <summary>2 つの値が等しいかどうかを比較します。</summary>
-        <returns>2 つの <see cref="T:System.Threading.Tasks.ValueTask`1" /> 値が等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns>2 つの <see langword="true" /> 値が等しい場合は <see cref="T:System.Threading.Tasks.ValueTask`1" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -591,6 +606,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -607,7 +623,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
         <param name="left">比較する最初の値です。</param>
         <param name="right">比較する 2 番目の値です。</param>
         <summary>2 つの <see cref="T:System.Threading.Tasks.ValueTask`1" /> 値が等しくないかどうかを判断します。</summary>
-        <returns>2 つの <see cref="T:System.Threading.Tasks.ValueTask`1" /> 値が等しくない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns>2 つの <see langword="true" /> 値が等しくない場合は <see cref="T:System.Threading.Tasks.ValueTask`1" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks></remarks>
       </Docs>
     </Member>
@@ -622,6 +638,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -657,6 +674,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -671,9 +689,9 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
         <remarks>
           <format type="text/markdown"><![CDATA[  
 ## Remarks  
-このプロパティには、一度だけアクセスできます。この<xref:System.Threading.Tasks.ValueTask%601>プロパティは、完了後にのみアクセスできます。
+このプロパティにアクセスできるのは、この <xref:System.Threading.Tasks.ValueTask%601> が完了した後だけです。
 
-これ<xref:System.Threading.Tasks.ValueTask%601>が正常に完了した場合、このプロパティは結果の値を返します。 この<xref:System.Threading.Tasks.ValueTask%601>エラーが発生した場合、このプロパティは例外を発生させます。 スローされた例外は、 <xref:System.AggregateException>でラップされていません。
+この <xref:System.Threading.Tasks.ValueTask%601> が正常に完了した場合、このプロパティは結果の値を返します。 この <xref:System.Threading.Tasks.ValueTask%601> がエラーになった場合、このプロパティは例外を発生させます。 スローされた例外は、<xref:System.AggregateException>でラップされていません。
 ]]></format>
         </remarks>
       </Docs>
@@ -695,6 +713,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -705,7 +724,7 @@ Await を使用した非同期操作の結果を使用する以外の<xref:Syste
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>現在のオブジェクトを表す文字列を返します。</summary>
+        <summary>現在のオブジェクトを表す string を返します。</summary>
         <returns>現在のオブジェクトを表す文字列。</returns>
         <remarks></remarks>
       </Docs>

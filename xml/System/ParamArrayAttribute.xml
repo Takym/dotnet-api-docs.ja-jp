@@ -1,5 +1,5 @@
 <Type Name="ParamArrayAttribute" FullName="System.ParamArrayAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4591cdeca85a42a2d66c2ab3c918c0010c3eac5f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405416" /></Metadata><TypeSignature Language="C#" Value="public sealed class ParamArrayAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3d208a93cef04d561c86eb4383c57d313f6db28f" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75172428" /></Metadata><TypeSignature Language="C#" Value="public sealed class ParamArrayAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ParamArrayAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ParamArrayAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ParamArrayAttribute&#xA;Inherits Attribute" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -31,7 +32,7 @@
   </Base>
   <Interfaces />
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.AttributeUsage(System.AttributeTargets.Parameter, AllowMultiple=false, Inherited=true)</AttributeName>
     </Attribute>
     <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -39,12 +40,12 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>メソッドを呼び出すときに、任意の数の引数を指定できることを示します。 このクラスは継承できません。</summary>
+    <summary>可変個数の引数を指定して呼び出せるメソッドであることを示します。 このクラスは継承できません。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- は<xref:System.ParamArrayAttribute> 、メソッドパラメーターがパラメーター配列であることを示します。 パラメーター配列では、不明な数の引数を指定できます。 パラメーター配列は、仮パラメーターリストの最後のパラメーターである必要があり、1次元配列である必要があります。 メソッドが呼び出されると、パラメーター配列は、次の2つの方法のいずれかで、メソッドへの引数を指定できます。  
+ <xref:System.ParamArrayAttribute> は、メソッドパラメーターがパラメーター配列であることを示します。 パラメーター配列では、不明な数の引数を指定できます。 パラメーター配列は、仮パラメーターリストの最後のパラメーターである必要があり、1次元配列である必要があります。 メソッドが呼び出されると、パラメーター配列は、次の2つの方法のいずれかで、メソッドへの引数を指定できます。  
   
 -   パラメーター配列型に暗黙的に変換できる型の単一の式として。 パラメーター配列は、値パラメーターとして機能します。  
   
@@ -53,21 +54,21 @@
  次のセクションの例では、両方の呼び出し規約について説明します。  
   
 > [!NOTE]
->  <xref:System.ParamArrayAttribute>通常、はコード内で直接使用されません。 `ParamArray`代わりに、Visual Basic や`params` in C#などの個々の言語キーワードは、 <xref:System.ParamArrayAttribute>クラスのラッパーとして使用されます。 などの一部の言語C#では、言語キーワードを使用する必要があり、の<xref:System.ParamArrayAttribute>使用が禁止されている場合もあります。  
+>  通常、<xref:System.ParamArrayAttribute> はコード内で直接使用されません。 代わりに、Visual Basic 内の `ParamArray` やのC#`params` など、個々の言語キーワードが <xref:System.ParamArrayAttribute> クラスのラッパーとして使用されます。 などの一部の言語C#では、言語キーワードを使用する必要があり、<xref:System.ParamArrayAttribute>の使用が禁止されている場合もあります。  
   
- オーバーロードの解決中に、パラメーター配列をサポートするコンパイラが、存在しないが、パラメーター配列を含むオーバーロードよりも1つ小さいパラメーターを持つメソッドオーバーロードを検出すると、メソッドは、を含むオーバーロードに置き換えられます。パラメーター配列。 たとえば、( <xref:System.String>クラスに存在し`String.Split()`ない) インスタンスメソッドへの呼び出しは、メソッドの<xref:System.String.Split%28System.Char%5B%5D%29?displayProperty=nameWithType>呼び出しとして解決されます。 また、コンパイラは、必要な型の空の配列をメソッドに渡します。 これは、パラメーター配列内の要素を処理するときに、長さが0の配列を処理するために、メソッドを常に準備する必要があることを意味します。 具体的な例を次に示します。  
+ オーバーロードの解決中に、パラメーター配列をサポートするコンパイラが、存在しないが、パラメーター配列を含むオーバーロードよりも1つ小さいパラメーターを持つメソッドオーバーロードを検出すると、メソッドは、を含むオーバーロードに置き換えられます。パラメーター配列。 たとえば、`String.Split()` インスタンスメソッド (<xref:System.String> クラスには存在しません) への呼び出しは、<xref:System.String.Split%28System.Char%5B%5D%29?displayProperty=nameWithType> メソッドの呼び出しとして解決されます。 また、コンパイラは、必要な型の空の配列をメソッドに渡します。 これは、パラメーター配列内の要素を処理するときに、長さが0の配列を処理するために、メソッドを常に準備する必要があることを意味します。 具体的な例を次に示します。  
   
  属性の使用方法の詳細については、「[属性](~/docs/standard/attributes/index.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では`Temperature` 、1つまた`Display`は複数の書式設定された温度値を表示するためのメソッドを含むクラスを定義しています。 このメソッドには、パラメーター配列`formats`として定義されている単一のパラメーターがあります。  
+ 次の例では、1つまたは複数の書式設定された気温値を表示するための `Display` メソッドを含む `Temperature` クラスを定義します。 メソッドには、パラメーター配列として定義されている、`formats`1 つのパラメーターがあります。  
   
  [!code-csharp[System.ParamArrayAttribute#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.ParamArrayAttribute/cs/Example.cs#1)]
  [!code-vb[System.ParamArrayAttribute#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.ParamArrayAttribute/vb/Example.vb#1)]  
   
- 次の例は、メソッドの`Temperature.Display` 3 つの異なる呼び出しを示しています。 最初の方法では、書式指定文字列の配列がメソッドに渡されます。 2番目のメソッドでは、4つの個別の書式指定文字列が引数として渡されます。 3番目の方法では、引数を指定せずにメソッドが呼び出されます。 例の出力が示すように、Visual Basic とC#コンパイラはこれを、空の文字列配列`Display`を使用してメソッドへの呼び出しに変換します。  
+ 次の例は、`Temperature.Display` メソッドの3つの異なる呼び出しを示しています。 最初の方法では、書式指定文字列の配列がメソッドに渡されます。 2番目のメソッドでは、4つの個別の書式指定文字列が引数として渡されます。 3番目の方法では、引数を指定せずにメソッドが呼び出されます。 例の出力が示すように、Visual Basic とC#コンパイラはこれを、空の文字列配列を使用して、`Display` メソッドへの呼び出しに変換します。  
   
  [!code-csharp[System.ParamArrayAttribute#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.ParamArrayAttribute/cs/Example.cs#2)]
  [!code-vb[System.ParamArrayAttribute#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.ParamArrayAttribute/vb/Example.vb#2)]  
@@ -93,6 +94,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>

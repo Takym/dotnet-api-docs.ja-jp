@@ -1,5 +1,5 @@
 <Type Name="MulticastDelegate" FullName="System.MulticastDelegate">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6a2a8a9f3953d1d4a867fbc88f18cb1b95f89a3d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405581" /></Metadata><TypeSignature Language="C#" Value="public abstract class MulticastDelegate : Delegate" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c422d1a0015c657daf1a14f897c4148ff9c1d7e6" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75172571" /></Metadata><TypeSignature Language="C#" Value="public abstract class MulticastDelegate : Delegate" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi abstract serializable beforefieldinit MulticastDelegate extends System.Delegate" />
   <TypeSignature Language="DocId" Value="T:System.MulticastDelegate" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class MulticastDelegate&#xA;Inherits Delegate" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -44,26 +45,26 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.MulticastDelegate>は特殊なクラスです。 コンパイラおよびその他のツールは、このクラスから派生できますが、明示的に派生することはできません。 <xref:System.Delegate>クラスにも同じことが当てはまります。  
+ <xref:System.MulticastDelegate> は特殊なクラスです。 コンパイラおよびその他のツールは、このクラスから派生できますが、明示的に派生することはできません。 <xref:System.Delegate> クラスにも同じことが当てはまります。  
   
- 共通言語ランタイムには、デリゲート型がから<xref:System.MulticastDelegate>継承するメソッドに加え`BeginInvoke`て、とと`EndInvoke`いう2つの特殊なメソッドが用意されています。 これらのメソッドの詳細については、「[同期メソッドの非同期呼び出し](~/docs/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously.md)」を参照してください。  
+ デリゲート型が <xref:System.MulticastDelegate>から継承するメソッドに加えて、共通言語ランタイムには、`BeginInvoke` と `EndInvoke`という2つの特殊なメソッドが用意されています。 これらのメソッドの詳細については、「[同期メソッドの非同期呼び出し](~/docs/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously.md)」を参照してください。  
   
- に<xref:System.MulticastDelegate>は、1つ以上の要素で構成される呼び出しリストと呼ばれるデリゲートのリンクリストがあります。 マルチキャストデリゲートが呼び出されると、呼び出しリスト内のデリゲートが、出現する順序で同期的に呼び出されます。 リストの実行中にエラーが発生した場合は、例外がスローされます。  
+ <xref:System.MulticastDelegate> には、1つ以上の要素で構成される呼び出しリストと呼ばれるデリゲートのリンクリストがあります。 マルチキャストデリゲートが呼び出されると、呼び出しリスト内のデリゲートが、出現する順序で同期的に呼び出されます。 リストの実行中にエラーが発生した場合は、例外がスローされます。  
   
    
   
 ## Examples  
- 次の例では、文字列`StringContainer`のコレクションを含むクラスを定義しています。 そのメンバーの1つは`CheckAndDisplayDelegate`デリゲートです。これは、特定の条件を満たす`StringContainer`オブジェクトに格納されている文字列を表示するために使用されます。 デリゲートは、1つの文字列をパラメーターとし`void`て受け取り、を返します (Visual Basic `Sub`では、プロシージャ)。 また、1つのパラメーター `DisplayAllQualified` `CheckAndDisplayDelegate` (デリゲート) を持つメソッドも含まれています。 これにより、メソッドを呼び出すことができます。また、デリゲートに含まれるメソッドに基づいてフィルター処理された文字列のセットを表示することもできます。  
+ 次の例では、文字列のコレクションを含むクラス `StringContainer`を定義しています。 そのメンバーの1つは、特定の条件を満たす `StringContainer` オブジェクトに格納されている文字列を表示するために使用される `CheckAndDisplayDelegate` デリゲートです。 デリゲートは1つの文字列をパラメーターとして受け取り、`void` を返します (Visual Basic の場合は `Sub` プロシージャ)。 また、1つのパラメーター (`CheckAndDisplayDelegate` デリゲート) を持つメソッド `DisplayAllQualified`も含まれています。 これにより、メソッドを呼び出すことができます。また、デリゲートに含まれるメソッドに基づいてフィルター処理された文字列のセットを表示することもできます。  
   
- また、この例では、次`StringExtensions`の2つのメソッドを持つユーティリティクラスを定義しています。  
+ この例では、次の2つのメソッドを持つユーティリティクラス `StringExtensions`も定義します。  
   
 -   `ConStart`。子音で始まる文字列を表示します。  
   
 -   `VowelStart`。母音で始まる文字列を表示します。  
   
- どちらのメソッドにも1つの文字列パラメーターが`void`含まれ、が返されることに注意してください。 つまり、両方のメソッドを`CheckAndDisplayDelegate`デリゲートに割り当てることができます。  
+ どちらのメソッドにも1つの文字列パラメーターが含まれ、`void`が返されることに注意してください。 つまり、両方のメソッドを `CheckAndDisplayDelegate` デリゲートに割り当てることができます。  
   
- `Test.Main`メソッドは、アプリケーションのエントリポイントです。 `StringContainer`オブジェクトをインスタンス化し、それに文字列を設定し、1つ`conStart`の`vowelStart`メソッドを呼び出す2つ`CheckAndDisplayDelegate`のデリゲートとを作成します。 次に、 <xref:System.Delegate.Combine%2A?displayProperty=nameWithType>メソッドを呼び出して、 `multipleDelegates`デリゲートを作成します。この`VowelStart`デリゲートには`ConStart` 、最初におよびデリゲートが含まれます。 `multipleDelegates`デリゲートが呼び出されると、コレクション内のすべての文字列が元の順序で表示されることに注意してください。 これは、各文字が各デリゲートに個別に渡され、各文字が2つのデリゲートのうちの1つのみのフィルター条件を満たしているためです。 最後に、 <xref:System.Delegate.Remove%2A?displayProperty=nameWithType>と<xref:System.Delegate.Combine%2A?displayProperty=nameWithType>の呼び出しの`multipleDelegates`後に`conStart` 、2つのデリゲートが含まれています。 このメソッドを呼び出すと、 `StringContainer`オブジェクト内の各文字列が2回表示されます。  
+ `Test.Main` メソッドは、アプリケーションのエントリポイントです。 `StringContainer` オブジェクトをインスタンス化し、それに文字列を設定し、1つのメソッドを呼び出す2つの `CheckAndDisplayDelegate` デリゲート、`conStart` および `vowelStart`を作成します。 次に、<xref:System.Delegate.Combine%2A?displayProperty=nameWithType> メソッドを呼び出して、最初に `ConStart` および `VowelStart` デリゲートを含む `multipleDelegates` デリゲートを作成します。 `multipleDelegates` デリゲートが呼び出されると、コレクション内のすべての文字列が元の順序で表示されることに注意してください。 これは、各文字が各デリゲートに個別に渡され、各文字が2つのデリゲートのうちの1つのみのフィルター条件を満たしているためです。 最後に、<xref:System.Delegate.Remove%2A?displayProperty=nameWithType> と <xref:System.Delegate.Combine%2A?displayProperty=nameWithType>を呼び出した後、`multipleDelegates` に2つの `conStart` デリゲートが含まれています。 このメソッドが呼び出されると、`StringContainer` オブジェクト内の各文字列が2回表示されます。  
   
  [!code-cpp[Multicast Delegate Introduction#1](~/samples/snippets/cpp/VS_Snippets_CLR/Multicast Delegate Introduction/CPP/delegatestring.cpp#1)]
  [!code-csharp[Multicast Delegate Introduction#1](~/samples/snippets/csharp/VS_Snippets_CLR/Multicast Delegate Introduction/CS/delegatestring.cs#1)]
@@ -107,10 +108,11 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="target" Type="System.Object" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="method" Type="System.String" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="target" Type="System.Object" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="method" Type="System.String" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="target"><paramref name="method" /> が定義されたオブジェクト。</param>
@@ -120,12 +122,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、アプリケーションコードでは使用できません。 インスタンスメソッドの名前を指定してデリゲートを作成するには、メソッド名と<xref:System.Delegate.CreateDelegate%2A?displayProperty=nameWithType>ターゲットオブジェクトを指定するメソッドのオーバーロードを使用します。 たとえば、メソッドオーバーロード<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.String%29?displayProperty=nameWithType>は、指定された名前を持つインスタンスメソッドのデリゲートを作成します。  
+ このコンストラクターは、アプリケーションコードでは使用できません。 インスタンスメソッドの名前を指定してデリゲートを作成するには、メソッド名とターゲットオブジェクトを指定する <xref:System.Delegate.CreateDelegate%2A?displayProperty=nameWithType> メソッドのオーバーロードを使用します。 たとえば、<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Object%2CSystem.String%29?displayProperty=nameWithType> メソッドオーバーロードは、指定された名前を持つインスタンスメソッドのデリゲートを作成します。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -152,10 +154,11 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="target" Type="System.Type" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="method" Type="System.String" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="target" Type="System.Type" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="method" Type="System.String" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="target"><paramref name="method" /> が定義されたオブジェクトの型。</param>
@@ -165,12 +168,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、アプリケーションコードでは使用できません。 静的メソッドの名前を指定してデリゲートを作成するには、メソッド名を<xref:System.Delegate.CreateDelegate%2A?displayProperty=nameWithType>指定し、ターゲットオブジェクトを指定しないメソッドのオーバーロードを使用します。 たとえば、メソッドオーバーロード<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Type%2CSystem.String%29?displayProperty=nameWithType>は、指定された名前を持つメソッドの静的デリゲートを作成します。  
+ このコンストラクターは、アプリケーションコードでは使用できません。 静的メソッドの名前を指定してデリゲートを作成するには、メソッド名を指定し、ターゲットオブジェクトを指定しない <xref:System.Delegate.CreateDelegate%2A?displayProperty=nameWithType> メソッドのオーバーロードを使用します。 たとえば、<xref:System.Delegate.CreateDelegate%28System.Type%2CSystem.Type%2CSystem.String%29?displayProperty=nameWithType> メソッドオーバーロードは、指定された名前を持つメソッドの静的デリゲートを作成します。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="CombineImpl">
@@ -197,6 +200,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -207,7 +211,7 @@
         <ReturnType>System.Delegate</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="follow" Type="System.Delegate" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="follow" Type="System.Delegate" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="follow">このデリゲートと組み合わせるデリゲート。</param>
@@ -216,7 +220,7 @@
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentException"><paramref name="follow" /> には、このインスタンスと同じ型はありません。</exception>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="DynamicInvokeImpl">
@@ -258,7 +262,7 @@
         <exception cref="T:System.ArgumentException">パラメーターの数値、順序、または型が無効です。</exception>
         <exception cref="T:System.Reflection.TargetException">カプセル化メソッドが静的メソッドではありません。また、ターゲット オブジェクトが null です。
 
-          - または -
+          または
 
           メソッドをサポートしていないオブジェクトまたはクラスに対してメソッドを呼び出そうとしました。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">カプセル化されたメソッドの 1 つが例外をスローします。</exception>
@@ -280,6 +284,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -307,19 +312,19 @@
       <Docs>
         <param name="obj">このインスタンスと比較するオブジェクト。</param>
         <summary>このマルチキャスト デリゲートと指定されたオブジェクトが等しいかどうかを確認します。</summary>
-        <returns><paramref name="obj" /> と、このインスタンスの呼び出しリストが同じである場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> と、このインスタンスの呼び出しリストが同じである場合は <paramref name="obj" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2つのデリゲートは、同じで`null`はなく、まったく同じ型であり、呼び出しリストに同じ数の要素が含まれており、最初のデリゲートの呼び出しリスト内のすべての要素が、呼び出し内の対応する要素と等しい場合に等しくなります。2番目のデリゲートのリスト。  
+ 2つのデリゲートは、`null` ではなく、まったく同じ型であり、呼び出しリストに同じ数の要素が含まれており、最初のデリゲートの呼び出しリスト内のすべての要素が2番目のデリゲートの呼び出しリスト内の対応する要素と等しい場合は、等しくなります。  
   
  2つの呼び出しリスト要素は、同じターゲットインスタンスで同じインスタンスメソッドを呼び出すか、同じ静的メソッドを呼び出すと等しいと見なされます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetHashCode">
@@ -338,6 +343,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -365,7 +371,7 @@
         <returns>32 ビット符号付き整数ハッシュ コード。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetInvocationList">
@@ -384,6 +390,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -418,7 +425,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetMethodImpl">
@@ -444,6 +451,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -461,7 +469,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- が複数<xref:System.MulticastDelegate>のメソッドを表す場合は、1つのメソッドのみが返されます。  
+ <xref:System.MulticastDelegate> が複数のメソッドを表している場合は、1つのメソッドのみが返されます。  
   
  ]]></format>
         </remarks>
@@ -491,6 +499,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -501,8 +510,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="info">このインスタンスのシリアル化または逆シリアル化に必要なすべてのデータを保持するオブジェクト。</param>
@@ -512,13 +521,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、このインスタンスを`info`シリアル化するために必要なすべての情報を格納します。  
+ このメソッドは、このインスタンスをシリアル化するために必要な `info` のすべての情報を格納します。  
   
- `context`パラメーターは予約されており、このメソッドの実行では現在使用されていません。  
+ `context` パラメーターは予約されており、このメソッドの実行では現在使用されていません。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
         <exception cref="T:System.Runtime.Serialization.SerializationException">シリアル化エラーが発生しました。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
@@ -542,6 +551,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -565,20 +575,20 @@
       <Docs>
         <param name="d1">左オペランド。</param>
         <param name="d2">右オペランド。</param>
-        <summary>2 つの <see cref="T:System.MulticastDelegate" /> オブジェクトが等しいかどうかを判断します。</summary>
-        <returns><paramref name="d1" /> と <paramref name="d2" /> の呼び出しリストが同じである場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <summary>2 つの <see cref="T:System.MulticastDelegate" /> オブジェクトが等しいかどうかを確認します。</summary>
+        <returns><see langword="true" /> と <paramref name="d1" /> の呼び出しリストが同じである場合は <paramref name="d2" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2つのデリゲートは、同じで`null`はなく、まったく同じ型であり、呼び出しリストに同じ数の要素が含まれており、最初のデリゲートの呼び出しリスト内のすべての要素が、呼び出し内の対応する要素と等しい場合に等しくなります。2番目のデリゲートのリスト。  
+ 2つのデリゲートは、`null` ではなく、まったく同じ型であり、呼び出しリストに同じ数の要素が含まれており、最初のデリゲートの呼び出しリスト内のすべての要素が2番目のデリゲートの呼び出しリスト内の対応する要素と等しい場合は、等しくなります。  
   
  2つの呼び出しリスト要素は、同じターゲットインスタンスで同じインスタンスメソッドを呼び出すか、同じ静的メソッドを呼び出すと等しいと見なされます。  
   
- この演算子の同等の方法は次のようになります。<xref:System.MulticastDelegate.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+ この演算子の同等のメソッドは <xref:System.MulticastDelegate.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="op_Inequality">
@@ -597,6 +607,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -621,19 +632,19 @@
         <param name="d1">左オペランド。</param>
         <param name="d2">右オペランド。</param>
         <summary>2 つの <see cref="T:System.MulticastDelegate" /> オブジェクトが等しくないかどうかを判断します。</summary>
-        <returns><paramref name="d1" /> と <paramref name="d2" /> の呼び出しリストが異なる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> と <paramref name="d1" /> の呼び出しリストが異なる場合は <paramref name="d2" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2つのデリゲートは、同じで`null`はなく、まったく同じ型であり、呼び出しリストに同じ数の要素が含まれており、最初のデリゲートの呼び出しリスト内のすべての要素が、呼び出し内の対応する要素と等しい場合に等しくなります。2番目のデリゲートのリスト。  
+ 2つのデリゲートは、`null` ではなく、まったく同じ型であり、呼び出しリストに同じ数の要素が含まれており、最初のデリゲートの呼び出しリスト内のすべての要素が2番目のデリゲートの呼び出しリスト内の対応する要素と等しい場合は、等しくなります。  
   
  2つの呼び出しリスト要素は、同じターゲットインスタンスで同じインスタンスメソッドを呼び出すか、同じ静的メソッドを呼び出すと等しいと見なされます。  
   
- この演算子の同等の方法は次のようになります。<xref:System.MulticastDelegate.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
+ この演算子の同等のメソッドは <xref:System.MulticastDelegate.Equals%28System.Object%29?displayProperty=nameWithType>]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
     <Member MemberName="RemoveImpl">
@@ -660,6 +671,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -670,15 +682,15 @@
         <ReturnType>System.Delegate</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="value" Type="System.Delegate" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="value" Type="System.Delegate" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="value">呼び出しリストで検索するデリゲート。</param>
         <summary>対象の <see cref="T:System.MulticastDelegate" /> の呼び出しリストから、指定したデリゲートと等しい要素を削除します。</summary>
-        <returns>対象のインスタンスの呼び出しリスト内で <paramref name="value" /> が見つかった場合は、<paramref name="value" /> が含まれない呼び出しリストを持つ新しい <see cref="T:System.Delegate" />。それ以外の場合は、元の呼び出しリストを持つ対象のインスタンス。</returns>
+        <returns>対象のインスタンスの呼び出しリスト内で <paramref name="value" /> が見つかった場合は、<see cref="T:System.Delegate" /> が含まれない呼び出しリストを持つ新しい <paramref name="value" />。それ以外の場合は、元の呼び出しリストを持つ対象のインスタンス。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /></permission>
       </Docs>
     </Member>
   </Members>
