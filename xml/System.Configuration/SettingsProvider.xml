@@ -1,5 +1,5 @@
 <Type Name="SettingsProvider" FullName="System.Configuration.SettingsProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="aa09583daffbf6437947c8d4cc711b1951a21c0e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69129199" /></Metadata><TypeSignature Language="C#" Value="public abstract class SettingsProvider : System.Configuration.Provider.ProviderBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f773aea0c0bceef846d415a8f231cf6b2d837353" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75143516" /></Metadata><TypeSignature Language="C#" Value="public abstract class SettingsProvider : System.Configuration.Provider.ProviderBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SettingsProvider extends System.Configuration.Provider.ProviderBase" />
   <TypeSignature Language="DocId" Value="T:System.Configuration.SettingsProvider" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SettingsProvider&#xA;Inherits ProviderBase" />
@@ -15,6 +15,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Configuration.Provider.ProviderBase</BaseTypeName>
@@ -26,21 +27,21 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 設定プロバイダーは、アプリケーション設定アーキテクチャで使用される構成データを格納するためのメカニズムを定義します。 .NET Framework には、構成データをローカルファイル<xref:System.Configuration.LocalFileSettingsProvider>システムに格納する既定の設定プロバイダーが1つ含まれています。 ただし、抽象<xref:System.Configuration.SettingsProvider>クラスから派生することによって、代替のストレージメカニズムを作成できます。 ラッパークラスが使用するプロバイダーは、 <xref:System.Configuration.SettingsProviderAttribute>ラッパークラスをで修飾することによって決定されます。 この属性が指定されていない場合<xref:System.Configuration.LocalFileSettingsProvider>、既定値のが使用されます。  
+ 設定プロバイダーは、アプリケーション設定アーキテクチャで使用される構成データを格納するためのメカニズムを定義します。 .NET Framework には、構成データをローカルファイルシステムに格納する既定の設定プロバイダー、<xref:System.Configuration.LocalFileSettingsProvider>が1つ含まれています。 ただし、抽象 <xref:System.Configuration.SettingsProvider> クラスから派生することによって、代替のストレージメカニズムを作成できます。 ラッパークラスが使用するプロバイダーは、ラッパークラスを <xref:System.Configuration.SettingsProviderAttribute>で修飾することによって決定されます。 この属性が指定されていない場合は、既定の <xref:System.Configuration.LocalFileSettingsProvider>が使用されます。  
   
- カスタム設定プロバイダーを作成する場合は、少なくとも、このクラス<xref:System.Configuration.SettingsProvider.GetPropertyValues%2A>の3つのメソッド (、、および<xref:System.Configuration.SettingsProvider.SetPropertyValues%2A> <xref:System.Configuration.SettingsProvider.ApplicationName%2A>) の実装を提供する必要があります。  
+ カスタム設定プロバイダーを作成する場合は、少なくとも、<xref:System.Configuration.SettingsProvider.GetPropertyValues%2A>、<xref:System.Configuration.SettingsProvider.SetPropertyValues%2A>、および <xref:System.Configuration.SettingsProvider.ApplicationName%2A>クラスの3つのメソッドの実装を提供する必要があります。  
   
- クライアントアプリケーションの場合は、 <xref:System.Configuration.IApplicationSettingsProvider>インターフェイスを実装することで、より標準化された機能をカスタムプロバイダーに追加できます。 このインターフェイスは、主にバージョン<xref:System.Configuration.ApplicationSettingsBase>管理のサポートを有効にするクラスのメソッドをミラー化します。  
+ クライアントアプリケーションの場合は、<xref:System.Configuration.IApplicationSettingsProvider> インターフェイスを実装することで、より標準化された機能をカスタムプロバイダーに追加できます。 このインターフェイスは、主にバージョン管理のサポートを有効にする <xref:System.Configuration.ApplicationSettingsBase> クラスのメソッドをミラー化します。  
   
  通常、ストレージリソースの競合を避けるために、単一インスタンス化するように設定プロバイダーを設計する必要があります。 また、プロバイダーは、単一のアプリケーションドメイン内の複数のラッパーインスタンスから、または異なるドメイン内の複数のアプリケーションから同時に呼び出すことができるため、スレッドセーフである必要があります。  
   
- 少なくとも、設定プロバイダーは<xref:System.Configuration.ApplicationScopedSettingAttribute>、、 <xref:System.Configuration.UserScopedSettingAttribute>、およびと<xref:System.Configuration.DefaultSettingValueAttribute>いう3つの属性を認識する必要があります。 アプリケーション設定に適用できる属性の完全な一覧については、「[アプリケーション設定の属性](~/docs/framework/winforms/advanced/application-settings-attributes.md)」を参照してください。 カスタム設定プロバイダーは、次の方法で設定プロパティに適用される属性を解決する必要があります。  
+ 少なくとも、設定プロバイダーは3つの属性 <xref:System.Configuration.ApplicationScopedSettingAttribute>、<xref:System.Configuration.UserScopedSettingAttribute>、および <xref:System.Configuration.DefaultSettingValueAttribute>を認識している必要があります。 アプリケーション設定に適用できる属性の完全な一覧については、「[アプリケーション設定の属性](~/docs/framework/winforms/advanced/application-settings-attributes.md)」を参照してください。 カスタム設定プロバイダーは、次の方法で設定プロパティに適用される属性を解決する必要があります。  
   
 1.  プロバイダーが属性によって暗黙的に指定された要求を満たすことができる場合は、そのことが明らかになります。  
   
 2.  プロバイダーが要求を満たすことができない場合、プロバイダーは警告なしで無視する必要があります。  
   
-3.  2つ以上のプロパティが競合する場合は、たとえば、と<xref:System.Configuration.ApplicationScopedSettingAttribute> <xref:System.Configuration.UserScopedSettingAttribute>の両方で修飾されたプロパティの場合、プロバイダーは<xref:System.Configuration.ConfigurationException>をスローする必要があります。  
+3.  2つ以上のプロパティが競合する場合は、たとえば、<xref:System.Configuration.ApplicationScopedSettingAttribute> と <xref:System.Configuration.UserScopedSettingAttribute>の両方で装飾されるプロパティです。プロバイダーは <xref:System.Configuration.ConfigurationException>をスローする必要があります。  
   
  ]]></format>
     </remarks>
@@ -70,6 +71,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -83,13 +85,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、この抽象クラスの既定の保護コンストラクターです。 メソッドは通常、すべての<xref:System.Configuration.Provider.ProviderBase.Initialize%2A>初期化を実行するため、派生したカスタム設定プロバイダーは、明示的なコンストラクターを提供する必要はありません。  
+ これは、この抽象クラスの既定の保護コンストラクターです。 <xref:System.Configuration.Provider.ProviderBase.Initialize%2A> メソッドは通常すべての初期化を実行するため、派生したカスタム設定プロバイダーは、明示的なコンストラクターを提供する必要はありません。  
   
  通常、クライアントコードは設定プロバイダーを直接インスタンス化しません。代わりに、次の手順を使用して、特定の設定プロパティの設定プロバイダーを検索します。  
   
-1.  現在の<xref:System.ComponentModel.Component>また<xref:System.Configuration.ISettingsProviderService>は<xref:System.ComponentModel.ISite>のメソッドを呼び出して、現在のへの参照を返します。 <xref:System.ComponentModel.Component.GetService%2A>  
+1.  現在の <xref:System.ComponentModel.Component> または <xref:System.ComponentModel.ISite> の <xref:System.ComponentModel.Component.GetService%2A> メソッドを呼び出して、現在の <xref:System.Configuration.ISettingsProviderService>への参照を返します。  
   
-2.  最初の手順で取得<xref:System.Configuration.ISettingsProviderService>したのメソッドを呼び出して、設定プロバイダーを返します。<xref:System.Configuration.ISettingsProviderService.GetSettingsProvider%2A>  
+2.  最初の手順で取得した <xref:System.Configuration.ISettingsProviderService> の <xref:System.Configuration.ISettingsProviderService.GetSettingsProvider%2A> メソッドを呼び出して、設定プロバイダーを返します。  
   
  ]]></format>
         </remarks>
@@ -116,18 +118,19 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
         <summary>現在実行中のアプリケーションの名前を取得または設定します。</summary>
-        <value>完全なパスまたは拡張子を含まないアプリケーションの短縮名を含む。たとえば、simpleappsettings です。 <c></c> <see cref="T:System.String" /></value>
+        <value>完全なパスまたは拡張子を含まないアプリケーションの短縮名を含む <see cref="T:System.String" />。たとえば、 <c>Simpleappsettings</c>です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティ<xref:System.Configuration.SettingsProvider.ApplicationName%2A>と<xref:System.Configuration.Provider.ProviderBase.Name%2A>プロパティを使用すると、異なるアプリケーションの同じ名前の設定プロパティを明確に区別できます。  
+ <xref:System.Configuration.SettingsProvider.ApplicationName%2A> と <xref:System.Configuration.Provider.ProviderBase.Name%2A> のプロパティを使用すると、さまざまなアプリケーションの同じ名前の設定プロパティを明確に区別できます。  
   
  ]]></format>
         </remarks>
@@ -152,6 +155,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Configuration.SettingsPropertyValueCollection</ReturnType>
@@ -169,7 +173,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Configuration.SettingsProvider.GetPropertyValues%2A>は、特別な設定、で<xref:System.Configuration.SpecialSettingAttribute>マークされているもの、およびアプリケーションとユーザー設定の調整を行うために実装する必要があります。  
+ <xref:System.Configuration.SettingsProvider.GetPropertyValues%2A> メソッドは、特殊な設定 (<xref:System.Configuration.SpecialSettingAttribute>でマークされた設定) を処理し、アプリケーションとユーザー設定を調整するために実装する必要があります。  
   
  ]]></format>
         </remarks>
@@ -195,6 +199,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -211,9 +216,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ApplicationSettingsBase>には、すべての設定プロパティの値を保持するために呼び出されるメソッドが含まれています。<xref:System.Configuration.ApplicationSettingsBase.Save%2A> このメソッドは、設定プロパティに関連付けられているすべての設定プロバイダー <xref:System.Configuration.SettingsProvider.SetPropertyValues%2A>を列挙し<xref:System.Configuration.SettingsProvider> 、各に対してメソッドを呼び出して、実際のシリアル化操作を実行します。  
+ <xref:System.Configuration.ApplicationSettingsBase> には、<xref:System.Configuration.ApplicationSettingsBase.Save%2A> メソッドが含まれています。このメソッドは、すべての設定プロパティの値を保持するために呼び出されます。 このメソッドは、設定プロパティに関連付けられているすべての設定プロバイダーを列挙し、<xref:System.Configuration.SettingsProvider> ごとに <xref:System.Configuration.SettingsProvider.SetPropertyValues%2A> メソッドを呼び出して、実際のシリアル化操作を実行します。  
   
- この<xref:System.Configuration.SettingsProvider.SetPropertyValues%2A>メソッドは、セキュリティを考慮して実装する必要があります。  
+ <xref:System.Configuration.SettingsProvider.SetPropertyValues%2A> メソッドは、セキュリティを考慮して実装する必要があります。  
   
 -   アプリケーション設定を更新できるのは、完全に信頼されているコードのみです。 部分的に信頼されたコードでは、ユーザーアプリケーション設定の更新のみを許可する必要があります。 信頼されていないコードでは、通常、アプリケーションの設定を更新することはできません。  
   
