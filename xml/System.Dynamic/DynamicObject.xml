@@ -1,5 +1,5 @@
 <Type Name="DynamicObject" FullName="System.Dynamic.DynamicObject">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="03e62a0d2acfcb7b538e50940a0b2d6f375fdbbd" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70334442" /></Metadata><TypeSignature Language="C#" Value="public class DynamicObject : System.Dynamic.IDynamicMetaObjectProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="879ee81ab79ac18edbd38326b30e3fc5d47269f5" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75134104" /></Metadata><TypeSignature Language="C#" Value="public class DynamicObject : System.Dynamic.IDynamicMetaObjectProvider" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit DynamicObject extends System.Object implements class System.Dynamic.IDynamicMetaObjectProvider" />
   <TypeSignature Language="DocId" Value="T:System.Dynamic.DynamicObject" />
   <TypeSignature Language="VB.NET" Value="Public Class DynamicObject&#xA;Implements IDynamicMetaObjectProvider" />
@@ -23,6 +23,7 @@
     <AssemblyName>System.Linq.Expressions</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -38,22 +39,22 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>実行時の動的な動作を指定するための基本クラスを提供します。 このクラスは継承する必要があり、直接インスタンス化することはできません。</summary>
+    <summary>実行時の動的な動作を指定する基底クラスを提供します。 このクラスは継承される必要があります。直接インスタンス化することはできません。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `DynamicObject`クラスを使用すると、動的オブジェクトに対して実行できる操作とそれらの操作の実行方法を定義できます。 たとえば、オブジェクトのプロパティを取得または設定したり、メソッドを呼び出したり、加算や乗算などの標準的な数値演算を実行しようとしたときに何が起こるかを定義できます。  
+ `DynamicObject` クラスを使用すると、動的オブジェクトに対して実行できる操作とそれらの操作を実行する方法を定義できます。 たとえば、オブジェクトのプロパティを取得または設定したり、メソッドを呼び出したり、加算や乗算などの標準的な数値演算を実行しようとしたときに何が起こるかを定義できます。  
   
- このクラスは、ライブラリに対してより便利なプロトコルを作成する場合に便利です。 たとえば、ライブラリのユーザーがのような`Scriptobj.SetProperty("Count", 1)`構文を使用する必要がある場合は、のように、より簡単な`scriptobj.Count = 1`構文を使用できるようにすることができます。  
+ このクラスは、ライブラリに対してより便利なプロトコルを作成する場合に便利です。 たとえば、ライブラリのユーザーが `Scriptobj.SetProperty("Count", 1)`のような構文を使用する必要がある場合は、`scriptobj.Count = 1`のように、はるかに簡単な構文を使用できるようにすることができます。  
   
- `DynamicObject`クラスのインスタンスを直接作成することはできません。 動的な動作を実装するには、 `DynamicObject`クラスを継承し、必要なメソッドをオーバーライドします。 たとえば、プロパティを設定および取得するための操作のみが必要な場合は、メソッド<xref:System.Dynamic.DynamicObject.TrySetMember%2A>と<xref:System.Dynamic.DynamicObject.TryGetMember%2A>メソッドだけをオーバーライドできます。  
+ `DynamicObject` クラスのインスタンスを直接作成することはできません。 動的な動作を実装するには、`DynamicObject` クラスを継承し、必要なメソッドをオーバーライドする必要があります。 たとえば、プロパティを設定および取得するための操作のみが必要な場合は、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドだけをオーバーライドできます。  
   
- でC#は、 `DynamicObject`クラスから派生したクラスのインスタンスに対して動的な動作を有効`dynamic`にするには、キーワードを使用する必要があります。 詳細については、「[dynamic 型の使用](~/docs/csharp/programming-guide/types/using-type-dynamic.md)」を参照してください。  
+ でC#は、`DynamicObject` クラスから派生したクラスのインスタンスに対して動的な動作を有効にするには、`dynamic` キーワードを使用する必要があります。 詳細については、「[dynamic 型の使用](~/docs/csharp/programming-guide/types/using-type-dynamic.md)」を参照してください。  
   
  Visual Basic では、動的操作は遅延バインディングによってサポートされます。 詳細については、「[事前バインディングと遅延バインディング](https://msdn.microsoft.com/library/d6ff7f1e-b94f-4205-ab8d-5cfa91758724)」を参照してください。  
   
- `DynamicObject`クラスから派生したクラスのインスタンスを作成する方法を次のコード例に示します。  
+ 次のコード例は、`DynamicObject` クラスから派生したクラスのインスタンスを作成する方法を示しています。  
   
 ```csharp  
 public class SampleDynamicObject : DynamicObject {}  
@@ -68,21 +69,21 @@ Public Class SampleDynamicObject
 Dim sampleObject As Object = New SampleDynamicObject()  
 ```  
   
- `DynamicObject`クラスから派生したクラスに独自のメンバーを追加することもできます。 クラスがプロパティを定義し、 <xref:System.Dynamic.DynamicObject.TrySetMember%2A>メソッドもオーバーライドする場合、動的言語ランタイム (DLR) はまず、言語バインダーを使用して、クラスのプロパティの静的定義を検索します。 そのようなプロパティが存在しない場合、DLR <xref:System.Dynamic.DynamicObject.TrySetMember%2A>はメソッドを呼び出します。  
+ `DynamicObject` クラスから派生したクラスに独自のメンバーを追加することもできます。 クラスがプロパティを定義し、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドもオーバーライドする場合、動的言語ランタイム (DLR) はまず、言語バインダーを使用して、クラス内のプロパティの静的な定義を検索します。 このようなプロパティが存在しない場合、DLR は <xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドを呼び出します。  
   
- クラス`DynamicObject`は dlr インターフェイス<xref:System.Dynamic.IDynamicMetaObjectProvider>を実装します。これにより、dlr 相互`DynamicObject`運用性モデルをサポートする言語間でクラスのインスタンスを共有できます。 たとえば、で`DynamicObject` C#クラスのインスタンスを作成し、それを IronPython 関数に渡すことができます。 詳細については、「[動的言語ランタイムの概要](~/docs/framework/reflection-and-codedom/dynamic-language-runtime-overview.md)」を参照してください。  
+ `DynamicObject` クラスは、dlr インターフェイス <xref:System.Dynamic.IDynamicMetaObjectProvider>を実装します。これにより、DLR 相互運用性モデルをサポートする言語間で `DynamicObject` クラスのインスタンスを共有できます。 たとえば、でC# `DynamicObject` クラスのインスタンスを作成し、それを IronPython 関数に渡すことができます。 詳細については、「[動的言語ランタイムの概要](~/docs/framework/reflection-and-codedom/dynamic-language-runtime-overview.md)」を参照してください。  
   
 > [!NOTE]
->  実行時にメンバーを追加および削除できるだけでなく、特定の操作を定義する必要がなく、静的メンバーを持たないオブジェクトが必要な単純なシナリオがある場合は、 <xref:System.Dynamic.ExpandoObject>クラスを使用します。  
+>  実行時にメンバーを追加および削除できるだけでなく、特定の操作を定義する必要がなく、静的メンバーを持たないオブジェクトが必要な単純なシナリオがある場合は、<xref:System.Dynamic.ExpandoObject> クラスを使用します。  
 >   
->  相互運用性プロトコルに動的オブジェクトを含める方法を定義するより高度なシナリオがある場合、または DLR の高速動的ディスパッチキャッシュを管理する必要がある場合は、 <xref:System.Dynamic.IDynamicMetaObjectProvider>インターフェイスの独自の実装を作成します。  
+>  相互運用性プロトコルに動的オブジェクトを含める方法を定義するより高度なシナリオがある場合、または DLR 高速動的ディスパッチキャッシュを管理する必要がある場合は、<xref:System.Dynamic.IDynamicMetaObjectProvider> インターフェイスの独自の実装を作成します。  
   
    
   
 ## Examples  
- ディクショナリ内の値にアクセスするための別の構文を提供するとします。これ`sampleDictionary["Text"] = "Sample text"`に`sampleDictionary("Text") = "Sample text"`より、(Visual Basic で) を`sampleDictionary.Text = "Sample text"`記述するのではなく、を記述できます。 また、この構文で大文字と小文字を区別しない`sampleDictionary.Text`ようにする`sampleDictionary.text`ため、はと同じになります。  
+ ディクショナリ内の値にアクセスするための別の構文を提供するとします。これにより、`sampleDictionary["Text"] = "Sample text"` (Visual Basic で`sampleDictionary("Text") = "Sample text"`) を記述する代わりに、`sampleDictionary.Text = "Sample text"`を記述できます。 また、この構文で大文字と小文字を区別しないようにして、`sampleDictionary.Text` が `sampleDictionary.text`と同じになるようにします。  
   
- `DynamicDictionary` クラス`DynamicObject`から派生したクラスのコード例を次に示します。 クラス`DynamicDictionary`には、`Dictionary(Of String, Object)` `Dictionary<string, object>` キーと値の<xref:System.Dynamic.DynamicObject.TryGetMember%2A>ペアを格納する型のオブジェクト (Visual Basic) が格納されています。また、メソッドとメソッドをオーバーライドして、新しい構文をサポートします。<xref:System.Dynamic.DynamicObject.TrySetMember%2A> また、 `Count`プロパティも用意されています。これは、ディクショナリに含まれる動的プロパティの数を示します。  
+ 次のコード例は、`DynamicObject` クラスから派生した `DynamicDictionary` クラスを示しています。 `DynamicDictionary` クラスには、キーと値のペアを格納するための `Dictionary<string, object>` 型 (Visual Basic 内の`Dictionary(Of String, Object)`) のオブジェクトが含まれています。また、新しい構文をサポートするために、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドします。 また、`Count` プロパティも用意されています。このプロパティは、ディクショナリに含まれる動的プロパティの数を示します。  
   
  [!code-csharp[System.Dynamic.DynamicObject#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#1)]
  [!code-vb[System.Dynamic.DynamicObject#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.dynamic.dynamicobject/vb/module1.vb#1)]  
@@ -119,6 +120,7 @@ Dim sampleObject As Object = New SampleDynamicObject()
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -132,16 +134,16 @@ Dim sampleObject As Object = New SampleDynamicObject()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスのインスタンスを直接作成することはできません。 動的な動作を実装するには、 <xref:System.Dynamic.DynamicObject>クラスを継承し、必要なメソッドをオーバーライドする必要があります。  
+ <xref:System.Dynamic.DynamicObject> クラスのインスタンスを直接作成することはできません。 動的な動作を実装するには、<xref:System.Dynamic.DynamicObject> クラスを継承し、必要なメソッドをオーバーライドする必要があります。  
   
- でC#は、 <xref:System.Dynamic.DynamicObject>クラスから派生したクラスのインスタンスに対して動的な動作を有効に`dynamic`するには、キーワードを使用する必要があります。 詳細については、「[dynamic 型の使用](~/docs/csharp/programming-guide/types/using-type-dynamic.md)」を参照してください。  
+ でC#は、<xref:System.Dynamic.DynamicObject> クラスから派生したクラスのインスタンスに対して動的な動作を有効にするには、`dynamic` キーワードを使用する必要があります。 詳細については、「[dynamic 型の使用](~/docs/csharp/programming-guide/types/using-type-dynamic.md)」を参照してください。  
   
  Visual Basic では、動的操作は遅延バインディングによってサポートされます。 詳細については、「[事前バインディングと遅延バインディング](https://msdn.microsoft.com/library/d6ff7f1e-b94f-4205-ab8d-5cfa91758724)」を参照してください。  
   
    
   
 ## Examples  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスのインスタンスを作成する方法を次のコード例に示します。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生したクラスのインスタンスを作成する方法を示しています。  
   
 ```csharp  
 public class SampleDynamicObject : DynamicObject {}  
@@ -186,6 +188,7 @@ Dim sampleObject As Object = New SampleDynamicObject()
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
@@ -233,6 +236,7 @@ Dim sampleObject As Object = New SampleDynamicObject()
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Dynamic.DynamicMetaObject</ReturnType>
@@ -273,6 +277,7 @@ Dim sampleObject As Object = New SampleDynamicObject()
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -292,24 +297,24 @@ Dim sampleObject As Object = New SampleDynamicObject()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クラスから派生し<xref:System.Dynamic.DynamicObject>たクラスは、このメソッドをオーバーライドして、動的オブジェクトに対してバイナリ演算を実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、動的オブジェクトに対してバイナリ演算を実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
- このメソッドは、加算や乗算などの二項演算がある場合に呼び出されます。 たとえば<xref:System.Dynamic.DynamicObject.TryBinaryOperation%2A> 、メソッドがオーバーライドされると、または`first` `sum = first + second` `multiply = first*second`のようなステートメントに対して自動的に呼び出されます`DynamicObject` 。はクラスから派生します。  
+ このメソッドは、加算や乗算などの二項演算がある場合に呼び出されます。 たとえば、<xref:System.Dynamic.DynamicObject.TryBinaryOperation%2A> メソッドがオーバーライドされると、`sum = first + second` や `multiply = first*second`などのステートメントに対して自動的に呼び出されます。この場合、`first` は `DynamicObject` クラスから派生します。  
   
- パラメーターのプロパティ`Operation`を使用して、二項演算の型に関する情報を取得できます。 `binder`  
+ バイナリ演算の種類に関する情報を取得するには、`binder` パラメーターの `Operation` プロパティを使用します。  
   
- 動的オブジェクトがとでC#のみ使用される場合、プロパティ`binder.Operation`は、 <xref:System.Linq.Expressions.ExpressionType>列挙体の次のいずれかの値を持つことができ Visual Basic ます。 ただし、IronPython や IronRuby などの他の言語では、他の値を使用できます。
+ 動的オブジェクトがおよび Visual Basic のみでC#使用される場合、`binder.Operation` プロパティは、<xref:System.Linq.Expressions.ExpressionType> 列挙体の次のいずれかの値を持つことができます。 ただし、IronPython や IronRuby などの他の言語では、他の値を使用できます。
   
 |[値]|説明|C#|Visual Basic|  
 |-----------|-----------------|---------|------------------|  
 |`Add`|オーバーフローチェックを行わない加算演算 (数値オペランドの場合)。|`a + b`|`a + b`|  
 |`AddAssign`|オーバーフローチェックを行わない、数値オペランドに対する加算の複合代入演算。|`a += b`|サポートされていません。|  
-|`And`|ビットごと`AND`の演算。|`a & b`|`a And b`|  
-|`AndAssign`|ビットごと`AND`の複合代入演算。|`a &= b`|サポートされていません。|  
+|`And`|ビットごとの `AND` 演算。|`a & b`|`a And b`|  
+|`AndAssign`|ビットごとの `AND` 複合代入演算。|`a &= b`|サポートされていません。|  
 |`Divide`|算術除算演算です。|`a / b`|`a / b`|  
 |`DivideAssign`|算術除算の複合代入演算。|`a /= b`|サポートされていません。|  
-|`ExclusiveOr`|ビットごと`XOR`の演算。|`a ^ b`|`a Xor b`|  
-|`ExclusiveOrAssign`|ビットごと`XOR`の複合代入演算。|`a ^= b`|サポートされていません。|  
+|`ExclusiveOr`|ビットごとの `XOR` 演算。|`a ^ b`|`a Xor b`|  
+|`ExclusiveOrAssign`|ビットごとの `XOR` 複合代入演算。|`a ^= b`|サポートされていません。|  
 |`GreaterThan`|"より大きい" 比較。|`a > b`|`a > b`|  
 |`GreaterThanOrEqual`|"以上" の比較。|`a >= b`|サポートされていません。|  
 |`LeftShift`|ビットごとの左シフト演算。|`a << b`|`a << b`|  
@@ -321,8 +326,8 @@ Dim sampleObject As Object = New SampleDynamicObject()
 |`Multiply`|数値オペランドに対するオーバーフローチェックを行わない乗算演算。|`a * b`|`a * b`|  
 |`MultiplyAssign`|オーバーフローチェックを行わない、数値オペランドに対する乗算の複合代入演算。|`a *= b`|サポートされていません。|  
 |`NotEqual`|非等値比較。|`a != b`|`a <> b`|  
-|`Or`|ビットごとの or `OR`論理演算。|`a &#124; b`|`a Or b`|  
-|`OrAssign`|ビットごとの or `OR`論理代入。|`a &#124;= b`|サポートされていません。|  
+|`Or`|ビットごとの or 論理 `OR` 演算。|`a &#124; b`|`a Or b`|  
+|`OrAssign`|ビットごとの or 論理 `OR` 複合代入。|`a &#124;= b`|サポートされていません。|  
 |`Power`|数値を累乗する数学的演算。|サポートされていません。|`a ^ b`|  
 |`RightShift`|ビットごとの右シフト演算。|`a >> b`|`a >> b`|  
 |`RightShiftAssign`|ビットごとの右シフトの複合代入演算。|`a >>= b`|サポートされていません。|  
@@ -330,20 +335,20 @@ Dim sampleObject As Object = New SampleDynamicObject()
 |`SubtractAssign`|オーバーフローチェックを行わない、数値オペランドに対する減算の複合代入演算。|`a -= b`|サポートされていません。|  
   
 > [!NOTE]
->  で`OrElse` `a || b``a && b` `AndAlso` 動的オブジェクト<xref:System.Dynamic.DynamicObject.TryBinaryOperation%2A>に対して () および () 操作を実装するには、メソッドとメソッドの両方を実装する必要があります。<xref:System.Dynamic.DynamicObject.TryUnaryOperation%2A> C#  
+>  でC#動的オブジェクトの `OrElse` (`a || b`) 操作と `AndAlso` (`a && b`) 操作を実装するには、<xref:System.Dynamic.DynamicObject.TryUnaryOperation%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryBinaryOperation%2A> メソッドの両方を実装することが必要になる場合があります。  
 >   
->  操作`OrElse`は、単項`IsTrue`演算と二項`Or`演算で構成されます。 操作は、 `IsTrue`操作の結果が`false`の場合にのみ実行されます。 `Or`  
+>  `OrElse` 操作は、単項 `IsTrue` 操作とバイナリ `Or` 操作で構成されます。 `Or` 操作は、`IsTrue` 操作の結果が `false`場合にのみ実行されます。  
 >   
->  操作`AndAlso`は、単項`IsFalse`演算と二項`And`演算で構成されます。 操作は、 `IsFalse`操作の結果が`false`の場合にのみ実行されます。 `And`  
+>  `AndAlso` 操作は、単項 `IsFalse` 操作とバイナリ `And` 操作で構成されます。 `And` 操作は、`IsFalse` 操作の結果が `false`場合にのみ実行されます。  
   
    
   
 ## Examples  
  数値のテキスト表現と数値表現を格納するためのデータ構造が必要であり、そのようなデータの加算や減算などの基本的な算術演算を定義する場合を想定しています。  
   
- `DynamicNumber` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 `DynamicNumber`メソッドを<xref:System.Dynamic.DynamicObject.TryBinaryOperation%2A>オーバーライドして、数値演算を有効にします。 また、メソッド<xref:System.Dynamic.DynamicObject.TrySetMember%2A>と<xref:System.Dynamic.DynamicObject.TryGetMember%2A>メソッドをオーバーライドして、要素へのアクセスを有効にします。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `DynamicNumber` クラスを示しています。 `DynamicNumber` は、<xref:System.Dynamic.DynamicObject.TryBinaryOperation%2A> メソッドをオーバーライドして数学的演算を有効にします。 また、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> および <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドして、要素へのアクセスを有効にします。  
   
- この例では、加算および減算演算のみがサポートされています。 のような`resultNumber = firstNumber*secondNumber`ステートメントを記述しようとすると、実行時例外がスローされます。  
+ この例では、加算および減算演算のみがサポートされています。 `resultNumber = firstNumber*secondNumber`のようなステートメントを記述しようとすると、実行時例外がスローされます。  
   
  [!code-csharp[System.Dynamic.DynamicObject#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#2)]
  [!code-vb[System.Dynamic.DynamicObject#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.dynamic.dynamicobject/vb/module1.vb#2)]  
@@ -378,6 +383,7 @@ Dim sampleObject As Object = New SampleDynamicObject()
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -387,7 +393,7 @@ Dim sampleObject As Object = New SampleDynamicObject()
         <Parameter Name="result" Type="System.Object" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="binder">変換演算に関する情報を提供します。 <c>binder.Type</c> プロパティは、オブジェクトの変換後の型を提供します。 たとえば、C# のステートメント <c>(String)sampleObject</c> (Visual Basic では <c>CType(sampleObject, Type)</c>) の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<c>binder.Type</c> は <see cref="T:System.String" /> 型を返します。 <c>binder.Explicit</c> プロパティは、行われる変換の種類に関する情報を提供します。 このプロパティは、明示的な変換の場合は <see langword="true" />、暗黙の変換の場合は <see langword="false" /> を返します。</param>
+        <param name="binder">変換処理に関する情報を提供します。 <c>binder.Type</c> プロパティは、オブジェクトの変換後の型を提供します。 たとえば、C# のステートメント <c>(String)sampleObject</c> (Visual Basic では <c>CType(sampleObject, Type)</c>) の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<c>binder.Type</c> は <see cref="T:System.String" /> 型を返します。 <c>binder.Explicit</c> プロパティは、行われる変換の種類に関する情報を提供します。 このプロパティは、明示的な変換の場合は <see langword="true" />、暗黙の変換の場合は <see langword="false" /> を返します。</param>
         <param name="result">型変換演算の結果。</param>
         <summary>型変換演算の実装を提供します。 <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスでこのメソッドをオーバーライドして、オブジェクトの型を別の型に変換する演算の動的な動作を指定できます。</summary>
         <returns>操作が正常に終了した場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 このメソッドが <see langword="false" /> を返す場合、言語のランタイム バインダーによって動作が決まります (ほとんどの場合、言語固有の実行時例外がスローされます)。</returns>
@@ -395,11 +401,11 @@ Dim sampleObject As Object = New SampleDynamicObject()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、動的オブジェクトの型変換を実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、動的オブジェクトの型変換を実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
  でC#は、このメソッドがオーバーライドされた場合、次のコード例に示すように、明示的または暗黙的な変換があるときに、このメソッドが自動的に呼び出されます。  
   
- Visual Basic では、明示的な変換のみがサポートされています。 このメソッドをオーバーライドする場合<xref:Microsoft.VisualBasic.Conversion.CTypeDynamic%2A>は、関数または<xref:Microsoft.VisualBasic.Conversion.CTypeDynamic%2A>関数を使用して呼び出します。  
+ Visual Basic では、明示的な変換のみがサポートされています。 このメソッドをオーバーライドする場合は、<xref:Microsoft.VisualBasic.Conversion.CTypeDynamic%2A> または <xref:Microsoft.VisualBasic.Conversion.CTypeDynamic%2A> 関数を使用して呼び出します。  
   
 ```csharp  
 // Explicit conversion.  
@@ -420,7 +426,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
 ## Examples  
  数値のテキスト表現と数値表現を格納するためのデータ構造が必要であり、このデータ構造から文字列と整数への変換を定義する必要があるとします。  
   
- `DynamicNumber` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 `DynamicNumber`メソッドを<xref:System.Dynamic.DynamicObject.TryConvert%2A>オーバーライドして、型変換を有効にします。 また、メソッド<xref:System.Dynamic.DynamicObject.TrySetMember%2A>と<xref:System.Dynamic.DynamicObject.TryGetMember%2A>メソッドをオーバーライドして、データ要素へのアクセスを有効にします。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `DynamicNumber` クラスを示しています。 `DynamicNumber` は、<xref:System.Dynamic.DynamicObject.TryConvert%2A> メソッドをオーバーライドして、型変換を有効にします。 また、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> および <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドして、データ要素へのアクセスを有効にします。  
   
  この例では、文字列と整数への変換のみがサポートされています。 オブジェクトを他の型に変換しようとすると、実行時例外がスローされます。  
   
@@ -457,6 +463,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -476,9 +483,9 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、動的オブジェクトの新しいインスタンスを初期化する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、動的オブジェクトの新しいインスタンスを初期化する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
- C#および Visual Basic コンパイラは、ファーストクラスの型をサポートしていないため、このメソッドを使用するコードを出力しません。 このメソッドは、のような`dynamic new`構文を使用した動的オブジェクトの初期化をサポートする言語を対象としています。  
+ C#および Visual Basic コンパイラは、ファーストクラスの型をサポートしていないため、このメソッドを使用するコードを出力しません。 このメソッドは、`dynamic new`のような構文を使用した動的オブジェクトの初期化をサポートする言語を対象としています。  
   
  ]]></format>
         </remarks>
@@ -510,6 +517,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -527,9 +535,9 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、指定したインデックスを持つ値を削除する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、指定したインデックスを持つ値を削除する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
- C#また、Visual Basic コンパイラは、このような操作をサポートしていないため、このメソッドを使用するコードを出力しません。 このメソッドは、Python などで、インデックスによってオブジェクトを削除するため`del sampleObject[1,2]`の構文をサポートする言語を対象としています。  
+ C#また、Visual Basic コンパイラは、このような操作をサポートしていないため、このメソッドを使用するコードを出力しません。 このメソッドは、Python の `del sampleObject[1,2]` など、インデックスによってオブジェクトを削除する構文をサポートする言語を対象としています。  
   
  ]]></format>
         </remarks>
@@ -561,6 +569,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -576,9 +585,9 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クラスから派生し<xref:System.Dynamic.DynamicObject>たクラスは、このメソッドをオーバーライドして、オブジェクトメンバーの削除方法を指定できます。 このメソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、オブジェクトメンバーの削除方法を指定できます。 このメソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
- C#また、Visual Basic コンパイラは、このような操作をサポートしていないため、このメソッドを使用するコードを出力しません。 このメソッドは、Python などでメンバーを削除するための構文を`del sampleObject.SampleMember`サポートする言語を対象としています。  
+ C#また、Visual Basic コンパイラは、このような操作をサポートしていないため、このメソッドを使用するコードを出力しません。 このメソッドは、Python の `del sampleObject.SampleMember` など、メンバーを削除するための構文をサポートする言語を対象としています。  
   
  ]]></format>
         </remarks>
@@ -610,6 +619,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -629,16 +639,16 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、インデックスによる値の取得を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、インデックスによる値の取得を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、実行時例外がスローされます)。  
   
- このメソッドがオーバーライドされると、または`sampleObject[3]` `sampleObject(3)` <xref:System.Dynamic.DynamicObject> Visual Basic でのC#ような操作があるときに自動的に`sampleObject`呼び出されます。ここで、はクラスから派生します。  
+ このメソッドがオーバーライドされると、`sampleObject` が <xref:System.Dynamic.DynamicObject> クラスから派生した Visual Basic でC# `sampleObject(3)` の `sampleObject[3]` などの操作がある場合に、自動的に呼び出されます。  
   
    
   
 ## Examples  
- `Property0` C# `sampleObject(0)` `sampleObject.Property0`たとえば、 、 `Property1`などの名前、またはインデックスを使用してプロパティにアクセスできるオブジェクトを作成するとします。これは、たとえば、のinまたはのと同じです。`sampleObject[0]`Visual Basic。  
+ たとえば、`Property0`、`Property1`などの名前、またはインデックスを使用してプロパティにアクセスできるオブジェクトを作成するとします。たとえば、`sampleObject.Property0` は、`sampleObject(0)` 内の `sampleObject[0]` C#または Visual Basic に相当します。  
   
- `SampleDynamicObject` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 クラス`SampleDynamicObject`には、キーと値`Dictionary<string, object>`のペア`Dictionary(Of String, Object)`を格納するための型 (Visual Basic) のオブジェクトが格納されます。 `SampleDynamicObject`<xref:System.Dynamic.DynamicObject.TrySetIndex%2A> および<xref:System.Dynamic.DynamicObject.TryGetIndex%2A>メソッドをオーバーライドして、インデックスによるアクセスを有効にします。 メソッド<xref:System.Dynamic.DynamicObject.TrySetMember%2A> と<xref:System.Dynamic.DynamicObject.TryGetMember%2A>メソッドをオーバーライドして、プロパティ名によるアクセスを有効にします。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `SampleDynamicObject` クラスを示しています。 `SampleDynamicObject` クラスには、キーと値のペアを格納するための `Dictionary<string, object>` 型 (Visual Basic では`Dictionary(Of String, Object)`) のオブジェクトが含まれています。 `SampleDynamicObject` は、インデックスによるアクセスを有効にするために <xref:System.Dynamic.DynamicObject.TrySetIndex%2A> および <xref:System.Dynamic.DynamicObject.TryGetIndex%2A> メソッドをオーバーライドします。 <xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドして、プロパティ名によるアクセスを有効にします。  
   
  [!code-csharp[System.Dynamic.DynamicObject#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#4)]
  [!code-vb[System.Dynamic.DynamicObject#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.dynamic.dynamicobject/vb/module1.vb#4)]  
@@ -673,6 +683,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -682,26 +693,26 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <Parameter Name="result" Type="System.Object" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="binder">動的演算を呼び出したオブジェクトに関する情報を提供します。 <c>binder.Name</c> プロパティは、動的演算の対象であるメンバーの名前を提供します。 たとえば、<c>Console.WriteLine(sampleObject.SampleProperty)</c> ステートメントの場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<c>binder.Name</c> は "SampleProperty" を返します。 メンバー名で大文字と小文字を区別するかどうかを <c>binder.IgnoreCase</c> プロパティで指定します。</param>
+        <param name="binder">動的操作を呼び出したオブジェクトに関する情報を提供します。 <c>binder.Name</c> プロパティは、動的演算の対象であるメンバーの名前を提供します。 たとえば、<c>Console.WriteLine(sampleObject.SampleProperty)</c> ステートメントの場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<c>binder.Name</c> は "SampleProperty" を返します。 メンバー名で大文字と小文字を区別するかどうかを <c>binder.IgnoreCase</c> プロパティで指定します。</param>
         <param name="result">取得操作の結果。 たとえば、このメソッドがプロパティに対して呼び出された場合、プロパティ値を <paramref name="result" /> に割り当てることができます。</param>
-        <summary>メンバー値を取得する演算の実装を提供します。 <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスでこのメソッドをオーバーライドして、プロパティ値の取得などの演算の動的な動作を指定できます。</summary>
+        <summary>メンバー値を取得する操作の実装を提供します。 <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスでこのメソッドをオーバーライドして、プロパティ値の取得などの演算の動的な動作を指定できます。</summary>
         <returns>操作が正常に終了した場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 このメソッドが <see langword="false" /> を返す場合、言語のランタイム バインダーによって動作が決まります (ほとんどの場合、実行時例外がスローされます)。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、動的オブジェクトに対してメンバー値を取得する操作を実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、動的オブジェクトに対してメンバー値を取得する操作を実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、実行時例外がスローされます)。  
   
- このメソッドは、のような`Console.WriteLine(sampleObject.SampleProperty)`ステートメントがある場合に呼び出されます。ここ`sampleObject`で、は<xref:System.Dynamic.DynamicObject>クラスから派生したクラスのインスタンスです。  
+ このメソッドは、`Console.WriteLine(sampleObject.SampleProperty)`のようなステートメントがある場合に呼び出されます。 `sampleObject` は <xref:System.Dynamic.DynamicObject> クラスから派生したクラスのインスタンスです。  
   
- `DynamicObject`クラスから派生したクラスに独自のメンバーを追加することもできます。 クラスがプロパティを定義し、 <xref:System.Dynamic.DynamicObject.TrySetMember%2A>メソッドもオーバーライドする場合、動的言語ランタイム (DLR) はまず、言語バインダーを使用して、クラスのプロパティの静的定義を検索します。 そのようなプロパティが存在しない場合、DLR <xref:System.Dynamic.DynamicObject.TrySetMember%2A>はメソッドを呼び出します。  
+ `DynamicObject` クラスから派生したクラスに独自のメンバーを追加することもできます。 クラスがプロパティを定義し、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドもオーバーライドする場合、動的言語ランタイム (DLR) はまず、言語バインダーを使用して、クラス内のプロパティの静的な定義を検索します。 このようなプロパティが存在しない場合、DLR は <xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドを呼び出します。  
   
    
   
 ## Examples  
- ディクショナリ内の値にアクセスするための別の構文を提供するとします。これ`sampleDictionary["Text"] = "Sample text"`に`sampleDictionary("Text") = "Sample text"`より、(Visual Basic で) を`sampleDictionary.Text = "Sample text"`記述するのではなく、を記述できます。 また、この構文では大文字と小文字が`sampleDictionary.Text`区別され`sampleDictionary.text`ないため、はと同じになります。  
+ ディクショナリ内の値にアクセスするための別の構文を提供するとします。これにより、`sampleDictionary["Text"] = "Sample text"` (Visual Basic で`sampleDictionary("Text") = "Sample text"`) を記述する代わりに、`sampleDictionary.Text = "Sample text"`を記述できます。 また、この構文では大文字と小文字を区別しないため、`sampleDictionary.Text` は `sampleDictionary.text`と同じになります。  
   
- `DynamicDictionary` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 クラス`DynamicDictionary`には、`Dictionary(Of String, Object)` `Dictionary<string, object>` キーと値の<xref:System.Dynamic.DynamicObject.TryGetMember%2A>ペアを格納する型のオブジェクト (Visual Basic) が格納されています。また、メソッドとメソッドをオーバーライドして、新しい構文をサポートします。<xref:System.Dynamic.DynamicObject.TrySetMember%2A> また、 `Count`プロパティも用意されています。これは、ディクショナリに含まれる動的プロパティの数を示します。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `DynamicDictionary` クラスを示しています。 `DynamicDictionary` クラスには、キーと値のペアを格納するための `Dictionary<string, object>` 型 (Visual Basic 内の`Dictionary(Of String, Object)`) のオブジェクトが含まれています。また、新しい構文をサポートするために、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドします。 また、`Count` プロパティも用意されています。このプロパティは、ディクショナリに含まれる動的プロパティの数を示します。  
   
  [!code-csharp[System.Dynamic.DynamicObject#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#1)]
  [!code-vb[System.Dynamic.DynamicObject#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.dynamic.dynamicobject/vb/module1.vb#1)]  
@@ -736,6 +747,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -755,18 +767,18 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、オブジェクトを呼び出す操作を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、オブジェクトを呼び出す操作を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、実行時例外がスローされます)。  
   
- このメソッドがオーバーライドされると、のような`sampleObject(100)`操作があるときに自動的に呼び出されます。ここ`sampleObject`で、は<xref:System.Dynamic.DynamicObject>クラスから派生します。  
+ このメソッドがオーバーライドされると、`sampleObject(100)`のような操作が行われたときに自動的に呼び出されます。 `sampleObject` は <xref:System.Dynamic.DynamicObject> クラスから派生します。  
   
- オブジェクトを呼び出す操作はでC#はサポートされていますが、Visual Basic ではサポートされていません。 Visual Basic コンパイラは、このメソッドを使用するコードを出力しません。 Visual Basic 言語では`sampleObject(100)`、のような構文はサポートされていません。  
+ オブジェクトを呼び出す操作はでC#はサポートされていますが、Visual Basic ではサポートされていません。 Visual Basic コンパイラは、このメソッドを使用するコードを出力しません。 Visual Basic 言語では、`sampleObject(100)`のような構文はサポートされていません。  
   
    
   
 ## Examples  
  数値のテキスト表現と数値表現を格納するためのデータ構造が必要であるとします。 各プロパティの値を個別に指定し、1つのステートメントですべてのプロパティを初期化できるようにする必要があるとします。  
   
- `DynamicNumber` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 `DynamicNumber`メソッドを<xref:System.Dynamic.DynamicObject.TryInvoke%2A>オーバーライドして、すべてのプロパティを一度に初期化できるようにします。 また、メソッド<xref:System.Dynamic.DynamicObject.TrySetMember%2A>と<xref:System.Dynamic.DynamicObject.TryGetMember%2A>メソッドをオーバーライドして、個々のオブジェクトのプロパティにアクセスできるようにします。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `DynamicNumber` クラスを示しています。 `DynamicNumber` は、<xref:System.Dynamic.DynamicObject.TryInvoke%2A> メソッドをオーバーライドして、すべてのプロパティを一度に初期化できるようにします。 また、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> および <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドして、個々のオブジェクトのプロパティにアクセスできるようにします。  
   
  [!code-csharp[System.Dynamic.DynamicObject#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#5)]  
   
@@ -800,6 +812,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -810,29 +823,29 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <Parameter Name="result" Type="System.Object" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="binder">動的な演算に関する情報を提供します。 <c>binder.Name</c> プロパティは、動的演算の対象であるメンバーの名前を提供します。 たとえば、ステートメント <c>sampleObject.SampleMethod(100)</c> の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<c>binder.Name</c> は "SampleMethod" を返します。 メンバー名で大文字と小文字を区別するかどうかを <c>binder.IgnoreCase</c> プロパティで指定します。</param>
-        <param name="args">呼び出し演算でオブジェクト メンバーに渡される引数。 たとえば、ステートメント <c>sampleObject.SampleMethod(100)</c> の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスから派生)、<c>args[0]</c> は 100 に等しくなります。</param>
+        <param name="binder">動的な操作に関する情報を提供します。 <c>binder.Name</c> プロパティは、動的演算の対象であるメンバーの名前を提供します。 たとえば、ステートメント <c>sampleObject.SampleMethod(100)</c> の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<c>binder.Name</c> は "SampleMethod" を返します。 メンバー名で大文字と小文字を区別するかどうかを <c>binder.IgnoreCase</c> プロパティで指定します。</param>
+        <param name="args">呼び出し操作の間にオブジェクト メンバーに渡される引数。 たとえば、ステートメント <c>sampleObject.SampleMethod(100)</c> の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスから派生)、<c>args[0]</c> は 100 に等しくなります。</param>
         <param name="result">メンバー呼び出しの結果。</param>
-        <summary>メンバーを呼び出す演算の実装を提供します。 <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスでこのメソッドをオーバーライドして、メソッドの呼び出しなどの演算の動的な動作を指定できます。</summary>
+        <summary>メンバーを呼び出す操作の実装を提供します。 <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスでこのメソッドをオーバーライドして、メソッドの呼び出しなどの演算の動的な動作を指定できます。</summary>
         <returns>操作が正常に終了した場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 このメソッドが <see langword="false" /> を返す場合、言語のランタイム バインダーによって動作が決まります (ほとんどの場合、言語固有の実行時例外がスローされます)。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、オブジェクトメンバーを呼び出す操作を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、オブジェクトメンバーを呼び出す操作を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
- このメソッドがオーバーライドされると、のような`sampleObject.SampleMethod(100)`操作を実行すると自動的に呼び出されます。ここ`sampleObject`で、は`DynamicObject`クラスから派生します。  
+ このメソッドがオーバーライドされると、`sampleObject.SampleMethod(100)`のような操作を実行すると自動的に呼び出されます。 `sampleObject` は `DynamicObject` クラスから派生します。  
   
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスに独自のメソッドを追加することもできます。 たとえば、 <xref:System.Dynamic.DynamicObject.TryInvokeMember%2A>メソッドをオーバーライドすると、動的ディスパッチシステムは、指定されたメソッドがクラスに存在するかどうかを最初に判断しようとします。 メソッドが見つからない場合は、 <xref:System.Dynamic.DynamicObject.TryInvokeMember%2A>実装を使用します。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスに独自のメソッドを追加することもできます。 たとえば、<xref:System.Dynamic.DynamicObject.TryInvokeMember%2A> メソッドをオーバーライドする場合、動的ディスパッチシステムは、指定されたメソッドがクラスに存在するかどうかを最初に確認しようとします。 メソッドが見つからない場合は、<xref:System.Dynamic.DynamicObject.TryInvokeMember%2A> の実装を使用します。  
   
- このメソッドは、および`ref`パラメーター `out`をサポートしていません。 `args`配列内のすべてのパラメーターは、値によって渡されます。  
+ このメソッドでは、`ref` パラメーターと `out` パラメーターはサポートされていません。 `args` 配列内のすべてのパラメーターは、値によって渡されます。  
   
    
   
 ## Examples  
- ディクショナリ内の値にアクセスするための別の構文を提供するとします。これ`sampleDictionary["Text"] = "Sample text"`に`sampleDictionary("Text") = "Sample text"`より、(Visual Basic で) を`sampleDictionary.Text = "Sample text"`記述するのではなく、を記述できます。 また、このディクショナリのすべての標準辞書メソッドを呼び出すこともできます。  
+ ディクショナリ内の値にアクセスするための別の構文を提供するとします。これにより、`sampleDictionary["Text"] = "Sample text"` (Visual Basic で`sampleDictionary("Text") = "Sample text"`) を記述する代わりに、`sampleDictionary.Text = "Sample text"`を記述できます。 また、このディクショナリのすべての標準辞書メソッドを呼び出すこともできます。  
   
- `DynamicDictionary` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 クラス`DynamicDictionary`には、キーと値`Dictionary<string, object>`のペア`Dictionary(Of String, Object)`を格納するための型 (Visual Basic) のオブジェクトが格納されます。 <xref:System.Dynamic.DynamicObject.TryInvokeMember%2A>メソッドをオーバーライドして<xref:System.Collections.Generic.Dictionary%602>クラスのメソッドをサポートし、メソッド<xref:System.Dynamic.DynamicObject.TrySetMember%2A>と<xref:System.Dynamic.DynamicObject.TryGetMember%2A>メソッドをオーバーライドして新しい構文をサポートします。 また、すべての`Print`ディクショナリキーと値を出力するメソッドも用意されています。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `DynamicDictionary` クラスを示しています。 `DynamicDictionary` クラスには、キーと値のペアを格納するための `Dictionary<string, object>` 型 (Visual Basic では`Dictionary(Of String, Object)`) のオブジェクトが含まれています。 これは、<xref:System.Dynamic.DynamicObject.TryInvokeMember%2A> メソッドをオーバーライドして <xref:System.Collections.Generic.Dictionary%602> クラスのメソッドをサポートし、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> および <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドして新しい構文をサポートします。 また、`Print` メソッドも用意されています。このメソッドは、すべてのディクショナリキーと値を出力します。  
   
  [!code-csharp[System.Dynamic.DynamicObject#6](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#6)]
  [!code-vb[System.Dynamic.DynamicObject#6](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.dynamic.dynamicobject/vb/module1.vb#6)]  
@@ -867,6 +880,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -886,16 +900,16 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、インデックスによってオブジェクトにアクセスする操作を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、インデックスによってオブジェクトにアクセスする操作を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
- このメソッドがオーバーライドされると、または`sampleObject[3] = 10` `sampleObject(3) = 10` <xref:System.Dynamic.DynamicObject> Visual Basic でのC#ような操作があるときに自動的に`sampleObject`呼び出されます。ここで、はクラスから派生します。  
+ このメソッドがオーバーライドされると、`sampleObject` が <xref:System.Dynamic.DynamicObject> クラスから派生した Visual Basic でC# `sampleObject(3) = 10` の `sampleObject[3] = 10` などの操作がある場合に、自動的に呼び出されます。  
   
    
   
 ## Examples  
- `Property0` C# `sampleObject(0)` `sampleObject.Property0`たとえば、 、 `Property1`などの名前、またはインデックスを使用してプロパティにアクセスできるオブジェクトを作成するとします。これは、たとえば、のinまたはのと同じです。`sampleObject[0]`Visual Basic。  
+ たとえば、`Property0`、`Property1`などの名前、またはインデックスを使用してプロパティにアクセスできるオブジェクトを作成するとします。たとえば、`sampleObject.Property0` は、`sampleObject(0)` 内の `sampleObject[0]` C#または Visual Basic に相当します。  
   
- `SampleDynamicObject` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 クラス`SampleDynamicObject`には、キーと値`Dictionary<string, object>`のペア`Dictionary(Of String, Object)`を格納するための型 (Visual Basic) のオブジェクトが格納されます。 `SampleDynamicObject`<xref:System.Dynamic.DynamicObject.TrySetIndex%2A> および<xref:System.Dynamic.DynamicObject.TryGetIndex%2A>メソッドをオーバーライドして、インデックスによるアクセスを有効にします。 メソッド<xref:System.Dynamic.DynamicObject.TrySetMember%2A> と<xref:System.Dynamic.DynamicObject.TryGetMember%2A>メソッドをオーバーライドして、プロパティ名によるアクセスを有効にします。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `SampleDynamicObject` クラスを示しています。 `SampleDynamicObject` クラスには、キーと値のペアを格納するための `Dictionary<string, object>` 型 (Visual Basic では`Dictionary(Of String, Object)`) のオブジェクトが含まれています。 `SampleDynamicObject` は、インデックスによるアクセスを有効にするために <xref:System.Dynamic.DynamicObject.TrySetIndex%2A> および <xref:System.Dynamic.DynamicObject.TryGetIndex%2A> メソッドをオーバーライドします。 <xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドして、プロパティ名によるアクセスを有効にします。  
   
  [!code-csharp[System.Dynamic.DynamicObject#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#4)]
  [!code-vb[System.Dynamic.DynamicObject#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.dynamic.dynamicobject/vb/module1.vb#4)]  
@@ -930,6 +944,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -939,26 +954,26 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <Parameter Name="value" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="binder">動的演算を呼び出したオブジェクトに関する情報を提供します。 <c>binder.Name</c> プロパティは、値の割り当て先のメンバーの名前を提供します。 たとえば、ステートメント <c>sampleObject.SampleProperty = "Test"</c> の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<c>binder.Name</c> は "SampleProperty" を返します。 メンバー名で大文字と小文字を区別するかどうかを <c>binder.IgnoreCase</c> プロパティで指定します。</param>
+        <param name="binder">動的操作を呼び出したオブジェクトに関する情報を提供します。 <c>binder.Name</c> プロパティは、値の割り当て先のメンバーの名前を提供します。 たとえば、ステートメント <c>sampleObject.SampleProperty = "Test"</c> の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<c>binder.Name</c> は "SampleProperty" を返します。 メンバー名で大文字と小文字を区別するかどうかを <c>binder.IgnoreCase</c> プロパティで指定します。</param>
         <param name="value">メンバーに設定する値。 たとえば、<c>sampleObject.SampleProperty = "Test"</c> の場合 (<c>sampleObject</c> は <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスのインスタンス)、<paramref name="value" /> は "Test" となります。</param>
-        <summary>メンバー値を設定する演算の実装を提供します。 <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスでこのメソッドをオーバーライドして、プロパティ値の設定などの演算の動的な動作を指定できます。</summary>
+        <summary>メンバー値を設定する操作の実装を提供します。 <see cref="T:System.Dynamic.DynamicObject" /> クラスの派生クラスでこのメソッドをオーバーライドして、プロパティ値の設定などの演算の動的な動作を指定できます。</summary>
         <returns>操作が正常に終了した場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 このメソッドが <see langword="false" /> を返す場合、言語のランタイム バインダーによって動作が決まります (ほとんどの場合、言語固有の実行時例外がスローされます)。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Dynamic.DynamicObject>クラスから派生したクラスは、このメソッドをオーバーライドして、メンバーに値を設定する操作を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、メンバーに値を設定する操作を動的オブジェクトに対して実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
- このメソッドは、のような`sampleObject.SampleProperty = "Test"`ステートメントがある場合に呼び出されます。ここ`sampleObject`で、は<xref:System.Dynamic.DynamicObject>クラスから派生したクラスのインスタンスです。  
+ このメソッドは、`sampleObject.SampleProperty = "Test"`のようなステートメントがある場合に呼び出されます。 `sampleObject` は、<xref:System.Dynamic.DynamicObject> クラスから派生したクラスのインスタンスです。  
   
- `DynamicObject`クラスから派生したクラスに独自のメンバーを追加することもできます。 クラスがプロパティを定義し、 <xref:System.Dynamic.DynamicObject.TrySetMember%2A>メソッドもオーバーライドする場合、動的言語ランタイム (DLR) はまず、言語バインダーを使用して、クラスのプロパティの静的定義を検索します。 そのようなプロパティが存在しない場合、DLR <xref:System.Dynamic.DynamicObject.TrySetMember%2A>はメソッドを呼び出します。  
+ `DynamicObject` クラスから派生したクラスに独自のメンバーを追加することもできます。 クラスがプロパティを定義し、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドもオーバーライドする場合、動的言語ランタイム (DLR) はまず、言語バインダーを使用して、クラス内のプロパティの静的な定義を検索します。 このようなプロパティが存在しない場合、DLR は <xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドを呼び出します。  
   
    
   
 ## Examples  
- ディクショナリ内の値にアクセスするための別の構文を提供するとします。これ`sampleDictionary["Text"] = "Sample text"`に`sampleDictionary("Text") = "Sample text"`より、(Visual Basic で) を`sampleDictionary.Text = "Sample text"`記述するのではなく、を記述できます。 また、この構文では大文字と小文字が`sampleDictionary.Text`区別され`sampleDictionary.text`ないため、はと同じになります。  
+ ディクショナリ内の値にアクセスするための別の構文を提供するとします。これにより、`sampleDictionary["Text"] = "Sample text"` (Visual Basic で`sampleDictionary("Text") = "Sample text"`) を記述する代わりに、`sampleDictionary.Text = "Sample text"`を記述できます。 また、この構文では大文字と小文字を区別しないため、`sampleDictionary.Text` は `sampleDictionary.text`と同じになります。  
   
- `DynamicDictionary` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 クラス`DynamicDictionary`には、`Dictionary(Of String, Object)` `Dictionary<string, object>` キーと値の<xref:System.Dynamic.DynamicObject.TryGetMember%2A>ペアを格納する型のオブジェクト (Visual Basic) が格納されています。また、メソッドとメソッドをオーバーライドして、新しい構文をサポートします。<xref:System.Dynamic.DynamicObject.TrySetMember%2A> また、 `Count`プロパティも用意されています。これは、ディクショナリに含まれる動的プロパティの数を示します。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `DynamicDictionary` クラスを示しています。 `DynamicDictionary` クラスには、キーと値のペアを格納するための `Dictionary<string, object>` 型 (Visual Basic 内の`Dictionary(Of String, Object)`) のオブジェクトが含まれています。また、新しい構文をサポートするために、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドをオーバーライドします。 また、`Count` プロパティも用意されています。このプロパティは、ディクショナリに含まれる動的プロパティの数を示します。  
   
  [!code-csharp[System.Dynamic.DynamicObject#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#1)]
  [!code-vb[System.Dynamic.DynamicObject#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.dynamic.dynamicobject/vb/module1.vb#1)]  
@@ -993,6 +1008,7 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
         <AssemblyName>System.Linq.Expressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1010,13 +1026,13 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- クラスから派生し<xref:System.Dynamic.DynamicObject>たクラスは、このメソッドをオーバーライドして、動的オブジェクトに対して単項演算を実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
+ <xref:System.Dynamic.DynamicObject> クラスから派生したクラスは、このメソッドをオーバーライドして、動的オブジェクトに対して単項演算を実行する方法を指定できます。 メソッドがオーバーライドされない場合、言語のランタイムバインダーによって動作が決まります。 (ほとんどの場合、言語固有の実行時例外がスローされます)。  
   
- このメソッドは、否定、インクリメント、デクリメントなどの単項演算がある場合に呼び出されます。 たとえば、 <xref:System.Dynamic.DynamicObject.TryUnaryOperation%2A>メソッドがオーバーライドされた場合、このメソッドは`negativeNumber = -number`、などのステートメントに対し`number`て自動的に呼び出さ<xref:System.Dynamic.DynamicObject>れます。ここで、はクラスから派生します。  
+ このメソッドは、否定、インクリメント、デクリメントなどの単項演算がある場合に呼び出されます。 たとえば、<xref:System.Dynamic.DynamicObject.TryUnaryOperation%2A> メソッドがオーバーライドされると、`negativeNumber = -number`のようなステートメントに対してこのメソッドが自動的に呼び出されます。 `number` は <xref:System.Dynamic.DynamicObject> クラスから派生します。  
   
- パラメーターのプロパティ`Operation`を使用して、単項演算の型に関する情報を取得できます。 `binder`  
+ `binder` パラメーターの `Operation` プロパティを使用して、単項演算の型に関する情報を取得できます。  
   
- 動的オブジェクトがとでC#のみ使用される場合、プロパティ`binder.Operation`は、 <xref:System.Linq.Expressions.ExpressionType>列挙体の次のいずれかの値を持つことができ Visual Basic ます。 ただし、IronPython や IronRuby などの他の言語では、他の値を使用できます。
+ 動的オブジェクトがおよび Visual Basic のみでC#使用される場合、`binder.Operation` プロパティは、<xref:System.Linq.Expressions.ExpressionType> 列挙体の次のいずれかの値を持つことができます。 ただし、IronPython や IronRuby などの他の言語では、他の値を使用できます。
   
 |[値]|説明|C#|Visual Basic|  
 |-----------|-----------------|---------|------------------|  
@@ -1030,20 +1046,20 @@ Dim testExplicit2 = CTypeDynamic(sampleObject, GetType(String))
 |`UnaryPlus`|単項プラス。|`+a`|`+a`|  
   
 > [!NOTE]
->  で`OrElse` `a || b``a && b` `AndAlso` 動的オブジェクト<xref:System.Dynamic.DynamicObject.TryBinaryOperation%2A>に対して () および () 操作を実装するには、メソッドとメソッドの両方を実装する必要があります。<xref:System.Dynamic.DynamicObject.TryUnaryOperation%2A> C#  
+>  でC#動的オブジェクトの `OrElse` (`a || b`) 操作と `AndAlso` (`a && b`) 操作を実装するには、<xref:System.Dynamic.DynamicObject.TryUnaryOperation%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryBinaryOperation%2A> メソッドの両方を実装することが必要になる場合があります。  
 >   
->  操作`OrElse`は、単項`IsTrue`演算と二項`Or`演算で構成されます。 操作は、 `IsTrue`操作の結果が`false`の場合にのみ実行されます。 `Or`  
+>  `OrElse` 操作は、単項 `IsTrue` 操作とバイナリ `Or` 操作で構成されます。 `Or` 操作は、`IsTrue` 操作の結果が `false`場合にのみ実行されます。  
 >   
->  操作`AndAlso`は、単項`IsFalse`演算と二項`And`演算で構成されます。 操作は、 `IsFalse`操作の結果が`false`の場合にのみ実行されます。 `And`  
+>  `AndAlso` 操作は、単項 `IsFalse` 操作とバイナリ `And` 操作で構成されます。 `And` 操作は、`IsFalse` 操作の結果が `false`場合にのみ実行されます。  
   
    
   
 ## Examples  
  数値のテキスト表現と数値表現を格納するためのデータ構造が必要であり、そのようなデータに対して数学的否定演算を定義する場合を想定しています。  
   
- `DynamicNumber` クラス<xref:System.Dynamic.DynamicObject>から派生したクラスのコード例を次に示します。 `DynamicNumber`<xref:System.Dynamic.DynamicObject.TryUnaryOperation%2A>メソッドをオーバーライドして、数学的否定演算を有効にします。 は、要素へ<xref:System.Dynamic.DynamicObject.TrySetMember%2A>の<xref:System.Dynamic.DynamicObject.TryGetMember%2A>アクセスを有効にするために、メソッドおよびメソッドもオーバーライドします。  
+ 次のコード例は、<xref:System.Dynamic.DynamicObject> クラスから派生した `DynamicNumber` クラスを示しています。 `DynamicNumber` は、<xref:System.Dynamic.DynamicObject.TryUnaryOperation%2A> メソッドをオーバーライドして、数学的否定演算を有効にします。 は、要素へのアクセスを有効にするために、<xref:System.Dynamic.DynamicObject.TrySetMember%2A> メソッドと <xref:System.Dynamic.DynamicObject.TryGetMember%2A> メソッドもオーバーライドします。  
   
- この例では、算術否定演算のみがサポートされています。 のような`negativeNumber = +number`ステートメントを記述しようとすると、実行時例外が発生します。  
+ この例では、算術否定演算のみがサポートされています。 `negativeNumber = +number`のようなステートメントを記述しようとすると、実行時例外が発生します。  
   
  [!code-csharp[System.Dynamic.DynamicObject#7](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.dynamic.dynamicobject/cs/program.cs#7)]
  [!code-vb[System.Dynamic.DynamicObject#7](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.dynamic.dynamicobject/vb/module1.vb#7)]  

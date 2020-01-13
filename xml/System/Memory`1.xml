@@ -1,5 +1,5 @@
 <Type Name="Memory&lt;T&gt;" FullName="System.Memory&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="58b07e866895d5dc1a1579feb723bc38731e0912" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72408959" /></Metadata><TypeSignature Language="C#" Value="public struct Memory&lt;T&gt; : IEquatable&lt;Memory&lt;T&gt;&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="373adafc0d60016d22a99b46096511e7bdd6d707" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75040423" /></Metadata><TypeSignature Language="C#" Value="public struct Memory&lt;T&gt; : IEquatable&lt;Memory&lt;T&gt;&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Memory`1&lt;T&gt; extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Memory`1&lt;!T&gt;&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Memory`1" />
   <TypeSignature Language="VB.NET" Value="Public Structure Memory(Of T)&#xA;Implements IEquatable(Of Memory(Of T))" />
@@ -8,6 +8,7 @@
   <AssemblyInfo>
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Memory</AssemblyName>
@@ -28,7 +29,7 @@
     </Interface>
   </Interfaces>
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
     </Attribute>
   </Attributes>
@@ -40,13 +41,13 @@
   
 ## Remarks  
   
-`Memory<T>`は、<xref:System.Span%601>のように、メモリの連続した領域を表します。 ただし、<xref:System.Span%601>と異なり、`Memory<T>`は [ref 構造体](~/docs/csharp/language-reference/keywords/ref.md#ref-struct-types)ではありません。 つまり、`Memory<T>`はマネージ ヒープ上に配置できますが、<xref:System.Span%601>はできません。 結果として、`Memory<T>`構造体は<xref:System.Span%601>インスタンスと同じ制限はありません。 特に次の点に注意してください。
+<xref:System.Span%601>と同様に、`Memory<T>` は連続したメモリ領域を表します。 ただし <xref:System.Span%601>とは異なり、`Memory<T>` は[ref 構造体](~/docs/csharp/language-reference/keywords/ref.md#ref-struct-types)ではありません。 これは、`Memory<T>` をマネージヒープに配置できるのに対し、<xref:System.Span%601> はできないことを意味します。 その結果、`Memory<T>` 構造体には、<xref:System.Span%601> インスタンスと同じ制限がありません。 特に次の点に注意してください。
 
 - クラスのフィールドとして使用できます。
 
-- `await`と`yield`をまたいで使用できます。
+- `await` と `yield` の境界を越えて使用できます。
 
-`Memory<T>`のほかに、不変または読み取り専用メモリを表す<xref:System.ReadOnlyMemory%601?displayProperty=nameWithType>を使用することができます。
+`Memory<T>`に加えて、<xref:System.ReadOnlyMemory%601?displayProperty=nameWithType> を使用して、変更不可または読み取り専用のメモリを表すことができます。
 
     ]]></format>
     </remarks>
@@ -63,6 +64,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -80,13 +82,13 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-`array`が`null`の場合、このコンストラクターは、`default<T>`値を持つ<xref:System.Memory%601>オブジェクトを返します。
+`array` が `null`場合、このコンストラクターは `default<T>` 値を持つ <xref:System.Memory%601> オブジェクトを返します。
 
       ]]></format>
         </remarks>
         <exception cref="T:System.ArrayTypeMismatchException"><paramref name="T" /> は参照型です。<paramref name="array" /> は型 <paramref name="T" /> の配列ではありません。
         
-- または -
+または
 
 配列が<see href="~/docs/csharp/programming-guide/concepts/covariance-contravariance/index.md">共変です。</see></exception>
       </Docs>
@@ -102,6 +104,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -123,7 +126,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-`array`が`null`の場合、このコンストラクターは、<xref:System.Memory%601>値を持つ`default<T>`オブジェクトを返します。
+`array` が `null`場合、このコンストラクターは `default<T>` 値を持つ <xref:System.Memory%601> オブジェクトを返します。
 
        ]]></format>
         </remarks>
@@ -134,7 +137,7 @@
 
 <paramref name="start" /> は配列の境界の外側にあります。
 
-- または -
+または
 
 <paramref name="start" /> と <paramref name="length" /> は配列の要素数を超えています。</exception>
         <exception cref="T:System.ArrayTypeMismatchException"><paramref name="T" /> は参照型です。<paramref name="array" /> は型 <paramref name="T" /> の配列ではありません。</exception>
@@ -151,6 +154,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -171,7 +175,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-このメソッドは、現在のインスタンスの内容と`destination`が重なっている場合でも、現在の<xref:System.Memory%601>インスタンスの内容をすべて`destination`にコピーします。
+このメソッドは、現在の `destination` インスタンスの内容が重複している場合でも、現在の <xref:System.Memory%601> インスタンスのすべての内容を `destination` にコピーします。
 
          ]]></format>
         </remarks>
@@ -189,6 +193,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -213,8 +218,8 @@
       <MemberSignature Language="VB.NET" Value="Public Function Equals (other As Memory(Of T)) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; bool Equals(Memory&lt;T&gt; other);" FrameworkAlternate="netcore-2.1;netcore-2.2" />
       <MemberSignature Language="F#" Value="override this.Equals : Memory&lt;'T&gt; -&gt; bool" Usage="memory.Equals other" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Equals(valuetype System.Memory`1&lt;!T&gt; other) cil managed" FrameworkAlternate="netcore-3.0;netstandard-2.1" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual bool Equals(Memory&lt;T&gt; other);" FrameworkAlternate="netcore-3.0;netstandard-2.1" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Equals(valuetype System.Memory`1&lt;!T&gt; other) cil managed" FrameworkAlternate="netcore-3.0;netcore-3.1;netstandard-2.1" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual bool Equals(Memory&lt;T&gt; other);" FrameworkAlternate="netcore-3.0;netcore-3.1;netstandard-2.1" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.IEquatable`1.Equals(`0)</InterfaceMember>
@@ -222,6 +227,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -239,17 +245,17 @@
       <Docs>
         <param name="other">現在のインスタンスと比較するオブジェクト。</param>
         <summary>指定した <see cref="T:System.Memory`1" /> オブジェクトが現在のオブジェクトと等しいかどうかを判断します。</summary>
-        <returns>現在のインスタンスと <paramref name="other" /> が等しい場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>現在のインスタンスと <see langword="true" /> が等しい場合は <paramref name="other" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
 以下の場合に、2つのオブジェクトが等しいと判定します。
 
-   - `other`は<xref:System.Memory%601>または<xref:System.ReadOnlyMemory%601>オブジェクトである。
+   - `other` は <xref:System.Memory%601> または <xref:System.ReadOnlyMemory%601> オブジェクトです。
    
    - 両方のオブジェクトは、同じ配列を指し、同じ長さである。
 
-`Equals(Memory<T>)`メソッドは参照の等価性テストを実行します。 <xref:System.Memory%601>の要素が等しいかどうかは比較されません。
+`Equals(Memory<T>)` メソッドは、参照の等価性のテストを実行します。<xref:System.Memory%601> の要素が等しいかどうかを比較しません。
 
          ]]></format>
         </remarks>
@@ -266,6 +272,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -275,7 +282,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
         </Attribute>
       </Attributes>
@@ -288,11 +295,11 @@
       <Docs>
         <param name="obj">現在のインスタンスと比較するオブジェクト。</param>
         <summary>指定したオブジェクトが、現在のオブジェクトと等しいかどうかを判断します。</summary>
-        <returns>現在のインスタンスと <paramref name="obj" /> が等しい場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>現在のインスタンスと <see langword="true" /> が等しい場合は <paramref name="obj" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-2つの<xref:System.Memory%601>オブジェクトが同じ配列を指し、同じ長さである場合は、オブジェクトが等しいと判定します。 要素が等しいかどうかはチェックされないことに注意してください。
+2つの <xref:System.Memory%601> オブジェクトは、両方のオブジェクトが同じ配列を指し、長さが同じである場合に等しくなります。 要素が等しいかどうかはチェックされないことに注意してください。
    
          ]]></format>
         </remarks>
@@ -309,6 +316,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -318,7 +326,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
         </Attribute>
       </Attributes>
@@ -343,6 +351,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -356,8 +365,8 @@
       </ReturnValue>
       <Docs>
         <summary>現在のインスタンスが空であるかどうかを示します。</summary>
-        <value>現在のインスタンスが空である場合は<see langword="true" />を、それ以外の場合は<see langword="false" />を返します。</value>
-        <remarks><see cref="T:System.Memory`1" />オブジェクトは、長さが 0 の場合は空です。</remarks>
+        <value>現在のインスタンスが空の場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。</value>
+        <remarks>長さが0の場合、<see cref="T:System.Memory`1" /> オブジェクトは空になります。</remarks>
       </Docs>
     </Member>
     <Member MemberName="Length">
@@ -371,6 +380,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -399,6 +409,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -431,6 +442,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -463,6 +475,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -495,6 +508,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -517,7 +531,7 @@
 
 ## <a name="see-also"></a>関連項目
 
-返された<xref:System.Buffers.MemoryHandle>オブジェクトが破棄されるまで、ガベージ コレクターはメモリを移動しません。 これにより、メモリのアドレスを取得し、使用することができます。
+ガベージコレクターは、返された <xref:System.Buffers.MemoryHandle> オブジェクトが破棄されるまでメモリを移動しません。 これにより、メモリのアドレスを取得し、使用することができます。
 
 <xref:System.Type.IsPrimitive> 
 
@@ -537,6 +551,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -570,6 +585,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -589,7 +605,7 @@
         <param name="start">スライスの開始位置を示すインデックス。</param>
         <param name="length">スライスに含める要素の数。</param>
         <summary>指定したインデックスで始まる現在のメモリから指定した長さでスライスを形成します。</summary>
-        <returns><paramref name="start" /> で始まる現在のインスタンスの <paramref name="length" /> 要素を含むオブジェクト。</returns>
+        <returns><paramref name="length" /> で始まる現在のインスタンスの <paramref name="start" /> 要素を含むオブジェクト。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="start" /> が 0 未満であるか、<see cref="P:System.Memory`1.Length" /> を超えています。
 
@@ -609,6 +625,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -622,7 +639,7 @@
       </ReturnValue>
       <Docs>
         <summary>現在のインスタンスのスパンを返します。</summary>
-        <value>現在のインスタンスから作成した<see cref="T:System.Memory`1" />オブジェクト。</value>
+        <value>現在の <see cref="T:System.Memory`1" /> オブジェクトから作成されたスパン。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -637,6 +654,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -655,9 +673,9 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-@No__t-0 メソッドを呼び出すとヒープ割り当てが実行されるため、通常は回避する必要があります。 ただし、配列でのみ使用できる機能を活用するためには必要です。
+`ToArray` メソッドを呼び出すとヒープ割り当てが実行されるため、通常は回避する必要があります。 ただし、配列でのみ使用できる機能を活用するためには必要です。
 
-@No__t-0 メソッドを呼び出すたびに、新しい配列が返されます。 
+`ToArray` メソッドを呼び出すたびに、新しい配列が返されます。 
 
          ]]></format>
         </remarks>
@@ -674,6 +692,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -692,7 +711,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-`Memory<Char>`の場合、`ToString`メソッドは<xref:System.Memory%601>が指す<xref:System.Char>を含む<xref:System.String>を返します。 それ以外の場合は、型の名前と<xref:System.Memory%601>の要素数を含む<xref:System.String>を返します。
+`Memory<Char>`の場合、`ToString` メソッドは <xref:System.Memory%601>が指す文字を含む <xref:System.String> を返します。 それ以外の場合は、型の名前と <xref:System.Memory%601> に含まれる要素の数を含む <xref:System.String> を返します。
 
          ]]></format>
         </remarks>
@@ -709,6 +728,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Memory</AssemblyName>
@@ -730,7 +750,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[  
 
-このメソッドは、現在のインスタンスの内容と<xref:System.Memory%601>が重なっている場合でも、現在の`destination`インスタンスの内容をすべて`destination`にコピーします。
+このメソッドは、現在の `destination` インスタンスの内容が重複している場合でも、現在の <xref:System.Memory%601> インスタンスのすべての内容を `destination` にコピーします。
 
          ]]></format>
         </remarks>

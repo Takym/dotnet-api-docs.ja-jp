@@ -1,5 +1,5 @@
 <Type Name="Lazy&lt;T&gt;" FullName="System.Lazy&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a193eefa8afa38666768441022aa43617f7556d1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405760" /></Metadata><TypeSignature Language="C#" Value="public class Lazy&lt;T&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="df266a91358ad146e1c18d873159ac0475dd9b5d" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75040699" /></Metadata><TypeSignature Language="C#" Value="public class Lazy&lt;T&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit Lazy`1&lt;T&gt; extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Lazy`1" />
   <TypeSignature Language="VB.NET" Value="Public Class Lazy(Of T)" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -49,7 +50,7 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <typeparam name="T">遅延初期化されるオブジェクトの型。</typeparam>
+    <typeparam name="T">遅延初期化されているオブジェクトの型。</typeparam>
     <summary>遅延初期化のサポートを提供します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
@@ -57,14 +58,14 @@
 ## Remarks  
  遅延初期化を使用すると、大量またはリソースを消費するオブジェクトの作成や、リソースを集中的に使用するタスクの実行を遅らせることができます。特に、プログラムの有効期間中にこのような作成や実行が行われない場合があります。  
   
- 遅延初期化を準備するには、の<xref:System.Lazy%601>インスタンスを作成します。 作成する<xref:System.Lazy%601>オブジェクトの型引数は、遅延を初期化するオブジェクトの型を指定します。 オブジェクトの<xref:System.Lazy%601>作成に使用するコンストラクターによって、初期化の特性が決まります。 遅延初期化は、<xref:System.Lazy%601.Value%2A?displayProperty=nameWithType> プロパティへの初回のアクセス時に発生します。  
+ 遅延初期化を準備するには、<xref:System.Lazy%601>のインスタンスを作成します。 作成した <xref:System.Lazy%601> オブジェクトの型引数は、遅延を初期化するオブジェクトの型を指定します。 <xref:System.Lazy%601> オブジェクトの作成に使用するコンストラクターによって、初期化の特性が決まります。 遅延初期化は、<xref:System.Lazy%601.Value%2A?displayProperty=nameWithType> プロパティへの初回のアクセス時に発生します。  
   
  ほとんどの場合、コンストラクターの選択は、次の2つの質問に対する回答に依存します。  
   
--   遅延初期化されたオブジェクトには、複数のスレッドからアクセスしますか。 その場合は、 <xref:System.Lazy%601>オブジェクトによって任意のスレッドで作成される可能性があります。 既定の動作がスレッドセーフ<xref:System.Lazy%601>オブジェクトを作成する単純なコンストラクターの1つを使用できます。これにより、遅延インスタンス化されたオブジェクトの1つのインスタンスだけが、そのオブジェクトにアクセスしようとするスレッドの数に関係なく作成されます。 スレッドセーフで<xref:System.Lazy%601>はないオブジェクトを作成するには、スレッドセーフを指定できないようにするコンストラクターを使用する必要があります。  
+-   遅延初期化されたオブジェクトには、複数のスレッドからアクセスしますか。 その場合、<xref:System.Lazy%601> オブジェクトによって、任意のスレッドで作成される可能性があります。 既定の動作でスレッドセーフ <xref:System.Lazy%601> オブジェクトを作成する単純なコンストラクターの1つを使用できます。これにより、遅延インスタンス化されたオブジェクトの1つのインスタンスだけが、アクセスしようとしているスレッドの数に関係なく作成されます。 スレッドセーフではない <xref:System.Lazy%601> オブジェクトを作成するには、スレッドセーフを指定できないようにするコンストラクターを使用する必要があります。  
   
     > [!CAUTION]
-    >  オブジェクトを<xref:System.Lazy%601>スレッドセーフにすると、遅延初期化オブジェクトは保護されません。 遅延初期化されたオブジェクトに複数のスレッドがアクセスできる場合は、そのプロパティとメソッドを、マルチスレッドアクセスに対して安全にする必要があります。  
+    >  <xref:System.Lazy%601> オブジェクトをスレッドセーフにすると、遅延初期化オブジェクトは保護されません。 遅延初期化されたオブジェクトに複数のスレッドがアクセスできる場合は、そのプロパティとメソッドを、マルチスレッドアクセスに対して安全にする必要があります。  
   
 -   遅延初期化には多数のコードが必要です。また、遅延初期化オブジェクトには、必要なすべての処理を行うパラメーターなしのコンストラクターがあり、例外はスローされません。 初期化コードを記述する必要がある場合、または例外を処理する必要がある場合は、ファクトリメソッドを受け取るコンストラクターのいずれかを使用します。 ファクトリメソッドに初期化コードを記述します。  
   
@@ -73,38 +74,38 @@
 |オブジェクトにアクセスする|初期化コードが必要ない場合 (パラメーターなしのコンストラクター)、を使用します。|初期化コードが必要な場合は、を使用します。|  
 |--------------------------------|------------------------------------------------------------------------|---------------------------------------------|  
 |複数のスレッド|<xref:System.Lazy%601.%23ctor>|<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29>|  
-|1つのスレッド|<xref:System.Lazy%601.%23ctor%28System.Boolean%29>が`isThreadSafe` に`false`設定された。|<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29>が`isThreadSafe` に`false`設定された。|  
+|1つのスレッド|`isThreadSafe` を `false`に設定して <xref:System.Lazy%601.%23ctor%28System.Boolean%29> します。|`isThreadSafe` を `false`に設定して <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29> します。|  
   
  ラムダ式を使用して、ファクトリメソッドを指定できます。 これにより、すべての初期化コードが1つの場所に保持されます。 ラムダ式は、遅延初期化オブジェクトのコンストラクターに渡す引数を含め、コンテキストをキャプチャします。  
   
- **例外のキャッシュ**ファクトリメソッドを使用すると、例外がキャッシュされます。 つまり、スレッドが最初に<xref:System.Lazy%601.Value%2A> <xref:System.Lazy%601>オブジェクトのプロパティにアクセスしようとしたときにファクトリメソッドが例外をスローした場合、それ以降のすべての試行で同じ例外がスローされます。 これにより、プロパティの<xref:System.Lazy%601.Value%2A>すべての呼び出しで同じ結果が生成されるため、異なるスレッドで異なる結果が得られる場合に発生する軽度のエラーを回避できます。 は<xref:System.Lazy%601> 、以前の時点で`T`初期化されている (通常はスタートアップ時に) 実際のを表します。 その前の時点でのエラーは、通常、致命的です。 回復可能なエラーが発生する可能性がある場合は、遅延初期化を使用していない場合と同様に、初期化ルーチン (この場合はファクトリメソッド) に再試行ロジックを作成することをお勧めします。  
+ **例外のキャッシュ**ファクトリメソッドを使用すると、例外がキャッシュされます。 つまり、最初にスレッドが <xref:System.Lazy%601> オブジェクトの <xref:System.Lazy%601.Value%2A> プロパティにアクセスしようとしたときに、ファクトリメソッドが例外をスローした場合、以降のすべての試行で同じ例外がスローされます。 これにより、<xref:System.Lazy%601.Value%2A> プロパティへのすべての呼び出しで同じ結果が生成されるため、異なるスレッドで異なる結果が得られる場合に発生する軽度のエラーを回避できます。 <xref:System.Lazy%601> は、通常は起動時に初期化された実際の `T` を表します。 その前の時点でのエラーは、通常、致命的です。 回復可能なエラーが発生する可能性がある場合は、遅延初期化を使用していない場合と同様に、初期化ルーチン (この場合はファクトリメソッド) に再試行ロジックを作成することをお勧めします。  
   
- **ロックの代替手段**場合によっては、 <xref:System.Lazy%601>オブジェクトの既定のロック動作のオーバーヘッドを回避する必要があります。 まれに、デッドロックが発生する可能性があります。 このような場合<xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29>は、コンストラクターまたは<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>コンストラクターを使用してを指定<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>できます。 これにより<xref:System.Lazy%601> 、スレッドが同時にプロパティを<xref:System.Lazy%601.Value%2A>呼び出す場合に、オブジェクトは、複数のスレッドのそれぞれに、遅延初期化されたオブジェクトのコピーを作成できるようになります。 オブジェクト<xref:System.Lazy%601>は、すべてのスレッドが遅延初期化オブジェクトの同じインスタンスを使用し、使用されていないインスタンスを破棄することを保証します。 したがって、ロックのオーバーヘッドを減らすコストは、プログラムが高価なオブジェクトの余分なコピーを作成して破棄することがあります。 ほとんどの場合、このことはほとんどありません。 コンストラクター <xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> と<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>コンストラクターの例では、この動作を示しています。  
+ **ロックの代替手段**場合によっては、<xref:System.Lazy%601> オブジェクトの既定のロック動作のオーバーヘッドを回避する必要があります。 まれに、デッドロックが発生する可能性があります。 このような場合は、<xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> または <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29> コンストラクターを使用して、<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>を指定できます。 これにより、<xref:System.Lazy%601> オブジェクトは、スレッドが同時に <xref:System.Lazy%601.Value%2A> プロパティを呼び出す場合に、複数のスレッドのそれぞれに遅延初期化オブジェクトのコピーを作成できます。 <xref:System.Lazy%601> オブジェクトは、すべてのスレッドが遅延初期化オブジェクトの同じインスタンスを使用し、使用されていないインスタンスを破棄することを保証します。 したがって、ロックのオーバーヘッドを減らすコストは、プログラムが高価なオブジェクトの余分なコピーを作成して破棄することがあります。 ほとんどの場合、このことはほとんどありません。 <xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> コンストラクターと <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29> コンストラクターの例では、この動作を示しています。  
   
 > [!IMPORTANT]
->  を指定<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>すると、ファクトリメソッドを指定した場合でも、例外はキャッシュされません。  
+>  <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>を指定した場合、ファクトリメソッドを指定しても、例外はキャッシュされません。  
   
- **同等のコンストラクター**<xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>および<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>コンストラクターは、の使用を有効にするだけでなく、他のコンストラクターの機能を複製することもできます。 次の表に、同等の動作を生成するパラメーター値を示します。  
+ **同等のコンストラクター**<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>の使用を有効にするだけでなく、<xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> コンストラクターと <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29> コンストラクターは、他のコンストラクターの機能を複製することができます。 次の表に、同等の動作を生成するパラメーター値を示します。  
   
-|オブジェクトを<xref:System.Lazy%601>作成するには|パラメーターを持つ`LazyThreadSafetyMode`コンストラクターの場合、を`mode`に設定します。 `mode`|ブール型`isThreadSafe`パラメーターを持つコンストラクターの場合、 `isThreadSafe`をに設定します。|スレッドセーフパラメーターのないコンストラクターの場合|  
+|<xref:System.Lazy%601> オブジェクトを作成するには|`LazyThreadSafetyMode` `mode` パラメーターを持つコンストラクターの場合は `mode` をに設定します。|ブール `isThreadSafe` パラメーターを持つコンストラクターの場合は、`isThreadSafe` をに設定します。|スレッドセーフパラメーターのないコンストラクターの場合|  
 |-------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|-------------------------------------------------------|  
 |完全なスレッドセーフはロックを使用して、1つのスレッドだけが値を初期化するようにします。|<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication>|`true`|このようなコンストラクターはすべて、完全にスレッドセーフです。|  
-|スレッドセーフではありません。|<xref:System.Threading.LazyThreadSafetyMode.None>|`false`|該当なし。|  
-|完全なスレッドセーフ値を初期化するスレッドの競合。|<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly>|該当なし。|該当なし。|  
+|スレッドセーフではありません。|<xref:System.Threading.LazyThreadSafetyMode.None>|`false`|該当しない。|  
+|完全なスレッドセーフ値を初期化するスレッドの競合。|<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly>|該当しない。|該当しない。|  
   
- **その他の機能**スレッド静的フィールドでのの<xref:System.Lazy%601>使用、またはプロパティのバッキングストアとしてを使用する方法については、「[レイジー初期化](~/docs/framework/performance/lazy-initialization.md)」を参照してください。  
+ **その他の機能**スレッド静的フィールドでの <xref:System.Lazy%601> の使用、またはプロパティのバッキングストアとしての使用の詳細については、「[レイジー初期化](~/docs/framework/performance/lazy-initialization.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、 <xref:System.Lazy%601>クラスを使用して、複数のスレッドからのアクセスで遅延初期化を行う方法を示します。  
+ 次の例では、<xref:System.Lazy%601> クラスを使用して、複数のスレッドからのアクセスでレイジー初期化を行う方法を示します。  
   
 > [!NOTE]
->  この例では<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29> 、コンストラクターを使用します。 また、 <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29>コンストラクター (の場合`isThreadSafe`はを指定`true` ) と<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>コンストラクター ( <xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>の場合`mode`はを指定) の使用方法も示します。 別のコンストラクターに切り替えるには、コメントアウトするコンストラクターを変更するだけです。  
+>  この例では、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29> コンストラクターを使用します。 また、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29> コンストラクター (`isThreadSafe`の `true` を指定) と <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29> コンストラクター (<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> に `mode`を指定) の使用方法も示します。 別のコンストラクターに切り替えるには、コメントアウトするコンストラクターを変更するだけです。  
 >   
->  同じコンストラクターを使用した例外のキャッシュを示す例につい<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29>ては、「コンストラクター」を参照してください。  
+>  同じコンストラクターを使用した例外キャッシュの例については、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29> コンストラクターに関する説明を参照してください。  
   
- この例では、複数あるスレッドのうちの 1 つによって遅れて初期化される `LargeObject` クラスを定義します。 コードの4つの主要なセクションでは、初期化子、ファクトリメソッド、実際の初期化、およびオブジェクトが作成さ`LargeObject`れたときにメッセージを表示するクラスのコンストラクターを作成する方法を示します。 `Main` メソッドの開始時に、この例では `LargeObject` のスレッドセーフな遅延初期化子が作成されます。  
+ この例では、複数あるスレッドのうちの 1 つによって遅れて初期化される `LargeObject` クラスを定義します。 コードの4つの主要なセクションでは、初期化子、ファクトリメソッド、実際の初期化、およびオブジェクトの作成時にメッセージを表示する `LargeObject` クラスのコンストラクターの作成について説明します。 `Main` メソッドの開始時に、この例では `LargeObject` のスレッドセーフな遅延初期化子が作成されます。  
   
  [!code-csharp[System.Lazy\`1#NewLazy](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1/cs/example.cs#newlazy)]
  [!code-vb[System.Lazy\`1#NewLazy](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1/vb/example.vb#newlazy)]  
@@ -119,12 +120,12 @@
  [!code-csharp[System.Lazy\`1#InitWithLambda](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1/cs/lambda.cs#initwithlambda)]
  [!code-vb[System.Lazy\`1#InitWithLambda](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1/vb/lambda.vb#initwithlambda)]  
   
- この例では、遅延初期化が発生する前に、不確定な期間が経過する可能性があることを示すために一時停止します。 Enter キーを押す**** と、この例では3つのスレッドを作成して開始します。 3 `ThreadProc`つのすべてのスレッドで使用されるメソッド<xref:System.Lazy%601.Value%2A>は、プロパティを呼び出します。 これが初めて発生`LargeObject`したときに、インスタンスが作成されます。  
+ この例では、遅延初期化が発生する前に、不確定な期間が経過する可能性があることを示すために一時停止します。 **Enter キーを**押すと、この例では3つのスレッドを作成して開始します。 3つのすべてのスレッドで使用される `ThreadProc` メソッドは、<xref:System.Lazy%601.Value%2A> プロパティを呼び出します。 これが初めて発生したときに、`LargeObject` インスタンスが作成されます。  
   
  [!code-csharp[System.Lazy\`1#ValueProp](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1/cs/example.cs#valueprop)]
  [!code-vb[System.Lazy\`1#ValueProp](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1/vb/example.vb#valueprop)]  
   
- コードの最後の`LargeObject`キーセクションを含むクラスのコンストラクターは、メッセージを表示し、初期化中のスレッドの id を記録します。 プログラムからの出力は、完全なコードリストの最後に表示されます。  
+ コードの最後のキーセクションを含む `LargeObject` クラスのコンストラクターは、メッセージを表示し、初期化中のスレッドの id を記録します。 プログラムからの出力は、完全なコードリストの最後に表示されます。  
   
  [!code-csharp[System.Lazy\`1#LargeCtor](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1/cs/example.cs#largector)]
  [!code-vb[System.Lazy\`1#LargeCtor](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1/vb/example.vb#largector)]  
@@ -137,7 +138,7 @@
   
  ]]></format>
     </remarks>
-    <threadsafe>既定では、 <see cref="T:System.Lazy`1" />クラスのパブリックメンバーとプロテクトメンバーはすべてスレッドセーフであり、複数のスレッドから同時に使用することができます。 これらのスレッドセーフの保証は、必要に応じて、型のコンストラクターへのパラメーターを使用して、インスタンスごとに削除することができます。</threadsafe>
+    <threadsafe>既定では、<see cref="T:System.Lazy`1" /> クラスのすべてのパブリックメンバーとプロテクトメンバーはスレッドセーフであり、複数のスレッドから同時に使用できます。 これらのスレッドセーフの保証は、必要に応じて、型のコンストラクターへのパラメーターを使用して、インスタンスごとに削除することができます。</threadsafe>
     <altmember cref="T:System.Threading.LazyThreadSafetyMode" />
     <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
   </Docs>
@@ -170,6 +171,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -193,26 +195,26 @@
 ## Remarks  
  このコンストラクターを使用して作成されたインスタンスは、複数のスレッドから同時に使用できます。  
   
- このコンストラクターで初期化され<xref:System.Lazy%601>たインスタンスのスレッドセーフモードは<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>です。 スレッドセーフモードでは、複数のスレッドが<xref:System.Lazy%601>インスタンスを初期化しようとしたときの動作が記述されます。  
+ このコンストラクターを使用して初期化された <xref:System.Lazy%601> インスタンスのスレッドセーフモードは <xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>です。 スレッドセーフモードでは、複数のスレッドが <xref:System.Lazy%601> インスタンスを初期化しようとしたときの動作が記述されます。  
   
- この<xref:System.Lazy%601>コンストラクターを使用して作成されたインスタンスは、例外をキャッシュしません。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
+ このコンストラクターを使用して作成された <xref:System.Lazy%601> インスタンスは、例外をキャッシュしません。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
   
    
   
 ## Examples  
- このコンストラクターの使用例を次に示します。 また、 <xref:System.Lazy%601.%23ctor%28System.Boolean%29>コンストラクター (では`isThreadSafe`を指定`true` ) と<xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29>コンストラクター ( <xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>の場合`mode`はを指定) の使用方法も示しています。 別のコンストラクターに切り替えるには、コメントアウトするコンストラクターを変更するだけです。  
+ このコンストラクターの使用例を次に示します。 また、<xref:System.Lazy%601.%23ctor%28System.Boolean%29> コンストラクター (`isThreadSafe`の `true` を指定) と <xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> コンストラクター (<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> に `mode`を指定) の使用方法についても説明します。 別のコンストラクターに切り替えるには、コメントアウトするコンストラクターを変更するだけです。  
   
  この例では、複数あるスレッドのうちの 1 つによって遅れて初期化される `LargeObject` クラスを定義します。 この例の2つの重要なコード行は、初期化子と実際の初期化を作成することです。 `Main` メソッドの開始時に、この例では `LargeObject` のスレッドセーフな遅延初期化子が作成されます。  
   
  [!code-csharp[System.Lazy\`1.ctor#NewLazy](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctor/cs/example.cs#newlazy)]
  [!code-vb[System.Lazy\`1.ctor#NewLazy](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctor/vb/example.vb#newlazy)]  
   
- この例では、 <xref:System.Threading.ManualResetEvent>オブジェクトでブロックされる3つのスレッドを作成して開始します。これにより、この例では、スレッドをすべて一度に解放できます。 3 `ThreadProc`つのすべてのスレッドで使用されるメソッド<xref:System.Lazy%601.Value%2A>は、プロパティを`LargeObject`呼び出してインスタンスを取得します。  
+ この例では、<xref:System.Threading.ManualResetEvent> オブジェクトでブロックされる3つのスレッドを作成して開始します。これにより、この例では、スレッドをすべて一度に解放できます。 すべての3つのスレッドが使用する `ThreadProc` メソッドは、<xref:System.Lazy%601.Value%2A> プロパティを呼び出して `LargeObject` インスタンスを取得します。  
   
  [!code-csharp[System.Lazy\`1.ctor#ValueProp](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctor/cs/example.cs#valueprop)]
  [!code-vb[System.Lazy\`1.ctor#ValueProp](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctor/vb/example.vb#valueprop)]  
   
- クラス<xref:System.Lazy%601>は、1つのスレッドのみがインスタンスの`LargeObject`作成を許可されるように、ロックを提供します。 この例では、他のスレッドがすべて同じインスタンスを取得することを示しています。  
+ <xref:System.Lazy%601> クラスは、1つのスレッドだけが `LargeObject` インスタンスを作成できるように、ロックを提供します。 この例では、他のスレッドがすべて同じインスタンスを取得することを示しています。  
   
 > [!NOTE]
 >  簡略化のために、この例では <xref:System.Lazy%601> のグローバル インスタンスを使用して、すべてのメソッドは `static` (Visual Basic の `Shared`) です。 これらは、遅延初期化を使用するための要件ではありません。  
@@ -241,6 +243,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -259,25 +262,25 @@
         <Parameter Name="isThreadSafe" Type="System.Boolean" Index="0" FrameworkAlternate="xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="isThreadSafe">このインスタンスを複数のスレッドで同時に使用できるようにする場合は <see langword="true" />。インスタンスを一度に 1 つのスレッドでしか使用できないようにする場合は <see langword="false" />。</param>
+        <param name="isThreadSafe">同時に複数のスレッドでこのインスタンスを使用できるようにする場合には <see langword="true" />、このインスタンスを一度に 1 つのスレッドのみで使用できるようにする場合は <see langword="false" />。</param>
         <summary><see cref="T:System.Lazy`1" /> クラスの新しいインスタンスを初期化します。 遅延初期化が発生した場合、ターゲットの型のパラメーターなしのコンストラクターと指定された初期化モードが使用されます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターで初期化される<xref:System.Lazy%601>インスタンスのスレッドセーフモードは、が<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>の`isThreadSafe` `true`場合はです。それ以外の<xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType>場合、モードはです。 スレッドセーフモードでは、複数のスレッドが<xref:System.Lazy%601>インスタンスを初期化しようとしたときの動作が記述されます。 <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>モードを指定するに<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>は、コンストラクター <xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29>またはコンストラクターを使用します。  
+ このコンストラクターを使用して初期化された <xref:System.Lazy%601> インスタンスのスレッドセーフモードは、`isThreadSafe` が `true`されている場合は <xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> ます。それ以外の場合、モードは <xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType>です。 スレッドセーフモードでは、複数のスレッドが <xref:System.Lazy%601> インスタンスを初期化しようとしたときの動作が記述されます。 <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType> モードを指定するには、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29> または <xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> コンストラクターを使用します。  
   
- この<xref:System.Lazy%601>コンストラクターを使用して作成されたインスタンスは、例外をキャッシュしません。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
+ このコンストラクターを使用して作成された <xref:System.Lazy%601> インスタンスは、例外をキャッシュしません。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
   
    
   
 ## Examples  
- 次の例では、このコンストラクターを使用して、遅延初期化されたオブジェクトへのすべてのアクセスが同じスレッドで発生するシナリオについて、スレッドセーフではないレイジー初期化子を作成しています。 また、 <xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29>コンストラクターの使用方法も示します ( <xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType>を`mode`指定します。 別のコンストラクターに切り替えるには、コメントアウトされているコンストラクターを変更するだけです。  
+ 次の例では、このコンストラクターを使用して、遅延初期化されたオブジェクトへのすべてのアクセスが同じスレッドで発生するシナリオについて、スレッドセーフではないレイジー初期化子を作成しています。 また、<xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> コンストラクターの使用方法も示します (`mode`の <xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType> を指定します。 別のコンストラクターに切り替えるには、コメントアウトされているコンストラクターを変更するだけです。  
   
 > [!NOTE]
->  このコンストラクターをマルチスレッドシナリオで使用する方法を示すコード ( `true`の`isThreadSafe`場合) につい<xref:System.Lazy%601.%23ctor>ては、コンストラクターの例を参照してください。  
+>  このコンストラクターをマルチスレッドシナリオで使用する方法を示すコード (`isThreadSafe`の `true` を指定する) については、<xref:System.Lazy%601.%23ctor> コンストラクターの例を参照してください。  
   
- この例では`LargeObject` 、遅延して初期化されるクラスを定義します。 メソッドでは、インスタンスを<xref:System.Lazy%601>作成して一時停止します。 `Main` Enter キーを押す**** と、 <xref:System.Lazy%601.Value%2A> <xref:System.Lazy%601>インスタンスのプロパティにアクセスします。これにより、初期化が発生します。 `LargeObject`クラスのコンストラクターは、コンソールメッセージを表示します。  
+ この例では、遅延して初期化される `LargeObject` クラスを定義します。 この例では、`Main` メソッドで <xref:System.Lazy%601> インスタンスを作成して一時停止します。 **Enter**キーを押すと、この例では <xref:System.Lazy%601> インスタンスの <xref:System.Lazy%601.Value%2A> プロパティにアクセスします。これにより、初期化が発生します。 `LargeObject` クラスのコンストラクターは、コンソールメッセージを表示します。  
   
 > [!NOTE]
 >  簡略化のために、この例では <xref:System.Lazy%601> のグローバル インスタンスを使用して、すべてのメソッドは `static` (Visual Basic の `Shared`) です。 これらは、遅延初期化を使用するための要件ではありません。  
@@ -306,6 +309,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -324,39 +328,39 @@
         <Parameter Name="valueFactory" Type="System.Func&lt;T&gt;" Index="0" FrameworkAlternate="xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="valueFactory">必要時に遅延初期化される値を生成するために呼び出されるデリゲート。</param>
-        <summary><see cref="T:System.Lazy`1" /> クラスの新しいインスタンスを初期化します。 遅延初期化が発生した場合、指定された初期化関数が使用されます。</summary>
+        <param name="valueFactory">必要に応じて、遅延初期化の値を生成するために呼び出されるデリゲート。</param>
+        <summary><see cref="T:System.Lazy`1" /> クラスの新しいインスタンスを初期化します。 遅延初期化が発生すると、指定された初期化関数が使用されます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  このコンストラクターを使用して作成されたインスタンスは、複数のスレッドから同時に使用できます。  
   
- このコンストラクターで初期化され<xref:System.Lazy%601>たインスタンスのスレッドセーフモードは<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>です。 スレッドセーフモードでは、複数のスレッドが<xref:System.Lazy%601>インスタンスを初期化しようとしたときの動作が記述されます。  
+ このコンストラクターを使用して初期化された <xref:System.Lazy%601> インスタンスのスレッドセーフモードは <xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>です。 スレッドセーフモードでは、複数のスレッドが <xref:System.Lazy%601> インスタンスを初期化しようとしたときの動作が記述されます。  
   
- によって`valueFactory`スローされた例外はキャッシュされます。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
+ `valueFactory` によってスローされる例外はキャッシュされます。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
   
    
   
 ## Examples  
- 次の例では、このコンストラクターを使用して、例外キャッシュによるレイジー初期化を行う方法を示します。 また、 <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29>コンストラクター (の場合`isThreadSafe`はを指定`true` ) と<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>コンストラクター ( <xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>の場合`mode`はを指定) の使用方法も示します。 別のコンストラクターに切り替えるには、コメントアウトするコンストラクターを変更するだけです。  
+ 次の例では、このコンストラクターを使用して、例外キャッシュによるレイジー初期化を行う方法を示します。 また、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29> コンストラクター (`isThreadSafe`の `true` を指定) と <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29> コンストラクター (<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> に `mode`を指定) の使用方法も示します。 別のコンストラクターに切り替えるには、コメントアウトするコンストラクターを変更するだけです。  
   
- この例では、複数あるスレッドのうちの 1 つによって遅れて初期化される `LargeObject` クラスを定義します。 コードの3つの重要なセクションは、初期化子の作成、実際の初期化、および`LargeObject`クラスのコンストラクターの作成を示しています。これは、例外のキャッシュを示しています。 `Main` メソッドの開始時に、この例では `LargeObject` のスレッドセーフな遅延初期化子が作成されます。  
+ この例では、複数あるスレッドのうちの 1 つによって遅れて初期化される `LargeObject` クラスを定義します。 コードの3つの重要なセクションでは、初期化子、実際の初期化、および `LargeObject` クラスのコンストラクターを作成して、例外のキャッシュを示します。 `Main` メソッドの開始時に、この例では `LargeObject` のスレッドセーフな遅延初期化子が作成されます。  
   
  [!code-csharp[System.Lazy\`1.ctorFunc#NewLazy](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfunc/cs/example.cs#newlazy)]
  [!code-vb[System.Lazy\`1.ctorFunc#NewLazy](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfunc/vb/example.vb#newlazy)]  
   
- この例では、3つのスレッドを作成して開始します。 3 `ThreadProc`つのすべてのスレッドで使用されるメソッド<xref:System.Lazy%601.Value%2A>は、プロパティを`LargeObject`呼び出してインスタンスを取得します。  
+ この例では、3つのスレッドを作成して開始します。 すべての3つのスレッドが使用する `ThreadProc` メソッドは、<xref:System.Lazy%601.Value%2A> プロパティを呼び出して `LargeObject` インスタンスを取得します。  
   
  [!code-csharp[System.Lazy\`1.ctorFunc#ValueProp](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfunc/cs/example.cs#valueprop)]
  [!code-vb[System.Lazy\`1.ctorFunc#ValueProp](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfunc/vb/example.vb#valueprop)]  
   
- `LargeObject`クラスのコンストラクターでは、コードの3番目のキーセクションが、 `LargeObject`インスタンスが最初に作成されたときに例外をスローしますが、その後インスタンスの作成が可能になります。  
+ `LargeObject` クラスのコンストラクターでは、コードの3番目のキーセクションは、`LargeObject` インスタンスが最初に作成されたときに例外をスローしますが、それ以降はインスタンスの作成が可能になります。  
   
  [!code-csharp[System.Lazy\`1.ctorFunc#LargeCtor](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfunc/cs/example.cs#largector)]
  [!code-vb[System.Lazy\`1.ctorFunc#LargeCtor](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfunc/vb/example.vb#largector)]  
   
- この例を実行すると、の`LargeObject`インスタンスを作成しようとする最初のスレッドが失敗し、例外がキャッチされます。 次のスレッドによってインスタンスが正常に作成されても<xref:System.Lazy%601> 、オブジェクトによって例外がキャッシュされていることが予想される場合があります。 このため、3つのすべてのスレッドが例外をスローします。  
+ この例を実行すると、`LargeObject` のインスタンスを作成しようとする最初のスレッドが失敗し、例外がキャッチされます。 次のスレッドによってインスタンスが正常に作成されても、<xref:System.Lazy%601> オブジェクトによって例外がキャッシュされていることが予想される場合があります。 このため、3つのすべてのスレッドが例外をスローします。  
   
 > [!NOTE]
 >  簡略化のために、この例では <xref:System.Lazy%601> のグローバル インスタンスを使用して、すべてのメソッドは `static` (Visual Basic の `Shared`) です。 これらは、遅延初期化を使用するための要件ではありません。  
@@ -366,7 +370,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> は <see langword="null" /> です。</exception>
         <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
       </Docs>
     </Member>
@@ -386,6 +390,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -405,14 +410,14 @@
       </Parameters>
       <Docs>
         <param name="mode">スレッド セーフ モードを指定する列挙値の 1 つ。</param>
-        <summary><paramref name="T" /> のパラメーターなしのコンストラクターと指定されたスレッド セーフ モードを使用する <see cref="T:System.Lazy`1" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary><see cref="T:System.Lazy`1" /> のパラメーターなしのコンストラクターと指定されたスレッド セーフ モードを使用する <paramref name="T" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Lazy%601>インスタンスのスレッドセーフモードでは、複数のスレッドが<xref:System.Lazy%601>インスタンスを初期化しようとしたときの動作が記述されます。  
+ <xref:System.Lazy%601> インスタンスのスレッドセーフモードでは、複数のスレッドが <xref:System.Lazy%601> インスタンスを初期化しようとしたときの動作について説明します。  
   
- この<xref:System.Lazy%601>コンストラクターを使用して作成されたインスタンスは、例外をキャッシュしません。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
+ このコンストラクターを使用して作成された <xref:System.Lazy%601> インスタンスは、例外をキャッシュしません。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
   
    
   
@@ -420,24 +425,24 @@
  次の例では、このコンストラクターを使用して、複数のスレッドによるオブジェクトの作成を遅延させるレイジー初期化子を作成する方法を示します。 インスタンスの作成には複数のスレッドが成功することがありますが、すべてのスレッドは最初に作成されたインスタンスを使用します。  
   
 > [!NOTE]
->  シングルスレッドシナリオ<xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType> `mode`でこのコンストラクターを使用する方法を示す例については、「」を参照<xref:System.Lazy%601.%23ctor%28System.Boolean%29>してください。 このコンストラクターを使用してマルチスレッドシナリオ<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> `mode`で競合状態ではなくロックを提供する方法を示す例については<xref:System.Lazy%601.%23ctor> 、「」を参照してください。  
+>  シングルスレッドシナリオでこのコンストラクターを使用する方法を示す例 (`mode`の <xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType> を指定する) については、<xref:System.Lazy%601.%23ctor%28System.Boolean%29> コンストラクターを参照してください。 このコンストラクターを使用して、マルチスレッドの `mode`<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> シナリオで競合状態の代わりにロックを行う方法を示す例については、「<xref:System.Lazy%601.%23ctor> コンストラクター」を参照してください。  
   
- この例では`LargeObject` 、複数のスレッドのいずれかによって遅延的に初期化されるクラスを定義します。 コードの3つの重要なセクションでは、初期化子の作成、実際の初期化、および`LargeObject`クラスのコンストラクターとファイナライザーを示します。 `Main`メソッドの先頭で、この例では、 `LargeObject`の<xref:System.Lazy%601>遅延初期化を実行するオブジェクトを作成します。  
+ この例では、複数のスレッドによって遅延的に初期化される `LargeObject` クラスを定義します。 コードの3つの重要なセクションは、初期化子、実際の初期化、および `LargeObject` クラスのコンストラクターとファイナライザーの作成を示しています。 `Main` メソッドの先頭で、`LargeObject`の遅延初期化を実行する <xref:System.Lazy%601> オブジェクトを作成します。  
   
  [!code-csharp[System.Lazy\`1.ctorLTSM#NewLazy](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorltsm/cs/example.cs#newlazy)]
  [!code-vb[System.Lazy\`1.ctorLTSM#NewLazy](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorltsm/vb/example.vb#newlazy)]  
   
- この例では、 <xref:System.Threading.ManualResetEvent>オブジェクトでブロックされる3つのスレッドを作成して開始します。これにより、この例では、スレッドをすべて一度に解放できます。 3つのすべてのスレッドで使用される<xref:System.Lazy%601.Value%2A> `LargeObject` メソッドで、プロパティを呼び出すと、インスタンスが作成`ThreadProc`されます。  
+ この例では、<xref:System.Threading.ManualResetEvent> オブジェクトでブロックされる3つのスレッドを作成して開始します。これにより、この例では、スレッドをすべて一度に解放できます。 3つのすべてのスレッドで使用される `ThreadProc` メソッドでは、<xref:System.Lazy%601.Value%2A> プロパティを呼び出すと `LargeObject` インスタンスが作成されます。  
   
  [!code-csharp[System.Lazy\`1.ctorLTSM#ValueProp](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorltsm/cs/example.cs#valueprop)]
  [!code-vb[System.Lazy\`1.ctorLTSM#ValueProp](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorltsm/vb/example.vb#valueprop)]  
   
- <xref:System.Lazy%601>インスタンスのコンストラクターが指定さ<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>れているため、3つのすべて`LargeObject`のスレッドでインスタンスを作成できます。 この例では、 `LargeObject`クラスのコンストラクターとファイナライザーにコンソールメッセージを表示することによって、これを示します。  
+ <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>指定された <xref:System.Lazy%601> インスタンスのコンストラクターでは、3つのすべてのスレッドで `LargeObject` インスタンスを作成できます。 この例では、`LargeObject` クラスのコンストラクターとファイナライザーにコンソールメッセージを表示することによってこれを示します。  
   
  [!code-csharp[System.Lazy\`1.ctorLTSM#CtorFinalizer](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorltsm/cs/example.cs#ctorfinalizer)]
  [!code-vb[System.Lazy\`1.ctorLTSM#CtorFinalizer](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorltsm/vb/example.vb#ctorfinalizer)]  
   
- ただし、オブジェクト<xref:System.Lazy%601>は、すべてのスレッドで使用されるインスタンスが1つだけであることを保証します。 この例の出力は、3つのすべてのスレッドが同じインスタンスを使用しており、他の2つのインスタンスがガベージコレクションによって再利用できることを示しています。  
+ ただし、<xref:System.Lazy%601> オブジェクトは、すべてのスレッドで使用されるインスタンスが1つだけであることを保証します。 この例の出力は、3つのすべてのスレッドが同じインスタンスを使用しており、他の2つのインスタンスがガベージコレクションによって再利用できることを示しています。  
   
 > [!NOTE]
 >  簡略化のために、この例では <xref:System.Lazy%601> のグローバル インスタンスを使用して、すべてのメソッドは `static` (Visual Basic の `Shared`) です。 これらは、遅延初期化を使用するための要件ではありません。  
@@ -464,6 +469,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -476,7 +482,7 @@
         <AssemblyName>System.Core</AssemblyName>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="value" Type="T" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
+        <Parameter Name="value" Type="T" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="value">使用される、事前に初期化された値。</param>
@@ -505,6 +511,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -524,43 +531,43 @@
         <Parameter Name="isThreadSafe" Type="System.Boolean" Index="1" FrameworkAlternate="xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="valueFactory">必要時に遅延初期化される値を生成するために呼び出されるデリゲート。</param>
-        <param name="isThreadSafe">このインスタンスを複数のスレッドで同時に使用できるようにする場合は <see langword="true" />。このインスタンスを一度に 1 つのスレッドでしか使用できないようにする場合は <see langword="false" />。</param>
-        <summary><see cref="T:System.Lazy`1" /> クラスの新しいインスタンスを初期化します。 遅延初期化が発生した場合、指定された初期化関数および初期化モードが使用されます。</summary>
+        <param name="valueFactory">必要に応じて、遅延初期化の値を生成するために呼び出されるデリゲート。</param>
+        <param name="isThreadSafe">同時に複数のスレッドでこのインスタンスを使用できるようにする場合には <see langword="true" />、このインスタンスを一度に 1 つのスレッドのみで使用できるようにする場合は <see langword="false" />。</param>
+        <summary><see cref="T:System.Lazy`1" /> クラスの新しいインスタンスを初期化します。 遅延初期化が発生すると、指定された初期化関数と初期化モードが使用されます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターで初期化される<xref:System.Lazy%601>インスタンスのスレッドセーフモードは、が<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>の`isThreadSafe` `true`場合はです。それ以外の<xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType>場合、モードはです。 スレッドセーフモードでは、複数のスレッドが<xref:System.Lazy%601>インスタンスを初期化しようとしたときの動作が記述されます。  
+ このコンストラクターを使用して初期化された <xref:System.Lazy%601> インスタンスのスレッドセーフモードは、`isThreadSafe` が `true`されている場合は <xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> ます。それ以外の場合、モードは <xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType>です。 スレッドセーフモードでは、複数のスレッドが <xref:System.Lazy%601> インスタンスを初期化しようとしたときの動作が記述されます。  
   
- <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>モードを指定するに<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>は、コンストラクター <xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29>またはコンストラクターを使用します。  
+ <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType> モードを指定するには、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29> または <xref:System.Lazy%601.%23ctor%28System.Threading.LazyThreadSafetyMode%29> コンストラクターを使用します。  
   
- によって`valueFactory`スローされた例外はキャッシュされます。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
+ `valueFactory` によってスローされる例外はキャッシュされます。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
   
    
   
 ## Examples  
- 次の例では、単一のスレッドを使用するシナリオで、このコンストラクターを使用して、例外のキャッシュによるレイジー初期化を行う方法を示します。 また、 <xref:System.Lazy%601.%23ctor%2A>コンストラクターの使用方法についても示し`mode`ます (を指定<xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType> )。 このコンストラクターに切り替えるには、コメントアウトされているコンストラクターを変更するだけです。  
+ 次の例では、単一のスレッドを使用するシナリオで、このコンストラクターを使用して、例外のキャッシュによるレイジー初期化を行う方法を示します。 また、<xref:System.Lazy%601.%23ctor%2A> コンストラクターの使用方法も示します (`mode`の <xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType> を指定します)。 このコンストラクターに切り替えるには、コメントアウトされているコンストラクターを変更するだけです。  
   
 > [!NOTE]
->  このコンストラクターをマルチスレッドシナリオで使用する方法を示すコード ( `true`の`isThreadSafe`場合) につい<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29>ては、コンストラクターの例を参照してください。  
+>  このコンストラクターをマルチスレッドシナリオで使用する方法を示すコード (`isThreadSafe`の `true` を指定する) については、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29> コンストラクターの例を参照してください。  
   
- この例では、複数あるスレッドのうちの 1 つによって遅れて初期化される `LargeObject` クラスを定義します。 コードの3つの重要なセクションは、初期化子の作成、実際の初期化、および`LargeObject`クラスのコンストラクターの作成を示しています。これは、例外のキャッシュを示しています。 `Main` メソッドの開始時に、この例では `LargeObject` のスレッドセーフな遅延初期化子が作成されます。  
+ この例では、複数あるスレッドのうちの 1 つによって遅れて初期化される `LargeObject` クラスを定義します。 コードの3つの重要なセクションでは、初期化子、実際の初期化、および `LargeObject` クラスのコンストラクターを作成して、例外のキャッシュを示します。 `Main` メソッドの開始時に、この例では `LargeObject` のスレッドセーフな遅延初期化子が作成されます。  
   
  [!code-csharp[System.Lazy\`1.ctorFuncBool#NewLazy](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfuncbool/cs/example.cs#newlazy)]
  [!code-vb[System.Lazy\`1.ctorFuncBool#NewLazy](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfuncbool/vb/example.vb#newlazy)]  
   
- コンストラクター `isThreadSafe`の呼び出しでは、パラメーターは`false`であるため<xref:System.Lazy%601> 、はスレッドセーフではありません。 この例では、スレッドセーフではないため<xref:System.Lazy%601.Value%2A> 、同じスレッドでプロパティを3回呼び出します。  
+ コンストラクターの呼び出しでは、`isThreadSafe` パラメーターが `false`ため、<xref:System.Lazy%601> はスレッドセーフではありません。 この例では、スレッドセーフではないため、同じスレッドで <xref:System.Lazy%601.Value%2A> プロパティを3回呼び出します。  
   
  [!code-csharp[System.Lazy\`1.ctorFuncBool#ValueProp](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfuncbool/cs/example.cs#valueprop)]
  [!code-vb[System.Lazy\`1.ctorFuncBool#ValueProp](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfuncbool/vb/example.vb#valueprop)]  
   
- `LargeObject`クラスのコンストラクターでは、コードの3番目のキーセクションが、 `LargeObject`インスタンスが最初に作成されたときに例外をスローしますが、その後インスタンスの作成が可能になります。  
+ `LargeObject` クラスのコンストラクターでは、コードの3番目のキーセクションは、`LargeObject` インスタンスが最初に作成されたときに例外をスローしますが、それ以降はインスタンスの作成が可能になります。  
   
  [!code-csharp[System.Lazy\`1.ctorFuncBool#LargeCtor](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfuncbool/cs/example.cs#largector)]
  [!code-vb[System.Lazy\`1.ctorFuncBool#LargeCtor](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfuncbool/vb/example.vb#largector)]  
   
- この例を実行すると、の`LargeObject`インスタンスを初めて作成しようとして失敗し、例外がキャッチされます。 次の試行は成功したと思われるかも<xref:System.Lazy%601>しれませんが、オブジェクトによって例外がキャッシュされています。 このため、3回すべての試行で例外がスローされます。  
+ この例を実行すると、最初に `LargeObject` のインスタンスを作成しようとして失敗し、例外がキャッチされます。 次の試行は成功したと思われるかもしれませんが、<xref:System.Lazy%601> オブジェクトによって例外がキャッシュされています。 このため、3回すべての試行で例外がスローされます。  
   
 > [!NOTE]
 >  簡略化のために、この例では <xref:System.Lazy%601> のグローバル インスタンスを使用して、すべてのメソッドは `static` (Visual Basic の `Shared`) です。 これらは、遅延初期化を使用するための要件ではありません。  
@@ -570,7 +577,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> は <see langword="null" /> です。</exception>
         <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
       </Docs>
     </Member>
@@ -590,6 +597,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -609,53 +617,53 @@
         <Parameter Name="mode" Type="System.Threading.LazyThreadSafetyMode" Index="1" FrameworkAlternate="xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="valueFactory">必要時に遅延初期化される値を生成するために呼び出されるデリゲート。</param>
+        <param name="valueFactory">必要に応じて、遅延初期化の値を生成するために呼び出されるデリゲート。</param>
         <param name="mode">スレッド セーフ モードを指定する列挙値の 1 つ。</param>
         <summary>指定された初期化関数とスレッド セーフ モードを使用する <see cref="T:System.Lazy`1" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Lazy%601>インスタンスのスレッドセーフモードでは、複数のスレッドが<xref:System.Lazy%601>インスタンスを初期化しようとしたときの動作が記述されます。  
+ <xref:System.Lazy%601> インスタンスのスレッドセーフモードでは、複数のスレッドが <xref:System.Lazy%601> インスタンスを初期化しようとしたときの動作について説明します。  
   
- によって`valueFactory`スローされた例外は、 <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>がの場合を除き`mode` 、キャッシュされます。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
+ `valueFactory` によってスローされる例外は、`mode` が <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>ない限りキャッシュされます。 詳細については、<xref:System.Lazy%601> クラスまたは <xref:System.Threading.LazyThreadSafetyMode?displayProperty=nameWithType> 列挙体の解説を参照してください。  
   
    
   
 ## Examples  
- 次の例では、このコンストラクターを使用して、複数のスレッドによるオブジェクトの作成を遅延させるレイジー初期化子を作成する方法を示します。 インスタンスの作成には複数のスレッドが成功することがありますが、すべてのスレッドは最初に作成されたインスタンスを使用します。 また、この例では、指定<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>したときに例外がキャッシュされないことを示しています。これは、遅延作成型のパラメーターなしのコンストラクターではなく、関数によって初期化が実行される場合でも同様です。  
+ 次の例では、このコンストラクターを使用して、複数のスレッドによるオブジェクトの作成を遅延させるレイジー初期化子を作成する方法を示します。 インスタンスの作成には複数のスレッドが成功することがありますが、すべてのスレッドは最初に作成されたインスタンスを使用します。 また、この例では、<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>を指定しても例外がキャッシュされないことを示しています。これは、遅延作成型のパラメーターなしのコンストラクターではなく、関数によって初期化が実行される場合でも同様です。  
   
 > [!NOTE]
->  シングルスレッドシナリオ<xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType> `mode`でこのコンストラクターを使用する方法を示す例については、「」を参照<xref:System.Lazy%601.%23ctor%28System.Boolean%29>してください。 このコンストラクターを使用してマルチスレッドシナリオ<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> `mode`で競合状態ではなくロックを提供する方法を示す例については<xref:System.Lazy%601.%23ctor> 、「」を参照してください。  
+>  シングルスレッドシナリオでこのコンストラクターを使用する方法を示す例 (`mode`の <xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType> を指定する) については、<xref:System.Lazy%601.%23ctor%28System.Boolean%29> コンストラクターを参照してください。 このコンストラクターを使用して、マルチスレッドの `mode`<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> シナリオで競合状態の代わりにロックを行う方法を示す例については、「<xref:System.Lazy%601.%23ctor> コンストラクター」を参照してください。  
   
- この例では`LargeObject` 、複数のスレッドのいずれかによって遅延的に初期化されるクラスを定義します。 コードの4つの主要なセクションでは、初期化子、実際の初期化、初期化関数、および`LargeObject`クラスのコンストラクターとファイナライザーの作成について説明します。 `Main`メソッドの先頭で、この例では、 `LargeObject`の<xref:System.Lazy%601>遅延初期化を実行するオブジェクトを作成します。  
+ この例では、複数のスレッドによって遅延的に初期化される `LargeObject` クラスを定義します。 コードの4つのセクションでは、初期化子、実際の初期化、初期化関数、`LargeObject` クラスのコンストラクターとファイナライザーの作成について説明します。 `Main` メソッドの先頭で、`LargeObject`の遅延初期化を実行する <xref:System.Lazy%601> オブジェクトを作成します。  
   
  [!code-csharp[System.Lazy\`1.ctorFuncLTSM#NewLazy](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfuncltsm/cs/example.cs#newlazy)]
  [!code-vb[System.Lazy\`1.ctorFuncLTSM#NewLazy](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfuncltsm/vb/example.vb#newlazy)]  
   
- レイジー初期化子は、関数を使用して初期化を実行します。 この場合、 `LargeObject`クラスのパラメーターなしのコンストラクターがないため、関数が必要です。  
+ レイジー初期化子は、関数を使用して初期化を実行します。 この場合、`LargeObject` クラスのパラメーターなしのコンストラクターがないため、関数が必要です。  
   
- この例では、 <xref:System.Threading.ManualResetEvent>オブジェクトでブロックされる3つのスレッドを作成して開始します。これにより、この例では、スレッドをすべて一度に解放できます。 3つのすべてのスレッドで使用される<xref:System.Lazy%601.Value%2A> `LargeObject` メソッドで、プロパティを呼び出すと、インスタンスが作成`ThreadProc`されます。  
+ この例では、<xref:System.Threading.ManualResetEvent> オブジェクトでブロックされる3つのスレッドを作成して開始します。これにより、この例では、スレッドをすべて一度に解放できます。 3つのすべてのスレッドで使用される `ThreadProc` メソッドでは、<xref:System.Lazy%601.Value%2A> プロパティを呼び出すと `LargeObject` インスタンスが作成されます。  
   
  [!code-csharp[System.Lazy\`1.ctorFuncLTSM#ValueProp](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfuncltsm/cs/example.cs#valueprop)]
  [!code-vb[System.Lazy\`1.ctorFuncLTSM#ValueProp](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfuncltsm/vb/example.vb#valueprop)]  
   
- コードの3番目のキーセクションでは、遅延初期化関数を呼び出して`LargeObject`インスタンスを作成します。 関数は、初めて呼び出されたときに例外をスローします。  
+ コードの3番目のキーセクションでは、遅延初期化関数を呼び出して `LargeObject` インスタンスを作成します。 関数は、初めて呼び出されたときに例外をスローします。  
   
  [!code-csharp[System.Lazy\`1.ctorFuncLTSM#FactoryFunc](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfuncltsm/cs/example.cs#factoryfunc)]
  [!code-vb[System.Lazy\`1.ctorFuncLTSM#FactoryFunc](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfuncltsm/vb/example.vb#factoryfunc)]  
   
- その他の<xref:System.Threading.LazyThreadSafetyMode>設定では、初期化関数でハンドルされない例外がキャッシュされます。 ただし、 <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>は例外のキャッシュを抑制します。 この例の出力は、オブジェクトの初期化が成功したことを示しています。  
+ その他の <xref:System.Threading.LazyThreadSafetyMode> 設定では、初期化関数でハンドルされない例外がキャッシュされます。 ただし、<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType> は例外のキャッシュを抑制します。 この例の出力は、オブジェクトの初期化が成功したことを示しています。  
   
 > [!NOTE]
 >  通常、例外メッセージは、他のスレッドがオブジェクトを正常に初期化したことを示すメッセージの後に表示されます。 これは、例外のスローとキャッチによって発生する遅延に起因します。  
   
- <xref:System.Lazy%601>インスタンスのコンストラクターが指定さ<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>れているため、3つのすべて`LargeObject`のスレッドでインスタンスを作成できます。 この例では、 `LargeObject`クラスのコンストラクターとファイナライザーにコンソールメッセージを表示することによって、これを示します。  
+ <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>指定された <xref:System.Lazy%601> インスタンスのコンストラクターでは、3つのすべてのスレッドで `LargeObject` インスタンスを作成できます。 この例では、`LargeObject` クラスのコンストラクターとファイナライザーにコンソールメッセージを表示することによってこれを示します。  
   
  [!code-csharp[System.Lazy\`1.ctorFuncLTSM#CtorFinalizer](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.lazy`1.ctorfuncltsm/cs/example.cs#ctorfinalizer)]
  [!code-vb[System.Lazy\`1.ctorFuncLTSM#CtorFinalizer](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.lazy`1.ctorfuncltsm/vb/example.vb#ctorfinalizer)]  
   
- オブジェクト<xref:System.Lazy%601>は、すべてのスレッドで使用されるインスタンスが1つだけであることを保証します (初期化関数が例外をスローするスレッドを除く)。 この例の出力はこれを示しています。  
+ <xref:System.Lazy%601> オブジェクトは、すべてのスレッドで使用されるインスタンスが1つだけであることを保証します (初期化関数が例外をスローするスレッドを除く)。 この例の出力はこれを示しています。  
   
 > [!NOTE]
 >  簡略化のために、この例では <xref:System.Lazy%601> のグローバル インスタンスを使用して、すべてのメソッドは `static` (Visual Basic の `Shared`) です。 これらは、遅延初期化を使用するための要件ではありません。  
@@ -666,7 +674,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="mode" /> に無効な値が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="valueFactory" /> は <see langword="null" /> です。</exception>
         <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
       </Docs>
     </Member>
@@ -686,6 +694,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -710,16 +719,16 @@
       </ReturnValue>
       <Docs>
         <summary>この <see cref="T:System.Lazy`1" /> インスタンスに対して値が作成されているかどうかを示す値を取得します。</summary>
-        <value>この <see cref="T:System.Lazy`1" /> インスタンスに対して値が作成されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value>この <see langword="true" /> インスタンスに対して値が作成されている場合は <see cref="T:System.Lazy`1" />、それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Lazy%601>インスタンスに対して遅延初期化が発生すると、値が作成されるか、例外がスローされます。 例外がスローされた場合、 <xref:System.Lazy%601>インスタンスの後続の動作は、例外キャッシュが有効になっているかどうかによって異なります。 初期化関数を指定していないコンストラクターを使用してインスタンスが作成された場合、例外キャッシュは有効になりません。<xref:System.Lazy%601> 後続のの<xref:System.Lazy%601>初期化は成功する可能性があり、初期化が成功すると`true`、プロパティは<xref:System.Lazy%601.IsValueCreated%2A>を返します。 インスタンスが初期化関数 ( <xref:System.Lazy%601>コンストラクターの`valueFactory`パラメーターで指定) を使用して作成されている場合、例外キャッシュはスレッドセーフモードによって制御されます。 <xref:System.Lazy%601>  
+ <xref:System.Lazy%601> インスタンスの遅延初期化が発生すると、値が作成されるか、または例外がスローされます。 例外がスローされた場合、<xref:System.Lazy%601> インスタンスの後続の動作は、例外キャッシュが有効になっているかどうかによって異なります。 初期化関数を指定していないコンストラクターを使用して <xref:System.Lazy%601> インスタンスが作成された場合、例外キャッシュは有効になりません。 後続の <xref:System.Lazy%601> の初期化は成功する可能性があり、初期化が正常に行われると、<xref:System.Lazy%601.IsValueCreated%2A> プロパティは `true`を返します。 <xref:System.Lazy%601> インスタンスが、<xref:System.Lazy%601> コンストラクターの `valueFactory` パラメーターによって指定された初期化関数を使用して作成された場合、例外キャッシュはスレッドセーフモードによって制御されます。  
   
--   モードが<xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType>または<xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType>の場合、インスタンスを<xref:System.Lazy%601>初期化する機会はもうありません。 例外が発生し、初期化関数でハンドルされない場合、その例外はキャッシュされ、その後<xref:System.Lazy%601.Value%2A?displayProperty=nameWithType>のプロパティのアクセス時に再スローされます。 例外がスローされた場合は値が作成されない<xref:System.Lazy%601.IsValueCreated%2A>ため`false`、このような場合はが返されます。  
+-   モードが <xref:System.Threading.LazyThreadSafetyMode.ExecutionAndPublication?displayProperty=nameWithType> または <xref:System.Threading.LazyThreadSafetyMode.None?displayProperty=nameWithType>の場合、<xref:System.Lazy%601> インスタンスを初期化する機会はもうありません。 例外が発生し、初期化関数でハンドルされない場合、その例外はキャッシュされ、<xref:System.Lazy%601.Value%2A?displayProperty=nameWithType> プロパティの後続のアクセス時に再スローされます。 例外がスローされた場合は値が作成されないため、このような場合 <xref:System.Lazy%601.IsValueCreated%2A> は `false`を返します。  
   
--   モードが<xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>の場合、初期化関数 (またはパラメーターなしのコンストラクター) の実行に成功した最初のスレッドが、 <xref:System.Lazy%601>インスタンスの値を作成します。 初期化関数が1つのスレッドで例外をスローした場合でも、他の<xref:System.Lazy%601>スレッドはインスタンスの初期化を試みることができます。 値が作成されるまで、 <xref:System.Lazy%601.IsValueCreated%2A>プロパティは`false`を返します。  
+-   モードが <xref:System.Threading.LazyThreadSafetyMode.PublicationOnly?displayProperty=nameWithType>場合、初期化関数 (またはパラメーターなしのコンストラクター) の実行に成功した最初のスレッドが <xref:System.Lazy%601> インスタンスの値を作成します。 初期化関数が1つのスレッドで例外をスローした場合でも、他のスレッドは <xref:System.Lazy%601> インスタンスの初期化を試みることができます。 値が作成されるまで、<xref:System.Lazy%601.IsValueCreated%2A> プロパティは `false`を返します。  
   
  ]]></format>
         </remarks>
@@ -743,6 +752,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -763,18 +773,18 @@
       <Parameters />
       <Docs>
         <summary>このインスタンスの <see cref="P:System.Lazy`1.Value" /> プロパティの文字列形式を作成して返します。</summary>
-        <returns>値が作成された (つまり、<see cref="M:System.Object.ToString" /> プロパティが <see langword="true" /> を返す) 場合は、このインスタンスの <see cref="P:System.Lazy`1.Value" /> プロパティに対して <see cref="P:System.Lazy`1.IsValueCreated" /> メソッドを呼び出した結果。 それ以外の場合は、値が作成されなかったことを示す文字列。</returns>
+        <returns>このインスタンスの <see cref="M:System.Object.ToString" /> プロパティについて <see cref="P:System.Lazy`1.Value" />メソッド を呼び出した結果 (値が作成されている場合。つまり、<see cref="P:System.Lazy`1.IsValueCreated" /> プロパティが <see langword="true" /> を返した場合)。 それ以外の場合は、値が作成されていないことを示す文字列です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  このメソッドを呼び出すと、初期化は行われません。  
   
- <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29>、 <xref:System.Lazy%601.Value%2A?displayProperty=nameWithType> `valueFactory` `null` `null` 、また<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29>はコンストラクターのパラメーターに指定されたファクトリメソッドがを返す場合、プロパティは遅延初期化の後に設定できます。 <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>  
+ <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29>、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>、または <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29> コンストラクターの `valueFactory` パラメーターに指定されたファクトリメソッドが `null`を返す場合は、遅延初期化後に <xref:System.Lazy%601.Value%2A?displayProperty=nameWithType> プロパティを `null` できます。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.NullReferenceException"><see cref="P:System.Lazy`1.Value" /> プロパティが <see langword="null" /> である。</exception>
+        <exception cref="T:System.NullReferenceException"><see cref="P:System.Lazy`1.Value" /> プロパティが <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="Value">
@@ -793,6 +803,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -816,21 +827,21 @@
         <ReturnType>T</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>現在の <see cref="T:System.Lazy`1" /> インスタンスの遅延初期化された値を取得します。</summary>
-        <value>現在の <see cref="T:System.Lazy`1" /> インスタンスの遅延初期化された値。</value>
+        <summary>現在の <see cref="T:System.Lazy`1" /> インスタンスの遅れて初期化される値を取得します。</summary>
+        <value>現在の <see cref="T:System.Lazy`1" /> インスタンスの遅れて初期化される値。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティがの場合`false`、プロパティに<xref:System.Lazy%601.Value%2A>アクセスすると、強制的に初期化されます。 <xref:System.Lazy%601.IsValueCreated%2A?displayProperty=nameWithType>  
+ <xref:System.Lazy%601.IsValueCreated%2A?displayProperty=nameWithType> プロパティが `false`の場合、<xref:System.Lazy%601.Value%2A> プロパティにアクセスすると、強制的に初期化されます。  
   
- <xref:System.Lazy%601.Value%2A>このプロパティは、一覧表示されている例外に加えて、 <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29>、 <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>、または<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29>の`valueFactory`パラメーターに渡されたファクトリメソッドによってスローされた未処理の例外をスローできます。コンストラクター.  
+ <xref:System.Lazy%601.Value%2A> プロパティは、一覧表示されている例外に加えて、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%29>、<xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Threading.LazyThreadSafetyMode%29>、または <xref:System.Lazy%601.%23ctor%28System.Func%7B%600%7D%2CSystem.Boolean%29> コンストラクターの `valueFactory` パラメーターに渡されたファクトリメソッドによってスローされた未処理の例外をスローできます。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MemberAccessException"><see cref="T:System.Lazy`1" /> インスタンスは、遅延初期化されている型のパラメーターなしのコンストラクターを使用して初期化されており、コンストラクターに対するアクセス許可がありません。</exception>
         <exception cref="T:System.MissingMemberException"><see cref="T:System.Lazy`1" /> インスタンスは、遅延初期化されている型のパラメーターなしのコンストラクターを使用して初期化されており、この型にはパブリックのパラメーターのないコンストラクターがありません。</exception>
-        <exception cref="T:System.InvalidOperationException">初期化関数が、このインスタンスで <see cref="P:System.Lazy`1.Value" /> へのアクセスを試行します。</exception>
+        <exception cref="T:System.InvalidOperationException">初期化関数はこのインスタンスの <see cref="P:System.Lazy`1.Value" /> にアクセスしようとします。</exception>
         <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
       </Docs>
     </Member>

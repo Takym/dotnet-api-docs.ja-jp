@@ -1,5 +1,5 @@
 <Type Name="TypeAccessException" FullName="System.TypeAccessException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="cfcc28b81a6434f96b2b57f012e25bf3608ff5cd" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69404731" /></Metadata><TypeSignature Language="C#" Value="public class TypeAccessException : TypeLoadException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9ccc48adbd04de778feea28e03b2c680f088b5b5" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75038775" /></Metadata><TypeSignature Language="C#" Value="public class TypeAccessException : TypeLoadException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit TypeAccessException extends System.TypeLoadException" />
   <TypeSignature Language="DocId" Value="T:System.TypeAccessException" />
   <TypeSignature Language="VB.NET" Value="Public Class TypeAccessException&#xA;Inherits TypeLoadException" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -39,11 +40,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.TypeAccessException>メソッドが、メソッドからアクセスできない型にオブジェクトをキャストしようとすると、がスローされます。 たとえば、匿名でホストされる動的メソッドは、メソッドが[透過的](~/docs/framework/misc/security-transparent-code.md)であるため、セキュリティクリティカルな型にアクセスできません。 メソッドに、オブジェクトを<xref:System.Reflection.Emit.OpCodes.Castclass?displayProperty=nameWithType>セキュリティクリティカルな型にキャストする命令が含まれている場合、または、その型パラメーターの1つとしてセキュリティクリティカルな型<xref:System.TypeAccessException>を持つジェネリック型にメソッドが含まれている場合は、JIT コンパイラによってがスローされます。  
+ <xref:System.TypeAccessException> は、メソッドがメソッドからアクセスできない型にオブジェクトをキャストしようとした場合にスローされます。 たとえば、匿名でホストされる動的メソッドは、メソッドが[透過的](~/docs/framework/misc/security-transparent-code.md)であるため、セキュリティクリティカルな型にアクセスできません。 メソッドに、オブジェクトをセキュリティクリティカルな型にキャストする <xref:System.Reflection.Emit.OpCodes.Castclass?displayProperty=nameWithType> 命令が含まれている場合、または、その型パラメーターの1つとしてセキュリティクリティカルな型を持つジェネリック型にメソッドが含まれている場合は、<xref:System.TypeAccessException> が JIT コンパイラによってスローされます。  
   
- 同様に<xref:System.TypeAccessException> 、は、別のアセンブリの内部型を使用する動的メソッドに対してもスローされます。 メソッドは、それを含んでいる型、戻り値の型、またはパラメーターの型のいずれかにアクセスできない可能性があります。  
+ 同様に、別のアセンブリの内部型を使用する動的メソッドに対して <xref:System.TypeAccessException> がスローされます。 メソッドは、それを含んでいる型、戻り値の型、またはパラメーターの型のいずれかにアクセスできない可能性があります。  
   
- ツールチェーンを使用し[!INCLUDE[net_native](~/includes/net-native-md.md)]てコンパイルされたアプリは、実行時に例外をスローすることがあります。  は、から<xref:System.TypeAccessException>派生した内部専用の例外型です。 例外は、アプリを正常に実行するために必要なメタデータが実行時に存在しないことを示します。 例外を処理するため`try`に`catch`ブロックを使用/しないでください。 代わりに、どのメタデータが不足しているかを判断し、アプリを変更して実行時に確実に存在するようにしてください。  
+ [!INCLUDE[net_native](~/includes/net-native-md.md)] ツールチェーンを使用してコンパイルされたアプリは、実行時に例外をスローすることがあります。  は <xref:System.TypeAccessException>から派生した内部専用の例外型です。 例外は、アプリを正常に実行するために必要なメタデータが実行時に存在しないことを示します。 例外を処理するには、`try`/`catch` ブロックを使用しないでください。 代わりに、どのメタデータが不足しているかを判断し、アプリを変更して実行時に確実に存在するようにしてください。  
   
  ]]></format>
     </remarks>
@@ -77,6 +78,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -95,11 +97,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、 <xref:System.Exception.Message%2A>新しいインスタンスのプロパティを、"型へのアクセスの試行に失敗しました" などのエラーを説明するシステム提供のメッセージに初期化します。 このメッセージでは、現在のシステムのカルチャが考慮されます。  
+ このコンストラクターは、新しいインスタンスの <xref:System.Exception.Message%2A> プロパティを初期化し、エラーを説明するシステム提供のメッセージ ("型へのアクセスの試行に失敗しました" など) を指定します。 このメッセージでは、現在のシステムのカルチャが考慮されます。  
   
  <xref:System.TypeAccessException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|property|[値]|  
 |--------------|-----------|  
 |<xref:System.Exception.InnerException%2A>|null 参照 (Visual Basic の場合は `Nothing`)。|  
 |<xref:System.Exception.Message%2A>|ローカライズされたエラー メッセージ文字列。|  
@@ -125,6 +127,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -148,7 +151,7 @@
 ## Remarks  
  <xref:System.TypeAccessException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|property|[値]|  
 |--------------|-----------|  
 |<xref:System.Exception.InnerException%2A>|null 参照 (Visual Basic の場合は `Nothing`)。|  
 |<xref:System.Exception.Message%2A>|`message` に指定されたエラー メッセージ文字列。|  
@@ -180,10 +183,11 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="info">シリアル化されたデータを保持するオブジェクト。</param>
@@ -216,6 +220,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -243,7 +248,7 @@
   
  <xref:System.TypeAccessException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|property|[値]|  
 |--------------|-----------|  
 |<xref:System.Exception.InnerException%2A>|null 参照 (Visual Basic の場合は `Nothing`)。|  
 |<xref:System.Exception.Message%2A>|`message` に指定されたエラー メッセージ文字列。|  
