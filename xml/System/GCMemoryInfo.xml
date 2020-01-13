@@ -1,5 +1,5 @@
 <Type Name="GCMemoryInfo" FullName="System.GCMemoryInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0f6257941b6e364280c292e552db3d9619b9aa5e" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68540797" /></Metadata><TypeSignature Language="C#" Value="public struct GCMemoryInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="bba0e6665b2e4208909608af4f836addef1b61dd" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75041844" /></Metadata><TypeSignature Language="C#" Value="public struct GCMemoryInfo" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit GCMemoryInfo extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.GCMemoryInfo" />
   <TypeSignature Language="VB.NET" Value="Public Structure GCMemoryInfo" />
@@ -8,6 +8,7 @@
   <AssemblyInfo>
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.ValueType</BaseTypeName>
@@ -34,6 +35,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int64</ReturnType>
@@ -50,13 +52,13 @@
 
 `| OBJ_A |     OBJ_B     | OBJ_C |   OBJ_D   | OBJ_E |`
             
-、 `OBJ_B` 、`OBJ_C`および`OBJ_E`がガベージコレクションされているが、ヒープが圧縮されていない場合、結果のヒープは次のようになります。
+`OBJ_B`、`OBJ_C`、`OBJ_E` がガベージコレクションされていてもヒープが圧縮されていない場合、結果のヒープは次のようになります。
 
 `| OBJ_A |           F           |   OBJ_D   |`
             
-とがマーク`OBJ_A` `OBJ_D` `FragmentedBytes`されているとの間のメモリは、の一部と見なされ、新しいオブジェクトを割り当てるために使用されます。 `F`
+`F`としてマークされている `OBJ_A` と `OBJ_D`間のメモリは、`FragmentedBytes` の一部と見なされ、新しいオブジェクトを割り当てるために使用されます。
 
-の後`OBJ_D`のメモリは、の一部と`FragmentedBytes`は見なされませんが、新しいオブジェクトの割り当てにも使用されます。
+`OBJ_D` 後のメモリは、`FragmentedBytes` の一部とは見なされませんが、新しいオブジェクトの割り当てにも使用されます。
 
           ]]></format>
         </remarks>
@@ -73,6 +75,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int64</ReturnType>
@@ -94,6 +97,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int64</ReturnType>
@@ -115,6 +119,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int64</ReturnType>
@@ -136,6 +141,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int64</ReturnType>
@@ -148,7 +154,7 @@
 
 ## Remarks
 
-このプロパティ値は`COMPlus_GCHeapHardLimit`環境変数`Server.GC.HeapHardLimit`の値になります。いずれかが設定`runtimeconfig.json`されている場合は、の値になります。
+このプロパティ値は `COMPlus_GCHeapHardLimit` 環境変数の値になります。または、いずれかが設定されている場合は `runtimeconfig.json`の `Server.GC.HeapHardLimit` 値になります。
 
 プログラムがコンテナーで実行される場合、この値は、コンテナーのサイズの実装で定義された割合になります。
 

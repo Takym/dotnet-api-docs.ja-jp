@@ -1,5 +1,5 @@
 <Type Name="SecurityContext" FullName="System.Security.SecurityContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d50666724e0a8a94aee9cbdfa972979394e493b5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69161520" /></Metadata><TypeSignature Language="C#" Value="public sealed class SecurityContext : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="da27f2200107dd17d33a47351813a7ff3907168e" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75068142" /></Metadata><TypeSignature Language="C#" Value="public sealed class SecurityContext : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SecurityContext extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Security.SecurityContext" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SecurityContext&#xA;Implements IDisposable" />
@@ -16,6 +16,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -31,15 +32,15 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- オブジェクトは、オブジェクト<xref:System.Security.Principal.WindowsIdentity>および<xref:System.Threading.CompressedStack>オブジェクトに格納されている情報を含め、論理スレッドのセキュリティ関連のすべての情報をキャプチャします。 <xref:System.Security.SecurityContext>  この構成により、が非同期スレッド間でコピーおよび転送されるときに、 <xref:System.Security.SecurityContext>スタック上の Windows id とセキュリティ要素が自動的に伝達されます。  
+ <xref:System.Security.SecurityContext> オブジェクトは、論理スレッドのセキュリティ関連のすべての情報をキャプチャします。これには、<xref:System.Security.Principal.WindowsIdentity> オブジェクトおよび <xref:System.Threading.CompressedStack> オブジェクトに含まれる情報が含まれます。  この構成により、<xref:System.Security.SecurityContext> が非同期スレッド間でコピーおよび転送されるときに、スタック上の Windows id とセキュリティ要素を自動的に伝達できます。  
   
 > [!NOTE]
->  共通言語ランタイム (CLR) は、マネージコードの外部で実行される偽装操作 (アンマネージコードへのプラットフォーム呼び出し、Win32 関数への直接呼び出しなど) を使用して実行される偽装操作を認識します。 要素が<xref:System.Security.Principal.WindowsIdentity> `true` ()に設定されていない限り、非同期のポイント間でフローできるのはマネージオブジェクトだけです。`<alwaysFlowImpersonationPolicy enabled="true"/>` `alwaysFlowImpersonationPolicy` 要素をに設定`true`すると、偽装がどのように実行されたかに関係なく、Windows id が常に非同期のポイントでフローすることが指定されます。 `alwaysFlowImpersonationPolicy` 非同期ポイント間でアンマネージ偽装をフローする方法の詳細については、「 [ &lt;alwaysFlowImpersonationPolicy&gt;要素](~/docs/framework/configure-apps/file-schema/runtime/alwaysflowimpersonationpolicy-element.md)」を参照してください。  
+>  共通言語ランタイム (CLR) は、マネージコードの外部で実行される偽装操作 (アンマネージコードへのプラットフォーム呼び出し、Win32 関数への直接呼び出しなど) を使用して実行される偽装操作を認識します。 `alwaysFlowImpersonationPolicy` 要素が `true` (`<alwaysFlowImpersonationPolicy enabled="true"/>`) に設定されていない限り、非同期ポイント間でフローできるのはマネージ <xref:System.Security.Principal.WindowsIdentity> オブジェクトだけです。 `alwaysFlowImpersonationPolicy` 要素を `true` に設定すると、偽装がどのように実行されたかに関係なく、Windows id が常に非同期のポイントでフローすることを指定します。 アンマネージ偽装を非同期ポイント間でフローする方法の詳細については、「 [&lt;alwaysFlowImpersonationPolicy&gt; 要素](~/docs/framework/configure-apps/file-schema/runtime/alwaysflowimpersonationpolicy-element.md)」を参照してください。  
   
- は、大規模<xref:System.Threading.ExecutionContext>なの一部であり、フローまた<xref:System.Threading.ExecutionContext>は移行時にフローまたは移行します。 <xref:System.Security.SecurityContext>  
+ <xref:System.Security.SecurityContext> は大規模な <xref:System.Threading.ExecutionContext> の一部であり、<xref:System.Threading.ExecutionContext> フローまたは移行するときにフローまたは移行します。  
   
 > [!IMPORTANT]
->  この型は <xref:System.IDisposable> インターフェイスを実装します。 型の使用が完了したら、直接的または間接的に型を破棄する必要があります。 直接的に型を破棄するには、`try` / `catch` ブロック内で <xref:System.IDisposable.Dispose%2A> メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
+>  この型は <xref:System.IDisposable> インターフェイスを実装します。 型の使用が完了したら、直接的または間接的に型を破棄する必要があります。 直接的に型を破棄するには、<xref:System.IDisposable.Dispose%2A>`try`/ ブロック内で `catch` メソッドを呼び出します。 間接的に型を破棄するには、`using` (C# の場合) または `Using` (Visual Basic 言語) などの言語構成要素を使用します。 詳細については、<xref:System.IDisposable> インターフェイスに関するトピック内の「IDisposable を実装するオブジェクトの使用」セクションを参照してください。  
   
  ]]></format>
     </remarks>
@@ -64,6 +65,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -81,7 +83,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- キャプチャしたセキュリティコンテキストを別のスレッドに適用できます。 は<xref:System.Security.SecurityContext> <xref:System.Security.Principal.WindowsIdentity> 、 <xref:System.Threading.CompressedStack>実行中のスレッドのとで構成されます。  
+ キャプチャしたセキュリティコンテキストを別のスレッドに適用できます。 <xref:System.Security.SecurityContext> は、実行中のスレッドの <xref:System.Threading.CompressedStack> と <xref:System.Security.Principal.WindowsIdentity> で構成されます。  
   
  ]]></format>
         </remarks>
@@ -106,6 +108,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -123,7 +126,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在のコンテキストは、キャプチャ操作またはコピー操作によって取得されている必要があります。 このメソッドは、キャプチャ<xref:System.Security.SecurityContext>したを複数のスレッドに適用する場合に便利です。  
+ 現在のコンテキストは、キャプチャ操作またはコピー操作によって取得されている必要があります。 このメソッドは、キャプチャされた <xref:System.Security.SecurityContext> を複数のスレッドに適用する場合に便利です。  
   
  ]]></format>
         </remarks>
@@ -151,6 +154,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -167,12 +171,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.SecurityContext> を使い終わったら、`Dispose`を呼び出します。 `Dispose`メソッドによって、<xref:System.Security.SecurityContext> は使用不可の状態になります。 `Dispose`呼び出し後は、<xref:System.Security.SecurityContext>によって占有されていたメモリをガベージ コレクターがクリアできるよう、<xref:System.Security.SecurityContext> へのすべての参照を解放する必要があります。  
+ `Dispose` を使い終わったら、<xref:System.Security.SecurityContext>を呼び出します。 `Dispose`メソッドによって、<xref:System.Security.SecurityContext> は使用不可の状態になります。 `Dispose`呼び出し後は、<xref:System.Security.SecurityContext>によって占有されていたメモリをガベージ コレクターがクリアできるよう、<xref:System.Security.SecurityContext> へのすべての参照を解放する必要があります。  
   
  詳細については、[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)および[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)を参照してください。  
   
 > [!NOTE]
->  <xref:System.Security.SecurityContext>への最後の参照を解放する前に、必ず`Dispose`を呼び出してください。 そうしないと、ガベージ コレクターが <xref:System.Security.SecurityContext> オブジェクトの `Finalize` メソッドを呼び出すまで、使用されているリソースは解放されません。  
+>  `Dispose`への最後の参照を解放する前に、必ず<xref:System.Security.SecurityContext>を呼び出してください。 そうしないと、ガベージ コレクターが <xref:System.Security.SecurityContext> オブジェクトの `Finalize` メソッドを呼び出すまで、使用されているリソースは解放されません。  
   
  ]]></format>
         </remarks>
@@ -197,6 +201,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -209,7 +214,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Security.SecurityContext.IsFlowSuppressed%2A>は、非同期操作中に<xref:System.Security.SecurityContext>情報を転送するかどうかを決定するために、インフラストラクチャコンポーネントによって使用されます。  
+ <xref:System.Security.SecurityContext.IsFlowSuppressed%2A> メソッドは、非同期操作中に <xref:System.Security.SecurityContext> 情報を転送するかどうかを決定するために、インフラストラクチャコンポーネントによって使用されます。  
   
  ]]></format>
         </remarks>
@@ -234,6 +239,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -246,7 +252,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは、が<xref:System.Security.SecurityContext>非同期操作中に移行するときに Windows id 情報を転送するかどうかを決定するために、インフラストラクチャコンポーネントによって使用されます。 <xref:System.Security.SecurityContext.IsWindowsIdentityFlowSuppressed%2A>  
+ <xref:System.Security.SecurityContext.IsWindowsIdentityFlowSuppressed%2A> メソッドは、非同期操作中に <xref:System.Security.SecurityContext> を移行するときに Windows id 情報を転送するかどうかを決定するために、インフラストラクチャコンポーネントによって使用されます。  
   
  ]]></format>
         </remarks>
@@ -271,6 +277,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -287,7 +294,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは、前<xref:System.Threading.AsyncFlowControl.Undo%2A?displayProperty=nameWithType> <xref:System.Security.SecurityContext.SuppressFlow%2A>のメソッド呼び出しの効果を逆にするために、メソッドによって呼び出されます。 <xref:System.Security.SecurityContext.RestoreFlow%2A>  
+ <xref:System.Security.SecurityContext.RestoreFlow%2A> メソッドは、前の <xref:System.Security.SecurityContext.SuppressFlow%2A> メソッド呼び出しの効果を逆にするために、<xref:System.Threading.AsyncFlowControl.Undo%2A?displayProperty=nameWithType> メソッドによって呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -312,6 +319,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -340,19 +348,19 @@
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Security.SecurityContext.Run%2A>メソッドを使用して、指定されたセキュリティコンテキストでメソッドを実行する方法を示しています。  
+ 次のコード例は、<xref:System.Security.SecurityContext.Run%2A> メソッドを使用して、指定されたセキュリティコンテキストでメソッドを実行する方法を示しています。  
   
  [!code-csharp[System.Security.SecurityContext.Run#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Security.SecurityContext.Run/CS/form1.cs#1)]
  [!code-vb[System.Security.SecurityContext.Run#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Security.SecurityContext.Run/VB/form1.vb#1)]  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><paramref name="securityContext" /> は <see langword="null" />です。  
+        <exception cref="T:System.InvalidOperationException"><paramref name="securityContext" /> は <see langword="null" /> です。  
   
 または 
  キャプチャ操作で <paramref name="securityContext" /> が取得されませんでした。  
   
-- または - 
+または 
  <paramref name="securityContext" /> は、<see cref="M:System.Security.SecurityContext.Run(System.Security.SecurityContext,System.Threading.ContextCallback,System.Object)" /> メソッド呼び出しの引数として既に使用されています。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
@@ -376,6 +384,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -393,13 +402,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、非同期操作のため<xref:System.Security.SecurityContext>に、現在のスレッド上の情報のフローを抑制するために使用します。  
+ このメソッドは、非同期操作のために現在のスレッドの <xref:System.Security.SecurityContext> 情報のフローを抑制するために使用します。  
   
- 共通言語ランタイム (CLR) は、マネージコードを使用して実行される偽装操作のみを認識します。 CLR は、マネージコードの外部で実行される偽装に関する知識を持っていません。たとえば、アンマネージコードに対するプラットフォーム呼び出しや、Win32 関数の呼び出しによって行われます。 非同期ポイント間で id をフローさせるには<xref:System.Security.Principal.WindowsIdentity> 、 <xref:System.Security.Principal.WindowsImpersonationContext>マネージメソッドとメソッドを使用する必要があります。  
+ 共通言語ランタイム (CLR) は、マネージコードを使用して実行される偽装操作のみを認識します。 CLR は、マネージコードの外部で実行される偽装に関する知識を持っていません。たとえば、アンマネージコードに対するプラットフォーム呼び出しや、Win32 関数の呼び出しによって行われます。 非同期ポイント間で id をフローさせるには、マネージ <xref:System.Security.Principal.WindowsIdentity> メソッドと <xref:System.Security.Principal.WindowsImpersonationContext> メソッドを使用する必要があります。  
   
- オブジェクトを以前の状態に<xref:System.Threading.AsyncFlowControl>戻す<xref:System.Threading.AsyncFlowControl.Undo%2A>には、返された構造体に対してメソッドを使用<xref:System.Security.SecurityContext>します。  
+ 返された <xref:System.Threading.AsyncFlowControl> 構造体に対して <xref:System.Threading.AsyncFlowControl.Undo%2A> メソッドを使用して、<xref:System.Security.SecurityContext> オブジェクトを以前の状態に戻します。  
   
- このメソッドは、 <xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType>アクセス許可のに対し<xref:System.Security.Permissions.SecurityPermissionFlag.Infrastructure?displayProperty=nameWithType>て保護されています。 完全に信頼されたコンポーネントは、このメソッドを呼び出して<xref:System.Security.SecurityContext> 、非同期呼び出し中に情報のフローを抑制できます。 フローが抑制されると、 <xref:System.Security.SecurityContext.Capture%2A>メソッドは`null`を返します。  
+ このメソッドは、<xref:System.Security.Permissions.SecurityPermissionFlag.Infrastructure?displayProperty=nameWithType> のアクセス許可の <xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType> で保護されています。 完全に信頼されたコンポーネントは、このメソッドを呼び出して、非同期呼び出し中に <xref:System.Security.SecurityContext> 情報のフローを抑制できます。 フローが抑制されると、<xref:System.Security.SecurityContext.Capture%2A> メソッドは `null`を返します。  
   
  ]]></format>
         </remarks>
@@ -425,6 +434,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -442,12 +452,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、が非同期スレッド間で移行する場合に<xref:System.Security.SecurityContext> 、Windows id のフローを抑制するために使用します。  
+ このメソッドは、<xref:System.Security.SecurityContext> が非同期スレッド間で移行される場合に、Windows id のフローを抑制するために使用します。  
   
- オブジェクトを以前の状態に<xref:System.Threading.AsyncFlowControl>戻す<xref:System.Threading.AsyncFlowControl.Undo%2A>には、返された構造体に対してメソッドを使用<xref:System.Security.SecurityContext>します。  
+ 返された <xref:System.Threading.AsyncFlowControl> 構造体に対して <xref:System.Threading.AsyncFlowControl.Undo%2A> メソッドを使用して、<xref:System.Security.SecurityContext> オブジェクトを以前の状態に戻します。  
   
 > [!NOTE]
->  共通言語ランタイム (CLR) は、マネージコードの外部で実行される偽装操作 (アンマネージコードへのプラットフォーム呼び出し、Win32 関数への直接呼び出しなど) を使用して実行される偽装操作を認識します。 要素が<xref:System.Security.Principal.WindowsIdentity> `true` ()に設定されていない限り、非同期のポイント間でフローできるのはマネージオブジェクトだけです。`<alwaysFlowImpersonationPolicy enabled="true"/>` `alwaysFlowImpersonationPolicy` 要素をに設定`true`すると、偽装がどのように実行されたかに関係なく、Windows id が常に非同期のポイントでフローすることが指定されます。 `alwaysFlowImpersonationPolicy` 非同期ポイント間でアンマネージ偽装をフローする方法の詳細については、「 [ \<alwaysFlowImpersonationPolicy > 要素](~/docs/framework/configure-apps/file-schema/runtime/alwaysflowimpersonationpolicy-element.md)」を参照してください。  
+>  共通言語ランタイム (CLR) は、マネージコードの外部で実行される偽装操作 (アンマネージコードへのプラットフォーム呼び出し、Win32 関数への直接呼び出しなど) を使用して実行される偽装操作を認識します。 `alwaysFlowImpersonationPolicy` 要素が `true` (`<alwaysFlowImpersonationPolicy enabled="true"/>`) に設定されていない限り、非同期ポイント間でフローできるのはマネージ <xref:System.Security.Principal.WindowsIdentity> オブジェクトだけです。 `alwaysFlowImpersonationPolicy` 要素を `true` に設定すると、偽装がどのように実行されたかに関係なく、Windows id が常に非同期のポイントでフローすることを指定します。 アンマネージ偽装を非同期ポイント間でフローする方法の詳細については、「 [\<alwaysFlowImpersonationPolicy > 要素](~/docs/framework/configure-apps/file-schema/runtime/alwaysflowimpersonationpolicy-element.md)」を参照してください。  
   
  ]]></format>
         </remarks>

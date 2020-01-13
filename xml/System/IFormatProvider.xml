@@ -1,5 +1,5 @@
 <Type Name="IFormatProvider" FullName="System.IFormatProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a605e4ebcc96522c2ca769cde87eed8ec1fedfd5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69405953" /></Metadata><TypeSignature Language="C#" Value="public interface IFormatProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f1ac858f182c688dc6b055b86aaa145795b91794" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75041362" /></Metadata><TypeSignature Language="C#" Value="public interface IFormatProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IFormatProvider" />
   <TypeSignature Language="DocId" Value="T:System.IFormatProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface IFormatProvider" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -38,36 +39,36 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インターフェイス<xref:System.IFormatProvider>は、書式設定および解析操作のための書式設定情報を提供するオブジェクトを提供します。 書式設定操作は、型の値をその値の文字列形式に変換します。 一般的な書式指定メソッド`ToString`は、型<xref:System.String.Format%2A>のメソッドと同様です。 解析操作では、値の文字列形式を、その値を持つ型に変換します。 一般的な解析メソッド`Parse`は`TryParse`とです。  
+ <xref:System.IFormatProvider> インターフェイスは、書式設定および解析操作のための書式設定情報を提供するオブジェクトを提供します。 書式設定操作は、型の値をその値の文字列形式に変換します。 一般的な書式指定メソッドは、型の `ToString` メソッドであり、<xref:System.String.Format%2A>もあります。 解析操作では、値の文字列形式を、その値を持つ型に変換します。 一般的な解析メソッドは、`Parse` と `TryParse`です。  
   
- インターフェイス<xref:System.IFormatProvider>は、 <xref:System.IFormatProvider.GetFormat%2A?displayProperty=nameWithType>という1つのメソッドで構成されます。 <xref:System.IFormatProvider.GetFormat%2A>はコールバックメソッドです。解析メソッドまたは書式指定メソッドは、このメソッド<xref:System.Type>を呼び出し、書式設定または解析メソッドが想定するオブジェクトの型を表すオブジェクトを渡して、書式設定情報を提供します。 メソッド<xref:System.IFormatProvider.GetFormat%2A>は、その型のオブジェクトを返す役割を担います。  
+ <xref:System.IFormatProvider> インターフェイスは、<xref:System.IFormatProvider.GetFormat%2A?displayProperty=nameWithType>の1つのメソッドで構成されます。 <xref:System.IFormatProvider.GetFormat%2A> はコールバックメソッドであり、解析メソッドまたは書式指定メソッドはそれを呼び出し、書式設定または解析メソッドが想定するオブジェクトの型を表す <xref:System.Type> オブジェクトを渡します。 <xref:System.IFormatProvider.GetFormat%2A> メソッドは、その型のオブジェクトを返す役割を担います。  
   
- <xref:System.IFormatProvider>実装は、メソッドを書式設定および解析することによって暗黙的に使用されることがよくあります。 たとえば、メソッドは<xref:System.DateTime.ToString%28System.String%29?displayProperty=nameWithType> 、システムの現在<xref:System.IFormatProvider>のカルチャを表すの実装を暗黙的に使用します。 <xref:System.IFormatProvider>実装は、型<xref:System.IFormatProvider>のパラメーター ( <xref:System.Int32.Parse%28System.String%2CSystem.IFormatProvider%29?displayProperty=nameWithType>や<xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>など) を持つメソッドによって明示的に指定することもできます。  
+ <xref:System.IFormatProvider> の実装は、メソッドを書式設定および解析することによって暗黙的に使用されることがよくあります。 たとえば、<xref:System.DateTime.ToString%28System.String%29?displayProperty=nameWithType> メソッドは、システムの現在のカルチャを表す <xref:System.IFormatProvider> の実装を暗黙的に使用します。 <xref:System.IFormatProvider> の実装は、<xref:System.Int32.Parse%28System.String%2CSystem.IFormatProvider%29?displayProperty=nameWithType> や <xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>など、<xref:System.IFormatProvider>型のパラメーターを持つメソッドによって明示的に指定することもできます。  
   
- .NET Framework には、数値および日付<xref:System.IFormatProvider>と時刻の値の書式設定または解析に使用されるカルチャ固有の情報を提供するために、次の3つの定義済み実装が含まれています。  
+ .NET Framework には、数値および日付と時刻の値の書式設定または解析に使用されるカルチャ固有の情報を提供するために、次の3つの定義済み <xref:System.IFormatProvider> 実装が含まれています。  
   
--   <xref:System.Globalization.NumberFormatInfo>クラス。特定のカルチャの通貨、桁区切り記号、小数点記号などの数値の書式設定に使用される情報を提供します。 <xref:System.Globalization.NumberFormatInfo>オブジェクトによって認識され、数値の書式設定操作で使用される定義済みの書式指定文字列の詳細については、「[標準の数値書式指定](~/docs/standard/base-types/standard-numeric-format-strings.md)文字列」および「[カスタム数値書式指定文字列](~/docs/standard/base-types/custom-numeric-format-strings.md)」を参照してください。  
+-   <xref:System.Globalization.NumberFormatInfo> クラス。特定のカルチャの通貨、桁区切り記号、小数点記号などの数値を書式設定するために使用される情報を提供します。 <xref:System.Globalization.NumberFormatInfo> オブジェクトによって認識され、数値の書式設定操作で使用される定義済みの書式指定文字列の詳細については、「[標準の数値書式指定](~/docs/standard/base-types/standard-numeric-format-strings.md)文字列」および「[カスタム数値書式指定文字列](~/docs/standard/base-types/custom-numeric-format-strings.md)」を参照してください。  
   
--   <xref:System.Globalization.DateTimeFormatInfo>クラス。特定のカルチャの日付と時刻の区切り記号、日付の年、月、日の要素の順序と形式など、日付と時刻の書式設定に使用される情報を提供します。 <xref:System.Globalization.DateTimeFormatInfo>オブジェクトによって認識され、数値の書式設定操作で使用される定義済みの書式指定文字列の詳細については、「[標準の日付と時刻の書式指定文字列](~/docs/standard/base-types/standard-date-and-time-format-strings.md)」および「[カスタム日時書式指定文字列](~/docs/standard/base-types/custom-date-and-time-format-strings.md)」を参照してください。  
+-   <xref:System.Globalization.DateTimeFormatInfo> クラス。特定のカルチャの日付と時刻の区切り記号、日付の年、月、日のコンポーネントの順序と形式など、日付と時刻の書式設定に使用される情報を提供します。 <xref:System.Globalization.DateTimeFormatInfo> オブジェクトによって認識され、数値の書式設定操作で使用される定義済みの書式指定文字列の詳細については、「[標準の日付と時刻の書式指定文字列](~/docs/standard/base-types/standard-date-and-time-format-strings.md)」および「[カスタム日時書式指定文字列](~/docs/standard/base-types/custom-date-and-time-format-strings.md)」を参照してください。  
   
--   特定のカルチャを表すクラス。<xref:System.Globalization.CultureInfo> このメソッドは、数値または日付<xref:System.Globalization.DateTimeFormatInfo>と時刻を含む書式設定<xref:System.Globalization.CultureInfo>操作または解析操作でオブジェクトが使用されているかどうかに応じて、カルチャ固有<xref:System.Globalization.NumberFormatInfo>またはオブジェクトを返します。 <xref:System.IFormatProvider.GetFormat%2A>  
+-   特定のカルチャを表す <xref:System.Globalization.CultureInfo> クラス。 <xref:System.IFormatProvider.GetFormat%2A> メソッドは、数値または日付と時刻を含む書式設定操作または解析操作で <xref:System.Globalization.CultureInfo> オブジェクトが使用されているかどうかに応じて、カルチャ固有の <xref:System.Globalization.NumberFormatInfo> または <xref:System.Globalization.DateTimeFormatInfo> オブジェクトを返します。  
   
- .NET Framework は、カスタム書式設定もサポートしています。 これには、通常、と<xref:System.IFormatProvider> <xref:System.ICustomFormatter>の両方を実装する書式指定クラスの作成が含まれます。 このクラスのインスタンスは、パラメーターとして、カスタム書式設定操作<xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>を実行するメソッドにパラメーターとして渡されます。たとえば、数値を12桁のアカウント番号として書式設定するカスタム実装の例を示します。  
+ .NET Framework は、カスタム書式設定もサポートしています。 これには、通常、<xref:System.IFormatProvider> と <xref:System.ICustomFormatter>の両方を実装する書式指定クラスの作成が含まれます。 このクラスのインスタンスは、パラメーターとして、カスタム書式設定操作を実行するメソッドにパラメーターとして渡されます。たとえば <xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType> 例では、数値を12桁のアカウント番号として書式設定するカスタム実装を示しています。  
   
    
   
 ## Examples  
- 次の例は、実装<xref:System.IFormatProvider>によって日付と時刻の値の表現を変更する方法を示しています。 この場合、4つの異なるカルチャを表すオブジェクト<xref:System.Globalization.CultureInfo>を使用して、1つの日付が表示されます。  
+ 次の例は、<xref:System.IFormatProvider> の実装で日付と時刻の値の表現を変更する方法を示しています。 この場合、4つの異なるカルチャを表す <xref:System.Globalization.CultureInfo> オブジェクトを使用して、1つの日付が表示されます。  
   
  [!code-csharp[System.IFormatProvider.Class#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IFormatProvider.Class/cs/provider2.cs#3)]
  [!code-vb[System.IFormatProvider.Class#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IFormatProvider.Class/vb/provider2.vb#3)]  
   
- 次の例は、 <xref:System.IFormatProvider>インターフェイス<xref:System.IFormatProvider.GetFormat%2A>とメソッドを実装するクラスの使用方法を示しています。 クラス`AcctNumberFormat`は、アカウント<xref:System.Int64>番号を表す値を、書式設定された12桁の勘定科目番号に変換します。 パラメーター `GetFormat`がを実装`AcctNumberFormat` `formatType` `GetFormat` `null`するクラスを参照している場合、そのメソッドは現在のインスタンスへの参照を返します。それ以外の場合はを返します。 <xref:System.ICustomFormatter>  
+ 次の例は、<xref:System.IFormatProvider> インターフェイスと <xref:System.IFormatProvider.GetFormat%2A> メソッドを実装するクラスの使用方法を示しています。 `AcctNumberFormat` クラスは、アカウント番号を表す <xref:System.Int64> 値を、書式設定された12桁のアカウント番号に変換します。 `formatType` パラメーターが <xref:System.ICustomFormatter>を実装するクラスを参照している場合、`GetFormat` メソッドは、現在の `AcctNumberFormat` インスタンスへの参照を返します。それ以外の場合、`GetFormat` は `null`を返します。  
   
  [!code-csharp[System.IFormatProvider.Class#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IFormatProvider.Class/cs/Provider.cs#2)]
  [!code-vb[System.IFormatProvider.Class#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IFormatProvider.Class/vb/Provider.vb#2)]  
   
- を実装<xref:System.IFormatProvider>するクラスは、書式設定および解析操作の呼び出しで使用できます。 たとえば、次のコードは、 <xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>メソッドを呼び出して、書式設定された12桁の勘定科目番号を含む文字列を生成します。  
+ <xref:System.IFormatProvider> を実装するクラスは、書式設定および解析操作の呼び出しで使用できます。 たとえば、次のコードは、<xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType> メソッドを呼び出して、書式設定された12桁の勘定科目番号を含む文字列を生成します。  
   
  [!code-csharp[System.IFormatProvider.Class#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IFormatProvider.Class/cs/Provider.cs#1)]
  [!code-vb[System.IFormatProvider.Class#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IFormatProvider.Class/vb/Provider.vb#1)]  
@@ -96,6 +97,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -118,26 +120,26 @@
       <Docs>
         <param name="formatType">返す書式オブジェクトの型を指定するオブジェクト。</param>
         <summary>指定した型の書式指定サービスを提供するオブジェクトを返します。</summary>
-        <returns><see cref="T:System.IFormatProvider" /> の実装が <paramref name="formatType" /> で指定された型のオブジェクトを提供できる場合は、そのオブジェクトのインスタンス。それ以外の場合は <see langword="null" />。</returns>
+        <returns><paramref name="formatType" /> の実装が <see cref="T:System.IFormatProvider" /> で指定された型のオブジェクトを提供できる場合は、そのオブジェクトのインスタンス。それ以外の場合は <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.IFormatProvider.GetFormat%2A>は、書式設定および解析メソッドを呼び出して、解析操作の入力文字列の形式に関する情報を取得したり、書式設定操作で出力文字列の形式に関する情報を取得したりするコールバックメソッドです。 `formatType`パラメーターでは、書式設定または解析メソッドは、操作を実行するために必要なオブジェクトの型を渡します。 実装が<xref:System.IFormatProvider>この書式設定または解析オブジェクトを提供できる場合は、そのオブジェクトが返されます。 そうでない場合は`null`、を返します。  
+ <xref:System.IFormatProvider.GetFormat%2A> は、書式設定および解析メソッドを呼び出して、解析操作の入力文字列の形式に関する情報を取得したり、書式設定操作で出力文字列の形式に関する情報を取得したりするコールバックメソッドです。 `formatType` パラメーターでは、書式設定または解析メソッドは、操作を実行するために必要なオブジェクトの型を渡します。 <xref:System.IFormatProvider> の実装がこの書式設定または解析オブジェクトを提供できる場合は、そのオブジェクトが返されます。 そうでない場合は、`null`を返します。  
   
- たとえば、メソッドの<xref:System.Int32.ToString%28System.IFormatProvider%29?displayProperty=nameWithType>呼び出しで<xref:System.IFormatProvider>は、メソッドの引数は、現在の整数インスタンスの文字列形式がどのように書式設定されるかについての情報を提供するオブジェクトです。 ランタイムは、メソッドを実行<xref:System.IFormatProvider>すると、オブジェクトの<xref:System.IFormatProvider.GetFormat%2A>メソッドを呼び出し、 <xref:System.Globalization.NumberFormatInfo>型を<xref:System.Type>表すオブジェクトを渡します。 オブジェクトがオブジェクトを<xref:System.Globalization.NumberFormatInfo>提供できる場合は、そのオブジェクトを返します。 <xref:System.IFormatProvider> その型のオブジェクトを指定できない場合は、を`null`返します。  
+ たとえば、<xref:System.Int32.ToString%28System.IFormatProvider%29?displayProperty=nameWithType> メソッドの呼び出しでは、メソッドの引数は、現在の整数インスタンスの文字列形式がどのように書式設定されるかについての情報を提供する <xref:System.IFormatProvider> オブジェクトです。 ランタイムは、メソッドを実行すると、<xref:System.IFormatProvider> オブジェクトの <xref:System.IFormatProvider.GetFormat%2A> メソッドを呼び出し、<xref:System.Globalization.NumberFormatInfo> 型を表す <xref:System.Type> オブジェクトに渡します。 <xref:System.IFormatProvider> オブジェクトが <xref:System.Globalization.NumberFormatInfo> オブジェクトを提供できる場合は、そのオブジェクトが返されます。 その型のオブジェクトを指定できない場合は `null`を返します。  
   
- <xref:System.IFormatProvider> インターフェイス<xref:System.IFormatProvider.GetFormat%2A>とメソッドは、カスタムの書式設定または解析サービスを提供するクラスで実装できます。 <xref:System.IFormatProvider>実装は<xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>、 、<xref:System.Int32.ToString%28System.String%2CSystem.IFormatProvider%29?displayProperty=nameWithType>、など、型のパラメーターを持つ解析または書式指定メソッドのオーバーロードに引数として渡されます。<xref:System.DateTime.Parse%28System.String%2CSystem.IFormatProvider%29?displayProperty=nameWithType> <xref:System.IFormatProvider>  
+ <xref:System.IFormatProvider> インターフェイスと <xref:System.IFormatProvider.GetFormat%2A> メソッドは、カスタムの書式設定または解析サービスを提供するクラスで実装できます。 <xref:System.IFormatProvider> の実装は、<xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>、<xref:System.Int32.ToString%28System.String%2CSystem.IFormatProvider%29?displayProperty=nameWithType>、<xref:System.DateTime.Parse%28System.String%2CSystem.IFormatProvider%29?displayProperty=nameWithType>など、<xref:System.IFormatProvider>型のパラメーターを持つ解析または書式指定メソッドのオーバーロードに引数として渡されます。  
   
    
   
 ## Examples  
- 次の例は、 <xref:System.IFormatProvider>インターフェイス<xref:System.IFormatProvider.GetFormat%2A>とメソッドを実装するクラスの使用方法を示しています。 クラス`AcctNumberFormat`は、アカウント<xref:System.Int64>番号を表す値を、書式設定された12桁の勘定科目番号に変換します。 パラメーター `GetFormat`がを実装`GetFormat` `formatType` <xref:System.ICustomFormatter>するクラスを参照している場合、そのメソッドは自身への参照`null`を返します。それ以外の場合はを返します。  
+ 次の例は、<xref:System.IFormatProvider> インターフェイスと <xref:System.IFormatProvider.GetFormat%2A> メソッドを実装するクラスの使用方法を示しています。 `AcctNumberFormat` クラスは、アカウント番号を表す <xref:System.Int64> 値を、書式設定された12桁のアカウント番号に変換します。 この `GetFormat` メソッドは、`formatType` パラメーターが <xref:System.ICustomFormatter>を実装するクラスを参照している場合に、それ自体への参照を返します。それ以外の場合、`GetFormat` は `null`を返します。  
   
  [!code-csharp[System.IFormatProvider.Class#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IFormatProvider.Class/cs/Provider.cs#2)]
  [!code-vb[System.IFormatProvider.Class#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IFormatProvider.Class/vb/Provider.vb#2)]  
   
- その後、 `AcctNumberFormat`クラスのインスタンスを引数として、書式設定または解析サービスを提供するメソッドに渡すことができます。 たとえば、次のコードは、 `AcctNumberFormat`クラスを<xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType>メソッドに渡して、書式設定された12桁の勘定科目番号を生成します。  
+ その後、`AcctNumberFormat` クラスのインスタンスを引数として、書式設定または解析サービスを提供するメソッドに渡すことができます。 たとえば、次のコードは、`AcctNumberFormat` クラスを <xref:System.String.Format%28System.IFormatProvider%2CSystem.String%2CSystem.Object%5B%5D%29?displayProperty=nameWithType> メソッドに渡して、書式設定された12桁の勘定科目番号を生成します。  
   
  [!code-csharp[System.IFormatProvider.Class#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.IFormatProvider.Class/cs/Provider.cs#1)]
  [!code-vb[System.IFormatProvider.Class#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.IFormatProvider.Class/vb/Provider.vb#1)]  

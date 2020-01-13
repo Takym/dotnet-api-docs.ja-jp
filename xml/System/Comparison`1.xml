@@ -1,5 +1,5 @@
 <Type Name="Comparison&lt;T&gt;" FullName="System.Comparison&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0543f62ed668c3c2dc471558394ef9899c1ce307" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69421374" /></Metadata><TypeSignature Language="C#" Value="public delegate int Comparison&lt;in T&gt;(T x, T y);" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e382930813c3e352899d10ed4e0bfc61a6bfe1cb" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75043234" /></Metadata><TypeSignature Language="C#" Value="public delegate int Comparison&lt;in T&gt;(T x, T y);" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed Comparison`1&lt;- T&gt; extends System.MulticastDelegate" />
   <TypeSignature Language="DocId" Value="T:System.Comparison`1" />
   <TypeSignature Language="VB.NET" Value="Public Delegate Function Comparison(Of In T)(x As T, y As T) As Integer " />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -46,11 +47,11 @@
     <typeparam name="T">比較するオブジェクトの型。</typeparam>
     <param name="x">比較する最初のオブジェクト。</param>
     <param name="y">比較する 2 番目のオブジェクト。</param>
-    <summary>同じ型の 2 つのオブジェクトを比較するメソッドを表します。</summary>
+    <summary>型が同じ 2 つのオブジェクトを比較するメソッドを表します。</summary>
     <returns><paramref name="x" /> と <paramref name="y" /> の相対値を示す符号付き整数。次の表を参照してください。  
   
  <list type="table"><listheader><term> [値] 
- </term><description> 説明 
+ </term><description> 意味 
  </description></listheader><item><term> 0 より小さい。 
  </term><description><paramref name="x" /> は <paramref name="y" /> より小さい値です。  
   
@@ -65,22 +66,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Array.Sort%60%601%28%60%600%5B%5D%2CSystem.Comparison%7B%60%600%7D%29>このデリゲートは、 <xref:System.Array>クラスのメソッドオーバーロードおよび<xref:System.Collections.Generic.List%601.Sort%28System.Comparison%7B%600%7D%29> <xref:System.Collections.Generic.List%601>クラスのメソッドオーバーロードによって使用され、配列またはリストの要素を並べ替えます。  
+ このデリゲートは、<xref:System.Array> クラスの <xref:System.Array.Sort%60%601%28%60%600%5B%5D%2CSystem.Comparison%7B%60%600%7D%29> メソッドオーバーロードと <xref:System.Collections.Generic.List%601> クラスの <xref:System.Collections.Generic.List%601.Sort%28System.Comparison%7B%600%7D%29> メソッドオーバーロードによって、配列またはリストの要素を並べ替えるために使用されます。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Comparison%601> <xref:System.Collections.Generic.List%601.Sort%28System.Comparison%7B%600%7D%29>メソッドオーバーロードを使用したデリゲートの使用方法を示しています。  
+ 次のコード例は、<xref:System.Collections.Generic.List%601.Sort%28System.Comparison%7B%600%7D%29> メソッドオーバーロードでの <xref:System.Comparison%601> デリゲートの使用方法を示しています。  
   
- このコード例では、という名前`CompareDinosByLength`の文字列に対して、別の比較メソッドを定義しています。 この方法は次のように機能します。まず、比較対照値をテスト`null`し、null 参照を null 以外の値として処理します。 次に、文字列の長さが比較され、長い方の文字列が大きいと見なされます。 3番目の長さが等しい場合は、通常の文字列比較が使用されます。  
+ このコード例では、`CompareDinosByLength`という名前の文字列に対して、別の比較メソッドを定義しています。 このメソッドは次のように機能します。最初に、比較対照値が `null`に対してテストされ、null 参照が null 以外の値として処理されます。 次に、文字列の長さが比較され、長い方の文字列が大きいと見なされます。 3番目の長さが等しい場合は、通常の文字列比較が使用されます。  
   
- 文字列<xref:System.Collections.Generic.List%601>のが作成され、特定の順序ではなく4つの文字列が設定されます。 この一覧には、空の文字列と null 参照も含まれています。 リストが表示され、 <xref:System.Comparison%601> `CompareDinosByLength`メソッドを表す汎用デリゲートを使用して並べ替えられ、もう一度表示されます。  
+ 文字列の <xref:System.Collections.Generic.List%601> が作成され、特定の順序ではなく4つの文字列が設定されます。 この一覧には、空の文字列と null 参照も含まれています。 リストが表示され、`CompareDinosByLength` メソッドを表す <xref:System.Comparison%601> 汎用デリゲートを使用して並べ替えられて、もう一度表示されます。  
   
  [!code-cpp[List\`1_SortComparison#1](~/samples/snippets/cpp/VS_Snippets_CLR/List`1_SortComparison/cpp/source.cpp#1)]
  [!code-csharp[List\`1_SortComparison#1](~/samples/snippets/csharp/VS_Snippets_CLR/List`1_SortComparison/cs/source.cs#1)]
  [!code-vb[List\`1_SortComparison#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/List`1_SortComparison/vb/source.vb#1)]  
   
- 次の例では<xref:System.Comparison%601> 、デリゲートを使用して、オブジェクトの`CityInfo`コレクションの要素を並べ替えます。 `CityInfo`は、市区町村とその人口に関する情報を含むアプリケーション定義のクラスです。 この例では、、 `CompareByName`、 `CompareByPopulation`およびと`CompareByNames`いう3つのメソッドを定義して`CityInfo`います。これらのメソッドは、3つの異なる方法でオブジェクトを並べ替えることができます。 各メソッドは、 `comparison` <xref:System.Array.Sort%60%601%28%60%600%5B%5D%2CSystem.Comparison%7B%60%600%7D%29?displayProperty=nameWithType>メソッドの引数に割り当てられます。  
+ 次の例では、<xref:System.Comparison%601> デリゲートを使用して、`CityInfo` オブジェクトのコレクションの要素を並べ替えます。 `CityInfo` は、市区町村とその人口に関する情報を含むアプリケーション定義のクラスです。 この例では、`CompareByName`、`CompareByPopulation`、および `CompareByNames`という3つのメソッドを定義しています。これらのメソッドは、`CityInfo` オブジェクトの順序付けの3つの方法を提供します。 各メソッドは、<xref:System.Array.Sort%60%601%28%60%600%5B%5D%2CSystem.Comparison%7B%60%600%7D%29?displayProperty=nameWithType> メソッドの `comparison` 引数に割り当てられます。  
   
  [!code-csharp[System.Comparison\`1#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.comparison`1/cs/comparisont1.cs#1)]
  [!code-vb[System.Comparison\`1#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.comparison`1/vb/comparisont1.vb#1)]  
