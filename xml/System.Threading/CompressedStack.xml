@@ -1,5 +1,5 @@
 <Type Name="CompressedStack" FullName="System.Threading.CompressedStack">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6541cc25d90735a3b17eb0d9974b1a92723a78aa" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69229509" /></Metadata><TypeSignature Language="C#" Value="public sealed class CompressedStack : System.Runtime.Serialization.ISerializable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="40eb4b8909a38f2f0fb0c3e49483dae5f269be48" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75116645" /></Metadata><TypeSignature Language="C#" Value="public sealed class CompressedStack : System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit CompressedStack extends System.Object implements class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.CompressedStack" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class CompressedStack&#xA;Implements ISerializable" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.Threading.Thread</AssemblyName>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -41,9 +42,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 圧縮スタックは、呼び出し履歴のすべてのコードアクセスセキュリティ情報 ( <xref:System.Security.CodeAccessPermission.Deny%2A>や<xref:System.Security.CodeAccessPermission.Assert%2A>アクションなど) をコンパクトに表現したものです。 たとえば、 <xref:System.Security.CodeAccessPermission.Deny%2A>アクションが現在のフレームから2つのスタックフレーム上にあり、その他のコードアクセスセキュリティの注釈が存在しない場合、圧縮されたスタックは、その情報だけを記録します。呼び出し履歴全体。  
+ 圧縮スタックは、<xref:System.Security.CodeAccessPermission.Deny%2A> や <xref:System.Security.CodeAccessPermission.Assert%2A> アクションなど、呼び出し履歴のすべてのコードアクセスセキュリティ情報をコンパクトに表現したものです。 たとえば、<xref:System.Security.CodeAccessPermission.Deny%2A> のアクションが現在のフレームから2つのスタックフレーム上にあり、その中と現在のフレームの間に他のコードアクセスセキュリティの注釈がない場合、圧縮スタックはその情報だけを記録し、呼び出し履歴全体をシリアル化する必要はありません。  
   
- クラスは、 <xref:System.Security.SecurityContext>クラスによって内部的に使用されます。 <xref:System.Threading.CompressedStack> たとえば、メソッドは<xref:System.Security.SecurityContext.Capture%2A?displayProperty=nameWithType> 、現在の呼び出し履歴の圧縮スタックを、偽装とカルチャ情報と共にキャプチャします。 クラスは、スレッドプールタスクのスケジュール<xref:System.Threading.ExecutionContext>設定など、スレッド間でコンテキストをフローするために、クラスによって使用されます。 <xref:System.Security.SecurityContext>  
+ <xref:System.Threading.CompressedStack> クラスは、<xref:System.Security.SecurityContext> クラスによって内部的に使用されます。 たとえば、<xref:System.Security.SecurityContext.Capture%2A?displayProperty=nameWithType> メソッドは、現在の呼び出し履歴の圧縮スタックを、偽装とカルチャ情報と共にキャプチャします。 <xref:System.Security.SecurityContext> クラスは、スレッドプールタスクのスケジュール設定など、スレッド間でコンテキストをフローするために、<xref:System.Threading.ExecutionContext> クラスによって使用されます。  
   
  このクラスは、通常のアプリケーションプログラミングでは使用されません。  
   
@@ -74,6 +75,7 @@
         <AssemblyName>System.Threading.Thread</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -91,7 +93,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Security.CodeAccessPermission.Deny%2A> や<xref:System.Security.CodeAccessPermission.Assert%2A>アクションなど、呼び出し履歴のすべてのコードアクセスセキュリティ情報を圧縮形式でキャプチャします。 たとえば、 <xref:System.Security.CodeAccessPermission.Deny%2A>アクションが現在のフレームから2つのスタックフレーム上にあり、その他のコードアクセスセキュリティの注釈が存在しない場合、圧縮されたスタックは、その情報だけを記録します。呼び出し履歴全体。  
+ <xref:System.Security.CodeAccessPermission.Deny%2A> や <xref:System.Security.CodeAccessPermission.Assert%2A> アクションなど、呼び出し履歴のすべてのコードアクセスセキュリティ情報を圧縮形式でキャプチャします。 たとえば、<xref:System.Security.CodeAccessPermission.Deny%2A> のアクションが現在のフレームから2つのスタックフレーム上にあり、その中と現在のフレームの間に他のコードアクセスセキュリティの注釈がない場合、圧縮スタックはその情報だけを記録し、呼び出し履歴全体をシリアル化する必要はありません。  
   
  キャプチャした圧縮スタックは、別のスレッドに適用できます。  
   
@@ -122,6 +124,7 @@
         <AssemblyName>System.Threading.Thread</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -211,6 +214,7 @@
         <AssemblyName>System.Threading.Thread</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -228,10 +232,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- セキュリティが有効になっている場合は、現在の圧縮スタックが返されます。 セキュリティが無効になっ<xref:System.Threading.CompressedStack.GetCompressedStack%2A>ている場合<xref:System.Threading.CompressedStack> 、は空のオブジェクトを返します。  
+ セキュリティが有効になっている場合は、現在の圧縮スタックが返されます。 セキュリティが無効になっている場合、<xref:System.Threading.CompressedStack.GetCompressedStack%2A> は空の <xref:System.Threading.CompressedStack> オブジェクトを返します。  
   
 > [!NOTE]
->  このメソッドは<xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType> 、を使用して信頼されていないコードから呼び出されないように<xref:System.Security.Permissions.SecurityPermissionAttribute.UnmanagedCode%2A?displayProperty=nameWithType>します。アクセス許可が必要なのは、直前の呼び出し元だけです。 メンバーの`LinkDemand`使用に関する重要な制限事項[については、「要求とLinkDemand](https://msdn.microsoft.com/library/1ab877f2-70f4-4e0d-8116-943999dfe8f5)。  
+>  このメソッドは <xref:System.Security.Permissions.SecurityAction.LinkDemand?displayProperty=nameWithType> を使用して、信頼されていないコードから呼び出されないようにします。<xref:System.Security.Permissions.SecurityPermissionAttribute.UnmanagedCode%2A?displayProperty=nameWithType> のアクセス許可が必要なのは、直前の呼び出し元だけです。 `LinkDemand` メンバーの使用に関する重要な制限事項については、「 [Demand と LinkDemand](https://msdn.microsoft.com/library/1ab877f2-70f4-4e0d-8116-943999dfe8f5)」を参照してください。  
   
 > [!NOTE]
 >  このメンバーは、ECMA 公開キーのリンク確認要求も行います。これは、有効な暗号化キーではなく擬似キーです。 .NET Framework 内では、ECMA 擬似キーのリンク確認要求が、Microsoft 公開キーのリンク確認要求に自動的に変換されます。 セキュリティ例外は、ECMA 擬似キーではなく、Microsoft 公開キーに基づいています。  
@@ -271,6 +275,7 @@
         <AssemblyName>System.Threading.Thread</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -281,8 +286,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="info">シリアル化情報が設定される <see cref="T:System.Runtime.Serialization.SerializationInfo" /> オブジェクト。</param>
@@ -292,13 +297,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Threading.CompressedStack.GetObjectData%2A>論理呼び出し<xref:System.Runtime.Serialization.SerializationInfo>コンテキスト情報を使用して、を設定します。 逆シリアル化中に、実行コンテキストオブジェクトは、 <xref:System.Runtime.Serialization.SerializationInfo>ストリームで送信されたから再構成されます。  
+ 論理呼び出しコンテキスト情報を持つ <xref:System.Runtime.Serialization.SerializationInfo> を <xref:System.Threading.CompressedStack.GetObjectData%2A> 設定します。 逆シリアル化中に、実行コンテキストオブジェクトは、ストリームを介して送信される <xref:System.Runtime.Serialization.SerializationInfo> から再構成されます。  
   
- 詳細については、「<xref:System.Runtime.Serialization.SerializationInfo>」を参照してください。  
+ 詳細については、「 <xref:System.Runtime.Serialization.SerializationInfo>」を参照してください。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="info" /> は <see langword="null" /> です。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
@@ -324,6 +329,7 @@
         <AssemblyName>System.Threading.Thread</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -334,9 +340,9 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="compressedStack" Type="System.Threading.CompressedStack" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="callback" Type="System.Threading.ContextCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="compressedStack" Type="System.Threading.CompressedStack" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="callback" Type="System.Threading.ContextCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="compressedStack">設定する <see cref="T:System.Threading.CompressedStack" />。</param>
@@ -351,7 +357,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="compressedStack" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="compressedStack" /> は <see langword="null" /> です。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
       </Docs>
     </Member>
