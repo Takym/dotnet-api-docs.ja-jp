@@ -1,5 +1,5 @@
 <Type Name="CriticalFinalizerObject" FullName="System.Runtime.ConstrainedExecution.CriticalFinalizerObject">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="890f38d913d3105c403a89adfdf49007cc35a27d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69272847" /></Metadata><TypeSignature Language="C#" Value="public abstract class CriticalFinalizerObject" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5a2586c108e3b52fbec7370d66eee7f1506728fe" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75090736" /></Metadata><TypeSignature Language="C#" Value="public abstract class CriticalFinalizerObject" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CriticalFinalizerObject extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CriticalFinalizerObject" />
@@ -20,6 +20,7 @@
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -36,23 +37,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject>クラスから派生するクラスは、制約された実行領域 (CER) として暗黙的に処理されます。  これには、厳密な信頼性コントラクトでコードを呼び出すために、ファイナライザーのコードが必要です。 Cer の詳細については、 <xref:System.Runtime.ConstrainedExecution> 「名前空間」を参照してください。  
+ <xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject> クラスから派生したクラスは、制約された実行領域 (CER) として暗黙的に処理されます。  これには、厳密な信頼性コントラクトでコードを呼び出すために、ファイナライザーのコードが必要です。 Cer の詳細については、「<xref:System.Runtime.ConstrainedExecution> 名前空間」を参照してください。  
   
- <xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject>クラスから派生したクラスでは、共通言語ランタイム (clr) によって、ファイナライザーが CER の規則に従う場合は、clr によって実行される可能性があります。強制的にアプリケーションドメインをアンロードするか、スレッドを中止します。 ファイナライザーが CER の規則に違反している場合は、正常に実行されない可能性があります。 さらに、CLR は、通常のファイナライザーと重大なファイナライザーの間に弱い順序を確立します。ガベージコレクションによって同時に解放されたオブジェクトの場合は、すべての重要でないファイナライザーがすべてのクリティカルファイナライザーの前に呼び出されます。 たとえば、から<xref:System.IO.FileStream> <xref:System.Runtime.InteropServices.SafeHandle> 派生したクラスのデータを保持するなどのクラスでは、標準のファイナライザーを実行して、既存のバッファーデータを<xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject>フラッシュできます。  
+ <xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject> クラスから派生したクラスでは、CLR がアプリケーションドメインを強制的にアンロードしたり、スレッドを中止したりする場合でも、ファイナライザーが CER の規則に従う場合は、共通言語ランタイム (CLR) によって、すべてのクリティカルな終了コードが実行されるように保証されます。 ファイナライザーが CER の規則に違反している場合は、正常に実行されない可能性があります。 さらに、CLR は、通常のファイナライザーと重大なファイナライザーの間に弱い順序を確立します。ガベージコレクションによって同時に解放されたオブジェクトの場合は、すべての重要でないファイナライザーがすべてのクリティカルファイナライザーの前に呼び出されます。 たとえば、<xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject>から派生した <xref:System.Runtime.InteropServices.SafeHandle> クラスのデータを保持する <xref:System.IO.FileStream>などのクラスでは、標準のファイナライザーを実行して、既存のバッファーデータをフラッシュできます。  
   
- ほとんどの場合、 <xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject>クラスから派生するクラスを記述する必要はありません。 .NET Framework クラスライブラリには、 <xref:System.Runtime.InteropServices.SafeHandle>とと<xref:System.Runtime.InteropServices.CriticalHandle>いう2つのクラスが用意されています。これは、リソースを処理するための重要な終了機能を提供します さらに、.NET Framework には、 <xref:System.Runtime.InteropServices.SafeHandle>クラスから派生した一連の記述済みクラスが用意されており、このセットは<xref:Microsoft.Win32.SafeHandles>名前空間にあります。 これらのクラスは、ファイルおよびオペレーティングシステムハンドルをサポートするための一般的な機能を提供するように設計されています。  
+ ほとんどの場合、<xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject> クラスから派生するクラスを記述する必要はありません。 .NET Framework クラスライブラリには、<xref:System.Runtime.InteropServices.SafeHandle> と <xref:System.Runtime.InteropServices.CriticalHandle>の2つのクラスが用意されており、リソースを処理するための重要な終了機能を提供します。 さらに、.NET Framework には、<xref:System.Runtime.InteropServices.SafeHandle> クラスから派生した一連の記述済みクラスが用意されており、このセットは <xref:Microsoft.Win32.SafeHandles> 名前空間にあります。 これらのクラスは、ファイルおよびオペレーティングシステムハンドルをサポートするための一般的な機能を提供するように設計されています。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:Microsoft.Win32.SafeHandles.SafeFileHandle>クラスを使用して、標準の入力ストリームと出力ストリームに対して重大な終了処理を提供する方法を示しています。 クラスから派生した<xref:Microsoft.Win32.SafeHandles.SafeFileHandle>は、 <xref:System.IO.FileStream>コンストラクター内のファイルストリームに渡されます。 <xref:System.Runtime.InteropServices.SafeHandle>  
+ 次のコード例は、<xref:Microsoft.Win32.SafeHandles.SafeFileHandle> クラスを使用して、標準の入力ストリームと出力ストリームに対して重大な終了処理を提供する方法を示しています。 <xref:System.Runtime.InteropServices.SafeHandle> クラスから派生した <xref:Microsoft.Win32.SafeHandles.SafeFileHandle>は、<xref:System.IO.FileStream> コンストラクターのファイルストリームに渡されます。  
   
  [!code-csharp[SafeHandle.SafeFileHandle#1](~/samples/snippets/csharp/VS_Snippets_CLR/SafeHandle.SafeFileHandle/CS/program.cs#1)]
  [!code-vb[SafeHandle.SafeFileHandle#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/SafeHandle.SafeFileHandle/vb/program.vb#1)]  
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出すためのアクセス許可。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+    <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出すためのアクセス許可。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
     <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このクラスは、部分的に信頼されているコードから使用することはできません。</permission>
     <altmember cref="T:System.Runtime.InteropServices.SafeHandle" />
     <altmember cref="T:System.Runtime.InteropServices.CriticalHandle" />
@@ -83,6 +84,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -96,7 +98,7 @@
       <Docs>
         <summary><see cref="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出すためのアクセス許可。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
+        <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出すためのアクセス許可。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /></permission>
         <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このクラスは、部分的に信頼されているコードから使用することはできません。</permission>
       </Docs>
     </Member>
@@ -123,6 +125,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -139,7 +142,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- から<xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject>派生したすべての型のファイナライザーは、制約された実行領域 (CER) の規則に正しく従っていると想定して、実行する機会が与えられ、中止されません。  
+ <xref:System.Runtime.ConstrainedExecution.CriticalFinalizerObject> から派生したすべての型のファイナライザーは、制約された実行領域 (CER) の規則にファイナライザーが正しく従っていると想定して、実行する機会が与えられ、中止されません。  
   
  ]]></format>
         </remarks>

@@ -1,5 +1,5 @@
 <Type Name="ApplicationSettingsBase" FullName="System.Configuration.ApplicationSettingsBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="06a7486562bd4ab003a126d0a109643912451621" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69379171" /></Metadata><TypeSignature Language="C#" Value="public abstract class ApplicationSettingsBase : System.Configuration.SettingsBase, System.ComponentModel.INotifyPropertyChanged" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f92df9abd51ae5a140ab4fdbc45a440e00927463" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75144985" /></Metadata><TypeSignature Language="C#" Value="public abstract class ApplicationSettingsBase : System.Configuration.SettingsBase, System.ComponentModel.INotifyPropertyChanged" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ApplicationSettingsBase extends System.Configuration.SettingsBase implements class System.ComponentModel.INotifyPropertyChanged" />
   <TypeSignature Language="DocId" Value="T:System.Configuration.ApplicationSettingsBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ApplicationSettingsBase&#xA;Inherits SettingsBase&#xA;Implements INotifyPropertyChanged" />
@@ -15,6 +15,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Configuration.SettingsBase</BaseTypeName>
@@ -30,50 +31,50 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ApplicationSettingsBase>は、Web ベースのアプリケーション<xref:System.Configuration.SettingsBase>で使用される次の機能をクラスに追加します。  
+ <xref:System.Configuration.ApplicationSettingsBase> は、Web ベースのアプリケーションで使用される次の機能を <xref:System.Configuration.SettingsBase> クラスに追加します。  
   
--   派生した設定ラッパークラスの属性を検出する機能。 <xref:System.Configuration.ApplicationSettingsBase>後で説明するように、ラッパークラスのプロパティに使用される宣言型モデルをサポートします。  
+-   派生した設定ラッパークラスの属性を検出する機能。 <xref:System.Configuration.ApplicationSettingsBase> は、後で説明するように、ラッパークラスのプロパティに使用される宣言型モデルをサポートします。  
   
--   より高度な<xref:System.Configuration.ApplicationSettingsBase.Save%2A>メソッド<xref:System.Configuration.ApplicationSettingsBase.Reload%2A>とメソッド。  
+-   上位レベルの <xref:System.Configuration.ApplicationSettingsBase.Save%2A> および <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> メソッド。  
   
 -   個々の設定の正確性を確保するために処理できる追加の検証イベント。  
   
- アプリケーション設定アーキテクチャでは、設定プロパティのグループにアクセスするには、から<xref:System.Configuration.ApplicationSettingsBase>具象ラッパークラスを派生させる必要があります。 ラッパークラスは、 <xref:System.Configuration.ApplicationSettingsBase>次の方法でカスタマイズします。  
+ アプリケーション設定アーキテクチャでは、設定プロパティのグループにアクセスするには、<xref:System.Configuration.ApplicationSettingsBase>から具象ラッパークラスを派生させる必要があります。 ラッパークラスは、次の方法で <xref:System.Configuration.ApplicationSettingsBase> をカスタマイズします。  
   
--   アクセスするすべての設定プロパティについて、対応する厳密に型指定されたパブリックプロパティがラッパークラスに追加されます。 このプロパティに`get`は`set` 、読み取り/書き込みアプリケーション`get`設定のアクセサーとアクセサーがありますが、読み取り専用設定のアクセサーのみが使用されます。  
+-   アクセスするすべての設定プロパティについて、対応する厳密に型指定されたパブリックプロパティがラッパークラスに追加されます。 このプロパティには、読み取り/書き込みアプリケーションの設定に `get` と `set` アクセサーがありますが、読み取り専用の設定では `get` アクセサーのみが使用されます。  
   
--   Appropriated 属性は、設定のスコープ (アプリケーションまたはユーザー)、設定がローミングをサポートする必要があるかどうかなどの設定プロパティの特性を示すために、ラッパークラスのパブリックプロパティに適用する必要があります。設定、使用する設定プロバイダーなどがあります。 各プロパティは、または<xref:System.Configuration.ApplicationScopedSettingAttribute> <xref:System.Configuration.UserScopedSettingAttribute>のいずれかを使用して、スコープを指定する必要があります。 既定値<xref:System.Configuration.LocalFileSettingsProvider>が使用されている場合、アプリケーションスコープ設定は読み取り専用です。  
+-   Appropriated 属性は、設定のスコープ (アプリケーションまたはユーザー)、設定がローミングをサポートする必要があるかどうかなどの設定プロパティの特性を示すために、ラッパークラスのパブリックプロパティに適用する必要があります。設定、使用する設定プロバイダーなどがあります。 各プロパティは、<xref:System.Configuration.ApplicationScopedSettingAttribute> または <xref:System.Configuration.UserScopedSettingAttribute>のいずれかを使用して、スコープを指定する必要があります。 既定の <xref:System.Configuration.LocalFileSettingsProvider> が使用されている場合、アプリケーションスコープ設定は読み取り専用です。  
   
- クラス<xref:System.Configuration.ApplicationSettingsBase>は、リフレクションを使用してこれらの属性を実行時に検出します。 この情報の大部分は、ストレージや永続化形式などを担当する設定プロバイダーレイヤーに渡されます。  
+ <xref:System.Configuration.ApplicationSettingsBase> クラスは、リフレクションを使用してこれらの属性を実行時に検出します。 この情報の大部分は、ストレージや永続化形式などを担当する設定プロバイダーレイヤーに渡されます。  
   
  アプリケーションに複数の設定ラッパークラスがある場合、各クラスは*設定グループ*を定義します。 各グループには次の特性があります。  
   
 -   グループには、任意の数または種類のプロパティ設定を含めることができます。  
   
--   ラッパークラス<xref:System.Configuration.SettingsGroupNameAttribute>をに装飾することによってグループ名が明示的に設定されていない場合は、名前が自動的に生成されます。  
+-   ラッパークラスを <xref:System.Configuration.SettingsGroupNameAttribute>で修飾することによってグループ名が明示的に設定されていない場合は、名前が自動的に生成されます。  
   
- 既定では、すべてのクライアントベースのアプリケーション<xref:System.Configuration.LocalFileSettingsProvider>は、を使用して記憶域を提供します。 代替設定プロバイダーが必要な場合は、ラッパークラスまたはプロパティが対応<xref:System.Configuration.SettingsProviderAttribute>するで修飾されている必要があります。  
+ 既定では、すべてのクライアントベースのアプリケーションは、<xref:System.Configuration.LocalFileSettingsProvider> を使用して記憶域を提供します。 代替設定プロバイダーが必要な場合は、ラッパークラスまたはプロパティを、対応する <xref:System.Configuration.SettingsProviderAttribute>で修飾する必要があります。  
   
  アプリケーション設定の使用方法の詳細については、「 [Windows フォームのアプリケーション設定](~/docs/framework/winforms/advanced/application-settings-for-windows-forms.md)」を参照してください。  
   
    
   
 ## Examples  
- 次のコード例では、アプリケーション設定を使用して、メインフォームの場所、サイズ、背景色、およびタイトルバーのテキストの属性を保持する方法を示します。 これらの属性は、 `FormSettings`それぞれ、 `FormLocation` `FormSize` `FormBackColor` 、、および`FormText`という名前の単一のアプリケーション設定プロパティとして永続化されます。 `FormText`と以外はすべて`Size` 、関連付けられたフォームプロパティにデータバインドされ、を使用<xref:System.Configuration.DefaultSettingValueAttribute>して既定の設定値が適用されます。  
+ 次のコード例では、アプリケーション設定を使用して、メインフォームの場所、サイズ、背景色、およびタイトルバーのテキストの属性を保持する方法を示します。 これらの属性はすべて、`FormLocation`、`FormSize`、`FormBackColor`、`FormText`という名前の `FormSettings` クラスの単一のアプリケーション設定プロパティとして保存されます。 `FormText` と `Size` を除くすべてのデータは、関連付けられているフォームプロパティにバインドされ、<xref:System.Configuration.DefaultSettingValueAttribute>を使用して既定の設定値が適用されます。  
   
  フォームには、次の名前と関数を持つ4つの子コントロールが含まれています。  
   
--   [色の`btnBackColor`共通] ダイアログボックス**** を表示するために使用する、という名前のボタン。  
+-   [**色**の共通] ダイアログボックスを表示するために使用 `btnBackColor` という名前のボタン。  
   
--   アプリケーション設定に`btnReload` <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>使用されるという名前のボタン。  
+-   アプリケーション設定の <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> に使用 `btnReload` という名前のボタン。  
   
--   アプリケーション設定に`btnReset` <xref:System.Configuration.ApplicationSettingsBase.Reset%2A>使用されるという名前のボタン。  
+-   アプリケーション設定の <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> に使用 `btnReset` という名前のボタン。  
   
--   プログラムに関する`tbStatus`ステータス情報を表示するために使用されるという名前のテキストボックス。  
+-   プログラムに関するステータス情報を表示するために使用 `tbStatus` という名前のテキストボックス。  
   
  アプリケーションを実行するたびに、追加のピリオド文字がフォームのタイトルテキストに追加されることに注意してください。  
   
- このコード例では、という<xref:System.Windows.Forms.ColorDialog>名前`colorDialog1`のクラスのフォーム<xref:System.Windows.Forms.StatusStrip>と、と<xref:System.Windows.Forms.ToolStripStatusLabel>いう`tbStatus`名前のを持つコントロールが必要です。 さらに<xref:System.Windows.Forms.Button> 、、 `btnReset`、および`btnReload` `btnBackColor`という3つのオブジェクトが必要です。  
+ このコード例では、`colorDialog1`という名前の <xref:System.Windows.Forms.ColorDialog> クラスを持つフォームと、`tbStatus`という名前の <xref:System.Windows.Forms.ToolStripStatusLabel> を持つ <xref:System.Windows.Forms.StatusStrip> コントロールが必要です。 さらに、`btnReload`、`btnReset`、および `btnBackColor`という3つの <xref:System.Windows.Forms.Button> オブジェクトが必要です。  
   
  [!code-cpp[AppSettingsSample#1](~/samples/snippets/cpp/VS_Snippets_Winforms/AppSettingsSample/cpp/AppSettingsSample.cpp#1)]
  [!code-csharp[AppSettingsSample#1](~/samples/snippets/csharp/VS_Snippets_Winforms/AppSettingsSample/CS/AppSettingsSample.cs#1)]
@@ -115,6 +116,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -123,21 +125,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パラメーターなしのコンストラクターは、から<xref:System.Configuration.ApplicationSettingsBase>派生した現在の設定ラッパークラスに関連付けられているコンポーネントがないという前提で動作するように設計されています。  
+ パラメーターなしのコンストラクターは、現在の設定ラッパークラスに関連付けられているコンポーネントが存在しないという前提で動作するように設計されています。これは <xref:System.Configuration.ApplicationSettingsBase>から派生します。  
   
  ラッパークラスのインスタンスが作成されると、継承されたコードは次のアクションを自動的に実行します。  
   
 1.  クラスを反映します。  
   
-2.  または`[UserScopedSettingAttribute]` `[ApplicationScopedSettingAttribute]`のいずれかでマークされたラッパーの各<xref:System.Configuration.SettingsProperty>プロパティに対して、対応するが作成されます。  
+2.  `[UserScopedSettingAttribute]` または `[ApplicationScopedSettingAttribute]`でマークされたラッパーの各プロパティに対して、対応する <xref:System.Configuration.SettingsProperty> が作成されます。  
   
-3.  それぞれ<xref:System.Configuration.SettingsProperty>のプロパティには、既定値や設定プロバイダーなど、必要に応じてラッパーのプロパティに表示されるその他の属性に基づいて、いくつかのプロパティが設定されています。  
+3.  各 <xref:System.Configuration.SettingsProperty> には、既定値や設定プロバイダーなど、必要に応じてラッパーのプロパティに存在する他の属性に基づいて設定されたプロパティがいくつかあります。  
   
-4.  その他のすべての属性は、単に、 <xref:System.Configuration.SettingsProperty.Attributes%2A> <xref:System.Configuration.SettingsProperty>クラスのプロパティである属性バッグに配置されます。  
+4.  その他のすべての属性は、単に属性バッグ (<xref:System.Configuration.SettingsProperty> クラスの <xref:System.Configuration.SettingsProperty.Attributes%2A> プロパティ) に格納されます。  
   
-5.  すべて<xref:System.Configuration.SettingsProperty>のオブジェクトは、 <xref:System.Configuration.ApplicationSettingsBase>クラス<xref:System.Configuration.SettingsPropertyCollection>の<xref:System.Configuration.ApplicationSettingsBase.Properties%2A>プロパティによって表されるに追加されます。 このコレクションは、 <xref:System.Configuration.SettingsBase.Initialize%2A>メソッドに渡されます。  
+5.  すべての <xref:System.Configuration.SettingsProperty> オブジェクトは、<xref:System.Configuration.ApplicationSettingsBase> クラスの <xref:System.Configuration.ApplicationSettingsBase.Properties%2A> プロパティによって表される <xref:System.Configuration.SettingsPropertyCollection> に追加されます。 このコレクションは、<xref:System.Configuration.SettingsBase.Initialize%2A> メソッドに渡されます。  
   
- 前に説明した手順 3. <xref:System.Configuration.ApplicationSettingsBase>で説明したように、では、、 <xref:System.Configuration.SettingsProviderAttribute> <xref:System.Configuration.DefaultSettingValueAttribute>、およびと<xref:System.Configuration.SettingsSerializeAsAttribute>いういくつかのプロパティ属性がネイティブで動作します。 その他のすべての設定属性は、適切な基になるプロバイダーに渡されるだけです。  
+ 前述の手順 3. で説明したように、<xref:System.Configuration.ApplicationSettingsBase> は、特に次のようないくつかのプロパティ属性でネイティブに機能します。 <xref:System.Configuration.SettingsProviderAttribute>、<xref:System.Configuration.DefaultSettingValueAttribute>、および <xref:System.Configuration.SettingsSerializeAsAttribute>です。 その他のすべての設定属性は、適切な基になるプロバイダーに渡されるだけです。  
   
  ]]></format>
         </remarks>
@@ -164,6 +166,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="owner" Type="System.ComponentModel.IComponent" />
@@ -175,15 +178,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、呼び出しを使用<xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.ComponentModel.IComponent%2CSystem.String%29>するコンストラクターとまったく同じです。  
+ このコンストラクターは、呼び出しを使用した <xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.ComponentModel.IComponent%2CSystem.String%29> コンストラクターとまったく同じです。  
   
  `ApplicationSettingsBase(owner, String.Empty)`  
   
- ラッパークラスのインスタンス化中にリフレクションを使用する方法の詳細については<xref:System.Configuration.ApplicationSettingsBase.%23ctor> 、「既定のコンストラクター」を参照してください。  
+ ラッパークラスのインスタンス化中にリフレクションを使用する方法の詳細については、「既定の <xref:System.Configuration.ApplicationSettingsBase.%23ctor> コンストラクター」を参照してください。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="owner" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="owner" /> は <see langword="null" /> です。</exception>
         <altmember cref="T:System.Configuration.SettingsProviderAttribute" />
         <altmember cref="P:System.ComponentModel.Component.Site" />
       </Docs>
@@ -206,6 +209,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="settingsKey" Type="System.String" />
@@ -217,9 +221,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> 、プロパティを`settingsKey`パラメーターの値に初期化します。 このプロパティは、同じアプリケーションドメイン内の設定ラッパークラスの異なるインスタンスを明確化する場合に役立ちます。  
+ このコンストラクターは、<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> プロパティを `settingsKey` パラメーターの値に初期化します。 このプロパティは、同じアプリケーションドメイン内の設定ラッパークラスの異なるインスタンスを明確化する場合に役立ちます。  
   
- ラッパークラスのインスタンス化中にリフレクションを使用する方法の詳細については<xref:System.Configuration.ApplicationSettingsBase.%23ctor> 、「既定のコンストラクター」を参照してください。  
+ ラッパークラスのインスタンス化中にリフレクションを使用する方法の詳細については、「既定の <xref:System.Configuration.ApplicationSettingsBase.%23ctor> コンストラクター」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -244,6 +248,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="owner" Type="System.ComponentModel.IComponent" />
@@ -257,15 +262,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パラメーターによって指定されたオブジェクトは<xref:System.ComponentModel.IComponent> 、このアプリケーション設定クラスの現在のインスタンスの所有者として機能します。 `owner` から<xref:System.Configuration.ApplicationSettingsBase>派生した設定ラッパークラスを初期化するときに、所有者のサイトに<xref:System.Configuration.ISettingsProviderService>対してクエリが実行されます。 存在する場合は、 <xref:System.Configuration.SettingsProviderAttribute>によって指定されたラッパークラスのすべてのプロパティに対して、ネイティブ設定プロバイダーに優先して使用されます。  
+ `owner` パラメーターによって指定された <xref:System.ComponentModel.IComponent> オブジェクトは、このアプリケーション設定クラスの現在のインスタンスの所有者として機能します。 <xref:System.Configuration.ApplicationSettingsBase>から派生した設定ラッパークラスの初期化中に、<xref:System.Configuration.ISettingsProviderService>に対して所有者のサイトが照会されます。 存在する場合は、<xref:System.Configuration.SettingsProviderAttribute>によって指定されたラッパークラスのすべてのプロパティに対して、ネイティブ設定プロバイダーに優先して使用されます。  
   
- このコンストラクターは<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> 、プロパティを`settingsKey`パラメーターの値に初期化します。 このプロパティは、同じアプリケーションドメイン内のラッパークラスの異なるインスタンスを明確化する場合に役立ちます。  
+ このコンストラクターは、<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> プロパティを `settingsKey` パラメーターの値に初期化します。 このプロパティは、同じアプリケーションドメイン内のラッパークラスの異なるインスタンスを明確化する場合に役立ちます。  
   
- ラッパークラスのインスタンス化中にリフレクションを使用する方法の詳細については<xref:System.Configuration.ApplicationSettingsBase.%23ctor> 、「既定のコンストラクター」を参照してください。  
+ ラッパークラスのインスタンス化中にリフレクションを使用する方法の詳細については、「既定の <xref:System.Configuration.ApplicationSettingsBase.%23ctor> コンストラクター」を参照してください。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="owner" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="owner" /> は <see langword="null" /> です。</exception>
         <altmember cref="T:System.Configuration.ISettingsProviderService" />
         <altmember cref="T:System.Configuration.SettingsProviderAttribute" />
         <altmember cref="P:System.Configuration.ApplicationSettingsBase.SettingsKey" />
@@ -289,9 +294,10 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;netcore-3.1">
           <AttributeName>System.ComponentModel.Browsable(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -305,9 +311,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- から<xref:System.Configuration.ApplicationSettingsBase>派生した各設定ラッパークラスには、関連付けられたコンテキストがあります。 コンテキストは、プロパティの使用方法を識別するために、各プロパティの設定プロバイダーに渡されます。 したがって、コンテキストは、関連付けられているアプリケーション設定値を永続化するための最適な方法を設定プロバイダーが決定するのに役立つヒントとして機能します。  
+ <xref:System.Configuration.ApplicationSettingsBase> から派生した各設定ラッパークラスには、関連付けられたコンテキストが関連付けられています。 コンテキストは、プロパティの使用方法を識別するために、各プロパティの設定プロバイダーに渡されます。 したがって、コンテキストは、関連付けられているアプリケーション設定値を永続化するための最適な方法を設定プロバイダーが決定するのに役立つヒントとして機能します。  
   
- これに対し、 <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>プロパティを使用すると、設定プロバイダーは同じラッパークラスの複数のインスタンスをあいまいにすることができます。  
+ これに対し、<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> プロパティを使用すると、設定プロバイダーは同じラッパークラスの複数のインスタンスをあいまいにすることができます。  
   
  ]]></format>
         </remarks>
@@ -336,6 +342,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -351,7 +358,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは、新しいバージョンのアプリケーションのインストール<xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A>中にアプリケーション設定を移行するときに、メソッドと組み合わせて使用されることがよくあります。 <xref:System.Configuration.ApplicationSettingsBase.GetPreviousVersion%2A>  
+ <xref:System.Configuration.ApplicationSettingsBase.GetPreviousVersion%2A> メソッドは、新しいバージョンのアプリケーションのインストール中にアプリケーション設定を移行するときに、<xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A> 方法と組み合わせて使用されることがよくあります。  
   
  ]]></format>
         </remarks>
@@ -382,6 +389,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="xamarinmac-3.0">
@@ -402,13 +410,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティ<xref:System.Configuration.ApplicationSettingsBase.Item%2A>は、インデクサーとも呼ばれ、から<xref:System.Configuration.ApplicationSettingsBase>派生した設定ラッパークラスで定期的に使用されます。 <xref:System.Configuration.ApplicationSettingsBase.Item%2A>ラッパークラスのパブリックプロパティを対応する設定プロパティにバインドします。  
+ <xref:System.Configuration.ApplicationSettingsBase.Item%2A> プロパティは、インデクサーとも呼ばれ、<xref:System.Configuration.ApplicationSettingsBase>から派生した設定ラッパークラスで定期的に使用されます。 <xref:System.Configuration.ApplicationSettingsBase.Item%2A> ラッパークラスのパブリックプロパティを対応する設定プロパティにバインドします。  
   
- <xref:System.Configuration.ApplicationSettingsBase.Item%2A>では、実行される操作に応じていくつかのイベントが発生します。  
+ <xref:System.Configuration.ApplicationSettingsBase.Item%2A> は、実行されている操作に応じていくつかのイベントを発生させます。  
   
--   プロパティが最初に取得<xref:System.Configuration.ApplicationSettingsBase.SettingsLoaded>されたときに、イベントが発生します。  
+-   プロパティが最初に取得されたときに、<xref:System.Configuration.ApplicationSettingsBase.SettingsLoaded> イベントが発生します。  
   
--   プロパティが設定されると、 <xref:System.Configuration.ApplicationSettingsBase.OnSettingChanging%2A>イベントが発生します。 ハンドラーがイベントをキャンセルしない場合、プロパティ値が設定<xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>され、イベントが発生します。  
+-   プロパティが設定されると、<xref:System.Configuration.ApplicationSettingsBase.OnSettingChanging%2A> イベントが発生します。 ハンドラーがイベントをキャンセルしない場合、プロパティ値が設定され、<xref:System.Configuration.ApplicationSettingsBase.PropertyChanged> イベントが発生します。  
   
  ]]></format>
         </remarks>
@@ -438,6 +446,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -454,13 +463,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.ApplicationSettingsBase.OnPropertyChanged%2A> メソッドを使用すると、デリゲートを結び付けずに、派生クラスでイベントを処理することもできます。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生クラスで <see cref="M:System.Configuration.ApplicationSettingsBase.OnPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)" /> をオーバーライドする場合は、登録されているデリゲートがイベントを受け取ることができるように、基本クラスの <see cref="M:System.Configuration.ApplicationSettingsBase.OnPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)" /> メソッドを呼び出してください。</para></block>
+        <block subset="none" type="overrides"><para>派生クラスで <see cref="M:System.Configuration.ApplicationSettingsBase.OnPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)" /> をオーバーライドする場合は、登録されているデリゲートがイベントを受け取ることができるように、基底クラスの <see cref="M:System.Configuration.ApplicationSettingsBase.OnPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)" /> メソッドを呼び出してください。</para></block>
         <altmember cref="E:System.Configuration.ApplicationSettingsBase.PropertyChanged" />
       </Docs>
     </Member>
@@ -482,6 +491,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -498,13 +508,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.ApplicationSettingsBase.OnSettingChanging%2A> メソッドを使用すると、デリゲートを結び付けずに、派生クラスでイベントを処理することもできます。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生クラスで <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingChanging(System.Object,System.Configuration.SettingChangingEventArgs)" /> をオーバーライドする場合は、登録されているデリゲートがイベントを受け取ることができるように、基本クラスの <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingChanging(System.Object,System.Configuration.SettingChangingEventArgs)" /> メソッドを呼び出してください。</para></block>
+        <block subset="none" type="overrides"><para>派生クラスで <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingChanging(System.Object,System.Configuration.SettingChangingEventArgs)" /> をオーバーライドする場合は、登録されているデリゲートがイベントを受け取ることができるように、基底クラスの <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingChanging(System.Object,System.Configuration.SettingChangingEventArgs)" /> メソッドを呼び出してください。</para></block>
         <altmember cref="E:System.Configuration.ApplicationSettingsBase.SettingChanging" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsLoaded(System.Object,System.Configuration.SettingsLoadedEventArgs)" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsSaving(System.Object,System.ComponentModel.CancelEventArgs)" />
@@ -528,6 +538,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -544,13 +555,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.ApplicationSettingsBase.OnSettingsLoaded%2A> メソッドを使用すると、デリゲートを結び付けずに、派生クラスでイベントを処理することもできます。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生クラスで <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsLoaded(System.Object,System.Configuration.SettingsLoadedEventArgs)" /> をオーバーライドする場合は、登録されているデリゲートがイベントを受け取ることができるように、基本クラスの <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsLoaded(System.Object,System.Configuration.SettingsLoadedEventArgs)" /> メソッドを呼び出してください。</para></block>
+        <block subset="none" type="overrides"><para>派生クラスで <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsLoaded(System.Object,System.Configuration.SettingsLoadedEventArgs)" /> をオーバーライドする場合は、登録されているデリゲートがイベントを受け取ることができるように、基底クラスの <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsLoaded(System.Object,System.Configuration.SettingsLoadedEventArgs)" /> メソッドを呼び出してください。</para></block>
         <altmember cref="E:System.Configuration.ApplicationSettingsBase.SettingsLoaded" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.OnSettingChanging(System.Object,System.Configuration.SettingChangingEventArgs)" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsSaving(System.Object,System.ComponentModel.CancelEventArgs)" />
@@ -574,6 +585,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -590,13 +602,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、次を参照してください。[処理とイベントの発生](~/docs/standard/events/index.md)します。  
+ イベントを発生させると、イベント ハンドラーがデリゲートから呼び出されます。 詳細については、[処理とイベントの発生](~/docs/standard/events/index.md) を参照してください。  
   
  <xref:System.Configuration.ApplicationSettingsBase.OnSettingsSaving%2A> メソッドを使用すると、デリゲートを結び付けずに、派生クラスでイベントを処理することもできます。 派生クラスでイベントを処理する場合は、この手法をお勧めします。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>派生クラスで <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsSaving(System.Object,System.ComponentModel.CancelEventArgs)" /> をオーバーライドする場合は、登録されているデリゲートがイベントを受け取ることができるように、基本クラスの <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsSaving(System.Object,System.ComponentModel.CancelEventArgs)" /> メソッドを呼び出してください。</para></block>
+        <block subset="none" type="overrides"><para>派生クラスで <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsSaving(System.Object,System.ComponentModel.CancelEventArgs)" /> をオーバーライドする場合は、登録されているデリゲートがイベントを受け取ることができるように、基底クラスの <see cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsSaving(System.Object,System.ComponentModel.CancelEventArgs)" /> メソッドを呼び出してください。</para></block>
         <altmember cref="E:System.Configuration.ApplicationSettingsBase.SettingsSaving" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.OnSettingChanging(System.Object,System.Configuration.SettingChangingEventArgs)" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.OnSettingsLoaded(System.Object,System.Configuration.SettingsLoadedEventArgs)" />
@@ -620,9 +632,10 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;netcore-3.1">
           <AttributeName>System.ComponentModel.Browsable(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -636,9 +649,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティのアクセサーは`get` 、から<xref:System.Configuration.ApplicationSettingsBase>派生した設定ラッパークラスのメタデータに反映され、使用可能なアプリケーション設定プロパティのセットを動的に決定します。 <xref:System.Configuration.ApplicationSettingsBase.Properties%2A>  
+ <xref:System.Configuration.ApplicationSettingsBase.Properties%2A> プロパティの `get` アクセサーは、<xref:System.Configuration.ApplicationSettingsBase>から派生した設定ラッパークラスのメタデータを反映して、使用可能なアプリケーション設定プロパティのセットを動的に決定します。  
   
- クラス<xref:System.Configuration.ApplicationSettingsBase>は、アプリケーション設定の特定の特性 (名前、プロパティの型、設定プロバイダー、既定値、読み取り専用の状態、シリアル化の設定など) をネイティブに認識します。 これらの特性は、 <xref:System.Configuration.SettingsProperty>クラスのプロパティとしてミラー化されます。 Settings プロパティのその他のすべての属性は、関連する設定プロバイダーに渡されるだけです。  
+ <xref:System.Configuration.ApplicationSettingsBase> クラスは、名前、プロパティの型、設定プロバイダー、既定値、読み取り専用の状態、シリアル化の設定など、アプリケーション設定の特定の特性をネイティブに認識します。 これらの特性は、<xref:System.Configuration.SettingsProperty> クラスのプロパティとしてミラー化されます。 Settings プロパティのその他のすべての属性は、関連する設定プロバイダーに渡されるだけです。  
   
  ]]></format>
         </remarks>
@@ -671,6 +684,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ComponentModel.PropertyChangedEventHandler</ReturnType>
@@ -681,9 +695,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベント<xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>は、 <xref:System.Configuration.ApplicationSettingsBase.Item%2A>メソッドのアクセサーを使用し`set`て設定プロパティが変更された場合、 <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>またはメソッドまたは<xref:System.Configuration.ApplicationSettingsBase.Reset%2A>メソッドへの呼び出しが行われたときに復元されるすべてのプロパティに対して発生します。  
+ <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged> イベントは、<xref:System.Configuration.ApplicationSettingsBase.Item%2A> メソッドの `set` アクセサーを使用して設定プロパティが変更された場合、または <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> または <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> メソッドに対して呼び出しが行われたときに復元されるすべてのプロパティに対して発生します。  
   
- このクラスに対応`PropertyChanging`するイベントはありません。代わりに、 <xref:System.Configuration.ApplicationSettingsBase.SettingChanging>イベントを参照してください。  
+ このクラスに対応する `PropertyChanging` イベントがありません。代わりに、<xref:System.Configuration.ApplicationSettingsBase.SettingChanging> イベントを参照してください。  
   
  ]]></format>
         </remarks>
@@ -713,9 +727,10 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;netcore-3.1">
           <AttributeName>System.ComponentModel.Browsable(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -746,9 +761,10 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;netcore-3.1">
           <AttributeName>System.ComponentModel.Browsable(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -762,7 +778,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- は<xref:System.Configuration.SettingsProviderAttribute> 、設定ラッパークラスまたは個々の設定プロパティによって使用される設定プロバイダーを決定します。 この属性が指定されていない場合、クライアントアプリケーション<xref:System.Configuration.LocalFileSettingsProvider>はを使用します。  
+ <xref:System.Configuration.SettingsProviderAttribute> によって、設定ラッパークラスまたは個々の設定プロパティによって使用される設定プロバイダーが決まります。 この属性が指定されていない場合、クライアントアプリケーションは <xref:System.Configuration.LocalFileSettingsProvider>を使用します。  
   
  ]]></format>
         </remarks>
@@ -789,6 +805,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -800,18 +817,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Configuration.ApplicationSettingsBase.Reload%2A>は、現在キャッシュされているプロパティ値をクリアし、後でアクセスされるときに、永続ストレージからこれらの値を再読み込みします。 このメソッドは、次のアクションを実行します。  
+ <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> メソッドは、現在キャッシュされているプロパティ値をクリアし、その後にアクセスしたときに永続ストレージからこれらの値を再読み込みします。 このメソッドは、次のアクションを実行します。  
   
--   現在キャッシュされているプロパティをクリアするには、 <xref:System.Configuration.SettingsBase.PropertyValues%2A>プロパティによって表されるコレクションをクリアします。  
+-   現在キャッシュされているプロパティをクリアするには、<xref:System.Configuration.SettingsBase.PropertyValues%2A> プロパティによって表されるコレクションをクリアします。  
   
--   このメソッドは<xref:System.Configuration.ApplicationSettingsBase.PropertyChanged> 、 <xref:System.Configuration.ApplicationSettingsBase.Properties%2A>コレクションのすべてのメンバーに対してイベントを発生させます。  
+-   このメソッドは、<xref:System.Configuration.ApplicationSettingsBase.Properties%2A> コレクションのすべてのメンバーに対して <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged> イベントを発生させます。  
   
- <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>と<xref:System.Configuration.ApplicationSettingsBase.Reset%2A>では、前者が保存されたアプリケーション設定値の最後のセットを読み込むのに対し、後者は保存された既定値を読み込みます。  
+ <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> は <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> とは対照的に、前者は保存されているアプリケーション設定値の最後のセットを読み込みますが、後者は保存された既定値を読み込みます。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>という名前`btnReload`のボタンの<xref:System.Windows.Forms.Control.Click>イベントハンドラーの本体で呼び出されるメソッドを示しています。 この呼び出しの結果として、アプリケーションの設定に現在格納されている値が、対応するプロパティに再読み込みされます。 完全なコード例については<xref:System.Configuration.ApplicationSettingsBase> 、クラスの概要に記載されています。  
+ 次のコード例は、`btnReload`という名前のボタンの <xref:System.Windows.Forms.Control.Click> イベントハンドラーの本体で呼び出される <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> メソッドを示しています。 この呼び出しの結果として、アプリケーションの設定に現在格納されている値が、対応するプロパティに再読み込みされます。 完全なコード例については、「<xref:System.Configuration.ApplicationSettingsBase> クラスの概要」をご覧ください。  
   
  [!code-cpp[AppSettingsSample#6](~/samples/snippets/cpp/VS_Snippets_Winforms/AppSettingsSample/cpp/AppSettingsSample.cpp#6)]
  [!code-csharp[AppSettingsSample#6](~/samples/snippets/csharp/VS_Snippets_Winforms/AppSettingsSample/CS/AppSettingsSample.cs#6)]
@@ -846,6 +863,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -857,18 +875,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Configuration.ApplicationSettingsBase.Reset%2A>は、各アプリケーション設定の現在の永続化値を復元することによって、ユーザースコープの設定プロパティを上書きします。 このメソッドは、次のアクションを実行します。  
+ <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> メソッドは、各アプリケーション設定の現在の永続化値を復元することによって、ユーザースコープの設定プロパティを上書きします。 このメソッドは、次のアクションを実行します。  
   
--   このメソッドは<xref:System.Configuration.IApplicationSettingsProvider.Reset%2A?displayProperty=nameWithType> 、この省略可能なメソッドをサポートするすべての設定プロバイダーでメソッドを呼び出します。  
+-   このメソッドは、この省略可能なメソッドをサポートするすべての設定プロバイダーで <xref:System.Configuration.IApplicationSettingsProvider.Reset%2A?displayProperty=nameWithType> メソッドを呼び出します。  
   
--   設定プロパティの<xref:System.Configuration.ApplicationSettingsBase.Reload%2A>値を強制的に更新するには、メソッドを呼び出します。  
+-   <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> メソッドを呼び出して、設定のプロパティ値を強制的に更新します。  
   
- <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>と<xref:System.Configuration.ApplicationSettingsBase.Reset%2A>では、前者が保存されたアプリケーション設定値の最後のセットを読み込むのに対し、後者は保存された既定値を読み込みます。  
+ <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> は <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> とは対照的に、前者は保存されているアプリケーション設定値の最後のセットを読み込みますが、後者は保存された既定値を読み込みます。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Configuration.ApplicationSettingsBase.Reset%2A>という名前`btnReset`のボタンの<xref:System.Windows.Forms.Control.Click>イベントハンドラーの本体で呼び出されるメソッドを示しています。 この呼び出しの結果として、アプリケーション設定に格納されている既定値が、対応するプロパティに再読み込みされます。 完全なコード例については<xref:System.Configuration.ApplicationSettingsBase> 、クラスの概要に記載されています。  
+ 次のコード例は、`btnReset`という名前のボタンの <xref:System.Windows.Forms.Control.Click> イベントハンドラーの本体で呼び出される <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> メソッドを示しています。 この呼び出しの結果として、アプリケーション設定に格納されている既定値が、対応するプロパティに再読み込みされます。 完全なコード例については、「<xref:System.Configuration.ApplicationSettingsBase> クラスの概要」をご覧ください。  
   
  [!code-cpp[AppSettingsSample#5](~/samples/snippets/cpp/VS_Snippets_Winforms/AppSettingsSample/cpp/AppSettingsSample.cpp#5)]
  [!code-csharp[AppSettingsSample#5](~/samples/snippets/csharp/VS_Snippets_Winforms/AppSettingsSample/CS/AppSettingsSample.cs#5)]
@@ -900,6 +918,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -911,21 +930,21 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Configuration.ApplicationSettingsBase.Save%2A>は、各設定プロパティの現在の値を、関連付けられているデータストアに書き込みます。 このメソッドは、プロパティごとに、 <xref:System.Configuration.SettingsProvider.SetPropertyValues%2A>関連付けられた設定プロバイダーのメソッドを呼び出します。  
+ <xref:System.Configuration.ApplicationSettingsBase.Save%2A> メソッドは、各設定プロパティの現在の値を、関連付けられているデータストアに書き込みます。 このメソッドは、プロパティごとに、関連付けられた設定プロバイダーの <xref:System.Configuration.SettingsProvider.SetPropertyValues%2A> メソッドを呼び出します。  
   
- このメソッドは、値が書き込まれる前にイベントを<xref:System.Configuration.ApplicationSettingsBase.SettingsSaving>発生させるという点で、基本クラスの実装とは異なります。  
+ このメソッドは、値が書き込まれる前に <xref:System.Configuration.ApplicationSettingsBase.SettingsSaving> イベントを発生させるという点で、基本クラスの実装とは異なります。  
   
- 定義されている設定がアプリケーションスコープ設定のみ<xref:System.Configuration.ApplicationSettingsBase.Save%2A>の場合、は無効になり、既定<xref:System.Configuration.LocalFileSettingsProvider>のを使用して呼び出された場合はエラーを返しません。 <xref:System.Configuration.LocalFileSettingsProvider>ユーザースコープの設定のみを保存します。  
+ 定義されている設定がアプリケーションスコープ設定のみの場合、<xref:System.Configuration.ApplicationSettingsBase.Save%2A> は無効になり、既定の <xref:System.Configuration.LocalFileSettingsProvider>で呼び出された場合はエラーを返しません。 <xref:System.Configuration.LocalFileSettingsProvider> は、ユーザースコープの設定のみを保存します。  
   
 > [!IMPORTANT]
->  ラッパークラスの初期化中にアプリケーション設定の値が自動的に読み込まれるため、対応する Load メソッドはありません。 これに対し、これらの値は、アプリケーションの終了時に自動的には保存されません。 そのため、アプリケーション設定の現在<xref:System.Configuration.ApplicationSettingsBase.Save%2A>の値を永続化するには、メソッドを明示的に呼び出す必要があります。 これは、通常、プライマリ<xref:System.Windows.Forms.Form.Closing>またはを含む<xref:System.Windows.Forms.Form>のイベントハンドラーで実行されます。  
+>  ラッパークラスの初期化中にアプリケーション設定の値が自動的に読み込まれるため、対応する Load メソッドはありません。 これに対し、これらの値は、アプリケーションの終了時に自動的には保存されません。 したがって、アプリケーション設定の現在の値を保持するには、<xref:System.Configuration.ApplicationSettingsBase.Save%2A> メソッドを明示的に呼び出す必要があります。 これは、通常、プライマリまたはそれを含む <xref:System.Windows.Forms.Form>の <xref:System.Windows.Forms.Form.Closing> イベントハンドラーで実行されます。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Configuration.ApplicationSettingsBase.Save%2A>プライマリフォームの<xref:System.Windows.Forms.Form.Closing>イベントハンドラーから呼び出されるメソッドを示しています。 また、このメソッドは、フォームの<xref:System.Windows.Forms.Control.Text%2A>プロパティに関連付けられた設定プロパティに追加の期間を追加します。  
+ 次のコード例は、プライマリフォームの <xref:System.Windows.Forms.Form.Closing> イベントハンドラーから呼び出される <xref:System.Configuration.ApplicationSettingsBase.Save%2A> メソッドを示しています。 また、このメソッドは、フォームの <xref:System.Windows.Forms.Control.Text%2A> プロパティに関連付けられた設定プロパティに追加の期間を追加します。  
   
- 完全なコード例については<xref:System.Configuration.ApplicationSettingsBase> 、クラスの概要に記載されています。  
+ 完全なコード例については、「<xref:System.Configuration.ApplicationSettingsBase> クラスの概要」をご覧ください。  
   
  [!code-cpp[AppSettingsSample#3](~/samples/snippets/cpp/VS_Snippets_Winforms/AppSettingsSample/cpp/AppSettingsSample.cpp#3)]
  [!code-csharp[AppSettingsSample#3](~/samples/snippets/csharp/VS_Snippets_Winforms/AppSettingsSample/CS/AppSettingsSample.cs#3)]
@@ -958,6 +977,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Configuration.SettingChangingEventHandler</ReturnType>
@@ -968,16 +988,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベント<xref:System.Configuration.ApplicationSettingsBase.SettingChanging>は、 <xref:System.Configuration.ApplicationSettingsBase.Item%2A>メソッドによってアプリケーション設定値プロパティが変更される前に発生します。 このイベントは、 <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>メソッドまたは<xref:System.Configuration.ApplicationSettingsBase.Reset%2A>メソッドが呼び出されたときには発生しません。 <xref:System.Configuration.ApplicationSettingsBase.SettingChanging>は、イベントデータクラス<xref:System.Configuration.SettingChangingEventArgs>を使用して取り消すことができます。  
+ <xref:System.Configuration.ApplicationSettingsBase.SettingChanging> イベントは、アプリケーション設定の value プロパティが <xref:System.Configuration.ApplicationSettingsBase.Item%2A> メソッドによって変更される前に発生します。 このイベントは、<xref:System.Configuration.ApplicationSettingsBase.Reload%2A> メソッドまたは <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> メソッドが呼び出されたときには発生しません。 <xref:System.Configuration.ApplicationSettingsBase.SettingChanging> は、<xref:System.Configuration.SettingChangingEventArgs> イベントデータクラスを使用して取り消すことができます。  
   
- 通常、イベントを<xref:System.Configuration.ApplicationSettingsBase.SettingChanging>使用して、個々の設定プロパティの即時検証を処理します。 検証の詳細については[、「」を参照してください。アプリケーション設定](~/docs/framework/winforms/advanced/how-to-validate-application-settings.md)を検証します。  
+ 通常は、<xref:System.Configuration.ApplicationSettingsBase.SettingChanging> イベントを使用して、個々の設定プロパティの即時検証を処理します。 検証の詳細については、「[方法: アプリケーション設定を検証する](~/docs/framework/winforms/advanced/how-to-validate-application-settings.md)」を参照してください。  
   
- このクラスに対応`SettingChanged`するイベントはありません。代わりに、 <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>イベントを参照してください。  
+ このクラスに対応する `SettingChanged` イベントがありません。代わりに、<xref:System.Configuration.ApplicationSettingsBase.PropertyChanged> イベントを参照してください。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Configuration.ApplicationSettingsBase.SettingChanging>から<xref:System.Configuration.ApplicationSettingsBase>派生したラッパークラス`FormSettings`である型のオブジェクトのイベントハンドラーを示しています。 ハンドラーは、という名前`tbStatus`のテキストボックスにイベント情報を表示します。 完全なコード例については<xref:System.Configuration.ApplicationSettingsBase> 、クラスの概要に記載されています。  
+ 次のコード例は、`FormSettings`型のオブジェクトの <xref:System.Configuration.ApplicationSettingsBase.SettingChanging> イベントハンドラーを示しています。これは <xref:System.Configuration.ApplicationSettingsBase>から派生したラッパークラスです。 ハンドラーは、`tbStatus`という名前のテキストボックスにイベント情報を表示します。 完全なコード例については、「<xref:System.Configuration.ApplicationSettingsBase> クラスの概要」をご覧ください。  
   
  [!code-cpp[AppSettingsSample#7](~/samples/snippets/cpp/VS_Snippets_Winforms/AppSettingsSample/cpp/AppSettingsSample.cpp#7)]
  [!code-csharp[AppSettingsSample#7](~/samples/snippets/csharp/VS_Snippets_Winforms/AppSettingsSample/CS/AppSettingsSample.cs#7)]
@@ -1010,9 +1030,10 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0">
+        <Attribute FrameworkAlternate="netcore-2.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinmac-3.0;netcore-2.1;netframework-4.8;dotnet-plat-ext-2.1;netcore-2.2;netcore-3.0;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0;dotnet-plat-ext-3.1;netcore-3.1">
           <AttributeName>System.ComponentModel.Browsable(false)</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -1029,17 +1050,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>プロパティは、同じアプリケーション設定クラスの複数のインスタンスを明確に区別するために、クライアントコード (特に設定プロバイダー) を有効にするために用意されています。  
+ <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> プロパティは、同じアプリケーション設定クラスの複数のインスタンスを明確に区別するために、クライアントコード (特に設定プロバイダー) を有効にするために用意されています。  
   
- 設定ラッパークラスがシングルトンパターンを使用して設計されていない限り、1つのアプリケーションに同じアプリケーション設定クラスの複数のインスタンスが存在する可能性があります。 の<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>値は、プロパティ値がどのように共有されるかに応じて設定する必要があります。  
+ 設定ラッパークラスがシングルトンパターンを使用して設計されていない限り、1つのアプリケーションに同じアプリケーション設定クラスの複数のインスタンスが存在する可能性があります。 <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> の値は、プロパティ値がどのように共有されるかに応じて設定する必要があります。  
   
--   ラッパーの設定プロパティが、同じアプリケーション<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>内のラッパーのすべてのインスタンスで共有されることを想定している場合は、すべてのインスタンスで同じ値を持つ必要があります。 これは、 <xref:System.Configuration.ApplicationSettingsBase>クラスの既定の動作です。  
+-   ラッパーの設定プロパティが、同じアプリケーション内のラッパーのすべてのインスタンスで共有されることを想定している場合、<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> のすべてのインスタンスで同じ値を持つ必要があります。 これは、<xref:System.Configuration.ApplicationSettingsBase> クラスの既定の動作です。  
   
--   ラッパーの設定プロパティがインスタンスごとに使用されるように設定さ<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>れている場合、はすべてのインスタンスに対して一意の値を持つ必要があります。 コンストラクターの<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>バージョンを使用すると、一意の文字列に初期化できます。 <xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.String%29>  
+-   ラッパーの設定プロパティがインスタンスごとに使用されることを想定している場合、<xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> はすべてのインスタンスに対して一意の値を持つ必要があります。 コンストラクターの <xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.String%29> バージョンを使用すると、一意の文字列に <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> を初期化できます。  
   
- これに対して<xref:System.Configuration.ApplicationSettingsBase.Context%2A> 、プロパティは設定プロバイダーにヒントを提供し、効率的で適切な方法で値を永続化できるようにします。  
+ これに対し、<xref:System.Configuration.ApplicationSettingsBase.Context%2A> プロパティは、設定プロバイダーにヒントを提供して、効率的で正しい方法で値を永続化できるようにします。  
   
- クラス<xref:System.Configuration.SettingChangingEventArgs>には、 <xref:System.Configuration.ApplicationSettingsBase.SettingChanging>イベント<xref:System.Configuration.SettingChangingEventArgs.SettingKey%2A>のソースを識別するのに役立つ類似したプロパティが含まれています。  
+ <xref:System.Configuration.SettingChangingEventArgs> クラスには、<xref:System.Configuration.ApplicationSettingsBase.SettingChanging> イベントのソースを特定するのに役立つ類似した <xref:System.Configuration.SettingChangingEventArgs.SettingKey%2A> プロパティが含まれています。  
   
  ]]></format>
         </remarks>
@@ -1065,6 +1086,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Configuration.SettingsLoadedEventHandler</ReturnType>
@@ -1075,7 +1097,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベントが発生するのは、 `get`最初に<xref:System.Configuration.ApplicationSettingsBase.Item%2A>使用された構成プロパティの初期アクセスが行われた後に限られます。通常は、メソッドを使用します。 <xref:System.Configuration.ApplicationSettingsBase.SettingsLoaded> その後のアクセスでは、ローカルにキャッシュされている settings プロパティの値を使用します。 メソッド<xref:System.Configuration.ApplicationSettingsBase.Reset%2A> と<xref:System.Configuration.ApplicationSettingsBase.Reload%2A>メソッドは、キャッシュされたすべての値をクリアし、後続のプロパティアクセス時にこのイベントが再び発生するようにします。  
+ <xref:System.Configuration.ApplicationSettingsBase.SettingsLoaded> イベントは、使用される最初の構成プロパティの最初の `get` アクセスの後にのみ発生します。通常は <xref:System.Configuration.ApplicationSettingsBase.Item%2A> メソッドを使用します。 その後のアクセスでは、ローカルにキャッシュされている settings プロパティの値を使用します。 <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> メソッドと <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> メソッドは、キャッシュされているすべての値をクリアし、後続のプロパティアクセス時にこのイベントが再び発生するようにします。  
   
  ]]></format>
         </remarks>
@@ -1104,6 +1126,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Configuration.SettingsSavingEventHandler</ReturnType>
@@ -1114,12 +1137,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- イベントは、アプリケーション設定の<xref:System.Configuration.ApplicationSettingsBase.Save%2A>プロパティを関連付けられたデータストアに格納する前に、メソッドによって発生します。 <xref:System.Configuration.ApplicationSettingsBase.SettingsSaving> 関連付けられたイベントハンドラーは、このイベントを取り消すことができます。  
+ <xref:System.Configuration.ApplicationSettingsBase.SettingsSaving> イベントは、アプリケーション設定のプロパティを関連付けられたデータストアに格納する前に、<xref:System.Configuration.ApplicationSettingsBase.Save%2A> メソッドによって発生します。 関連付けられたイベントハンドラーは、このイベントを取り消すことができます。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Configuration.ApplicationSettingsBase.SettingsSaving>から<xref:System.Configuration.ApplicationSettingsBase>派生したラッパークラス`FormSettings`である型のオブジェクトのイベントハンドラーを示しています。 ハンドラーは、ユーザーに対してクエリを行って、現在のアプリケーション設定プロパティ値を保存します。 完全なコード例については<xref:System.Configuration.ApplicationSettingsBase> 、クラスの概要に記載されています。  
+ 次のコード例は、`FormSettings`型のオブジェクトの <xref:System.Configuration.ApplicationSettingsBase.SettingsSaving> イベントハンドラーを示しています。これは <xref:System.Configuration.ApplicationSettingsBase>から派生したラッパークラスです。 ハンドラーは、ユーザーに対してクエリを行って、現在のアプリケーション設定プロパティ値を保存します。 完全なコード例については、「<xref:System.Configuration.ApplicationSettingsBase> クラスの概要」をご覧ください。  
   
  [!code-cpp[AppSettingsSample#8](~/samples/snippets/cpp/VS_Snippets_Winforms/AppSettingsSample/cpp/AppSettingsSample.cpp#8)]
  [!code-csharp[AppSettingsSample#8](~/samples/snippets/csharp/VS_Snippets_Winforms/AppSettingsSample/CS/AppSettingsSample.cs#8)]
@@ -1149,6 +1172,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -1160,13 +1184,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A>は、アプリケーションの新しいバージョンへのスムーズな移行を保証するために、次の2つのアクションを実行します。  
+ <xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A> メソッドは、アプリケーションの新しいバージョンへのスムーズな移行を保証するために、次の2つのアクションを実行します。  
   
--   この<xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A?displayProperty=nameWithType>メソッドは、インターフェイスが<xref:System.Configuration.IApplicationSettingsProvider>実装されていることを前提として、アップグレードされたアプリケーションが存在することを、そのメソッドの呼び出しによって、対応するすべての設定プロバイダーに通知します。 設定ラッパークラスがで<xref:System.Configuration.NoSettingsVersionUpgradeAttribute>マークされている場合、このアクションは実行されません。  
+-   このメソッドは、<xref:System.Configuration.IApplicationSettingsProvider> インターフェイスが実装されていることを前提として、アップグレードされたアプリケーションが存在することを、<xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A?displayProperty=nameWithType> メソッドの呼び出しを通じて、対応するすべての設定プロバイダーに通知します。 設定ラッパークラスが <xref:System.Configuration.NoSettingsVersionUpgradeAttribute>でマークされている場合、このアクションは実行されません。  
   
 -   すべてのアプリケーション設定の値が再読み込みされます。  
   
- の既定の動作をオーバーライドし<xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A>て、カスタムのアップグレードまたはマージ動作を実装することができます。 以前の<xref:System.Configuration.ApplicationSettingsBase.GetPreviousVersion%2A>バージョンのアプリケーションの設定の個別の値を取得するには、メソッドを使用します。 カスタムアップグレードの動作の例を次に示します。  
+ <xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A> の既定の動作をオーバーライドして、カスタムのアップグレードまたはマージ動作を実装することができます。 以前のバージョンのアプリケーションの設定の個別の値を取得するには、<xref:System.Configuration.ApplicationSettingsBase.GetPreviousVersion%2A> メソッドを使用します。 カスタムアップグレードの動作の例を次に示します。  
   
 -   新しいポリシーの既定値を使用して、以前のユーザー指定値または以前の既定値の1つ以上を上書きします。  
   

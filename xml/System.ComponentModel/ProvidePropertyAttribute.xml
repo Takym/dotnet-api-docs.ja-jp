@@ -1,5 +1,5 @@
 <Type Name="ProvidePropertyAttribute" FullName="System.ComponentModel.ProvidePropertyAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e01cc29512320db22e418bb4cd84293f478619c7" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72406673" /></Metadata><TypeSignature Language="C#" Value="public sealed class ProvidePropertyAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="de95fdc1324d23815a75ab0186b6aaa9db678e05" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75146194" /></Metadata><TypeSignature Language="C#" Value="public sealed class ProvidePropertyAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ProvidePropertyAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.ProvidePropertyAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ProvidePropertyAttribute&#xA;Inherits Attribute" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System</AssemblyName>
@@ -28,7 +29,7 @@
   </Base>
   <Interfaces />
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.AttributeUsage(System.AttributeTargets.Class, AllowMultiple=true)</AttributeName>
     </Attribute>
   </Attributes>
@@ -38,16 +39,16 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この属性を使用してクラスをマークすると、指定した名前の extender プロパティを作成するようにコードジェネレーターに指示します。 マークされたクラスは @no__t 0 を実装する必要があります。 このため、新しいプロパティは、コンテナー内の他のコンポーネントで使用できます。  
+ この属性を使用してクラスをマークすると、指定した名前の extender プロパティを作成するようにコードジェネレーターに指示します。 マークされたクラスは <xref:System.ComponentModel.IExtenderProvider>を実装する必要があります。 このため、新しいプロパティは、コンテナー内の他のコンポーネントで使用できます。  
   
- マークされたクラス内で `Get` \<name > および `Set` \<name > メソッドを実装する必要があります。 たとえば、クラスに [型プロパティ ("PropertyName")] を指定した場合は、`GetPropertyName` および `SetPropertyName` の各メソッドを実装する必要があります。 新しいプロパティが extender プロパティになるように指定するには、<xref:System.ComponentModel.IExtenderProvider> から実装する必要があります。また、@no__t 1 のメソッドも実装する必要があります。  
+ マークされたクラス内で `Get` \<name > を実装し、\<name > メソッドを `Set` する必要があります。 たとえば、クラスに [型プロパティ ("PropertyName")] を指定した場合は、`GetPropertyName` メソッドと `SetPropertyName` メソッドを実装する必要があります。 新しいプロパティが extender プロパティになるように指定するには、<xref:System.ComponentModel.IExtenderProvider>から実装する必要があります。また、`CanExtend` メソッドも実装する必要があります。  
   
  詳細については、「[属性](~/docs/standard/attributes/index.md)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、`MyClass` を <xref:System.ComponentModel.ProvidePropertyAttribute> にマークします。これは、コンパイラに対して、`GetMyProperty` および `SetMyProperty` メソッドから `MyProperty` という名前のプロパティを作成するように指示します。  
+ 次の例では、`MyClass` を、`GetMyProperty` および `SetMyProperty` メソッドから `MyProperty` という名前のプロパティを作成するようにコンパイラに指示する <xref:System.ComponentModel.ProvidePropertyAttribute> でマークします。  
   
  [!code-cpp[Classic ProvidePropertyAttribute Example#1](~/samples/snippets/cpp/VS_Snippets_Winforms/Classic ProvidePropertyAttribute Example/CPP/source.cpp#1)]
  [!code-csharp[Classic ProvidePropertyAttribute Example#1](~/samples/snippets/csharp/VS_Snippets_Winforms/Classic ProvidePropertyAttribute Example/CS/source.cs#1)]
@@ -80,6 +81,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -122,6 +124,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -159,6 +162,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -198,6 +202,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -234,6 +239,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -274,6 +280,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -325,6 +332,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>

@@ -1,5 +1,5 @@
 <Type Name="TypeDelegator" FullName="System.Reflection.TypeDelegator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="259e8edfdd525fac551663a8a1965528dcb39160" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69276096" /></Metadata><TypeSignature Language="C#" Value="public class TypeDelegator : System.Reflection.TypeInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0278f2d1a935e5608a1eaa1a6148dfef68908608" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75095039" /></Metadata><TypeSignature Language="C#" Value="public class TypeDelegator : System.Reflection.TypeInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit TypeDelegator extends System.Reflection.TypeInfo" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.TypeDelegator" />
   <TypeSignature Language="VB.NET" Value="Public Class TypeDelegator&#xA;Inherits TypeInfo" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Reflection.TypeInfo</BaseTypeName>
@@ -41,20 +42,20 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この型から派生し、カスタマイズを提供する必要があるメンバーと、プログラムで必要であり、によって<xref:System.Reflection.TypeDelegator>実装されていないメンバーだけをオーバーライドします。  
+ この型から派生し、カスタマイズを提供する必要があるメンバーと、プログラムで必要であり、まだ <xref:System.Reflection.TypeDelegator>によって実装されていないメンバーだけをオーバーライドします。  
   
- <xref:System.Reflection.TypeDelegator>はから<xref:System.Type?displayProperty=nameWithType>派生し、の<xref:System.Type>プロパティおよびメソッドの大部分を実装します。 が実装する各メンバーに<xref:System.Reflection.TypeDelegator>ついて、は、コンストラクターの引数と<xref:System.Type>して指定された内部オブジェクトの対応するメンバーに自動的にデリゲートします。 この内部<xref:System.Type>オブジェクトは、 `protected` <xref:System.Reflection.TypeDelegator.typeImpl>フィールドによって派生クラスに公開されます。  
+ <xref:System.Reflection.TypeDelegator> は <xref:System.Type?displayProperty=nameWithType> から派生し、<xref:System.Type>のプロパティおよびメソッドの大部分を実装します。 が実装する各メンバーに対して、<xref:System.Reflection.TypeDelegator> は、コンストラクターに引数として渡される内部 <xref:System.Type> オブジェクトの対応するメンバーに自動的にデリゲートします。 この内部 <xref:System.Type> オブジェクトは、`protected`<xref:System.Reflection.TypeDelegator.typeImpl> フィールドによって派生クラスに公開されます。  
   
 > [!NOTE]
->  メンバー自体が<xref:System.Reflection.TypeDelegator>から<xref:System.Type>継承されている場合でも、の一部のメンバーに実装があります。 このような場合、実装は、"Impl" `protected`で終わる名前を持つオーバーライドされたメソッドによって提供されます。 たとえば、 <xref:System.Reflection.TypeDelegator.GetMethods%2A>メソッドのすべてのオーバーロードの実装は、オーバーライド<xref:System.Reflection.TypeDelegator.GetMethodImpl%2A>されたメソッドによって提供されます。 や<xref:System.Type.IsPublic%2A> <xref:System.Reflection.TypeDelegator.GetAttributeFlagsImpl%2A>などの継承されたプロパティの実装は、オーバーライドされたメソッドによって提供されます。 <xref:System.Type.IsNestedAssembly%2A>  
+>  メンバー自体が <xref:System.Type>から継承されている場合でも、<xref:System.Reflection.TypeDelegator> の一部のメンバーに実装があります。 このような場合、実装はオーバーライドされた `protected` メソッドによって提供され、名前は "Impl" で終了します。 たとえば、<xref:System.Reflection.TypeDelegator.GetMethods%2A> メソッドのすべてのオーバーロードの実装は、オーバーライドされた <xref:System.Reflection.TypeDelegator.GetMethodImpl%2A> メソッドによって提供されます。 <xref:System.Type.IsPublic%2A> や <xref:System.Type.IsNestedAssembly%2A> など、継承されたプロパティの実装は、オーバーライドされた <xref:System.Reflection.TypeDelegator.GetAttributeFlagsImpl%2A> メソッドによって提供されます。  
   
- 派生クラスは、オブジェクトを<xref:System.Type>パラメーターとして受け取り、そのオブジェクトを<xref:System.Reflection.TypeDelegator.%23ctor%28System.Type%29>コンストラクターに渡すだけでなく、内部<xref:System.Type>オブジェクトを他の方法で設定できるパブリックコンストラクターを提供できます。  
+ 派生クラスは、パラメーターとして <xref:System.Type> オブジェクトを受け取り、そのオブジェクトを <xref:System.Reflection.TypeDelegator.%23ctor%28System.Type%29> コンストラクターに渡すだけのパブリックコンストラクターを提供したり、他の方法で内部 <xref:System.Type> オブジェクトを設定したりすることができます。  
   
- 派生クラスがによって<xref:System.Reflection.TypeDelegator>実装されていないメンバーを使用する場合は、そのメンバーをオーバーライドし、実装を提供する必要があります。 最も簡単な実装は、 <xref:System.Type> <xref:System.Reflection.TypeDelegator.typeImpl>フィールドによって公開される内部オブジェクトで対応するメンバーを呼び出すことですが、アプリケーションに必要な任意の実装を提供できます。 これらのメンバーがアプリケーションで使用されていない場合や、アプリケーションが ( <xref:System.CodeDom.CodeTypeReference.%23ctor%28System.Type%29?displayProperty=nameWithType>コンストラクターなどによって) 呼び出すライブラリ関数によって使用されていない場合は、これらのメンバーをオーバーライドする必要はありません。  
+ 派生クラスが <xref:System.Reflection.TypeDelegator>によって実装されていないメンバーを使用する場合は、そのメンバーをオーバーライドし、実装を提供する必要があります。 最も簡単な実装は、<xref:System.Reflection.TypeDelegator.typeImpl> フィールドによって公開される内部 <xref:System.Type> オブジェクトで対応するメンバーを呼び出すことですが、アプリケーションに必要な任意の実装を提供できます。 これらのメンバーがアプリケーションで使用されていない場合、またはアプリケーションが (たとえば、<xref:System.CodeDom.CodeTypeReference.%23ctor%28System.Type%29?displayProperty=nameWithType> コンストラクターによって) を呼び出すライブラリ関数によって使用されていない場合は、これらのメンバーをオーバーライドする必要はありません。  
   
- の`Overridable`次の<xref:System.Type>仮想メソッド (Visual Basic 内のメソッド) は、に<xref:System.Reflection.TypeDelegator>よっ<xref:System.Type.MakeGenericType%2A>て<xref:System.Type.GetGenericTypeDefinition%2A> <xref:System.Type.GetGenericArguments%2A>実装されて<xref:System.Type.MakeByRefType%2A>いません:、、、 <xref:System.Type.GetGenericParameterConstraints%2A> <xref:System.Type.MakeArrayType%2A>、、、 <xref:System.Type.MakePointerType%2A>, <xref:System.Type.GetEnumNames%2A>, <xref:System.Type.GetEnumValues%2A>, <xref:System.Type.GetEnumUnderlyingType%2A>, <xref:System.Type.GetTypeCodeImpl%2A>, <xref:System.Type.IsEnumDefined%2A>, <xref:System.Type.IsEquivalentTo%2A>.  
+ <xref:System.Type> の次の仮想メソッド (Visual Basic の`Overridable` メソッド) は、<xref:System.Reflection.TypeDelegator>: <xref:System.Type.MakeGenericType%2A>、<xref:System.Type.GetGenericTypeDefinition%2A>、<xref:System.Type.GetGenericArguments%2A>、<xref:System.Type.GetGenericParameterConstraints%2A>、<xref:System.Type.MakeArrayType%2A>、<xref:System.Type.MakeByRefType%2A>、<xref:System.Type.MakePointerType%2A>、<xref:System.Type.GetEnumNames%2A>、<xref:System.Type.GetEnumValues%2A>で実装されていません。<xref:System.Type.GetEnumUnderlyingType%2A><xref:System.Type.GetTypeCodeImpl%2A><xref:System.Type.IsEnumDefined%2A><xref:System.Type.IsEquivalentTo%2A>  
   
- の`Overridable`次の<xref:System.Type>仮想プロパティ (Visual Basic 内のプロパティ) は、に<xref:System.Reflection.TypeDelegator>よっ<xref:System.Type.IsGenericType%2A>て<xref:System.Type.IsGenericTypeDefinition%2A> <xref:System.Type.IsGenericParameter%2A>実装されて<xref:System.Type.GenericParameterAttributes%2A>いません:、、、 <xref:System.Type.ContainsGenericParameters%2A> <xref:System.Type.DeclaringMethod%2A>、、、 <xref:System.Type.GenericParameterPosition%2A>, <xref:System.Type.IsSecurityCritical%2A>, <xref:System.Type.IsSecuritySafeCritical%2A>, <xref:System.Type.IsSecurityTransparent%2A>.  
+ <xref:System.Type> の次の仮想プロパティ (Visual Basic の`Overridable` プロパティ) は、<xref:System.Reflection.TypeDelegator>: <xref:System.Type.IsGenericType%2A>、<xref:System.Type.IsGenericTypeDefinition%2A>、<xref:System.Type.IsGenericParameter%2A>、<xref:System.Type.ContainsGenericParameters%2A>、<xref:System.Type.DeclaringMethod%2A>、<xref:System.Type.GenericParameterAttributes%2A>、<xref:System.Type.GenericParameterPosition%2A>に実装されていません。<xref:System.Type.IsSecurityCritical%2A><xref:System.Type.IsSecuritySafeCritical%2A><xref:System.Type.IsSecurityTransparent%2A>  
   
  ]]></format>
     </remarks>
@@ -93,6 +94,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netcore-2.0">
@@ -129,6 +131,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -145,11 +148,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、メソッドを定義するクラスの`Type`オブジェクトに基づいてデリゲートを生成するために、クラスから呼び出されます。  
+ このコンストラクターは、メソッドを定義するクラスの `Type` オブジェクトに基づいてデリゲートを生成するために、クラスから呼び出されます。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="delegatingType" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="delegatingType" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="Assembly">
@@ -176,6 +179,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Assembly</ReturnType>
@@ -217,6 +221,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -251,6 +256,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -262,7 +268,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 基本型は、この型が直接継承する型です。 <xref:System.Object>クラス型は、他のすべての型の最終的な基底クラスであるため、基本型を持たない唯一の型です。 この場合、 `null`は`Object`型の基本型として返されます。  
+ 基本型は、この型が直接継承する型です。 <xref:System.Object> クラス型は、他のすべての型の最終的な基底クラスであるため、基本型を持たない唯一の型です。 この場合、`Object` 型の基本型として `null` が返されます。  
   
  ]]></format>
         </remarks>
@@ -292,6 +298,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -303,7 +310,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在`TypeDelegator`のの完全修飾名を格納している文字列。  
+ 現在の `TypeDelegator`の完全修飾名を格納している文字列。  
   
  ]]></format>
         </remarks>
@@ -333,6 +340,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.TypeAttributes</ReturnType>
@@ -345,7 +353,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドを使用すると、 `TypeDelegator`が abstract、public などであるかどうかを判断できます。  
+ このメソッドを使用すると、`TypeDelegator` が abstract、public などであるかどうかを判断できます。  
   
  ]]></format>
         </remarks>
@@ -375,6 +383,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.ConstructorInfo</ReturnType>
@@ -391,14 +400,14 @@
         <param name="binder">バインディング、引数型の強制変換、メンバーの呼び出し、および、リフレクションを使用した <see langword="MemberInfo" /> オブジェクトの取得を有効にするオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
         <param name="callConvention">呼び出し規約。</param>
         <param name="types">パラメーターの数、順序、および型のリストを格納している <see langword="Type" /> 型の配列。 types は <see langword="null" /> にできません。適切な <see langword="GetMethod" /> メソッドまたは空の配列を使用して、パラメーターなしのメソッドを検索します。</param>
-        <param name="modifiers"><paramref name="types" /> 配列と同じ長さで、要素が取得するメソッドのパラメーターに関連付けられた属性を表す <see langword="ParameterModifier" /> 型の配列。</param>
+        <param name="modifiers"><see langword="ParameterModifier" /> 配列と同じ長さで、要素が取得するメソッドのパラメーターに関連付けられた属性を表す <paramref name="types" /> 型の配列。</param>
         <summary><see langword="TypeDelegator" /> を実装したコンストラクターを取得します。</summary>
         <returns>指定した基準と一致するメソッドの <see langword="ConstructorInfo" /> オブジェクト。見つからなかった場合は <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パラメーター `callConvention`は、エントリポイントの呼び出し規約を示します。 呼び出し規約が指定されていない<xref:System.Reflection.CallingConventions>場合は`Standard` 、既定値のが使用されます。  
+ `callConvention` パラメーターは、エントリポイントの呼び出し規約を示します。 呼び出し規約が指定されていない場合は、`Standard` の既定の <xref:System.Reflection.CallingConventions> 値が使用されます。  
   
  ]]></format>
         </remarks>
@@ -431,6 +440,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -445,13 +455,13 @@
       </Parameters>
       <Docs>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
-        <summary>現在の <see cref="T:System.Reflection.TypeDelegator" /> によってラップされている型に定義されたコンストラクターを表す <see cref="T:System.Reflection.ConstructorInfo" /> オブジェクトの配列を返します。</summary>
+        <summary>現在の <see cref="T:System.Reflection.ConstructorInfo" /> によってラップされている型に定義されたコンストラクターを表す <see cref="T:System.Reflection.TypeDelegator" /> オブジェクトの配列を返します。</summary>
         <returns>このクラスに定義されている指定したコンストラクターを格納している <see langword="ConstructorInfo" /> 型の配列。 コンストラクターが定義されていない場合は、空の配列が返されます。 指定したパラメーターの値によって、パブリック コンストラクターだけが返されるか、パブリック コンストラクターと非パブリック コンストラクターの両方が返されるかが決まります。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `GetMember`クラス初期化子は`GetMembers` `GetConstructors`、、、、およびでのみ使用できます。 `FindMembers`  
+ クラス初期化子は、`GetMember`、`GetMembers`、`FindMembers`、および `GetConstructors`を通じてのみ使用できます。  
   
  ]]></format>
         </remarks>
@@ -491,6 +501,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object[]</ReturnType>
@@ -530,6 +541,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object[]</ReturnType>
@@ -544,7 +556,7 @@
         <summary>型によって識別されるカスタム属性の配列を返します。</summary>
         <returns>型の継承チェーンを検索するかどうかを指定して検索した結果、<paramref name="attributeType" /> パラメーターと一致したこの型で定義されているカスタム属性を格納しているオブジェクトの配列。この型でカスタム属性が定義されていない場合は <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="attributeType" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="attributeType" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.TypeLoadException">カスタム属性の型を読み込むことはできません。</exception>
       </Docs>
     </Member>
@@ -572,6 +584,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -579,7 +592,7 @@
       <Parameters />
       <Docs>
         <summary>現在の配列、ポインター、または ByRef によって包含または参照されるオブジェクトの <see cref="T:System.Type" /> を返します。</summary>
-        <returns>現在の配列、ポインター、または <see langword="ByRef" /> によって包含または参照されるオブジェクトの <see cref="T:System.Type" />。現在の <see cref="T:System.Type" /> が配列、ポインター、または <see langword="ByRef" /> でない場合は <see langword="null" />。</returns>
+        <returns>現在の配列、ポインター、または <see cref="T:System.Type" /> によって包含または参照されるオブジェクトの <see langword="ByRef" />。現在の <see langword="null" /> が配列、ポインター、または <see cref="T:System.Type" /> でない場合は <see langword="ByRef" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -607,6 +620,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.EventInfo</ReturnType>
@@ -624,7 +638,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- が`bindingAttr` の<xref:System.Reflection.BindingFlags>場合、パラメーター`name`の大文字と小文字は区別されません。`IgnoreCase`  
+ `bindingAttr` が <xref:System.Reflection.BindingFlags>場合は。`IgnoreCase`、`name` パラメーターの大文字と小文字の区別は無視されます。  
   
  ]]></format>
         </remarks>
@@ -638,7 +652,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>現在の <see langword="TypeDelegator" /> で宣言または継承されているすべてのパブリック イベントを表す <see cref="T:System.Reflection.EventInfo" /> オブジェクトの配列を返します。</summary>
+        <summary>現在の <see cref="T:System.Reflection.EventInfo" /> で宣言または継承されているすべてのパブリック イベントを表す <see langword="TypeDelegator" /> オブジェクトの配列を返します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="GetEvents">
@@ -665,13 +679,14 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.EventInfo[]</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>現在の <see langword="TypeDelegator" /> で宣言または継承されているすべてのパブリック イベントを表す <see cref="T:System.Reflection.EventInfo" /> オブジェクトの配列を返します。</summary>
+        <summary>現在の <see cref="T:System.Reflection.EventInfo" /> で宣言または継承されているすべてのパブリック イベントを表す <see langword="TypeDelegator" /> オブジェクトの配列を返します。</summary>
         <returns>現在の型で宣言または継承されているすべてのイベントを格納する配列。 イベントがない場合は、空の配列が返されます。</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -700,6 +715,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.EventInfo[]</ReturnType>
@@ -709,8 +725,8 @@
       </Parameters>
       <Docs>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
-        <summary>現在の <see langword="TypeDelegator" /> で宣言または継承されている <paramref name="bindingAttr" /> で指定されたイベントを返します。</summary>
-        <returns><paramref name="bindingAttr" /> で指定されたイベントを格納している <see langword="EventInfo" /> 型の配列。 イベントがない場合は、空の配列が返されます。</returns>
+        <summary>現在の <paramref name="bindingAttr" /> で宣言または継承されている <see langword="TypeDelegator" /> で指定されたイベントを返します。</summary>
+        <returns><see langword="EventInfo" /> で指定されたイベントを格納している <paramref name="bindingAttr" /> 型の配列。 イベントがない場合は、空の配列が返されます。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -738,6 +754,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.FieldInfo</ReturnType>
@@ -750,12 +767,12 @@
         <param name="name">検索するフィールドの名前。</param>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
         <summary>指定した名前のフィールドを表す <see cref="T:System.Reflection.FieldInfo" /> オブジェクトを返します。</summary>
-        <returns>指定した名前によってこの <see langword="TypeDelegator" /> で宣言または継承されているフィールドを表す <see langword="FieldInfo" /> オブジェクト。 フィールドが見つからない場合は <see langword="null" /> を返します。</returns>
+        <returns>指定した名前によってこの <see langword="FieldInfo" /> で宣言または継承されているフィールドを表す <see langword="TypeDelegator" /> オブジェクト。 フィールドが見つからない場合は <see langword="null" /> を返します。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `bindingAttr` の<xref:System.Reflection.BindingFlags>を使用します。パブリックフィールドと非パブリックフィールドをすべて返す非パブリックです。 既定`BindingFlags.IgnoreCase`では検索で大文字と小文字が区別されるため、フィールドの大文字と小文字の区別を無視するには、を使用します。  
+ <xref:System.Reflection.BindingFlags>の `bindingAttr` を使用します。パブリックフィールドと非パブリックフィールドをすべて返す非パブリックです。 既定では検索で大文字と小文字が区別されるため、`BindingFlags.IgnoreCase` を使用してフィールドの大文字と小文字を区別しないようにします。  
   
  ]]></format>
         </remarks>
@@ -786,6 +803,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.FieldInfo[]</ReturnType>
@@ -795,15 +813,15 @@
       </Parameters>
       <Docs>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
-        <summary>現在の <see cref="T:System.Reflection.TypeDelegator" /> によってラップされている型に定義されたデータ フィールドを表す <see cref="T:System.Reflection.FieldInfo" /> オブジェクトの配列を返します。</summary>
-        <returns>現在の <see langword="TypeDelegator" /> で宣言または継承されているフィールドを格納している <see langword="FieldInfo" /> 型の配列を返します。 一致するフィールドがない場合は、空の配列が返されます。</returns>
+        <summary>現在の <see cref="T:System.Reflection.FieldInfo" /> によってラップされている型に定義されたデータ フィールドを表す <see cref="T:System.Reflection.TypeDelegator" /> オブジェクトの配列を返します。</summary>
+        <returns>現在の <see langword="FieldInfo" /> で宣言または継承されているフィールドを格納している <see langword="TypeDelegator" /> 型の配列を返します。 一致するフィールドがない場合は、空の配列が返されます。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Reflection.TypeDelegator.GetFields%2A>は、アルファベットまたは宣言の順序など、特定の順序でフィールドを返しません。 この順序は異なる場合があるため、コードは返されるフィールドの順序に依存しないようにする必要があります。  
+ <xref:System.Reflection.TypeDelegator.GetFields%2A> メソッドは、アルファベットまたは宣言の順序など、特定の順序でフィールドを返しません。 この順序は異なる場合があるため、コードは返されるフィールドの順序に依存しないようにする必要があります。  
   
- `bindingAttr` の<xref:System.Reflection.BindingFlags>を使用します。パブリックフィールドと非パブリックフィールドをすべて返す非パブリックです。  
+ <xref:System.Reflection.BindingFlags>の `bindingAttr` を使用します。パブリックフィールドと非パブリックフィールドをすべて返す非パブリックです。  
   
  ]]></format>
         </remarks>
@@ -833,6 +851,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -874,6 +893,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -889,7 +909,7 @@
       <Docs>
         <param name="interfaceType">割り当ての取得対象であるインターフェイスの <see cref="T:System.Type" />。</param>
         <summary>指定したインターフェイス型に対するインターフェイスの割り当てを返します。</summary>
-        <returns><paramref name="interfaceType" /> に対するインターフェイスのマッピングを表す <see cref="T:System.Reflection.InterfaceMapping" /> オブジェクト。</returns>
+        <returns><see cref="T:System.Reflection.InterfaceMapping" /> に対するインターフェイスの割り当てを表す <paramref name="interfaceType" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -925,6 +945,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type[]</ReturnType>
@@ -960,6 +981,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MemberInfo[]</ReturnType>
@@ -979,7 +1001,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- が`bindingAttr` の<xref:System.Reflection.BindingFlags>場合。非公開。すべてのメンバーが考慮されます。 一致するものがない場合は、空の配列が返されます。  
+ `bindingAttr` が <xref:System.Reflection.BindingFlags>場合は。非公開。すべてのメンバーが考慮されます。 一致するものがない場合は、空の配列が返されます。  
   
  ]]></format>
         </remarks>
@@ -1010,6 +1032,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MemberInfo[]</ReturnType>
@@ -1020,12 +1043,12 @@
       <Docs>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
         <summary><paramref name="bindingAttr" /> で指定されたメンバーを返します。</summary>
-        <returns><paramref name="bindingAttr" /> フィルターに一致する現在のクラスとその基本クラスのすべてのメンバーを格納している <see langword="MemberInfo" /> 型の配列。</returns>
+        <returns><see langword="MemberInfo" /> フィルターに一致する現在のクラスとその基本クラスのすべてのメンバーを格納している <paramref name="bindingAttr" /> 型の配列。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- が`bindingAttr` の<xref:System.Reflection.BindingFlags>場合。非公開。すべてのメンバーが考慮されます。 一致するものがない場合は、空の配列が返されます。  
+ `bindingAttr` が <xref:System.Reflection.BindingFlags>場合は。非公開。すべてのメンバーが考慮されます。 一致するものがない場合は、空の配列が返されます。  
   
  ]]></format>
         </remarks>
@@ -1054,6 +1077,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
@@ -1072,14 +1096,14 @@
         <param name="binder">バインディング、引数型の強制変換、メンバーの呼び出し、および、リフレクションを使用した <see langword="MemberInfo" /> オブジェクトの取得を有効にするオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
         <param name="callConvention">呼び出し規約。</param>
         <param name="types">パラメーターの数、順序、および型のリストを格納している <see langword="Type" /> 型の配列。 types は <see langword="null" /> にできません。適切な <see langword="GetMethod" /> メソッドまたは空の配列を使用して、パラメーターなしのメソッドを検索します。</param>
-        <param name="modifiers"><paramref name="types" /> 配列と同じ長さで、要素が取得するメソッドのパラメーターに関連付けられた属性を表す <see langword="ParameterModifier" /> 型の配列。</param>
+        <param name="modifiers"><see langword="ParameterModifier" /> 配列と同じ長さで、要素が取得するメソッドのパラメーターに関連付けられた属性を表す <paramref name="types" /> 型の配列。</param>
         <summary>指定したバインディング制約および指定した呼び出し規約を使用して、指定したメソッドのうち、指定した引数の型および修飾子と一致するパラメーターが設定されているものを検索します。</summary>
         <returns>指定した基準と一致する実装メソッドの <see langword="MethodInfoInfo" /> オブジェクト。見つからなかった場合は <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- パラメーター `callConvention`は、エントリポイントの呼び出し規約を示します。 が指定されていない`CallingConventions`場合は`Standard` 、既定値のが使用されます。 <xref:System.Reflection.CallingConventions>  
+ `callConvention` パラメーターは、エントリポイントの呼び出し規約を示します。 <xref:System.Reflection.CallingConventions> が指定されていない場合は、`Standard` の既定の `CallingConventions` 値が使用されます。  
   
  ]]></format>
         </remarks>
@@ -1112,6 +1136,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo[]</ReturnType>
@@ -1121,8 +1146,8 @@
       </Parameters>
       <Docs>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
-        <summary>現在の <see cref="T:System.Reflection.TypeDelegator" /> によってラップされている型の指定されたメソッドを表す <see cref="T:System.Reflection.MethodInfo" /> オブジェクトの配列を返します。</summary>
-        <returns>この <see langword="TypeDelegator" /> で定義されているメソッドを表す <see langword="MethodInfo" /> オブジェクトの配列。</returns>
+        <summary>現在の <see cref="T:System.Reflection.MethodInfo" /> によってラップされている型の指定されたメソッドを表す <see cref="T:System.Reflection.TypeDelegator" /> オブジェクトの配列を返します。</summary>
+        <returns>この <see langword="MethodInfo" /> で定義されているメソッドを表す <see langword="TypeDelegator" /> オブジェクトの配列。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1150,6 +1175,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -1161,7 +1187,7 @@
       <Docs>
         <param name="name">入れ子にされた型の名前。</param>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
-        <summary>現在の <see cref="T:System.Reflection.TypeDelegator" /> によって表される型で宣言または継承されている <paramref name="name" /> および <paramref name="bindingAttr" /> で指定されている、入れ子にされた型を返します。</summary>
+        <summary>現在の <paramref name="name" /> によって表される型で宣言または継承されている <paramref name="bindingAttr" /> および <see cref="T:System.Reflection.TypeDelegator" /> で指定されている、入れ子にされた型を返します。</summary>
         <returns>入れ子にされた型を表す <see langword="Type" /> オブジェクト。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="name" /> パラメーターが <see langword="null" /> です。</exception>
@@ -1191,6 +1217,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type[]</ReturnType>
@@ -1200,7 +1227,7 @@
       </Parameters>
       <Docs>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
-        <summary>現在の <see cref="T:System.Reflection.TypeDelegator" /> によってラップされている型で宣言または継承されている <paramref name="bindingAttr" /> で指定されている、入れ子にされた型を返します。</summary>
+        <summary>現在の <paramref name="bindingAttr" /> によってラップされている型で宣言または継承されている <see cref="T:System.Reflection.TypeDelegator" /> で指定されている、入れ子にされた型を返します。</summary>
         <returns>入れ子にされた型を格納している <see langword="Type" /> 型の配列。</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1229,6 +1256,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.PropertyInfo[]</ReturnType>
@@ -1238,8 +1266,8 @@
       </Parameters>
       <Docs>
         <param name="bindingAttr">検索の実行方法に影響を与えるビットマスク。 この値は、<see cref="T:System.Reflection.BindingFlags" /> の 0 個以上のビット フラグの組み合わせです。</param>
-        <summary>現在の <see cref="T:System.Reflection.TypeDelegator" /> によってラップされている型のプロパティを表す <see cref="T:System.Reflection.PropertyInfo" /> オブジェクトの配列を返します。</summary>
-        <returns>この <see langword="TypeDelegator" /> で定義されているプロパティを表す <see langword="PropertyInfo" /> オブジェクトの配列。</returns>
+        <summary>現在の <see cref="T:System.Reflection.PropertyInfo" /> によってラップされている型のプロパティを表す <see cref="T:System.Reflection.TypeDelegator" /> オブジェクトの配列を返します。</summary>
+        <returns>この <see langword="PropertyInfo" /> で定義されているプロパティを表す <see langword="TypeDelegator" /> オブジェクトの配列。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1266,6 +1294,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.PropertyInfo</ReturnType>
@@ -1314,6 +1343,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Guid</ReturnType>
@@ -1356,6 +1386,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1363,7 +1394,7 @@
       <Parameters />
       <Docs>
         <summary>現在の <see cref="T:System.Type" /> が別の型を包含または参照しているかどうか、つまり現在の <see cref="T:System.Type" /> が配列、ポインター、または ByRef かどうかを示す値を取得します。</summary>
-        <returns><see cref="T:System.Type" /> が配列、ポインター、または ByRef である場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> が配列、ポインター、または ByRef である場合は <see cref="T:System.Type" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1390,6 +1421,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -1410,11 +1442,11 @@
         <param name="binder">バインディング、引数型の強制変換、メンバーの呼び出し、および、リフレクションによる <see langword="MemberInfo" /> オブジェクトの取得を有効にするオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。 以下を参照してください。<see cref="T:System.Reflection.Binder" /></param>
         <param name="target">指定したメンバーを呼び出す対象となるオブジェクト。</param>
         <param name="args">呼び出すメンバーのパラメーターの数、順序、および型を格納している <see langword="Object" /> 型の配列。 初期化されていないオブジェクトが <paramref name="args" /> に格納されている場合は、既定のバインダーを使用して 0、0.0、または文字列に拡張できる空オブジェクトとして処理されます。<see langword="Object" /></param>
-        <param name="modifiers"><paramref name="args" /> と同じ長さで、要素が呼び出されるメンバーの引数に関連付けられた属性を表す <see langword="ParameterModifier" /> 型の配列。 パラメーターにはメンバーのシグネチャに関連付けられた属性があります。 ByRef の場合は <see langword="ParameterModifier.ByRef" /> を使用します。ない場合は <see langword="ParameterModifier.None" /> を使用します。 既定のバインダーはこれらを厳密に一致させます。 <see langword="In" /> や <see langword="InOut" /> などの属性は、バインディングでは使用しませんが、<see langword="ParameterInfo" /> を使用して表示できます。</param>
+        <param name="modifiers"><see langword="ParameterModifier" /> と同じ長さで、要素が呼び出されるメンバーの引数に関連付けられた属性を表す <paramref name="args" /> 型の配列。 パラメーターにはメンバーのシグネチャに関連付けられた属性があります。 ByRef の場合は <see langword="ParameterModifier.ByRef" /> を使用します。ない場合は <see langword="ParameterModifier.None" /> を使用します。 既定のバインダーはこれらを厳密に一致させます。 <see langword="In" /> や <see langword="InOut" /> などの属性は、バインディングでは使用しませんが、<see langword="ParameterInfo" /> を使用して表示できます。</param>
         <param name="culture">型の強制変換を制御するために使用する <see langword="CultureInfo" /> のインスタンス。 このインスタンスは、たとえば、1000 を表す文字列を <see langword="Double" /> 値に変換する場合に必要です。これは、カルチャによって 1000 の表記が異なるためです。 <paramref name="culture" /> が <see langword="null" /> の場合は、現在のスレッドの <see langword="CultureInfo" /> の <see langword="CultureInfo" /> が使用されます。</param>
-        <param name="namedParameters">要素ゼロから <paramref name="args" /> 配列と一致させるパラメーター名を格納している文字列型の配列。<see langword="String" /> 配列の要素はすべて揃っている必要があります。 <paramref name="args" /> <see langword="Length" /> が <paramref name="namedParameters" /> より大きくなっています。 <see langword="Length" /> より大きい場合、残りのパラメーターが順に設定されます。</param>
+        <param name="namedParameters">要素ゼロから <see langword="String" /> 配列と一致させるパラメーター名を格納している文字列型の配列。<paramref name="args" /> 配列の要素はすべて揃っている必要があります。 <paramref name="args" /> <see langword="Length" /> が <paramref name="namedParameters" /> より大きくなっています。 <see langword="Length" /> より大きい場合、残りのパラメーターが順に設定されます。</param>
         <summary>指定したメンバーを呼び出します。 呼び出すメソッドはアクセス可能でなければならず、指定したバインダーと呼び出し属性の制約の下で、指定された引数リストに対する一致の特定性が最高のものでなければなりません。</summary>
-        <returns>呼び出されたメンバーの戻り値を表す <see langword="Object" />。</returns>
+        <returns>呼び出されたメンバーの戻り値を表すオブジェクト。<see langword="Object" /></returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1425,20 +1457,20 @@
   
 -   各引数の型は、バインダーによってパラメーターの型に変換できます。  
   
- バインダーは、一致するすべてのメソッドを検索します。 これらのメソッドは、要求されたバインディングの種類`BindingFlags.MethodInvoke`( `BindingFlags.GetProperties`、など) に基づいて検出されます。 メソッドのセットは、バインダーで定義されている名前、引数の数、および一連の検索修飾子によってフィルター処理されます。  
+ バインダーは、一致するすべてのメソッドを検索します。 これらのメソッドは、要求されたバインディングの種類 (`BindingFlags.MethodInvoke`、`BindingFlags.GetProperties`など) に基づいて検出されます。 メソッドのセットは、バインダーで定義されている名前、引数の数、および一連の検索修飾子によってフィルター処理されます。  
   
- メソッドが選択されると、呼び出されます。 その時点でアクセシビリティがチェックされます。 検索では、メソッドに関連付けられているアクセシビリティ属性に基づいて検索されるメソッドのセットを制御できます。 <xref:System.Reflection.Binder.BindToMethod%2A?displayProperty=nameWithType>メソッドは、呼び出されるメソッドを選択する役割を担います。 既定のバインダーでは、最も限定的な一致が選択されます。  
+ メソッドが選択されると、呼び出されます。 その時点でアクセシビリティがチェックされます。 検索では、メソッドに関連付けられているアクセシビリティ属性に基づいて検索されるメソッドのセットを制御できます。 <xref:System.Reflection.Binder.BindToMethod%2A?displayProperty=nameWithType> メソッドは、呼び出すメソッドを選択する役割を担います。 既定のバインダーでは、最も限定的な一致が選択されます。  
   
 > [!NOTE]
 >  完全に信頼されたコードでは、アクセス制限は無視されます。 つまり、プライベートコンストラクター、メソッド、フィールド、およびプロパティには、コードが完全に信頼されている場合は常にリフレクションを使用してアクセスし、呼び出すことができます。  
   
- 現在、 `InvokeMember`では、オブジェクトのすべての型に対して Microsoft .NET Framework リフレクションセマンティクスが実行されます。  
+ 現時点では、`InvokeMember` は、オブジェクトのすべての型に対して Microsoft .NET Framework リフレクションセマンティクスを実行します。  
   
- Name で指定されたメンバーが配列`BindingFlags.GetField`で、フラグが on に`invokeAttr`設定されている場合、配列は`args`値が返される要素を指定します。 たとえば、次の`Type`オブジェクト`t`を呼び出すと、呼び出し元のオブジェクトのメンバーである文字列配列 MyArray の最初の要素の値が返されます。  
+ Name で指定されたメンバーが配列で、`BindingFlags.GetField` フラグが `invokeAttr`に設定されている場合、`args` 配列は値が返される要素を指定します。 たとえば、次の `Type` オブジェクト `t` を呼び出すと、呼び出し元のオブジェクトのメンバーである文字列配列 MyArray の最初の要素の値が返されます。  
   
  `String ret = (String) t.InvokeMember ("MyArray", BindingFlags.GetField, null, this, new Variant[]{0});`  
   
- を使用`InvokeMember`すると、メンバー配列の1つ以上の要素を設定できます。 すべての要素が同じ値に設定されます。 配列`args`は、次のように書式設定する必要があります。  
+ `InvokeMember` を使用すると、メンバー配列の1つ以上の要素を設定できます。 すべての要素が同じ値に設定されます。 `args` 配列は、次のように書式設定する必要があります。  
   
 ```  
 {index1,  
@@ -1481,6 +1513,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1513,12 +1546,13 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="typeInfo" Type="System.Reflection.TypeInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="typeInfo" Type="System.Reflection.TypeInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="typeInfo">確認する型。</param>
@@ -1551,6 +1585,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1573,6 +1608,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1601,6 +1637,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1612,8 +1649,8 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このオブジェクトの <see cref="F:System.Reflection.TypeDelegator.typeImpl" /> の <see cref="P:System.Reflection.MemberInfo.IsCollectible" /> 値を取得します。これは、<see cref="T:System.Reflection.MemberInfo" /> 実装であるこのオブジェクトが、収集可能な <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> に保持されているアセンブリの一部であるかどうかを示します。</summary>
-        <value><see langword="true" /><see cref="T:System.Reflection.MemberInfo" />実装であるこのオブジェクトが、収集可能なアセンブリの読み込みコンテキストに保持されているアセンブリの一部で<see langword="false" />ある場合は。それ以外の場合は。</value>
+        <summary>このオブジェクトの <see cref="P:System.Reflection.MemberInfo.IsCollectible" /> の <see cref="F:System.Reflection.TypeDelegator.typeImpl" /> 値を取得します。これは、<see cref="T:System.Reflection.MemberInfo" /> 実装であるこのオブジェクトが、収集可能な <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> に保持されているアセンブリの一部であるかどうかを示します。</summary>
+        <value>このオブジェクト (<see cref="T:System.Reflection.MemberInfo" /> の実装) が、収集可能なアセンブリの読み込みコンテキストに保持されているアセンブリの一部である場合、<see langword="true" /> ます。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1641,6 +1678,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1674,6 +1712,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1708,6 +1747,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1720,9 +1760,9 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <param name="attributeType">この型の継承チェーンを検索して属性を見つけるかどうかを指定します。</param>
         <param name="inherit">型により識別されるカスタム属性の配列。</param>
         <summary><paramref name="attributeType" /> で識別されるカスタム属性が定義されているかどうかを示します。</summary>
-        <returns><paramref name="attributeType" /> で識別されるカスタム属性が定義されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> で識別されるカスタム属性が定義されている場合は <paramref name="attributeType" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentException"><paramref name="attributeType" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="attributeType" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.Reflection.ReflectionTypeLoadException">カスタム属性の型を読み込むことはできません。</exception>
       </Docs>
     </Member>
@@ -1737,6 +1777,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1765,6 +1806,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1806,6 +1848,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1841,6 +1884,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1864,6 +1908,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1893,6 +1938,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1934,6 +1980,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1957,6 +2004,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1997,6 +2045,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -2038,6 +2087,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Module</ReturnType>
@@ -2079,6 +2129,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -2090,7 +2141,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 現在の `TypeDelegator` の名前を格納している文字列。 完全修飾名ではなく簡易名のみが返されます。 名前とパスを取得するには、 <xref:System.Reflection.TypeDelegator.FullName%2A>を使用します。  
+ 現在の `TypeDelegator` の名前を格納している文字列。 完全修飾名ではなく簡易名のみが返されます。 名前とパスを取得するには、<xref:System.Reflection.TypeDelegator.FullName%2A>を使用します。  
   
  ]]></format>
         </remarks>
@@ -2120,6 +2171,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -2131,7 +2183,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、現在`TypeDelegator`のの名前空間を含む文字列を取得します。 たとえば、 `TypeDelegator`が<xref:System.Reflection.TypeFilter>の場合、返される名前空間は<xref:System.Reflection>になります。  
+ このプロパティは、現在の `TypeDelegator`の名前空間を含む文字列を取得します。 たとえば、`TypeDelegator` が <xref:System.Reflection.TypeFilter>の場合、返される名前空間は <xref:System.Reflection>です。  
   
  ]]></format>
         </remarks>
@@ -2161,6 +2213,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.RuntimeTypeHandle</ReturnType>
@@ -2203,6 +2256,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -2236,6 +2290,7 @@ t.InvokeMember ("MyArray", BindingFlags.SetField, null, this, new
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>

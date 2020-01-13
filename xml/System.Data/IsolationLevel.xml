@@ -1,5 +1,5 @@
 <Type Name="IsolationLevel" FullName="System.Data.IsolationLevel">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="edb852c3574b8eeca02c658eab11acfb89f89346" /><Meta Name="ms.sourcegitcommit" Value="bc24a3ba616ee1df8b858f9400cae4f058ea3a7e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="06/19/2019" /><Meta Name="ms.locfileid" Value="67239941" /></Metadata><TypeSignature Language="C#" Value="public enum IsolationLevel" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7ff781f8f99ed52756545fac71181f8dd68666cb" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75140279" /></Metadata><TypeSignature Language="C#" Value="public enum IsolationLevel" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed IsolationLevel extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Data.IsolationLevel" />
   <TypeSignature Language="VB.NET" Value="Public Enum IsolationLevel" />
@@ -11,6 +11,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Data</AssemblyName>
@@ -39,20 +40,20 @@
   
 ## Remarks
 
-`IsolationLevel`値は、トランザクションを実行するときに .NET データ プロバイダーによって使用されます。
+`IsolationLevel` 値は、トランザクションの実行時に .NET データプロバイダーによって使用されます。
 
-`IsolationLevel`は明示的に有効にするまで変更しますが、いつでも変更できます。 新しい値は、解析時ではない、実行時に使用されます。 トランザクション中に変更された場合、サーバーの予期される動作は、残りのすべてのステートメントに、新しいレベルのロックを適用します。  
+`IsolationLevel` は、明示的に変更されるまで有効ですが、いつでも変更できます。 新しい値は、解析時間ではなく、実行時に使用されます。 トランザクション中に変更された場合、サーバーの予期される動作は、残りのすべてのステートメントに新しいロックレベルを適用することです。  
   
-使用する場合<xref:System.Data.Odbc.OdbcTransaction>を設定しない場合は、<xref:System.Data.Odbc.OdbcTransaction.IsolationLevel?displayProperty=nameWithType>設定することも`Unspecified`トランザクションが使用中のドライバーによって決定された分離レベルに従って実行します。  
+<xref:System.Data.Odbc.OdbcTransaction>を使用する場合、<xref:System.Data.Odbc.OdbcTransaction.IsolationLevel?displayProperty=nameWithType> を設定しなかった場合、または `Unspecified`に設定した場合、トランザクションは使用中のドライバーによって決定された分離レベルに従って実行されます。  
 
 ## Examples  
- このアプリケーションを使用する方法を示して<xref:System.Data.IsolationLevel>で<xref:System.Data.Common.DbTransaction>します。 サンプルは、別の分離レベルでは、次の動作のうちは許可を示しています。  
+ このアプリケーションでは、<xref:System.Data.Common.DbTransaction>で <xref:System.Data.IsolationLevel> を使用する方法を示します。 このサンプルでは、さまざまな分離レベルで許可されている次の動作を示します。  
   
--   ダーティ リードです。  
+-   ダーティリード。  
   
--   非繰り返しを読み取ります。  
+-   反復不可能な読み取り。  
   
--   ファントムです。  
+-   幻.  
   
  このアプリケーションは、次の分離レベルで実行されます。  
   
@@ -62,83 +63,83 @@
   
 -   RepeatableRead  
   
--   Serializable  
+-   SERIALIZABLE  
   
 -   スナップショット  
   
- PhantomReadThreads クラスは、特定のトランザクションが、ファントム読み取りの動作を示します。 トランザクションは、動作を許可している場合、スレッドは、次の順序で動作します。  
+ PhantomReadThreads クラスは、特定のトランザクションでファントム読み取り動作が許可されているかどうかを示します。 トランザクションで動作が許可されている場合、スレッドは次の順序で動作します。  
   
--   最初のスレッドで、products(All) を選択します。  
+-   最初のスレッドで、製品 (すべて) を選択します。  
   
--   2 番目のスレッドでは、新しい製品を挿入します。  
+-   2番目のスレッドで、新しい製品を挿入します。  
   
--   2 番目のスレッドでのトランザクションをコミットします。  
-  
--   製品をもう一度選択します。  
-  
--   最初のスレッドでのトランザクションをコミットします。  
-  
- トランザクションは、動作を許可している場合、2 つの Select 操作には異なる結果が得られます。  
-  
- NonrepeatableReadThreads クラスは、特定のトランザクションが、反復不能読み取りの動作を示します。 トランザクションは、動作を許可している場合、スレッドは、次の順序で動作します。  
-  
--   最初のスレッドで、product(ProductId=1) を選択します。  
-  
--   2 番目のスレッドでは、数量 value(ProductId=1) を更新します。  
-  
--   2 番目のスレッドでのトランザクションをコミットします。  
+-   2番目のスレッドでトランザクションをコミットします。  
   
 -   製品をもう一度選択します。  
   
--   最初のスレッドでのトランザクションをコミットします。  
+-   最初のスレッドでトランザクションをコミットします。  
   
- トランザクションは、動作を許可している場合、2 つの Select 操作には異なる結果が得られます。  
+ トランザクションで動作が許可される場合、2つの Select 操作で異なる結果が得られます。  
   
- ExchangeValuesThreads クラスは、Serializable、およびスナップショット トランザクションの間の違いを示します。 シリアル化可能なトランザクションでは、スレッドは、次の順序で動作します。  
+ NonrepeatableReadThreads クラスは、特定のトランザクションで反復不可能な読み取り動作が許可されているかどうかを示します。 トランザクションで動作が許可されている場合、スレッドは次の順序で動作します。  
   
--   最初のスレッドでは、変数に product(ProductId=2) およびストアの価格を取得します。  
+-   最初のスレッドで、製品 (ProductId = 1) を選択します。  
   
--   最初のスレッドでは、product(ProductId=2) の価格 product(ProductId=1) の価格を更新します。  
+-   2番目のスレッドで、Quantity 値 (ProductId = 1) を更新します。  
   
--   最初のスレッドでのトランザクションをコミットします。  
+-   2番目のスレッドでトランザクションをコミットします。  
   
--   2 番目のスレッドでは、変数に product(ProductId=1) およびストアの価格を取得します。  
+-   もう一度製品を選択します。  
   
--   2 番目のスレッドでは、product(ProductId=1) の価格 product(ProductId=2) の価格を更新します。  
+-   最初のスレッドでトランザクションをコミットします。  
   
--   2 番目のスレッドでのトランザクションをコミットします。  
+ トランザクションで動作が許可される場合、2つの Select 操作で異なる結果が得られます。  
   
- 価格の値のようになりました (ProductId = 1、ProductId = 2) と、元の価格 Product(ProductId=2) と同じです。  
+ ExchangeValuesThreads クラスは、シリアル化可能なトランザクションとスナップショットトランザクションの違いを示しています。 シリアル化可能なトランザクションの場合、スレッドは次の順序で動作します。  
   
- スナップショット トランザクションでは、スレッドは、次の順序で動作します。  
+-   最初のスレッドで、製品の価格 (ProductId = 2) を取得し、変数に格納します。  
   
--   最初のスレッドで変数内の product(ProductId=2) およびストアの価格を取得します。  
+-   最初のスレッドで、製品の価格 (ProductId = 1) を製品の価格 (ProductId = 2) で更新します。  
   
--   最初のスレッドでは、product(ProductId=2) の価格 product(ProductId=1) の価格を更新します。  
+-   最初のスレッドでトランザクションをコミットします。  
   
--   2 番目のスレッドでは、スナップショットから product(ProductId=1) の価格を取得し、変数に格納します。  
+-   2番目のスレッドで、製品の価格 (ProductId = 1) を取得し、変数に格納します。  
   
--   2 番目のスレッドでは、product(ProductId=1) の価格 product(ProductId=2) の価格を更新します。  
+-   2番目のスレッドで、製品の価格 (ProductId = 2) を製品の価格 (ProductId = 1) で更新します。  
   
--   2 番目のスレッドでのトランザクションをコミットします。  
+-   2番目のスレッドでトランザクションをコミットします。  
   
--   最初のスレッドでのトランザクションをコミットします。  
+ 価格の値 (ProductId = 1 および ProductId = 2) は、製品の元の価格 (ProductId = 2) と同じになります。  
   
- 製品の価格を交換するようになりました (ProductId = 1、ProductId = 2)。  
+ スナップショットトランザクションの場合、スレッドは次の順序で動作します。  
   
- DirtyReadThreads クラスは、特定のトランザクションが、ダーティ リードの動作を示します。 トランザクションは、動作を許可している場合、スレッドは、次の順序で動作します。  
+-   最初のスレッドで、製品の価格 (ProductId = 2) を取得し、変数に格納します。  
   
--   最初のスレッドでは、トランザクションを開始し、数量 value(ProductId=1) を追加します。  
+-   最初のスレッドで、製品の価格 (ProductId = 1) を製品の価格 (ProductId = 2) で更新します。  
   
--   2 番目のスレッドでは、数量の値を読み取るし、値をもう一度追加します。  
+-   2番目のスレッドでは、スナップショットから製品の価格 (ProductId = 1) を取得し、変数に格納します。  
   
--   2 番目のスレッドでのトランザクションをコミットします。  
+-   2番目のスレッドで、製品の価格 (ProductId = 2) を製品の価格 (ProductId = 1) で更新します。  
   
--   最初のスレッドで、トランザクションをロールバックします。  
+-   2番目のスレッドでトランザクションをコミットします。  
   
- トランザクションでは、動作、数量の値が 2 回追加されます。  
+-   最初のスレッドでトランザクションをコミットします。  
   
- このコード サンプルの c# および Visual Basic プロジェクトで確認できます[開発者コード サンプル](https://code.msdn.microsoft.com/site/search?query=How%20to%20use%20IsolationLevel%20Enumeration%20in%20DbTransaction&f%5B0%5D.Value=How%20to%20use%20IsolationLevel%20Enumeration%20in%20DbTransaction&f%5B0%5D.Type=SearchText&ac=4)します。  
+ 次に、製品の価格を交換します (ProductId = 1、ProductId = 2)。  
+  
+ DirtyReadThreads クラスは、特定のトランザクションでダーティ読み取り動作が許可されているかどうかを示します。 トランザクションで動作が許可されている場合、スレッドは次の順序で動作します。  
+  
+-   最初のスレッドで、トランザクションを開始し、Quantity 値 (ProductId = 1) を追加します。  
+  
+-   2番目のスレッドで、Quantity 値を読み取り、値を再び追加します。  
+  
+-   2番目のスレッドでトランザクションをコミットします。  
+  
+-   最初のスレッドでトランザクションをロールバックします。  
+  
+ トランザクションで動作が許可されている場合、Quantity 値は2回追加されます。  
+  
+ C#このコードサンプルを含むプロジェクト Visual Basic は、[開発者コードサンプル](https://code.msdn.microsoft.com/site/search?query=How%20to%20use%20IsolationLevel%20Enumeration%20in%20DbTransaction&f%5B0%5D.Value=How%20to%20use%20IsolationLevel%20Enumeration%20in%20DbTransaction&f%5B0%5D.Type=SearchText&ac=4)を参照してください。  
   
  [!code-csharp[system_data_IsolationLevel#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/system_data_isolationlevel/cs/source.cs#1)]
  [!code-vb[system_data_IsolationLevel#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/system_data_isolationlevel/vb/source.vb#1)]  
@@ -161,6 +162,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -196,6 +198,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -214,7 +217,7 @@
       </ReturnValue>
       <MemberValue>4096</MemberValue>
       <Docs>
-        <summary>データが読み込まれている間、ダーティ読み込みを防ぐために共有ロックが保持されますが、トランザクションが終了する前にデータを変更できます。このため、読み込みは繰り返されません。また実際には存在しないデータを生成できます。</summary>
+        <summary>データの読み取り中は、ダーティ リードを避けるために、共有ロックが設定されます。しかし、トランザクションの終了前にデータが変更されることもあるため、繰り返し不能な読み取りやファントム データが発生する可能性があります。</summary>
       </Docs>
     </Member>
     <Member MemberName="ReadUncommitted">
@@ -231,6 +234,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -266,6 +270,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -301,6 +306,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -336,6 +342,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -370,6 +377,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>

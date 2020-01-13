@@ -1,5 +1,5 @@
 <Type Name="IDataReader" FullName="System.Data.IDataReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6c244cfe2dd7763c936e830702dff8b5052b25c5" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69367248" /></Metadata><TypeSignature Language="C#" Value="public interface IDataReader : IDisposable, System.Data.IDataRecord" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="578d95dfa2b76aebdbfd9ef437aeda5c7ace41d1" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75140305" /></Metadata><TypeSignature Language="C#" Value="public interface IDataReader : IDisposable, System.Data.IDataRecord" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDataReader implements class System.Data.IDataRecord, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.IDataReader" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDataReader&#xA;Implements IDataRecord, IDisposable" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Data</AssemblyName>
@@ -37,27 +38,27 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- インターフェイスとインターフェイスを使用すると<xref:System.Data.IDataRecord> 、 `DataReader`継承クラスでクラスを実装できるようになります。これにより、結果セットの1つ以上の順方向専用ストリームを読み取ることができます。 <xref:System.Data.IDataReader> `DataReader`クラスの詳細については、「 [DataReader を使用したデータの取得](~/docs/framework/data/adonet/retrieving-data-using-a-datareader.md)」を参照してください。  
+ <xref:System.Data.IDataReader> インターフェイスと <xref:System.Data.IDataRecord> インターフェイスにより、継承クラスは `DataReader` クラスを実装できます。これにより、結果セットの1つ以上の順方向専用ストリームを読み取ることができます。 `DataReader` クラスの詳細については、「 [DataReader を使用したデータの取得](~/docs/framework/data/adonet/retrieving-data-using-a-datareader.md)」を参照してください。  
   
- アプリケーションは、 <xref:System.Data.IDataReader>インターフェイスのインスタンスを直接作成するのではなく、を継承<xref:System.Data.IDataReader>するクラスのインスタンスを作成します。  
+ アプリケーションでは、<xref:System.Data.IDataReader> インターフェイスのインスタンスは直接作成されませんが、<xref:System.Data.IDataReader>を継承するクラスのインスタンスが作成されます。  
   
- 継承<xref:System.Data.IDataReader>するクラスは、継承されたメンバーを実装する必要があり、通常は、プロバイダー固有の機能を追加するための追加メンバーを定義します。  
+ <xref:System.Data.IDataReader> を継承するクラスは、継承されたメンバーを実装する必要があり、通常は、プロバイダー固有の機能を追加するための追加メンバーを定義します。  
   
- データの読み取り中に別のプロセスまたはスレッドによって結果セットに加えられた変更は、 `IDataReader`を実装するクラスのユーザーに表示される場合があります。 ただし、正確な動作は、プロバイダーとタイミングに依存します。  
+ データの読み取り中に別のプロセスまたはスレッドによって結果セットに加えられた変更は、`IDataReader`を実装するクラスのユーザーに表示される可能性があります。 正確な動作は、プロバイダーとタイミングに応じて変わります。  
   
    
   
 ## Examples  
- 次の例では、派生クラス<xref:System.Data.SqlClient.SqlConnection> <xref:System.Data.SqlClient.SqlCommand>、、、および<xref:System.Data.SqlClient.SqlDataReader>のインスタンスを作成します。 この例では、データを読み取り、コンソールに書き込みます。 最後に、この例で<xref:System.Data.SqlClient.SqlDataReader>は、を<xref:System.Data.SqlClient.SqlConnection>閉じてから、を閉じます。  
+ 次の例では、派生クラス、<xref:System.Data.SqlClient.SqlConnection>、<xref:System.Data.SqlClient.SqlCommand>、および <xref:System.Data.SqlClient.SqlDataReader>のインスタンスを作成します。 この例では、データを読み取り、コンソールに書き込みます。 最後に、この例では、<xref:System.Data.SqlClient.SqlDataReader>、<xref:System.Data.SqlClient.SqlConnection>を閉じます。  
   
  [!code-csharp[Classic WebData SqlDataReader.Read Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData SqlDataReader.Read Example/CS/source.cs#1)]
  [!code-vb[Classic WebData SqlDataReader.Read Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData SqlDataReader.Read Example/VB/source.vb#1)]  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>.NET Framework データプロバイダー間の一貫性を高めるには、フォーム<paramref name="Prv" />コマンドに継承クラスの名前を付けます。ここ<paramref name="Prv" />で、は、特定の .NET Framework データプロバイダーの名前空間のすべてのクラスに指定された一様なプレフィックスです。 たとえば、 <paramref name="Sql" />は<see langword="System.Data.SqlClient" />名前空間の<see cref="T:System.Data.SqlClient.SqlDataAdapter" />クラスのプレフィックスです。  
+    <block subset="none" type="overrides"><para>.NET Framework データプロバイダー間の一貫性を高めるには、<paramref name="Prv" /> コマンドに継承クラスの名前を付けます。ここで <paramref name="Prv" /> は、特定の .NET Framework データプロバイダーの名前空間のすべてのクラスに指定された一様なプレフィックスです。 たとえば、<paramref name="Sql" /> は <see langword="System.Data.SqlClient" /> 名前空間の <see cref="T:System.Data.SqlClient.SqlDataAdapter" /> クラスのプレフィックスです。  
   
-ユーザーは、 <see langword="DataReader" />クラスのインスタンスを直接作成しません。 代わりに、 <see langword="DataReader" /> オブジェクト<see langword="Command" />の<see langword="ExecuteReader" />メソッドを使用してインスタンスを取得します。 したがって、コンストラクターを<see langword="DataReader" />内部としてマークする必要があります。</para></block>
+ユーザーは、<see langword="DataReader" /> クラスのインスタンスを直接作成しません。 代わりに、<see langword="Command" /> オブジェクトの <see langword="ExecuteReader" /> メソッドを使用して <see langword="DataReader" /> インスタンスを取得します。 したがって、<see langword="DataReader" /> コンストラクターを内部としてマークする必要があります。</para></block>
   </Docs>
   <Members>
     <Member MemberName="Close">
@@ -73,6 +74,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -96,7 +98,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- を<xref:System.Data.IDataReader.Close%2A> <xref:System.Data.IDbConnection>使用して他の目的に関連付けられているを使用する場合は、メソッドを明示的に呼び出す必要があります。 <xref:System.Data.IDataReader>  
+ <xref:System.Data.IDataReader> を使用して、関連付けられている <xref:System.Data.IDbConnection> を他の目的で使用する場合は、<xref:System.Data.IDataReader.Close%2A> メソッドを明示的に呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -115,6 +117,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -157,6 +160,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -181,14 +185,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- OLE DB の .NET Framework <xref:System.Data.IDataReader.GetSchemaTable%2A> Data Provider のメソッドの実装は OLE DB IColumnsRowset:: GetColumnsRowset メソッドにマップされますが、他の .NET Framework データプロバイダーの実装は OLE DB プロバイダーレイヤーを使用しません。 がテーブル内の<xref:System.Data.IDataReader.GetSchemaTable%2A>各列に関するメタデータを返す順序、および返される DataReader 列は、使用するデータプロバイダーによって異なります。 次の表に、を実装<xref:System.Data.IDataReader.GetSchemaTable%2A>するデータプロバイダーとメンバーの一覧を示します。  
+ OLE DB の .NET Framework Data Provider の <xref:System.Data.IDataReader.GetSchemaTable%2A> メソッドの実装は OLE DB IColumnsRowset:: GetColumnsRowset メソッドにマップされますが、他の .NET Framework データプロバイダーの実装は OLE DB プロバイダーレイヤーを使用しません。 <xref:System.Data.IDataReader.GetSchemaTable%2A> がテーブル内の各列に関するメタデータを返す順序、および返される DataReader 列は、使用するデータプロバイダーによって異なります。 次の表に、<xref:System.Data.IDataReader.GetSchemaTable%2A>を実装するデータプロバイダーとメンバーを示します。  
   
 |Data Provider|メンバー|  
 |-------------------|------------|  
-|ODBC 用 .NET Data Provider|<xref:System.Data.Odbc.OdbcDataReader.GetSchemaTable%2A?displayProperty=nameWithType>。|  
-|OLE DB 用の .NET Data Provider|<xref:System.Data.OleDb.OleDbDataReader.GetSchemaTable%2A?displayProperty=nameWithType>。|  
-|Oracle 用 .NET Data Provider|<xref:System.Data.OracleClient.OracleDataReader.GetSchemaTable%2A?displayProperty=nameWithType>。|  
-|.NET Data Provider for SQL Server|<xref:System.Data.SqlClient.SqlDataReader.GetSchemaTable%2A?displayProperty=nameWithType>。|  
+|ODBC 用 .NET Data Provider|<xref:System.Data.Odbc.OdbcDataReader.GetSchemaTable%2A?displayProperty=nameWithType> で初期化します。|  
+|OLE DB 用の .NET Data Provider|<xref:System.Data.OleDb.OleDbDataReader.GetSchemaTable%2A?displayProperty=nameWithType> で初期化します。|  
+|Oracle 用 .NET Data Provider|<xref:System.Data.OracleClient.OracleDataReader.GetSchemaTable%2A?displayProperty=nameWithType> で初期化します。|  
+|.NET Data Provider for SQL Server|<xref:System.Data.SqlClient.SqlDataReader.GetSchemaTable%2A?displayProperty=nameWithType> で初期化します。|  
   
  ]]></format>
         </remarks>
@@ -208,6 +212,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -231,7 +236,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.IDataReader.IsClosed%2A>と<xref:System.Data.IDataReader.RecordsAffected%2A>は、 <xref:System.Data.IDataReader>が閉じられた後に呼び出すことができる唯一のプロパティです。  
+ <xref:System.Data.IDataReader> を閉じた後に呼び出すことができるプロパティは、<xref:System.Data.IDataReader.IsClosed%2A> と <xref:System.Data.IDataReader.RecordsAffected%2A> だけです。  
   
  ]]></format>
         </remarks>
@@ -250,6 +255,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -298,6 +304,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -322,14 +329,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- の既定の<xref:System.Data.IDataReader>位置は、最初のレコードよりも前です。 そのため、すべて<xref:System.Data.IDataReader.Read%2A>のデータへのアクセスを開始するには、を呼び出す必要があります。  
+ <xref:System.Data.IDataReader> の既定の位置は、最初のレコードよりも前です。 したがって、すべてのデータへのアクセスを開始するには、<xref:System.Data.IDataReader.Read%2A> を呼び出す必要があります。  
   
- データリーダーが使用されている間、関連付けられて<xref:System.Data.IDataReader>いる接続はを提供しています。 これは、が呼び出さ<xref:System.Data.IDataReader.Close%2A>れるまでのケースです。  
+ データリーダーが使用されている間、関連付けられている接続は <xref:System.Data.IDataReader>を提供しています。 これは <xref:System.Data.IDataReader.Close%2A> が呼び出されるまでのケースです。  
   
    
   
 ## Examples  
- 次の例では、、 <xref:System.Data.OleDb.OleDbConnection> <xref:System.Data.OleDb.OleDbCommand>、およびと<xref:System.Data.OleDb.OleDbDataReader>いう3つの派生クラスのインスタンスを作成します。 この例では、データを読み取り、コンソールに書き込みます。 最後に、この例で<xref:System.Data.OleDb.OleDbDataReader>は、を<xref:System.Data.OleDb.OleDbConnection>閉じてから、を閉じます。  
+ 次の例では、<xref:System.Data.OleDb.OleDbConnection>、<xref:System.Data.OleDb.OleDbCommand>、および <xref:System.Data.OleDb.OleDbDataReader>の3つの派生クラスのインスタンスを作成します。 この例では、データを読み取り、コンソールに書き込みます。 最後に、この例では、<xref:System.Data.OleDb.OleDbDataReader>、<xref:System.Data.OleDb.OleDbConnection>を閉じます。  
   
  [!code-csharp[Classic WebData IDataReader.Read Example#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/Classic WebData IDataReader.Read Example/CS/source.cs#1)]
  [!code-vb[Classic WebData IDataReader.Read Example#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/Classic WebData IDataReader.Read Example/VB/source.vb#1)]  
@@ -351,6 +358,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Data</AssemblyName>
@@ -374,9 +382,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティは、すべての行が読み取られ、 <xref:System.Data.IDataReader>を閉じるまで設定されません。 <xref:System.Data.IDataReader.RecordsAffected%2A>  
+ <xref:System.Data.IDataReader.RecordsAffected%2A> プロパティは、すべての行が読み取られ、<xref:System.Data.IDataReader>を閉じるまで設定されません。  
   
- <xref:System.Data.IDataReader.IsClosed%2A>と<xref:System.Data.IDataReader.RecordsAffected%2A>は、 <xref:System.Data.IDataReader>が閉じられた後に呼び出すことができる唯一のプロパティです。  
+ <xref:System.Data.IDataReader> を閉じた後に呼び出すことができるプロパティは、<xref:System.Data.IDataReader.IsClosed%2A> と <xref:System.Data.IDataReader.RecordsAffected%2A> だけです。  
   
  ]]></format>
         </remarks>
