@@ -1,5 +1,5 @@
 <Type Name="SecurityKeyType" FullName="System.IdentityModel.Tokens.SecurityKeyType">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5405dd53e7b0006499b86a00f837e2f701a42ab0" /><Meta Name="ms.sourcegitcommit" Value="ec93491ea3720925bf4f5481b6d46c096cb3919e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/24/2019" /><Meta Name="ms.locfileid" Value="70017166" /></Metadata><TypeSignature Language="C#" Value="public enum SecurityKeyType" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="63dd5a4f8210ed21d086f6ad9f9efe62980ba879" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75131608" /></Metadata><TypeSignature Language="C#" Value="public enum SecurityKeyType" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SecurityKeyType extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.Tokens.SecurityKeyType" />
   <TypeSignature Language="VB.NET" Value="Public Enum SecurityKeyType" />
@@ -9,6 +9,10 @@
     <AssemblyName>System.IdentityModel</AssemblyName>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <AssemblyInfo>
+    <AssemblyName>System.ServiceModel.Security</AssemblyName>
+    <AssemblyVersion>4.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Enum</BaseTypeName>
@@ -24,11 +28,11 @@
  `BearerKey` フィールドは、<xref:System.ServiceModel.Configuration.IssuedTokenParametersElement.KeyType%2A> プロパティと共に使用されます。  
   
 ### <a name="bearerkey-requires-wsuid-or-transport-security-with-message-credentials"></a>BearerKey には Wsu:Id またはメッセージ資格情報付きトランスポート セキュリティが必要  
- フェデレーション シナリオで発行されるトークンは、通常、クライアントと証明書利用者の間のメッセージ セキュリティのための保証サポート トークンとして構成されます。 ただし、セキュリティトークンサービス (STS) がキーを持たないトークンを発行した場合 (BearerKey)、wcf は<xref:System.ServiceModel.Security.SecurityTokenAttachmentMode.SignedEncrypted?displayProperty=nameWithType>サポートトークンとしてそれを構成します (wcf はキーなしでは保証できません)。 このため、発行されたトークンを署名で参照する必要があります。 現在、WCF では、 `http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd:Id`参照メカニズム (wsu: Id) として次のものが使用されています。  
+ フェデレーション シナリオで発行されるトークンは、通常、クライアントと証明書利用者の間のメッセージ セキュリティのための保証サポート トークンとして構成されます。 ただし、セキュリティトークンサービス (STS) がキーなしのトークンを発行した場合 (BearerKey)、WCF はそれを <xref:System.ServiceModel.Security.SecurityTokenAttachmentMode.SignedEncrypted?displayProperty=nameWithType> サポートトークンとして構成します (WCF はキーなしでは保証できません)。 このため、発行されたトークンを署名で参照する必要があります。 現在、WCF では、参照メカニズム (Wsu: Id) として `http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd:Id` が使用されています。  
   
  発行されたトークンがこのような属性を持たない場合は、クライアントで、"署名する要素には ID が必要です" というメッセージと共に、<xref:System.ServiceModel.Security.MessageSecurityException> がスローされます。 これは、発行されたトークンとして、SAML 1.1 トークンが使用されている場合に起こります (Wsu:Id は、SAML 1.1 仕様では定義されていません)。  
   
- この状況を回避するには、メッセージの資格情報 (など<xref:System.ServiceModel.Configuration.AuthenticationMode.IssuedTokenOverTransport?displayProperty=nameWithType>) を使用してトランスポートセキュリティを使用するか、または STS で発行済みトークンに`http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd:Id` (wsu: Id) を追加する必要があります。  
+ この状況を回避するには、メッセージの資格情報 (<xref:System.ServiceModel.Configuration.AuthenticationMode.IssuedTokenOverTransport?displayProperty=nameWithType>など) でトランスポートセキュリティを使用するか、STS で `http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd:Id` (Wsu: Id) を発行済みトークンに追加する必要があります。  
   
  ただし、Wsu:Id を SAML 1.1 トークンに追加した場合、結果として得られる XML は SAML 1.1 仕様に準拠しないので注意してください。 または、発行されたトークンの暗号化結果 `EncryptedData` に Wsu:Id を追加します。 `EncryptedData` 要素は Wsu:Id 属性をサポートしているので、この手順は SAML 1.1 仕様に準拠します。  
   
@@ -51,6 +55,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>System.ServiceModel.Security</AssemblyName>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IdentityModel.Tokens.SecurityKeyType</ReturnType>
       </ReturnValue>
@@ -72,6 +80,10 @@
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>System.ServiceModel.Security</AssemblyName>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IdentityModel.Tokens.SecurityKeyType</ReturnType>
       </ReturnValue>
@@ -92,6 +104,10 @@
         <AssemblyName>System.IdentityModel</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>System.ServiceModel.Security</AssemblyName>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IdentityModel.Tokens.SecurityKeyType</ReturnType>

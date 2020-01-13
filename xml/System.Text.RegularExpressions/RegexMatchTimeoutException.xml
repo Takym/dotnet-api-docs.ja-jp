@@ -1,5 +1,5 @@
 <Type Name="RegexMatchTimeoutException" FullName="System.Text.RegularExpressions.RegexMatchTimeoutException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="32bab1f2f2c42a1653515ff1864afe998e46d0fc" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230851" /></Metadata><TypeSignature Language="C#" Value="public class RegexMatchTimeoutException : TimeoutException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="748bd97d04ad112a76a94082fcac3494c8c80ca8" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75053712" /></Metadata><TypeSignature Language="C#" Value="public class RegexMatchTimeoutException : TimeoutException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit RegexMatchTimeoutException extends System.TimeoutException implements class System.Runtime.Serialization.ISerializable" />
   <TypeSignature Language="DocId" Value="T:System.Text.RegularExpressions.RegexMatchTimeoutException" />
   <TypeSignature Language="VB.NET" Value="Public Class RegexMatchTimeoutException&#xA;Inherits TimeoutException" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System</AssemblyName>
@@ -38,12 +39,12 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>正規表現パターン一致メソッドの実行時間がそのタイムアウト間隔を超えるとスローされる例外。</summary>
+    <summary>正規表現パターン マッチング メソッドの実行時間が、タイムアウト間隔を超えた場合にスローされる例外。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>例外の存在は、通常、次のいずれかの条件を示します。  
+ <xref:System.Text.RegularExpressions.RegexMatchTimeoutException> 例外の存在は、通常、次のいずれかの条件を示します。  
   
 -   正規表現エンジンは、入力テキストを正規表現パターンと照合しようとするため、過度にバックトラッキングが行われます。  
   
@@ -51,16 +52,16 @@
   
  例外ハンドラーが例外を処理する方法は、例外の原因によって異なります。  
   
--   タイムアウトが過剰なバックトラッキングによって発生した場合は、例外ハンドラーが入力を照合する試行を破棄し、正規表現パターン一致メソッドでタイムアウトが発生したことをユーザーに通知する必要があります。 可能であれば、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Pattern%2A>プロパティから使用できる正規表現パターンに関する情報と、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>プロパティから取得できる過剰なバックトラッキングを引き起こした入力をログに記録して、問題を解決できるようにする必要があります。調査済みで、正規表現パターンが変更されました。 過度なバックトラッキングによるタイムアウトは常に再現可能です。  
+-   タイムアウトが過剰なバックトラッキングによって発生した場合は、例外ハンドラーが入力を照合する試行を破棄し、正規表現パターン一致メソッドでタイムアウトが発生したことをユーザーに通知する必要があります。 可能な場合は、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Pattern%2A> プロパティから使用できる正規表現パターンに関する情報と、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A> プロパティから取得できる過剰なバックトラッキングを発生させた入力をログに記録して、問題を調査し、正規表現パターンを変更する必要があります。 過度なバックトラッキングによるタイムアウトは常に再現可能です。  
   
--   タイムアウトのしきい値を設定した結果が小さすぎる場合は、タイムアウト間隔を長くして、照合操作を再試行することができます。 現在のタイムアウト間隔は、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.MatchTimeout%2A>プロパティから取得できます。 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>例外がスローされると、正規表現エンジンはその状態を維持するので、例外が発生しなかった場合と同じ結果が返されます。 推奨されるパターンは、一致するメソッドを再度呼び出す前に、例外がスローされた後のランダムな時間間隔を短くすることです。 これは、複数回繰り返すことができます。 ただし、タイムアウトが過剰なバックトラッキングによって引き起こされる場合は、繰り返し回数が小さくなる必要があります。  
+-   タイムアウトのしきい値を設定した結果が小さすぎる場合は、タイムアウト間隔を長くして、照合操作を再試行することができます。 現在のタイムアウト間隔は、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.MatchTimeout%2A> プロパティから使用できます。 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException> 例外がスローされると、正規表現エンジンはその状態を保持します。これにより、例外が発生しなかった場合と同様に、今後の呼び出しでも同じ結果が返されます。 推奨されるパターンは、一致するメソッドを再度呼び出す前に、例外がスローされた後のランダムな時間間隔を短くすることです。 これは、複数回繰り返すことができます。 ただし、タイムアウトが過剰なバックトラッキングによって引き起こされる場合は、繰り返し回数が小さくなる必要があります。  
   
- 次のセクションの例では、を<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>処理する方法について説明します。  
+ 次のセクションの例では、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>を処理する方法について説明します。  
   
    
   
 ## Examples  
- 次の例は、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>例外を処理する2つの方法を示しています。 値が2秒の定数は、最大タイムアウト間隔を定義します。 メソッド<xref:System.Text.RegularExpressions.Regex.IsMatch%28System.String%2CSystem.String%2CSystem.Text.RegularExpressions.RegexOptions%2CSystem.TimeSpan%29?displayProperty=nameWithType>は、1秒のタイムアウト間隔で最初に呼び出されます。 例外<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>が発生するたびに、タイムアウト間隔が1秒に増加し、現在のタイムアウト間隔が<xref:System.Text.RegularExpressions.Regex.IsMatch%2A?displayProperty=nameWithType>最大タイムアウト時間よりも短い場合、メソッドが別の呼び出しになります。 ただし、現在のタイムアウト間隔が最大タイムアウト時間を超える場合、例外ハンドラーは情報をイベントログに書き込み、正規表現の処理を破棄します。  
+ 次の例は、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException> 例外を処理する2つの方法を示しています。 値が2秒の定数は、最大タイムアウト間隔を定義します。 <xref:System.Text.RegularExpressions.Regex.IsMatch%28System.String%2CSystem.String%2CSystem.Text.RegularExpressions.RegexOptions%2CSystem.TimeSpan%29?displayProperty=nameWithType> メソッドは、1秒のタイムアウト間隔で最初に呼び出されます。 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException> 例外が発生するたびに、タイムアウト間隔が1秒に増加し、現在のタイムアウト間隔が最大タイムアウト時間よりも短い場合、<xref:System.Text.RegularExpressions.Regex.IsMatch%2A?displayProperty=nameWithType> メソッドが別の呼び出しになります。 ただし、現在のタイムアウト間隔が最大タイムアウト時間を超える場合、例外ハンドラーは情報をイベントログに書き込み、正規表現の処理を破棄します。  
   
  [!code-csharp[System.Text.RegularExpressions.RegexMatchTimeoutException#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.text.regularexpressions.regexmatchtimeoutexception/cs/class1.cs#1)]
  [!code-vb[System.Text.RegularExpressions.RegexMatchTimeoutException#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.text.regularexpressions.regexmatchtimeoutexception/vb/class1.vb#1)]  
@@ -99,6 +100,7 @@
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -117,7 +119,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- これは、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>クラスのパラメーターなしのコンストラクターです。 このコンストラクターは、新しいインスタンスの <xref:System.Exception.Message%2A> プロパティをシステム提供のエラー記述メッセージに初期化します。 このメッセージは、現在のシステムのカルチャに対してローカライズされています。  
+ これは、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException> クラスのパラメーターなしのコンストラクターです。 このコンストラクターは、新しいインスタンスの <xref:System.Exception.Message%2A> プロパティをシステム提供のエラー記述メッセージに初期化します。 このメッセージは、現在のシステムのカルチャに対してローカライズされています。  
   
  ]]></format>
         </remarks>
@@ -139,6 +141,7 @@
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -155,12 +158,12 @@
       </Parameters>
       <Docs>
         <param name="message">例外を説明する文字列。</param>
-        <summary>指定したメッセージ文字列を使用して、<see cref="T:System.Text.RegularExpressions.RegexMatchTimeoutException" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>指定したメッセージの文字列を使用して、<see cref="T:System.Text.RegularExpressions.RegexMatchTimeoutException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 文字列は、 <xref:System.Exception.Message%2A?displayProperty=nameWithType>プロパティに割り当てられます。 `message` 文字列は、現在のカルチャにローカライズされている必要があります。  
+ `message` 文字列は、<xref:System.Exception.Message%2A?displayProperty=nameWithType> プロパティに割り当てられます。 文字列は、現在のカルチャにローカライズされている必要があります。  
   
  ]]></format>
         </remarks>
@@ -188,20 +191,21 @@
         <AssemblyName>System.Text.RegularExpressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
-        <param name="info">シリアル化したデータを格納しているオブジェクト。</param>
-        <param name="context">シリアル化したデータを格納しているストリーム。</param>
+        <param name="info">シリアル化されたデータを格納するオブジェクト。</param>
+        <param name="context">シリアル化されたデータを格納するストリーム。</param>
         <summary>シリアル化したデータを使用して、<see cref="T:System.Text.RegularExpressions.RegexMatchTimeoutException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>オブジェクトをインスタンス化するためにコードによって直接呼び出されるわけではありません。 代わりに、ストリームから<xref:System.Runtime.Serialization.IFormatter.Deserialize%2A?displayProperty=nameWithType> <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>オブジェクトを逆シリアル化するときに、メソッドによって呼び出されます。  
+ このコンストラクターは、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException> オブジェクトをインスタンス化するためにコードによって直接呼び出されることはありません。 代わりに、ストリームから <xref:System.Text.RegularExpressions.RegexMatchTimeoutException> オブジェクトを逆シリアル化するときに、<xref:System.Runtime.Serialization.IFormatter.Deserialize%2A?displayProperty=nameWithType> メソッドによって呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -223,6 +227,7 @@
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -246,9 +251,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 通常、このオーバーロードを使用して、 `try/catch`ブロック内の例外を処理します。 パラメーターは、 `catch`ブロックで処理さ`null`れる例外オブジェクトへの参照であるか、またはにする必要があります。 `innerException` この値は、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>オブジェクトの<xref:System.Exception.InnerException%2A?displayProperty=nameWithType>プロパティに割り当てられます。  
+ 通常、このオーバーロードを使用して、`try/catch` ブロック内の例外を処理します。 `innerException` パラメーターは、`catch` ブロックで処理される例外オブジェクトへの参照であるか、または `null`することができます。 この値は、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException> オブジェクトの <xref:System.Exception.InnerException%2A?displayProperty=nameWithType> プロパティに割り当てられます。  
   
- 文字列は、 <xref:System.Exception.Message%2A?displayProperty=nameWithType>プロパティに割り当てられます。 `message` 文字列は、現在のカルチャにローカライズされている必要があります。  
+ `message` 文字列は、<xref:System.Exception.Message%2A?displayProperty=nameWithType> プロパティに割り当てられます。 文字列は、現在のカルチャにローカライズされている必要があります。  
   
  ]]></format>
         </remarks>
@@ -270,6 +275,7 @@
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -295,7 +301,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A> <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.MatchTimeout%2A> <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Pattern%2A>、、およびの各<xref:System.Text.RegularExpressions.RegexMatchTimeoutException>値は、新しいオブジェクトの、、およびの各プロパティに割り当てられます。 `matchTimeout` `regexPattern` `regexInput`  
+ `regexInput`、`regexPattern`、および `matchTimeout` の値は、新しい <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Pattern%2A>オブジェクトの <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.MatchTimeout%2A>、および <xref:System.Text.RegularExpressions.RegexMatchTimeoutException> の各プロパティに割り当てられます。  
   
  ]]></format>
         </remarks>
@@ -317,6 +323,7 @@
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -338,9 +345,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、 `regexInput` <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>コンストラクターのパラメーターの値を反映します。 このパラメーターがコンストラクター呼び出しで明示的に初期化されていない<xref:System.String.Empty?displayProperty=nameWithType>場合、その値はになります。  
+ このプロパティは、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29> コンストラクターの `regexInput` パラメーターの値を反映します。 このパラメーターがコンストラクター呼び出しで明示的に初期化されていない場合、その値は <xref:System.String.Empty?displayProperty=nameWithType>になります。  
   
- 正規表現エンジンによって例外がスローされた場合、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A>プロパティの値は、正規表現エンジンに渡された入力文字列全体を反映します。 エンジンがなど<xref:System.Text.RegularExpressions.Regex.Match%28System.String%2CSystem.Int32%29?displayProperty=nameWithType>のメソッドの呼び出しを検索する部分文字列など、部分文字列は反映されません。  
+ 正規表現エンジンによって例外がスローされた場合、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.Input%2A> プロパティの値には、正規表現エンジンに渡された入力文字列全体が反映されます。 エンジンが <xref:System.Text.RegularExpressions.Regex.Match%28System.String%2CSystem.Int32%29?displayProperty=nameWithType>などのメソッドへの呼び出しを検索する部分文字列など、部分文字列は反映されません。  
   
  ]]></format>
         </remarks>
@@ -362,6 +369,7 @@
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -383,9 +391,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、 `matchTimeout` <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>コンストラクターのパラメーターの値を反映します。 コンストラクターの呼び出しでパラメーターが適切に初期化されていない場合`Timespan.FromTicks(-1)`、その値はになります。  
+ このプロパティは、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29> コンストラクターの `matchTimeout` パラメーターの値を反映します。 コンストラクター呼び出しでパラメーターが適切に初期化されていない場合、その値は `Timespan.FromTicks(-1)`になります。  
   
- このプロパティの値は、 <xref:System.Text.RegularExpressions.Regex>コンストラクターまたは静的メソッドの呼び出しで設定されたタイムアウト時間を反映します。 メソッド呼び出しの最初から例外がスローされた時点までの経過時間を正確に反映していません。  
+ このプロパティの値は、<xref:System.Text.RegularExpressions.Regex> コンストラクターまたは静的メソッドの呼び出しで設定されたタイムアウト時間を反映します。 メソッド呼び出しの最初から例外がスローされた時点までの経過時間を正確に反映していません。  
   
  ]]></format>
         </remarks>
@@ -407,6 +415,7 @@
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -428,7 +437,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、 `regexPattern` <xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29>コンストラクターのパラメーターの値を反映します。 コンストラクターの呼び出しでパラメーターが適切に初期化されていない場合<xref:System.String.Empty?displayProperty=nameWithType>、その値はになります。  
+ このプロパティは、<xref:System.Text.RegularExpressions.RegexMatchTimeoutException.%23ctor%28System.String%2CSystem.String%2CSystem.TimeSpan%29> コンストラクターの `regexPattern` パラメーターの値を反映します。 コンストラクター呼び出しでパラメーターが適切に初期化されていない場合、その値は <xref:System.String.Empty?displayProperty=nameWithType>になります。  
   
  ]]></format>
         </remarks>
@@ -458,13 +467,14 @@
         <AssemblyName>System.Text.RegularExpressions</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="si" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="si" Type="System.Runtime.Serialization.SerializationInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="si">データを読み込む先のオブジェクト。</param>
@@ -474,9 +484,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 このメソッドは、 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException>インスタンスが<xref:System.Runtime.Serialization.ISerializable>インターフェイスオブジェクトにキャストされている場合にのみ使用できます。  
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 <xref:System.Text.RegularExpressions.RegexMatchTimeoutException> インスタンスが <xref:System.Runtime.Serialization.ISerializable> インターフェイスオブジェクトにキャストされている場合にのみ使用できます。  
   
- <xref:System.Runtime.Serialization.SerializationInfo>オブジェクトに含まれるオブジェクトは、フォーマッタによって自動的に追跡およびシリアル化されます。  
+ <xref:System.Runtime.Serialization.SerializationInfo> オブジェクトに含まれるオブジェクトは、フォーマッタによって自動的に追跡およびシリアル化されます。  
   
  ]]></format>
         </remarks>

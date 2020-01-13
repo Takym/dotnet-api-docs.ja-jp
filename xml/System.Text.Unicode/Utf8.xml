@@ -1,5 +1,5 @@
 <Type Name="Utf8" FullName="System.Text.Unicode.Utf8">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9971535bbe6a9174b1c20ccc1203e3e03b13aa56" /><Meta Name="ms.sourcegitcommit" Value="9202663039e1991a31fcb8b0d22c93fcaf2e986b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/03/2019" /><Meta Name="ms.locfileid" Value="71934078" /></Metadata><TypeSignature Language="C#" Value="public static class Utf8" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1a659071573dd0d116e7ba99b32a257244e2b50a" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75053257" /></Metadata><TypeSignature Language="C#" Value="public static class Utf8" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Utf8 extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Text.Unicode.Utf8" />
   <TypeSignature Language="VB.NET" Value="Public Class Utf8" />
@@ -8,6 +8,7 @@
   <AssemblyInfo>
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -28,6 +29,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Buffers.OperationStatus</ReturnType>
@@ -45,8 +47,8 @@
         <param name="destination">UTF-8 でエンコードされたバイト スパン。</param>
         <param name="charsRead">メソッドが戻るときに、<paramref name="source" /> から読み取られた文字数。</param>
         <param name="bytesWritten">メソッドが戻るときに、<paramref name="destination" /> に書き込まれるバイト数。</param>
-        <param name="replaceInvalidSequences"><paramref name="source" /> で無効な UTF-16 シーケンスを U+FFFD に置き換えるには <see langword="true" />、無効な文字が <paramref name="source" /> で見つかった場合に <see cref="F:System.Buffers.OperationStatus.InvalidData" /> を返すには <see langword="false" />。</param>
-        <param name="isFinalBlock">メソッドで <see cref="F:System.Buffers.OperationStatus.NeedMoreData" /> を返さない場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</param>
+        <param name="replaceInvalidSequences"><see langword="true" /> で無効な UTF-16 シーケンスを U+FFFD に置き換えるには <paramref name="source" />、無効な文字が <see langword="false" /> で見つかった場合に <see cref="F:System.Buffers.OperationStatus.InvalidData" /> を返すには <paramref name="source" />。</param>
+        <param name="isFinalBlock">メソッドで <see langword="true" /> を返さない場合は <see cref="F:System.Buffers.OperationStatus.NeedMoreData" />、それ以外の場合は <see langword="false" />。</param>
         <summary>UTF-16 の文字スパンを UTF-8 でエンコードされたバイト スパンに変換します。</summary>
         <returns>変換の状態を示す値。</returns>
         <remarks>
@@ -56,11 +58,11 @@
 
 このメソッドは、 [UTF8Encoding](xref:System.Text.UTF8Encoding.GetBytes%2A)メソッドに対応しています。ただし、呼び出し規則が異なり、エラー処理機構が異なるため、パフォーマンス特性も異なります。 
 
-' ReplaceInvalidSequences ' が `true` の場合、メソッドは、`source` の不適切な形式のサブシーケンスを `destination` の U + FFFD に置き換え、バッファーの残りの部分の処理を続行します。 それ以外の場合、メソッドは、不適切な形式のシーケンスが検出された場合に <xref:System.Buffers.OperationStatus.InvalidData?displayProperty=nameWithType> を返します。
+' ReplaceInvalidSequences ' が `true`場合、メソッドは、`source` 内の不適切な形式のサブシーケンスを `destination` の U + FFFD に置き換え、バッファーの残りの部分の処理を続行します。 それ以外の場合、メソッドは、不適切な形式のシーケンスが検出された場合に <xref:System.Buffers.OperationStatus.InvalidData?displayProperty=nameWithType> を返します。
 
 メソッドからエラーコードが返された場合、out パラメーターは、正常に作成されたデータの量を示し、不適切な形式のサブシーケンスの位置はこれらの値から推測できます。
 
-' ReplaceInvalidSequences ' が `true` の場合、メソッドは <xref:System.Buffers.OperationStatus.InvalidData?displayProperty=nameWithType> を返しません。 ' IsFinalBlock ' が `true` の場合、メソッドは <xref:System.Buffers.OperationStatus.NeedMoreData?displayProperty=nameWithType> を返しません。
+' ReplaceInvalidSequences ' が `true`の場合、メソッドは <xref:System.Buffers.OperationStatus.InvalidData?displayProperty=nameWithType>を返しません。 ' IsFinalBlock ' が `true`の場合、メソッドは <xref:System.Buffers.OperationStatus.NeedMoreData?displayProperty=nameWithType>を返しません。
 
           ]]></format>
         </remarks>
@@ -76,6 +78,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Buffers.OperationStatus</ReturnType>
@@ -93,8 +96,8 @@
         <param name="destination">UTF-16 でエンコードされた文字スパン。</param>
         <param name="bytesRead">メソッドが戻るときに、<paramref name="source" /> から読み取られたバイト数。</param>
         <param name="charsWritten">メソッドが戻るときに、<paramref name="destination" /> に書き込まれる文字数。</param>
-        <param name="replaceInvalidSequences"><paramref name="source" /> で無効な UTF-8 シーケンスを U+FFFD に置き換えるには <see langword="true" />、無効な文字が <paramref name="source" /> で見つかった場合に <see cref="F:System.Buffers.OperationStatus.InvalidData" /> を返すには <see langword="false" />。</param>
-        <param name="isFinalBlock">メソッドで <see cref="F:System.Buffers.OperationStatus.NeedMoreData" /> を返さない場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</param>
+        <param name="replaceInvalidSequences"><see langword="true" /> で無効な UTF-8 シーケンスを U+FFFD に置き換えるには <paramref name="source" />、無効な文字が <see langword="false" /> で見つかった場合に <see cref="F:System.Buffers.OperationStatus.InvalidData" /> を返すには <paramref name="source" />。</param>
+        <param name="isFinalBlock">メソッドで <see langword="true" /> を返さない場合は <see cref="F:System.Buffers.OperationStatus.NeedMoreData" />、それ以外の場合は <see langword="false" />。</param>
         <summary>UTF-8 でエンコードされた読み取り専用のバイト スパンを UTF-16 でエンコードされた文字スパンに変換します。</summary>
         <returns>変換の状態を示す値。</returns>
         <remarks>
@@ -104,11 +107,11 @@
 
 このメソッドは、 [UTF8Encoding](xref:System.Text.UTF8Encoding.GetChars%2A)メソッドに対応しています。ただし、呼び出し規則が異なるため、異なるエラー処理機構があり、パフォーマンス特性も異なります。 
 
-' ReplaceInvalidSequences ' が `true` の場合、メソッドは、`source` の不適切な形式のサブシーケンスを `destination` の U + FFFD に置き換え、バッファーの残りの部分の処理を続行します。 それ以外の場合、メソッドは、不適切な形式のシーケンスが検出された場合に <xref:System.Buffers.OperationStatus.InvalidData?displayProperty=nameWithType> を返します。
+' ReplaceInvalidSequences ' が `true`場合、メソッドは、`source` 内の不適切な形式のサブシーケンスを `destination` の U + FFFD に置き換え、バッファーの残りの部分の処理を続行します。 それ以外の場合、メソッドは、不適切な形式のシーケンスが検出された場合に <xref:System.Buffers.OperationStatus.InvalidData?displayProperty=nameWithType> を返します。
 
 メソッドからエラーコードが返された場合、out パラメーターは、正常に作成されたデータの量を示し、不適切な形式のサブシーケンスの位置はこれらの値から推測できます。
 
-' ReplaceInvalidSequences ' が `true` の場合、メソッドは <xref:System.Buffers.OperationStatus.InvalidData?displayProperty=nameWithType> を返しません。 ' IsFinalBlock ' が `true` の場合、メソッドは <xref:System.Buffers.OperationStatus.NeedMoreData?displayProperty=nameWithType> を返しません。
+' ReplaceInvalidSequences ' が `true`の場合、メソッドは <xref:System.Buffers.OperationStatus.InvalidData?displayProperty=nameWithType>を返しません。 ' IsFinalBlock ' が `true`の場合、メソッドは <xref:System.Buffers.OperationStatus.NeedMoreData?displayProperty=nameWithType>を返しません。
 
           ]]></format>
         </remarks>

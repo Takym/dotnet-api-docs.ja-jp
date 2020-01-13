@@ -1,5 +1,5 @@
 <Type Name="EncoderExceptionFallback" FullName="System.Text.EncoderExceptionFallback">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="50376665de7c4675586422d96377f61691b696aa" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69230596" /></Metadata><TypeSignature Language="C#" Value="public sealed class EncoderExceptionFallback : System.Text.EncoderFallback" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="88cca21344b324041231fc94a2a4e96275b6a632" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75119193" /></Metadata><TypeSignature Language="C#" Value="public sealed class EncoderExceptionFallback : System.Text.EncoderFallback" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit EncoderExceptionFallback extends System.Text.EncoderFallback" />
   <TypeSignature Language="DocId" Value="T:System.Text.EncoderExceptionFallback" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class EncoderExceptionFallback&#xA;Inherits EncoderFallback" />
@@ -24,6 +24,7 @@
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Text.EncoderFallback</BaseTypeName>
@@ -35,23 +36,23 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>出力バイト シーケンスに変換できない入力文字のために、フォールバックと呼ばれるエラー処理機構を提供します。 フォールバックは、入力文字を出力バイト シーケンスに変換できない場合に例外をスローします。 このクラスは継承できません。</summary>
+    <summary>出力バイト シーケンスに変換できない入力文字のために、フォールバックと呼ばれるエラー処理メカニズムを提供します。 フォールバックは、入力文字を出力バイト シーケンスに変換できない場合に例外をスローします。 このクラスは継承できません。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- エンコードでは、Unicode 文字をエンコードされたバイトシーケンスにマップします。これは、その後、ディスクや通信リンクを使用して物理メディアに転送できます。 文字はさまざまな方法でマップでき、特定のエンコーディングは<xref:System.Text.Encoding>クラスから派生した型によって表されます。 具体的には、エンコードの`GetBytes`種類のメソッドは文字をバイトシーケンスにエンコードし`GetChars` 、メソッドはバイトシーケンスを文字にデコードします。  
+ エンコードでは、Unicode 文字をエンコードされたバイトシーケンスにマップします。これは、その後、ディスクや通信リンクを使用して物理メディアに転送できます。 文字はさまざまな方法でマップでき、特定のエンコーディングは <xref:System.Text.Encoding> クラスから派生した型によって表されます。 具体的には、エンコードの種類の `GetBytes` メソッドは文字をバイトシーケンスにエンコードし、`GetChars` メソッドはバイトシーケンスを文字にデコードします。  
   
- エンコーディングで入力文字を表現できない場合、エンコーディング操作が失敗することがあります。 たとえば、 <xref:System.Text.ASCIIEncoding> u + 0000 ~ u + 007f の範囲外の Unicode コードポイント値を生成する文字をオブジェクトでエンコードすることはできません。  
+ エンコーディングで入力文字を表現できない場合、エンコーディング操作が失敗することがあります。 たとえば、<xref:System.Text.ASCIIEncoding> オブジェクトは、U + 0000 ~ U + 007F の範囲外の Unicode コードポイント値を生成する文字をエンコードすることはできません。  
   
- エンコードまたはデコード変換を実行できない場合、.NET Framework はフォールバックと呼ばれるエラー処理機構を提供します。 アプリケーションでは、定義済みの .NET Framework エンコーダーフォールバックを使用することも、クラス<xref:System.Text.EncoderFallback>および<xref:System.Text.EncoderFallbackBuffer>クラスから派生したカスタムエンコーダーフォールバックを作成することもできます。  
+ エンコードまたはデコード変換を実行できない場合、.NET Framework はフォールバックと呼ばれるエラー処理機構を提供します。 アプリケーションでは、定義済みの .NET Framework エンコーダーフォールバックを使用することも、<xref:System.Text.EncoderFallback> クラスおよび <xref:System.Text.EncoderFallbackBuffer> クラスから派生したカスタムエンコーダーフォールバックを作成することもできます。  
   
- .NET Framework には、エンコード変換エラーを処理するための異なるフォールバックストラテジを実装する2つの定義済みクラスが用意されています。 クラス<xref:System.Text.EncoderReplacementFallback>は、変換できない入力文字に対して提供される文字列に置き換えられます。 代替文字列は、無効な文字の代わりにエンコードされます。その後、エンコーディング操作によって、入力の残りの部分の変換が続行されます。 これに対して<xref:System.Text.EncoderExceptionFallback> 、クラスは<xref:System.Text.EncoderFallbackException> 、無効な文字が検出された場合にをスローします。  
+ .NET Framework には、エンコード変換エラーを処理するための異なるフォールバックストラテジを実装する2つの定義済みクラスが用意されています。 <xref:System.Text.EncoderReplacementFallback> クラスは、変換できない入力文字に対して指定された文字列を置換します。 代替文字列は、無効な文字の代わりにエンコードされます。その後、エンコーディング操作によって、入力の残りの部分の変換が続行されます。 これに対し、<xref:System.Text.EncoderExceptionFallback> クラスは、無効な文字が検出された場合に <xref:System.Text.EncoderFallbackException> をスローします。  
   
    
   
 ## Examples  
- 次のコード例は、 <xref:System.Text.EncoderExceptionFallback>クラス<xref:System.Text.EncoderFallbackException>とクラスを示しています。  
+ 次のコード例は、<xref:System.Text.EncoderExceptionFallback> クラスと <xref:System.Text.EncoderFallbackException> クラスを示しています。  
   
  [!code-cpp[sys.txt.fallbackEncExc#1](~/samples/snippets/cpp/VS_Snippets_CLR/sys.txt.fallbackEncExc/cpp/fallEncExc.cpp#1)]
  [!code-csharp[sys.txt.fallbackEncExc#1](~/samples/snippets/csharp/VS_Snippets_CLR/sys.txt.fallbackEncExc/cs/fallEncExc.cs#1)]
@@ -88,6 +89,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -122,6 +124,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Text.EncoderFallbackBuffer</ReturnType>
@@ -134,7 +137,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- エンコーダーフォールバックバッファーは、エンコーダーがバイトシーケンスに変換できない文字の受信と処理を行います。 このメソッドは、クラスのサブ<xref:System.Text.EncoderExceptionFallbackBuffer> <xref:System.Text.EncoderFallbackBuffer>クラスであるクラスのインスタンスを返します。 オブジェクト<xref:System.Text.EncoderExceptionFallbackBuffer>は<xref:System.Text.EncoderFallbackException> 、<xref:System.Text.EncoderExceptionFallbackBuffer.Fallback%2A?displayProperty=nameWithType>文字がメソッドに渡されるたびに例外をスローします。  
+ エンコーダーフォールバックバッファーは、エンコーダーがバイトシーケンスに変換できない文字の受信と処理を行います。 このメソッドは、<xref:System.Text.EncoderFallbackBuffer> クラスのサブクラスである <xref:System.Text.EncoderExceptionFallbackBuffer> クラスのインスタンスを返します。 <xref:System.Text.EncoderExceptionFallbackBuffer> オブジェクトは、文字が <xref:System.Text.EncoderExceptionFallbackBuffer.Fallback%2A?displayProperty=nameWithType> メソッドに渡されるたびに、<xref:System.Text.EncoderFallbackException> 例外をスローします。  
   
  ]]></format>
         </remarks>
@@ -167,6 +170,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -177,7 +181,7 @@
       <Docs>
         <param name="value"><see cref="T:System.Text.EncoderExceptionFallback" /> クラスから派生するオブジェクト。</param>
         <summary>現在の <see cref="T:System.Text.EncoderExceptionFallback" /> オブジェクトと指定したオブジェクトが等しいかどうかを示します。</summary>
-        <returns><paramref name="value" /> が <see langword="true" /> (Visual Basic .NET では <see langword="null" />) でなく、かつ <see cref="T:System.Text.EncoderExceptionFallback" /> オブジェクトである場合は <see langword="Nothing" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> が <paramref name="value" /> (Visual Basic .NET では <see langword="null" />) でなく、かつ <see langword="Nothing" /> オブジェクトである場合は <see cref="T:System.Text.EncoderExceptionFallback" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -208,6 +212,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -220,7 +225,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは<xref:System.Text.EncoderExceptionFallback.GetHashCode%2A>常に同じ値を返すので、アプリケーションではこの値を使用して、 <xref:System.Text.EncoderExceptionFallback>クラスのインスタンスを別のインスタンスと区別することはできません。  
+ <xref:System.Text.EncoderExceptionFallback.GetHashCode%2A> メソッドは常に同じ値を返します。そのため、アプリケーションでは、この値を使用して、<xref:System.Text.EncoderExceptionFallback> クラスの1つのインスタンスを別のインスタンスと区別することはできません。  
   
  ]]></format>
         </remarks>
@@ -253,6 +258,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
