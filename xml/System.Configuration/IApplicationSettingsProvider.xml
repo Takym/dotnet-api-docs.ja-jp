@@ -1,5 +1,5 @@
 <Type Name="IApplicationSettingsProvider" FullName="System.Configuration.IApplicationSettingsProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="53e3d96ee4c1f73a05d936c3f4ace5c9859c54c0" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69378293" /></Metadata><TypeSignature Language="C#" Value="public interface IApplicationSettingsProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5ecfb55d491aebcffec9c2baaded2fdfaea35a7b" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75144465" /></Metadata><TypeSignature Language="C#" Value="public interface IApplicationSettingsProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IApplicationSettingsProvider" />
   <TypeSignature Language="DocId" Value="T:System.Configuration.IApplicationSettingsProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface IApplicationSettingsProvider" />
@@ -15,6 +15,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -23,7 +24,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- アプリケーション設定アーキテクチャでは、から<xref:System.Configuration.SettingsProvider>派生したクラスであるカスタム設定プロバイダーを作成することによって、アプリケーション設定のカスタムストレージ機構を提供できます。 このようなクラスには、プロパティを格納および取得するための基本機能が含まれています。 ただし、カスタム設定プロバイダーに<xref:System.Configuration.IApplicationSettingsProvider>インターフェイスを実装することで、追加の標準化された機能を追加することができます。 このインターフェイスには、主に設定プロバイダーがアプリケーションのバージョンの変更をよりインテリジェントに処理できるようにする3つのメソッドが含まれています。 通常、設定プロバイダーは、次の状況を予測するために、異なるバージョンのアプリケーションのアプリケーション設定を個別に格納します。  
+ アプリケーション設定のアーキテクチャを使用すると、<xref:System.Configuration.SettingsProvider>から派生したクラスであるカスタム設定プロバイダーを作成することによって、アプリケーション設定のためのカスタムストレージ機構を提供できます。 このようなクラスには、プロパティを格納および取得するための基本機能が含まれています。 ただし、カスタム設定プロバイダーに <xref:System.Configuration.IApplicationSettingsProvider> インターフェイスを実装することで、追加の標準化された機能を追加できます。 このインターフェイスには、主に設定プロバイダーがアプリケーションのバージョンの変更をよりインテリジェントに処理できるようにする3つのメソッドが含まれています。 通常、設定プロバイダーは、次の状況を予測するために、異なるバージョンのアプリケーションのアプリケーション設定を個別に格納します。  
   
 -   アプリケーションの異なるバージョンの side-by-side 実行。  
   
@@ -31,7 +32,7 @@
   
 -   現在使用されているバージョンのアプリケーション設定を既定値にリセットしています。  
   
- <xref:System.Configuration.LocalFileSettingsProvider> クラスは、<xref:System.Configuration.IApplicationSettingsProvider> インターフェイスを実装します。 に含まれる同じメソッドのセット<xref:System.Configuration.IApplicationSettingsProvider>も<xref:System.Configuration.ApplicationSettingsBase>クラスにあります。これにより、アプリケーション設定ラッパーとその設定プロバイダーの間で定義済みの通信チャネルを確立することができます。  
+ <xref:System.Configuration.LocalFileSettingsProvider> クラスは、<xref:System.Configuration.IApplicationSettingsProvider> インターフェイスを実装します。 <xref:System.Configuration.IApplicationSettingsProvider> に含まれる同じメソッドのセットも <xref:System.Configuration.ApplicationSettingsBase> クラスにあります。これにより、アプリケーション設定ラッパーとその設定プロバイダーの間で定義済みの通信チャネルを確立できます。  
   
 > [!NOTE]
 >  このインターフェイスは省略可能です。 プロバイダーがこのインターフェイスを実装していない場合、このインターフェイスで定義されているいずれかのメソッドにアクセスしようとすると、設定インフラストラクチャが通知なしに失敗します。  
@@ -61,6 +62,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Configuration.SettingsPropertyValue</ReturnType>
@@ -78,11 +80,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドを<xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A>メソッドと<xref:System.Configuration.IApplicationSettingsProvider.GetPreviousVersion%2A>組み合わせて使用すると、新しいバージョンのアプリケーションのインストール中またはインストール後に、アプリケーション設定を移行できます。  
+ <xref:System.Configuration.IApplicationSettingsProvider.GetPreviousVersion%2A> メソッドを <xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A> メソッドと組み合わせて使用すると、新しいバージョンのアプリケーションのインストール中またはインストール後にアプリケーション設定を移行できます。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityException">アクセス<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />許可の場合。</permission>
+        <permission cref="T:System.Security.SecurityException"><see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" /> のアクセス許可の場合。</permission>
         <altmember cref="M:System.Configuration.IApplicationSettingsProvider.Upgrade(System.Configuration.SettingsContext,System.Configuration.SettingsPropertyCollection)" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.GetPreviousVersion(System.String)" />
         <related type="Article" href="https://msdn.microsoft.com/library/649f1342-766b-49e6-a90d-5b019a751e11">side-by-side 実行</related>
@@ -106,6 +108,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -120,13 +123,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Configuration.IApplicationSettingsProvider.Reset%2A>は、指定されたアプリケーション設定グループの格納されている値を再初期化します。 これに対し<xref:System.Configuration.DefaultSettingValueAttribute>て、プロパティの初期化中に、に格納されている値がない場合、は単一の設定プロパティの既定値を提供します。  
+ <xref:System.Configuration.IApplicationSettingsProvider.Reset%2A> メソッドは、指定されたアプリケーション設定グループの格納されている値を再初期化します。 これに対して、プロパティの初期化中に、格納されている値がない場合、<xref:System.Configuration.DefaultSettingValueAttribute> は単一の設定プロパティの既定値を提供します。  
   
- 設定プロバイダーは、指定されたアプリケーション設定のグループに対して適切な既定値を決定します。 たとえば、の<xref:System.Configuration.LocalFileSettingsProvider>実装は、ユーザースコープの設定を`application.exe.config`ファイル内の共有値にリセットします。これに対して、アプリケーションスコープの設定は変更されません。  
+ 設定プロバイダーは、指定されたアプリケーション設定のグループに対して適切な既定値を決定します。 たとえば、<xref:System.Configuration.LocalFileSettingsProvider> の実装は、ユーザースコープの設定を `application.exe.config` ファイル内の共有値にリセットします。これに対して、アプリケーションスコープの設定は変更されません。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityException">アクセス<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />許可の場合。</permission>
+        <permission cref="T:System.Security.SecurityException"><see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" /> のアクセス許可の場合。</permission>
         <altmember cref="T:System.Configuration.DefaultSettingValueAttribute" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.Reset" />
       </Docs>
@@ -149,6 +152,7 @@
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
+        <AssemblyVersion>4.0.3.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -165,15 +169,15 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- .NET Framework を使用すると、同じアプリケーションの異なるバージョンをサイドバイサイドでインストールして実行できます。 アプリケーション設定プロバイダーは、分離を確保するために、アプリケーションの各バージョンのアプリケーション設定を個別に保存します。 ただし、以前のバージョンのアプリケーションの設定を現在のものに移行することもできます。 この移行機能を提供するには<xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A> 、メソッドを使用します。これ<xref:System.Configuration.SettingsProvider>は、から派生したクラスで実装されます。  
+ .NET Framework を使用すると、同じアプリケーションの異なるバージョンをサイドバイサイドでインストールして実行できます。 アプリケーション設定プロバイダーは、分離を確保するために、アプリケーションの各バージョンのアプリケーション設定を個別に保存します。 ただし、以前のバージョンのアプリケーションの設定を現在のものに移行することもできます。 この移行機能を提供するには、<xref:System.Configuration.SettingsProvider>から派生したクラスに実装されている <xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A> メソッドを使用します。  
   
- メソッドを<xref:System.Configuration.IApplicationSettingsProvider.GetPreviousVersion%2A>メソッドと<xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A>組み合わせて使用すると、新しいバージョンのアプリケーションのインストール中またはインストール後に、アプリケーション設定を移行できます。  
+ <xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A> メソッドを <xref:System.Configuration.IApplicationSettingsProvider.GetPreviousVersion%2A> メソッドと組み合わせて使用すると、新しいバージョンのアプリケーションのインストール中またはインストール後にアプリケーション設定を移行できます。  
   
- このメソッドは、 <xref:System.Configuration.NoSettingsVersionUpgradeAttribute>が適用されているすべてのアプリケーション設定、またはから<xref:System.Configuration.ApplicationSettingsBase>派生した設定ラッパークラス全体に対して抑制する必要があります。  
+ このメソッドは、<xref:System.Configuration.NoSettingsVersionUpgradeAttribute> が適用されているすべてのアプリケーション設定、または <xref:System.Configuration.ApplicationSettingsBase>から派生した設定ラッパークラス全体に対して抑制する必要があります。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.SecurityException">アクセス<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />許可の場合。</permission>
+        <permission cref="T:System.Security.SecurityException"><see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" /> のアクセス許可の場合。</permission>
         <altmember cref="M:System.Configuration.IApplicationSettingsProvider.GetPreviousVersion(System.Configuration.SettingsContext,System.Configuration.SettingsProperty)" />
         <altmember cref="M:System.Configuration.ApplicationSettingsBase.Upgrade" />
         <altmember cref="T:System.Configuration.NoSettingsVersionUpgradeAttribute" />

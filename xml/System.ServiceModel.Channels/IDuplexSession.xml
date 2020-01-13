@@ -1,5 +1,5 @@
 <Type Name="IDuplexSession" FullName="System.ServiceModel.Channels.IDuplexSession">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="da821f5e968a2b6e7554af7fe83db863ac6ad440" /><Meta Name="ms.sourcegitcommit" Value="2b78f05b0c6fa92adaf5e1dfe5a50388f952efe7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/02/2019" /><Meta Name="ms.locfileid" Value="71810901" /></Metadata><TypeSignature Language="C#" Value="public interface IDuplexSession : System.ServiceModel.Channels.IInputSession, System.ServiceModel.Channels.IOutputSession" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="18aeb2646382bf34b55ae9e7a6d28b523a4f3a1d" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75065438" /></Metadata><TypeSignature Language="C#" Value="public interface IDuplexSession : System.ServiceModel.Channels.IInputSession, System.ServiceModel.Channels.IOutputSession" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDuplexSession implements class System.ServiceModel.Channels.IInputSession, class System.ServiceModel.Channels.IOutputSession, class System.ServiceModel.Channels.ISession" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Channels.IDuplexSession" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDuplexSession&#xA;Implements IInputSession, IOutputSession" />
@@ -20,6 +20,7 @@
     <AssemblyVersion>4.5.0.1</AssemblyVersion>
     <AssemblyVersion>4.5.0.3</AssemblyVersion>
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
+    <AssemblyVersion>4.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces>
     <Interface>
@@ -79,6 +80,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IAsyncResult</ReturnType>
@@ -125,6 +127,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.IAsyncResult</ReturnType>
@@ -183,6 +186,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -194,7 +198,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession> を呼び出すと、セッションのもう一方の側に対して、`null` に対する保留中または以降の呼び出しからは <xref:System.ServiceModel.Channels.IInputChannel.Receive%2A> を返す必要があることが通知されます。 <xref:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession%2A> はべき等であるため、再度呼び出しても何も行われません。  
+ <xref:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession> を呼び出すと、セッションのもう一方の側に対して、`null` に対する保留中または以降の呼び出しからは <xref:System.ServiceModel.Channels.IInputChannel.Receive%2A> を返す必要があることが通知されます。 <xref:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession%2A> はべき等であるため、再度呼び出しても効果はありません。  
   
  送信セッションを終了しても、受信セッションに影響はないため、入力チャネルに関連付けられているセッションでのメッセージ受信機能についてのステートメントはありません。  
   
@@ -202,15 +206,15 @@
         </remarks>
         <block subset="none" type="overrides"><para>
             <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は、セッションを所有する <see cref="T:System.ServiceModel.Channels.IDuplexSessionChannel" /> と対話できるセッション メソッドです。 具体的には、セッションの有効期間とチャネルの有効期間をまとめると、次のようになります (TCP および信頼性の高いセッションとセキュリティを想定した場合)。 
--チャネルで <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> が呼び出される前に <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が呼び出された場合は @no__t、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が終了するまで待機する必要があります。  
+-チャネルで <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> が呼び出される前に <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が呼び出された場合、<see cref="M:System.ServiceModel.ICommunicationObject.Close" /> は <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が終了するまで待機する必要があります。  
   
--チャネルが <see cref="F:System.ServiceModel.CommunicationState.Created" /> または <see cref="F:System.ServiceModel.CommunicationState.Opening" /> のいずれかの状態にある場合、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は @no__t をスローする必要があります。  
+-チャネルが <see cref="F:System.ServiceModel.CommunicationState.Created" /> 状態または <see cref="F:System.ServiceModel.CommunicationState.Opening" /> 状態の場合、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は <see cref="T:System.InvalidOperationException" />をスローする必要があります。  
   
--チャネルが @no__t 0 の状態の場合、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は @no__t をスローする必要があります。  
+-チャネルが <see cref="F:System.ServiceModel.CommunicationState.Faulted" /> 状態の場合、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は <see cref="T:System.ServiceModel.CommunicationObjectFaultedException" />をスローする必要があります。  
   
--@No__t-0 がスローした場合、チャネルはエラーになります。  
+-<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> がスローされた場合、チャネルはエラーになります。  
   
--チャネル上の <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> の実装では、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> を呼び出し、@no__t が @no__t 返されたことを確認します。これは、セッションのもう一方の側から @no__t が呼び出されたことを示します。</para></block>
+-チャネルでの <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> の実装では <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> を呼び出し、<see cref="M:System.ServiceModel.Channels.IInputChannel.Receive" /> が <see langword="null" />を返すことを確認する必要があります。これは、セッションのもう一方の側から <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が呼び出されたことを示します。</para></block>
       </Docs>
     </Member>
     <Member MemberName="CloseOutputSession">
@@ -236,6 +240,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -250,7 +255,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession%28System.TimeSpan%29> を呼び出すと、セッションのもう一方の側に対して、`null` に対する保留中または以降の呼び出しからは <xref:System.ServiceModel.Channels.IInputChannel.Receive%2A> を返す必要があることが通知されます。 <xref:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession%2A> はべき等であるため、再度呼び出しても何も行われません。  
+ <xref:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession%28System.TimeSpan%29> を呼び出すと、セッションのもう一方の側に対して、`null` に対する保留中または以降の呼び出しからは <xref:System.ServiceModel.Channels.IInputChannel.Receive%2A> を返す必要があることが通知されます。 <xref:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession%2A> はべき等であるため、再度呼び出しても効果はありません。  
   
  送信セッションを終了しても、受信セッションに影響はないため、入力チャネルに関連付けられているセッションでのメッセージ受信機能についてのステートメントはありません。  
   
@@ -258,15 +263,15 @@
         </remarks>
         <block subset="none" type="overrides"><para>
             <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は、セッションを所有する <see cref="T:System.ServiceModel.Channels.IDuplexSessionChannel" /> と対話できるセッション メソッドです。 具体的には、セッションの有効期間とチャネルの有効期間をまとめると、次のようになります (TCP および信頼性の高いセッションとセキュリティを想定した場合)。 
--チャネルで <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> が呼び出される前に <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が呼び出された場合は @no__t、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が終了するまで待機する必要があります。  
+-チャネルで <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> が呼び出される前に <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が呼び出された場合、<see cref="M:System.ServiceModel.ICommunicationObject.Close" /> は <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が終了するまで待機する必要があります。  
   
--チャネルが <see cref="F:System.ServiceModel.CommunicationState.Created" /> または <see cref="F:System.ServiceModel.CommunicationState.Opening" /> のいずれかの状態にある場合、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は @no__t をスローする必要があります。  
+-チャネルが <see cref="F:System.ServiceModel.CommunicationState.Created" /> 状態または <see cref="F:System.ServiceModel.CommunicationState.Opening" /> 状態の場合、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は <see cref="T:System.InvalidOperationException" />をスローする必要があります。  
   
--チャネルが @no__t 0 の状態の場合、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は @no__t をスローする必要があります。  
+-チャネルが <see cref="F:System.ServiceModel.CommunicationState.Faulted" /> 状態の場合、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> は <see cref="T:System.ServiceModel.CommunicationObjectFaultedException" />をスローする必要があります。  
   
--@No__t-0 がスローした場合、チャネルはエラーになります。  
+-<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> がスローされた場合、チャネルはエラーになります。  
   
--チャネルで <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> を実装する場合は、<see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> を呼び出し、<see cref="M:System.ServiceModel.Channels.IInputChannel.Receive" /> が @no__t を返したことを確認します。これは、セッションのもう一方の側から @no__t が呼び出されたことを示します。</para></block>
+-チャネルでの <see cref="M:System.ServiceModel.ICommunicationObject.Close" /> の実装では <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> を呼び出し、<see cref="M:System.ServiceModel.Channels.IInputChannel.Receive" /> が <see langword="null" />を返すことを確認します。これは、セッションのもう一方の側から <see cref="M:System.ServiceModel.Channels.IDuplexSession.CloseOutputSession" /> が呼び出されたことを示します。</para></block>
       </Docs>
     </Member>
     <Member MemberName="EndCloseOutputSession">
@@ -292,6 +297,7 @@
         <AssemblyVersion>4.5.0.1</AssemblyVersion>
         <AssemblyVersion>4.5.0.3</AssemblyVersion>
         <AssemblyVersion>4.6.0.0</AssemblyVersion>
+        <AssemblyVersion>4.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>

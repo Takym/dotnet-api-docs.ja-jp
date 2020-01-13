@@ -1,5 +1,5 @@
 <Type Name="INormalizeForIsolatedStorage" FullName="System.IO.IsolatedStorage.INormalizeForIsolatedStorage">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="aaffab0fbc40cf1041d92151d40e22ee66ac7f4b" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69357016" /></Metadata><TypeSignature Language="C#" Value="public interface INormalizeForIsolatedStorage" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="44a750cd009c701da2a1248b38f1c2eaa07993b6" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75133181" /></Metadata><TypeSignature Language="C#" Value="public interface INormalizeForIsolatedStorage" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract INormalizeForIsolatedStorage" />
   <TypeSignature Language="DocId" Value="T:System.IO.IsolatedStorage.INormalizeForIsolatedStorage" />
   <TypeSignature Language="VB.NET" Value="Public Interface INormalizeForIsolatedStorage" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.IO.IsolatedStorage</AssemblyName>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Attributes>
@@ -34,11 +35,11 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 分離ストレージでは、アセンブリを識別し、それに一意のファイルストレージの場所を提供するために、アセンブリに関する証拠が使用されます。 アセンブリがストアを要求すると、(それを読み込んだホストによって示された) その証拠が処理され、既存のストアの作成に使用された証拠と比較されます。 これにより、新しいストアを作成する必要があるかどうか、または対象のアセンブリに対して既に存在するかどうかが決まります。 比較手法が使用されているため、シリアル化された形式が同一でない場合、機能的に等価な証拠の一部では、真の比較が行われないことがあります。 カスタム証拠を実装する場合は、これが証拠クラスに当てはまりそうであるかどうか<xref:System.IO.IsolatedStorage.INormalizeForIsolatedStorage>を検討し、存在する場合はを実装します。 このインターフェイス<xref:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize%2A>を実装する証拠の場合、メソッドが呼び出され、そのメソッドによって返されるオブジェクトの正規化されたコピーに基づいて比較が行います。  
+ 分離ストレージでは、アセンブリを識別し、それに一意のファイルストレージの場所を提供するために、アセンブリに関する証拠が使用されます。 アセンブリがストアを要求すると、(それを読み込んだホストによって示された) その証拠が処理され、既存のストアの作成に使用された証拠と比較されます。 これにより、新しいストアを作成する必要があるかどうか、または対象のアセンブリに対して既に存在するかどうかが決まります。 比較手法が使用されているため、シリアル化された形式が同一でない場合、機能的に等価な証拠の一部では、真の比較が行われないことがあります。 カスタム証拠を実装する場合は、これが証拠クラスに当てはまりそうであるかどうかを検討し、その場合は <xref:System.IO.IsolatedStorage.INormalizeForIsolatedStorage>を実装します。 このインターフェイスを実装する証拠の場合、<xref:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize%2A> メソッドが呼び出され、そのメソッドによって返されるオブジェクトの正規化されたコピーに基づいて比較が行います。  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>カスタム証拠を実装するときに、ストアが既に存在するかどうかを判断する必要がある場合は、このインターフェイスを実装します。 シリアル化されたオブジェクトは、大文字と小文字が区別される文字列など、一部のインスタンスでの比較には使用しないでください。 たとえば、は`www.MSN.com`と`WWW.msn.com`等しく、比較<see langword="true" />するとが返されます。 <see cref="T:System.IO.IsolatedStorage.INormalizeForIsolatedStorage" />オブジェクトを作成するには、 <see cref="M:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize" />メソッドを実装する必要があります。</para></block>
+    <block subset="none" type="overrides"><para>カスタム証拠を実装するときに、ストアが既に存在するかどうかを判断する必要がある場合は、このインターフェイスを実装します。 シリアル化されたオブジェクトは、大文字と小文字が区別される文字列など、一部のインスタンスでの比較には使用しないでください。 たとえば、`www.MSN.com` が `WWW.msn.com` に等しい場合、比較すると <see langword="true" /> が返されます。 <see cref="T:System.IO.IsolatedStorage.INormalizeForIsolatedStorage" /> オブジェクトを作成するには、<see cref="M:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize" /> メソッドを実装する必要があります。</para></block>
     <block subset="none" type="usage"><para>このインターフェイスのメソッドを呼び出して、アセンブリの証拠と現在存在する分離ストアを比較する前に、インスタンスを正規化します。</para></block>
   </Docs>
   <Members>
@@ -66,6 +67,7 @@
         <AssemblyName>System.IO.IsolatedStorage</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
