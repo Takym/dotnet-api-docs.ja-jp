@@ -1,5 +1,5 @@
 <Type Name="GCSettings" FullName="System.Runtime.GCSettings">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="01d2682615b128cc268a1a015f09546f09af4d31" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69265535" /></Metadata><TypeSignature Language="C#" Value="public static class GCSettings" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e5ded7bceed3712af2473d4d298f37e2dfc37d91" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75082286" /></Metadata><TypeSignature Language="C#" Value="public static class GCSettings" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit GCSettings extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.GCSettings" />
   <TypeSignature Language="VB.NET" Value="Public Class GCSettings" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -35,7 +36,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Runtime.GCSettings.IsServerGC%2A>プロパティを使用して、現在のプロセスでサーバーのガベージコレクションが有効になっているかどうかを確認します。  
+ 現在のプロセスに対してサーバーのガベージコレクションを有効にするかどうかを判断するには、<xref:System.Runtime.GCSettings.IsServerGC%2A> プロパティを使用します。  
   
  ]]></format>
     </remarks>
@@ -57,6 +58,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -125,6 +127,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -160,14 +163,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- LOH は、85000バイトを超える必要があるラージオブジェクト (配列など) にメモリを割り当てるために使用されます。 大量のメモリブロックをコピーすることによるパフォーマンスへの影響があるため、ガベージコレクターは通常、LOH をスイープします。これには、dead オブジェクトによって占有され、今後の要求を満たすために再利用できるメモリ位置のリストを作成する必要があります。ラージオブジェクトのメモリの割り当て。 ただし、LOH を広範囲に使用して一時的なオブジェクトを格納するアプリでは、メモリの断片化によってパフォーマンスが低下することもあります。 この場合、ガベージコレクション中に LOH を単<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A>にスイープするのではなく、プロパティを使用して圧縮することができます。  
+ LOH は、85000バイトを超える必要があるラージオブジェクト (配列など) にメモリを割り当てるために使用されます。 大量のメモリブロックをコピーすることによるパフォーマンスへの影響があるため、ガベージコレクターは通常、LOH をスイープします。これには、dead オブジェクトによって占有され、今後の要求を満たすために再利用できるメモリ位置のリストを作成する必要があります。ラージオブジェクトのメモリの割り当て。 ただし、LOH を広範囲に使用して一時的なオブジェクトを格納するアプリでは、メモリの断片化によってパフォーマンスが低下することもあります。 この場合、<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A> プロパティを使用して、ガベージコレクションの実行中に LOH を単にスイープするのではなく、圧縮することができます。  
   
- <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A>プロパティの既定値はです<xref:System.Runtime.GCLargeObjectHeapCompactionMode.Default?displayProperty=nameWithType>。これは、ガベージコレクション中に LOH が圧縮されないことを示します。 プロパティに値を割り当てると、次<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>のフルブロッキングガベージコレクション中に LOH が最適化され、プロパティ値はに<xref:System.Runtime.GCLargeObjectHeapCompactionMode.Default?displayProperty=nameWithType>リセットされます。  
+ <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A> プロパティの既定値は <xref:System.Runtime.GCLargeObjectHeapCompactionMode.Default?displayProperty=nameWithType>です。これは、ガベージコレクション中に LOH が圧縮されないことを示します。 プロパティに <xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>の値を割り当てると、次のフルブロッキングガベージコレクション中に LOH が最適化され、プロパティ値が <xref:System.Runtime.GCLargeObjectHeapCompactionMode.Default?displayProperty=nameWithType>にリセットされます。  
   
 > [!NOTE]
->  バックグラウンドガベージコレクションはブロックされていません。 これは、 <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A>プロパティをに<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>設定すると、その後発生するバックグラウンドジェネレーション2のコレクションが LOH を圧縮しないことを意味します。 最初のブロッキングジェネレーション2のコレクションのみが LOH を圧縮します。  
+>  バックグラウンドガベージコレクションはブロックされていません。 これは、<xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A> プロパティを <xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>に設定した場合、その後発生するバックグラウンドジェネレーション2のコレクションが LOH を圧縮しないことを意味します。 最初のブロッキングジェネレーション2のコレクションのみが LOH を圧縮します。  
   
- プロパティがに<xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>設定された後、次のフルブロッキングガベージコレクション (LOH の圧縮) は、不確定な将来の時刻に発生します。 <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A> 次のようなコードを使用して、LOH をすぐに圧縮できます。  
+ <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode%2A> プロパティが <xref:System.Runtime.GCLargeObjectHeapCompactionMode.CompactOnce?displayProperty=nameWithType>に設定されると、次のフルブロッキングガベージコレクション (および LOH の圧縮) が、不確定な将来の時刻に発生します。 次のようなコードを使用して、LOH をすぐに圧縮できます。  
   
  [!code-csharp[System.Runtime.GCSettings#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.runtime.gcsettings/cs/lohcompactionmode1.cs#1)]
  [!code-vb[System.Runtime.GCSettings#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.runtime.gcsettings/vb/lohcompactionmode1.vb#1)]  
@@ -193,6 +196,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -229,17 +233,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 重要な操作中にをに設定する<xref:System.Runtime.GCLatencyMode> <xref:System.Runtime.GCLatencyMode.LowLatency>ことによって、アプリケーションでのガベージコレクションの割り込みレベルを下げることができます。 このような操作が完了したら、より多くのオブジェクトを解放してメモリを増やすことができるように、より高い待機時間モードに戻ります。  
+ 重要な操作中に <xref:System.Runtime.GCLatencyMode.LowLatency> に <xref:System.Runtime.GCLatencyMode> を設定することによって、アプリケーションでのガベージコレクションの割り込みレベルを下げることができます。 このような操作が完了したら、より多くのオブジェクトを解放してメモリを増やすことができるように、より高い待機時間モードに戻ります。  
   
- 通常は、 <xref:System.Runtime.GCSettings.LatencyMode%2A>プロパティの値を設定して、ガベージコレクターの待機時間モードを定義します。 ただし、 <xref:System.Runtime.GCLatencyMode.NoGCRegion?displayProperty=nameWithType>列挙値を<xref:System.Runtime.GCSettings.LatencyMode%2A>プロパティに割り当てることによって、GC 領域の無待機モードを設定することはできません。 代わりに、 <xref:System.GC.TryStartNoGCRegion%2A?displayProperty=nameWithType>メソッドを呼び出して GC 領域の無待機モードを開始し、を<xref:System.GC.EndNoGCRegion%2A?displayProperty=nameWithType>呼び出してそれを終了します。  
+ 通常は、<xref:System.Runtime.GCSettings.LatencyMode%2A> プロパティの値を設定して、ガベージコレクターの待機時間モードを定義します。 ただし、<xref:System.Runtime.GCLatencyMode.NoGCRegion?displayProperty=nameWithType> 列挙値を <xref:System.Runtime.GCSettings.LatencyMode%2A> プロパティに割り当てることによって、GC 領域の無待機モードを設定することはできません。 代わりに、<xref:System.GC.TryStartNoGCRegion%2A?displayProperty=nameWithType> メソッドを呼び出して GC 領域の無待機モードを開始し、<xref:System.GC.EndNoGCRegion%2A?displayProperty=nameWithType> を呼び出して終了します。  
   
- ガベージコレクションのランタイム構成設定が<xref:System.Runtime.GCLatencyMode>列挙の既定値に与える影響については、「[待機時間モード](~/docs/standard/garbage-collection/latency.md)」を参照してください。  
+ ガベージコレクションのランタイム構成設定が <xref:System.Runtime.GCLatencyMode> 列挙体の既定値に与える影響については、「[待機時間モード](~/docs/standard/garbage-collection/latency.md)」を参照してください。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><see cref="P:System.Runtime.GCSettings.LatencyMode" /> プロパティが無効な値に設定されています。  
   
-- または - 
+または 
 <see cref="P:System.Runtime.GCSettings.LatencyMode" /> プロパティを <see cref="F:System.Runtime.GCLatencyMode.NoGCRegion" /> に設定することはできません。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
         <related type="Article" href="https://msdn.microsoft.com/library/96278bb7-6eab-4612-8594-ceebfc887d81">待機モード</related>
