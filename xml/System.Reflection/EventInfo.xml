@@ -1,5 +1,5 @@
 <Type Name="EventInfo" FullName="System.Reflection.EventInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="975df34f6930479c68bd4f34a674717d7f4dd566" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70324745" /></Metadata><TypeSignature Language="C#" Value="public abstract class EventInfo : System.Reflection.MemberInfo, System.Runtime.InteropServices._EventInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1ba3a0b97001a51d3943730025caae0cdace9fb9" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75096950" /></Metadata><TypeSignature Language="C#" Value="public abstract class EventInfo : System.Reflection.MemberInfo, System.Runtime.InteropServices._EventInfo" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi abstract serializable beforefieldinit EventInfo extends System.Reflection.MemberInfo implements class System.Runtime.InteropServices._EventInfo" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.EventInfo" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class EventInfo&#xA;Inherits MemberInfo&#xA;Implements _EventInfo" />
@@ -27,6 +27,7 @@
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Reflection.MemberInfo</BaseTypeName>
@@ -56,23 +57,23 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドのコード例に示すように、クラスを使用してイベントを検査し、イベントハンドラーをフックします。<xref:System.Reflection.EventInfo> <xref:System.Reflection.EventInfo.AddEventHandler%2A>  
+ <xref:System.Reflection.EventInfo.AddEventHandler%2A> メソッドのコード例に示すように、<xref:System.Reflection.EventInfo> クラスを使用してイベントを検査し、イベントハンドラーをフックします。  
   
 > [!NOTE]
->  <xref:System.Reflection.EventInfo>は、イベントを発生させるために使用するためのものではありません。 オブジェクトは、内部状態で示されているように、イベントを発生させます。  
+>  <xref:System.Reflection.EventInfo> は、イベントを発生させるために使用するためのものではありません。 オブジェクトは、内部状態で示されているように、イベントを発生させます。  
   
- イベントはデリゲートと共に使用されます。 イベントリスナーは、イベントソースによってイベントが発生するたびに呼び出されるイベントハンドラーデリゲートをインスタンス化します。 イベントソースに接続するために、イベントリスナーは、このデリゲートをソースの呼び出しリストに追加します。 イベントが発生すると、イベントハンドラーデリゲートの invoke メソッドが呼び出されます。 マルチキャストイベント通知とシングルキャストイベント通知の両方がサポートされています。 イベント`Add`に`Remove`関連付けられているイベントハンドラーデリゲートクラスに加えて、メソッドとメソッドは、メタデータでマークされている必要があります。  
+ イベントはデリゲートと共に使用されます。 イベントリスナーは、イベントソースによってイベントが発生するたびに呼び出されるイベントハンドラーデリゲートをインスタンス化します。 イベントソースに接続するために、イベントリスナーは、このデリゲートをソースの呼び出しリストに追加します。 イベントが発生すると、イベントハンドラーデリゲートの invoke メソッドが呼び出されます。 マルチキャストイベント通知とシングルキャストイベント通知の両方がサポートされています。 イベントに関連付けられているイベントハンドラーデリゲートクラスだけでなく、`Add` および `Remove` メソッドは、メタデータでマークされている必要があります。  
   
  デリゲートはオブジェクト指向の関数ポインターです。 C またはC++では、関数ポインターはメソッドへの参照です。 C またはC++関数ポインターとは異なり、デリゲートには、メソッドへの参照と、メソッドをサポートするオブジェクトへの参照の2つの参照が含まれます。 デリゲートは、メソッドを宣言または継承するクラス型を知らなくてもメソッドを呼び出すことができます。 デリゲートは、メソッドの戻り値の型とパラメーターリストのみを必要とします。  
   
  イベントモデルは、シングルキャストデリゲートとマルチキャストデリゲートでも同様に機能します。 デリゲートの invoke メソッドが呼び出されると、1つのオブジェクトに対してメソッドが呼び出されます。 マルチキャスト修飾子はデリゲート宣言に適用できます。これにより、デリゲートの invoke メソッドが呼び出されたときに、複数のメソッドを呼び出すことができます。  
   
- の<xref:System.Reflection.ICustomAttributeProvider.GetCustomAttributes%2A?displayProperty=nameWithType> `inherit`パラメーター `EventInfo`がの場合`GetCustomAttributes`にを呼び出すと、型階層がウォークされません。 `true` カスタム<xref:System.Attribute?displayProperty=nameWithType>属性を継承するには、を使用します。  
+ `GetCustomAttributes` の `inherit` パラメーターが `true` である場合に `EventInfo` で <xref:System.Reflection.ICustomAttributeProvider.GetCustomAttributes%2A?displayProperty=nameWithType> を呼び出すと、型階層が処理されません。 カスタム属性を継承するには、<xref:System.Attribute?displayProperty=nameWithType> を使用します。  
   
    
   
 ## Examples  
- 次のコードは、 <xref:System.Reflection.EventInfo> <xref:System.Windows.Forms.Button>クラスの<xref:System.Windows.Forms.Control.Click>イベントのオブジェクトを取得します。  
+ 次のコードは、<xref:System.Windows.Forms.Button> クラスの <xref:System.Windows.Forms.Control.Click> イベントの <xref:System.Reflection.EventInfo> オブジェクトを取得します。  
   
  [!code-cpp[type_getevent1#1](~/samples/snippets/cpp/VS_Snippets_CLR/type_getevent1/CPP/type_getevent1.cpp#1)]
  [!code-csharp[type_getevent1#1](~/samples/snippets/csharp/VS_Snippets_CLR/type_getevent1/CS/type_getevent1.cs#1)]
@@ -82,15 +83,15 @@
     </remarks>
     <permission cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand">継承者に対する完全な信頼の場合。 このクラスを、部分的に信頼されているコードが継承することはできません。</permission>
     <threadsafe>この型はスレッド セーフです。</threadsafe>
-    <block subset="none" type="overrides"><para>から<see langword="EventInfo" />継承する場合は<see cref="M:System.Reflection.EventInfo.GetAddMethod(System.Boolean)" />、、 <see cref="M:System.Reflection.EventInfo.GetRemoveMethod(System.Boolean)" />、および<see cref="M:System.Reflection.EventInfo.GetRaiseMethod(System.Boolean)" />の各メンバーをオーバーライドする必要があります。</para></block>
+    <block subset="none" type="overrides"><para><see langword="EventInfo" />から継承する場合は、<see cref="M:System.Reflection.EventInfo.GetAddMethod(System.Boolean)" />、<see cref="M:System.Reflection.EventInfo.GetRemoveMethod(System.Boolean)" />、および <see cref="M:System.Reflection.EventInfo.GetRaiseMethod(System.Boolean)" />の各メンバーをオーバーライドする必要があります。</para></block>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="protected EventInfo ();" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor() cil managed" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-      <MemberSignature Language="DocId" Value="M:System.Reflection.EventInfo.#ctor" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-      <MemberSignature Language="VB.NET" Value="Protected Sub New ()" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-      <MemberSignature Language="C++ CLI" Value="protected:&#xA; EventInfo();" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C#" Value="protected EventInfo ();" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor() cil managed" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+      <MemberSignature Language="DocId" Value="M:System.Reflection.EventInfo.#ctor" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+      <MemberSignature Language="VB.NET" Value="Protected Sub New ()" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+      <MemberSignature Language="C++ CLI" Value="protected:&#xA; EventInfo();" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -108,6 +109,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection</AssemblyName>
@@ -116,14 +118,14 @@
       <Docs>
         <summary><see langword="EventInfo" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
     <Member MemberName="AddEventHandler">
-      <MemberSignature Language="C#" Value="public virtual void AddEventHandler (object target, Delegate handler);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C#" Value="public virtual void AddEventHandler (object target, Delegate handler);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AddEventHandler(object target, class System.Delegate handler) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Reflection.EventInfo.AddEventHandler(System.Object,System.Delegate)" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Sub AddEventHandler (target As Object, handler As Delegate)" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub AddEventHandler (target As Object, handler As Delegate)" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void AddEventHandler(System::Object ^ target, Delegate ^ handler);" />
       <MemberSignature Language="F#" Value="abstract member AddEventHandler : obj * Delegate -&gt; unit&#xA;override this.AddEventHandler : obj * Delegate -&gt; unit" Usage="eventInfo.AddEventHandler (target, handler)" />
       <MemberSignature Language="C#" Value="public void AddEventHandler (object target, Delegate handler);" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5" />
@@ -154,6 +156,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -179,16 +182,16 @@
   
  ターゲットパラメーターによってイベントが発生するたびに、そのハンドラーによってカプセル化されたメソッドまたはメソッドが呼び出されます。  
   
-プログラムが既に`AddEventHandler`コンパイルされた後に型を読み込む場合は、メソッドを使用することができます。 C#これは、+ = 構文`WithEvents`また`Handles`は Visual Basic とキーワードを使用してイベントをフックすることができない場合に使用します。   
+`AddEventHandler` メソッドは、プログラムが既にコンパイルされた後に型を読み込むときに使用できます。この場合、 C# + = 構文を使用したり、Visual Basic `WithEvents` と `Handles` キーワードを使用してイベントをフックしたりすることはできません。   
   
 ## Examples  
- 次の例では、 <xref:System.Timers.Timer?displayProperty=nameWithType>クラスのインスタンスを作成し、動的アセンブリを使用してイベントハンドラーを作成し、動的イベントハンドラーをフックします。 すべてのアクションは、遅延バインディングを使用して実行されます。  
+ 次の例では、<xref:System.Timers.Timer?displayProperty=nameWithType> クラスのインスタンスを作成し、動的アセンブリを使用してイベントハンドラーを作成し、動的イベントハンドラーをフックします。 すべてのアクションは、遅延バインディングを使用して実行されます。  
   
- インスタンスは型<xref:System.Object>の変数に格納され、にアクセスするすべての<xref:System.Timers.Timer>コードは遅延バインディングを実行します。 <xref:System.Timers.Timer> この例では<xref:System.Type.GetEvent%2A?displayProperty=nameWithType> 、メソッドを使用<xref:System.Timers.Timer.Elapsed>してイベントを<xref:System.Reflection.EventInfo.EventHandlerType%2A>取得し、プロパティを使用してイベントのデリゲート型を取得します。  
+ <xref:System.Timers.Timer> インスタンスは <xref:System.Object>型の変数に格納され、<xref:System.Timers.Timer> にアクセスするすべてのコードは遅延バインディングされます。 この例では、<xref:System.Type.GetEvent%2A?displayProperty=nameWithType> メソッドを使用して <xref:System.Timers.Timer.Elapsed> イベントを取得し、<xref:System.Reflection.EventInfo.EventHandlerType%2A> プロパティを使用してイベントのデリゲート型を取得します。  
   
- この例では<xref:System.Reflection.MethodInfo> 、デリゲート`Invoke`型のメソッドのを取得し、 <xref:System.Reflection.MethodInfo>インスタンスからデリゲートのシグネチャを取得します。 次に、と`Handler`いう名前の単一の型を含む1つのモジュールを持つ動的アセンブリを作成し、そのイベントを処理するという名前`DynamicHandler`のメソッド (`Shared` Visual Basic 内のメソッド) を`static`型に渡します。  
+ この例では、デリゲート型の `Invoke` メソッドの <xref:System.Reflection.MethodInfo> を取得し、<xref:System.Reflection.MethodInfo> インスタンスからデリゲートのシグネチャを取得します。 次に、`Handler` という名前の単一の型を含む1つのモジュールを持つ動的アセンブリを作成し、その型に、イベントを処理する `DynamicHandler` という `static` メソッド (Visual Basic の`Shared` メソッド) を指定します。  
   
- 動的な型が作成された後、この<xref:System.Reflection.MethodInfo>例では、完成したメソッドのを取得し、それを使用してデリゲートインスタンスを作成します。 このインスタンスは、イベントを<xref:System.Reflection.EventInfo.AddEventHandler%2A>フックするためにメソッドに渡されます。 その後、プログラムはイベントの発生を許可するために一時停止します。  
+ 動的な型が作成された後、この例では、完成したメソッドの <xref:System.Reflection.MethodInfo> を取得し、それを使用してデリゲートインスタンスを作成します。 このインスタンスは、イベントをフックするために <xref:System.Reflection.EventInfo.AddEventHandler%2A> メソッドに渡されます。 その後、プログラムはイベントの発生を許可するために一時停止します。  
   
  [!code-csharp[AddEventHandler#1](~/samples/snippets/csharp/VS_Snippets_CLR/AddEventHandler/cs/source.cs)]
  [!code-vb[AddEventHandler#1](~/samples/snippets/visualbasic/VS_Snippets_CLR/AddEventHandler/vb/source.vb)]  
@@ -216,7 +219,7 @@
   
 または 
 <see cref="T:System.Reflection.EventInfo" /> はターゲットで宣言されていません。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Object" />
         <altmember cref="T:System.Delegate" />
         <altmember cref="T:System.EventHandler" />
@@ -250,6 +253,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
@@ -261,7 +265,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、 <xref:System.Reflection.EventInfo.GetAddMethod%2A>の`true`値を指定してを呼び出す場合と同じです。  
+ このプロパティは、`true`の値を使用して <xref:System.Reflection.EventInfo.GetAddMethod%2A> を呼び出す場合と同じです。  
   
  ]]></format>
         </remarks>
@@ -300,6 +304,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.EventAttributes</ReturnType>
@@ -348,12 +353,13 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="obj" Type="System.Object" Index="0" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="obj">対象のインスタンスと比較する対象のオブジェクト、または <see langword="null" />。</param>
@@ -363,11 +369,11 @@
       </Docs>
     </Member>
     <Member MemberName="EventHandlerType">
-      <MemberSignature Language="C#" Value="public virtual Type EventHandlerType { get; }" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C#" Value="public virtual Type EventHandlerType { get; }" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="ILAsm" Value=".property instance class System.Type EventHandlerType" />
       <MemberSignature Language="DocId" Value="P:System.Reflection.EventInfo.EventHandlerType" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property EventHandlerType As Type" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual property Type ^ EventHandlerType { Type ^ get(); };" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property EventHandlerType As Type" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual property Type ^ EventHandlerType { Type ^ get(); };" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="F#" Value="member this.EventHandlerType : Type" Usage="System.Reflection.EventInfo.EventHandlerType" />
       <MemberSignature Language="C#" Value="public Type EventHandlerType { get; }" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property EventHandlerType As Type" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5" />
@@ -398,6 +404,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Type</ReturnType>
@@ -409,9 +416,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では<xref:System.Reflection.EventInfo.EventHandlerType%2A> 、プロパティを使用して、イベントのデリゲート型を検出し、そのパラメーターの型を表示します。  
+ 次の例では、<xref:System.Reflection.EventInfo.EventHandlerType%2A> プロパティを使用して、イベントのデリゲート型を検出し、そのパラメーターの型を表示します。  
   
- この例では、 `MyDelegate`という名前のデリゲートと、型`MyDelegate`のという名前`ev`のイベントを定義します。 `Main`メソッドのコードは、イベントのデリゲート型を取得し、 `Invoke`デリゲート型のメソッドを取得して、パラメーターを取得して表示することによって、イベントシグネチャを検出します。  
+ この例では、`MyDelegate` という名前のデリゲートと、`MyDelegate`型の `ev` という名前のイベントを定義します。 `Main` メソッドのコードは、イベントのデリゲート型を取得し、デリゲート型の `Invoke` メソッドを取得して、パラメーターを取得して表示することによって、イベントシグネチャを検出します。  
   
  [!code-cpp[eventarg#1](~/samples/snippets/cpp/VS_Snippets_CLR/EventArg/CPP/eventarg.cpp#1)]
  [!code-csharp[eventarg#1](~/samples/snippets/csharp/VS_Snippets_CLR/EventArg/CS/eventarg.cs#1)]
@@ -436,11 +443,11 @@
     </MemberGroup>
     <Member MemberName="GetAddMethod">
       <MemberSignature Language="C#" Value="public System.Reflection.MethodInfo GetAddMethod ();" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Reflection.MethodInfo GetAddMethod() cil managed" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Reflection.MethodInfo GetAddMethod() cil managed" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
       <MemberSignature Language="DocId" Value="M:System.Reflection.EventInfo.GetAddMethod" />
       <MemberSignature Language="VB.NET" Value="Public Function GetAddMethod () As MethodInfo" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Reflection::MethodInfo ^ GetAddMethod();" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
-      <MemberSignature Language="F#" Value="member this.GetAddMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetAddMethod " FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Reflection::MethodInfo ^ GetAddMethod();" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="F#" Value="member this.GetAddMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetAddMethod " FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Reflection.MethodInfo GetAddMethod() cil managed" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual System::Reflection::MethodInfo ^ GetAddMethod();" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       <MemberSignature Language="F#" Value="abstract member GetAddMethod : unit -&gt; System.Reflection.MethodInfo&#xA;override this.GetAddMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetAddMethod " FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
@@ -468,6 +475,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
@@ -480,7 +488,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `GetAddMethod`イベント subscribe メソッドを初期化して追加します。 イベント`AddEventHandler`ハンドラーデリゲートをイベントソースの呼び出しリストに追加するには、メソッドを使用します。  
+ `GetAddMethod` 初期化し、イベントの subscribe メソッドを追加します。 `AddEventHandler` メソッドは、イベントハンドラーデリゲートをイベントソースの呼び出しリストに追加するために使用されます。  
   
    
   
@@ -493,7 +501,7 @@ add_<EventName>(<EventHandlerType> handler)
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -528,22 +536,23 @@ add_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="nonPublic">パブリックでないメソッドを返すことができる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
-        <summary>派生クラスでオーバーライドされた場合は、パブリックでないメソッドを返すかどうかを指定して、イベントの <see cref="M:System.Reflection.EventInfo.AddEventHandler(System.Object,System.Delegate)" /> メソッドの <see langword="MethodInfo" /> オブジェクトを取得します。</summary>
+        <summary>派生クラスでオーバーライドされた場合は、パブリックでないメソッドを返すかどうかを指定して、イベントの <see langword="MethodInfo" /> メソッドの <see cref="M:System.Reflection.EventInfo.AddEventHandler(System.Object,System.Delegate)" /> オブジェクトを取得します。</summary>
         <returns>イベント ソースにイベント ハンドラー デリゲートを追加するために使用するメソッドを表す <see cref="T:System.Reflection.MethodInfo" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- は`GetAddMethod`を初期化し、イベント subscribe メソッドをブール値として追加します。 イベント`AddEventHandler`ハンドラーデリゲートをイベントソースの呼び出しリストに追加するには、メソッドを使用します。  
+ `GetAddMethod` によって初期化され、イベント subscribe メソッドがブール値として追加されます。 `AddEventHandler` メソッドは、イベントハンドラーデリゲートをイベントソースの呼び出しリストに追加するために使用されます。  
   
    
   
@@ -557,7 +566,7 @@ add_<EventName>(<EventHandlerType> handler)
  ]]></format>
         </remarks>
         <exception cref="T:System.MethodAccessException"><paramref name="nonPublic" /> が <see langword="true" /> で、イベント ハンドラー デリゲートの追加に使用したメソッドはパブリックではなく、呼び出し元にはパブリックでないメソッドに対するリフレクションのアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -592,6 +601,7 @@ add_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -636,6 +646,7 @@ add_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection</AssemblyName>
@@ -653,15 +664,15 @@ add_<EventName>(<EventHandlerType> handler)
 ## Remarks  
  イベントのメタデータは、次の4種類のメソッドをイベントに関連付けることができます。  
   
--   ディレクティブ`.addon`は、イベントハンドラーを追加するために使用するメソッドを指定します。 メソッドを使用して、 <xref:System.Reflection.EventInfo>そのメソッドのを取得します。 <xref:System.Reflection.EventInfo.GetAddMethod%2A>  
+-   `.addon` ディレクティブは、イベントハンドラーを追加するために使用するメソッドを指定します。 <xref:System.Reflection.EventInfo.GetAddMethod%2A> メソッドを使用して、そのメソッドの <xref:System.Reflection.EventInfo> を取得します。  
   
--   ディレクティブ`.removeon`は、イベントハンドラーをデタッチするために使用するメソッドを指定します。 メソッドを使用して、 <xref:System.Reflection.EventInfo>そのメソッドのを取得します。 <xref:System.Reflection.EventInfo.GetRemoveMethod%2A>  
+-   `.removeon` ディレクティブは、イベントハンドラーをデタッチするために使用するメソッドを指定します。 <xref:System.Reflection.EventInfo.GetRemoveMethod%2A> メソッドを使用して、そのメソッドの <xref:System.Reflection.EventInfo> を取得します。  
   
--   ディレクティブ`.fire`は、イベントを発生させるために使用するメソッドを指定します。 メソッドを使用して、 <xref:System.Reflection.EventInfo>そのメソッドのを取得します。 <xref:System.Reflection.EventInfo.GetRaiseMethod%2A>  
+-   `.fire` ディレクティブは、イベントを発生させるために使用するメソッドを指定します。 <xref:System.Reflection.EventInfo.GetRaiseMethod%2A> メソッドを使用して、そのメソッドの <xref:System.Reflection.EventInfo> を取得します。  
   
--   ディレクティブ`.other`は、イベントに関連付けられている他のメソッドを指定します。 メソッドを<xref:System.Reflection.EventInfo.GetOtherMethods%2A>使用して、これらの<xref:System.Reflection.EventInfo>メソッドのオブジェクトの配列を取得します。  
+-   `.other` ディレクティブは、イベントに関連付けられている他のメソッドを指定します。 <xref:System.Reflection.EventInfo.GetOtherMethods%2A> メソッドを使用して、これらのメソッドの <xref:System.Reflection.EventInfo> オブジェクトの配列を取得します。  
   
- `.other`ディレクティブを使用してイベントに関連付けられているメソッドは、ランタイムに特別な意味を持ちません。 C#および Visual Basic コンパイラは、 `.other`ディレクティブを使用しません。  
+ `.other` ディレクティブを使用してイベントに関連付けられているメソッドは、ランタイムにとって特別な意味を持ちません。 C#および Visual Basic コンパイラは、`.other` ディレクティブを使用しません。  
   
  ]]></format>
         </remarks>
@@ -690,6 +701,7 @@ add_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection</AssemblyName>
@@ -698,7 +710,7 @@ add_<EventName>(<EventHandlerType> handler)
         <ReturnType>System.Reflection.MethodInfo[]</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="nonPublic">非パブリック メソッドを含める場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
@@ -710,15 +722,15 @@ add_<EventName>(<EventHandlerType> handler)
 ## Remarks  
  イベントのメタデータは、次の4種類のメソッドをイベントに関連付けることができます。  
   
--   ディレクティブ`.addon`は、イベントハンドラーを追加するために使用するメソッドを指定します。 メソッドを使用して、 <xref:System.Reflection.EventInfo>そのメソッドのを取得します。 <xref:System.Reflection.EventInfo.GetAddMethod%2A>  
+-   `.addon` ディレクティブは、イベントハンドラーを追加するために使用するメソッドを指定します。 <xref:System.Reflection.EventInfo.GetAddMethod%2A> メソッドを使用して、そのメソッドの <xref:System.Reflection.EventInfo> を取得します。  
   
--   ディレクティブ`.removeon`は、イベントハンドラーをデタッチするために使用するメソッドを指定します。 メソッドを使用して、 <xref:System.Reflection.EventInfo>このメソッドのを取得します。 <xref:System.Reflection.EventInfo.GetRemoveMethod%2A>  
+-   `.removeon` ディレクティブは、イベントハンドラーをデタッチするために使用するメソッドを指定します。 このメソッドの <xref:System.Reflection.EventInfo> を取得するには、<xref:System.Reflection.EventInfo.GetRemoveMethod%2A> メソッドを使用します。  
   
--   ディレクティブ`.fire`は、イベントを発生させるために使用するメソッドを指定します。 メソッドを使用して、 <xref:System.Reflection.EventInfo>このメソッドのを取得します。 <xref:System.Reflection.EventInfo.GetRaiseMethod%2A>  
+-   `.fire` ディレクティブは、イベントを発生させるために使用するメソッドを指定します。 このメソッドの <xref:System.Reflection.EventInfo> を取得するには、<xref:System.Reflection.EventInfo.GetRaiseMethod%2A> メソッドを使用します。  
   
--   ディレクティブ`.other`は、イベントに関連付けられている他のメソッドを指定します。 メソッドを<xref:System.Reflection.EventInfo.GetOtherMethods%2A>使用して、これらの<xref:System.Reflection.EventInfo>メソッドのオブジェクトの配列を取得します。  
+-   `.other` ディレクティブは、イベントに関連付けられている他のメソッドを指定します。 <xref:System.Reflection.EventInfo.GetOtherMethods%2A> メソッドを使用して、これらのメソッドの <xref:System.Reflection.EventInfo> オブジェクトの配列を取得します。  
   
- `.other`ディレクティブを使用してイベントに関連付けられているメソッドは、ランタイムに特別な意味を持ちません。 C#および Visual Basic コンパイラは、 `.other`ディレクティブを使用しません。  
+ `.other` ディレクティブを使用してイベントに関連付けられているメソッドは、ランタイムにとって特別な意味を持ちません。 C#および Visual Basic コンパイラは、`.other` ディレクティブを使用しません。  
   
  ]]></format>
         </remarks>
@@ -736,11 +748,11 @@ add_<EventName>(<EventHandlerType> handler)
     </MemberGroup>
     <Member MemberName="GetRaiseMethod">
       <MemberSignature Language="C#" Value="public System.Reflection.MethodInfo GetRaiseMethod ();" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Reflection.MethodInfo GetRaiseMethod() cil managed" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Reflection.MethodInfo GetRaiseMethod() cil managed" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
       <MemberSignature Language="DocId" Value="M:System.Reflection.EventInfo.GetRaiseMethod" />
       <MemberSignature Language="VB.NET" Value="Public Function GetRaiseMethod () As MethodInfo" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Reflection::MethodInfo ^ GetRaiseMethod();" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
-      <MemberSignature Language="F#" Value="member this.GetRaiseMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetRaiseMethod " FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Reflection::MethodInfo ^ GetRaiseMethod();" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="F#" Value="member this.GetRaiseMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetRaiseMethod " FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Reflection.MethodInfo GetRaiseMethod() cil managed" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual System::Reflection::MethodInfo ^ GetRaiseMethod();" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       <MemberSignature Language="F#" Value="abstract member GetRaiseMethod : unit -&gt; System.Reflection.MethodInfo&#xA;override this.GetRaiseMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetRaiseMethod " FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
@@ -768,6 +780,7 @@ add_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
@@ -780,11 +793,11 @@ add_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 `null`通常、 C# `event`キーワードまたは Visual Basic `Event`キーワードで宣言されたイベントに対してを返します。 これは、およびC# Visual Basic コンパイラが既定ではこのようなメソッドを生成しないためです。  
+ このメソッドは通常、 C# `event` キーワードまたは Visual Basic `Event` キーワードで宣言されたイベントの `null` を返します。 これは、およびC# Visual Basic コンパイラが既定ではこのようなメソッドを生成しないためです。  
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -819,12 +832,13 @@ add_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="nonPublic">パブリックでないメソッドを返すことができる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
@@ -834,12 +848,12 @@ add_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 `null`通常、 C# `event`キーワードまたは Visual Basic `Event`キーワードで宣言されたイベントに対してを返します。 これは、およびC# Visual Basic コンパイラが既定ではこのようなメソッドを生成しないためです。  
+ このメソッドは通常、 C# `event` キーワードまたは Visual Basic `Event` キーワードで宣言されたイベントの `null` を返します。 これは、およびC# Visual Basic コンパイラが既定ではこのようなメソッドを生成しないためです。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.MethodAccessException"><paramref name="nonPublic" /> が <see langword="true" /> で、イベント ハンドラー デリゲートの追加に使用したメソッドはパブリックではなく、呼び出し元にはパブリックでないメソッドに対するリフレクションのアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -854,11 +868,11 @@ add_<EventName>(<EventHandlerType> handler)
     </MemberGroup>
     <Member MemberName="GetRemoveMethod">
       <MemberSignature Language="C#" Value="public System.Reflection.MethodInfo GetRemoveMethod ();" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Reflection.MethodInfo GetRemoveMethod() cil managed" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Reflection.MethodInfo GetRemoveMethod() cil managed" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
       <MemberSignature Language="DocId" Value="M:System.Reflection.EventInfo.GetRemoveMethod" />
       <MemberSignature Language="VB.NET" Value="Public Function GetRemoveMethod () As MethodInfo" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Reflection::MethodInfo ^ GetRemoveMethod();" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
-      <MemberSignature Language="F#" Value="member this.GetRemoveMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetRemoveMethod " FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Reflection::MethodInfo ^ GetRemoveMethod();" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
+      <MemberSignature Language="F#" Value="member this.GetRemoveMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetRemoveMethod " FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Reflection.MethodInfo GetRemoveMethod() cil managed" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual System::Reflection::MethodInfo ^ GetRemoveMethod();" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
       <MemberSignature Language="F#" Value="abstract member GetRemoveMethod : unit -&gt; System.Reflection.MethodInfo&#xA;override this.GetRemoveMethod : unit -&gt; System.Reflection.MethodInfo" Usage="eventInfo.GetRemoveMethod " FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinmac-3.0" />
@@ -886,6 +900,7 @@ add_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
@@ -906,7 +921,7 @@ remove_<EventName>(<EventHandlerType> handler)
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -941,12 +956,13 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="nonPublic" Type="System.Boolean" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="nonPublic">パブリックでないメソッドを返すことができる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
@@ -965,7 +981,7 @@ remove_<EventName>(<EventHandlerType> handler)
  ]]></format>
         </remarks>
         <exception cref="T:System.MethodAccessException"><paramref name="nonPublic" /> が <see langword="true" /> で、イベント ハンドラー デリゲートの追加に使用したメソッドはパブリックではなく、呼び出し元にはパブリックでないメソッドに対するリフレクションのアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Reflection.MethodInfo" />
       </Docs>
     </Member>
@@ -1004,11 +1020,11 @@ remove_<EventName>(<EventHandlerType> handler)
       </Docs>
     </Member>
     <Member MemberName="IsMulticast">
-      <MemberSignature Language="C#" Value="public virtual bool IsMulticast { get; }" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C#" Value="public virtual bool IsMulticast { get; }" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="ILAsm" Value=".property instance bool IsMulticast" />
       <MemberSignature Language="DocId" Value="P:System.Reflection.EventInfo.IsMulticast" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property IsMulticast As Boolean" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual property bool IsMulticast { bool get(); };" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable ReadOnly Property IsMulticast As Boolean" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual property bool IsMulticast { bool get(); };" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="F#" Value="member this.IsMulticast : bool" Usage="System.Reflection.EventInfo.IsMulticast" />
       <MemberSignature Language="C#" Value="public bool IsMulticast { get; }" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property IsMulticast As Boolean" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5" />
@@ -1037,6 +1053,7 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1084,6 +1101,7 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -1133,6 +1151,7 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MemberTypes</ReturnType>
@@ -1144,7 +1163,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは<xref:System.Reflection.MemberInfo.MemberType%2A>、をオーバーライドします。 したがっ<xref:System.Reflection.MemberInfo>て、オブジェクトのセットを調べる場合、たとえば<xref:System.Type.GetMembers%2A> <xref:System.Reflection.MemberInfo.MemberType%2A> 、プロパティは、指定されたメンバーが<xref:System.Reflection.MemberTypes.Event?displayProperty=nameWithType>イベントである場合にのみを返します。  
+ このプロパティは <xref:System.Reflection.MemberInfo.MemberType%2A>をオーバーライドします。 したがって、<xref:System.Type.GetMembers%2A> によって返される配列など、一連の <xref:System.Reflection.MemberInfo> オブジェクトを調べると、指定されたメンバーがイベントである場合にのみ、<xref:System.Reflection.MemberInfo.MemberType%2A> プロパティによって <xref:System.Reflection.MemberTypes.Event?displayProperty=nameWithType> が返されます。  
   
  ]]></format>
         </remarks>
@@ -1173,6 +1192,7 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection</AssemblyName>
@@ -1181,8 +1201,8 @@ remove_<EventName>(<EventHandlerType> handler)
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="left" Type="System.Reflection.EventInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="right" Type="System.Reflection.EventInfo" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="left" Type="System.Reflection.EventInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="right" Type="System.Reflection.EventInfo" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="left">比較する最初のオブジェクト。</param>
@@ -1214,6 +1234,7 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Reflection</AssemblyName>
@@ -1222,8 +1243,8 @@ remove_<EventName>(<EventHandlerType> handler)
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="left" Type="System.Reflection.EventInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="right" Type="System.Reflection.EventInfo" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="left" Type="System.Reflection.EventInfo" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="right" Type="System.Reflection.EventInfo" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="left">比較する最初のオブジェクト。</param>
@@ -1261,6 +1282,7 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
@@ -1272,17 +1294,17 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、 <xref:System.Reflection.EventInfo.GetRaiseMethod%2A>の`true`値を指定してを呼び出す場合と同じです。  
+ このプロパティは、`true`の値を使用して <xref:System.Reflection.EventInfo.GetRaiseMethod%2A> を呼び出す場合と同じです。  
   
  ]]></format>
         </remarks>
       </Docs>
     </Member>
     <Member MemberName="RemoveEventHandler">
-      <MemberSignature Language="C#" Value="public virtual void RemoveEventHandler (object target, Delegate handler);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C#" Value="public virtual void RemoveEventHandler (object target, Delegate handler);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void RemoveEventHandler(object target, class System.Delegate handler) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Reflection.EventInfo.RemoveEventHandler(System.Object,System.Delegate)" />
-      <MemberSignature Language="VB.NET" Value="Public Overridable Sub RemoveEventHandler (target As Object, handler As Delegate)" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub RemoveEventHandler (target As Object, handler As Delegate)" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void RemoveEventHandler(System::Object ^ target, Delegate ^ handler);" />
       <MemberSignature Language="F#" Value="abstract member RemoveEventHandler : obj * Delegate -&gt; unit&#xA;override this.RemoveEventHandler : obj * Delegate -&gt; unit" Usage="eventInfo.RemoveEventHandler (target, handler)" />
       <MemberSignature Language="C#" Value="public void RemoveEventHandler (object target, Delegate handler);" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5" />
@@ -1313,6 +1335,7 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1336,7 +1359,7 @@ remove_<EventName>(<EventHandlerType> handler)
 ## Remarks  
  このメソッドは、ターゲットオブジェクトでこのイベントを同期する可能性のあるデリゲートを削除しようとします。  
   
- ターゲットによってイベントが発生すると、によって`handler`カプセル化されたメソッドまたはメソッドは呼び出されなくなります。  
+ ターゲットによってイベントが発生すると、`handler` によってカプセル化されたメソッドまたはメソッドは呼び出されなくなります。  
   
  ]]></format>
         </remarks>
@@ -1351,7 +1374,7 @@ remove_<EventName>(<EventHandlerType> handler)
   
  <paramref name="target" /> パラメーターは <see langword="null" /> で、イベントは静的でありません。  
   
-- または - 
+または 
 <see cref="T:System.Reflection.EventInfo" /> はターゲットで宣言されていません。</exception>
         <exception cref="T:System.MethodAccessException"><block subset="none" type="note">
             <para>  
@@ -1361,7 +1384,7 @@ remove_<EventName>(<EventHandlerType> handler)
           </block>  
   
  呼び出し元には、このメンバーに対するアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.ReflectionPermission">などの機構を<see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />使用して遅延バインディングが呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
+        <permission cref="T:System.Security.Permissions.ReflectionPermission"><see cref="M:System.Type.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])" />などの機構を使用して遅延バインディングで呼び出された場合。 <see cref="F:System.Security.Permissions.ReflectionPermissionFlag.MemberAccess" /> (関連する列挙体)</permission>
         <altmember cref="T:System.Object" />
         <altmember cref="T:System.Delegate" />
         <altmember cref="T:System.EventHandler" />
@@ -1395,6 +1418,7 @@ remove_<EventName>(<EventHandlerType> handler)
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.MethodInfo</ReturnType>
@@ -1406,7 +1430,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは、 <xref:System.Reflection.EventInfo.GetRemoveMethod%2A>の`true`値を指定してを呼び出す場合と同じです。  
+ このプロパティは、`true`の値を使用して <xref:System.Reflection.EventInfo.GetRemoveMethod%2A> を呼び出す場合と同じです。  
   
  ]]></format>
         </remarks>
@@ -1458,7 +1482,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アンマネージコードからマネージクラスにアクセスするためのものであり、マネージコードからは呼び出さないでください。 の詳細`IDispatch::GetIDsOfNames`については、MSDN ライブラリを参照してください。  
+ このメソッドは、アンマネージコードからマネージクラスにアクセスするためのものであり、マネージコードからは呼び出さないでください。 `IDispatch::GetIDsOfNames`の詳細については、MSDN ライブラリを参照してください。  
   
  ]]></format>
         </remarks>
@@ -1494,8 +1518,8 @@ remove_<EventName>(<EventHandlerType> handler)
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.Reflection.EventInfo" /> 型を表す <c>T:System.Type</c> オブジェクトを返します。</summary>
-        <returns><see cref="T:System.Reflection.EventInfo" /> 型を表す <c>T:System.Type</c> オブジェクト。</returns>
+        <summary><c>型を表す</c>T:System.Type<see cref="T:System.Reflection.EventInfo" /> オブジェクトを返します。</summary>
+        <returns><c>型を表す</c>T:System.Type<see cref="T:System.Reflection.EventInfo" /> オブジェクト。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1541,7 +1565,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アンマネージコードからマネージクラスにアクセスするためのものであり、マネージコードからは呼び出さないでください。 の詳細`IDispatch::GetTypeInfo`については、MSDN ライブラリを参照してください。  
+ このメソッドは、アンマネージコードからマネージクラスにアクセスするためのものであり、マネージコードからは呼び出さないでください。 `IDispatch::GetTypeInfo`の詳細については、MSDN ライブラリを参照してください。  
   
  ]]></format>
         </remarks>
@@ -1586,7 +1610,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アンマネージコードからマネージクラスにアクセスするためのものであり、マネージコードからは呼び出さないでください。 の詳細`IDispatch::GetTypeInfoCount`については、MSDN ライブラリを参照してください。  
+ このメソッドは、アンマネージコードからマネージクラスにアクセスするためのものであり、マネージコードからは呼び出さないでください。 `IDispatch::GetTypeInfoCount`の詳細については、MSDN ライブラリを参照してください。  
   
  ]]></format>
         </remarks>
@@ -1645,7 +1669,7 @@ remove_<EventName>(<EventHandlerType> handler)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、アンマネージコードからマネージクラスにアクセスするためのものであり、マネージコードからは呼び出さないでください。 の詳細`IDispatch::Invoke`については、MSDN ライブラリを参照してください。  
+ このメソッドは、アンマネージコードからマネージクラスにアクセスするためのものであり、マネージコードからは呼び出さないでください。 `IDispatch::Invoke`の詳細については、MSDN ライブラリを参照してください。  
   
  ]]></format>
         </remarks>
