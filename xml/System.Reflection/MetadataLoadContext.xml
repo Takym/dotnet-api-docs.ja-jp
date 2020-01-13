@@ -1,5 +1,5 @@
 <Type Name="MetadataLoadContext" FullName="System.Reflection.MetadataLoadContext">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="77275d03e2060384e5f1475e3cfde6631b035839" /><Meta Name="ms.sourcegitcommit" Value="93be4738b3a867ee93eb6ee4b43150302a23b5b5" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="11/11/2019" /><Meta Name="ms.locfileid" Value="73916921" /></Metadata><TypeSignature Language="C#" Value="public sealed class MetadataLoadContext : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="212fd92425acc41eb8cf5f06ed0985b5d867cf95" /><Meta Name="ms.sourcegitcommit" Value="19810b7f44c3fa6cc5f0af0391e435c59897b089" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/07/2020" /><Meta Name="ms.locfileid" Value="75707354" /></Metadata><TypeSignature Language="C#" Value="public sealed class MetadataLoadContext : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit MetadataLoadContext extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Reflection.MetadataLoadContext" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class MetadataLoadContext&#xA;Implements IDisposable" />
@@ -8,6 +8,7 @@
   <AssemblyInfo>
     <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyVersion>4.0.1.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -20,7 +21,7 @@
   <Docs>
     <summary>検査のみの目的で読み込まれる Type オブジェクトの閉ざされた領域を表します。 各 MetadataLoadContext は独自のバインド規則を持つことができ、その他のすべての MetadataLoadContext から分離されています。</summary>
     <remarks>
-      <format type="text/markdown"><![CDATA[  
+      <format type="text/markdown"><![CDATA[
 
 ## Remarks
 
@@ -42,6 +43,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="resolver" Type="System.Reflection.MetadataAssemblyResolver" />
@@ -65,6 +67,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Assembly</ReturnType>
@@ -78,17 +81,17 @@
 ## Remarks
 
 コアアセンブリは他のアセンブリとは異なる方法で処理されます。これは、これらの既知の型への参照には、通常の型とは異なり、アセンブリ参照が含まれないためです。
-            
+
 通常、このアセンブリには "mscorlib" または "netstandard" という名前が付けられます。 コアアセンブリが見つからない場合は、値が `null`され、その他の多くのリフレクションメソッド (メソッドシグネチャを解析するメソッドを含む) が例外をスローします。
-            
+
 `CoreAssembly` は、<xref:System.Reflection.MetadataAssemblyResolver> コンストラクターに渡された `coreAssemblyName` パラメーターを <xref:System.Reflection.MetadataAssemblyResolver.Resolve%2A?displayProperty=nameWithType> メソッドに渡すことによって決定されます。
 
 <xref:System.Reflection.MetadataLoadContext>のコンストラクターで `coreAssemblyName` 引数が指定されていない場合は、"mscorlib"、"system.string"、"netstandard" などの既定値が使用されます。
-            
+
 指定されたコアアセンブリには、コア型を直接含める必要はありません。 他のアセンブリに転送することができます。 そのため、指定されたコアアセンブリとして mscorlib ファサードを使用することは完全に許可されています。
-            
+
 <xref:System.Runtime> は、<xref:System.Runtime.InteropServices.DllImportAttribute>などの相互運用関連の疑似カスタム属性型の一部を除外するため、理想的なコアアセンブリではないことに注意してください。 ただし、これらの属性に関心がない場合は、サービスを提供できます。 コアアセンブリに必要な型が含まれていない場合、CustomAttributes API はこれらの属性をスキップします。
-            
+
 コアアセンブリが必要になるまで読み込まれません。 次の Api は、コアアセンブリの検索をトリガーしません。
 
 * <xref:System.Reflection.MetadataLoadContext.LoadFromStream%2A?displayProperty=nameWithType>
@@ -105,10 +108,10 @@
 * <xref:System.Type.Name?displayProperty=nameWithType>
 * <xref:System.Type.FullName?displayProperty=nameWithType>
 * <xref:System.Type.AssemblyQualifiedName?displayProperty=nameWithType>
-            
+
 コアアセンブリが見つからない場合、またはコアアセンブリに型がない場合は、次のように <xref:System.Reflection.MetadataLoadContext> の動作に影響を与えます。
-            
-* 署名を解析する必要がある Api または typecs を生成し、<xref:System.Type> オブジェクトとして結果を返す必要がある場合、例外がスローされます。 次に例を示します。
+
+* 署名を解析する必要がある Api または typecs を生成し、<xref:System.Type> オブジェクトとして結果を返す必要がある場合、例外がスローされます。 例 : 
 
   * <xref:System.Reflection.MethodInfo.ReturnType?displayProperty=nameWithType>
   * <xref:System.Reflection.MethodBase.GetParameters%2A?displayProperty=nameWithType>
@@ -116,7 +119,7 @@
   * <xref:System.Type.GetInterfaces%2A?displayProperty=nameWithType>
 
 * 型を既知のコア型と比較する必要がある Api では、例外はスローされず、比較は `false`として評価されます。 たとえば、コアアセンブリを指定しない場合、<xref:System.Type.IsPrimitive> は、<xref:System.Int32>という名前の型も含め、すべての `false` を返します。 同様に、<xref:System.Type.GetTypeCode%2A?displayProperty=nameWithType> はすべての <xref:System.TypeCode.Object> を返します。
-            
+
 * メタデータエンティティが擬似カスタム属性としてそのサーフェイスにフラグを設定し、コアアセンブリに擬似カスタム属性の型、必要なコンストラクター、またはコンストラクターのパラメーターの型のいずれかが含まれていない場合、<xref:System.Reflection.MetadataLoadContext> はスローされません。 返される属性の一覧から、擬似カスタム属性が省略されます。
           ]]></format>
         </remarks>
@@ -136,6 +139,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -144,7 +148,7 @@
       <Docs>
         <summary>(アセンブリ ファイルのファイル ロックなど) 任意のネイティブ リソースを解放します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
+          <format type="text/markdown"><![CDATA[
 
 破棄後、<xref:System.Reflection.MetadataLoadContext> またはそれらの <xref:System.Reflection.Assembly> オブジェクトによってディスペンサーされたリフレクションオブジェクトによってディスペンサー <xref:System.Reflection.Assembly> オブジェクトを使用するのは安全ではありません。
 
@@ -166,6 +170,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Reflection.Assembly&gt;</ReturnType>
@@ -187,6 +192,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Assembly</ReturnType>
@@ -201,6 +207,7 @@
         <remarks>
           <format type="text/markdown"><![CDATA[
 ## Remarks
+
 このメソッドの動作は <xref:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName%2A?displayProperty=nameWithType> resolve イベントの動作と一致しますが、<xref:System.Reflection.Assembly.ReflectionOnlyLoad%2A?displayProperty=nameWithType>の動作とは一致しないことに注意してください。 (後者は、解決イベントを発生させずに起動します)。
           ]]></format>
         </remarks>
@@ -218,6 +225,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Assembly</ReturnType>
@@ -251,6 +259,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Assembly</ReturnType>
@@ -276,6 +285,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Assembly</ReturnType>
@@ -301,6 +311,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Reflection.MetadataLoadContext</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.0.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Reflection.Assembly</ReturnType>

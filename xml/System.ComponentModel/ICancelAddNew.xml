@@ -1,5 +1,5 @@
 <Type Name="ICancelAddNew" FullName="System.ComponentModel.ICancelAddNew">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e12c38193c4e24968749a9097d47f821624b8f22" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69328092" /></Metadata><TypeSignature Language="C#" Value="public interface ICancelAddNew" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="e2df03b0283583985ac0da6ea5187f83d11e0c7a" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75147156" /></Metadata><TypeSignature Language="C#" Value="public interface ICancelAddNew" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ICancelAddNew" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.ICancelAddNew" />
   <TypeSignature Language="VB.NET" Value="Public Interface ICancelAddNew" />
@@ -20,6 +20,7 @@
     <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
   <Docs>
@@ -28,22 +29,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.ICancelAddNew>インターフェイスを使用すると、コレクションは拡張可能な方法で新しい項目を追加できます。 その後、新しい項目をコミットまたはロールバックできます。 コレクション<xref:System.ComponentModel.IBindingList.AddNew%2A>のメソッドは、項目を仮に追加するために使用されます。その後、次の操作によってトランザクションが処理されます。  
+ <xref:System.ComponentModel.ICancelAddNew> インターフェイスを使用すると、コレクションは拡張可能な方法で新しい項目を追加できます。 その後、新しい項目をコミットまたはロールバックできます。 コレクションの <xref:System.ComponentModel.IBindingList.AddNew%2A> メソッドは、項目を暫定的に追加するために使用されます。その後、次の操作によってトランザクションが処理されます。  
   
--   メソッド<xref:System.ComponentModel.ICancelAddNew.EndNew%2A>は、保留中の加算を明示的にコミットします。  
+-   <xref:System.ComponentModel.ICancelAddNew.EndNew%2A> メソッドは、保留中の加算を明示的にコミットします。  
   
 -   挿入、削除、移動などの別のコレクション操作を実行すると、保留中の追加が暗黙的にコミットされます。  
   
--   まだ<xref:System.ComponentModel.ICancelAddNew.CancelNew%2A>コミットされていない場合、メソッドは保留中の追加をロールバックします。  
+-   まだコミットされていない場合は、<xref:System.ComponentModel.ICancelAddNew.CancelNew%2A> メソッドによって保留中の追加がロールバックされます。  
   
 > [!NOTE]
->  複合データバインディング Windows フォームなど、一部のシナリオでは、新しく追加さ<xref:System.ComponentModel.ICancelAddNew.CancelNew%2A>れ<xref:System.ComponentModel.ICancelAddNew.EndNew%2A>た項目以外の項目を受信または呼び出しする場合があります。 (各項目は通常、データビューの行です)。これらの呼び出しは無視します。項目のインデックスが指定されている場合にのみ、新しい項目をキャンセルまたはコミットします。  
+>  複合データバインディング Windows フォームなど、一部のシナリオでは、新しく追加された項目以外の項目に対して <xref:System.ComponentModel.ICancelAddNew.CancelNew%2A> または <xref:System.ComponentModel.ICancelAddNew.EndNew%2A> の呼び出しを受け取ることがあります。 (各項目は通常、データビューの行です)。これらの呼び出しは無視します。項目のインデックスが指定されている場合にのみ、新しい項目をキャンセルまたはコミットします。  
   
  データバインドコレクションに項目を追加するには、次の2つのモデルがあります。  
   
--   以前のモデルは、 <xref:System.ComponentModel.IBindingList>インターフェイスを実装するコレクションに直接依存しており、 <xref:System.Windows.Forms.CurrencyManager?displayProperty=nameWithType>クラスを使用して直接データバインドされています。 クラスの<xref:System.Windows.Forms.CurrencyManager.EndCurrentEdit%2A>、、および<xref:System.Windows.Forms.CurrencyManager.CancelCurrentEdit%2A>の各メソッドは、新しい項目を追加するためのトランザクションサポートを担当します。 <xref:System.Windows.Forms.CurrencyManager.AddNew%2A> <xref:System.Windows.Forms.CurrencyManager?displayProperty=nameWithType> ただし、この機能は、インターフェイスを<xref:System.ComponentModel.IEditableObject>介してトランザクション動作をサポートする項目に依存します。 項目がこのインターフェイスをサポートしていない場合、の後続の呼び出し<xref:System.Windows.Forms.CurrencyManager.CancelCurrentEdit%2A>に関係なく、項目は常にリストに追加されます。  
+-   以前のモデルは、<xref:System.ComponentModel.IBindingList> インターフェイスを実装するコレクションに直接依存しており、<xref:System.Windows.Forms.CurrencyManager?displayProperty=nameWithType> クラスを使用して直接データバインドされています。 <xref:System.Windows.Forms.CurrencyManager?displayProperty=nameWithType> クラスの <xref:System.Windows.Forms.CurrencyManager.AddNew%2A>、<xref:System.Windows.Forms.CurrencyManager.EndCurrentEdit%2A>、および <xref:System.Windows.Forms.CurrencyManager.CancelCurrentEdit%2A> の各メソッドは、新しい項目を追加するためのトランザクションサポートを担当します。 ただし、この機能は、<xref:System.ComponentModel.IEditableObject> インターフェイスを介してトランザクション動作をサポートする項目に依存します。 項目がこのインターフェイスをサポートしていない場合、<xref:System.Windows.Forms.CurrencyManager.CancelCurrentEdit%2A>の後続の呼び出しに関係なく、項目は常にリストに追加されます。  
   
--   新しいモデルでは、インターフェイス<xref:System.ComponentModel.BindingList%601> <xref:System.ComponentModel.IBindingList>と<xref:System.ComponentModel.ICancelAddNew>インターフェイスを実装するジェネリッククラスを通じて、より堅牢なデータバインディングシナリオがサポートされています。 この場合、トランザクションサポートは<xref:System.ComponentModel.BindingList%601>コレクションによって直接管理されます。  
+-   新しいモデルでは、<xref:System.ComponentModel.IBindingList> と <xref:System.ComponentModel.ICancelAddNew> インターフェイスを実装するジェネリック <xref:System.ComponentModel.BindingList%601> クラスを通じて、より堅牢なデータバインディングシナリオがサポートされています。 この場合、トランザクションサポートは <xref:System.ComponentModel.BindingList%601> コレクションによって直接管理されます。  
   
  ]]></format>
     </remarks>
@@ -76,6 +77,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -90,7 +92,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.ComponentModel.ICancelAddNew.CancelNew%2A>は、以前にコレクション`itemIndex`に追加<xref:System.ComponentModel.IBindingList.AddNew%2A>された項目の保留中の加算 () をロールバックします。 複数の新しい項目が同時に保留される可能性があるため、index パラメーターが必要です。  
+ <xref:System.ComponentModel.ICancelAddNew.CancelNew%2A> メソッドは、以前にコレクションに追加された項目の保留中の加算 (<xref:System.ComponentModel.IBindingList.AddNew%2A>) を `itemIndex`の位置にロールバックします。 複数の新しい項目が同時に保留される可能性があるため、index パラメーターが必要です。  
   
  ]]></format>
         </remarks>
@@ -122,6 +124,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -136,7 +139,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- は<xref:System.ComponentModel.ICancelAddNew.EndNew%2A> 、以前にコレクション`itemIndex`に<xref:System.ComponentModel.IBindingList.AddNew%2A>追加された項目の保留中の加算 () をコミットします。 複数の新しい項目が同時に保留される可能性があるため、index パラメーターが必要です。  
+ <xref:System.ComponentModel.ICancelAddNew.EndNew%2A> は、以前にコレクションに追加された項目の保留中の加算 (<xref:System.ComponentModel.IBindingList.AddNew%2A>) を `itemIndex`の位置にコミットします。 複数の新しい項目が同時に保留される可能性があるため、index パラメーターが必要です。  
   
  ]]></format>
         </remarks>

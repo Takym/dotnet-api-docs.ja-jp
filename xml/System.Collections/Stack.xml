@@ -1,5 +1,5 @@
 <Type Name="Stack" FullName="System.Collections.Stack">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="31b4a2a6c0b5953a6c409df61a6995f5c6921ad9" /><Meta Name="ms.sourcegitcommit" Value="26c1289032c45990fec9276509cbb6cbfc9fbf34" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/04/2019" /><Meta Name="ms.locfileid" Value="71957623" /></Metadata><TypeSignature Language="C#" Value="public class Stack : ICloneable, System.Collections.ICollection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="666bace678d2697418dbfd5e12f009fb37f0d543" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75150354" /></Metadata><TypeSignature Language="C#" Value="public class Stack : ICloneable, System.Collections.ICollection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit Stack extends System.Object implements class System.Collections.ICollection, class System.Collections.IEnumerable, class System.ICloneable" />
   <TypeSignature Language="DocId" Value="T:System.Collections.Stack" />
   <TypeSignature Language="VB.NET" Value="Public Class Stack&#xA;Implements ICloneable, ICollection" />
@@ -11,6 +11,7 @@
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -59,12 +60,12 @@
   
 ## Remarks  
   
-<xref:System.Collections.Stack>の容量は、<xref:System.Collections.Stack>が保持できる要素の数です。 要素が @no__t 0 に追加されると、再割り当てによって必要に応じて容量が自動的に増加します。  
+<xref:System.Collections.Stack>の容量は、<xref:System.Collections.Stack>が保持できる要素の数です。 要素が <xref:System.Collections.Stack>に追加されると、再割り当てによって必要に応じて容量が自動的に増加します。  
 
 > [!IMPORTANT]
-> 新しい開発には `Stack` クラスを使用しないことをお勧めします。 代わりに、汎用 <xref:System.Collections.Generic.Stack%601?displayProperty=nameWithType> クラスを使用することをお勧めします。 詳細については、「GitHub で[非ジェネリックコレクションを使用することはでき](https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md)ません。」を参照してください。
+> 新しい開発には `Stack` クラスを使用しないことをお勧めします。 代わりに、ジェネリック <xref:System.Collections.Generic.Stack%601?displayProperty=nameWithType> クラスを使用することをお勧めします。 詳細については、「GitHub で[非ジェネリックコレクションを使用することはでき](https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md)ません。」を参照してください。
 
-@No__t-0 がスタックの容量より小さい場合、<xref:System.Collections.Stack.Push%2A> は @no__t 2 の操作になります。 新しい要素に対応するために容量を増やす必要がある場合は、<xref:System.Collections.Stack.Push%2A> が `O(n)` の操作になります。この場合、`n` は <xref:System.Collections.Stack.Count%2A> になります。 <xref:System.Collections.Stack.Pop%2A> は @no__t 1 つの操作です。  
+<xref:System.Collections.Stack.Count%2A> がスタックの容量より小さい場合、<xref:System.Collections.Stack.Push%2A> は `O(1)` 操作です。 新しい要素を格納するために容量を増やす必要がある場合、<xref:System.Collections.Stack.Push%2A> は `O(n)` 操作になります。ここで `n` は <xref:System.Collections.Stack.Count%2A>です。 <xref:System.Collections.Stack.Pop%2A> は `O(1)` 操作です。  
   
  <xref:System.Collections.Stack> は、有効な値として `null` を受け入れ、重複する要素を許可します。  
   
@@ -79,11 +80,11 @@
   
  ]]></format>
     </remarks>
-    <threadsafe>パブリック静的 (Visual Basic では<see langword="Shared" />) なこの型のメンバーはスレッド セーフです インスタンス メンバーの場合は、スレッド セーフであるとは限りません。  
+    <threadsafe>パブリック静的 (Visual Basic では<see langword="Shared" />) なこの型のメンバーはスレッド セーフです インスタンス メンバーについては、スレッド セーフであることの保証はありません。  
   
-@No__t 0 のスレッドセーフを保証するには、すべての操作を、<see cref="M:System.Collections.Stack.Synchronized(System.Collections.Stack)" /> メソッドによって返されるラッパーを介して行う必要があります。  
+<see cref="T:System.Collections.Stack" />のスレッドセーフを保証するには、<see cref="M:System.Collections.Stack.Synchronized(System.Collections.Stack)" /> メソッドによって返されるラッパーを使用してすべての操作を行う必要があります。  
   
-コレクションの列挙は、本質的にスレッド セーフなプロシージャではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。</threadsafe>
+コレクションの列挙処理は、本質的にスレッドセーフな処理ではありません。 コレクションが同期されていても、他のスレッドがコレクションを変更する場合があり、このときは列挙子から例外がスローされます。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。</threadsafe>
     <altmember cref="T:System.Collections.Generic.Stack`1" />
   </Docs>
   <Members>
@@ -110,6 +111,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -130,11 +132,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 の容量は、@no__t 1 が保持できる要素の数です。 要素が @no__t 0 に追加されると、内部配列を再割り当てすることで、必要に応じて容量が自動的に増加します。  
+ <xref:System.Collections.Stack> の容量は、<xref:System.Collections.Stack> が保持できる要素の数です。 要素が <xref:System.Collections.Stack>に追加されると、内部配列を再割り当てすることで、必要に応じて容量が自動的に増加します。  
   
- コレクションのサイズを推定できる場合は、初期容量を指定すると、<xref:System.Collections.Stack> に要素を追加するときに、多くのサイズ変更操作を実行する必要がなくなります。  
+ コレクションのサイズを推定できる場合は、初期容量を指定すると、<xref:System.Collections.Stack>に要素を追加するときに、さまざまなサイズ変更操作を実行する必要がなくなります。  
   
- このコンストラクターは @no__t 0 演算です。  
+ このコンストラクターは `O(1)` 操作です。  
   
  ]]></format>
         </remarks>
@@ -154,6 +156,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -177,17 +180,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 の容量は、@no__t 1 が保持できる要素の数です。 要素が @no__t 0 に追加されると、内部配列を再割り当てすることで、必要に応じて容量が自動的に増加します。  
+ <xref:System.Collections.Stack> の容量は、<xref:System.Collections.Stack> が保持できる要素の数です。 要素が <xref:System.Collections.Stack>に追加されると、内部配列を再割り当てすることで、必要に応じて容量が自動的に増加します。  
   
- コレクションのサイズを推定できる場合は、初期容量を指定すると、<xref:System.Collections.Stack> に要素を追加するときに、多くのサイズ変更操作を実行する必要がなくなります。  
+ コレクションのサイズを推定できる場合は、初期容量を指定すると、<xref:System.Collections.Stack>に要素を追加するときに、さまざまなサイズ変更操作を実行する必要がなくなります。  
   
- 要素は <xref:System.Collections.Stack> にコピーされます。この順序は、<xref:System.Collections.ICollection> の <xref:System.Collections.IEnumerator> によって読み取られます。  
+ 要素は、<xref:System.Collections.ICollection>の <xref:System.Collections.IEnumerator> によって読み取られた順序で <xref:System.Collections.Stack> にコピーされます。  
   
- このコンストラクターは @no__t 0 の演算で、`n` は `col` の要素の数を示します。  
+ このコンストラクターは `O(n)` 操作で、`n` は `col`内の要素の数です。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="col" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="col" /> は <see langword="null" /> です。</exception>
         <altmember cref="T:System.Collections.ICollection" />
         <altmember cref="T:System.Collections.IEnumerator" />
       </Docs>
@@ -206,6 +209,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -229,11 +233,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 の容量は、@no__t 1 が保持できる要素の数です。 要素が @no__t 0 に追加されると、内部配列を再割り当てすることで、必要に応じて容量が自動的に増加します。  
+ <xref:System.Collections.Stack> の容量は、<xref:System.Collections.Stack> が保持できる要素の数です。 要素が <xref:System.Collections.Stack>に追加されると、内部配列を再割り当てすることで、必要に応じて容量が自動的に増加します。  
   
- コレクションのサイズを推定できる場合は、初期容量を指定すると、<xref:System.Collections.Stack> に要素を追加するときに、多くのサイズ変更操作を実行する必要がなくなります。  
+ コレクションのサイズを推定できる場合は、初期容量を指定すると、<xref:System.Collections.Stack>に要素を追加するときに、さまざまなサイズ変更操作を実行する必要がなくなります。  
   
- このコンストラクターは @no__t 0 の操作であり、`n` は `initialCapacity` です。  
+ このコンストラクターは、`n` が `initialCapacity``O(n)` 操作です。  
   
  ]]></format>
         </remarks>
@@ -254,6 +258,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -277,14 +282,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Collections.Stack.Count%2A> が0に設定され、コレクションの要素から他のオブジェクトへの参照も解放されます。  
+ <xref:System.Collections.Stack.Count%2A> がゼロに設定され、コレクションの要素から他のオブジェクトへの参照も解放されます。  
   
- このメソッドは @no__t 0 の操作であり、`n` は <xref:System.Collections.Stack.Count%2A> です。  
+ このメソッドは、`n` が <xref:System.Collections.Stack.Count%2A>`O(n)` 操作です。  
   
    
   
 ## Examples  
- 次の例は、@no__t の値をクリアする方法を示しています-0 です。  
+ 次の例は、<xref:System.Collections.Stack>の値をクリアする方法を示しています。  
   
  [!code-cpp[Classic Stack.Clear Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.Clear Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Stack.Clear Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.Clear Example/CS/source.cs#1)]
@@ -311,6 +316,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -339,7 +345,7 @@
   
  これに対し、コレクションの詳細コピーでは、要素と、要素によって直接的または間接的に参照されるすべての要素がコピーされます。  
   
- このメソッドは @no__t 0 の操作であり、`n` は <xref:System.Collections.Stack.Count%2A> です。  
+ このメソッドは、`n` が <xref:System.Collections.Stack.Count%2A>`O(n)` 操作です。  
   
  ]]></format>
         </remarks>
@@ -359,6 +365,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -381,14 +388,14 @@
       <Docs>
         <param name="obj"><see cref="T:System.Collections.Stack" /> 内で検索するオブジェクト。 値として <see langword="null" /> を指定できます。</param>
         <summary>ある要素が <see cref="T:System.Collections.Stack" /> 内に存在するかどうかを判断します。</summary>
-        <returns><paramref name="obj" /> が <see cref="T:System.Collections.Stack" /> に存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> が <paramref name="obj" /> に存在する場合は <see cref="T:System.Collections.Stack" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  このメソッドは、<xref:System.Object.Equals%2A?displayProperty=nameWithType> メソッドを呼び出すことにより、等しいかどうかを判断します。  
   
- このメソッドは、線形検索を実行します。したがって、このメソッドは @no__t 0 の操作であり、`n` は <xref:System.Collections.Stack.Count%2A> です。  
+ このメソッドは、線形検索を実行します。したがって、このメソッドは、`n` が <xref:System.Collections.Stack.Count%2A>`O(n)` 操作です。  
   
  .NET Framework 2.0 以降では、このメソッドは、`obj` 引数をコレクション内の個々のオブジェクトの <xref:System.Object.Equals%2A> メソッドに渡すことによって、等しいかどうかをテストします。 以前のバージョンの .NET Framework では、この決定は、コレクション内の個々の項目を `obj` 引数の <xref:System.Object.Equals%2A> メソッドに渡すことによって行われていました。  
   
@@ -413,6 +420,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -435,20 +443,20 @@
       </Parameters>
       <Docs>
         <param name="array"><see cref="T:System.Array" /> から要素がコピーされる 1 次元の <see cref="T:System.Collections.Stack" />。 <see cref="T:System.Array" /> には、0 から始まるインデックス番号が必要です。</param>
-        <param name="index">コピーの開始位置とする <paramref name="array" /> のインデックス (0 から始まる)。</param>
+        <param name="index">コピーを開始する <paramref name="array" /> の 0 から始まるインデックス。</param>
         <summary>既存の 1 次元の <see cref="T:System.Collections.Stack" /> に <see cref="T:System.Array" /> をコピーします。コピー操作は、配列の指定したインデックスから始まります。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要素は、後入れ先出し (LIFO) の順序で配列にコピーされます。これは、<xref:System.Collections.Stack.Pop%2A> の連続した呼び出しによって返される要素の順序に似ています。  
+ これらの要素は、<xref:System.Collections.Stack.Pop%2A>の連続した呼び出しによって返される要素の順序と同様に、後入れ先出し (LIFO) の順序で配列にコピーされます。  
   
- このメソッドは @no__t 0 の操作であり、`n` は <xref:System.Collections.Stack.Count%2A> です。  
+ このメソッドは、`n` が <xref:System.Collections.Stack.Count%2A>`O(n)` 操作です。  
   
    
   
 ## Examples  
- 次の例は、@no__t 0 を1次元配列にコピーする方法を示しています。  
+ 次の例は、<xref:System.Collections.Stack> を1次元配列にコピーする方法を示しています。  
   
  [!code-cpp[Classic Stack.CopyTo Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.CopyTo Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Stack.CopyTo Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.CopyTo Example/CS/source.cs#1)]
@@ -456,12 +464,12 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> が 0 未満です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="array" /> が多次元です。  
   
-- または - 
-コピー元の <see cref="T:System.Collections.Stack" /> の要素数が、コピー先 <paramref name="array" /> の <paramref name="index" /> から最後までの使用可能領域を超えています。</exception>
+または 
+コピー元の <see cref="T:System.Collections.Stack" /> の要素数が、コピー先 <paramref name="index" /> の <paramref name="array" /> から最後までの使用可能領域を超えています。</exception>
         <exception cref="T:System.InvalidCastException">コピー元の <see cref="T:System.Collections.Stack" /> の型をコピー先の <paramref name="array" /> の型に自動的にキャストすることはできません。</exception>
         <altmember cref="M:System.Collections.Stack.ToArray" />
       </Docs>
@@ -483,6 +491,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -506,11 +515,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 容量は、@no__t 0 に格納できる要素の数です。 <xref:System.Collections.Stack.Count%2A> は、<xref:System.Collections.Stack> に実際に存在する要素の数です。  
+ 容量は、<xref:System.Collections.Stack> が格納できる要素の数です。 <xref:System.Collections.Stack.Count%2A> は、実際に <xref:System.Collections.Stack>内にある要素の数です。  
   
  容量は常に <xref:System.Collections.Stack.Count%2A> 以上です。 要素の追加中に <xref:System.Collections.Stack.Count%2A> が容量を超えた場合、古い要素をコピーして新しい要素を追加する前に、内部配列を再割り当てすることによって容量が自動的に増加します。  
   
- このプロパティの値の取得は @no__t 0 操作です。  
+ このプロパティの値の取得は `O(1)` 操作です。  
   
  ]]></format>
         </remarks>
@@ -533,6 +542,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -552,7 +562,7 @@
       <Parameters />
       <Docs>
         <summary><see cref="T:System.Collections.IEnumerator" /> の <see cref="T:System.Collections.Stack" /> を返します。</summary>
-        <returns><see cref="T:System.Collections.IEnumerator" /> の <see cref="T:System.Collections.Stack" />。</returns>
+        <returns><see cref="T:System.Collections.IEnumerator" /> の <see cref="T:System.Collections.Stack" /> です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -563,17 +573,17 @@
   
  列挙子を使用すると、コレクション内のデータを読み取ることができますが、基になるコレクションを変更することはできません。  
   
- 最初に、列挙子はコレクション内の 1 番目の要素の前に位置付けられます。 <xref:System.Collections.IEnumerator.Reset%2A> を実行した場合も、列挙子はこの位置に戻されます。  この位置では、<xref:System.Collections.IEnumerator.Current%2A> は未定義です。 そのため、<xref:System.Collections.IEnumerator.MoveNext%2A> の値を読み取る前に、<xref:System.Collections.IEnumerator.Current%2A> を呼び出して列挙子をコレクションの最初の要素に進める必要があります。  
+ 最初、列挙子はコレクションの先頭の要素の前に位置付けられます。 <xref:System.Collections.IEnumerator.Reset%2A> を実行した場合も、列挙子はこの位置に戻されます。  この位置では、<xref:System.Collections.IEnumerator.Current%2A> は未定義です。 そのため、<xref:System.Collections.IEnumerator.MoveNext%2A> の値を読み取る前に、<xref:System.Collections.IEnumerator.Current%2A> を呼び出して列挙子をコレクションの最初の要素に進める必要があります。  
   
  <xref:System.Collections.IEnumerator.Current%2A> は、<xref:System.Collections.IEnumerator.MoveNext%2A> または <xref:System.Collections.IEnumerator.Reset%2A> が呼び出されるまでは同じオブジェクトを返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> は、<xref:System.Collections.IEnumerator.Current%2A> を次の要素に設定します。  
   
- <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、後続の <xref:System.Collections.IEnumerator.MoveNext%2A> 呼び出しも `false` を返します。 @No__t-0 への最後の呼び出しで `false` が返された場合、<xref:System.Collections.IEnumerator.Current%2A> は定義されていません。 <xref:System.Collections.IEnumerator.Current%2A> をコレクションの最初の要素にもう一度設定するには、<xref:System.Collections.IEnumerator.Reset%2A> を呼び出してから <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出します。  
+ <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、後続の <xref:System.Collections.IEnumerator.MoveNext%2A> 呼び出しも `false` を返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> の最後の呼び出しが `false`を返した場合、<xref:System.Collections.IEnumerator.Current%2A> は定義されていません。 <xref:System.Collections.IEnumerator.Current%2A> をコレクションの最初の要素にもう一度設定するには、<xref:System.Collections.IEnumerator.Reset%2A> を呼び出してから <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出します。  
   
- コレクションが変更されない限り、列挙子は有効です。 コレクションに対して変更 (要素の追加、変更、削除など) が行われると、列挙子は回復不可能な無効状態になり、その動作は未定義になります。  
+ 列挙子は、コレクションが変更されない限り有効です。 コレクションに対して変更 (要素の追加、変更、削除など) が行われると、列挙子は回復不可能な無効状態になり、その動作は未定義になります。  
   
- 列挙子にはコレクションへの排他アクセス権限はないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。  列挙処理でスレッド セーフを確保するために、列挙処理が終わるまでコレクションをロックできます。  コレクションに対し複数のスレッドがアクセスして読み取りや書き込みを行うことができるようにするには、独自に同期化を実装する必要があります。  
+ 列挙子はコレクションに排他アクセスできないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。  列挙処理でスレッド セーフを確保するために、列挙処理が終わるまでコレクションをロックできます。  コレクションに対し複数のスレッドがアクセスして読み取りや書き込みを行うことができるようにするには、独自に同期化を実装する必要があります。  
   
- このメソッドは @no__t 0 演算です。  
+ このメソッドは `O(1)` 操作です。  
   
  ]]></format>
         </remarks>
@@ -597,6 +607,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -615,27 +626,27 @@
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Collections.Stack" /> へのアクセスが同期されている (スレッド セーフである) かどうかを示す値を取得します。</summary>
-        <value><see cref="T:System.Collections.Stack" /> へのアクセスが同期されている (スレッド セーフである) 場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value><see langword="true" /> へのアクセスが同期されている (スレッド セーフである) 場合は <see cref="T:System.Collections.Stack" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t 0 のスレッドセーフを保証するには、すべての操作を、<xref:System.Collections.Stack.Synchronized%2A> メソッドによって返されるラッパーを介して行う必要があります。  
+ <xref:System.Collections.Stack>のスレッドセーフを保証するには、<xref:System.Collections.Stack.Synchronized%2A> メソッドによって返されるラッパーを使用してすべての操作を行う必要があります。  
   
- コレクションの列挙は、本質的にスレッド セーフなプロシージャではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
+ コレクションの列挙処理は、本質的にスレッドセーフな処理ではありません。 コレクションが同期されていても、他のスレッドがコレクションを変更する場合があり、このときは列挙子から例外がスローされます。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
   
- 次のコード例は、列挙体全体の中で <xref:System.Collections.Stack.SyncRoot%2A> を使用してコレクションをロックする方法を示しています。  
+ 次のコード例は、列挙体全体で <xref:System.Collections.Stack.SyncRoot%2A> を使用してコレクションをロックする方法を示しています。  
   
  [!code-cpp[Classic Stack.IsSynchronized Example#2](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CPP/source2.cpp#2)]
  [!code-csharp[Classic Stack.IsSynchronized Example#2](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CS/source2.cs#2)]
  [!code-vb[Classic Stack.IsSynchronized Example#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/VB/source2.vb#2)]  
   
- このプロパティの値の取得は @no__t 0 操作です。  
+ このプロパティの値の取得は `O(1)` 操作です。  
   
    
   
 ## Examples  
- 次の例では、@no__t を同期し、<xref:System.Collections.Stack> が同期されているかどうかを確認し、同期 <xref:System.Collections.Stack> を使用する方法を示します。  
+ 次の例では、<xref:System.Collections.Stack>を同期し、<xref:System.Collections.Stack> が同期されているかどうかを判断し、同期 <xref:System.Collections.Stack>を使用する方法を示します。  
   
  [!code-cpp[Classic Stack.IsSynchronized Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Stack.IsSynchronized Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CS/source.cs#1)]
@@ -659,6 +670,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -685,14 +697,14 @@
 ## Remarks  
  このメソッドは <xref:System.Collections.Stack.Pop%2A> メソッドに類似していますが、<xref:System.Collections.Stack.Peek%2A> は <xref:System.Collections.Stack> を変更しません。  
   
- `null` は、必要に応じて、プレースホルダーとして <xref:System.Collections.Stack> にプッシュできます。 Null 値とスタックの末尾を区別するには、<xref:System.Collections.Stack.Count%2A> プロパティを確認するか、<xref:System.InvalidOperationException> をキャッチします。これは、<xref:System.Collections.Stack> が空の場合にスローされます。  
+ `null` は、必要に応じて、プレースホルダーとして <xref:System.Collections.Stack> にプッシュできます。 Null 値とスタックの末尾を区別するには、<xref:System.Collections.Stack.Count%2A> プロパティを確認するか、<xref:System.InvalidOperationException>をキャッチします。これは、<xref:System.Collections.Stack> が空の場合にスローされます。  
   
- このメソッドは @no__t 0 演算です。  
+ このメソッドは `O(1)` 操作です。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Collections.Stack> に要素を追加する方法、@no__t から要素を削除する方法、または <xref:System.Collections.Stack> の先頭にある要素を表示する方法を示します。  
+ 次の例は、要素を <xref:System.Collections.Stack>に追加する方法、<xref:System.Collections.Stack>から要素を削除する方法、または <xref:System.Collections.Stack>の先頭にある要素を表示する方法を示しています。  
   
  [!code-cpp[Classic Stack.Peek Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.Peek Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Stack.Peek Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.Peek Example/CS/source.cs#1)]
@@ -719,6 +731,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -738,21 +751,21 @@
       <Parameters />
       <Docs>
         <summary><see cref="T:System.Collections.Stack" /> の先頭にあるオブジェクトを削除し、返します。</summary>
-        <returns><see cref="T:System.Collections.Stack" /> の先頭から削除された <see cref="T:System.Object" />。</returns>
+        <returns><see cref="T:System.Object" /> の先頭から削除された <see cref="T:System.Collections.Stack" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  このメソッドは <xref:System.Collections.Stack.Peek%2A> メソッドに類似していますが、<xref:System.Collections.Stack.Peek%2A> は <xref:System.Collections.Stack> を変更しません。  
   
- `null` は、必要に応じて、プレースホルダーとして <xref:System.Collections.Stack> にプッシュできます。 Null 値とスタックの末尾を区別するには、<xref:System.Collections.Stack.Count%2A> プロパティを確認するか、<xref:System.InvalidOperationException> をキャッチします。これは、<xref:System.Collections.Stack> が空の場合にスローされます。  
+ `null` は、必要に応じて、プレースホルダーとして <xref:System.Collections.Stack> にプッシュできます。 Null 値とスタックの末尾を区別するには、<xref:System.Collections.Stack.Count%2A> プロパティを確認するか、<xref:System.InvalidOperationException>をキャッチします。これは、<xref:System.Collections.Stack> が空の場合にスローされます。  
   
- このメソッドは @no__t 0 演算です。  
+ このメソッドは `O(1)` 操作です。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Collections.Stack> に要素を追加する方法、@no__t から要素を削除する方法、または <xref:System.Collections.Stack> の先頭にある要素を表示する方法を示します。  
+ 次の例は、要素を <xref:System.Collections.Stack>に追加する方法、<xref:System.Collections.Stack>から要素を削除する方法、または <xref:System.Collections.Stack>の先頭にある要素を表示する方法を示しています。  
   
  [!code-cpp[Classic Stack.Peek Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.Peek Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Stack.Peek Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.Peek Example/CS/source.cs#1)]
@@ -779,6 +792,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -805,16 +819,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 が既に容量に等しい場合は、内部配列が自動的に再割り当てされ、新しい要素が追加される前に既存の要素が新しい配列にコピーされるため、<xref:System.Collections.Stack> の容量が増加します。  
+ <xref:System.Collections.Stack.Count%2A> 既に容量に等しい場合は、内部配列を自動的に再割り当てすることによって <xref:System.Collections.Stack> の容量が増加し、新しい要素が追加される前に既存の要素が新しい配列にコピーされます。  
   
  `null` は、必要に応じて、プレースホルダーとして <xref:System.Collections.Stack> にプッシュできます。 スタック内のスロットを占有し、任意のオブジェクトとして扱われます。  
   
- @No__t-0 がスタックの容量より小さい場合、<xref:System.Collections.Stack.Push%2A> は @no__t 2 の操作になります。 新しい要素に対応するために容量を増やす必要がある場合は、<xref:System.Collections.Stack.Push%2A> が `O(n)` の操作になります。この場合、`n` は <xref:System.Collections.Stack.Count%2A> になります。  
+ <xref:System.Collections.Stack.Count%2A> がスタックの容量より小さい場合、<xref:System.Collections.Stack.Push%2A> は `O(1)` 操作です。 新しい要素を格納するために容量を増やす必要がある場合、<xref:System.Collections.Stack.Push%2A> は `O(n)` 操作になります。ここで `n` は <xref:System.Collections.Stack.Count%2A>です。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Collections.Stack> に要素を追加する方法、@no__t から要素を削除する方法、または <xref:System.Collections.Stack> の先頭にある要素を表示する方法を示します。  
+ 次の例は、要素を <xref:System.Collections.Stack>に追加する方法、<xref:System.Collections.Stack>から要素を削除する方法、または <xref:System.Collections.Stack>の先頭にある要素を表示する方法を示しています。  
   
  [!code-cpp[Classic Stack.Peek Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.Peek Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Stack.Peek Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.Peek Example/CS/source.cs#1)]
@@ -839,6 +853,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -866,22 +881,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t 0 のスレッドセーフを保証するには、すべての操作をこのラッパーを介して行う必要があります。  
+ <xref:System.Collections.Stack>のスレッドセーフを保証するために、このラッパーを使用してすべての操作を行う必要があります。  
   
- コレクションの列挙は、本質的にスレッド セーフなプロシージャではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
+ コレクションの列挙処理は、本質的にスレッドセーフな処理ではありません。 コレクションが同期されていても、他のスレッドがコレクションを変更する場合があり、このときは列挙子から例外がスローされます。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
   
- 次のコード例は、列挙体全体の中で <xref:System.Collections.Stack.SyncRoot%2A> を使用してコレクションをロックする方法を示しています。  
+ 次のコード例は、列挙体全体で <xref:System.Collections.Stack.SyncRoot%2A> を使用してコレクションをロックする方法を示しています。  
   
  [!code-cpp[Classic Stack.IsSynchronized Example#2](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CPP/source2.cpp#2)]
  [!code-csharp[Classic Stack.IsSynchronized Example#2](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CS/source2.cs#2)]
  [!code-vb[Classic Stack.IsSynchronized Example#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/VB/source2.vb#2)]  
   
- このメソッドは @no__t 0 演算です。  
+ このメソッドは `O(1)` 操作です。  
   
    
   
 ## Examples  
- 次の例では、@no__t を同期し、<xref:System.Collections.Stack> が同期されているかどうかを確認し、同期 <xref:System.Collections.Stack> を使用する方法を示します。  
+ 次の例では、<xref:System.Collections.Stack>を同期し、<xref:System.Collections.Stack> が同期されているかどうかを判断し、同期 <xref:System.Collections.Stack>を使用する方法を示します。  
   
  [!code-cpp[Classic Stack.IsSynchronized Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Stack.IsSynchronized Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CS/source.cs#1)]
@@ -889,7 +904,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="stack" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="stack" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="SyncRoot">
@@ -909,6 +924,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -932,17 +948,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 の同期されたバージョンを作成するには、<xref:System.Collections.Stack.Synchronized%2A> メソッドを使用します。 ただし、派生クラスは、<xref:System.Collections.Stack.SyncRoot%2A> プロパティを使用して <xref:System.Collections.Stack> の独自の同期バージョンを提供できます。 同期コードは、<xref:System.Collections.Stack> で直接ではなく、<xref:System.Collections.Stack> の @no__t 0 に対して操作を実行する必要があります。 これにより、他のオブジェクトから派生したコレクションを適切に操作できるようになります。 具体的には、@no__t 0 オブジェクトを同時に変更している可能性のある他のスレッドとの適切な同期を維持します。  
+ 同期されたバージョンの <xref:System.Collections.Stack>を作成するには、<xref:System.Collections.Stack.Synchronized%2A> メソッドを使用します。 ただし、派生クラスは、<xref:System.Collections.Stack.SyncRoot%2A> プロパティを使用して、独自に同期されたバージョンの <xref:System.Collections.Stack> を提供できます。 同期コードは、<xref:System.Collections.Stack>上で直接ではなく、<xref:System.Collections.Stack>の <xref:System.Collections.Stack.SyncRoot%2A> に対して操作を実行する必要があります。 こうすることにより、他のオブジェクトから派生したコレクションを適切に操作することができます。 具体的には、<xref:System.Collections.Stack> オブジェクトを同時に変更している可能性のある他のスレッドとの適切な同期を維持します。  
   
- コレクションの列挙は、本質的にスレッド セーフなプロシージャではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
+ コレクションの列挙処理は、本質的にスレッドセーフな処理ではありません。 コレクションが同期されていても、他のスレッドがコレクションを変更する場合があり、このときは列挙子から例外がスローされます。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
   
- 次のコード例は、列挙体全体の中で <xref:System.Collections.Stack.SyncRoot%2A> を使用してコレクションをロックする方法を示しています。  
+ 次のコード例は、列挙体全体で <xref:System.Collections.Stack.SyncRoot%2A> を使用してコレクションをロックする方法を示しています。  
   
  [!code-cpp[Classic Stack.IsSynchronized Example#2](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CPP/source2.cpp#2)]
  [!code-csharp[Classic Stack.IsSynchronized Example#2](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/CS/source2.cs#2)]
  [!code-vb[Classic Stack.IsSynchronized Example#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_Classic/classic Stack.IsSynchronized Example/VB/source2.vb#2)]  
   
- このプロパティの値の取得は @no__t 0 操作です。  
+ このプロパティの値の取得は `O(1)` 操作です。  
   
  ]]></format>
         </remarks>
@@ -962,6 +978,7 @@
         <AssemblyVersion>4.0.1.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -986,14 +1003,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 要素は、後入れ先出し (LIFO) の順序で配列にコピーされます。これは、<xref:System.Collections.Stack.Pop%2A> の連続した呼び出しによって返される要素の順序に似ています。  
+ これらの要素は、<xref:System.Collections.Stack.Pop%2A>の連続した呼び出しによって返される要素の順序と同様に、後入れ先出し (LIFO) の順序で配列にコピーされます。  
   
- このメソッドは @no__t 0 の操作であり、`n` は <xref:System.Collections.Stack.Count%2A> です。  
+ このメソッドは、`n` が <xref:System.Collections.Stack.Count%2A>`O(n)` 操作です。  
   
    
   
 ## Examples  
- 次の例は、@no__t 0 を1次元配列にコピーする方法を示しています。  
+ 次の例は、<xref:System.Collections.Stack> を1次元配列にコピーする方法を示しています。  
   
  [!code-cpp[Classic Stack.CopyTo Example#1](~/samples/snippets/cpp/VS_Snippets_CLR_Classic/classic Stack.CopyTo Example/CPP/source.cpp#1)]
  [!code-csharp[Classic Stack.CopyTo Example#1](~/samples/snippets/csharp/VS_Snippets_CLR_Classic/classic Stack.CopyTo Example/CS/source.cs#1)]

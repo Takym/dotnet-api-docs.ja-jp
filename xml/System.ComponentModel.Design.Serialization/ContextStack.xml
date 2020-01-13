@@ -1,5 +1,5 @@
 <Type Name="ContextStack" FullName="System.ComponentModel.Design.Serialization.ContextStack">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="274074fcc2f05c2a1b704bab4c571f6c64b93d8c" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69331189" /></Metadata><TypeSignature Language="C#" Value="public sealed class ContextStack" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="025c1cf208e403e7c98e3514983d3d7121770329" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75149301" /></Metadata><TypeSignature Language="C#" Value="public sealed class ContextStack" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ContextStack extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.Serialization.ContextStack" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ContextStack" />
@@ -21,6 +21,7 @@
     <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -32,18 +33,18 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- シリアライザーによっては、自身の状態を正しく持続するために、オブジェクトのコンテキストに関する情報を必要とします。 クラス<xref:System.ComponentModel.Design.Serialization.ContextStack>を使用すると、シリアライザーは、シリアル化されているオブジェクトのコンテキストに関するデータを、別のシリアライザーがアクセスできるスタックに設定できます。 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Context%2A>プロパティの値は、使用する情報を<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager>いくつかのシリアライザーに共有するためにによって提供されます。  
+ シリアライザーによっては、自身の状態を正しく持続するために、オブジェクトのコンテキストに関する情報を必要とします。 <xref:System.ComponentModel.Design.Serialization.ContextStack> クラスを使用すると、シリアライザーは、シリアル化されているオブジェクトのコンテキストに関するデータを、別のシリアライザーがアクセスできるスタックに設定できます。 <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Context%2A> プロパティの値は、使用する情報をいくつかのシリアライザーに共有するために <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager> によって提供されます。  
   
  コンテキストスタックは、デザインドキュメントをシリアル化するプロセスを深く入れ子にすることができるため便利です。また、入れ子の各レベルのオブジェクトは、オブジェクトの状態を正しく保持するためにコンテキスト情報を必要とする場合があります。 シリアライザーは、入れ子になったシリアライザーを呼び出す前に、コンテキストオブジェクトをスタックに設定できます。 スタックに設定された各オブジェクトは、入れ子になったシリアライザーの呼び出しが返された後に、それを設定するシリアライザーによって削除される必要があります。  
   
  通常、スタック上のオブジェクトには、シリアル化されている現在のオブジェクトのコンテキストに関する情報が含まれます。 親シリアライザーは、次にシリアル化するオブジェクトについてのコンテキスト情報をスタックに追加し、適切なシリアライザーを呼び出します。また、シリアライザーがオブジェクトでの実行を終了すると、スタックからコンテキスト情報を削除します。 このスタックにプッシュされるオブジェクトを決定するには、各シリアライザーの実装が必要です。  
   
- たとえば、という名前`Enabled`のプロパティを持つオブジェクトの<xref:System.Boolean>データ型はです。 シリアライザーがこの値をデータストリームに書き込む場合は、記述しているプロパティのコンテキストまたは型を含める必要がある場合があります。 ただし、シリアライザーには、値の<xref:System.Boolean>書き込みのみが指示されるため、この情報は含まれません。 この情報をシリアライザーに提供するために、親シリアライザーはコンテキスト<xref:System.ComponentModel.PropertyDescriptor>スタックの`Enabled`プロパティにポイントをプッシュできます。  
+ 例として、`Enabled` という名前のプロパティを持つオブジェクトのデータ型は <xref:System.Boolean>です。 シリアライザーがこの値をデータストリームに書き込む場合は、記述しているプロパティのコンテキストまたは型を含める必要がある場合があります。 ただし、シリアライザーには、<xref:System.Boolean> 値を書き込むように指示されているだけなので、この情報は含まれません。 この情報をシリアライザーに提供するために、親シリアライザーはコンテキストスタックの `Enabled` プロパティを指す <xref:System.ComponentModel.PropertyDescriptor> をプッシュできます。  
   
    
   
 ## Examples  
- 次のコード例では、 <xref:System.ComponentModel.Design.Serialization.ContextStack>を使用してをプッシュしてから、10個の値を削除する方法を示します。  
+ 次のコード例では、<xref:System.ComponentModel.Design.Serialization.ContextStack> を使用して、10個の値をプッシュしてから削除します。  
   
  [!code-cpp[ContextStackExample#1](~/samples/snippets/cpp/VS_Snippets_Winforms/ContextStackExample/CPP/class1.cpp#1)]
  [!code-csharp[ContextStackExample#1](~/samples/snippets/csharp/VS_Snippets_Winforms/ContextStackExample/CS/class1.cs#1)]
@@ -51,7 +52,7 @@
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値<see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />: <see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />、。 関連付けられた状態:</permission>
+    <permission cref="T:System.Security.NamedPermissionSet">システムリソースにフルアクセスできます。 要求の値: <see cref="F:System.Security.Permissions.SecurityAction.LinkDemand" />、<see cref="F:System.Security.Permissions.SecurityAction.InheritanceDemand" />。 関連付けられた状態:</permission>
     <altmember cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
   </Docs>
   <Members>
@@ -78,6 +79,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -91,7 +93,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- インスタンスを<xref:System.ComponentModel.Design.Serialization.ContextStack>作成するコード例を次に示します。  
+ 次のコード例は、<xref:System.ComponentModel.Design.Serialization.ContextStack> インスタンスを作成する方法を示しています。  
   
  [!code-cpp[ContextStackExample#2](~/samples/snippets/cpp/VS_Snippets_Winforms/ContextStackExample/CPP/class1.cpp#2)]
  [!code-csharp[ContextStackExample#2](~/samples/snippets/csharp/VS_Snippets_Winforms/ContextStackExample/CS/class1.cs#2)]
@@ -124,12 +126,13 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="context" Type="System.Object" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="context" Type="System.Object" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="context">スタックに追加するコンテキスト オブジェクト。</param>
@@ -142,7 +145,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="context" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="context" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="Current">
@@ -169,6 +172,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -220,6 +224,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -259,6 +264,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -274,11 +280,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スタックの各レベルでチェックが行われ、を実装または継承`type`するオブジェクトが検索されます。 一致するものが見つかった場合は、それが返されます。  
+ スタックの各レベルでチェックが行われ、`type`を実装または継承するオブジェクトが検索されます。 一致するものが見つかった場合は、それが返されます。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
     <Member MemberName="Pop">
@@ -305,6 +311,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -317,7 +324,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、から<xref:System.ComponentModel.Design.Serialization.ContextStack>値を削除する方法を示しています。  
+ 次のコード例は、<xref:System.ComponentModel.Design.Serialization.ContextStack>から値を削除する方法を示しています。  
   
  [!code-cpp[ContextStackExample#4](~/samples/snippets/cpp/VS_Snippets_Winforms/ContextStackExample/CPP/class1.cpp#4)]
  [!code-csharp[ContextStackExample#4](~/samples/snippets/csharp/VS_Snippets_Winforms/ContextStackExample/CS/class1.cs#4)]
@@ -351,6 +358,7 @@
         <AssemblyName>System.ComponentModel.TypeConverter</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -365,7 +373,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次のコード例は、 <xref:System.ComponentModel.Design.Serialization.ContextStack>に値をプッシュする方法を示しています。  
+ 次のコード例は、値を <xref:System.ComponentModel.Design.Serialization.ContextStack>にプッシュする方法を示しています。  
   
  [!code-cpp[ContextStackExample#3](~/samples/snippets/cpp/VS_Snippets_Winforms/ContextStackExample/CPP/class1.cpp#3)]
  [!code-csharp[ContextStackExample#3](~/samples/snippets/csharp/VS_Snippets_Winforms/ContextStackExample/CS/class1.cs#3)]
@@ -373,7 +381,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="context" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="context" /> は <see langword="null" /> です。</exception>
       </Docs>
     </Member>
   </Members>

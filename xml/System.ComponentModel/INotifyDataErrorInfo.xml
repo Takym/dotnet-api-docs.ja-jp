@@ -1,5 +1,5 @@
 <Type Name="INotifyDataErrorInfo" FullName="System.ComponentModel.INotifyDataErrorInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="50a50044281e27c0e9c4001dfb228804e2ef282f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69346884" /></Metadata><TypeSignature Language="C#" Value="public interface INotifyDataErrorInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="301386655909e5eb3bc2400a3aeea6528a988dc9" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75146948" /></Metadata><TypeSignature Language="C#" Value="public interface INotifyDataErrorInfo" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract INotifyDataErrorInfo" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.INotifyDataErrorInfo" />
   <TypeSignature Language="VB.NET" Value="Public Interface INotifyDataErrorInfo" />
@@ -11,6 +11,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System</AssemblyName>
@@ -27,7 +28,7 @@
   </AssemblyInfo>
   <Interfaces />
   <Docs>
-    <summary>カスタムの同期検証および非同期検証サポートを提供するためにデータ エンティティ クラスに実装できるメンバーを定義します。</summary>
+    <summary>カスタムの同期検証および非同期検証をサポートするためにデータ エンティティ クラスに実装できるメンバーを定義します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -52,6 +53,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -70,12 +72,12 @@
         <ReturnType>System.EventHandler&lt;System.ComponentModel.DataErrorsChangedEventArgs&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>プロパティまたはエンティティ全体の検証エラーが変更されたときに発生します。</summary>
+        <summary>プロパティまたはエンティティ全体で検証エラーが変更されたときに発生します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 実装クラスは、戻り値がを実装<xref:System.ComponentModel.INotifyDataErrorInfo.GetErrors%2A> <xref:System.Collections.Specialized.INotifyCollectionChanged>している場合でも、戻り値が変更されるたびに、ユーザーインターフェイススレッドでこのイベントを発生させる必要があります。  
+ 実装クラスは、戻り値が <xref:System.Collections.Specialized.INotifyCollectionChanged>を実装している場合でも、<xref:System.ComponentModel.INotifyDataErrorInfo.GetErrors%2A> 戻り値が変更されるたびに、ユーザーインターフェイススレッドでこのイベントを発生させる必要があります。  
   
  ]]></format>
         </remarks>
@@ -95,6 +97,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -116,16 +119,16 @@
         <Parameter Name="propertyName" Type="System.String" Index="0" FrameworkAlternate="xamarinmac-3.0" />
       </Parameters>
       <Docs>
-        <param name="propertyName">検証エラーを取得するプロパティの名前。または、エンティティ レベルのエラーを取得する場合は <see langword="null" /> または <see cref="F:System.String.Empty" />。</param>
-        <summary>指定されたプロパティまたはエンティティ全体の検証エラーを取得します。</summary>
+        <param name="propertyName">検証エラーを取得するプロパティの名前。または、エンティティ レベルのエラーを取得するための <see langword="null" /> または <see cref="F:System.String.Empty" />。</param>
+        <summary>指定したプロパティまたはエンティティ全体の検証エラーを取得します。</summary>
         <returns>プロパティまたはエンティティの検証エラー。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 <xref:System.Collections.IEnumerable>非同期検証規則の処理が完了すると変化する可能性があるを返します。 これにより、バインドエンジンは、エラーが追加、削除、または変更されたときに、ユーザーインターフェイスの検証フィードバックを自動的に更新できます。  
+ このメソッドは、非同期検証規則の処理が完了すると変化する <xref:System.Collections.IEnumerable> を返します。 これにより、バインドエンジンは、エラーが追加、削除、または変更されたときに、ユーザーインターフェイスの検証フィードバックを自動的に更新できます。  
   
- 戻り値は別<xref:System.Collections.IEnumerable>の値に変更することも、以前に返され<xref:System.Collections.IEnumerable>たを再利用してその内容を変更することもできます。 戻り値を変更すると、戻り値<xref:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged>がを実装<xref:System.Collections.Specialized.INotifyCollectionChanged>している場合でも、イベントが発生します。  
+ 戻り値は、別の <xref:System.Collections.IEnumerable>に変更することも、以前に返された <xref:System.Collections.IEnumerable> を再利用してその内容を変更することもできます。 戻り値を変更すると、戻り値が <xref:System.Collections.Specialized.INotifyCollectionChanged>を実装している場合でも、<xref:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged> イベントが発生します。  
   
  ]]></format>
         </remarks>
@@ -145,6 +148,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
@@ -164,12 +168,12 @@
       </ReturnValue>
       <Docs>
         <summary>エンティティに検証エラーがあるかどうかを示す値を取得します。</summary>
-        <value>現在エンティティに検証エラーがある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value>エンティティに現在検証エラーがある場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティは`false` 、アクセス時にエンティティに対して既知のエンティティレベルまたはプロパティレベルの検証エラーがない場合にを返します。 ただし、 <xref:System.ComponentModel.INotifyDataErrorInfo.GetErrors%2A>メソッドの説明に従って、一部の検証規則は非同期的に実行される場合があります。  
+ このプロパティは、アクセス時にエンティティに対して既知のエンティティレベルまたはプロパティレベルの検証エラーがない場合に `false` を返します。 ただし、<xref:System.ComponentModel.INotifyDataErrorInfo.GetErrors%2A> 方法の説明に従って、一部の検証規則は非同期的に実行される場合があります。  
   
  ]]></format>
         </remarks>

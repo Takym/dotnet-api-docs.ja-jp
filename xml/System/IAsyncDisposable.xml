@@ -1,5 +1,5 @@
 <Type Name="IAsyncDisposable" FullName="System.IAsyncDisposable">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5091a2d0242c3592559a7ebd15927112cee76d5a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69406013" /></Metadata><TypeSignature Language="C#" Value="public interface IAsyncDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9be69d0838c49a8a2afd6b503cbe1c0b250ecbab" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75172870" /></Metadata><TypeSignature Language="C#" Value="public interface IAsyncDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IAsyncDisposable" />
   <TypeSignature Language="DocId" Value="T:System.IAsyncDisposable" />
   <TypeSignature Language="VB.NET" Value="Public Interface IAsyncDisposable" />
@@ -8,6 +8,7 @@
   <AssemblyInfo>
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>netstandard</AssemblyName>
@@ -24,25 +25,25 @@
 
 ## Remarks
 
-.Net では、アンマネージリソースを所有するクラス<xref:System.IDisposable>は、通常、アンマネージリソースを同期的に解放するためのメカニズムを提供するインターフェイスを実装します。 ただし、場合によっては、同期されたリソース (またはその代わり) に加えて、アンマネージリソースを解放するための非同期機構を提供する必要があります。 このようなメカニズムを提供することで、コンシューマーは、GUI アプリケーションのメインスレッドを長時間ブロックすることなく、リソースを集中的に使用する dispose 操作を実行できます。
+.NET では、アンマネージリソースを所有するクラスは通常、アンマネージリソースを同期的に解放するためのメカニズムを提供するために <xref:System.IDisposable> インターフェイスを実装します。 ただし、場合によっては、同期されたリソース (またはその代わり) に加えて、アンマネージリソースを解放するための非同期機構を提供する必要があります。 このようなメカニズムを提供することで、コンシューマーは、GUI アプリケーションのメインスレッドを長時間ブロックすることなく、リソースを集中的に使用する dispose 操作を実行できます。
 
-この<xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>インターフェイスのメソッドは、非同期<xref:System.Threading.Tasks.ValueTask>の破棄操作を表すを返します。 アンマネージリソースを所有するクラスは、このメソッドを実装します。これらのクラスのコンシューマーは、不要になったオブジェクトに対してこのメソッドを呼び出します。
+このインターフェイスの <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType> メソッドは、非同期の破棄操作を表す <xref:System.Threading.Tasks.ValueTask> を返します。 アンマネージリソースを所有するクラスは、このメソッドを実装します。これらのクラスのコンシューマーは、不要になったオブジェクトに対してこのメソッドを呼び出します。
 
-非同期メソッドは、およびの`async` `await` C#キーワードと組み合わせて使用され Visual Basic です。 詳細については、「 [」 C#の「非同期プログラミングモデル](/dotnet/csharp/programming-guide/concepts/async/index)」または「 [Async と Await を使用した非同期プログラミング」 (Visual Basic)](/dotnet/visual-basic/programming-guide/concepts/async/)を参照してください。
+非同期メソッドは、および Visual Basic のC# `async` および `await` キーワードと組み合わせて使用されます。 詳細については、「 [」 C#の「非同期プログラミングモデル](/dotnet/csharp/programming-guide/concepts/async/index)」または「 [Async と Await を使用した非同期プログラミング」 (Visual Basic)](/dotnet/visual-basic/programming-guide/concepts/async/)を参照してください。
 
 ### <a name="using-an-object-that-implements-iasyncdisposable"></a>IAsyncDisposable を実装するオブジェクトの使用
 
-アプリケーションでを実装`IAsyncDisposable`するオブジェクトを使用する場合は、オブジェクトの使用が終了したら、そのオブジェクトの<xref:System.IAsyncDisposable.DisposeAsync%2A>実装を呼び出す必要があります。 例外が発生した場合でもリソースが解放されるように<xref:System.IAsyncDisposable.DisposeAsync%2A>するには`finally` 、 `finally`ステートメントの`try` /句内でメソッドを呼び出します。 パターン`try`の/ C#ついては、「 [try-finally](~/docs/csharp/language-reference/keywords/try-finally.md) ()」または「try...」を参照してください。 `finally` [キャッチ...Finally ステートメント](~/docs/visual-basic/language-reference/statements/try-catch-finally-statement.md)(Visual Basic)。
+アプリケーションで `IAsyncDisposable`を実装するオブジェクトを使用している場合は、オブジェクトの使用が終了したときに、そのオブジェクトの <xref:System.IAsyncDisposable.DisposeAsync%2A> の実装を呼び出す必要があります。 例外が発生した場合でもリソースが解放されるようにするには、`try`/`finally` ステートメントの `finally` 句内で <xref:System.IAsyncDisposable.DisposeAsync%2A> メソッドを呼び出します。 `try`/`finally` パターンの詳細については、「 [try-finally](~/docs/csharp/language-reference/keywords/try-finally.md) (C#)」または「try...」を参照してください。 [キャッチ...Finally ステートメント](~/docs/visual-basic/language-reference/statements/try-catch-finally-statement.md)(Visual Basic)。
 
 ### <a name="implementing-iasyncdisposable"></a>IAsyncDisposable を実装する   
     
-次のよう`IAsyncDisposable`な場合にを実装できます。
+次のような場合に `IAsyncDisposable` を実装することがあります。
 
-- アンマネージリソースを所有する非同期列挙子を開発する場合。 非同期列挙子は、 C# 8.0 非同期ストリーム機能で使用されます。 非同期ストリームの詳細については[、「チュートリアル:8.0 および .NET Core 3.0 C# ](/dotnet/csharp/tutorials/generate-consume-asynchronous-stream)を使用して、非同期ストリームを生成して使用します。
+- アンマネージリソースを所有する非同期列挙子を開発する場合。 非同期列挙子は、 C# 8.0 非同期ストリーム機能で使用されます。 非同期ストリームの詳細については、「[チュートリアル: 8.0 および .Net Core C# 3.0 を使用した非同期ストリームの生成と使用](/dotnet/csharp/tutorials/generate-consume-asynchronous-stream)」を参照してください。
 
 - クラスがアンマネージリソースを所有して解放する場合は、中間バッファーの内容をファイルにフラッシュしたり、ネットワーク経由でパケットを送信して接続を閉じるなど、リソースを集中的に使用する i/o 操作が必要になります。
 
-アンマネージリソースの解放、解放、またはリセットなど、アンマネージリソースを使用した後に必要なすべてのクリーンアップを実行するには、メソッドを使用します。<xref:System.IAsyncDisposable.DisposeAsync%2A> .NET でのアンマネージリソースの詳細については、「[アンマネージリソースのクリーンアップ](/dotnet/standard/garbage-collection/unmanaged)」を参照してください。
+アンマネージリソースの解放、解放、またはリセットなど、アンマネージリソースを使用した後に必要なすべてのクリーンアップを実行するには、<xref:System.IAsyncDisposable.DisposeAsync%2A> メソッドを使用します。 .NET でのアンマネージリソースの詳細については、「[アンマネージリソースのクリーンアップ](/dotnet/standard/garbage-collection/unmanaged)」を参照してください。
  
  ]]></format>
     </remarks>
@@ -59,6 +60,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -79,14 +81,14 @@
 
 ## Remarks
 
-このメソッドを使用して、このインターフェイスを実装するクラスのインスタンスによって保持されているファイル、ストリーム、ハンドルなどのアンマネージリソースを非同期的に終了または解放します。 の<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>代わりにこのメソッドを使用すると、GUI アプリケーションのメインスレッドを長時間ブロックすることなく、リソースを集中的に使用する dispose 操作を実行できます。
+このメソッドを使用して、このインターフェイスを実装するクラスのインスタンスによって保持されているファイル、ストリーム、ハンドルなどのアンマネージリソースを非同期的に終了または解放します。 <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> の代わりにこのメソッドを使用すると、GUI アプリケーションのメインスレッドを長時間ブロックすることなく、リソースを集中的に使用する dispose 操作を実行できます。
 
 > [!WARNING]
->  <xref:System.IAsyncDisposable>インターフェイスを実装するクラスを使用している場合は、クラスの`DisposeAsync`使用が終了したら、その実装を呼び出す必要があります。 詳細については、「」の「iasyncdisposable を実装するオブジェクトの使用<xref:System.IAsyncDisposable> 」を参照してください。
+>  <xref:System.IAsyncDisposable>インターフェイスを実装するクラスを使用している場合は、クラスの使用が終了したら、その`DisposeAsync`実装を呼び出す必要があります。 詳細については、「<xref:System.IAsyncDisposable>」トピックの「IAsyncDisposable を実装するオブジェクトの使用」セクションを参照してください。
 
-このメソッドを実装する場合は、包含階層を介して呼び出しを伝達することによって、保持されているすべてのリソースが解放されるようにします。 たとえば、オブジェクト a がオブジェクト b を割り当て、オブジェクト b がオブジェクト C を割り当てる場合、の`DisposeAsync`実装は b に対してを呼び出す`DisposeAsync`必要があります。 `DisposeAsync`この場合、c でを呼び出す必要があります。基底クラスがを実装`DisposeAsync` <xref:System.IAsyncDisposable>している場合、オブジェクトはその基底クラスのメソッドも呼び出す必要があります。
+このメソッドを実装する場合は、包含階層を介して呼び出しを伝達することによって、保持されているすべてのリソースが解放されるようにします。 たとえば、オブジェクト A がオブジェクト B を割り当て、オブジェクト B がオブジェクト C を割り当てる場合、の `DisposeAsync` の実装では、B で `DisposeAsync` を呼び出す必要があります。 B は、C で `DisposeAsync` を呼び出す必要があります。基底クラスが <xref:System.IAsyncDisposable>を実装している場合は、オブジェクトがその基底クラスの `DisposeAsync` メソッドを呼び出す必要もあります。
 
-オブジェクトの`DisposeAsync`メソッドが複数回呼び出される場合、オブジェクトは、最初の呼び出しの後にすべての呼び出しを無視し、正常<xref:System.Threading.Tasks.ValueTask>に完了したを同期的に返す必要があります。 `DisposeAsync`メソッドが複数回呼び出された場合、オブジェクトは例外をスローしません。 リソースが既に`DisposeAsync`破棄され<xref:System.ObjectDisposedException>ている場合、以外のインスタンスメソッドはをスローできます。
+オブジェクトの `DisposeAsync` メソッドが2回以上呼び出された場合、オブジェクトは、最初の呼び出しの後にすべての呼び出しを無視し、正常に完了した <xref:System.Threading.Tasks.ValueTask>を同期的に返す必要があります。 `DisposeAsync` メソッドが複数回呼び出された場合、オブジェクトは例外をスローしません。 リソースが既に破棄されている場合、`DisposeAsync`以外のインスタンスメソッドは<xref:System.ObjectDisposedException>をスローする可能性があります。
  
  ]]></format>
         </remarks>
