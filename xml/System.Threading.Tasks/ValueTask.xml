@@ -1,5 +1,5 @@
 <Type Name="ValueTask" FullName="System.Threading.Tasks.ValueTask">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="229d1bf03b128c84133e142a8ae199b7608a6620" /><Meta Name="ms.sourcegitcommit" Value="74239f3977d28923e5020663db2c4e91601bea79" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/24/2019" /><Meta Name="ms.locfileid" Value="68434836" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask : IEquatable&lt;System.Threading.Tasks.ValueTask&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="311e72a880b85210be21076656f522af8d00fd8e" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75158933" /></Metadata><TypeSignature Language="C#" Value="public struct ValueTask : IEquatable&lt;System.Threading.Tasks.ValueTask&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit ValueTask extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Threading.Tasks.ValueTask&gt;" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Tasks.ValueTask" />
   <TypeSignature Language="VB.NET" Value="Public Structure ValueTask&#xA;Implements IEquatable(Of ValueTask)" />
@@ -8,6 +8,7 @@
   <AssemblyInfo>
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -25,10 +26,10 @@
     </Interface>
   </Interfaces>
   <Attributes>
-    <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.Runtime.CompilerServices.AsyncMethodBuilder(typeof(System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder))</AttributeName>
     </Attribute>
-    <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1">
+    <Attribute FrameworkAlternate="netcore-2.2;netcore-2.1;netcore-3.0;netstandard-2.1;netcore-3.1">
       <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
     </Attribute>
   </Attributes>
@@ -38,22 +39,22 @@
       <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-インスタンス`ValueTask`は、を使用して待機するか<xref:System.Threading.Tasks.Task> 、 <xref:System.Threading.Tasks.ValueTask.AsTask%2A>を使用してに変換することができます。 インスタンス`ValueTask`を待機できるのは1回だけで、インスタンスが<xref:System.Threading.Tasks.ValueTask.GetAwaiter>完了するまでコンシューマーがを呼び出すことはできません。 これらの制限が許容されない`ValueTask`場合は<xref:System.Threading.Tasks.Task> 、を<xref:System.Threading.Tasks.ValueTask.AsTask%2A>呼び出して、をに変換します。
+<xref:System.Threading.Tasks.ValueTask.AsTask%2A>を使用して、`ValueTask` インスタンスを待機するか、<xref:System.Threading.Tasks.Task> に変換することができます。 `ValueTask` インスタンスは1回だけ待機できます。また、インスタンスが完了するまでコンシューマーが <xref:System.Threading.Tasks.ValueTask.GetAwaiter> を呼び出すことはできません。 これらの制限が許容されない場合は、<xref:System.Threading.Tasks.ValueTask.AsTask%2A>を呼び出して、`ValueTask` を <xref:System.Threading.Tasks.Task> に変換します。
 
-`ValueTask`インスタンスに対して次の操作を実行することはできません。
+`ValueTask` インスタンスでは、次の操作を実行しないでください。
 
 - インスタンスを複数回待機しています。
-- を<xref:System.Threading.Tasks.ValueTask.AsTask%2A>複数回呼び出す。
+- <xref:System.Threading.Tasks.ValueTask.AsTask%2A> を複数回呼び出す。
 - インスタンスを使用するために、これらの手法の1つ以上を使用します。
 
 上記のいずれかを実行すると、結果は未定義になります。
 
-は、 <xref:System.Threading.Tasks.Task>または<xref:System.Threading.Tasks.Sources.IValueTaskSource>インスタンスのいずれかをラップできる構造体です。`ValueTask` 非同期メソッド`ValueTask`からインスタンスを<xref:System.Threading.Tasks.Sources.IValueTaskSource>ラップするを返すと、高スループットのアプリケーションでは、再利用可能<xref:System.Threading.Tasks.Sources.IValueTaskSource>なオブジェクトのプールを使用した割り当てを回避できます。 詳細については、「理由、機能[、および when の ValueTask の概要](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/)」を参照してください。
+`ValueTask` は、<xref:System.Threading.Tasks.Task> または <xref:System.Threading.Tasks.Sources.IValueTaskSource> インスタンスのいずれかをラップできる構造体です。 非同期メソッドから <xref:System.Threading.Tasks.Sources.IValueTaskSource> インスタンスをラップする `ValueTask` を返すと、高スループットのアプリケーションでは、再利用可能な <xref:System.Threading.Tasks.Sources.IValueTaskSource> オブジェクトのプールを使用した割り当てを回避できます。 詳細については、「理由、機能[、および when の ValueTask の概要](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/)」を参照してください。
 
-の代わりに`ValueTask`を使用すると、オーバーヘッドが発生します。 <xref:System.Threading.Tasks.Task> は`ValueTask`複数のフィールドを持つ構造体であるため、メソッドからそれを返すと、1つ<xref:System.Threading.Tasks.Task>の参照を返す場合と比較して、より多くのデータをコピーすることになります。 そのため、結果を返さない非同期メソッドの既定の選択肢は、を<xref:System.Threading.Tasks.Task>返すことです。 パフォーマンス分析では、 `ValueTask` <xref:System.Threading.Tasks.Task>ではなくを使用する必要があることが証明されている場合にのみ使用します。 <xref:System.Threading.Tasks.Task.CompletedTask?displayProperty=nameWithType> を<xref:System.Threading.Tasks.Task>返すメソッドが同期的かつ正常に完了した場合に、正常に完了したシングルトンを戻すには、プロパティを使用する必要があります。
+<xref:System.Threading.Tasks.Task> ではなく `ValueTask` を使用すると、オーバーヘッドが発生します。 `ValueTask` は複数のフィールドを持つ構造であるため、メソッドからそれを返すと、1つの <xref:System.Threading.Tasks.Task> 参照を返す場合と比較して、より多くのデータをコピーすることになります。 そのため、結果を返さない非同期メソッドの既定の選択肢は、<xref:System.Threading.Tasks.Task>を返すことです。 パフォーマンス分析では、<xref:System.Threading.Tasks.Task>ではなく `ValueTask` 使用する必要があることが証明されている場合にのみ使用してください。 <xref:System.Threading.Tasks.Task> を返すメソッドが同期的に正常に完了した場合に、正常に完了したシングルトンを戻すには、<xref:System.Threading.Tasks.Task.CompletedTask?displayProperty=nameWithType> プロパティを使用する必要があります。
 
 > [!NOTE]
-> `ValueTask`型の使用はC# 7.0 以降でサポートされており、Visual Basic のどのバージョンでもサポートされていません。
+> `ValueTask` 型の使用は7.0 以降でC#サポートされており、Visual Basic のどのバージョンでもサポートされていません。
  ]]></format>
     </remarks>
   </Docs>
@@ -68,6 +69,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -96,6 +98,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -111,7 +114,7 @@
       <Docs>
         <param name="source">操作を表すオブジェクト。</param>
         <param name="token"><see cref="T:System.Threading.Tasks.Sources.IValueTaskSource" /> に渡される非透過的な値</param>
-        <summary>操作を表す指定された <see cref="T:System.Threading.Tasks.Sources.IValueTaskSource" /> オブジェクトを使用して、<see cref="T:System.Threading.Tasks.ValueTask" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary>操作を表す指定された <see cref="T:System.Threading.Tasks.ValueTask" /> オブジェクトを使用して、<see cref="T:System.Threading.Tasks.Sources.IValueTaskSource" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -126,6 +129,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -139,8 +143,8 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>この <see cref="T:System.Threading.Tasks.ValueTask" /> を表す <see cref="T:System.Threading.Tasks.Task" /> オブジェクトを取得します。</summary>
-        <returns>この <see cref="T:System.Threading.Tasks.ValueTask" /> でラップされる <see cref="T:System.Threading.Tasks.Task" /> オブジェクト (存在する場合)、または、結果を表す新しい <see cref="T:System.Threading.Tasks.Task" /> オブジェクト。</returns>
+        <summary>この <see cref="T:System.Threading.Tasks.Task" /> を表す <see cref="T:System.Threading.Tasks.ValueTask" /> オブジェクトを取得します。</summary>
+        <returns>この <see cref="T:System.Threading.Tasks.Task" /> でラップされる <see cref="T:System.Threading.Tasks.ValueTask" /> オブジェクト (存在する場合)、または、結果を表す新しい <see cref="T:System.Threading.Tasks.Task" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 このメソッドは、ラップされたタスクオブジェクト (存在する場合) を返すか、または結果を表す新しい task オブジェクトを作成します。
@@ -159,6 +163,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -191,6 +196,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -213,7 +219,7 @@
           <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-2 <xref:System.Threading.Tasks.ValueTask>つのインスタンスは、同じ<xref:System.Threading.Tasks.Task>または同じペア<xref:System.Threading.Tasks.Sources.IValueTaskSource>のオブジェクトとトークンをラップすると等しいと見なされます。
+2つの <xref:System.Threading.Tasks.ValueTask> インスタンスは、同じ <xref:System.Threading.Tasks.Task> または <xref:System.Threading.Tasks.Sources.IValueTaskSource> オブジェクトとトークンのペアをラップするときに等しくなります。
 
  ]]></format>
         </remarks>
@@ -233,6 +239,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -255,7 +262,7 @@
           <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-2 <xref:System.Threading.Tasks.ValueTask>つのインスタンスは、同じ<xref:System.Threading.Tasks.Task>または同じペア<xref:System.Threading.Tasks.Sources.IValueTaskSource>のオブジェクトとトークンをラップすると等しいと見なされます。
+2つの <xref:System.Threading.Tasks.ValueTask> インスタンスは、同じ <xref:System.Threading.Tasks.Task> または <xref:System.Threading.Tasks.Sources.IValueTaskSource> オブジェクトとトークンのペアをラップするときに等しくなります。
 
  ]]></format>
         </remarks>
@@ -272,6 +279,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -301,6 +309,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -315,7 +324,7 @@
       <Parameters />
       <Docs>
         <summary>このインスタンスのハッシュ コードを返します。</summary>
-        <returns>現在のオブジェクトのハッシュ コード。</returns>
+        <returns>現在のオブジェクトのハッシュ コードです。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -330,6 +339,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -343,10 +353,10 @@
       </ReturnValue>
       <Docs>
         <summary>このオブジェクトが取り消された操作を表すかどうかを示す値を取得します。</summary>
-        <value><see langword="true" />このオブジェクトが取り消された操作を表している場合は。それ以外<see langword="false" />の場合は。</value>
+        <value>このオブジェクトが取り消された操作を表している場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
-が結果また<xref:System.Threading.Tasks.Sources.IValueTaskSource>はによってサポートされている場合、この`false`は常にを返します。 <xref:System.Threading.Tasks.ValueTask>  によって<xref:System.Threading.Tasks.Task>サポートされている場合は、タスクの<xref:System.Threading.Tasks.Task.IsCanceled>プロパティの値が返されます。
+<xref:System.Threading.Tasks.ValueTask> が結果または <xref:System.Threading.Tasks.Sources.IValueTaskSource>によってサポートされている場合は、常に `false`が返されます。  <xref:System.Threading.Tasks.Task>によってサポートされている場合は、タスクの <xref:System.Threading.Tasks.Task.IsCanceled> プロパティの値が返されます。
           ]]></format>
         </remarks>
       </Docs>
@@ -362,6 +372,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -375,7 +386,7 @@
       </ReturnValue>
       <Docs>
         <summary>このオブジェクトが完了した操作を表すかどうかを示す値を取得します。</summary>
-        <value><see langword="true" />このオブジェクトが完了した操作を表している場合は。それ以外<see langword="false" />の場合は。</value>
+        <value>このオブジェクトが完了した操作を表している場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -390,6 +401,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -403,7 +415,7 @@
       </ReturnValue>
       <Docs>
         <summary>このオブジェクトが正常に完了した操作を表すかどうかを示す値を取得します。</summary>
-        <value><see langword="true" />このオブジェクトが正常に完了した操作を表している場合は。それ以外<see langword="false" />の場合は。</value>
+        <value>このオブジェクトが正常に完了した操作を表している場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -418,6 +430,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -431,7 +444,7 @@
       </ReturnValue>
       <Docs>
         <summary>このオブジェクトが失敗した操作を表すかどうかを示す値を取得します。</summary>
-        <value><see langword="true" />このオブジェクトが失敗した操作を表している場合は。それ以外<see langword="false" />の場合は。</value>
+        <value>このオブジェクトが失敗した操作を表している場合は <see langword="true" /> します。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -446,6 +459,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -465,12 +479,12 @@
         <param name="left">比較する最初の値です。</param>
         <param name="right">比較する 2 番目の値です。</param>
         <summary>2 つの <see cref="T:System.Threading.Tasks.ValueTask" /> の値が等しいかどうかを比較します。</summary>
-        <returns>2 つの <see cref="T:System.Threading.Tasks.ValueTask" /> 値が等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns>2 つの <see langword="true" /> 値が等しい場合は <see cref="T:System.Threading.Tasks.ValueTask" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-2 <xref:System.Threading.Tasks.ValueTask>つのインスタンスは、同じ<xref:System.Threading.Tasks.Task>または同じペア<xref:System.Threading.Tasks.Sources.IValueTaskSource>のオブジェクトとトークンをラップすると等しいと見なされます。
+2つの <xref:System.Threading.Tasks.ValueTask> インスタンスは、同じ <xref:System.Threading.Tasks.Task> または <xref:System.Threading.Tasks.Sources.IValueTaskSource> オブジェクトとトークンのペアをラップするときに等しくなります。
 
  ]]></format>
         </remarks>
@@ -487,6 +501,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
@@ -506,12 +521,12 @@
         <param name="left">比較する最初の値です。</param>
         <param name="right">比較する 2 番目の値です。</param>
         <summary>2 つの <see cref="T:System.Threading.Tasks.ValueTask" /> 値が等しくないかどうかを判断します。</summary>
-        <returns>2 つの <see cref="T:System.Threading.Tasks.ValueTask" /> 値が等しくない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns>2 つの <see langword="true" /> 値が等しくない場合は <see cref="T:System.Threading.Tasks.ValueTask" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[ 
 
 ## Remarks  
-2 <xref:System.Threading.Tasks.ValueTask>つのインスタンスは、同じ<xref:System.Threading.Tasks.Task>または同じペア<xref:System.Threading.Tasks.Sources.IValueTaskSource>のオブジェクトとトークンをラップすると等しいと見なされます。
+2つの <xref:System.Threading.Tasks.ValueTask> インスタンスは、同じ <xref:System.Threading.Tasks.Task> または <xref:System.Threading.Tasks.Sources.IValueTaskSource> オブジェクトとトークンのペアをラップするときに等しくなります。
 
  ]]></format>
         </remarks>
@@ -528,6 +543,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>

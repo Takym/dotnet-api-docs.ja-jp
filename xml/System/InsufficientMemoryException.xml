@@ -1,5 +1,5 @@
 <Type Name="InsufficientMemoryException" FullName="System.InsufficientMemoryException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="14a593fdd2d5087ed6a360247065e26d4d70448e" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69420184" /></Metadata><TypeSignature Language="C#" Value="public sealed class InsufficientMemoryException : OutOfMemoryException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1f003b4d21b6d30e6fd30b33f91041b4187cc2fc" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75172753" /></Metadata><TypeSignature Language="C#" Value="public sealed class InsufficientMemoryException : OutOfMemoryException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit InsufficientMemoryException extends System.OutOfMemoryException" />
   <TypeSignature Language="DocId" Value="T:System.InsufficientMemoryException" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class InsufficientMemoryException&#xA;Inherits OutOfMemoryException" />
@@ -20,6 +20,7 @@
     <AssemblyName>System.Runtime</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.OutOfMemoryException</BaseTypeName>
@@ -36,14 +37,14 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- と<xref:System.OutOfMemoryException>は<xref:System.InsufficientMemoryException>異なり、は操作を開始する前にスローされるため、状態の破損を意味しません。 アプリケーションはこの例外をキャッチし、メモリ使用量を調整して、実際のメモリ不足状態と、プログラムの状態の破損の可能性を回避できます。  
+ <xref:System.OutOfMemoryException>とは異なり、<xref:System.InsufficientMemoryException> は操作を開始する前にスローされるため、状態の破損を示すものではありません。 アプリケーションはこの例外をキャッチし、メモリ使用量を調整して、実際のメモリ不足状態と、プログラムの状態の破損の可能性を回避できます。  
   
- この例外は、現在使用<xref:System.Runtime.MemoryFailPoint.%23ctor%2A>可能なメモリの量よりも大きい予測メモリ割り当てを指定した場合に、コンストラクターによってスローされます。 プログラムは例外をキャッチし、メモリを必要とするタスクを遅らせて実行するか、メモリを少なくする必要がある小さな手順で実行することができます。  
+ この例外は、現在使用可能なメモリの量を超える予想メモリ割り当てを指定した場合に、<xref:System.Runtime.MemoryFailPoint.%23ctor%2A> コンストラクターによってスローされます。 プログラムは例外をキャッチし、メモリを必要とするタスクを遅らせて実行するか、メモリを少なくする必要がある小さな手順で実行することができます。  
   
- コード例<xref:System.Runtime.MemoryFailPoint>については、クラスを参照してください。  
+ コード例については、<xref:System.Runtime.MemoryFailPoint> クラスを参照してください。  
   
 > [!NOTE]
->  この例外は、 [Windows ストアアプリ用 .net](https://go.microsoft.com/fwlink/?LinkID=247912)または[ポータブルクラスライブラリ](~/docs/standard/cross-platform/cross-platform-development-with-the-portable-class-library.md)には含まれていませんが、の一部のメンバーによってスローされます。 そのような場合に例外をキャッチするに`catch`は、 <xref:System.OutOfMemoryException>代わりにのステートメントを記述します。  
+>  この例外は、 [Windows ストアアプリ用 .net](https://go.microsoft.com/fwlink/?LinkID=247912)または[ポータブルクラスライブラリ](~/docs/standard/cross-platform/cross-platform-development-with-the-portable-class-library.md)には含まれていませんが、の一部のメンバーによってスローされます。 そのような場合に例外をキャッチするには、代わりに <xref:System.OutOfMemoryException> 用の `catch` ステートメントを記述します。  
   
  ]]></format>
     </remarks>
@@ -82,6 +83,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -90,14 +92,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、 <xref:System.Exception.Message%2A>新しいインスタンスのプロパティを、エラーを説明するシステム提供のメッセージに初期化します。 "この時点では、予期された操作の要求を満たすために使用可能なメモリが不足しています。 後でもう一度お試しください。 " このメッセージには、現在のシステムのカルチャが考慮されます。  
+ このコンストラクターは、新しいインスタンスの <xref:System.Exception.Message%2A> プロパティを、エラーを説明するシステム提供のメッセージに初期化します。たとえば、この時点では、"操作の予想されるメモリが不足しています。 後でもう一度お試しください。 " このメッセージは、システムの現在のカルチャを考慮して指定します。  
   
  <xref:System.InsufficientMemoryException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
-|<xref:System.Exception.InnerException%2A>|`null`。|  
-|<xref:System.Exception.Message%2A>|ローカライズされたエラー メッセージ文字列。|  
+|<xref:System.Exception.InnerException%2A>|`null` で初期化します。|  
+|<xref:System.Exception.Message%2A>|ローカライズされたエラー メッセージの文字列です。|  
   
  ]]></format>
         </remarks>
@@ -127,12 +129,13 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="message" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="message">例外を説明するメッセージ。 このコンストラクターの呼び出し元は、この文字列が現在のシステムのカルチャに合わせてローカライズ済みであることを確認しておく必要があります。</param>
+        <param name="message">例外を説明するメッセージ。 このコンストラクターの呼び出し元は、この文字列が現在のシステム環境向けにローカライズされていることを確認する必要があります。</param>
         <summary>エラーを説明する指定したメッセージを使用して、<see cref="T:System.InsufficientMemoryException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -140,9 +143,9 @@
 ## Remarks  
  <xref:System.InsufficientMemoryException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
-|<xref:System.Exception.InnerException%2A>|`null`。|  
+|<xref:System.Exception.InnerException%2A>|`null` で初期化します。|  
 |<xref:System.Exception.Message%2A>|`message` に指定されたエラー メッセージ文字列。|  
   
  ]]></format>
@@ -173,14 +176,15 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="message" Type="System.String" />
         <Parameter Name="innerException" Type="System.Exception" />
       </Parameters>
       <Docs>
-        <param name="message">例外を説明するメッセージ。 このコンストラクターの呼び出し元は、この文字列が現在のシステムのカルチャに合わせてローカライズ済みであることを確認しておく必要があります。</param>
-        <param name="innerException">現在の例外の原因となった例外。 <paramref name="innerException" /> パラメーターが <see langword="null" /> でない場合は、内部例外を処理する <see langword="catch" /> ブロックで現在の例外が発生します。</param>
+        <param name="message">例外を説明するメッセージ。 このコンストラクターの呼び出し元は、この文字列が現在のシステム環境向けにローカライズされていることを確認する必要があります。</param>
+        <param name="innerException">現在の例外の原因になった例外。 <paramref name="innerException" /> パラメーターが <see langword="null" /> でない場合は、内部例外を処理する <see langword="catch" /> ブロックで現在の例外が発生します。</param>
         <summary>指定したエラー メッセージおよびこの例外の原因となった内部例外への参照を使用して、<see cref="T:System.InsufficientMemoryException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -190,9 +194,9 @@
   
  <xref:System.InsufficientMemoryException> インスタンスの初期プロパティ値を次の表に示します。  
   
-|プロパティ|[値]|  
+|プロパティ|値|  
 |--------------|-----------|  
-|<xref:System.Exception.InnerException%2A>|`null`。|  
+|<xref:System.Exception.InnerException%2A>|`null` で初期化します。|  
 |<xref:System.Exception.Message%2A>|`message` に指定されたエラー メッセージ文字列。|  
   
  ]]></format>
