@@ -1,5 +1,5 @@
 <Type Name="Vector&lt;T&gt;" FullName="System.Numerics.Vector&lt;T&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="a7c665a35a9b7bd259b0d2e9dc1412501dd13944" /><Meta Name="ms.sourcegitcommit" Value="2b78f05b0c6fa92adaf5e1dfe5a50388f952efe7" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/02/2019" /><Meta Name="ms.locfileid" Value="71810407" /></Metadata><TypeSignature Language="C#" Value="public struct Vector&lt;T&gt; : IEquatable&lt;System.Numerics.Vector&lt;T&gt;&gt;, IFormattable where T : struct" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f5a7f245d75c78c01c01af52e7848ce54a731af4" /><Meta Name="ms.sourcegitcommit" Value="7bf087b9509f080e7a73672bb84fa0bec74bf944" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/14/2020" /><Meta Name="ms.locfileid" Value="75939443" /></Metadata><TypeSignature Language="C#" Value="public struct Vector&lt;T&gt; : IEquatable&lt;System.Numerics.Vector&lt;T&gt;&gt;, IFormattable where T : struct" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Vector`1&lt;struct .ctor (class System.ValueType) T&gt; extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Numerics.Vector`1&lt;!T&gt;&gt;, class System.IFormattable" />
   <TypeSignature Language="DocId" Value="T:System.Numerics.Vector`1" />
   <TypeSignature Language="VB.NET" Value="Public Structure Vector(Of T)&#xA;Implements IEquatable(Of Vector(Of T)), IFormattable" />
@@ -15,6 +15,7 @@
     <AssemblyVersion>4.1.3.0</AssemblyVersion>
     <AssemblyVersion>4.1.4.0</AssemblyVersion>
     <AssemblyVersion>4.1.5.0</AssemblyVersion>
+    <AssemblyVersion>4.1.6.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>netstandard</AssemblyName>
@@ -48,29 +49,70 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Numerics.Vector%601> は、指定された数値型の単一のベクターを表す不変の構造体です。 @No__t 0 のインスタンスの数は固定されていますが、上限は CPU レジスタに依存しています。 これは、大規模なアルゴリズムを vectorizing するためのビルディングブロックとして使用することを目的としています。  
+ <xref:System.Numerics.Vector%601> は、指定された数値型の単一のベクターを表す不変の構造体です。 <xref:System.Numerics.Vector%601> インスタンスの数は固定されていますが、上限は CPU レジスタに依存しています。 これは、大規模なアルゴリズムを vectorizing するためのビルディングブロックとして使用することを目的としているため、任意の長さのベクターとして直接使用することはできません。
   
- @No__t 0 の構造体は、ハードウェアアクセラレータのサポートを提供します。  
+ <xref:System.Numerics.Vector%601> 構造体は、ハードウェアアクセラレータのサポートを提供します。
  
- 次の表は、実行時間の短縮のために組み込みの命令を使用するプリミティブ数値データ型と操作の組み合わせを示しています。
+ このドキュメントの「プリミティブ数値データ型」という用語は、CPU によって直接サポートされ、これらのデータ型を操作できる命令を持つ数値データ型を指します。 次の表は、実行時間の短縮のために組み込みの命令を使用するプリミティブ数値データ型と操作の組み合わせを示しています。
  
 | プリミティブ型 | `+` | `-` | `*` | `/` |
 | --- | :---: | :---: | :---: | :---: |
-|`sbyte` | はい | はい | × | × |
-|`byte` | [はい] | はい | × | × |
-|`short` | [はい] | はい | はい | × |
-|`ushort` | [はい] | はい | × | × |
-| `int` | [はい] | はい | はい | × |
-| `uint` | [はい] | はい | × | × |
-| `long` | [はい] | はい | × | × |
-| `ulong` | [はい] | はい | × | × |
-| `float` | [はい] | はい | はい | はい |
+|`sbyte` | はい | はい | いいえ | いいえ |
+|`byte` | はい | はい | いいえ | いいえ |
+|`short` | はい | はい | はい | × |
+|`ushort` | はい | はい | いいえ | いいえ |
+| `int` | はい | はい | はい | × |
+| `uint` | はい | はい | いいえ | いいえ |
+| `long` | はい | はい | いいえ | いいえ |
+| `ulong` | はい | はい | いいえ | いいえ |
+| `float` | はい | はい | はい | はい |
 | `double` | はい | はい | はい | はい |
 
  ]]></format>
     </remarks>
   </Docs>
   <Members>
+    <MemberGroup MemberName=".ctor">
+      <AssemblyInfo>
+        <AssemblyName>System.Numerics.Vectors</AssemblyName>
+        <AssemblyVersion>2.0.5.0</AssemblyVersion>
+        <AssemblyVersion>4.0.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
+        <AssemblyVersion>4.1.3.0</AssemblyVersion>
+        <AssemblyVersion>4.1.4.0</AssemblyVersion>
+        <AssemblyVersion>4.1.5.0</AssemblyVersion>
+      </AssemblyInfo>
+      <AssemblyInfo>
+        <AssemblyName>netstandard</AssemblyName>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <AssemblyVersion>2.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Docs>
+        <summary><see cref="T:System.Numerics.Vector`1" /> のインスタンスを作成します。</summary>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+`T` 型には、次の数値型を使用できます。
+
+| C# のキーワード | フレームワークの種類       |
+| ----------- | -------------------- |
+| `sbyte`     | <xref:System.SByte>  |
+| `byte`      | <xref:System.Byte>   |
+| `short`     | <xref:System.Int16>  |
+| `ushort`    | <xref:System.UInt16> |
+| `int`       | <xref:System.Int32>  |
+| `uint`      | <xref:System.UInt32> |
+| `long`      | <xref:System.Int64>  |
+| `ulong`     | <xref:System.UInt64> |
+| `float`     | <xref:System.Single> |
+| `double`    | <xref:System.Double> |
+
+          ]]></format>
+        </remarks>
+      </Docs>
+    </MemberGroup>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public Vector (ReadOnlySpan&lt;byte&gt; values);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(valuetype System.ReadOnlySpan`1&lt;unsigned int8&gt; values) cil managed" />
@@ -82,17 +124,27 @@
       <AssemblyInfo>
         <AssemblyName>System.Numerics.Vectors</AssemblyName>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="values" Type="System.ReadOnlySpan&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="values" Type="System.ReadOnlySpan&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
-        <param name="values">ベクトルに追加する値を含む、バイトの読み取り専用の範囲。 この範囲には少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれている必要があります。</param>
+        <param name="values">ベクトルに追加する値を含む、バイトの読み取り専用の範囲。 スパンには、少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれている必要があり、最初の <see cref="P:System.Numerics.Vector`1.Count" /> 要素のみが使用されます。</param>
         <summary>指定したバイトの読み取り専用の範囲からベクトルを構築します。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks  
+
+ ベクターに追加されるのは、最初の <xref:System.Numerics.Vector%601.Count%2A> 要素だけです。 剰余は無視されます。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.IndexOutOfRangeException"><paramref name="values" /> に少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれていませんでした。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -106,17 +158,27 @@
       <AssemblyInfo>
         <AssemblyName>System.Numerics.Vectors</AssemblyName>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="values" Type="System.ReadOnlySpan&lt;T&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="values" Type="System.ReadOnlySpan&lt;T&gt;" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
-        <param name="values">型 T のオブジェクトの読み取り専用の範囲として、ベクトルに追加する値。この範囲には少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれている必要があります。</param>
+        <param name="values">型 T のオブジェクトの読み取り専用のスパンとして、ベクトルに追加する値。スパンには、少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれている必要があり、最初の <see cref="P:System.Numerics.Vector`1.Count" /> 要素のみが使用されます。</param>
         <summary>指定した <see cref="T:System.ReadOnlySpan`1" /> からベクトルを構築します。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks  
+
+ ベクターに追加されるのは、最初の <xref:System.Numerics.Vector%601.Count%2A> 要素だけです。 剰余は無視されます。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.IndexOutOfRangeException"><paramref name="values" /> に少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれていませんでした。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -132,18 +194,28 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="values" Type="System.Span&lt;T&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
+        <Parameter Name="values" Type="System.Span&lt;T&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
-        <param name="values">型 T のオブジェクトの範囲として、ベクトルに追加する値。この範囲には少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれている必要があります。</param>
+        <param name="values">型 T のオブジェクトのスパンとして、ベクトルに追加する値。スパンには、少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれている必要があり、最初の <see cref="P:System.Numerics.Vector`1.Count" /> 要素のみが使用されます。</param>
         <summary>指定した <see cref="T:System.Span`1" /> からベクトルを構築します。</summary>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks  
+
+ ベクターに追加されるのは、最初の <xref:System.Numerics.Vector%601.Count%2A> 要素だけです。 剰余は無視されます。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.IndexOutOfRangeException"><paramref name="values" /> に少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれていませんでした。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -164,6 +236,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -176,14 +249,7 @@
       <Docs>
         <param name="value">ベクトルの成分の型を定義する数値型。</param>
         <summary>指定した型を成分とするベクトルを作成します。</summary>
-        <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `value` には、任意のプリミティブ数値型 (つまり、<xref:System.Type.IsPrimitive%2A?displayProperty=nameWithType> プロパティが @no__t を返す数値型) を指定できます。  
-  
- ]]></format>
-        </remarks>
+        <remarks>To be added. </remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -204,6 +270,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -214,17 +281,18 @@
         <Parameter Name="values" Type="T[]" />
       </Parameters>
       <Docs>
-        <param name="values">数値の配列。</param>
+        <param name="values">型 T のオブジェクトの配列として、ベクトルに追加する値。配列には、少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれている必要があり、最初の <see cref="P:System.Numerics.Vector`1.Count" /> 要素のみが使用されます。</param>
         <summary>指定した配列からベクトルを作成します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `values` には、@no__t 少なくとも1つの要素が含まれている必要があります。  
+
+ ベクターに追加されるのは、最初の <xref:System.Numerics.Vector%601.Count%2A> 要素だけです。 剰余は無視されます。
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="values" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="values" /> が <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -245,6 +313,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -256,21 +325,22 @@
         <Parameter Name="index" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="values">数値の配列。</param>
+        <param name="values">型 T のオブジェクトの配列として、ベクトルに追加する値。配列には、指定されたインデックスの少なくとも <see cref="P:System.Numerics.Vector`1.Count" /> の要素が含まれている必要があり、最初の <see cref="P:System.Numerics.Vector`1.Count" /> 要素のみが使用されます。</param>
         <param name="index">ベクトルを作成するための開始インデックス位置。</param>
         <summary>指定した配列の、指定したインデックス位置を開始位置として、ベクトルを作成します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
+          <format type="text/markdown"><![CDATA[
+
 ## Remarks  
- 配列には、指定されたインデックスの要素が少なくとも @no__t 0 個含まれている必要があります。  
-  
- ]]></format>
+
+ ベクターに追加されるのは、最初の <xref:System.Numerics.Vector%601.Count%2A> 要素だけです。 剰余は無視されます。
+
+          ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="values" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="values" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.IndexOutOfRangeException"><paramref name="index" /> が 0 未満です。  
   
-または 
+- または - 
 <paramref name="values" /> の長さから <paramref name="index" /> を引いた長さが <see cref="P:System.Numerics.Vector`1.Count" /> 未満です。</exception>
       </Docs>
     </Member>
@@ -285,12 +355,13 @@
       <AssemblyInfo>
         <AssemblyName>System.Numerics.Vectors</AssemblyName>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -298,7 +369,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="destination" Type="System.Span&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="destination" Type="System.Span&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="destination">値のコピー先の範囲。 コピー先の範囲は、サイズ <see cref="P:System.Numerics.Vector`1.Count" /> 以上である必要があります。</param>
@@ -318,12 +389,13 @@
       <AssemblyInfo>
         <AssemblyName>System.Numerics.Vectors</AssemblyName>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -331,7 +403,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="destination" Type="System.Span&lt;T&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="destination" Type="System.Span&lt;T&gt;" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="destination">値のコピー先の範囲。 コピー先の範囲は、サイズ <see cref="P:System.Numerics.Vector`1.Count" /> 以上である必要があります。</param>
@@ -358,6 +430,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -365,7 +438,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -382,11 +455,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コピー操作は、@no__t 0 のインデックス0から開始されます。 コピー先の配列には、少なくとも @no__t 0 個の要素が必要です。  
+ コピー操作は、`destination`のインデックス0から開始されます。 コピー先の配列には、少なくとも <xref:System.Numerics.Vector%601.Count%2A?displayProperty=nameWithType> の要素が必要です。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="destination" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="destination" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException">現在のベクトル内の要素数が、<paramref name="destination" /> 配列内の使用可能な要素数を超えています。</exception>
       </Docs>
     </Member>
@@ -408,6 +481,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -415,7 +489,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -434,11 +508,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コピー操作は、`destination` のインデックス @no__t 0 から開始されます。 コピー先の配列には、少なくとも @no__t 0 の @ no__t @ no__t 要素が必要です。  
+ コピー操作は、`destination`のインデックス `startIndex` から開始されます。 コピー先の配列には、少なくとも `startIndex` + <xref:System.Numerics.Vector%601.Count%2A?displayProperty=nameWithType> 要素が必要です。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="destination" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="destination" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException">現在のインスタンスの要素数が、<paramref name="destination" /> 配列の <paramref name="startIndex" /> から末尾までの使用可能な要素数を超えています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> の値が 0 未満であるか、<paramref name="destination" /> の最後のインデックスの値を超えています。</exception>
       </Docs>
@@ -461,6 +535,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -498,6 +573,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -505,7 +581,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -523,7 +599,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2つのベクトルは、同じ型で値の数が同じであり、現在のインスタンスの各値が `other` の対応する値と等しい場合に等しくなります。  
+ 2つのベクトルは、同じ型で値の数が同じであり、現在のインスタンスの各値が `other`の対応する値と等しい場合に等しくなります。  
   
  ]]></format>
         </remarks>
@@ -547,6 +623,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -554,7 +631,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -572,7 +649,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2つのベクトルは、同じ型で値の数が同じであり、現在のインスタンスの各値が `other` の対応する値と等しい場合に等しくなります。  
+ 2つのベクトルは、同じ型で値の数が同じであり、現在のインスタンスの各値が `other`の対応する値と等しい場合に等しくなります。  
   
  ]]></format>
         </remarks>
@@ -596,6 +673,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -603,7 +681,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -635,6 +713,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -642,7 +721,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>get: System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -681,6 +760,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -714,6 +794,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -736,7 +817,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの加算演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_Addition%2A> メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの加算演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -760,6 +841,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -782,7 +864,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、@no__t 2 つのオブジェクトに対してビットごとの `And` 演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_BitwiseAnd%2A> メソッドは <xref:System.Numerics.Vector%601> オブジェクトのビットごとの `And` 演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -806,6 +888,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -828,7 +911,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、@no__t 2 つのオブジェクトに対してビットごとの `Or` 演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_BitwiseOr%2A> メソッドは <xref:System.Numerics.Vector%601> オブジェクトのビットごとの `Or` 演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -852,6 +935,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -874,7 +958,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの除算演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_Division%2A> メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの除算演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -898,6 +982,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -915,12 +1000,12 @@
         <param name="left">比較する最初のベクトル。</param>
         <param name="right">比較する 2 番目のベクトル。</param>
         <summary>指定した 2 つのベクトルの要素の各ペアが等しいかどうかを示す値を返します。</summary>
-        <returns><see langword="true" /> と <paramref name="left" /> が等しい場合は <paramref name="right" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><paramref name="left" /> と <paramref name="right" /> が等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 2つのベクターは同じ型の値を持ち、値の数が同じで、@no__t 0 の各値が `right` の対応する値と等しい場合に等しくなります。  
+ 2つのベクターは、同じ型で値の数が同じであり、`left` 内の各値が `right`の対応する値と等しい場合に等しくなります。  
   
  ]]></format>
         </remarks>
@@ -944,6 +1029,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -966,7 +1052,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、@no__t 2 つのオブジェクトに対してビットごとの `XOr` 演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_ExclusiveOr%2A> メソッドは <xref:System.Numerics.Vector%601> オブジェクトのビットごとの `XOr` 演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -990,6 +1076,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1010,7 +1097,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1034,6 +1121,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1054,7 +1142,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1078,6 +1166,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1098,7 +1187,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1122,6 +1211,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1142,7 +1232,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1166,6 +1256,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1186,7 +1277,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1210,6 +1301,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1217,7 +1309,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -1235,7 +1327,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1259,6 +1351,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1279,7 +1372,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1303,6 +1396,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1310,7 +1404,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -1328,7 +1422,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1352,6 +1446,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1359,7 +1454,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -1377,7 +1472,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1401,6 +1496,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1408,7 +1504,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-2.2;dotnet-uwp-10.0;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
       </Attributes>
@@ -1426,7 +1522,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
+ <xref:System.Numerics.Vector%601.op_Explicit%2A> 演算子は縮小変換を定義します。キャスト演算子 (でC#は) または変換メソッド (Visual Basic) が必要です。  
   
  ]]></format>
         </remarks>
@@ -1450,6 +1546,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1489,6 +1586,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1511,7 +1609,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの乗算演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_Multiply%2A> メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの乗算演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -1535,6 +1633,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1557,7 +1656,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの乗算演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_Multiply%2A> メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの乗算演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -1581,6 +1680,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1603,7 +1703,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの乗算演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_Multiply%2A> メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの乗算演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -1627,6 +1727,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1664,6 +1765,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1686,7 +1788,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの減算演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_Subtraction%2A> メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの減算演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -1710,6 +1812,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1730,7 +1833,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの単項否定演算を定義します。  
+ <xref:System.Numerics.Vector%601.op_UnaryNegation%2A> メソッドは、<xref:System.Numerics.Vector%601> オブジェクトの単項否定演算を定義します。  
   
  ]]></format>
         </remarks>
@@ -1754,6 +1857,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1761,7 +1865,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -1800,6 +1904,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1807,7 +1912,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -1825,7 +1930,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、`format` および現在のカルチャの書式指定規則を使用してベクターの各要素が書式設定される文字列を返します。 現在のカルチャの <xref:System.Globalization.NumberFormatInfo.NumberGroupSeparator%2A?displayProperty=nameWithType> プロパティの後にスペースを使用して、各要素を区切ります。  
+ このメソッドは、`format` と現在のカルチャの書式指定規則を使用してベクターの各要素が書式設定される文字列を返します。 現在のカルチャの <xref:System.Globalization.NumberFormatInfo.NumberGroupSeparator%2A?displayProperty=nameWithType> プロパティの後にスペースを使用して、各要素を区切ります。  
   
  ]]></format>
         </remarks>
@@ -1852,6 +1957,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1859,7 +1965,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -1879,7 +1985,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、ベクターの各要素が `format` および `formatProvider` を使用して書式設定された文字列を返します。書式プロバイダーの <xref:System.Globalization.NumberFormatInfo.NumberGroupSeparator%2A?displayProperty=nameWithType> プロパティの後にスペースを使用して、各要素を区切ります。  
+ このメソッドは、ベクターの各要素が `format` と `formatProvider`を使用して書式設定された文字列を返します。この文字列の後にスペースが続く書式プロバイダーの <xref:System.Globalization.NumberFormatInfo.NumberGroupSeparator%2A?displayProperty=nameWithType> プロパティは、各要素を区切るために使用されます。  
   
  ]]></format>
         </remarks>
@@ -1896,12 +2002,13 @@
       <AssemblyInfo>
         <AssemblyName>System.Numerics.Vectors</AssemblyName>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -1909,7 +2016,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="destination" Type="System.Span&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="destination" Type="System.Span&lt;System.Byte&gt;" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="destination">値のコピー先の範囲。 コピー先の範囲は、サイズ <see cref="P:System.Numerics.Vector`1.Count" /> 以上である必要があります。</param>
@@ -1929,12 +2036,13 @@
       <AssemblyInfo>
         <AssemblyName>System.Numerics.Vectors</AssemblyName>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-3.0">
+        <Attribute FrameworkAlternate="netcore-3.0;netcore-3.1">
           <AttributeName>System.Runtime.CompilerServices.IsReadOnly</AttributeName>
         </Attribute>
       </Attributes>
@@ -1942,7 +2050,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="destination" Type="System.Span&lt;T&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="destination" Type="System.Span&lt;T&gt;" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="destination">値のコピー先の範囲。 コピー先の範囲は、サイズ <see cref="P:System.Numerics.Vector`1.Count" /> 以上である必要があります。</param>
@@ -1969,6 +2077,7 @@
         <AssemblyVersion>4.1.3.0</AssemblyVersion>
         <AssemblyVersion>4.1.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.5.0</AssemblyVersion>
+        <AssemblyVersion>4.1.6.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
