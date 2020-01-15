@@ -1,5 +1,5 @@
 <Type Name="ProtectedData" FullName="System.Security.Cryptography.ProtectedData">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="adf34d50932dbbe2d3978703b8115821ac84bd53" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69059028" /></Metadata><TypeSignature Language="C#" Value="public sealed class ProtectedData" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="635d4a28311ac0f5633e5ae052951b0b99491b16" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75073784" /></Metadata><TypeSignature Language="C#" Value="public sealed class ProtectedData" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ProtectedData extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.ProtectedData" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ProtectedData" />
@@ -12,6 +12,7 @@
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
     <AssemblyVersion>4.0.4.0</AssemblyVersion>
+    <AssemblyVersion>4.0.5.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>System.Security</AssemblyName>
@@ -33,11 +34,11 @@
 このクラスは、Windows オペレーティングシステムで使用可能なデータ保護 API (DPAPI) へのアクセスを提供します。 これはオペレーティングシステムによって提供されるサービスであり、追加のライブラリは必要ありません。 ユーザーまたはコンピューターの資格情報を使用してデータを暗号化または復号化することにより、保護を提供します。
 
 > [!IMPORTANT]
-> DPAPI に依存しているため`ProtectedData` 、クラスは Windows プラットフォームでのみサポートされています。 Windows 以外のプラットフォームで .NET Core を使用すると、 <xref:System.PlatformNotSupportedException>がスローされます。
+> DPAPI に依存しているため、`ProtectedData` クラスは Windows プラットフォームでのみサポートされています。 Windows 以外のプラットフォームで .NET Core を使用すると、<xref:System.PlatformNotSupportedException>がスローされます。
   
-クラスは、アンマネージ DPAPI <xref:System.Security.Cryptography.ProtectedData.Protect%2A>と<xref:System.Security.Cryptography.ProtectedData.Unprotect%2A>の2つのラッパーで構成されます。 これらの2つの方法を使用して、パスワード、キー、接続文字列などのデータの暗号化と復号化を行うことができます。  
+クラスは、アンマネージ DPAPI、<xref:System.Security.Cryptography.ProtectedData.Protect%2A> および <xref:System.Security.Cryptography.ProtectedData.Unprotect%2A>の2つのラッパーで構成されます。 これらの2つの方法を使用して、パスワード、キー、接続文字列などのデータの暗号化と復号化を行うことができます。  
   
-偽装中にこれらのメソッドを使用すると、次のエラーが表示される場合があります。"指定された状態で使用するためのキーが無効です。" これは、DPAPI がユーザープロファイルにキーデータを格納するためです。 プロファイルが読み込まれていない場合、DPAPI は復号化を実行できません。 このエラーを回避するには、いずれかのメソッドを呼び出す前に、偽装するユーザーのプロファイルを読み込みます。 DPAPI を偽装と共に使用すると、大幅な複雑さが発生し、慎重に設計を選択する必要があります。  
+偽装中にこれらのメソッドを使用すると、次のエラーが表示されることがあります。 "指定された状態で使用するためのキーが無効です。" これは、DPAPI がユーザープロファイルにキーデータを格納するためです。 プロファイルが読み込まれていない場合、DPAPI は復号化を実行できません。 このエラーを回避するには、いずれかのメソッドを呼び出す前に、偽装するユーザーのプロファイルを読み込みます。 DPAPI を偽装と共に使用すると、大幅な複雑さが発生し、慎重に設計を選択する必要があります。  
 
 ## Examples  
  次の例は、データ保護の使用方法を示しています。  
@@ -65,6 +66,7 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Security</AssemblyName>
@@ -95,10 +97,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パスワード、キー、接続文字列などのデータを暗号化するために使用できます。 パラメーターを使用すると、データを追加して暗号化の複雑さを高める`null`ことができます。を指定すると、追加の複雑さはありません。 `optionalEntropy` この情報を指定する場合は、 <xref:System.Security.Cryptography.ProtectedData.Unprotect%2A>メソッドを使用してデータを復号化するときにも使用する必要があります。  
+ このメソッドは、パスワード、キー、接続文字列などのデータを暗号化するために使用できます。 `optionalEntropy` パラメーターを使用すると、データを追加して暗号化の複雑さを高めることができます。追加の複雑さを解消するために `null` を指定します。 この情報を指定する場合は、<xref:System.Security.Cryptography.ProtectedData.Unprotect%2A> メソッドを使用してデータを復号化するときにも使用する必要があります。  
   
 > [!NOTE]
->  偽装中にこのメソッドを使用すると、次のエラーが表示される場合があります。"指定された状態で使用するためのキーが無効です。" このエラーを回避するには、メソッドを呼び出す前に、偽装するユーザーのプロファイルを読み込みます。  
+>  偽装中にこのメソッドを使用すると、次のエラーが表示されることがあります。 "指定された状態で使用するためのキーが無効です。" このエラーを回避するには、メソッドを呼び出す前に、偽装するユーザーのプロファイルを読み込みます。  
   
    
   
@@ -116,7 +118,7 @@
         <exception cref="T:System.NotSupportedException">このメソッドがオペレーティング システムでサポートされていません。</exception>
         <exception cref="T:System.OutOfMemoryException">データの暗号化処理中にシステムで使用できるメモリがなくなりました。</exception>
         <exception cref="T:System.PlatformNotSupportedException">.NET Core のみ: <c>Protect</c> メソッドへの呼び出しは、Windows オペレーティング システムでのみサポートされています。</exception>
-        <permission cref="T:System.Security.Permissions.DataProtectionPermission">データを保護<see cref="P:System.Security.Permissions.DataProtectionPermissionAttribute.ProtectData" />するアクセス許可に関連付けられているフラグを持つ。</permission>
+        <permission cref="T:System.Security.Permissions.DataProtectionPermission">データを保護するアクセス許可に関連付けられた <see cref="P:System.Security.Permissions.DataProtectionPermissionAttribute.ProtectData" /> フラグを持つ。</permission>
       </Docs>
     </Member>
     <Member MemberName="Unprotect">
@@ -134,6 +136,7 @@
         <AssemblyVersion>4.0.2.0</AssemblyVersion>
         <AssemblyVersion>4.0.3.0</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
+        <AssemblyVersion>4.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>System.Security</AssemblyName>
@@ -164,10 +167,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 <xref:System.Security.Cryptography.ProtectedData.Protect%2A>メソッドを使用して暗号化されたデータの保護を解除するために使用できます。 暗号化時にパラメーターが使用された場合は、データの暗号化を解除するために指定する必要があります。 `optionalEntropy`  
+ このメソッドは、<xref:System.Security.Cryptography.ProtectedData.Protect%2A> メソッドを使用して暗号化されたデータの保護を解除するために使用できます。 暗号化時に `optionalEntropy` パラメーターを使用した場合は、データの暗号化を解除するために指定する必要があります。  
   
 > [!NOTE]
->  偽装中にこのメソッドを使用すると、次のエラーが表示される場合があります。"指定された状態で使用するためのキーが無効です。" このエラーを回避するには、メソッドを呼び出す前に、偽装するユーザーのプロファイルを読み込みます。  
+>  偽装中にこのメソッドを使用すると、次のエラーが表示されることがあります。 "指定された状態で使用するためのキーが無効です。" このエラーを回避するには、メソッドを呼び出す前に、偽装するユーザーのプロファイルを読み込みます。  
   
    
   
@@ -185,7 +188,7 @@
         <exception cref="T:System.NotSupportedException">このメソッドがオペレーティング システムでサポートされていません。</exception>
         <exception cref="T:System.OutOfMemoryException">メモリが不足しています。</exception>
         <exception cref="T:System.PlatformNotSupportedException">.NET Core のみ: <c>Unprotect</c> メソッドの呼び出しは、Windows オペレーティング システムでのみサポートされています。</exception>
-        <permission cref="T:System.Security.Permissions.DataProtectionPermission">データの保護<see cref="P:System.Security.Permissions.DataProtectionPermissionAttribute.UnprotectData" />を解除するためのアクセス許可のフラグが関連付けられている。</permission>
+        <permission cref="T:System.Security.Permissions.DataProtectionPermission">データの保護を解除するためのアクセス許可に関連付けられた <see cref="P:System.Security.Permissions.DataProtectionPermissionAttribute.UnprotectData" /> フラグを持つ。</permission>
       </Docs>
     </Member>
   </Members>

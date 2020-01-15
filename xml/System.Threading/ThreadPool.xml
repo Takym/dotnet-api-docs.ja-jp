@@ -1,5 +1,5 @@
 <Type Name="ThreadPool" FullName="System.Threading.ThreadPool">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="337d81ae62f3ecc1188db815431bb394cf38b2cc" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72399534" /></Metadata><TypeSignature Language="C#" Value="public static class ThreadPool" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0f4a1bb9f35be38e9a01180a5f34792030a72e08" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75158570" /></Metadata><TypeSignature Language="C#" Value="public static class ThreadPool" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit ThreadPool extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Threading.ThreadPool" />
   <TypeSignature Language="VB.NET" Value="Public Class ThreadPool" />
@@ -10,6 +10,7 @@
     <AssemblyVersion>4.0.10.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -35,13 +36,13 @@
 ## Remarks  
  多くのアプリケーションでは、スリープ状態に非常に多くの時間を費やし、イベントが発生するのを待機しているスレッドを作成します。 その他のスレッドは、定期的にスリープ状態にならないようにして、変更または更新状態情報をポーリングすることができます。 スレッドプールを使用すると、システムによって管理されるワーカースレッドのプールをアプリケーションに提供することで、スレッドをより効率的に使用できます。 スレッドプールのスレッドを使用する操作の例を次に示します。  
   
--   @No__t 0 または <xref:System.Threading.Tasks.Task%601> のオブジェクトを作成してタスクを非同期に実行する場合、既定では、タスクはスレッドプールのスレッドで実行されるようにスケジュールされます。  
+-   <xref:System.Threading.Tasks.Task> または <xref:System.Threading.Tasks.Task%601> オブジェクトを作成してタスクを非同期に実行する場合、既定では、タスクはスレッドプールのスレッドで実行されるようにスケジュールされます。  
   
--   非同期タイマーは、スレッドプールを使用します。 スレッドプールスレッドは @no__t 0 クラスからコールバックを実行し、<xref:System.Timers.Timer?displayProperty=nameWithType> クラスからイベントを発生させます。  
+-   非同期タイマーは、スレッドプールを使用します。 スレッドプールスレッドは、<xref:System.Threading.Timer?displayProperty=nameWithType> クラスからコールバックを実行し、<xref:System.Timers.Timer?displayProperty=nameWithType> クラスからイベントを発生させます。  
   
 -   登録された待機ハンドルを使用すると、システムスレッドは待機ハンドルの状態を監視します。 待機操作が完了すると、スレッドプールからのワーカースレッドが、対応するコールバック関数を実行します。  
   
--   @No__t-0 メソッドを呼び出して、スレッドプールのスレッドで実行するメソッドをキューに入れた場合。 これを行うには、メソッドに @no__t 0 デリゲートを渡します。   デリゲートにはシグネチャがあります。  
+-   <xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> メソッドを呼び出して、スレッドプールのスレッドで実行するメソッドをキューに入れた場合。 これを行うには、メソッドに <xref:System.Threading.WaitCallback> デリゲートを渡します。   デリゲートにはシグネチャがあります。  
   
     ```csharp  
     void WaitCallback(Object state)  
@@ -51,13 +52,13 @@
     Sub WaitCallback(state As Object)  
     ```  
   
-     ここで `state` は、デリゲートによって使用されるデータを格納するオブジェクトです。 @No__t-0 メソッドを呼び出すことによって、実際のデータをデリゲートに渡すことができます。  
+     ここで `state` は、デリゲートによって使用されるデータを格納するオブジェクトです。 <xref:System.Threading.ThreadPool.QueueUserWorkItem%28System.Threading.WaitCallback%2CSystem.Object%29> メソッドを呼び出すことによって、実際のデータをデリゲートに渡すことができます。  
   
 > [!NOTE]
->  マネージスレッドプール内のスレッドは、バックグラウンドスレッドです。 つまり、<xref:System.Threading.Thread.IsBackground%2A> のプロパティは `true` です。 これは、すべてのフォアグラウンドスレッドが終了した後、@no__t 0 のスレッドがアプリケーションを実行したままにならないことを意味します。  
+>  マネージスレッドプール内のスレッドは、バックグラウンドスレッドです。 つまり、<xref:System.Threading.Thread.IsBackground%2A> のプロパティが `true`ます。 これは、すべてのフォアグラウンドスレッドが終了した後に、<xref:System.Threading.ThreadPool> のスレッドがアプリケーションを実行し続けることがないことを意味します。  
   
 > [!IMPORTANT]
->  スレッドプールは、スレッドを再利用するときに、スレッドローカルストレージまたは @no__t 0 属性でマークされているフィールドのデータをクリアしません。 したがって、メソッドがスレッドローカルストレージまたは @no__t 0 属性でマークされているフィールドを検査する場合、それが検出した値は、スレッドプールスレッドの以前の使用から残されている可能性があります。  
+>  スレッドプールは、スレッドを再利用するときに、スレッドローカルストレージまたは <xref:System.ThreadStaticAttribute> 属性でマークされているフィールドのデータをクリアしません。 したがって、メソッドがスレッドローカルストレージまたは <xref:System.ThreadStaticAttribute> 属性でマークされたフィールドを検査する場合、その値は、スレッドプールのスレッドを以前に使用した後に残されている可能性があります。  
   
  また、待機操作に関連付けられていない作業項目をスレッドプールにキューに置いてもかまいません。 スレッドプール内のスレッドが作業項目を処理するように要求するには、<xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> メソッドを呼び出します。 このメソッドは、スレッドプールから選択されたスレッドによって呼び出されるメソッドまたはデリゲートへの参照をパラメーターとして受け取ります。 キューに登録された後は、作業項目を取り消すことはできません。  
   
@@ -66,7 +67,7 @@
  プロセスごとに1つのスレッドプールがあります。 [!INCLUDE[net_v40_long](~/includes/net-v40-long-md.md)] 以降では、プロセスのスレッド プールの既定のサイズは、仮想アドレス空間のサイズなど、いくつかの要素によって決まります。 スレッドの数は、プロセスで <xref:System.Threading.ThreadPool.GetMaxThreads%2A> メソッドを呼び出せば確認できます。 スレッドプール内のスレッドの数は、<xref:System.Threading.ThreadPool.SetMaxThreads%2A> メソッドを使用して変更できます。 各スレッドは既定のスタックサイズを使用し、既定の優先順位で実行されます。  
   
 > [!NOTE]
->  .NET Framework をホストするアンマネージコードは、mscoree.dll ファイルで定義されている @no__t 0 関数を使用して、スレッドプールのサイズを変更できます。  
+>  .NET Framework をホストするアンマネージコードは、mscoree.dll ファイルで定義されている `CorSetMaxThreads` 関数を使用して、スレッドプールのサイズを変更できます。  
   
  スレッドプールは、各カテゴリの最小値に達するまで、新しいワーカースレッドまたは i/o 完了スレッドをオンデマンドで提供します。 最小値に達すると、スレッドプールはそのカテゴリに追加のスレッドを作成したり、一部のタスクが完了するまで待機したりすることができます。 [!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)] 以降では、スループットを最適化するために、スレッド プールでワーカー スレッドの作成と破棄が行われます。スループットは、タスクの単位時間あたりの完了数として定義されます。 スレッドが少なすぎると使用可能なリソースが最適に使用されない可能性があり、スレッドが多すぎるとリソースの競合が増える可能性があります。  
   
@@ -76,18 +77,18 @@
  これらの最小値は、<xref:System.Threading.ThreadPool.GetMinThreads%2A> メソッドを使用して取得できます。  
   
 > [!CAUTION]
->  @No__t-0 メソッドを使用して、スレッドの最小数を増やすことができます。 ただし、これらの値を必要以上に大きくすると、パフォーマンスの問題が発生する可能性があります。 同時に開始するタスクの数が多すぎる場合は、すべてのタスクで処理速度が低下する可能性があります。 ほとんどの場合、スレッドを割り当てるためのスレッド プール独自のアルゴリズムを使用することでスレッド プールのパフォーマンスが向上します。  
+>  <xref:System.Threading.ThreadPool.SetMinThreads%2A> メソッドを使用して、スレッドの最小数を増やすことができます。 ただし、これらの値を必要以上に大きくすると、パフォーマンスの問題が発生する可能性があります。 同時に開始するタスクの数が多すぎる場合は、すべてのタスクで処理速度が低下する可能性があります。 ほとんどの場合、スレッドを割り当てるためのスレッド プール独自のアルゴリズムを使用することでスレッド プールのパフォーマンスが向上します。  
   
    
   
 ## Examples  
- 次の例では、メインアプリケーションスレッドが、スレッドプールのスレッドで実行する `ThreadProc` という名前のメソッドをキューに入れ、1秒間スリープしてから終了します。 @No__t-0 メソッドは、単にメッセージを表示します。  
+ 次の例では、メインアプリケーションスレッドが `ThreadProc` という名前のメソッドをキューに入れて、スレッドプールのスレッドで実行し、1秒間スリープしてから終了します。 `ThreadProc` メソッドは、単にメッセージを表示します。  
   
  [!code-cpp[System.Threading.ThreadPool QueueUserWorkItem0#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ThreadPool QueueUserWorkItem0/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ThreadPool QueueUserWorkItem0#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ThreadPool QueueUserWorkItem0/CS/source.cs#1)]
  [!code-vb[System.Threading.ThreadPool QueueUserWorkItem0#1](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.Threading.ThreadPool QueueUserWorkItem0/VB/source.vb#1)]  
   
- @No__t-0 メソッドの呼び出しをコメントアウトすると、スレッドプールスレッドでメソッドが実行される前に、メインスレッドが終了します。  スレッドプールはバックグラウンドスレッドを使用します。これにより、すべてのフォアグラウンドスレッドが終了してもアプリケーションは実行されません。  (これは競合状態の簡単な例です)。  
+ <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType> メソッドへの呼び出しをコメントアウトすると、スレッドプールのスレッドでメソッドが実行される前に、メインスレッドが終了します。  スレッドプールはバックグラウンドスレッドを使用します。これにより、すべてのフォアグラウンドスレッドが終了してもアプリケーションは実行されません。  (これは競合状態の簡単な例です)。  
   
  ]]></format>
     </remarks>
@@ -130,9 +131,10 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.Obsolete("ThreadPool.BindHandle(IntPtr) has been deprecated.  Please use ThreadPool.BindHandle(SafeHandle) instead.", false)</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -143,7 +145,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="osHandle" Type="System.IntPtr" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="osHandle" Type="System.IntPtr" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="osHandle">ハンドルを保持する <see cref="T:System.IntPtr" />。 ハンドルは、アンマネージ側の重複 I/O 用に開かれている必要があります。</param>
@@ -167,6 +169,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -191,7 +194,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="osHandle" Type="System.Runtime.InteropServices.SafeHandle" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="osHandle" Type="System.Runtime.InteropServices.SafeHandle" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       </Parameters>
       <Docs>
         <param name="osHandle">オペレーティング システム ハンドルを保持する <see cref="T:System.Runtime.InteropServices.SafeHandle" />。 ハンドルは、アンマネージ側の重複 I/O 用に開かれている必要があります。</param>
@@ -201,11 +204,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 パラメーターは、抽象 <xref:System.Runtime.InteropServices.SafeHandle> クラスから派生する <xref:Microsoft.Win32.SafeHandles.SafeFileHandle> である必要があります。  
+ `osHandle` パラメーターは、抽象 <xref:System.Runtime.InteropServices.SafeHandle> クラスから派生する <xref:Microsoft.Win32.SafeHandles.SafeFileHandle>である必要があります。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="osHandle" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="osHandle" /> が <see langword="null" />です。</exception>
         <permission cref="T:System.Security.Permissions.SecurityPermission">アンマネージコードを呼び出すことができる。 <see cref="F:System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode" /> (関連する列挙体)</permission>
       </Docs>
     </Member>
@@ -220,6 +223,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -266,6 +270,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -276,8 +281,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="workerThreads" Type="System.Int32" RefType="out" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="completionPortThreads" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="workerThreads" Type="System.Int32" RefType="out" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="completionPortThreads" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="workerThreads">使用できるワーカー スレッドの数。</param>
@@ -287,7 +292,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 がを返すと、@no__t によって指定された変数には、開始可能な追加のワーカースレッドの数が含まれます。また、`completionPortThreads` によって指定された変数には、開始可能な追加の非同期 i/o スレッドの数が含まれます。  
+ <xref:System.Threading.ThreadPool.GetAvailableThreads%2A> が返されると、`workerThreads` によって指定された変数には、開始可能な追加のワーカースレッドの数が含まれ、`completionPortThreads` で指定された変数には、開始可能な追加の非同期 i/o スレッドの数が含まれます。  
   
  使用可能なスレッドがない場合、スレッドプールのスレッドが使用可能になるまで、追加のスレッドプール要求はキューに置かれたままになります。  
   
@@ -331,6 +336,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -341,8 +347,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="workerThreads" Type="System.Int32" RefType="out" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="completionPortThreads" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="workerThreads" Type="System.Int32" RefType="out" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="completionPortThreads" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="workerThreads">スレッド プール内のワーカー スレッドの最大数。</param>
@@ -352,18 +358,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 がを返す場合、@no__t によって指定された変数には、スレッドプールで許可されるワーカースレッドの最大数が含まれます。また、`completionPortThreads` で指定された変数には、スレッドプールで許可されている非同期 i/o スレッドの最大数が含まれます。  
+ <xref:System.Threading.ThreadPool.GetMaxThreads%2A> が返されると、`workerThreads` によって指定された変数にはスレッドプールで許可されるワーカースレッドの最大数が含まれ、`completionPortThreads` で指定された変数には、スレッドプールで許可されている非同期 i/o スレッドの最大数が含まれます。  
   
- @No__t-0 メソッドを使用して、いつでもスレッドプール内のスレッドの実際の数を確認できます。  
+ <xref:System.Threading.ThreadPool.GetAvailableThreads%2A> メソッドを使用して、いつでもスレッドプール内のスレッドの実際の数を確認できます。  
   
- @No__t-0 を使用して、スレッドプール内のワーカースレッドと非同期 i/o スレッドの最大数を設定できます。  
+ <xref:System.Threading.ThreadPool.SetMaxThreads%2A> を使用すると、スレッドプール内のワーカースレッドの最大数と非同期 i/o スレッドの数を設定できます。  
   
  システムメモリで許可されている数のスレッドプール要求をキューにすることができます。 スレッドプールのスレッド数よりも多くの要求がある場合、スレッドプールのスレッドが使用可能になるまで、追加の要求はキューに置かれたままになります。  
   
    
   
 ## Examples  
- スレッドプール内のスレッドの最大数と使用可能な数を取得する方法を次のコード例に示します。 @No__t-0 を使用して2つのファイルに非同期的に書き込む作業項目がキューに登録されます。 コールバックメソッドは、重複するように時間が指定されています。 ワーカースレッドは作業項目を処理し、コンピューターのプロセッサの速度と数に応じて、1つまたは2つの完了ポートスレッドが書き込み操作を処理します。  
+ スレッドプール内のスレッドの最大数と使用可能な数を取得する方法を次のコード例に示します。 `FileStream` を使用して2つのファイルに非同期的に書き込む作業項目がキューに登録されます。 コールバックメソッドは、重複するように時間が指定されています。 ワーカースレッドは作業項目を処理し、コンピューターのプロセッサの速度と数に応じて、1つまたは2つの完了ポートスレッドが書き込み操作を処理します。  
   
  [!code-cpp[System.Threading.ThreadPool.GetAvailableThreads#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ThreadPool.GetAvailableThreads/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ThreadPool.GetAvailableThreads#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ThreadPool.GetAvailableThreads/CS/source.cs#1)]
@@ -401,6 +407,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -411,8 +418,8 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="workerThreads" Type="System.Int32" RefType="out" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="completionPortThreads" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="workerThreads" Type="System.Int32" RefType="out" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="completionPortThreads" Type="System.Int32" RefType="out" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="workerThreads">このメソッドが戻るとき、スレッド プールがオンデマンドで作成するワーカー スレッドの最小数が含まれています。</param>
@@ -422,7 +429,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スレッドプールは、各カテゴリの最小値に達するまで、新しいワーカースレッドまたは i/o 完了スレッドをオンデマンドで提供します。 既定では、スレッドの最小数はシステム上のプロセッサの数に設定されます。 最小値に達すると、スレッドプールはそのカテゴリに追加のスレッドを作成したり、一部のタスクが完了するまで待機したりすることができます。 @No__t 0 から始まるスレッドプールでは、スループットを最適化するためにスレッドを作成して破棄します。スループットは、時間単位で完了するタスクの数として定義されます。 スレッドが少なすぎると使用可能なリソースが最適に使用されない可能性があり、スレッドが多すぎるとリソースの競合が増える可能性があります。  
+ スレッドプールは、各カテゴリの最小値に達するまで、新しいワーカースレッドまたは i/o 完了スレッドをオンデマンドで提供します。 既定では、スレッドの最小数はシステム上のプロセッサの数に設定されます。 最小値に達すると、スレッドプールはそのカテゴリに追加のスレッドを作成したり、一部のタスクが完了するまで待機したりすることができます。 [!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)]以降では、スレッドプールは、スループットを最適化するためにスレッドを作成して破棄します。スループットは、時間単位で完了するタスクの数として定義されます。 スレッドが少なすぎると使用可能なリソースが最適に使用されない可能性があり、スレッドが多すぎるとリソースの競合が増える可能性があります。  
   
 > [!NOTE]
 >  要求が少ないときは、スレッド プールの実際のスレッド数が最小値を下回る場合があります。  
@@ -454,6 +461,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -499,6 +507,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -531,18 +540,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- キューに格納されたメソッドに必要なデータは、メソッドが定義されているクラスのインスタンスフィールドに配置できます。また、必要なデータを格納しているオブジェクトを受け取る @no__t 0 のオーバーロードを使用することもできます。  
+ キューに格納されたメソッドに必要なデータは、メソッドが定義されているクラスのインスタンスフィールドに配置できます。また、必要なデータを格納しているオブジェクトを受け取る <xref:System.Threading.ThreadPool.QueueUserWorkItem%28System.Threading.WaitCallback%2CSystem.Object%29> オーバーロードを使用することもできます。  
   
 > [!NOTE]
->  Visual Basic ユーザーは、@no__t 0 のコンストラクターを省略できます。また、コールバックメソッドを <xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> に渡すときに `AddressOf` 演算子を使用するだけです。 Visual Basic は、正しいデリゲートコンストラクターを自動的に呼び出します。  
+>  Visual Basic ユーザーは、<xref:System.Threading.WaitCallback> コンストラクターを省略できます。また、コールバックメソッドを <xref:System.Threading.ThreadPool.QueueUserWorkItem%2A>に渡すときに `AddressOf` 演算子を使用するだけです。 Visual Basic は、正しいデリゲートコンストラクターを自動的に呼び出します。  
   
 ## <a name="version-information"></a>バージョン情報  
- .NET Framework バージョン2.0 では、<xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> メソッドを使用してキューに置かれたワーカースレッドに <xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType> プロパティ値が反映されます。 以前のバージョンでは、プリンシパル情報は反映されません。  
+ .NET Framework バージョン2.0 では、<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType> プロパティ値は、<xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> メソッドを使用してキューに置かれたワーカースレッドに反映されます。 以前のバージョンでは、プリンシパル情報は反映されません。  
   
    
   
 ## Examples  
- 次の例では、<xref:System.Threading.ThreadPool.QueueUserWorkItem%28System.Threading.WaitCallback%29> メソッドオーバーロードを使用して、スレッドが使用可能になったときに実行する、`ThreadProc` メソッドによって表されるタスクをキューに置いています。 このオーバーロードでは、タスク情報は提供されません。 したがって、`ThreadProc` メソッドで使用できる情報は、メソッドが属しているオブジェクトに限定されます。  
+ 次の例では、<xref:System.Threading.ThreadPool.QueueUserWorkItem%28System.Threading.WaitCallback%29> メソッドオーバーロードを使用して、`ThreadProc` メソッドによって表されるタスクをキューに置いて、スレッドが使用可能になったときに実行します。 このオーバーロードでは、タスク情報は提供されません。 したがって、`ThreadProc` メソッドで使用できる情報は、メソッドが属しているオブジェクトに限定されます。  
   
  [!code-cpp[System.Threading.ThreadPool QueueUserWorkItem0#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ThreadPool QueueUserWorkItem0/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ThreadPool QueueUserWorkItem0#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ThreadPool QueueUserWorkItem0/CS/source.cs#1)]
@@ -550,7 +559,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="callBack" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="callBack" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.NotSupportedException">共通言語ランタイム (CLR) がホストされており、ホストではこのアクションがサポートされていません。</exception>
         <related type="Article" href="~/docs/standard/threading/the-managed-thread-pool.md">マネージド スレッド プール</related>
       </Docs>
@@ -568,6 +577,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -605,17 +615,17 @@
  コールバックメソッドに複雑なデータが必要な場合は、データを格納するクラスを定義できます。  
   
 > [!NOTE]
->  Visual Basic ユーザーは、@no__t 0 のコンストラクターを省略できます。また、コールバックメソッドを <xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> に渡すときに `AddressOf` 演算子を使用するだけです。 Visual Basic は、正しいデリゲートコンストラクターを自動的に呼び出します。  
+>  Visual Basic ユーザーは、<xref:System.Threading.WaitCallback> コンストラクターを省略できます。また、コールバックメソッドを <xref:System.Threading.ThreadPool.QueueUserWorkItem%2A>に渡すときに `AddressOf` 演算子を使用するだけです。 Visual Basic は、正しいデリゲートコンストラクターを自動的に呼び出します。  
   
 ## <a name="version-information"></a>バージョン情報  
- .NET Framework バージョン2.0 では、<xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> メソッドを使用してキューに置かれたワーカースレッドに <xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType> プロパティ値が反映されます。 以前のバージョンでは、プリンシパル情報は反映されません。  
+ .NET Framework バージョン2.0 では、<xref:System.Threading.Thread.CurrentPrincipal%2A?displayProperty=nameWithType> プロパティ値は、<xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> メソッドを使用してキューに置かれたワーカースレッドに反映されます。 以前のバージョンでは、プリンシパル情報は反映されません。  
   
    
   
 ## Examples  
- 次の例では、.NET スレッドプールを使用して、20 ~ 40 の5つの数値の @no__t 0 の結果を計算します。 各 `Fibonacci` の結果は `Fibonacci` クラスによって表され、このクラスには計算を実行する `ThreadPoolCallback` という名前のメソッドがあります。 `Fibonacci` の各値を表すオブジェクトが作成され、`ThreadPoolCallback` メソッドが <xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> に渡されます。このメソッドは、プール内の使用可能なスレッドを割り当てて、渡されたメソッドを実行します。  
+ 次の例では、.NET スレッドプールを使用して、20 ~ 40 の5つの数値の `Fibonacci` 結果を計算します。 各 `Fibonacci` の結果は `Fibonacci` クラスによって表され、このクラスには計算を実行する `ThreadPoolCallback` という名前のメソッドがあります。 `Fibonacci` の各値を表すオブジェクトが作成され、`ThreadPoolCallback` メソッドが <xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> に渡されます。このメソッドは、プール内の使用可能なスレッドを割り当てて、渡されたメソッドを実行します。  
   
- 各 `Fibonacci` オブジェクトには計算対象の半ランダムな値が与えられるため、各スレッドはプロセッサ時間と競合するので、5つのすべての結果が計算されるまでにかかる時間を事前に知ることはできません。 そのため、各 `Fibonacci` オブジェクトには構築の間に <xref:System.Threading.ManualResetEvent> クラスのインスタンスを渡されます。 各オブジェクトは、その計算が完了したときに、指定されたイベントオブジェクトに通知します。これにより、プライマリスレッドは、5つのすべての @no__t オブジェクトが結果を計算するまで <xref:System.Threading.WaitHandle.WaitAll%2A> での実行をブロックできます。 その後、`Main` メソッドは各 `Fibonacci` の結果を表示します。
+ 各 `Fibonacci` オブジェクトには計算対象の半ランダムな値が与えられるため、各スレッドはプロセッサ時間に対して競合するので、5つのすべての結果が計算されるまでにかかる時間を事前に知ることはできません。 そのため、各 `Fibonacci` オブジェクトには構築の間に <xref:System.Threading.ManualResetEvent> クラスのインスタンスを渡されます。 各オブジェクトは、その計算が完了したときに、指定されたイベントオブジェクトに通知します。これにより、プライマリスレッドは、5つのすべての `Fibonacci` オブジェクトが結果を計算するまで <xref:System.Threading.WaitHandle.WaitAll%2A> での実行をブロックできます。 その後、`Main` メソッドは各 `Fibonacci` の結果を表示します。
   
  [!code-cpp[System.Threading.ThreadPool QueueUserWorkItem1#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ThreadPool QueueUserWorkItem1/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ThreadPool QueueUserWorkItem1#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ThreadPool QueueUserWorkItem1/CS/source.cs#1)]
@@ -624,7 +634,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.NotSupportedException">共通言語ランタイム (CLR) がホストされており、ホストではこのアクションがサポートされていません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="callBack" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="callBack" /> が <see langword="null" />です。</exception>
         <related type="Article" href="~/docs/standard/threading/the-managed-thread-pool.md">マネージド スレッド プール</related>
       </Docs>
     </Member>
@@ -639,6 +649,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -654,9 +665,9 @@
         <TypeParameter Name="TState" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callBack" Type="System.Action&lt;TState&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
-        <Parameter Name="state" Type="TState" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
-        <Parameter Name="preferLocal" Type="System.Boolean" Index="2" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1" />
+        <Parameter Name="callBack" Type="System.Action&lt;TState&gt;" Index="0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="state" Type="TState" Index="1" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="preferLocal" Type="System.Boolean" Index="2" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <typeparam name="TState"><paramref name="state" /> の要素の型。</typeparam>
@@ -692,6 +703,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -732,22 +744,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドによって返された @no__t 0 の使用が終了したら、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 @No__t-2 に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
+ このメソッドによって返される <xref:System.Threading.RegisteredWaitHandle> の使用が終了したら、その <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 `executeOnlyOnce`に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
   
- @No__t 0 のメソッドは、指定されたデリゲートをスレッドプールにキューに置いています。 次のいずれかが発生すると、ワーカースレッドはデリゲートを実行します。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドは、指定されたデリゲートをスレッドプールにキューに置いています。 次のいずれかが発生すると、ワーカースレッドはデリゲートを実行します。  
   
 -   指定されたオブジェクトはシグナル状態です。  
   
 -   タイムアウト間隔が経過した。  
   
- @No__t-0 メソッドは、指定されたオブジェクトの <xref:System.Threading.WaitHandle> の現在の状態を確認します。 オブジェクトの状態が非シグナルの場合、メソッドは待機操作を登録します。 待機操作は、スレッドプールからのスレッドによって実行されます。 デリゲートは、オブジェクトの状態がシグナル状態になるか、タイムアウト間隔が経過すると、ワーカースレッドによって実行されます。 @No__t-0 パラメーターが 0 (ゼロ) でなく、`executeOnlyOnce` パラメーターが `false` の場合は、イベントが通知されるたびに、またはタイムアウト間隔が経過するたびにタイマーがリセットされます。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドは、指定されたオブジェクトの <xref:System.Threading.WaitHandle>の現在の状態を確認します。 オブジェクトの状態が非シグナルの場合、メソッドは待機操作を登録します。 待機操作は、スレッドプールからのスレッドによって実行されます。 デリゲートは、オブジェクトの状態がシグナル状態になるか、タイムアウト間隔が経過すると、ワーカースレッドによって実行されます。 `timeOutInterval` パラメーターが 0 (ゼロ) でなく、`executeOnlyOnce` パラメーターが `false`の場合、イベントが通知されるたびに、またはタイムアウト間隔が経過するたびにタイマーがリセットされます。  
   
 > [!IMPORTANT]
->  基になる Windows API では既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、`waitObject` に <xref:System.Threading.Mutex> を使用すると、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。 @No__t-0 の代わりに、最大数が1の <xref:System.Threading.Semaphore> を使用します。  
+>  `waitObject` に <xref:System.Threading.Mutex> を使用すると、基になる Windows API で既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。 <xref:System.Threading.Mutex>の代わりに、最大数が1の <xref:System.Threading.Semaphore> を使用します。  
   
  待機操作を取り消すには、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出します。  
   
- 待機スレッドは、Win32 `WaitForMultipleObjects` 関数を使用して、登録されている待機操作を監視します。 したがって、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> の複数の呼び出しで同じネイティブオペレーティングシステムハンドルを使用する必要がある場合は、Win32 `DuplicateHandle` 関数を使用してハンドルを複製する必要があります。 待機スレッドでは、イベントがリセットされる前にシグナル状態であることが検出されない可能性があるため、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> に渡されるイベントオブジェクトはパルスしないことに注意してください。  
+ 待機スレッドは、Win32 `WaitForMultipleObjects` 関数を使用して、登録されている待機操作を監視します。 したがって、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>の複数の呼び出しで同じネイティブオペレーティングシステムハンドルを使用する必要がある場合は、Win32 `DuplicateHandle` 関数を使用してハンドルを複製する必要があります。 <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>に渡されるイベントオブジェクトはパルスではないことに注意してください。これは、イベントがリセットされる前に、そのイベントがシグナル状態であることを待機スレッドが検出できない可能性があるためです。  
   
  関数は、を返す前に、いくつかの種類の同期オブジェクトの状態を変更します。 変更が発生するのは、シグナル状態になった待機条件が満たされたオブジェクトだけです。 たとえば、セマフォのカウントは1つ減少します。  
   
@@ -773,6 +785,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -813,22 +826,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドによって返された @no__t 0 の使用が終了したら、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 @No__t-2 に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
+ このメソッドによって返される <xref:System.Threading.RegisteredWaitHandle> の使用が終了したら、その <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 `executeOnlyOnce`に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
   
- @No__t 0 のメソッドは、指定されたデリゲートをスレッドプールにキューに置いています。 次のいずれかが発生すると、ワーカースレッドはデリゲートを実行します。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドは、指定されたデリゲートをスレッドプールにキューに置いています。 次のいずれかが発生すると、ワーカースレッドはデリゲートを実行します。  
   
 -   指定されたオブジェクトはシグナル状態です。  
   
 -   タイムアウト間隔が経過した。  
   
- @No__t-0 メソッドは、指定されたオブジェクトの <xref:System.Threading.WaitHandle> の現在の状態を確認します。 オブジェクトの状態が非シグナルの場合、メソッドは待機操作を登録します。 待機操作は、スレッドプールからのスレッドによって実行されます。 デリゲートは、オブジェクトの状態がシグナル状態になるか、タイムアウト間隔が経過すると、ワーカースレッドによって実行されます。 @No__t-0 パラメーターが 0 (ゼロ) でなく、`executeOnlyOnce` パラメーターが `false` の場合は、イベントが通知されるたびに、またはタイムアウト間隔が経過するたびにタイマーがリセットされます。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドは、指定されたオブジェクトの <xref:System.Threading.WaitHandle>の現在の状態を確認します。 オブジェクトの状態が非シグナルの場合、メソッドは待機操作を登録します。 待機操作は、スレッドプールからのスレッドによって実行されます。 デリゲートは、オブジェクトの状態がシグナル状態になるか、タイムアウト間隔が経過すると、ワーカースレッドによって実行されます。 `timeOutInterval` パラメーターが 0 (ゼロ) でなく、`executeOnlyOnce` パラメーターが `false`の場合、イベントが通知されるたびに、またはタイムアウト間隔が経過するたびにタイマーがリセットされます。  
   
 > [!IMPORTANT]
->  基になる Windows API では既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、`waitObject` に <xref:System.Threading.Mutex> を使用すると、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。 @No__t-0 の代わりに、最大数が1の <xref:System.Threading.Semaphore> を使用します。  
+>  `waitObject` に <xref:System.Threading.Mutex> を使用すると、基になる Windows API で既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。 <xref:System.Threading.Mutex>の代わりに、最大数が1の <xref:System.Threading.Semaphore> を使用します。  
   
  待機操作を取り消すには、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出します。  
   
- 待機スレッドは、Win32 `WaitForMultipleObjects` 関数を使用して、登録されている待機操作を監視します。 したがって、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> の複数の呼び出しで同じネイティブオペレーティングシステムハンドルを使用する必要がある場合は、Win32 `DuplicateHandle` 関数を使用してハンドルを複製する必要があります。 待機スレッドでは、イベントがリセットされる前にシグナル状態であることが検出されない可能性があるため、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> に渡されるイベントオブジェクトはパルスしないことに注意してください。  
+ 待機スレッドは、Win32 `WaitForMultipleObjects` 関数を使用して、登録されている待機操作を監視します。 したがって、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>の複数の呼び出しで同じネイティブオペレーティングシステムハンドルを使用する必要がある場合は、Win32 `DuplicateHandle` 関数を使用してハンドルを複製する必要があります。 <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>に渡されるイベントオブジェクトはパルスではないことに注意してください。これは、イベントがリセットされる前に、そのイベントがシグナル状態であることを待機スレッドが検出できない可能性があるためです。  
   
  関数は、を返す前に、いくつかの種類の同期オブジェクトの状態を変更します。 変更が発生するのは、シグナル状態になった待機条件が満たされたオブジェクトだけです。 たとえば、セマフォのカウントは1つ減少します。  
   
@@ -854,6 +867,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -894,22 +908,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドによって返された @no__t 0 の使用が終了したら、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 @No__t-2 に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
+ このメソッドによって返される <xref:System.Threading.RegisteredWaitHandle> の使用が終了したら、その <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 `executeOnlyOnce`に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
   
- @No__t 0 のメソッドは、指定されたデリゲートをスレッドプールにキューに置いています。 次のいずれかが発生すると、ワーカースレッドはデリゲートを実行します。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドは、指定されたデリゲートをスレッドプールにキューに置いています。 次のいずれかが発生すると、ワーカースレッドはデリゲートを実行します。  
   
 -   指定されたオブジェクトはシグナル状態です。  
   
 -   タイムアウト間隔が経過した。  
   
- @No__t-0 メソッドは、指定されたオブジェクトの <xref:System.Threading.WaitHandle> の現在の状態を確認します。 オブジェクトの状態が非シグナルの場合、メソッドは待機操作を登録します。 待機操作は、スレッドプールからのスレッドによって実行されます。 デリゲートは、オブジェクトの状態がシグナル状態になるか、タイムアウト間隔が経過すると、ワーカースレッドによって実行されます。 @No__t-0 パラメーターが 0 (ゼロ) でなく、`executeOnlyOnce` パラメーターが `false` の場合は、イベントが通知されるたびに、またはタイムアウト間隔が経過するたびにタイマーがリセットされます。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドは、指定されたオブジェクトの <xref:System.Threading.WaitHandle>の現在の状態を確認します。 オブジェクトの状態が非シグナルの場合、メソッドは待機操作を登録します。 待機操作は、スレッドプールからのスレッドによって実行されます。 デリゲートは、オブジェクトの状態がシグナル状態になるか、タイムアウト間隔が経過すると、ワーカースレッドによって実行されます。 `timeOutInterval` パラメーターが 0 (ゼロ) でなく、`executeOnlyOnce` パラメーターが `false`の場合、イベントが通知されるたびに、またはタイムアウト間隔が経過するたびにタイマーがリセットされます。  
   
 > [!IMPORTANT]
->  基になる Windows API では既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、`waitObject` に <xref:System.Threading.Mutex> を使用すると、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。 @No__t-0 の代わりに、最大数が1の <xref:System.Threading.Semaphore> を使用します。  
+>  `waitObject` に <xref:System.Threading.Mutex> を使用すると、基になる Windows API で既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。 <xref:System.Threading.Mutex>の代わりに、最大数が1の <xref:System.Threading.Semaphore> を使用します。  
   
  待機操作を取り消すには、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出します。  
   
- 待機スレッドは、Win32 `WaitForMultipleObjects` 関数を使用して、登録されている待機操作を監視します。 したがって、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> の複数の呼び出しで同じネイティブオペレーティングシステムハンドルを使用する必要がある場合は、Win32 `DuplicateHandle` 関数を使用してハンドルを複製する必要があります。 待機スレッドでは、イベントがリセットされる前にシグナル状態であることが検出されない可能性があるため、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> に渡されるイベントオブジェクトはパルスしないことに注意してください。  
+ 待機スレッドは、Win32 `WaitForMultipleObjects` 関数を使用して、登録されている待機操作を監視します。 したがって、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>の複数の呼び出しで同じネイティブオペレーティングシステムハンドルを使用する必要がある場合は、Win32 `DuplicateHandle` 関数を使用してハンドルを複製する必要があります。 <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>に渡されるイベントオブジェクトはパルスではないことに注意してください。これは、イベントがリセットされる前に、そのイベントがシグナル状態であることを待機スレッドが検出できない可能性があるためです。  
   
  関数は、を返す前に、いくつかの種類の同期オブジェクトの状態を変更します。 変更が発生するのは、シグナル状態になった待機条件が満たされたオブジェクトだけです。 たとえば、セマフォのカウントは1つ減少します。  
   
@@ -936,6 +950,7 @@
         <AssemblyVersion>4.0.10.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -950,7 +965,7 @@
         <AssemblyVersion>2.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -979,22 +994,22 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドによって返された @no__t 0 の使用が終了したら、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 @No__t-2 に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
+ このメソッドによって返される <xref:System.Threading.RegisteredWaitHandle> の使用が終了したら、その <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 `executeOnlyOnce`に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
   
- @No__t 0 のメソッドは、指定されたデリゲートをスレッドプールにキューに置いています。 次のいずれかが発生すると、ワーカースレッドはデリゲートを実行します。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドは、指定されたデリゲートをスレッドプールにキューに置いています。 次のいずれかが発生すると、ワーカースレッドはデリゲートを実行します。  
   
 -   指定されたオブジェクトはシグナル状態です。  
   
 -   タイムアウト間隔が経過した。  
   
- @No__t-0 メソッドは、指定されたオブジェクトの <xref:System.Threading.WaitHandle> の現在の状態を確認します。 オブジェクトの状態が非シグナルの場合、メソッドは待機操作を登録します。 待機操作は、スレッドプールからのスレッドによって実行されます。 デリゲートは、オブジェクトの状態がシグナル状態になるか、タイムアウト間隔が経過すると、ワーカースレッドによって実行されます。 @No__t-0 パラメーターが 0 (ゼロ) でなく、`executeOnlyOnce` パラメーターが `false` の場合は、イベントが通知されるたびに、またはタイムアウト間隔が経過するたびにタイマーがリセットされます。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドは、指定されたオブジェクトの <xref:System.Threading.WaitHandle>の現在の状態を確認します。 オブジェクトの状態が非シグナルの場合、メソッドは待機操作を登録します。 待機操作は、スレッドプールからのスレッドによって実行されます。 デリゲートは、オブジェクトの状態がシグナル状態になるか、タイムアウト間隔が経過すると、ワーカースレッドによって実行されます。 `timeOutInterval` パラメーターが 0 (ゼロ) でなく、`executeOnlyOnce` パラメーターが `false`の場合、イベントが通知されるたびに、またはタイムアウト間隔が経過するたびにタイマーがリセットされます。  
   
 > [!IMPORTANT]
->  基になる Windows API では既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、`waitObject` に <xref:System.Threading.Mutex> を使用すると、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。 @No__t-0 の代わりに、最大数が1の <xref:System.Threading.Semaphore> を使用します。  
+>  `waitObject` に <xref:System.Threading.Mutex> を使用すると、基になる Windows API で既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。 <xref:System.Threading.Mutex>の代わりに、最大数が1の <xref:System.Threading.Semaphore> を使用します。  
   
  待機操作を取り消すには、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出します。  
   
- 待機スレッドは、Win32 `WaitForMultipleObjects` 関数を使用して、登録されている待機操作を監視します。 したがって、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> の複数の呼び出しで同じネイティブオペレーティングシステムハンドルを使用する必要がある場合は、Win32 `DuplicateHandle` 関数を使用してハンドルを複製する必要があります。 待機スレッドでは、イベントがリセットされる前にシグナル状態であることが検出されない可能性があるため、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> に渡されるイベントオブジェクトはパルスしないことに注意してください。  
+ 待機スレッドは、Win32 `WaitForMultipleObjects` 関数を使用して、登録されている待機操作を監視します。 したがって、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>の複数の呼び出しで同じネイティブオペレーティングシステムハンドルを使用する必要がある場合は、Win32 `DuplicateHandle` 関数を使用してハンドルを複製する必要があります。 <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A>に渡されるイベントオブジェクトはパルスではないことに注意してください。これは、イベントがリセットされる前に、そのイベントがシグナル状態であることを待機スレッドが検出できない可能性があるためです。  
   
  関数は、を返す前に、いくつかの種類の同期オブジェクトの状態を変更します。 変更が発生するのは、シグナル状態になった待機条件が満たされたオブジェクトだけです。 たとえば、セマフォのカウントは1つ減少します。  
   
@@ -1004,13 +1019,13 @@
    
   
 ## Examples  
- 次の例では、指定された待機ハンドルがシグナル状態になったときに、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドを使用して、指定されたコールバックメソッドを実行する方法を示します。 この例では、コールバックメソッドが 0 @no__t、待機ハンドルが <xref:System.Threading.AutoResetEvent> です。  
+ 次の例は、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドを使用して、指定された待機ハンドルがシグナル状態になったときに、指定されたコールバックメソッドを実行する方法を示しています。 この例では、コールバックメソッドが `WaitProc`、待機ハンドルが <xref:System.Threading.AutoResetEvent>です。  
   
- この例では、実行時にコールバックに渡される情報を保持する @no__t 0 クラスを定義します。 この例では、@no__t 0 のオブジェクトを作成し、いくつかの文字列データを割り当てます。 @No__t-1 メソッドによって返された @no__t 0 は、コールバックメソッドが @no__t にアクセスできるように、`TaskInfo` オブジェクトの `Handle` フィールドに割り当てられます。  
+ この例では、実行時にコールバックに渡される情報を保持する `TaskInfo` クラスを定義します。 この例では、`TaskInfo` オブジェクトを作成し、いくつかの文字列データを割り当てます。 <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドによって返される <xref:System.Threading.RegisteredWaitHandle> は、コールバックメソッドが <xref:System.Threading.RegisteredWaitHandle>にアクセスできるように、`TaskInfo` オブジェクトの `Handle` フィールドに割り当てられます。  
   
- @No__t-1 メソッドの呼び出しでは、コールバックメソッドに渡すオブジェクトとして `TaskInfo` を指定するだけでなく、タスクが待機する @no__t を指定します。また、@no__t 4 のコールバックメソッドを表す @no__t 3 デリゲート、1秒のタイムアウト期間を指定します。、および複数のコールバック。  
+ コールバックメソッドに渡すオブジェクトとして `TaskInfo` を指定するだけでなく、<xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドの呼び出しでは、タスクが待機する <xref:System.Threading.AutoResetEvent>、`WaitProc` コールバックメソッドを表す <xref:System.Threading.WaitOrTimerCallback> デリゲート、1秒のタイムアウト時間、および複数のコールバックを指定します。  
   
- メインスレッドが <xref:System.Threading.EventWaitHandle.Set%2A> メソッドを呼び出すことによって @no__t 0 に通知すると、<xref:System.Threading.WaitOrTimerCallback> デリゲートが呼び出されます。 @No__t-0 メソッドは、タイムアウトが発生したかどうかを判断するために <xref:System.Threading.RegisteredWaitHandle> をテストします。 待機ハンドルがシグナル状態になったためにコールバックが呼び出された場合、`WaitProc` メソッドは <xref:System.Threading.RegisteredWaitHandle> の登録を解除し、追加のコールバックを停止します。 タイムアウトの場合、タスクは待機を続けます。 @No__t-0 メソッドは、メッセージをコンソールに出力することによって終了します。  
+ メインスレッドが <xref:System.Threading.EventWaitHandle.Set%2A> メソッドを呼び出すことによって <xref:System.Threading.AutoResetEvent> に通知すると、<xref:System.Threading.WaitOrTimerCallback> デリゲートが呼び出されます。 `WaitProc` メソッドは、タイムアウトが発生したかどうかを判断するために <xref:System.Threading.RegisteredWaitHandle> をテストします。 待機ハンドルがシグナル状態になったためにコールバックが呼び出された場合、`WaitProc` メソッドは、<xref:System.Threading.RegisteredWaitHandle>の登録を解除し、追加のコールバックを停止します。 タイムアウトの場合、タスクは待機を続けます。 `WaitProc` メソッドは、メッセージをコンソールに出力することによって終了します。  
   
  [!code-cpp[System.Threading.ThreadPool RegisterWaitForSingleObject0#1](~/samples/snippets/cpp/VS_Snippets_CLR_System/system.Threading.ThreadPool RegisterWaitForSingleObject0/CPP/source.cpp#1)]
  [!code-csharp[System.Threading.ThreadPool RegisterWaitForSingleObject0#1](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.Threading.ThreadPool RegisterWaitForSingleObject0/CS/source.cs#1)]
@@ -1045,6 +1060,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1055,8 +1071,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="workerThreads" Type="System.Int32" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="completionPortThreads" Type="System.Int32" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="workerThreads" Type="System.Int32" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="completionPortThreads" Type="System.Int32" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="workerThreads">スレッド プール内のワーカー スレッドの最大数。</param>
@@ -1108,6 +1124,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1118,8 +1135,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="workerThreads" Type="System.Int32" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="completionPortThreads" Type="System.Int32" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="workerThreads" Type="System.Int32" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="completionPortThreads" Type="System.Int32" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="workerThreads">スレッド プールがオンデマンドで作成するワーカー スレッドの最小数。</param>
@@ -1130,14 +1147,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- スレッドプールは、各カテゴリの最小値に達するまで、新しいワーカースレッドまたは i/o 完了スレッドをオンデマンドで提供します。 最小値に達すると、スレッドプールはそのカテゴリに追加のスレッドを作成したり、一部のタスクが完了するまで待機したりすることができます。 @No__t 0 から始まるスレッドプールでは、スループットを最適化するためにスレッドを作成して破棄します。スループットは、時間単位で完了するタスクの数として定義されます。 スレッドが少なすぎると使用可能なリソースが最適に使用されない可能性があり、スレッドが多すぎるとリソースの競合が増える可能性があります。  
+ スレッドプールは、各カテゴリの最小値に達するまで、新しいワーカースレッドまたは i/o 完了スレッドをオンデマンドで提供します。 最小値に達すると、スレッドプールはそのカテゴリに追加のスレッドを作成したり、一部のタスクが完了するまで待機したりすることができます。 [!INCLUDE[net_v40_short](~/includes/net-v40-short-md.md)]以降では、スレッドプールは、スループットを最適化するためにスレッドを作成して破棄します。スループットは、時間単位で完了するタスクの数として定義されます。 スレッドが少なすぎると使用可能なリソースが最適に使用されない可能性があり、スレッドが多すぎるとリソースの競合が増える可能性があります。  
   
  要求が少ないときは、スレッド プールの実際のスレッド数が最小値を下回る場合があります。  
   
- 負の数または (<xref:System.Threading.ThreadPool.GetMaxThreads%2A> を使用して取得される) アクティブなスレッドプールスレッドの最大数を超える数を指定した場合、<xref:System.Threading.ThreadPool.SetMinThreads%2A> は `false` を返し、最小値のいずれかを変更しません。  
+ <xref:System.Threading.ThreadPool.GetMaxThreads%2A>を使用して取得した、アクティブなスレッドプールのスレッドの最大数よりも大きい負の数または数を指定した場合、<xref:System.Threading.ThreadPool.SetMinThreads%2A> は `false` を返し、最小値のいずれかを変更しません。  
   
 > [!CAUTION]
->  既定では、スレッドの最小数はシステム上のプロセッサの数に設定されます。 @No__t-0 メソッドを使用して、スレッドの最小数を増やすことができます。 ただし、これらの値を必要以上に大きくすると、パフォーマンスの問題が発生する可能性があります。 同時に開始するタスクの数が多すぎる場合は、すべてのタスクで処理速度が低下する可能性があります。 ほとんどの場合、スレッドプールは、スレッドを割り当てる独自のアルゴリズムによってパフォーマンスが向上します。 最小値をプロセッサ数未満に減らすと、パフォーマンスが低下する場合もあります。  
+>  既定では、スレッドの最小数はシステム上のプロセッサの数に設定されます。 <xref:System.Threading.ThreadPool.SetMinThreads%2A> メソッドを使用して、スレッドの最小数を増やすことができます。 ただし、これらの値を必要以上に大きくすると、パフォーマンスの問題が発生する可能性があります。 同時に開始するタスクの数が多すぎる場合は、すべてのタスクで処理速度が低下する可能性があります。 ほとんどの場合、スレッドプールは、スレッドを割り当てる独自のアルゴリズムによってパフォーマンスが向上します。 最小値をプロセッサ数未満に減らすと、パフォーマンスが低下する場合もあります。  
   
    
   
@@ -1167,6 +1184,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1211,9 +1229,10 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1224,7 +1243,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="overlapped" Type="System.Threading.NativeOverlapped*" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="overlapped" Type="System.Threading.NativeOverlapped*" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="overlapped">キューに置く <see cref="T:System.Threading.NativeOverlapped" /> 構造体。</param>
@@ -1234,10 +1253,10 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ネイティブ Win32 のオーバーラップ i/o の使用の詳細については、Win32 Platform SDK の <xref:System.Threading.Overlapped> クラス、@no__t 1 の構造体、および `OVERLAPPED` の構造を参照してください。  
+ ネイティブ Win32 のオーバーラップ i/o の使用の詳細については、Win32 Platform SDK の <xref:System.Threading.Overlapped> クラス、<xref:System.Threading.NativeOverlapped> 構造体、および `OVERLAPPED` 構造体を参照してください。  
   
 > [!CAUTION]
->  @No__t-0 メソッドを使用すると、セキュリティホールが誤って開かれる可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 @No__t-0 を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
+>  <xref:System.Threading.ThreadPool.UnsafeQueueNativeOverlapped%2A> メソッドを使用すると、セキュリティホールが誤って表示される可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 <xref:System.Threading.ThreadPool.UnsafeQueueNativeOverlapped%2A>を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
   
  ]]></format>
         </remarks>
@@ -1255,6 +1274,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1266,8 +1286,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callBack" Type="System.Threading.IThreadPoolWorkItem" Index="0" FrameworkAlternate="netcore-3.0" />
-        <Parameter Name="preferLocal" Type="System.Boolean" Index="1" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="callBack" Type="System.Threading.IThreadPoolWorkItem" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+        <Parameter Name="preferLocal" Type="System.Boolean" Index="1" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="callBack">スレッド プールのスレッドが作業項目を選択したときに呼び出される作業項目。</param>
@@ -1279,11 +1299,11 @@
 
 ## Remarks
 
-スレッドプールは、作業項目の @no__t 0 メソッドを呼び出します。 必要に応じて、その作業項目が @no__t に反映されます。スレッドプールはこれを行いません。
+スレッドプールは、作業項目の <xref:System.Threading.IThreadPoolWorkItem.Execute> メソッドを呼び出します。 必要に応じて、その作業項目が <xref:System.Threading.ExecutionContext> に反映される役割を担います。スレッドプールはこれを行いません。
 
          ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="callback" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="callback" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException">作業項目は <see cref="T:System.Threading.Tasks.Task" /> です。</exception>
         <exception cref="T:System.OutOfMemoryException">作業項目をキューに配置できません。</exception>
       </Docs>
@@ -1312,6 +1332,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1322,8 +1343,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="callBack" Type="System.Threading.WaitCallback" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="state" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="callBack" Type="System.Threading.WaitCallback" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="state" Type="System.Object" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="callBack">スレッド プール内のスレッドが作業項目をピック アップするときに呼び出すデリゲートを表す <see cref="T:System.Threading.WaitCallback" />。</param>
@@ -1334,17 +1355,17 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeQueueUserWorkItem%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
+ <xref:System.Threading.ThreadPool.QueueUserWorkItem%2A> メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeQueueUserWorkItem%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
   
 > [!CAUTION]
->  @No__t-0 を使用すると、セキュリティホールが誤って表示される可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 @No__t-0 を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
+>  <xref:System.Threading.ThreadPool.UnsafeQueueUserWorkItem%2A> を使用すると、セキュリティホールを誤って開く可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 <xref:System.Threading.ThreadPool.UnsafeQueueUserWorkItem%2A>を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
   
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <exception cref="T:System.ApplicationException">メモリが不足しています。</exception>
         <exception cref="T:System.OutOfMemoryException">作業項目をキューに配置できません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="callBack" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="callBack" /> が <see langword="null" />です。</exception>
         <permission cref="T:System.Security.SecurityCriticalAttribute">直前の呼び出し元に完全信頼が必要です。 このメンバーは、部分的に信頼されているコードまたは透過的なコードでは使用できません。</permission>
         <related type="Article" href="~/docs/standard/threading/the-managed-thread-pool.md">マネージド スレッド プール</related>
       </Docs>
@@ -1360,6 +1381,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1374,9 +1396,9 @@
         <TypeParameter Name="TState" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="callBack" Type="System.Action&lt;TState&gt;" Index="0" FrameworkAlternate="netcore-3.0" />
-        <Parameter Name="state" Type="TState" Index="1" FrameworkAlternate="netcore-3.0" />
-        <Parameter Name="preferLocal" Type="System.Boolean" Index="2" FrameworkAlternate="netcore-3.0" />
+        <Parameter Name="callBack" Type="System.Action&lt;TState&gt;" Index="0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+        <Parameter Name="state" Type="TState" Index="1" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+        <Parameter Name="preferLocal" Type="System.Boolean" Index="2" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <typeparam name="TState"><paramref name="state" /> の要素の型。</typeparam>
@@ -1386,7 +1408,7 @@
         <summary>実行用に <see cref="T:System.Action`1" /> デリゲートで指定したメソッドをキューに入れ、そのメソッドで使用するデータを含んだオブジェクトを指定します。 メソッドは、スレッド プール スレッドが使用可能になったときに実行されます。</summary>
         <returns>メソッドが正常にキューに配置された場合は <see langword="true" />。作業項目をキューに配置できなかった場合は <see cref="T:System.NotSupportedException" /> がスローされます。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="callback" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="callback" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.NotSupportedException">作業項目をキューに配置できません。</exception>
       </Docs>
     </Member>
@@ -1424,6 +1446,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1434,11 +1457,11 @@
         <ReturnType>System.Threading.RegisteredWaitHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="waitObject" Type="System.Threading.WaitHandle" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="callBack" Type="System.Threading.WaitOrTimerCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="millisecondsTimeOutInterval" Type="System.Int32" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="executeOnlyOnce" Type="System.Boolean" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="waitObject" Type="System.Threading.WaitHandle" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="callBack" Type="System.Threading.WaitOrTimerCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="millisecondsTimeOutInterval" Type="System.Int32" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="executeOnlyOnce" Type="System.Boolean" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="waitObject">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
@@ -1452,14 +1475,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
   
 > [!CAUTION]
->  @No__t-0 を使用すると、セキュリティホールが誤って表示される可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 @No__t-0 を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
+>  <xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> を使用すると、セキュリティホールを誤って開く可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 <xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A>を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
   
- 基になる Windows API では既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、`waitObject` に <xref:System.Threading.Mutex> を使用すると、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。  
+ `waitObject` に <xref:System.Threading.Mutex> を使用すると、基になる Windows API で既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。  
   
- このメソッドによって返された @no__t 0 の使用が終了したら、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 @No__t-2 に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
+ このメソッドによって返される <xref:System.Threading.RegisteredWaitHandle> の使用が終了したら、その <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 `executeOnlyOnce`に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
   
  ]]></format>
         </remarks>
@@ -1493,6 +1516,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1503,11 +1527,11 @@
         <ReturnType>System.Threading.RegisteredWaitHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="waitObject" Type="System.Threading.WaitHandle" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="callBack" Type="System.Threading.WaitOrTimerCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="millisecondsTimeOutInterval" Type="System.Int64" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="executeOnlyOnce" Type="System.Boolean" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="waitObject" Type="System.Threading.WaitHandle" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="callBack" Type="System.Threading.WaitOrTimerCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="millisecondsTimeOutInterval" Type="System.Int64" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="executeOnlyOnce" Type="System.Boolean" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="waitObject">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
@@ -1521,14 +1545,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
   
 > [!CAUTION]
->  @No__t-0 を使用すると、セキュリティホールが誤って表示される可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 @No__t-0 を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
+>  <xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> を使用すると、セキュリティホールを誤って開く可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 <xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A>を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
   
- 基になる Windows API では既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、`waitObject` に <xref:System.Threading.Mutex> を使用すると、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。  
+ `waitObject` に <xref:System.Threading.Mutex> を使用すると、基になる Windows API で既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。  
   
- このメソッドによって返された @no__t 0 の使用が終了したら、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 @No__t-2 に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
+ このメソッドによって返される <xref:System.Threading.RegisteredWaitHandle> の使用が終了したら、その <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 `executeOnlyOnce`に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
   
  ]]></format>
         </remarks>
@@ -1562,6 +1586,7 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1572,11 +1597,11 @@
         <ReturnType>System.Threading.RegisteredWaitHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="waitObject" Type="System.Threading.WaitHandle" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="callBack" Type="System.Threading.WaitOrTimerCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="timeout" Type="System.TimeSpan" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="executeOnlyOnce" Type="System.Boolean" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="waitObject" Type="System.Threading.WaitHandle" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="callBack" Type="System.Threading.WaitOrTimerCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="timeout" Type="System.TimeSpan" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="executeOnlyOnce" Type="System.Boolean" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="waitObject">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
@@ -1590,14 +1615,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
   
 > [!CAUTION]
->  @No__t-0 を使用すると、セキュリティホールが誤って表示される可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 @No__t-0 を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
+>  <xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> を使用すると、セキュリティホールを誤って開く可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 <xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A>を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
   
- 基になる Windows API では既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、`waitObject` に <xref:System.Threading.Mutex> を使用すると、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。  
+ `waitObject` に <xref:System.Threading.Mutex> を使用すると、基になる Windows API で既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。  
   
- このメソッドによって返された @no__t 0 の使用が終了したら、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 @No__t-2 に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
+ このメソッドによって返される <xref:System.Threading.RegisteredWaitHandle> の使用が終了したら、その <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 `executeOnlyOnce`に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
   
  ]]></format>
         </remarks>
@@ -1632,9 +1657,10 @@
         <AssemblyName>System.Threading.ThreadPool</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.1.1.0</AssemblyVersion>
+        <AssemblyVersion>4.1.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
-        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1">
+        <Attribute FrameworkAlternate="netcore-2.0;netcore-2.1;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8;netcore-2.2;netcore-3.0;netstandard-2.1;netcore-3.1">
           <AttributeName>System.CLSCompliant(false)</AttributeName>
         </Attribute>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1645,11 +1671,11 @@
         <ReturnType>System.Threading.RegisteredWaitHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="waitObject" Type="System.Threading.WaitHandle" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="callBack" Type="System.Threading.WaitOrTimerCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="millisecondsTimeOutInterval" Type="System.UInt32" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="executeOnlyOnce" Type="System.Boolean" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="waitObject" Type="System.Threading.WaitHandle" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="callBack" Type="System.Threading.WaitOrTimerCallback" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="state" Type="System.Object" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="millisecondsTimeOutInterval" Type="System.UInt32" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="executeOnlyOnce" Type="System.Boolean" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="waitObject">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
@@ -1663,14 +1689,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
+ <xref:System.Threading.ThreadPool.RegisterWaitForSingleObject%2A> メソッドとは異なり、<xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> は呼び出し元のスタックをワーカースレッドに反映しません。 これにより、コードは呼び出し履歴を失うことがあり、その結果、セキュリティ特権を昇格させることができます。  
   
 > [!CAUTION]
->  @No__t-0 を使用すると、セキュリティホールが誤って表示される可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 @No__t-0 を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
+>  <xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A> を使用すると、セキュリティホールを誤って開く可能性があります。 コードアクセスセキュリティは、スタック上のすべての呼び出し元のアクセス許可に基づいてアクセス許可をチェックします。 <xref:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject%2A>を使用してスレッドプールのスレッドで作業がキューに置かれている場合、スレッドプールのスレッドのスタックには実際の呼び出し元のコンテキストがありません。 悪意のあるコードがこれを悪用して、アクセス許可のチェックを回避できる可能性があります。  
   
- 基になる Windows API では既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、`waitObject` に <xref:System.Threading.Mutex> を使用すると、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。  
+ `waitObject` に <xref:System.Threading.Mutex> を使用すると、基になる Windows API で既定の `WT_EXECUTEDEFAULT` フラグが使用されるため、コールバックの相互排他が提供されません。そのため、各コールバックは個別のスレッドプールスレッドでディスパッチされます。  
   
- このメソッドによって返された @no__t 0 の使用が終了したら、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 @No__t-2 に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
+ このメソッドによって返される <xref:System.Threading.RegisteredWaitHandle> の使用が終了したら、その <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出して、待機ハンドルへの参照を解放します。 `executeOnlyOnce`に `true` を指定した場合でも、常に <xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すことをお勧めします。 登録されている待機ハンドルのファイナライザーに依存するのではなく、<xref:System.Threading.RegisteredWaitHandle.Unregister%2A?displayProperty=nameWithType> メソッドを呼び出すと、ガベージコレクションの方が効率的に動作します。  
   
  ]]></format>
         </remarks>
