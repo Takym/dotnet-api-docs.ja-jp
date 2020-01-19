@@ -1,5 +1,5 @@
 <Type Name="IExtendPropertySheet2" FullName="Microsoft.CLRAdmin.IExtendPropertySheet2">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="087b957ce7dfd1489d2c902c1a47da41dcfbd602" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70322608" /></Metadata><TypeSignature Language="C#" Value="public interface IExtendPropertySheet2" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c0379ce7f4c3ae41770248fc66ad666e64ebb20b" /><Meta Name="ms.sourcegitcommit" Value="3facd7aafd1f5ffe2afede7ecab64614a55d408e" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/18/2019" /><Meta Name="ms.locfileid" Value="75185998" /></Metadata><TypeSignature Language="C#" Value="public interface IExtendPropertySheet2" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IExtendPropertySheet2" />
   <TypeSignature Language="DocId" Value="T:Microsoft.CLRAdmin.IExtendPropertySheet2" />
   <TypeSignature Language="VB.NET" Value="Public Interface IExtendPropertySheet2" />
@@ -44,12 +44,13 @@
         <Parameter Name="lpIDataObject" Type="Microsoft.CLRAdmin.IDataObject" />
       </Parameters>
       <Docs>
-        <param name="lpProvider">To be added.</param>
-        <param name="handle">To be added.</param>
-        <param name="lpIDataObject">To be added.</param>
-        <summary>この API は、.NET Framework インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。</summary>
-        <returns>To be added.</returns>
+        <param name="lpProvider"><see cref="T:Microsoft.CLRAdmin.IPropertySheetCallback" /> へのポインター。</param>
+        <param name="handle">通知メッセージを適切な <see cref="T:Microsoft.CLRAdmin.IComponent" /> または <see cref="T:Microsoft.CLRAdmin.IComponentData" /> にルーティングするために使用するハンドル。</param>
+        <param name="lpIDataObject">スコープ項目または結果項目に関するコンテキスト情報を格納しているオブジェクトの <see cref="T:Microsoft.CLRAdmin.IDataObject" /> を指すポインター。</param>
+        <summary>プロパティ シートにページを追加します。</summary>
+        <returns>| 戻り値 | 説明 | | --- | --- | | S\_OK | <see cref="M:Microsoft.CLRAdmin.IExtendPropertySheet.CreatePropertyPages(Microsoft.CLRAdmin.IPropertySheetCallback,System.IntPtr,Microsoft.CLRAdmin.IDataObject)" /> メソッドにより、プロパティ シート ページが正常に追加されました。 | | S\_FALSE | <see cref="M:Microsoft.CLRAdmin.IExtendPropertySheet.CreatePropertyPages(Microsoft.CLRAdmin.IPropertySheetCallback,System.IntPtr,Microsoft.CLRAdmin.IDataObject)" /> メソッドでプロパティ シート ページが追加されませんでした。 | | E\_UNEXPECTED | 予期しないエラーが発生しました。 | | E\_INVALIDARG | 1 つ以上のパラメーターが無効です。 |</returns>
         <remarks>To be added.</remarks>
+        <forInternalUseOnly />
       </Docs>
     </Member>
     <Member MemberName="GetWatermarks">
@@ -75,14 +76,15 @@
         <Parameter Name="bStretch" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="lpIDataObject">To be added.</param>
-        <param name="lphWatermark">To be added.</param>
-        <param name="lphHeader">To be added.</param>
-        <param name="lphPalette">To be added.</param>
-        <param name="bStretch">To be added.</param>
-        <summary>この API は、.NET Framework インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。</summary>
-        <returns>To be added.</returns>
+        <param name="lpIDataObject">スコープ項目または結果項目に関するコンテキスト情報を格納しているオブジェクトの <see cref="T:Microsoft.CLRAdmin.IDataObject" />。</param>
+        <param name="lphWatermark">Wizard 97 ページのウォーターマークとして機能するビットマップを識別するハンドル。</param>
+        <param name="lphHeader">Wizard 97 ページのヘッダーとして機能するビットマップを識別するハンドル。</param>
+        <param name="lphPalette">lphWatermark と lphHeader により指定されたビットマップで使用されるパレットを識別するハンドル。</param>
+        <param name="bStretch">GetWatermarks の戻り値。ウォーターマーク ビットマップおよびヘッダー ビットマップが並べて表示されるのではなく、伸縮される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+        <summary>Wizard 97 スタイルのウィザードとして実装されるウィザード シートのウォーターマーク ビットマップおよびヘッダー ビットマップを取得します。</summary>
+        <returns>| 戻り値 | 説明 | | --- | --- | | etch | ウォーターマーク ビットマップおよびヘッダー ビットマップが並べて表示されるのではなく、伸縮される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 |</returns>
         <remarks>To be added.</remarks>
+        <forInternalUseOnly />
       </Docs>
     </Member>
     <Member MemberName="QueryPagesFor">
@@ -104,10 +106,11 @@
         <Parameter Name="lpDataObject" Type="Microsoft.CLRAdmin.IDataObject" />
       </Parameters>
       <Docs>
-        <param name="lpDataObject">To be added.</param>
-        <summary>この API は、.NET Framework インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。</summary>
-        <returns>To be added.</returns>
+        <param name="lpDataObject">スコープ項目または結果項目に関するコンテキスト情報を格納しているオブジェクトの <see cref="T:Microsoft.CLRAdmin.IDataObject" /> を指すポインター。</param>
+        <summary>オブジェクトにページが必要かどうかを確認します。</summary>
+        <returns>| 戻り値 | 説明 | | --- | --- | | S\_OK | このデータ オブジェクトにプロパティが存在します。 | | E\_UNEXPECTED | 予期しないエラーが発生しました。 | | E\_INVALID | パラメーターが有効ではありません。 | | その他のエラー コード | このデータ オブジェクトには、ページがありません。 |</returns>
         <remarks>To be added.</remarks>
+        <forInternalUseOnly />
       </Docs>
     </Member>
   </Members>

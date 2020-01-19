@@ -1,5 +1,5 @@
 <Type Name="Activator" FullName="System.Activator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="021cbadaa32d2056f3fd7224f72385784c86bdc7" /><Meta Name="ms.sourcegitcommit" Value="367e1eae0725e6da7136cd073aaa856ded5d5c29" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/13/2019" /><Meta Name="ms.locfileid" Value="75024338" /></Metadata><TypeSignature Language="C#" Value="public sealed class Activator : System.Runtime.InteropServices._Activator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="de59f019da85bff1f8225126ab9fa90f64187706" /><Meta Name="ms.sourcegitcommit" Value="19810b7f44c3fa6cc5f0af0391e435c59897b089" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/07/2020" /><Meta Name="ms.locfileid" Value="75707987" /></Metadata><TypeSignature Language="C#" Value="public sealed class Activator : System.Runtime.InteropServices._Activator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Activator extends System.Object implements class System.Runtime.InteropServices._Activator" />
   <TypeSignature Language="DocId" Value="T:System.Activator" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Activator&#xA;Implements _Activator" />
@@ -13,6 +13,7 @@
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
+    <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
   <AssemblyInfo>
     <AssemblyName>mscorlib</AssemblyName>
@@ -125,7 +126,7 @@
       </Parameters>
       <Docs>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <summary>名前を指定したアセンブリ ファイルと、パラメーターなしのコンストラクターを使用して、名前を指定した COM オブジェクトのインスタンスを作成します。</summary>
         <returns>新しく作成されたインスタンスにアクセスするために、ラップを解除する必要があるハンドル。</returns>
         <remarks>
@@ -199,7 +200,7 @@
       </Parameters>
       <Docs>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <param name="hashValue">計算されたハッシュ コードの値。</param>
         <param name="hashAlgorithm">ファイルのハッシュ処理および厳密な名前の生成に使用されるハッシュ アルゴリズム。</param>
         <summary>名前を指定したアセンブリ ファイルと、パラメーターなしのコンストラクターを使用して、名前を指定した COM オブジェクトのインスタンスを作成します。</summary>
@@ -295,6 +296,8 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
+ メソッドは、<xref:System.Nullable%601> インスタンスの `null` を返します。
+
  <xref:System.Runtime.Remoting.ObjectHandle.Unwrap%2A?displayProperty=nameWithType> メソッドを使用して、戻り値のラップを解除します。  
   
  アクティベーションコンテキストは、マニフェストに基づくアクティベーション中に、ドメインポリシーを設定し、アプリケーションベースのセキュリティモデルを提供するために使用されます。 <xref:System.ActivationContext> クラスには、アプリケーションマニフェストへのアクセスを提供する <xref:System.ApplicationIdentity> オブジェクトが含まれています。 詳細については、<xref:System.Security.Policy.ApplicationSecurityManager> クラスを参照してください。  
@@ -321,6 +324,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -354,7 +358,9 @@
   
 ## Remarks  
  呼び出すコンストラクターにアクセスできる必要があります。  
-  
+
+ メソッドは、<xref:System.Nullable%601> インスタンスの `null` を返します。
+
 > [!NOTE]
 >  [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]以降では、呼び出し元に <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> フラグで <xref:System.Security.Permissions.ReflectionPermission> が付与されている場合、および非パブリック型を含むアセンブリの許可セットが呼び出し元の許可セットまたはサブセットに制限されている場合に、このメソッドを使用して非パブリック型にアクセスできます。 (「[リフレクションのセキュリティに関する考慮事項」を](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)参照してください)。  
 >   
@@ -371,7 +377,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> が <see langword="RuntimeType" /> ではありません。  
   
 - または - 
@@ -477,6 +483,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -490,18 +497,20 @@
         <ReturnType>System.Runtime.Remoting.ObjectHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="assemblyName" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="assemblyName" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリの名前。 <paramref name="assemblyName" /> が <see langword="null" /> の場合は、実行中のアセンブリが検索されます。</param>
-        <param name="typeName">必要な型の完全修飾名。</param>
+        <param name="typeName">インスタンスを作成する型の完全修飾名。</param>
         <summary>名前を指定したアセンブリと、パラメーターなしのコンストラクターを使用して、名前を指定した型のインスタンスを作成します。</summary>
         <returns>新しく作成されたインスタンスにアクセスするために、ラップを解除する必要があるハンドル。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
+ メソッドは、<xref:System.Nullable%601> インスタンスの `null` を返します。
+
  戻り値のラップを解除するには、<xref:System.Runtime.Remoting.ObjectHandle.Unwrap%2A?displayProperty=nameWithType> を使用します。  
   
  `assemblyName` には、次のいずれかを指定できます。  
@@ -537,14 +546,14 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.MissingMethodException">一致するパブリック コンストラクターが見つかりませんでした。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typename" /> が <paramref name="assemblyName" /> に見つかりませんでした。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="assemblyName" /> が見つかりませんでした。</exception>
         <exception cref="T:System.MethodAccessException">呼び出し元には、このコンストラクターを呼び出すアクセス許可がありません。</exception>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">リフレクションを通じて呼び出されたコンストラクターが、例外をスローしました。</exception>
-        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" />を通じて COM 型が取得されませんでした。</exception>
+        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" /> を通じて COM 型が取得されませんでした。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.TypedReference" />、<see cref="T:System.ArgIterator" />、<see cref="T:System.Void" />、および <see cref="T:System.RuntimeArgumentHandle" /> 型、またはそれらの型の配列の作成はサポートされていません。</exception>
         <exception cref="T:System.BadImageFormatException"><paramref name="assemblyName" /> は正しいアセンブリではありません。  
   
@@ -571,6 +580,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -588,8 +598,8 @@
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="nonPublic" Type="System.Boolean" Index="1" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="nonPublic" Type="System.Boolean" Index="1" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.5;netstandard-1.6;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="type">作成するオブジェクトの型。</param>
@@ -600,7 +610,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
-  
+
+ メソッドは、<xref:System.Nullable%601> インスタンスの `null` を返します。
+
 > [!NOTE]
 >  [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]以降では、このメソッドを使用して、呼び出し元に <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> フラグで <xref:System.Security.Permissions.ReflectionPermission> が許可されている場合、および非パブリック型とメンバーを含むアセンブリの許可セットが呼び出し元の許可セットまたはサブセットに制限されている場合に、非パブリックな型およびメンバーにアクセスできます。 (「[リフレクションのセキュリティに関する考慮事項」を](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)参照してください)。  
 >   
@@ -608,7 +620,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> が <see langword="RuntimeType" /> ではありません。  
   
 - または - 
@@ -632,10 +644,10 @@
       </Docs>
     </Member>
     <Member MemberName="CreateInstance">
-      <MemberSignature Language="C#" Value="public static object CreateInstance (Type type, params object[] args);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C#" Value="public static object CreateInstance (Type type, params object[] args);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig object CreateInstance(class System.Type type, object[] args) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Activator.CreateInstance(System.Type,System.Object[])" />
-      <MemberSignature Language="C++ CLI" Value="public:&#xA; static System::Object ^ CreateInstance(Type ^ type, ... cli::array &lt;System::Object ^&gt; ^ args);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+      <MemberSignature Language="C++ CLI" Value="public:&#xA; static System::Object ^ CreateInstance(Type ^ type, ... cli::array &lt;System::Object ^&gt; ^ args);" FrameworkAlternate="dotnet-uwp-10.0;netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-1.0;netstandard-1.1;netstandard-1.2;netstandard-1.3;netstandard-1.4;netstandard-1.5;netstandard-1.6;netstandard-2.0;netstandard-2.1;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
       <MemberSignature Language="F#" Value="static member CreateInstance : Type * obj[] -&gt; obj" Usage="System.Activator.CreateInstance (type, args)" />
       <MemberSignature Language="C#" Value="public static object CreateInstance (Type type, object[] args);" FrameworkAlternate="netframework-1.1" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static System::Object ^ CreateInstance(Type ^ type, cli::array &lt;System::Object ^&gt; ^ args);" FrameworkAlternate="netframework-1.1" />
@@ -648,6 +660,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -690,6 +703,8 @@
 ## Remarks  
  呼び出されるコンストラクターはアクセス可能である必要があり、指定された引数リストと最も限定的な一致を提供する必要があります。  
   
+ メソッドは、値のない <xref:System.Nullable%601> インスタンスの `null` を返します。
+ 
 > [!NOTE]
 >  [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]以降では、呼び出し元に <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> フラグで <xref:System.Security.Permissions.ReflectionPermission> が付与されている場合、および非パブリック型を含むアセンブリの許可セットが呼び出し元の許可セットまたはサブセットに制限されている場合に、このメソッドを使用して非パブリック型にアクセスできます。 (「[リフレクションのセキュリティに関する考慮事項」を](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)参照してください)。  
 >   
@@ -710,7 +725,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> が <see langword="RuntimeType" /> ではありません。  
   
 - または - 
@@ -786,13 +801,15 @@
       <Docs>
         <param name="domain"><paramref name="typeName" /> という名前の型が作成されるリモート ドメイン。</param>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリの名前。 <paramref name="assemblyName" /> が <see langword="null" /> の場合は、実行中のアセンブリが検索されます。</param>
-        <param name="typeName">必要な型の完全修飾名。</param>
+        <param name="typeName">インスタンスを作成する型の完全修飾名。</param>
         <summary>名前を指定したアセンブリとパラメーターなしのコンストラクターを使用して、指定したリモート ドメインに、名前を指定した型のインスタンスを作成します。</summary>
         <returns>新しく作成されたインスタンスにアクセスするために、ラップを解除する必要があるハンドル。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
+ メソッドは、<xref:System.Nullable%601> インスタンスの `null` を返します。
+
  <xref:System.Activator.CreateInstance%2A> は、セキュリティアクセス許可が制限されたアプリケーションドメインでホストがコードを実行する必要がある場合に使用します。  
   
  戻り値のラップを解除するには、<xref:System.Runtime.Remoting.ObjectHandle.Unwrap%2A?displayProperty=nameWithType> を使用します。  
@@ -813,7 +830,7 @@
   
  このメンバーは、遅延バインディング メカニズムで呼び出されました。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">リフレクションを通じて呼び出されたコンストラクターが、例外をスローしました。</exception>
-        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" />を通じて COM 型が取得されませんでした。</exception>
+        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" /> を通じて COM 型が取得されませんでした。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.TypedReference" />、<see cref="T:System.ArgIterator" />、<see cref="T:System.Void" />、および <see cref="T:System.RuntimeArgumentHandle" /> 型、またはそれらの型の配列の作成はサポートされていません。</exception>
         <exception cref="T:System.BadImageFormatException"><paramref name="assemblyName" /> は正しいアセンブリではありません。  
   
@@ -847,6 +864,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -860,13 +878,13 @@
         <ReturnType>System.Runtime.Remoting.ObjectHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="assemblyName" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="activationAttributes" Type="System.Object[]" Index="2" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="assemblyName" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="activationAttributes" Type="System.Object[]" Index="2" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリの名前。 <paramref name="assemblyName" /> が <see langword="null" /> の場合は、実行中のアセンブリが検索されます。</param>
-        <param name="typeName">必要な型の完全修飾名。</param>
+        <param name="typeName">インスタンスを作成する型の完全修飾名。</param>
         <param name="activationAttributes">アクティべーションに参加できる 1 つ以上の属性の配列。 これは、通常、リモート オブジェクトをアクティブ化するために必要な URL を指定する 1 つの <see cref="T:System.Runtime.Remoting.Activation.UrlAttribute" /> オブジェクトを含む配列です。  
   
 このパラメーターは、クライアント側でアクティブ化されるオブジェクトに関連しています。 クライアント アクティベーションは、下位互換性のために残されているレガシ テクノロジです。新規の開発には使用しないでください。 分散アプリケーションは、代わりに Windows Communication Foundation (WCF) を使用する必要があります。</param>
@@ -876,6 +894,8 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
+ メソッドは、<xref:System.Nullable%601> インスタンスの `null` を返します。
+
  戻り値のラップを解除するには、<xref:System.Runtime.Remoting.ObjectHandle.Unwrap%2A?displayProperty=nameWithType> を使用します。  
   
 > [!NOTE]
@@ -885,7 +905,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.MissingMethodException">一致するパブリック コンストラクターが見つかりませんでした。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typename" /> が <paramref name="assemblyName" /> に見つかりませんでした。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="assemblyName" /> が見つかりませんでした。</exception>
@@ -938,6 +958,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -948,9 +969,9 @@
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="args" Type="System.Object[]" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="activationAttributes" Type="System.Object[]" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="args" Type="System.Object[]" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="activationAttributes" Type="System.Object[]" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="type">作成するオブジェクトの型。</param>
@@ -966,6 +987,8 @@
 ## Remarks  
  呼び出されるコンストラクターはアクセス可能である必要があり、指定された引数リストと最も限定的な一致を提供する必要があります。  
   
+ メソッドは、値のない <xref:System.Nullable%601> インスタンスの `null` を返します。
+ 
 > [!NOTE]
 >  [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]以降では、呼び出し元に <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> フラグで <xref:System.Security.Permissions.ReflectionPermission> が付与されている場合、および非パブリック型を含むアセンブリの許可セットが呼び出し元の許可セットまたはサブセットに制限されている場合に、このメソッドを使用して非パブリック型にアクセスできます。 (「[リフレクションのセキュリティに関する考慮事項」を](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)参照してください)。  
 >   
@@ -973,7 +996,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> が <see langword="RuntimeType" /> ではありません。  
   
 - または - 
@@ -1025,6 +1048,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0">
@@ -1035,11 +1059,11 @@
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="binder" Type="System.Reflection.Binder" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="args" Type="System.Object[]" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="culture" Type="System.Globalization.CultureInfo" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="binder" Type="System.Reflection.Binder" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="args" Type="System.Object[]" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="culture" Type="System.Globalization.CultureInfo" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="type">作成するオブジェクトの型。</param>
@@ -1055,6 +1079,8 @@
 ## Remarks  
  呼び出されるコンストラクターは、指定されたバインダーおよびバインド属性の制約の下で、指定された引数リストと最も限定的な一致を提供する必要があります。  
   
+  メソッドは、値のない <xref:System.Nullable%601> インスタンスの `null` を返します。
+ 
 > [!NOTE]
 >  [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]以降では、このメソッドを使用して、呼び出し元に <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> フラグで <xref:System.Security.Permissions.ReflectionPermission> が許可されている場合、および非パブリック型とメンバーを含むアセンブリの許可セットが呼び出し元の許可セットまたはサブセットに制限されている場合に、非パブリックな型およびメンバーにアクセスできます。 (「[リフレクションのセキュリティに関する考慮事項」を](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)参照してください)。  
 >   
@@ -1062,7 +1088,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> が <see langword="RuntimeType" /> ではありません。  
   
 - または - 
@@ -1111,6 +1137,7 @@
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netframework-4.8">
@@ -1121,12 +1148,12 @@
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="binder" Type="System.Reflection.Binder" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="args" Type="System.Object[]" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="culture" Type="System.Globalization.CultureInfo" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
-        <Parameter Name="activationAttributes" Type="System.Object[]" Index="5" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1" />
+        <Parameter Name="type" Type="System.Type" Index="0" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="1" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="binder" Type="System.Reflection.Binder" Index="2" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="args" Type="System.Object[]" Index="3" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="culture" Type="System.Globalization.CultureInfo" Index="4" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
+        <Parameter Name="activationAttributes" Type="System.Object[]" Index="5" FrameworkAlternate="netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;netstandard-2.0;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netstandard-2.1;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="type">作成するオブジェクトの型。</param>
@@ -1145,6 +1172,8 @@
 ## Remarks  
  呼び出されるコンストラクターは、指定されたバインダーおよびバインド属性の制約の下で、指定された引数リストと最も限定的な一致を提供する必要があります。  
   
+ メソッドは、値のない <xref:System.Nullable%601> インスタンスの `null` を返します。
+ 
 > [!NOTE]
 >  [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]以降では、このメソッドを使用して、呼び出し元に <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> フラグで <xref:System.Security.Permissions.ReflectionPermission> が許可されている場合、および非パブリック型とメンバーの許可セットが呼び出し元の許可セットまたはサブセットに制限されている場合に、非パブリックな型およびメンバーにアクセスできます。 (「[リフレクションのセキュリティに関する考慮事項」を](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)参照してください)。  
 >   
@@ -1152,7 +1181,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> が <see langword="RuntimeType" /> ではありません。  
   
 - または - 
@@ -1196,6 +1225,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1209,18 +1239,18 @@
         <ReturnType>System.Runtime.Remoting.ObjectHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="assemblyName" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="ignoreCase" Type="System.Boolean" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="3" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="binder" Type="System.Reflection.Binder" Index="4" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="args" Type="System.Object[]" Index="5" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="culture" Type="System.Globalization.CultureInfo" Index="6" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="activationAttributes" Type="System.Object[]" Index="7" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="assemblyName" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="ignoreCase" Type="System.Boolean" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="3" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="binder" Type="System.Reflection.Binder" Index="4" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="args" Type="System.Object[]" Index="5" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="culture" Type="System.Globalization.CultureInfo" Index="6" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="activationAttributes" Type="System.Object[]" Index="7" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリの名前。 <paramref name="assemblyName" /> が <see langword="null" /> の場合は、実行中のアセンブリが検索されます。</param>
-        <param name="typeName">必要な型の完全修飾名。</param>
+        <param name="typeName">インスタンスを作成する型の完全修飾名。</param>
         <param name="ignoreCase"><paramref name="typeName" /> の検索で大文字と小文字を区別しない場合は <see langword="true" />。検索で大文字と小文字を区別する場合は <see langword="false" />。</param>
         <param name="bindingAttr"><paramref name="typeName" /> コンストラクターの検索に影響を与える 0 個以上のビット フラグの組み合わせ。 <paramref name="bindingAttr" /> が 0 の場合は、大文字と小文字を区別してパブリック コンストラクターを検索します。</param>
         <param name="binder"><paramref name="bindingAttr" /> および <paramref name="args" /> を使用して <paramref name="typeName" /> コンストラクターをシークおよび識別するオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
@@ -1237,6 +1267,8 @@
 ## Remarks  
  戻り値のラップを解除するには、<xref:System.Runtime.Remoting.ObjectHandle.Unwrap%2A?displayProperty=nameWithType> を使用します。  
   
+ メソッドは、値のない <xref:System.Nullable%601> インスタンスの `null` を返します。
+ 
 > [!NOTE]
 >  [!INCLUDE[net_v20sp1_long](~/includes/net-v20sp1-long-md.md)]以降では、このメソッドを使用して、呼び出し元に <xref:System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess?displayProperty=nameWithType> フラグで <xref:System.Security.Permissions.ReflectionPermission> が許可されている場合、および非パブリック型とメンバーを含むアセンブリの許可セットが呼び出し元の許可セットまたはサブセットに制限されている場合に、非パブリックな型とメンバーを作成できます。 (「[リフレクションのセキュリティに関する考慮事項」を](~/docs/framework/reflection-and-codedom/security-considerations-for-reflection.md)参照してください)。  
 >   
@@ -1244,14 +1276,14 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.MissingMethodException">一致するコンストラクターが見つかりませんでした。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typename" /> が <paramref name="assemblyName" /> に見つかりませんでした。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="assemblyName" /> が見つかりませんでした。</exception>
         <exception cref="T:System.MethodAccessException">呼び出し元には、このコンストラクターを呼び出すアクセス許可がありません。</exception>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">リフレクションを通じて呼び出されたコンストラクターが、例外をスローしました。</exception>
-        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" />を通じて COM 型が取得されませんでした。</exception>
+        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" /> を通じて COM 型が取得されませんでした。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.TypedReference" />、<see cref="T:System.ArgIterator" />、<see cref="T:System.Void" />、および <see cref="T:System.RuntimeArgumentHandle" /> 型、またはそれらの型の配列の作成はサポートされていません。  
   
 - または - 
@@ -1312,7 +1344,7 @@
       <Docs>
         <param name="domain"><paramref name="typeName" /> という名前の型が作成されるドメイン。</param>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリの名前。 <paramref name="assemblyName" /> が <see langword="null" /> の場合は、実行中のアセンブリが検索されます。</param>
-        <param name="typeName">必要な型の完全修飾名。</param>
+        <param name="typeName">インスタンスを作成する型の完全修飾名。</param>
         <param name="ignoreCase"><paramref name="typeName" /> の検索で大文字と小文字を区別しない場合は <see langword="true" />。検索で大文字と小文字を区別する場合は <see langword="false" />。</param>
         <param name="bindingAttr"><paramref name="typeName" /> コンストラクターの検索に影響を与える 0 個以上のビット フラグの組み合わせ。 <paramref name="bindingAttr" /> が 0 の場合は、大文字と小文字を区別してパブリック コンストラクターを検索します。</param>
         <param name="binder"><paramref name="bindingAttr" /> および <paramref name="args" /> を使用して <paramref name="typeName" /> コンストラクターをシークおよび識別するオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
@@ -1329,6 +1361,8 @@
 ## Remarks  
  <xref:System.Activator.CreateInstance%2A> は、セキュリティアクセス許可が制限されたアプリケーションドメインでホストがコードを実行する必要がある場合に使用します。  
   
+ メソッドは、値のない <xref:System.Nullable%601> インスタンスの `null` を返します。
+
  戻り値のラップを解除するには、<xref:System.Runtime.Remoting.ObjectHandle.Unwrap%2A?displayProperty=nameWithType> を使用します。  
   
 > [!NOTE]
@@ -1343,7 +1377,7 @@
         <exception cref="T:System.MethodAccessException">呼び出し元には、このコンストラクターを呼び出すアクセス許可がありません。</exception>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">リフレクションを通じて呼び出されたコンストラクターが、例外をスローしました。</exception>
-        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" />を通じて COM 型が取得されませんでした。</exception>
+        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" /> を通じて COM 型が取得されませんでした。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.TypedReference" />、<see cref="T:System.ArgIterator" />、<see cref="T:System.Void" />、および <see cref="T:System.RuntimeArgumentHandle" /> 型、またはそれらの型の配列の作成はサポートされていません。  
   
 - または - 
@@ -1409,7 +1443,7 @@
       </Parameters>
       <Docs>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリの名前。 <paramref name="assemblyName" /> が <see langword="null" /> の場合は、実行中のアセンブリが検索されます。</param>
-        <param name="typeName">必要な型の完全修飾名。</param>
+        <param name="typeName">インスタンスを作成する型の完全修飾名。</param>
         <param name="ignoreCase"><paramref name="typeName" /> の検索で大文字と小文字を区別しない場合は <see langword="true" />。検索で大文字と小文字を区別する場合は <see langword="false" />。</param>
         <param name="bindingAttr"><paramref name="typeName" /> コンストラクターの検索に影響を与える 0 個以上のビット フラグの組み合わせ。 <paramref name="bindingAttr" /> が 0 の場合は、大文字と小文字を区別してパブリック コンストラクターを検索します。</param>
         <param name="binder"><paramref name="bindingAttr" /> および <paramref name="args" /> を使用して <paramref name="typeName" /> コンストラクターをシークおよび識別するオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
@@ -1425,6 +1459,8 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
+ メソッドは、値のない <xref:System.Nullable%601> インスタンスの `null` を返します。
+
  戻り値のラップを解除するには、<xref:System.Runtime.Remoting.ObjectHandle.Unwrap%2A?displayProperty=nameWithType> を使用します。  
   
 > [!NOTE]
@@ -1434,14 +1470,14 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.MissingMethodException">一致するコンストラクターが見つかりませんでした。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typename" /> が <paramref name="assemblyName" /> に見つかりませんでした。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="assemblyName" /> が見つかりませんでした。</exception>
         <exception cref="T:System.MethodAccessException">呼び出し元には、このコンストラクターを呼び出すアクセス許可がありません。</exception>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">リフレクションを通じて呼び出されたコンストラクターが、例外をスローしました。</exception>
-        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" />を通じて COM 型が取得されませんでした。</exception>
+        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" /> を通じて COM 型が取得されませんでした。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.TypedReference" />、<see cref="T:System.ArgIterator" />、<see cref="T:System.Void" />、および <see cref="T:System.RuntimeArgumentHandle" /> 型、またはそれらの型の配列の作成はサポートされていません。  
   
 - または - 
@@ -1507,7 +1543,7 @@
       <Docs>
         <param name="domain"><paramref name="typeName" /> という名前の型が作成されるドメイン。</param>
         <param name="assemblyName"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリの名前。 <paramref name="assemblyName" /> が <see langword="null" /> の場合は、実行中のアセンブリが検索されます。</param>
-        <param name="typeName">必要な型の完全修飾名。</param>
+        <param name="typeName">インスタンスを作成する型の完全修飾名。</param>
         <param name="ignoreCase"><paramref name="typeName" /> の検索で大文字と小文字を区別しない場合は <see langword="true" />。検索で大文字と小文字を区別する場合は <see langword="false" />。</param>
         <param name="bindingAttr"><paramref name="typeName" /> コンストラクターの検索に影響を与える 0 個以上のビット フラグの組み合わせ。 <paramref name="bindingAttr" /> が 0 の場合は、大文字と小文字を区別してパブリック コンストラクターを検索します。</param>
         <param name="binder"><paramref name="bindingAttr" /> および <paramref name="args" /> を使用して <paramref name="typeName" /> コンストラクターをシークおよび識別するオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
@@ -1521,6 +1557,8 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
+ メソッドは、値のない <xref:System.Nullable%601> インスタンスの `null` を返します。
+
  <xref:System.Activator.CreateInstance%2A> は、セキュリティアクセス許可が制限されたアプリケーションドメインでホストがコードを実行する必要がある場合に使用します。  
   
  戻り値のラップを解除するには、<xref:System.Runtime.Remoting.ObjectHandle.Unwrap%2A?displayProperty=nameWithType> を使用します。  
@@ -1537,7 +1575,7 @@
         <exception cref="T:System.MethodAccessException">呼び出し元には、このコンストラクターを呼び出すアクセス許可がありません。</exception>
         <exception cref="T:System.MemberAccessException">抽象クラスのインスタンスを作成することができないか、またはこのメンバーは遅延バインド メカニズムで呼び出されました。</exception>
         <exception cref="T:System.Reflection.TargetInvocationException">リフレクションを通じて呼び出されたコンストラクターが、例外をスローしました。</exception>
-        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" />を通じて COM 型が取得されませんでした。</exception>
+        <exception cref="T:System.Runtime.InteropServices.InvalidComObjectException"><see cref="Overload:System.Type.GetTypeFromProgID" /> または <see cref="Overload:System.Type.GetTypeFromCLSID" /> を通じて COM 型が取得されませんでした。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.TypedReference" />、<see cref="T:System.ArgIterator" />、<see cref="T:System.Void" />、および <see cref="T:System.RuntimeArgumentHandle" /> 型、またはそれらの型の配列の作成はサポートされていません。  
   
 - または - 
@@ -1575,6 +1613,7 @@
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.0.0</AssemblyVersion>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>mscorlib</AssemblyName>
@@ -1657,6 +1696,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1670,12 +1710,12 @@
         <ReturnType>System.Runtime.Remoting.ObjectHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="assemblyFile" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="assemblyFile" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="assemblyFile"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <summary>名前を指定したアセンブリ ファイルと、パラメーターなしのコンストラクターを使用して、名前を指定した型のインスタンスを作成します。</summary>
         <returns>新しく作成されたインスタンスにアクセスするために、ラップを解除する必要があるハンドル。</returns>
         <remarks>
@@ -1697,7 +1737,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.MissingMethodException">一致するパブリック コンストラクターが見つかりませんでした。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typename" /> が <paramref name="assemblyFile" /> に見つかりませんでした。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="assemblyFile" /> が見つかりませんでした。</exception>
@@ -1750,7 +1790,7 @@
       <Docs>
         <param name="domain"><paramref name="typeName" /> という名前の型が作成されるリモート ドメイン。</param>
         <param name="assemblyFile"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <summary>名前を指定したアセンブリ ファイルとパラメーターなしのコンストラクターを使用して、指定したリモート ドメインに、名前を指定した型のインスタンスを作成します。</summary>
         <returns>新しく作成されたインスタンスにアクセスするために、ラップを解除する必要があるハンドル。</returns>
         <remarks>
@@ -1803,6 +1843,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1816,13 +1857,13 @@
         <ReturnType>System.Runtime.Remoting.ObjectHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="assemblyFile" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="activationAttributes" Type="System.Object[]" Index="2" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="assemblyFile" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="activationAttributes" Type="System.Object[]" Index="2" FrameworkAlternate="netcore-3.0;netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="assemblyFile"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <param name="activationAttributes">アクティべーションに参加できる 1 つ以上の属性の配列。 これは、通常、リモート オブジェクトをアクティブ化するために必要な URL を指定する 1 つの <see cref="T:System.Runtime.Remoting.Activation.UrlAttribute" /> オブジェクトを含む配列です。  
   
 このパラメーターは、クライアント側でアクティブ化されるオブジェクトに関連しています。 クライアント アクティベーションは、下位互換性のために残されているレガシ テクノロジです。新規の開発には使用しないでください。 分散アプリケーションは、代わりに Windows Communication Foundation (WCF) を使用する必要があります。</param>
@@ -1838,7 +1879,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.MissingMethodException">一致するパブリック コンストラクターが見つかりませんでした。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typename" /> が <paramref name="assemblyFile" /> に見つかりませんでした。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="assemblyFile" /> が見つかりませんでした。</exception>
@@ -1871,6 +1912,7 @@
       <AssemblyInfo>
         <AssemblyName>System.Runtime</AssemblyName>
         <AssemblyVersion>4.2.1.0</AssemblyVersion>
+        <AssemblyVersion>4.2.2.0</AssemblyVersion>
       </AssemblyInfo>
       <AssemblyInfo>
         <AssemblyName>netstandard</AssemblyName>
@@ -1879,18 +1921,18 @@
         <ReturnType>System.Runtime.Remoting.ObjectHandle</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="assemblyFile" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="ignoreCase" Type="System.Boolean" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="3" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="binder" Type="System.Reflection.Binder" Index="4" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="args" Type="System.Object[]" Index="5" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="culture" Type="System.Globalization.CultureInfo" Index="6" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
-        <Parameter Name="activationAttributes" Type="System.Object[]" Index="7" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
+        <Parameter Name="assemblyFile" Type="System.String" Index="0" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="typeName" Type="System.String" Index="1" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="ignoreCase" Type="System.Boolean" Index="2" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="bindingAttr" Type="System.Reflection.BindingFlags" Index="3" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="binder" Type="System.Reflection.Binder" Index="4" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="args" Type="System.Object[]" Index="5" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="culture" Type="System.Globalization.CultureInfo" Index="6" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
+        <Parameter Name="activationAttributes" Type="System.Object[]" Index="7" FrameworkAlternate="netcore-3.0;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0;netcore-3.1" />
       </Parameters>
       <Docs>
         <param name="assemblyFile"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <param name="ignoreCase"><paramref name="typeName" /> の検索で大文字と小文字を区別しない場合は <see langword="true" />。検索で大文字と小文字を区別する場合は <see langword="false" />。</param>
         <param name="bindingAttr"><paramref name="typeName" /> コンストラクターの検索に影響を与える 0 個以上のビット フラグの組み合わせ。 <paramref name="bindingAttr" /> が 0 の場合は、大文字と小文字を区別してパブリック コンストラクターを検索します。</param>
         <param name="binder"><paramref name="bindingAttr" /> および <paramref name="args" /> を使用して <paramref name="typeName" /> コンストラクターをシークおよび識別するオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
@@ -1911,7 +1953,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.MissingMethodException">一致するコンストラクターが見つかりませんでした。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typename" /> が <paramref name="assemblyFile" /> に見つかりませんでした。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="assemblyFile" /> が見つかりませんでした。</exception>
@@ -1969,7 +2011,7 @@
       <Docs>
         <param name="domain"><paramref name="typeName" /> という名前の型が作成されるリモート ドメイン。</param>
         <param name="assemblyFile"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <param name="ignoreCase"><paramref name="typeName" /> の検索で大文字と小文字を区別しない場合は <see langword="true" />。検索で大文字と小文字を区別する場合は <see langword="false" />。</param>
         <param name="bindingAttr"><paramref name="typeName" /> コンストラクターの検索に影響を与える 0 個以上のビット フラグの組み合わせ。 <paramref name="bindingAttr" /> が 0 の場合は、大文字と小文字を区別してパブリック コンストラクターを検索します。</param>
         <param name="binder"><paramref name="bindingAttr" /> および <paramref name="args" /> を使用して <paramref name="typeName" /> コンストラクターをシークおよび識別するオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
@@ -2052,7 +2094,7 @@
       </Parameters>
       <Docs>
         <param name="assemblyFile"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <param name="ignoreCase"><paramref name="typeName" /> の検索で大文字と小文字を区別しない場合は <see langword="true" />。検索で大文字と小文字を区別する場合は <see langword="false" />。</param>
         <param name="bindingAttr"><paramref name="typeName" /> コンストラクターの検索に影響を与える 0 個以上のビット フラグの組み合わせ。 <paramref name="bindingAttr" /> が 0 の場合は、大文字と小文字を区別してパブリック コンストラクターを検索します。</param>
         <param name="binder"><paramref name="bindingAttr" /> および <paramref name="args" /> を使用して <paramref name="typeName" /> コンストラクターをシークおよび識別するオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>
@@ -2074,7 +2116,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="typeName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.MissingMethodException">一致するコンストラクターが見つかりませんでした。</exception>
         <exception cref="T:System.TypeLoadException"><paramref name="typename" /> が <paramref name="assemblyFile" /> に見つかりませんでした。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><paramref name="assemblyFile" /> が見つかりませんでした。</exception>
@@ -2137,7 +2179,7 @@
       <Docs>
         <param name="domain"><paramref name="typeName" /> という名前の型が作成されるリモート ドメイン。</param>
         <param name="assemblyFile"><paramref name="typeName" /> という名前の型をシークする場所となるアセンブリが含まれているファイルの名前。</param>
-        <param name="typeName">推奨される型の名前。</param>
+        <param name="typeName">インスタンスを作成する型の名前。</param>
         <param name="ignoreCase"><paramref name="typeName" /> の検索で大文字と小文字を区別しない場合は <see langword="true" />。検索で大文字と小文字を区別する場合は <see langword="false" />。</param>
         <param name="bindingAttr"><paramref name="typeName" /> コンストラクターの検索に影響を与える 0 個以上のビット フラグの組み合わせ。 <paramref name="bindingAttr" /> が 0 の場合は、大文字と小文字を区別してパブリック コンストラクターを検索します。</param>
         <param name="binder"><paramref name="bindingAttr" /> および <paramref name="args" /> を使用して <paramref name="typeName" /> コンストラクターをシークおよび識別するオブジェクト。 <paramref name="binder" /> が <see langword="null" /> の場合は、既定のバインダーが使用されます。</param>

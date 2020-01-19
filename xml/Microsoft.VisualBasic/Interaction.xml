@@ -1,5 +1,5 @@
 <Type Name="Interaction" FullName="Microsoft.VisualBasic.Interaction">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9e9ba0548c86abc96d8c1797f85c3c8fbd95022f" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72404696" /></Metadata><TypeSignature Language="C#" Value="public sealed class Interaction" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cbadf821a0b117798331b93eb4a4229257483bee" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75156139" /></Metadata><TypeSignature Language="C#" Value="public sealed class Interaction" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Interaction extends System.Object" />
   <TypeSignature Language="DocId" Value="T:Microsoft.VisualBasic.Interaction" />
   <TypeSignature Language="VB.NET" Value="Public Module Interaction" />
@@ -14,6 +14,7 @@
   <AssemblyInfo>
     <AssemblyName>Microsoft.VisualBasic.Core</AssemblyName>
     <AssemblyVersion>10.0.4.0</AssemblyVersion>
+    <AssemblyVersion>10.0.5.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -93,23 +94,23 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 を使用して、アプリケーションのアクティブなウィンドウをフォーカスさせることができます。 アクティブウィンドウへのハンドルや参照がない場合や、特定の時点でアクティブになっているウィンドウがわかっている場合があります。 このような場合は、<xref:System.Windows.Forms.Control.Focus%2A> メソッドを使用することはできません。  
+ `AppActivate` を使用して、アプリケーションのアクティブなウィンドウをフォーカスさせることができます。 アクティブウィンドウへのハンドルや参照がない場合や、特定の時点でアクティブになっているウィンドウがわかっている場合があります。 このような場合、<xref:System.Windows.Forms.Control.Focus%2A> メソッドを使用することはできません。  
   
- @No__t-0 関数は、指定されたアプリケーションまたはウィンドウにフォーカスを変更しますが、最大化または最小化されているかどうかには影響しません。 フォーカスを変更したりウィンドウを閉じたりするためにユーザーが何らかの操作を実行すると、アクティブ化されたアプリケーションウィンドウからフォーカスが移動します。 @No__t-0 関数を使用すると、アプリケーションを起動し、ウィンドウのスタイルを設定できます。  
+ `AppActivate` 関数は、フォーカスを名前付きのアプリケーションまたはウィンドウに変更しますが、最大化または最小化されているかどうかには影響しません。 フォーカスを変更したりウィンドウを閉じたりするためにユーザーが何らかの操作を実行すると、アクティブ化されたアプリケーションウィンドウからフォーカスが移動します。 `Shell` 関数を使用すると、アプリケーションを起動し、ウィンドウのスタイルを設定できます。  
   
- @No__t-0 パラメーターを使用する場合、`AppActivate` では大文字と小文字を区別しない比較が使用されますが、それ以外の場合はタイトルバーの内容と完全に一致する必要があります。 最初にトップレベルウィンドウを参照し、次に子ウィンドウを表示します。 一致するものが見つからない場合は、<xref:System.ArgumentException> がスローされます。  
+ `Title` パラメーターを使用する場合、`AppActivate` では大文字と小文字を区別しない比較が使用されますが、それ以外の場合はタイトルバーの内容と完全に一致する必要があります。 最初にトップレベルウィンドウを参照し、次に子ウィンドウを表示します。 一致するものが見つからない場合は、<xref:System.ArgumentException>をスローします。  
   
- @No__t-0 は、windows を所有するプロセスでのみ使用できます。 ほとんどのコンソールアプリケーションは、windows を所有していません。これは、@no__t が検索するプロセスの一覧に表示されないことを意味します。 コンソールアプリケーションから実行する場合、システムは、アプリケーションを実行するための個別のプロセスを作成し、出力をコンソールプロセスに返します。 その結果、現在のプロセス ID を要求すると、コンソールアプリケーションのプロセス ID ではなく、このプロセスのプロセス ID が取得されます。  
+ `AppActivate` は、windows を所有するプロセスでのみ使用できます。 ほとんどのコンソールアプリケーションは、windows を所有していません。つまり、検索を `AppActivate` プロセスの一覧には表示されません。 コンソールアプリケーションから実行する場合、システムは、アプリケーションを実行するための個別のプロセスを作成し、出力をコンソールプロセスに返します。 その結果、現在のプロセス ID を要求すると、コンソールアプリケーションのプロセス ID ではなく、このプロセスのプロセス ID が取得されます。  
   
- 実行時に `AppActivate` 関数は、実行中のすべてのアプリケーションを、`Title` と一致するタイトル、または `ProcessId` に一致するプロセス ID でアクティブ化します。 完全に一致するものがない場合は、タイトル文字列の末尾が `Title` であるすべてのアプリケーションがアクティブ化されます。 @No__t-0 という名前のアプリケーションが複数ある場合、`AppActivate` の関数は、アクティブ化するアプリケーションを任意に選択します。  
+ 実行時に `AppActivate` 関数は、`Title` に一致するタイトルまたは `ProcessId`に一致するプロセス ID を持つ実行中のアプリケーションをアクティブ化します。 完全に一致するものがない場合は、タイトル文字列の末尾が `Title`であるすべてのアプリケーションがアクティブ化されます。 `Title`という名前のアプリケーションが複数ある場合、`AppActivate` 関数は、アクティブ化するアプリケーションを任意に選択します。  
   
 > [!NOTE]
->  @No__t-0 関数には @no__t 2 レベルの `UIPermission` が必要です。これは、部分信頼状況での実行に影響を与える可能性があります。 詳細については、「<xref:System.Security.Permissions.UIPermission>」を参照してください。  
+>  `AppActivate` 関数は、部分信頼状況での実行に影響する可能性がある <xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows> レベルで `UIPermission` を必要とします。 詳細については、「<xref:System.Security.Permissions.UIPermission>」を参照してください。  
   
    
   
 ## Examples  
- この例では、`AppActivate` 関数を使用してアプリケーションウィンドウをアクティブ化する方法を示します。 メモ帳のプロセスが実行されていない場合、この例では <xref:System.ArgumentException> がスローされます。 @No__t-0 の手順では、アプリケーションが指定されたパスにあることを前提としています。  
+ この例は、アプリケーションウィンドウをアクティブ化するための `AppActivate` 関数のさまざまな用途を示しています。 メモ帳のプロセスが実行されていない場合、この例では <xref:System.ArgumentException>がスローされます。 `Shell` の手順では、アプリケーションが指定されたパスにあることを前提としています。  
   
  [!code-vb[VbVbalrCatRef#11](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#11)]  
   
@@ -156,23 +157,23 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 を使用して、アプリケーションのアクティブなウィンドウをフォーカスさせることができます。 アクティブウィンドウへのハンドルや参照がない場合や、特定の時点でアクティブになっているウィンドウがわかっている場合があります。 このような場合は、<xref:System.Windows.Forms.Control.Focus%2A> メソッドを使用することはできません。  
+ `AppActivate` を使用して、アプリケーションのアクティブなウィンドウをフォーカスさせることができます。 アクティブウィンドウへのハンドルや参照がない場合や、特定の時点でアクティブになっているウィンドウがわかっている場合があります。 このような場合、<xref:System.Windows.Forms.Control.Focus%2A> メソッドを使用することはできません。  
   
- @No__t-0 関数は、指定されたアプリケーションまたはウィンドウにフォーカスを変更しますが、最大化または最小化されているかどうかには影響しません。 フォーカスを変更したりウィンドウを閉じたりするためにユーザーが何らかの操作を実行すると、アクティブ化されたアプリケーションウィンドウからフォーカスが移動します。 @No__t-0 関数を使用すると、アプリケーションを起動し、ウィンドウのスタイルを設定できます。  
+ `AppActivate` 関数は、フォーカスを名前付きのアプリケーションまたはウィンドウに変更しますが、最大化または最小化されているかどうかには影響しません。 フォーカスを変更したりウィンドウを閉じたりするためにユーザーが何らかの操作を実行すると、アクティブ化されたアプリケーションウィンドウからフォーカスが移動します。 `Shell` 関数を使用すると、アプリケーションを起動し、ウィンドウのスタイルを設定できます。  
   
- @No__t-0 パラメーターを使用する場合、`AppActivate` では大文字と小文字を区別しない比較が使用されますが、それ以外の場合はタイトルバーの内容と完全に一致する必要があります。 最初にトップレベルウィンドウを参照し、次に子ウィンドウを表示します。 一致するものが見つからない場合は、<xref:System.ArgumentException> がスローされます。  
+ `Title` パラメーターを使用する場合、`AppActivate` では大文字と小文字を区別しない比較が使用されますが、それ以外の場合はタイトルバーの内容と完全に一致する必要があります。 最初にトップレベルウィンドウを参照し、次に子ウィンドウを表示します。 一致するものが見つからない場合は、<xref:System.ArgumentException>をスローします。  
   
- @No__t-0 は、windows を所有するプロセスでのみ使用できます。 ほとんどのコンソールアプリケーションは、windows を所有していません。これは、@no__t が検索するプロセスの一覧に表示されないことを意味します。 コンソールアプリケーションから実行する場合、システムは、アプリケーションを実行するための個別のプロセスを作成し、出力をコンソールプロセスに返します。 その結果、現在のプロセス ID を要求すると、コンソールアプリケーションのプロセス ID ではなく、このプロセスのプロセス ID が取得されます。  
+ `AppActivate` は、windows を所有するプロセスでのみ使用できます。 ほとんどのコンソールアプリケーションは、windows を所有していません。つまり、検索を `AppActivate` プロセスの一覧には表示されません。 コンソールアプリケーションから実行する場合、システムは、アプリケーションを実行するための個別のプロセスを作成し、出力をコンソールプロセスに返します。 その結果、現在のプロセス ID を要求すると、コンソールアプリケーションのプロセス ID ではなく、このプロセスのプロセス ID が取得されます。  
   
- 実行時に `AppActivate` 関数は、実行中のすべてのアプリケーションを、`Title` と一致するタイトル、または `ProcessId` に一致するプロセス ID でアクティブ化します。 完全に一致するものがない場合は、タイトル文字列の末尾が `Title` であるすべてのアプリケーションがアクティブ化されます。 @No__t-0 という名前のアプリケーションが複数ある場合、`AppActivate` の関数は、アクティブ化するアプリケーションを任意に選択します。  
+ 実行時に `AppActivate` 関数は、`Title` に一致するタイトルまたは `ProcessId`に一致するプロセス ID を持つ実行中のアプリケーションをアクティブ化します。 完全に一致するものがない場合は、タイトル文字列の末尾が `Title`であるすべてのアプリケーションがアクティブ化されます。 `Title`という名前のアプリケーションが複数ある場合、`AppActivate` 関数は、アクティブ化するアプリケーションを任意に選択します。  
   
 > [!NOTE]
->  @No__t-0 関数には @no__t 2 レベルの `UIPermission` が必要です。これは、部分信頼状況での実行に影響を与える可能性があります。 詳細については、「<xref:System.Security.Permissions.UIPermission>」を参照してください。  
+>  `AppActivate` 関数は、部分信頼状況での実行に影響する可能性がある <xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows> レベルで `UIPermission` を必要とします。 詳細については、「<xref:System.Security.Permissions.UIPermission>」を参照してください。  
   
    
   
 ## Examples  
- この例では、`AppActivate` 関数を使用してアプリケーションウィンドウをアクティブ化する方法を示します。 メモ帳のプロセスが実行されていない場合、この例では <xref:System.ArgumentException> がスローされます。 @No__t-0 の手順では、アプリケーションが指定されたパスにあることを前提としています。  
+ この例は、アプリケーションウィンドウをアクティブ化するための `AppActivate` 関数のさまざまな用途を示しています。 メモ帳のプロセスが実行されていない場合、この例では <xref:System.ArgumentException>がスローされます。 `Shell` の手順では、アプリケーションが指定されたパスにあることを前提としています。  
   
  [!code-vb[VbVbalrCatRef#11](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#11)]  
   
@@ -185,7 +186,7 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
     </Member>
     <Member MemberName="Beep">
       <MemberSignature Language="C#" Value="public static void Beep ();" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void Beep() cil managed" FrameworkAlternate="netcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void Beep() cil managed" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       <MemberSignature Language="DocId" Value="M:Microsoft.VisualBasic.Interaction.Beep" />
       <MemberSignature Language="VB.NET" Value="Public Sub Beep ()" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static void Beep();" />
@@ -201,6 +202,7 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
       <AssemblyInfo>
         <AssemblyName>Microsoft.VisualBasic.Core</AssemblyName>
         <AssemblyVersion>10.0.4.0</AssemblyVersion>
+        <AssemblyVersion>10.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -220,7 +222,7 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
  ビープ音のピッチと期間は、ハードウェアとシステムのソフトウェアによって異なります。そのため、コンピューターによって異なります。  
   
 > [!NOTE]
->  @No__t-0 関数には @no__t 2 レベルの `UIPermission` が必要です。これは、部分信頼状況での実行に影響を与える可能性があります。 詳細については、「<xref:System.Security.Permissions.UIPermission>」を参照してください。  
+>  `Beep` 関数は、部分信頼状況での実行に影響する可能性がある <xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows> レベルで `UIPermission` を必要とします。 詳細については、「<xref:System.Security.Permissions.UIPermission>」を参照してください。  
   
    
   
@@ -237,7 +239,7 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
     </Member>
     <Member MemberName="CallByName">
       <MemberSignature Language="C#" Value="public static object CallByName (object ObjectRef, string ProcName, Microsoft.VisualBasic.CallType UseCallType, params object[] Args);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig object CallByName(object ObjectRef, string ProcName, valuetype Microsoft.VisualBasic.CallType UseCallType, object[] Args) cil managed" FrameworkAlternate="netcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig object CallByName(object ObjectRef, string ProcName, valuetype Microsoft.VisualBasic.CallType UseCallType, object[] Args) cil managed" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       <MemberSignature Language="DocId" Value="M:Microsoft.VisualBasic.Interaction.CallByName(System.Object,System.String,Microsoft.VisualBasic.CallType,System.Object[])" />
       <MemberSignature Language="VB.NET" Value="Public Function CallByName (ObjectRef As Object, ProcName As String, UseCallType As CallType, ParamArray Args As Object()) As Object" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static System::Object ^ CallByName(System::Object ^ ObjectRef, System::String ^ ProcName, Microsoft::VisualBasic::CallType UseCallType, ... cli::array &lt;System::Object ^&gt; ^ Args);" />
@@ -253,6 +255,7 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
       <AssemblyInfo>
         <AssemblyName>Microsoft.VisualBasic.Core</AssemblyName>
         <AssemblyVersion>10.0.4.0</AssemblyVersion>
+        <AssemblyVersion>10.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -280,18 +283,18 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 関数は、プロパティを取得したり、プロパティを設定したり、メソッドを呼び出したりするために、実行時に使用されます。  
+ `CallByName` 関数は、実行時にプロパティを取得したり、プロパティを設定したり、メソッドを呼び出したりするために使用されます。  
   
    
   
 ## Examples  
- 次の例では、最初の行で `CallByName` を使用してテキストボックスの `Text` プロパティを設定し、2行目で `Text` プロパティの値を取得し、3番目の行で `Move` のメソッドを呼び出してテキストボックスを移動します。  
+ 次の例では、最初の行は `CallByName` を使用してテキストボックスの `Text` プロパティを設定し、2行目は `Text` プロパティの値を取得し、3番目の行は `Move` メソッドを呼び出してテキストボックスを移動します。  
   
  [!code-vb[VbVbalrFunctions#99](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrFunctions/VB/Class1.vb#99)]  
   
  [!code-vb[VbVbalrFunctions#20](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrFunctions/VB/Class1.vb#20)]  
   
- 次の例では、`CallByName` 関数を使用して、コレクションオブジェクトの `Add` メソッドと @no__t メソッドを呼び出します。  
+ 次の例では、`CallByName` 関数を使用して、コレクションオブジェクトの `Add` メソッドと `Item` メソッドを呼び出します。  
   
  [!code-vb[VbVbalrFunctions#21](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrFunctions/VB/Class1.vb#21)]  
   
@@ -343,14 +346,14 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 関数は、`Index` の値に基づいて、`Choice()` で渡されたリストのメンバーを返します。 @No__t-0 が1の場合は、リストの最初のメンバーが選択されます。 @No__t-0 が `UBound` (`Choice()`) の場合は、リストの最後のメンバーが選択されます。 @No__t-0 がこれらの制限を超えている場合、`Choose` は `Nothing` を返します。  
+ `Choose` 関数は、`Index`の値に基づいて `Choice()`渡されたリストのメンバーを返します。 `Index` が1の場合は、リストの最初のメンバーが選択されます。 `Index` が `UBound`(`Choice()`) の場合は、リストの最後のメンバーが選択されます。 `Index` がこれらの制限を超えている場合、`Choose` は `Nothing`を返します。  
   
- @No__t-0 が整数でない場合は、評価される前に、最も近い整数に丸められます。  
+ `Index` が整数でない場合は、評価される前に、最も近い整数に丸められます。  
   
- @No__t-0 を使用して、可能性の一覧の値を検索できます。  
+ `Choose` を使用すると、可能性の一覧で値を検索できます。  
   
 > [!NOTE]
->  引数リスト内の式には、関数呼び出しを含めることができます。 @No__t-0 への呼び出しの引数リストを準備する過程で、Visual Basic コンパイラはすべての式のすべての関数を呼び出します。 つまり、`Index` によって別の式が選択されている場合、呼び出されていない特定の関数に依存することはできません。  
+>  引数リスト内の式には、関数呼び出しを含めることができます。 `Choose`の呼び出しの引数リストを準備する過程で、Visual Basic コンパイラはすべての式のすべての関数を呼び出します。 つまり、`Index`によって別の式が選択されている場合、呼び出されていない特定の関数に依存することはできません。  
   
    
   
@@ -403,12 +406,12 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
 ## Remarks  
  引数が返されたら、スペース、後ろまたはスラッシュ、ハイフン、引用符などの一般的な区切り記号を検索して、個々のパラメーターの文字列を分割または検索することができます。  
   
- Visual Basic で開発され、.exe ファイルにコンパイルされたアプリケーションの場合、`Command` 関数は、コマンドラインでアプリケーションの名前の後に出現するすべての引数を `MyApp(cmdlineargs)` という形式で返します。  
+ Visual Basic で開発され、.exe ファイルにコンパイルされたアプリケーションの場合、`Command` 関数は、コマンドラインでアプリケーションの名前の後に出現するすべての引数を `MyApp(cmdlineargs)`形式で返します。  
   
    
   
 ## Examples  
- この例では、`Command` 関数を使用して、配列を含むオブジェクト内のコマンドライン引数を返します。  
+ この例では、`Command` 関数を使用して、配列を含むオブジェクトのコマンドライン引数を返します。  
   
  [!code-vb[VbVbalrCatRef#58](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#58)]  
   
@@ -423,7 +426,7 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
     </Member>
     <Member MemberName="CreateObject">
       <MemberSignature Language="C#" Value="public static object CreateObject (string ProgId, string ServerName = &quot;&quot;);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig object CreateObject(string ProgId, string ServerName) cil managed" FrameworkAlternate="netcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig object CreateObject(string ProgId, string ServerName) cil managed" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       <MemberSignature Language="DocId" Value="M:Microsoft.VisualBasic.Interaction.CreateObject(System.String,System.String)" />
       <MemberSignature Language="VB.NET" Value="Public Function CreateObject (ProgId As String, Optional ServerName As String = &quot;&quot;) As Object" />
       <MemberSignature Language="F#" Value="static member CreateObject : string * string -&gt; obj" Usage="Microsoft.VisualBasic.Interaction.CreateObject (ProgId, ServerName)" />
@@ -438,6 +441,7 @@ procID = Shell("C:\Windows\system32\calc.exe", AppWinStyle.NormalFocus)
       <AssemblyInfo>
         <AssemblyName>Microsoft.VisualBasic.Core</AssemblyName>
         <AssemblyVersion>10.0.4.0</AssemblyVersion>
+        <AssemblyVersion>10.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8">
@@ -469,9 +473,9 @@ Sub CreateADODB()
 End Sub  
 ```  
   
- 返されたオブジェクトを格納するために使用するオブジェクト変数の型が、アプリケーションのパフォーマンスに影響を与える可能性があります。 @No__t-0 句を使用してオブジェクト変数を宣言すると、任意の型のオブジェクトへの参照を含むことができる変数が作成されます。 ただし、その変数を介したオブジェクトへのアクセスは*遅延*バインディングされます。つまり、プログラムの実行時にバインディングが発生します。 アプリケーションのパフォーマンスの低下を含め、遅延バインディングを避ける必要がある理由は多数あります。  
+ 返されたオブジェクトを格納するために使用するオブジェクト変数の型が、アプリケーションのパフォーマンスに影響を与える可能性があります。 `As Object` 句を使用してオブジェクト変数を宣言すると、任意の型のオブジェクトへの参照を含むことができる変数が作成されます。 ただし、その変数を介したオブジェクトへのアクセスは*遅延*バインディングされます。つまり、プログラムの実行時にバインディングが発生します。 アプリケーションのパフォーマンスの低下を含め、遅延バインディングを避ける必要がある理由は多数あります。  
   
- 初期バインディングであるオブジェクト変数を作成できます。つまり、プログラムがコンパイルされるとバインドされます。 これを行うには、**[プロジェクト]** メニューの **[参照の追加]** ダイアログボックスの **[COM]** タブから、オブジェクトのタイプライブラリへの参照を追加します。 次に、オブジェクトの特定の型のオブジェクト変数を宣言します。 ほとんどの場合、`CreateObject` 関数を使用する場合よりも、@no__t 0 ステートメントとプライマリ相互運用機能アセンブリを使用してオブジェクトを作成する方が効率的です。  
+ 初期バインディングであるオブジェクト変数を作成できます。つまり、プログラムがコンパイルされるとバインドされます。 これを行うには、**[プロジェクト]** メニューの **[参照の追加]** ダイアログボックスの **[COM]** タブから、オブジェクトのタイプライブラリへの参照を追加します。 次に、オブジェクトの特定の型のオブジェクト変数を宣言します。 ほとんどの場合、`CreateObject` 関数を使用する場合よりも、`Dim` ステートメントとプライマリ相互運用機能アセンブリを使用してオブジェクトを作成する方が効率的です。  
   
 ## <a name="interacting-with-unmanaged-code"></a>アンマネージコードとの対話  
  もう1つの問題として、COM オブジェクトでは、共通言語ランタイムを使用しないと、アンマネージコードコードが使用されます。 Visual Basic のマネージコードと COM のアンマネージコードを混在させることには、かなりの複雑さが伴います。 COM オブジェクトへの参照を追加すると、Visual Basic はそのライブラリのプライマリ相互運用機能アセンブリ (PIA) を検索します。見つかった場合は、それを使用します。 PIA が見つからない場合は、COM ライブラリ内の各クラスのローカル相互運用性クラスを含む相互運用性アセンブリを作成します。 詳細については、「 [.NET Framework アプリケーションでの COM 相互運用性](~/docs/visual-basic/programming-guide/com-interop/com-interoperability-in-net-framework-applications.md)」を参照してください。  
@@ -479,12 +483,12 @@ End Sub
  一般に、可能な限り、厳密にバインドされたオブジェクトとプライマリ相互運用機能アセンブリを使用する必要があります。 次の例では、デモンストレーションのみを目的として、Microsoft Office オブジェクトで `CreateObject` 関数を使用します。 ただし、これらのオブジェクトは、適切なプライマリ相互運用機能アセンブリと共に使用すると、より簡単に使用でき、信頼性も高くなります。  
   
 ## <a name="creating-an-object-on-a-remote-computer"></a>リモートコンピューター上にオブジェクトを作成する  
- コンピューターの名前を `CreateObject` 関数の @no__t 0 引数に渡すことによって、リモートコンピューター上にオブジェクトを作成できます。 この名前は、共有名のコンピューター名の部分と同じです。 "\\ \ MyServer\Public" という名前の共有の場合、@no__t は "MyServer" になります。  
+ コンピューターの名前を `CreateObject` 関数の `ServerName` 引数に渡すことによって、リモートコンピューター上にオブジェクトを作成できます。 この名前は、共有名のコンピューター名の部分と同じです。 "\\\MyServer\Public" という名前の共有の場合、`ServerName` は "MyServer" になります。  
   
 > [!NOTE]
 >  リモートネットワークコンピューターでアプリケーションにアクセスできるようにする方法の詳細については、COM のドキュメント (「Microsoft Developer Network」を参照してください) を参照してください。 場合によっては、アプリケーションのレジストリキーを追加する必要があります。  
   
- 次のコードは、`MyServer` という名前のリモートコンピューター上で実行されている Excel のインスタンスのバージョン番号を返します。  
+ 次のコードは、`MyServer`という名前のリモートコンピューター上で実行されている Excel のインスタンスのバージョン番号を返します。  
   
 ```vb  
 Sub CreateRemoteExcelObj()  
@@ -498,13 +502,13 @@ End Sub
  リモートサーバー名が正しくない場合、または使用できない場合は、実行時エラーが発生します。  
   
 > [!NOTE]
->  オブジェクトの現在のインスタンスが存在しない場合は `CreateObject` を使用します。 オブジェクトのインスタンスが既に実行されている場合は、新しいインスタンスが開始され、指定された型のオブジェクトが作成されます。 現在のインスタンスを使用する場合、またはアプリケーションを起動してファイルを読み込む場合は、`GetObject` 関数を使用します。 オブジェクトが単独インスタンスのオブジェクトとして登録されている場合は、オブジェクトのインスタンスが1つだけ作成されます。何回実行しても `CreateObject` が実行される回数は関係ありません。  
+>  オブジェクトの現在のインスタンスが存在しない場合は、`CreateObject` を使用します。 オブジェクトのインスタンスが既に実行されている場合は、新しいインスタンスが開始され、指定された型のオブジェクトが作成されます。 現在のインスタンスを使用する場合、またはアプリケーションを起動してファイルを読み込む場合は、`GetObject` 関数を使用します。 オブジェクトが単独インスタンスオブジェクトとして登録されている場合、`CreateObject` の実行回数に関係なく、オブジェクトのインスタンスは1つだけ作成されます。  
   
 ## <a name="creating-framework-objects"></a>フレームワークオブジェクトの作成  
- @No__t-0 関数は、COM オブジェクトの作成にのみ使用できます。 .NET Framework オブジェクトを作成するための同等のメカニズムはありませんが、<xref:System> の名前空間の @no__t 0 には、ローカルまたはリモートのオブジェクトを作成するメソッドが含まれています。 特に、<xref:System.Activator.CreateInstance%2A> メソッドまたは <xref:System.Activator.CreateInstanceFrom%2A> メソッドが役に立つ場合があります。  
+ `CreateObject` 関数は、COM オブジェクトの作成にのみ使用できます。 .NET Framework オブジェクトを作成するための同等のメカニズムはありませんが、<xref:System> 名前空間の <xref:System.Activator> には、ローカルまたはリモートのオブジェクトを作成するメソッドが含まれています。 特に、<xref:System.Activator.CreateInstance%2A> メソッドまたは <xref:System.Activator.CreateInstanceFrom%2A> メソッドが役に立つ場合があります。  
   
 > [!IMPORTANT]
->  @No__t 0 関数にはアンマネージコードのアクセス許可が必要ですが、部分信頼の状況での実行に影響する可能性があります。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」と「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
+>  `CreateObject` 関数には、部分信頼の状況での実行に影響する可能性があるアンマネージコードのアクセス許可が必要です。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」および「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
   
    
   
@@ -564,14 +568,14 @@ End Sub
 ## Remarks  
  すべての引数が指定されている場合、指定された設定は削除されます。 存在しないセクションまたはキーの設定で `DeleteSetting` を使用しようとすると、実行時エラーが発生します。  
   
- `DeleteSetting` にすると、ユーザーが対話形式でログオンするまでアクティブではない `HKEY_LOCAL_USER` レジストリキーで動作するため、ユーザーがログオンしている必要があります。  
+ `DeleteSetting` を使用するには、ユーザーが対話形式でログオンするまでアクティブではない `HKEY_LOCAL_USER` レジストリキーで動作するため、ユーザーはログオンする必要があります。  
   
  非対話形式のプロセス (Mtx.exe など) からアクセスされるレジストリ設定は、`HKEY_LOCAL_MACHINE\Software\` または `HKEY_USER\DEFAULT\Software` のいずれかのレジストリキーの下に格納する必要があります。  
   
    
   
 ## Examples  
- 次の例では、最初に `SaveSetting` のプロシージャを使用して、`MyApp` アプリケーションの Windows レジストリにエントリを作成してから、`DeleteSetting` 関数を使用して削除します。 @No__t-0 引数が指定されていないため、セクション名とそのすべてのキーを含め、`Startup` セクション全体が削除されます。  
+ 次の例では、最初に `SaveSetting` プロシージャを使用して、`MyApp` アプリケーションの Windows レジストリにエントリを作成し、`DeleteSetting` 関数を使用してそれらを削除します。 `Key` 引数が指定されていないため、セクション名とそのすべてのキーを含め、`Startup` セクション全体が削除されます。  
   
  [!code-vb[VbVbalrCatRef#45](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#45)]  
   
@@ -630,17 +634,17 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 に文字列が含まれている場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数は、指定された環境文字列に割り当てられたテキスト、つまり、環境変数の環境文字列テーブルの等号 (=) に続くテキストを返します。 @No__t-0 の文字列が環境文字列テーブルに見つからない場合は、長さ0の文字列 ("") が返されます。  
+ `Expression` に文字列が含まれている場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数は、指定された環境文字列に割り当てられたテキスト、つまり、環境変数の環境文字列テーブル内の等号 (=) に続くテキストを返します。 `Expression` 内の文字列が環境文字列テーブルに見つからない場合は、長さ0の文字列 ("") が返されます。  
   
- @No__t-0 に整数が含まれている場合、環境文字列テーブル内でその数値位置を占有する文字列が返されます。 この場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> は、環境変数の名前を含むすべてのテキストを返します。 指定された位置に環境文字列がない場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> は長さ0の文字列を返します。  
+ `Expression` に整数が含まれている場合、環境文字列テーブル内でその数値位置を占有する文字列が返されます。 この場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> によって、環境変数の名前を含むすべてのテキストが返されます。 指定された位置に環境文字列がない場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> は長さ0の文字列を返します。  
   
 > [!IMPORTANT]
->  @No__t 0 関数には環境権限が必要ですが、部分信頼状況での実行に影響する可能性があります。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」と「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
+>  <xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数には、部分信頼の状況での実行に影響する可能性がある環境のアクセス許可が必要です。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」および「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
   
    
   
 ## Examples  
- この例では、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数を使用して、`PATH` ステートメントのエントリ番号と長さを環境文字列テーブルから指定します。  
+ この例では、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数を使用して、環境文字列テーブルから `PATH` ステートメントのエントリ番号と長さを指定します。  
   
  [!code-vb[VbVbalrCatRef#28](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#28)]  
   
@@ -683,17 +687,17 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 に文字列が含まれている場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数は、指定された環境文字列に割り当てられたテキスト、つまり、環境変数の環境文字列テーブルの等号 (=) に続くテキストを返します。 @No__t-0 の文字列が環境文字列テーブルに見つからない場合は、長さ0の文字列 ("") が返されます。  
+ `Expression` に文字列が含まれている場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数は、指定された環境文字列に割り当てられたテキスト、つまり、環境変数の環境文字列テーブル内の等号 (=) に続くテキストを返します。 `Expression` 内の文字列が環境文字列テーブルに見つからない場合は、長さ0の文字列 ("") が返されます。  
   
- @No__t-0 に整数が含まれている場合、環境文字列テーブル内でその数値位置を占有する文字列が返されます。 この場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> は、環境変数の名前を含むすべてのテキストを返します。 指定された位置に環境文字列がない場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> は長さ0の文字列を返します。  
+ `Expression` に整数が含まれている場合、環境文字列テーブル内でその数値位置を占有する文字列が返されます。 この場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> によって、環境変数の名前を含むすべてのテキストが返されます。 指定された位置に環境文字列がない場合、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> は長さ0の文字列を返します。  
   
 > [!IMPORTANT]
->  @No__t 0 関数には環境権限が必要ですが、部分信頼状況での実行に影響する可能性があります。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」と「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
+>  <xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数には、部分信頼の状況での実行に影響する可能性がある環境のアクセス許可が必要です。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」および「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
   
    
   
 ## Examples  
- この例では、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数を使用して、`PATH` ステートメントのエントリ番号と長さを環境文字列テーブルから指定します。  
+ この例では、<xref:Microsoft.VisualBasic.Interaction.Environ%2A> 関数を使用して、環境文字列テーブルから `PATH` ステートメントのエントリ番号と長さを指定します。  
   
  [!code-vb[VbVbalrCatRef#28](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#28)]  
   
@@ -739,16 +743,16 @@ End Sub
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `GetAllSettings` `AppName` または `Section` のいずれかが存在しない場合は、初期化されていない `Object` を返します。  
+ `AppName` または `Section` が存在しない場合、`GetAllSettings` は初期化されていない `Object` を返します。  
   
- ユーザーが対話形式でログオンするまでアクティブではない `HKEY_LOCAL_USER` レジストリキーで動作するため、`GetAllSettings` ではユーザーがログオンしている必要があります。  
+ `HKEY_LOCAL_USER` レジストリキーは、ユーザーが対話形式でログオンするまでアクティブではないため `GetAllSettings`、ユーザーがログオンしている必要があります。  
   
  非対話形式のプロセス (Mtx.exe など) からアクセスされるレジストリ設定は、`HKEY_LOCAL_MACHINE\Software\` または `HKEY_USER\DEFAULT\Software` のいずれかのレジストリキーの下に格納する必要があります。  
   
    
   
 ## Examples  
- この例では、最初に `SaveSetting` 関数を使用して、`AppName` として指定されたアプリケーションの Windows レジストリにエントリを作成し、次に `GetAllSettings` 関数を使用して設定を表示します。 アプリケーション名と `Section` の名前は、`GetAllSettings` では取得できないことに注意してください。 最後に、`DeleteSetting` 関数は、アプリケーションのエントリを削除します。  
+ この例では、まず `SaveSetting` 関数を使用して、`AppName`として指定されたアプリケーションの Windows レジストリにエントリを作成し、次に `GetAllSettings` 関数を使用して設定を表示します。 `GetAllSettings`ではアプリケーション名と `Section` 名を取得できないことに注意してください。 最後に、`DeleteSetting` 関数は、アプリケーションのエントリを削除します。  
   
  [!code-vb[VbVbalrCatRef#68](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#68)]  
   
@@ -817,32 +821,32 @@ Dim CADObject As Object
 CADObject = GetObject("C:\CAD\schema.cad")  
 ```  
   
- このコードが実行されると、指定した @no__t に関連付けられているアプリケーションが開始され、指定したファイル内のオブジェクトがアクティブ化されます。  
+ このコードが実行されると、指定した `PathName` に関連付けられているアプリケーションが起動され、指定したファイル内のオブジェクトがアクティブ化されます。  
   
 ## <a name="default-cases"></a>既定のケース  
- @No__t-0 が長さ0の文字列 (`""`) の場合、`GetObject` は、指定されたクラス型の新しいオブジェクトインスタンスを返します。 @No__t-0 引数を省略した場合、`GetObject` は `Class` で指定されたクラス型の現在アクティブなオブジェクトを返します。 指定した型のオブジェクトが存在しない場合は、エラーが発生します。  
+ `PathName` が長さ0の文字列 (`""`) の場合、`GetObject` は、指定されたクラス型の新しいオブジェクトインスタンスを返します。 `PathName` 引数を省略した場合、`GetObject` は `Class`で指定されたクラス型の現在アクティブなオブジェクトを返します。 指定した型のオブジェクトが存在しない場合は、エラーが発生します。  
   
 ## <a name="accessing-a-subobject"></a>サブオブジェクトへのアクセス  
  一部のアプリケーションでは、ファイルに関連付けられたサブオブジェクトをアクティブにすることができます。 これを行うには、ファイル名の末尾に感嘆符 (`!`) を追加し、アクティブ化するファイルの部分を識別する文字列を続けます。 この文字列を作成する方法の詳細については、オブジェクトを作成したアプリケーションのドキュメントを参照してください。  
   
- たとえば、描画アプリケーションでは、ファイルに格納されている図面に複数のレイヤーを含めることができます。 次のコードを使用して、`schema.cad` という名前の描画内のレイヤーをアクティブ化することができます。  
+ たとえば、描画アプリケーションでは、ファイルに格納されている図面に複数のレイヤーを含めることができます。 次のコードを使用して、`schema.cad`という名前の描画内のレイヤーをアクティブ化することができます。  
   
 ```vb  
 layerObject = GetObject("C:\CAD\schema.cad!Layer3")  
 ```  
   
 ## <a name="specifying-a-class"></a>クラスの指定  
- オブジェクトの `Class` を指定しない場合、指定したファイル名に基づいて、オートメーションによって起動するアプリケーションとアクティブ化するオブジェクトが決定されます。 ただし、ファイルによっては、オブジェクトの複数のクラスをサポートする場合があります。 たとえば、1つの描画で、@no__t 0 のオブジェクト、@no__t 1 のオブジェクト、および @no__t 2 つのオブジェクト (すべて同じファイルに含まれる) の3種類のオブジェクトがサポートされている場合があります。 アクティブ化するファイル内のオブジェクトを指定するには、省略可能な `Class` 引数を使用します。 次に例を示します。  
+ オブジェクトの `Class`を指定しない場合は、指定したファイル名に基づいて、オートメーションによって起動するアプリケーションとアクティブ化するオブジェクトが決定されます。 ただし、ファイルによっては、オブジェクトの複数のクラスをサポートする場合があります。 たとえば、1つの描画では、`Application` オブジェクト、`Drawing` オブジェクト、および `Toolbar` オブジェクトという3種類のオブジェクトがサポートされています。これらはすべて同じファイルに含まれています。 アクティブ化するファイル内のオブジェクトを指定するには、省略可能な `Class` 引数を使用します。 次に例を示します。  
   
 ```vb  
 Dim drawObj As Object  
 drawObj = GetObject("C:\Drawings\sample.drw", "Figment.Drawing")  
 ```  
   
- 前の例では、`Figment` は描画アプリケーションの名前で、`Drawing` はサポートしているオブジェクトの種類の1つです。  
+ 前の例では、`Figment` は描画アプリケーションの名前であり、`Drawing` はサポートしているオブジェクトの種類の1つです。  
   
 ## <a name="using-the-object"></a>オブジェクトを使用する  
- オブジェクトがアクティブ化されたら、宣言したオブジェクト変数を使用して、コード内でオブジェクトを参照します。 前の例では、オブジェクト変数 `drawObj` を使用して、新しいオブジェクトのプロパティとメソッドにアクセスします。 次に例を示します。  
+ オブジェクトがアクティブ化されたら、宣言したオブジェクト変数を使用して、コード内でオブジェクトを参照します。 前の例では、オブジェクト変数 `drawObj`を使用して、新しいオブジェクトのプロパティとメソッドにアクセスします。 次に例を示します。  
   
 ```vb  
 drawObj.Line(9, 90)  
@@ -853,17 +857,17 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
 > [!NOTE]
 >  オブジェクトの現在のインスタンスが存在する場合、またはファイルが読み込まれたオブジェクトを作成する場合は、`GetObject` 関数を使用します。 現在のインスタンスがなく、読み込まれたファイルでオブジェクトを開始したくない場合は、<xref:Microsoft.VisualBasic.Interaction.CreateObject%2A> 関数を使用します。  
 >   
->  オブジェクトが ActiveX 単一インスタンスオブジェクトとして登録されている場合は、オブジェクトの1つのインスタンスのみが作成されます。 `CreateObject` が呼び出された回数に関係なく発生します。 単一インスタンスオブジェクトを使用した場合、`GetObject` は、長さが0の文字列 (`""`) 構文で呼び出されたときに常に同じインスタンスを返し、`PathName` 引数を省略した場合はエラーを発生させます。 @No__t-0 を使用して、Visual Basic で作成されたクラスへの参照を取得することはできません。  
+>  オブジェクトが ActiveX 単一インスタンスオブジェクトとして登録されている場合、`CreateObject` が呼び出される回数に関係なく、オブジェクトのインスタンスは1つだけ作成されます。 単一インスタンスオブジェクトの場合、`GetObject` は、長さが0の文字列 (`""`) 構文で呼び出された場合は常に同じインスタンスを返し、`PathName` 引数を省略した場合はエラーが発生します。 `GetObject` を使用して、Visual Basic で作成されたクラスへの参照を取得することはできません。  
   
 > [!IMPORTANT]
->  @No__t 0 関数にはアンマネージコードのアクセス許可が必要ですが、部分信頼の状況での実行に影響する可能性があります。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」と「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
+>  `GetObject` 関数には、部分信頼の状況での実行に影響する可能性があるアンマネージコードのアクセス許可が必要です。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」および「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、`GetObject` 関数を使用して、特定の Microsoft Excel ワークシート (`excelObj`) への参照を取得します。 ワークシートの `Application` プロパティを使用して、Excel が表示されるようにしたり、閉じたり、その他の操作を実行したりします。 2つの API 呼び出しを使用すると、`detectExcel` プロシージャは Excel を検索し、実行されている場合は、実行中のオブジェクトテーブルに入力します。 Excel がまだ実行されていない場合、`GetObject` を呼び出すとエラーが発生します。この例では、`excelWasNotRunning` フラグは `True` に設定されます。 @No__t-0 への2回目の呼び出しでは、開くファイルを指定します。 Excel がまだ実行されていない場合は、2回目の呼び出しによって開始され、指定したファイルによって表されるワークシートへの参照が返されます (`test.xls`)。 ファイルは、指定された場所に存在する必要があります。それ以外の場合、Visual Basic は @no__t 0 をスローします。 次に、この例のコードでは、Excel と、指定したワークシートを含むウィンドウの両方が表示されます。  
+ 次の例では、`GetObject` 関数を使用して、特定の Microsoft Excel ワークシート (`excelObj`) への参照を取得します。 ワークシートの `Application` プロパティを使用して、Excel が表示されるようにしたり、閉じたり、その他の操作を実行したりします。 2つの API 呼び出しを使用して、`detectExcel` プロシージャが Excel を検索し、実行されている場合は、実行中のオブジェクトテーブルに入力します。 Excel がまだ実行されていない場合、`GetObject` の最初の呼び出しでエラーが発生します。この例では、`excelWasNotRunning` フラグが `True`に設定されます。 `GetObject` の2回目の呼び出しでは、開くファイルを指定します。 Excel がまだ実行されていない場合は、2回目の呼び出しによって開始され、指定したファイル `test.xls`によって表されるワークシートへの参照が返されます。 ファイルは、指定された場所に存在する必要があります。それ以外の場合、Visual Basic は <xref:System.IO.FileNotFoundException>をスローします。 次に、この例のコードでは、Excel と、指定したワークシートを含むウィンドウの両方が表示されます。  
   
- この例では `Option Strict Off` が必要です。これは、オブジェクトが型 `Object` の変数に割り当てられる遅延バインディングを使用するためです。 Visual Studio で **[プロジェクト]** メニューの **[参照の追加]** ダイアログボックスの **[COM]** タブから Excel タイプライブラリへの参照を追加する場合は、@no__t 0 を指定し、特定のオブジェクトの種類のオブジェクトを宣言できます。  
+ この例では、`Option Strict Off` が必要です。これは、オブジェクトが `Object`型の変数に割り当てられる遅延バインディングを使用するためです。 Visual Studio で **[プロジェクト]** メニューの **[参照の追加]** ダイアログボックスの **[COM]** タブから Excel タイプライブラリへの参照を追加すると、特定のオブジェクトの種類の `Option Strict On` を指定して宣言できます。  
   
  [!code-vb[VbVbalrExcelObject#2](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrExcelObject/VB/Class1.vb#2)]  
   
@@ -871,10 +875,10 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
   
  [!code-vb[VbVbalrExcelObject#5](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrExcelObject/VB/Class1.vb#5)]  
   
- @No__t-0 関数を呼び出すと、Excel が既に実行されているかどうかを確認するためのチェックが行われます。 そうでない場合は、インスタンスが作成されます。  
+ `getExcel` 関数を呼び出すと、Excel が既に実行されているかどうかを確認するためのチェックが行われます。 そうでない場合は、インスタンスが作成されます。  
   
 > [!IMPORTANT]
->  わかりやすくするために、前の例では `XLMAIN` というウィンドウが Microsoft Excel のインスタンスに属していることを前提としています。 不正な改ざんによって起動された別のオブジェクトが、その名前のウィンドウを作成した場合は、Excel 用に指定したすべてのメッセージを受信します。 実稼働環境で使用するアプリケーションでは、@no__t 0 が Excel に属していることを確認するために、より厳格なテストをいくつか含める必要があります。  
+>  わかりやすくするために、前の例では `XLMAIN` というウィンドウが Microsoft Excel のインスタンスに属していることを前提としています。 不正な改ざんによって起動された別のオブジェクトが、その名前のウィンドウを作成した場合は、Excel 用に指定したすべてのメッセージを受信します。 実稼働環境で使用するアプリケーションでは、`XLMAIN` が Excel に本当に属していることを確認するために、より厳密なテストを行う必要があります。  
   
  ]]></format>
         </remarks>
@@ -925,18 +929,18 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 引数に指定された項目のいずれかが存在しない場合、`GetSetting` は値 `Default` を返します。  
+ `GetSetting` 引数に指定された項目のいずれかが存在しない場合、`GetSetting` は `Default`の値を返します。  
   
- ユーザーが対話形式でログオンするまでアクティブではない `HKEY_LOCAL_USER` レジストリキーで動作するため、`GetSetting` ではユーザーがログオンしている必要があります。  
+ `HKEY_LOCAL_USER` レジストリキーは、ユーザーが対話形式でログオンするまでアクティブではないため `GetSetting`、ユーザーがログオンしている必要があります。  
   
  非対話形式のプロセス (Mtx.exe など) からアクセスされるレジストリ設定は、`HKEY_LOCAL_MACHINE\Software\` または `HKEY_USER\DEFAULT\Software` のいずれかのレジストリキーの下に格納する必要があります。  
   
- `GetSetting` には、`Read` @ no__t が必要です。  
+ `GetSetting` には `Read`<xref:System.Security.Permissions.RegistryPermission> が必要です。  
   
    
   
 ## Examples  
- この例では、最初に `SaveSetting` 関数を使用して、`AppName` として指定されたアプリケーションの Windows レジストリにエントリを作成し、次に `GetSetting` 関数を使用して設定の1つを表示します。 @No__t-0 引数が指定されているため、一部の値が返されることが保証されます。 @No__t-1 では `Section` の名前を取得できないことに注意してください。 最後に、`DeleteSetting` 関数は、すべてのアプリケーションのエントリを削除します。  
+ この例では、まず `SaveSetting` 関数を使用して、`AppName`として指定されたアプリケーションの Windows レジストリにエントリを作成し、`GetSetting` 関数を使用して設定の1つを表示します。 `Default` 引数が指定されているため、一部の値が返されることが保証されます。 `GetSetting`では `Section` 名を取得できないことに注意してください。 最後に、`DeleteSetting` 関数は、すべてのアプリケーションのエントリを削除します。  
   
  [!code-vb[VbVbalrCatRef#61](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#61)]  
   
@@ -953,7 +957,7 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
     </Member>
     <Member MemberName="IIf">
       <MemberSignature Language="C#" Value="public static object IIf (bool Expression, object TruePart, object FalsePart);" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig object IIf(bool Expression, object TruePart, object FalsePart) cil managed" FrameworkAlternate="netcore-3.0" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig object IIf(bool Expression, object TruePart, object FalsePart) cil managed" FrameworkAlternate="netcore-3.0;netcore-3.1" />
       <MemberSignature Language="DocId" Value="M:Microsoft.VisualBasic.Interaction.IIf(System.Boolean,System.Object,System.Object)" />
       <MemberSignature Language="VB.NET" Value="Public Function IIf (Expression As Boolean, TruePart As Object, FalsePart As Object) As Object" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static System::Object ^ IIf(bool Expression, System::Object ^ TruePart, System::Object ^ FalsePart);" />
@@ -969,6 +973,7 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
       <AssemblyInfo>
         <AssemblyName>Microsoft.VisualBasic.Core</AssemblyName>
         <AssemblyVersion>10.0.4.0</AssemblyVersion>
+        <AssemblyVersion>10.0.5.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -988,16 +993,16 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 関数は、Visual C++の三項[条件演算子:?:](https://msdn.microsoft.com/library/88643ee8-7100-4f86-880a-705ec22b6271)に対応するを提供します。  
+ `IIf` 関数は、Visual C++の三項[条件演算子:?:](https://msdn.microsoft.com/library/88643ee8-7100-4f86-880a-705ec22b6271)に対応するを提供します。  
   
    
   
 ## Examples  
- この例では、`IIf` 関数を使用して `checkIt` プロシージャの `testMe` パラメーターを評価し、金額が1000より大きい場合は "Large" という単語を返します。それ以外の場合は、"Small" という単語を返します。  
+ この例では、`IIf` 関数を使用して `checkIt` プロシージャの `testMe` パラメーターを評価し、値が1000より大きい場合は "Large" という単語を返します。それ以外の場合は、"Small" という単語を返します。  
   
  [!code-vb[VbVbalrFunctions#33](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrFunctions/VB/Class1.vb#33)]  
   
- @No__t-0 が `On` の場合は、`CStr` キーワードを使用して、戻り値を明示的に `Object` から @no__t に変換する必要があることに注意してください。  
+ `Option Strict` が `On`場合は、`CStr` キーワードを使用して、`Object` から `String`に戻り値を明示的に変換する必要があることに注意してください。  
   
  ]]></format>
         </remarks>
@@ -1052,7 +1057,7 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
  最初の引数よりも大きい値を指定するには、式で `InputBox` 関数を使用する必要があります。 位置指定引数を省略した場合は、対応するコンマ区切り記号を保持する必要があります。  
   
 > [!NOTE]
->  @No__t-0 関数には @no__t 2 レベルの `UIPermission` が必要です。これは、部分信頼状況での実行に影響を与える可能性があります。 詳細については、「[アクセス許可の要求](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/yd267cce(v%3dvs.100))」と <xref:System.Security.Permissions.UIPermission>」を参照してください。  
+>  `InputBox` 関数は、部分信頼状況での実行に影響する可能性がある <xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows> レベルで `UIPermission` を必要とします。 詳細については、「[アクセス許可の要求](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/yd267cce(v%3dvs.100))と <xref:System.Security.Permissions.UIPermission>」を参照してください。  
   
    
   
@@ -1166,9 +1171,9 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
  ダイアログボックスに **[ヘルプ]** ボタンが表示されている場合は、ダイアログボックスに状況依存のヘルプが表示されます。 ただし、他のいずれかのボタンが選択されるまで値は返されません。 Windows フォームアプリケーションでは、**[ヘルプ]** ボタンをクリックすると、フォームの <xref:System.Windows.Forms.Control.HelpRequested> イベントが実行されます。  
   
 > [!NOTE]
->  @No__t-0 関数には @no__t 2 レベルの `UIPermission` が必要です。これは、部分信頼状況での実行に影響を与える可能性があります。 詳細については、「<xref:System.Security.Permissions.UIPermission>」を参照してください。  
+>  `MsgBox` 関数は、部分信頼状況での実行に影響する可能性がある <xref:System.Security.Permissions.UIPermissionWindow.SafeTopLevelWindows> レベルで `UIPermission` を必要とします。 詳細については、「<xref:System.Security.Permissions.UIPermission>」を参照してください。  
   
- 次の表に、@no__t 0 の列挙値の一覧を示します。  
+ `MsgBoxStyle` 列挙値を次の表に示します。  
   
 |メンバー|[値]|説明|  
 |-|-|-|  
@@ -1197,7 +1202,7 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
    
   
 ## Examples  
- この例では、`MsgBox` 関数を使用して、[はい] ボタンと [いいえ] ボタンを持つダイアログボックスに重大なエラーメッセージを表示します。 既定の応答として [いいえ] ボタンが指定されています。 これを行うには、@no__t 0 の定数値を1つの数値式に結合します。 この場合、4 ([はい]/[いいえ] ボタンの組み合わせ) と 16 (**重要なメッセージ**ウィンドウ)、および 256 (既定のボタンとして2番目のボタン) を追加すると、合計は276になります。 @No__t-0 関数によって返される値は、ユーザーが選択したボタンによって異なります。Yes は値6を返します。No は7の値を返します。  
+ この例では、`MsgBox` 関数を使用して、[はい] ボタンと [いいえ] ボタンを持つダイアログボックスに重大なエラーメッセージを表示します。 既定の応答として [いいえ] ボタンが指定されています。 これを行うには、`MsgBox` 定数値を1つの数値式に結合します。 この場合、4 ([はい]/[いいえ] ボタンの組み合わせ) と 16 (**重要なメッセージ**ウィンドウ)、および 256 (既定のボタンとして2番目のボタン) を追加すると、合計は276になります。 `MsgBox` 関数によって返される値は、ユーザーが選択したボタンによって異なります。 Yes は値6を返します。No は7の値を返します。  
   
  [!code-vb[VbVbalrCatRef#20](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#20)]  
   
@@ -1247,28 +1252,28 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t 0 関数は、`Interval` によって指定された値の数を含む一連の数値範囲を計算します。 最初の範囲は `Start` から始まり、最後の範囲は `Stop` で終了します。 次に、`Partition` 関数は、`Number` を含む範囲を識別し、その範囲を記述する文字列を返します。 範囲は、文字列で "*lowervalue*:*uppervalue*" として表されます。この場合、範囲の下限 (*lowervalue*) は、コロン (:) で終わり (*uppervalue*) から分離されます。  
+ `Partition` 関数は、`Interval`によって指定された値の数を含む一連の数値範囲を計算します。 最初の範囲は `Start`から始まり、最後の範囲は `Stop`で終了します。 `Partition` 関数は、`Number` が含まれている範囲を識別し、その範囲を記述する文字列を返します。 範囲は、文字列で "*lowervalue*:*uppervalue*" として表されます。この場合、範囲の下限 (*lowervalue*) は、コロン (:) で終わり (*uppervalue*) から分離されます。  
   
- 必要に応じて、`Partition` 関数は、 *lowervalue*と*uppervalue*の前に先頭のスペースを挿入します。これにより、両方の文字数が値の文字列形式と同じになります (`Stop` + 1)。 これにより、`Number` の複数の値を使用して `Partition` 関数の出力を使用すると、その結果のテキストが、後続の並べ替え操作中に適切に処理されるようになります。  
+ 必要に応じて、`Partition` 関数は、 *lowervalue*と*uppervalue*の前に先頭のスペースを挿入して、両方の文字数が値の文字列形式 (`Stop` + 1) と同じになるようにします。 これにより、`Partition` 関数の出力を複数の値 `Number`で使用する場合、結果のテキストは、後続の並べ替え操作中に適切に処理されます。  
   
- 次の表は、3つの `Start`、`Stop`、`Interval` のセットを使用して計算された範囲のサンプル文字列を示しています。 「最初の範囲」列と「最後の範囲」列には、`Start` および `Stop` の値が指定された場合に可能な最小および最大の範囲が示されます。 "Before first range" 列と "last range" 列は、それぞれ `Start` より小さく `Stop` よりも大きい `Number` の値に対して返される文字列を示しています。  
+ 次の表は、`Start`、`Stop`、および `Interval`の3つのセットを使用して計算された範囲のサンプル文字列を示しています。 「最初の範囲」列と「最後の範囲」列には、`Start` と `Stop`の値が指定された場合に可能な最小および最大の範囲が示されます。 "Before first range" 列と "last range" 列には、`Start` 未満の値に対して返される文字列と、`Stop`より大きい `Number` が表示されます。  
   
 |`Start`|`Stop`|`Interval`|最初の範囲の前|最初の範囲|最後の範囲|最後の範囲の後|  
 |-|-|-|-|-|-|-|  
-|0|99|5|":-1"|04/4|"95:99 "|"100:   "|  
-|20|199|10|"   :21|20複素数|"190:199"|"200:"|  
-|100|1010|20|"    :99 "|"100:119 "|"1000:1010"|"1011:    "|  
+|0|99|5|":-1"|"0: 4"|"95:99"|"100:   "|  
+|20|199|10|":19"|"20:29"|"190:199"|"200:"|  
+|100|1010|20|":99"|"100: 119"|"1000:1010"|"1011:    "|  
   
- 上の表では、3番目の行は `Start` の場合は結果を示し、`Stop` の場合は `Interval` で均等に割ることができない一連の数値を定義します。 最後の範囲は @no__t 0 で終了し、`Interval` は20になりますが、長さが11桁になります。  
+ 上の表では、3番目の行は `Start` と `Stop` が `Interval`で均等に割ることができない一連の数値を定義している場合の結果を示しています。 最後の範囲は `Stop`で終了し、`Interval` が20の場合でも11の数値のみになります。  
   
- @No__t-0 が1の場合、`Start` と `Stop` の引数に関係なく、範囲は "`Number`: `Number`" になります。 たとえば、`Number` が267、`Stop` が1000、`Interval` が1の場合、`Partition` は "267:267 "。  
+ `Interval` が1の場合、`Start` および `Stop` の引数に関係なく、範囲は "`Number`:`Number`" になります。 たとえば、`Number` が267、`Stop` が1000、`Interval` が1の場合、`Partition` は "267: 267" を返します。  
   
  `Partition` は、データベースクエリを構築するときに役立ちます。 さまざまな値の範囲内で発生する注文の数を示す SELECT クエリを作成できます。たとえば、請求書の値を 1 ~ 1000、1001から2000のように指定します。  
   
    
   
 ## Examples  
- 次の例では、1950 ~ 2049 の範囲で数十年の一連の範囲を設定しています。 適切な範囲内で `year` の値を検索し、その範囲を示す `String` の値を返します。 たとえば `year` の値が1984の場合、`Partition` は "1980:1989" を返します。  
+ 次の例では、1950 ~ 2049 の範囲で数十年の一連の範囲を設定しています。 `year` の値を適切な範囲内で検索し、その範囲を示す `String` 値を返します。 たとえば、`year` の値が1984の場合、`Partition` は "1980:1989" を返します。  
   
  [!code-vb[VbVbalrFunctions#45](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrFunctions/VB/Class1.vb#45)]  
   
@@ -1313,20 +1318,20 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 関数は、`HKEY_CURRENT_USER\Software\VB and VBA Program Settings` にキーを追加します。  
+ `SaveSetting` 関数は、`HKEY_CURRENT_USER\Software\VB and VBA Program Settings`にキーを追加します。  
   
  何らかの理由でキーの設定を保存できない場合は、エラーが発生します。  
   
- `SaveSetting` にすると、ユーザーが対話形式でログオンするまでアクティブではない `HKEY_LOCAL_USER` レジストリキーで動作するため、ユーザーがログオンしている必要があります。  
+ `SaveSetting` を使用するには、ユーザーが対話形式でログオンするまでアクティブではない `HKEY_LOCAL_USER` レジストリキーで動作するため、ユーザーはログオンする必要があります。  
   
  非対話形式のプロセス (Mtx.exe など) からアクセスされるレジストリ設定は、`HKEY_LOCAL_MACHINE\Software\` または `HKEY_USER\DEFAULT\Software` のいずれかのレジストリキーの下に格納する必要があります。  
   
- `SaveSetting` には、`Write` と `Create` @ no__t が必要です。  
+ `SaveSetting` には、`Write` と `Create`の <xref:System.Security.Permissions.RegistryPermission> が必要です。  
   
    
   
 ## Examples  
- 次の例では、最初に `SaveSetting` 関数を使用して `MyApp` アプリケーションの Windows レジストリにエントリを作成した後、`DeleteSetting` 関数を使用して削除します。  
+ 次の例では、最初に `SaveSetting` 関数を使用して、`MyApp` アプリケーションの Windows レジストリにエントリを作成してから、`DeleteSetting` 関数を使用してそれらを削除します。  
   
  [!code-vb[VbVbalrCatRef#56](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrCatRef/VB/Class1.vb#56)]  
   
@@ -1389,16 +1394,16 @@ drawObj.SaveAs("C:\Drawings\sample.drw")
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 関数の戻り値は、`Shell` が返されたときに `PathName` で指定されたプログラムが実行中かどうかによって異なります。 @No__t-0 を `True` に設定し、タイムアウトが経過する前にプログラムが終了すると、`Shell` は0を返します。 タイムアウトが経過した場合、または @no__t 0 を省略した場合、または `False` に設定した場合は、プログラムのプロセス ID が `Shell` によって返されます。 プロセス ID は、実行中のプログラムを識別する一意の番号です。  
+ `Shell` 関数の戻り値は、`Shell` が返されたときに `PathName` で指定されたプログラムが実行中かどうかによって異なります。 `Wait` を `True` に設定し、タイムアウトが経過する前にプログラムが終了した場合、`Shell` は0を返します。 タイムアウトが経過した場合、または `Wait` を省略した場合、または `False`に設定した場合、`Shell` はプログラムのプロセス ID を返します。 プロセス ID は、実行中のプログラムを識別する一意の番号です。  
   
 ## <a name="failure-to-start"></a>開始できません  
- @No__t 0 の関数が名前付きプログラムを開始できない場合は、<xref:System.IO.FileNotFoundException> のエラーが発生します。 これは、たとえば、<xref:System.Windows.Forms?displayProperty=nameWithType> を使用してアプリケーションから16ビットプログラム (`command.com` など) を実行しようとしたときに発生する可能性があります。 回避策として、必要な16ビットプログラムを呼び出す32ビットプログラムを実行することができます。 @No__t-0 の場合は、代替手段として `cmd.exe` を実行できます。  
+ `Shell` 関数が名前付きプログラムを開始できない場合、<xref:System.IO.FileNotFoundException> エラーが発生します。 これは、たとえば、<xref:System.Windows.Forms?displayProperty=nameWithType>を使用してアプリケーションから16ビットプログラム (`command.com`など) を実行しようとしたときに発生する可能性があります。 回避策として、必要な16ビットプログラムを呼び出す32ビットプログラムを実行することができます。 `command.com`の場合は、代替手段として `cmd.exe` を実行できます。  
   
 ## <a name="waiting-for-completion"></a>完了を待機しています  
- 既定では、`Shell` 関数はプログラムを非同期に実行します。 つまり、`Shell` 関数の後に続くステートメントが実行される前に、`Shell` 関数で開始されたプログラムが実行を完了しないことがあります。 続行する前にプログラムの終了を待機する場合は、`Wait` を `True` に設定します。  
+ 既定では、`Shell` 関数はプログラムを非同期的に実行します。 これは、`Shell` 関数で開始されたプログラムが、`Shell` 関数の後のステートメントが実行される前に実行を完了しない可能性があることを意味します。 続行する前にプログラムが終了するまで待機する場合は、`Wait` を `True`に設定します。  
   
 ## <a name="determining-the-exit-code"></a>終了コードの決定  
- プロセスは、終了時に*終了コード*を返すことができます。 ただし、`Shell` を使用してこの終了コードを取得することはできません。これは、`Shell` が終了を待機している場合は0を返し、プロセスは `Shell` とは別のオブジェクトで実行されるためです。  
+ プロセスは、終了時に*終了コード*を返すことができます。 ただし、`Shell` を使用してこの終了コードを取得することはできません。これは、`Shell` が終了を待機している場合は0を返し、プロセスは `Shell`から別のオブジェクトで実行されるためです。  
   
  プロセスから終了コードを取得するには、プロセスを開始するための独自のコードを記述し、終了を待機する必要があります。 次の例では、プロセスを開始し、終了するまで待機し、終了コードを取得する方法を示します。  
   
@@ -1423,19 +1428,19 @@ MsgBox("Process with ID " & CStr(ProcID) & _
 ID = Shell("""C:\Program Files\display.exe"" -a -q", , True, 100000)  
 ```  
   
- 文字列リテラル内の隣接する二重引用符 (`" "`) の各ペアは、文字列内で1つの二重引用符として解釈されます。 したがって、前の例では、次の文字列を @no__t 0 関数に示しています。  
+ 文字列リテラル内の隣接する二重引用符 (`" "`) の各ペアは、文字列内で1つの二重引用符として解釈されます。 したがって、前の例では、`Shell` 関数に次の文字列を示しています。  
   
 ```console  
 "C:\Program Files\display.exe" -a -q  
 ```  
   
- パスが引用符で囲まれていない場合、Windows は C:\ で `Program.exe` という名前のファイルを探します。C:\Program Files ディレクトリの `display.exe` ではなく、ディレクトリです。  
+ パスが引用符で囲まれていない場合、Windows は C:\ で `Program.exe` という名前のファイルを探します。C:\Program Files ディレクトリに `display.exe` するのではなく、ディレクトリです。  
   
 > [!IMPORTANT]
->  パスとファイルの指定を引用符で囲まないと、ファイル名またはパスノードにスペースが含まれている場合、セキュリティ上のリスクがあります。 前の例では、パスノード `\Program Files` にはスペースが含まれています。 仕様が引用符で囲まれておらず、`Program.exe` という名前のプログラムが C: \\ でインストールされている場合 (たとえば、違法な改ざんなど)、Windows は `display.exe` ではなく実行します。  
+>  パスとファイルの指定を引用符で囲まないと、ファイル名またはパスノードにスペースが含まれている場合、セキュリティ上のリスクがあります。 前の例では、パスノード `\Program Files` にスペースが含まれています。 仕様が引用符で囲まれておらず、`Program.exe` という名前のプログラムが C:\\にインストールされている場合 (たとえば、違法改ざんなど)、Windows は `display.exe`ではなく実行します。  
   
 > [!IMPORTANT]
->  @No__t 0 関数にはアンマネージコードのアクセス許可が必要ですが、部分信頼の状況での実行に影響する可能性があります。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」と「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
+>  `Shell` 関数には、部分信頼の状況での実行に影響する可能性があるアンマネージコードのアクセス許可が必要です。 詳細については、「<xref:System.Security.Permissions.SecurityPermission>」および「[コードアクセス許可](https://msdn.microsoft.com/library/e5ae402f-6dda-4732-bbe8-77296630f675)」を参照してください。  
   
    
   
@@ -1448,7 +1453,7 @@ ID = Shell("""C:\Program Files\display.exe"" -a -q", , True, 100000)
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="Style" /> が 0 ～ 9 (両端を含む) の範囲内の値ではありません。</exception>
         <exception cref="T:System.IO.FileNotFoundException"><see langword="Shell" /> が <paramref name="PathName" /> ファイルを見つけられません。</exception>
-        <exception cref="T:System.NullReferenceException"><paramref name="PathName" /> は <see langword="Nothing" />です。</exception>
+        <exception cref="T:System.NullReferenceException"><paramref name="PathName" /> が <see langword="Nothing" />です。</exception>
         <altmember cref="T:Microsoft.VisualBasic.AppWinStyle" />
         <altmember cref="T:System.ArgumentException" />
         <altmember cref="T:System.IO.FileNotFoundException" />
@@ -1494,21 +1499,21 @@ ID = Shell("""C:\Program Files\display.exe"" -a -q", , True, 100000)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 に指定された引数は、ペアの式と値で構成されます。 @No__t-0 関数は、`VarExpr` の小さい順に奇数の式を評価し、`True` に評価される最初の式に関連付けられている偶数の値を返します。 たとえば、`VarExpr(0)` が `True` の場合、`Switch` は `VarExpr(1)` を返しますが、`VarExpr(0)` が `VarExpr(2)` の場合は @no__t @no__t を返します。それ以外の場合は `VarExpr(3)` が返されます。  
+ `VarExpr` に指定される引数は、ペアの式と値で構成されます。 `Switch` 関数は、`VarExpr`内の最も小さいインデックスから最も大きいインデックスの奇数の式を評価し、`True`に評価される最初の式に関連付けられている偶数の値を返します。 たとえば、`VarExpr(0)` が `True`の場合、`Switch` は `VarExpr(1)`を返し、`VarExpr(0)` が `False` で `VarExpr(2)` は `True`を返します。`Switch``VarExpr(3)`  
   
- @No__t-0 引数を指定しない場合、`Switch` は `Nothing` を返します。  
+ `VarExpr` 引数を指定しない場合、`Switch` は `Nothing`を返します。  
   
 > [!NOTE]
->  引数リスト内の式には、関数呼び出しを含めることができます。 @No__t-0 への呼び出しの引数リストを準備する過程で、Visual Basic コンパイラはすべての式のすべての関数を呼び出します。 つまり、引数リストの前の式が `True` の場合、呼び出されていない特定の関数に依存することはできません。  
+>  引数リスト内の式には、関数呼び出しを含めることができます。 `Switch`の呼び出しの引数リストを準備する過程で、Visual Basic コンパイラはすべての式のすべての関数を呼び出します。 つまり、引数リストの前の式が `True`場合、呼び出されていない特定の関数に依存することはできません。  
   
    
   
 ## Examples  
- 次の例では、`Switch` 関数を使用して、都市名と一致する言語の名前を返します。 @No__t-0 `Off` である必要があります。  
+ 次の例では、`Switch` 関数を使用して、都市名と一致する言語の名前を返します。 `Option Strict` `Off`する必要があります。  
   
  [!code-vb[VbVbalrFunctions#48](~/samples/snippets/visualbasic/VS_Snippets_VBCSharp/VbVbalrFunctions/VB/Class1.vb#48)]  
   
- @No__t-0 名前空間にも <xref:System.Diagnostics.Switch> というクラスが含まれているため、`Switch` 関数の呼び出しは、<xref:Microsoft.VisualBasic> 名前空間で修飾する必要があります。  
+ <xref:System.Diagnostics> 名前空間には <xref:System.Diagnostics.Switch>と呼ばれるクラスも含まれているため、`Switch` 関数の呼び出しは <xref:Microsoft.VisualBasic> 名前空間で修飾する必要があります。  
   
  ]]></format>
         </remarks>

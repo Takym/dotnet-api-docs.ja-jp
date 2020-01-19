@@ -1,5 +1,5 @@
 <Type Name="Rfc3161TimestampRequest" FullName="System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="cafa3e2383c36efeb0b4448398786afcb4bc88e1" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70352387" /></Metadata><TypeSignature Language="C#" Value="public sealed class Rfc3161TimestampRequest" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5e2a6d4be62221e54081ebf4e5873e3ab9893055" /><Meta Name="ms.sourcegitcommit" Value="19810b7f44c3fa6cc5f0af0391e435c59897b089" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/07/2020" /><Meta Name="ms.locfileid" Value="75708000" /></Metadata><TypeSignature Language="C#" Value="public sealed class Rfc3161TimestampRequest" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Rfc3161TimestampRequest extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Rfc3161TimestampRequest" />
@@ -11,14 +11,22 @@
     <AssemblyVersion>4.0.3.1</AssemblyVersion>
     <AssemblyVersion>4.0.4.0</AssemblyVersion>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <AssemblyVersion>4.1.1.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>IETF RFC 3161 からのタイムスタンプ要求を表します。</summary>
+    <remarks>
+      <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+このクラスを使用すると、IETF RFC 3161: Internet x.509 公開キーインフラストラクチャタイムスタンププロトコル (TSP) によって定義された `TimeStampReq` 値の作成と検査を行うことができます。
+  
+ ]]></format>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName="CreateFromData">
@@ -34,6 +42,7 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest</ReturnType>
@@ -47,15 +56,32 @@
         <Parameter Name="extensions" Type="System.Security.Cryptography.X509Certificates.X509ExtensionCollection" />
       </Parameters>
       <Docs>
-        <param name="data">To be added.</param>
-        <param name="hashAlgorithm">To be added.</param>
-        <param name="requestedPolicyId">To be added.</param>
-        <param name="nonce">To be added.</param>
-        <param name="requestSignerCertificates">To be added.</param>
-        <param name="extensions">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="data">このメソッドによってハッシュされる、タイムスタンプを付けるデータ。</param>
+        <param name="hashAlgorithm">このタイムスタンプ要求で使用するハッシュ アルゴリズム。</param>
+        <param name="requestedPolicyId">タイムスタンプ局 (TSA) で使う必要があるタイムスタンプ ポリシーのオブジェクト識別子 (OID) です。<see langword="null" /> の場合は優先設定がありません。</param>
+        <param name="nonce">この要求を一意に識別して応答とペアリングするための、省略可能な nonce (一度だけ使われる数) です。 値は、符号なしのビッグ エンディアンの整数として解釈され、エンコード形式に正規化されることがあります。</param>
+        <param name="requestSignerCertificates">発行されたタイムスタンプ トークンの署名証明書がタイムスタンプ局 (TSA) に含まれる必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+        <param name="extensions">要求に含める拡張の、省略可能なコレクション。</param>
+        <summary>指定されたアルゴリズムを使用して、提供されたデータをハッシュすることによって、タイムスタンプ要求を作成します。</summary>
+        <returns>選択した値を表す <see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest" /> です。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+
+暗号化タイムスタンプは、データのハッシュに使用されるハッシュアルゴリズムのデータハッシュとアルゴリズム識別子の組み合わせに常に適用されます。
+このメソッドは、データがまだハッシュされていない場合に <xref:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.CreateFromHash(System.ReadOnlyMemory{System.Byte},System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.Oid,System.Nullable{System.ReadOnlyMemory{System.Byte}},System.Boolean,System.Security.Cryptography.X509Certificates.X509ExtensionCollection)> するための便利な方法です。
+
+このメソッドの nonce 値は、符号なしのビッグエンディアン整数として扱われます。
+このメソッドは、nonce 値を割り当てる前に、入力を BER 整数のエンコードに正規化します。
+<xref:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.GetNonce> メソッドによって、正規化された値が返されます。
+
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentException"><paramref name="hashAlgorithm" />.<see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> は <see langword="null" /> または <see cref="F:System.String.Empty" /> です。</exception>
+        <exception cref="T:System.Security.Cryptography.CryptographicException"><paramref name="hashAlgorithm" /> は既知のハッシュ アルゴリズムではありません。</exception>
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.CreateFromHash(System.ReadOnlyMemory{System.Byte},System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.Oid,System.Nullable{System.ReadOnlyMemory{System.Byte}},System.Boolean,System.Security.Cryptography.X509Certificates.X509ExtensionCollection)" />
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.CreateFromSignerInfo(System.Security.Cryptography.Pkcs.SignerInfo,System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.Oid,System.Nullable{System.ReadOnlyMemory{System.Byte}},System.Boolean,System.Security.Cryptography.X509Certificates.X509ExtensionCollection)" />
       </Docs>
     </Member>
     <Member MemberName="CreateFromHash">
@@ -71,6 +97,7 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest</ReturnType>
@@ -84,15 +111,31 @@
         <Parameter Name="extensions" Type="System.Security.Cryptography.X509Certificates.X509ExtensionCollection" />
       </Parameters>
       <Docs>
-        <param name="hash">To be added.</param>
-        <param name="hashAlgorithm">To be added.</param>
-        <param name="requestedPolicyId">To be added.</param>
-        <param name="nonce">To be added.</param>
-        <param name="requestSignerCertificates">To be added.</param>
-        <param name="extensions">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="hash">タイムスタンプを付ける事前計算済みのハッシュ値です。</param>
+        <param name="hashAlgorithm"><paramref name="hash" /> を生成するために使用されるハッシュ アルゴリズム。</param>
+        <param name="requestedPolicyId">タイムスタンプ局 (TSA) で使用する必要があるタイムスタンプ ポリシーのオブジェクト識別子 (OID) です。<see langword="null" /> の場合は優先設定がありません。</param>
+        <param name="nonce">要求を応答に一意に一致させるために使用される省略可能な値。<see langword="null" /> の場合は要求に nonce が含まれません。</param>
+        <param name="requestSignerCertificates">発行されたタイムスタンプ トークンの署名証明書がタイムスタンプ局 (TSA) に含まれる必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+        <param name="extensions">要求に含める拡張の、省略可能なコレクション。</param>
+        <summary>事前計算済みのハッシュ値およびハッシュ アルゴリズムの名前を使用して、タイムスタンプ要求を作成します。</summary>
+        <returns>選択した値を表す <see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest" /> です。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+
+このメソッドでは、`hashAlgorithm` パラメーターを使用して、タイムスタンプ要求に含めるオブジェクト識別子 (OID) を決定します。
+このメソッドでサポートされていないハッシュアルゴリズムに基づいてタイムスタンプの要求を作成する場合は、<xref:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.CreateFromHash(System.ReadOnlyMemory{System.Byte},System.Security.Cryptography.Oid,System.Security.Cryptography.Oid,System.Nullable{System.ReadOnlyMemory{System.Byte}},System.Boolean,System.Security.Cryptography.X509Certificates.X509ExtensionCollection)> のオーバーロードを使用します。
+
+このメソッドの nonce 値は、符号なしのビッグエンディアン整数として扱われます。
+このメソッドは、nonce 値を割り当てる前に、入力を BER 整数のエンコードに正規化します。
+<xref:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.GetNonce> メソッドによって、正規化された値が返されます。
+
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.Security.Cryptography.CryptographicException"><paramref name="hashAlgorithm" /> は既知のハッシュ アルゴリズムではありません。</exception>
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.CreateFromData(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.Oid,System.Nullable{System.ReadOnlyMemory{System.Byte}},System.Boolean,System.Security.Cryptography.X509Certificates.X509ExtensionCollection)" />
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.CreateFromHash(System.ReadOnlyMemory{System.Byte},System.Security.Cryptography.Oid,System.Security.Cryptography.Oid,System.Nullable{System.ReadOnlyMemory{System.Byte}},System.Boolean,System.Security.Cryptography.X509Certificates.X509ExtensionCollection)" />
       </Docs>
     </Member>
     <Member MemberName="CreateFromHash">
@@ -108,6 +151,7 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest</ReturnType>
@@ -126,10 +170,22 @@
         <param name="requestedPolicyId">タイムスタンプ局 (TSA) で使う必要があるタイムスタンプ ポリシーのオブジェクト識別子 (OID) です。<see langword="null" /> の場合は優先設定がありません。</param>
         <param name="nonce">この要求を一意に識別して応答とペアリングするための、省略可能な nonce (一度だけ使われる数) です。 値は、符号なしのビッグ エンディアンの整数として解釈され、エンコード形式に正規化されることがあります。</param>
         <param name="requestSignerCertificates">発行されたタイムスタンプ トークンの署名証明書がタイムスタンプ局 (TSA) に含まれる必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
-        <param name="extensions">要求を示す RFC3161 の拡張機能です。</param>
-        <summary>事前計算済みのハッシュ値を使って、タイムスタンプ要求を作成します。</summary>
+        <param name="extensions">要求に含める拡張の、省略可能なコレクション。</param>
+        <summary>事前計算済みのハッシュ値およびハッシュ アルゴリズムのオブジェクト識別子を使用して、タイムスタンプ要求を作成します。</summary>
         <returns>選択した値を表す <see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest" /> です。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+
+このメソッドの nonce 値は、符号なしのビッグエンディアン整数として扱われます。
+このメソッドは、nonce 値を割り当てる前に、入力を BER 整数のエンコードに正規化します。
+<xref:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.GetNonce> メソッドによって、正規化された値が返されます。
+
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="hashAlgorithmId" /> が <see langword="null" />です。</exception>
+        <exception cref="T:System.Security.Cryptography.CryptographicException"><paramref name="hashAlgorithmId" />.<see cref="P:System.Security.Cryptography.Oid.Value" /> が有効な OID ではありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="CreateFromSignerInfo">
@@ -144,6 +200,7 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest</ReturnType>
@@ -157,15 +214,31 @@
         <Parameter Name="extensions" Type="System.Security.Cryptography.X509Certificates.X509ExtensionCollection" />
       </Parameters>
       <Docs>
-        <param name="signerInfo">To be added.</param>
-        <param name="hashAlgorithm">To be added.</param>
-        <param name="requestedPolicyId">To be added.</param>
-        <param name="nonce">To be added.</param>
-        <param name="requestSignerCertificates">To be added.</param>
-        <param name="extensions">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="signerInfo">タイムスタンプ要求を作成するための CMS 署名者情報。</param>
+        <param name="hashAlgorithm">このタイムスタンプ要求で使用するハッシュ アルゴリズム。</param>
+        <param name="requestedPolicyId">タイムスタンプ局 (TSA) で使用する必要があるタイムスタンプ ポリシーのオブジェクト識別子 (OID) です。<see langword="null" /> の場合は優先設定がありません。</param>
+        <param name="nonce">この要求を一意に識別して応答とペアリングするための、省略可能な nonce (一度だけ使われる数) です。 値は、符号なしのビッグ エンディアンの整数として解釈され、エンコード形式に正規化されることがあります。</param>
+        <param name="requestSignerCertificates">発行されたタイムスタンプ トークンの署名証明書がタイムスタンプ局 (TSA) に含まれる必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+        <param name="extensions">要求に含める拡張の、省略可能なコレクション。</param>
+        <summary>指定されたアルゴリズムを使用して、提供された署名者の署名をハッシュすることによって、タイムスタンプ要求を作成します。</summary>
+        <returns>選択した値を表す <see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest" /> です。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+
+このコンストラクターは、IETF RFC 3161 付録 A (CMS を使用した署名タイムスタンプ属性) の推奨事項に従って、<xref:System.Security.Cryptography.Pkcs.SignerInfo> 値の署名値のタイムスタンプを作成します。
+
+このメソッドの nonce 値は、符号なしのビッグエンディアン整数として扱われます。
+このメソッドは、nonce 値を割り当てる前に、入力を BER 整数のエンコードに正規化します。
+<xref:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.GetNonce> メソッドによって、正規化された値が返されます。
+
+ ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="signerInfo" /> が <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentException"><paramref name="hashAlgorithm" />.<see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> は <see langword="null" /> または <see cref="F:System.String.Empty" /> です。</exception>
+        <exception cref="T:System.Security.Cryptography.CryptographicException"><paramref name="hashAlgorithm" /> は既知のハッシュ アルゴリズムではありません。</exception>
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.CreateFromData(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.Oid,System.Nullable{System.ReadOnlyMemory{System.Byte}},System.Boolean,System.Security.Cryptography.X509Certificates.X509ExtensionCollection)" />
       </Docs>
     </Member>
     <Member MemberName="Encode">
@@ -182,15 +255,18 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Byte[]</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>タイムスタンプ要求をエンコードし、それをバイト配列として返します。</summary>
+        <returns>DER でエンコードされたタイムスタンプ要求を格納するバイト配列。</returns>
         <remarks>To be added.</remarks>
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.TryDecode(System.ReadOnlyMemory{System.Byte},System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest@,System.Int32@)" />
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.TryEncode(System.Span{System.Byte},System.Int32@)" />
       </Docs>
     </Member>
     <Member MemberName="GetExtensions">
@@ -207,15 +283,28 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.X509Certificates.X509ExtensionCollection</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>この要求に存在する拡張機能のコピーが含まれるコレクションを取得します。</summary>
+        <returns>この要求に存在する拡張機能のコピーが含まれるコレクション。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+
+このメソッドによって返されるコレクションは、データのスナップショットを表します。
+コレクションまたはコレクション内のインスタンスを変更しても、このインスタンスは変更されません。
+
+このメソッドは、拡張機能がない場合、空のコレクションを返します。
+この一般的なシナリオでオブジェクトが作成されないようにするには、<xref:System.Security.Cryptography.Pkcs.Rfc3161TimestampRequest.HasExtensions>を参照してください。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetMessageHash">
@@ -232,14 +321,15 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.ReadOnlyMemory&lt;System.Byte&gt;</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>このタイムスタンプ要求のデータ ハッシュを取得します。</summary>
+        <returns>このタイムスタンプ要求の、読み取り専用メモリ値としてのデータ ハッシュ。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -257,14 +347,15 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Nullable&lt;System.ReadOnlyMemory&lt;System.Byte&gt;&gt;</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>このタイムスタンプ要求の nonce を取得します。</summary>
+        <returns>存在する場合は、このタイムスタンプ要求の、読み取り専用メモリ値としての nonce。それ以外の場合は <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -282,13 +373,14 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>要求に拡張機能があるかどうかを示します。</summary>
+        <value>要求に拡張機能があるかどうかを <see langword="true" /> します。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -306,13 +398,14 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.Oid</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>要求に関連付けられているハッシュ アルゴリズムのオブジェクト識別子 (OID) を取得します。</summary>
+        <value>要求に関連付けられているハッシュアルゴリズムのオブジェクト識別子 (OID)。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -330,6 +423,7 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.Pkcs.Rfc3161TimestampToken</ReturnType>
@@ -339,11 +433,20 @@
         <Parameter Name="bytesConsumed" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="responseBytes">To be added.</param>
-        <param name="bytesConsumed">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="responseBytes">DER でエンコードされたタイムスタンプ応答。</param>
+        <param name="bytesConsumed">このメソッドから制御が戻るときに、<paramref name="responseBytes" /> から読み取られたバイト数。 このパラメーターは初期化前として処理されます。</param>
+        <summary>エンコードされたタイムスタンプ応答をこの要求と組み合わせて、<see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken" /> を生成します。</summary>
+        <returns>この要求に対応する応答からのタイムスタンプ トークン。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[  
+  
+## Remarks  
+
+このメソッドは、`responseBytes` の先頭を IETF RFC 3161 `TimeStampResp`として解釈します。
+応答をデコードできない場合、応答の状態が `granted` または `grantedWithMods`ではない場合、発行されたタイムスタンプトークンが正常にデコードされない場合、または、IETF RFC 3161 (主、セクション2.4.1、および 2.4.2) の受け入れ基準に従ってタイムスタンプトークンがこの要求に一致しない場合は、<xref:System.Security.Cryptography.CryptographicException> がスローされます。
+
+ ]]></format>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="RequestedPolicyId">
@@ -360,13 +463,14 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Security.Cryptography.Oid</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>要求のポリシー ID を取得します。ポリシー ID が要求されなかった場合は <see langword="null" />。</summary>
+        <value>要求のポリシー ID。ポリシー ID が要求されなかった場合は <see langword="null" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -384,13 +488,14 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>タイムスタンプ局の証明書が応答に必要であることが要求で示されていたかどうかを示す値を取得します。</summary>
+        <value>応答にタイムスタンプ証明書を含める必要があるかどうかを <see langword="true" /> します。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -408,6 +513,7 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -418,11 +524,11 @@
         <Parameter Name="bytesConsumed" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="encodedBytes">To be added.</param>
-        <param name="request">To be added.</param>
-        <param name="bytesConsumed">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="encodedBytes">DER でエンコードされたタイムスタンプ要求を格納するバッファー。</param>
+        <param name="request">このメソッドから制御が戻るときに、デコードが正常に実行された場合はタイムスタンプ要求。デコードに失敗した場合は <see langword="null" />。 このパラメーターは初期化前として処理されます。</param>
+        <param name="bytesConsumed">このメソッドから制御が戻るときに、<paramref name="encodedBytes" /> から読み取られたバイト数。 このパラメーターは初期化前として処理されます。</param>
+        <summary><paramref name="encodedBytes" /> のコンテンツを、DER でエンコードされたタイムスタンプ要求として解釈することを試みます。</summary>
+        <returns><paramref name="encodedBytes" /> がタイムスタンプ要求として正常に解釈された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -440,6 +546,7 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -449,10 +556,10 @@
         <Parameter Name="bytesWritten" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="destination">To be added.</param>
-        <param name="bytesWritten">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="destination">エンコードされた要求を受け取るバッファー。</param>
+        <param name="bytesWritten">このメソッドから制御が戻るときに、<paramref name="destination" /> に書き込まれた合計バイト数。 このパラメーターは初期化前として処理されます。</param>
+        <summary>指定されたバッファーにバイトを書き込み、インスタンスを IETF RFC 3161 <c>TimeStampReq</c> としてエンコードすることを試みます。</summary>
+        <returns><paramref name="destination" /> がエンコードされた要求を受け取るのに十分な長さである場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -470,13 +577,14 @@
         <AssemblyVersion>4.0.3.1</AssemblyVersion>
         <AssemblyVersion>4.0.4.0</AssemblyVersion>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
+        <AssemblyVersion>4.1.1.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>この要求のデータ形式のバージョン番号を取得します。</summary>
+        <value>この要求のデータ形式のバージョン番号。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
