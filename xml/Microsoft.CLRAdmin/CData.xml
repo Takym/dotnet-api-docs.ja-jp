@@ -1,5 +1,5 @@
 <Type Name="CData" FullName="Microsoft.CLRAdmin.CData">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="3a89f977a160cda9144b4e4664945103f82d509a" /><Meta Name="ms.sourcegitcommit" Value="3facd7aafd1f5ffe2afede7ecab64614a55d408e" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/18/2019" /><Meta Name="ms.locfileid" Value="75186284" /></Metadata><TypeSignature Language="C#" Value="public class CData : Microsoft.CLRAdmin.IComponentData, Microsoft.CLRAdmin.IExtendContextMenu, Microsoft.CLRAdmin.IExtendPropertySheet2" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="eeefce2eac9c69b54c8a3b8fba6c6e840274a63f" /><Meta Name="ms.sourcegitcommit" Value="f11e0152a1dd5d85dbd684f07123f1829eed3f3a" /><Meta Name="ms.translationtype" Value="HT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/17/2020" /><Meta Name="ms.locfileid" Value="76165327" /></Metadata><TypeSignature Language="C#" Value="public class CData : Microsoft.CLRAdmin.IComponentData, Microsoft.CLRAdmin.IExtendContextMenu, Microsoft.CLRAdmin.IExtendPropertySheet2" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CData extends System.Object implements class Microsoft.CLRAdmin.IComponentData, class Microsoft.CLRAdmin.IExtendContextMenu, class Microsoft.CLRAdmin.IExtendPropertySheet2" />
   <TypeSignature Language="DocId" Value="T:Microsoft.CLRAdmin.CData" />
   <TypeSignature Language="VB.NET" Value="Public Class CData&#xA;Implements IComponentData, IExtendContextMenu, IExtendPropertySheet2" />
@@ -193,12 +193,13 @@
         <Parameter Name="lpIDataObject" Type="Microsoft.CLRAdmin.IDataObject" />
       </Parameters>
       <Docs>
-        <param name="lpProvider">To be added.</param>
-        <param name="handle">To be added.</param>
-        <param name="lpIDataObject">To be added.</param>
-        <summary>この API は、.NET Framework インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。</summary>
-        <returns>To be added.</returns>
+        <param name="lpProvider"><see cref="T:Microsoft.CLRAdmin.IPropertySheetCallback" /> へのポインター。</param>
+        <param name="handle">通知メッセージを適切な <see cref="T:Microsoft.CLRAdmin.IComponent" /> または <see cref="T:Microsoft.CLRAdmin.IComponentData" /> にルーティングするために使用するハンドル。</param>
+        <param name="lpIDataObject">スコープ項目または結果項目に関するコンテキスト情報を格納しているオブジェクトの <see cref="T:Microsoft.CLRAdmin.IDataObject" /> を指すポインター。</param>
+        <summary>プロパティ シートにページを追加します。</summary>
+        <returns>| 戻り値 | 説明 | | --- | --- | | S\_OK | <see cref="M:Microsoft.CLRAdmin.CData.CreatePropertyPages(Microsoft.CLRAdmin.IPropertySheetCallback,System.IntPtr,Microsoft.CLRAdmin.IDataObject)" /> メソッドにより、プロパティ シート ページが正常に追加されました。 | | S\_FALSE | <see cref="M:Microsoft.CLRAdmin.CData.CreatePropertyPages(Microsoft.CLRAdmin.IPropertySheetCallback,System.IntPtr,Microsoft.CLRAdmin.IDataObject)" /> メソッドでプロパティ シート ページが追加されませんでした。 | | E\_UNEXPECTED | 予期しないエラーが発生しました。 | | E\_INVALIDARG | 1 つ以上のパラメーターが無効です。 |</returns>
         <remarks>To be added.</remarks>
+        <forInternalUseOnly />
       </Docs>
     </Member>
     <Member MemberName="Destroy">
@@ -278,14 +279,15 @@
         <Parameter Name="bStretch" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="lpIDataObject">To be added.</param>
-        <param name="lphWatermark">To be added.</param>
-        <param name="lphHeader">To be added.</param>
-        <param name="lphPalette">To be added.</param>
-        <param name="bStretch">To be added.</param>
-        <summary>この API は、.NET Framework インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。</summary>
-        <returns>To be added.</returns>
+        <param name="lpIDataObject">スコープ項目または結果項目に関するコンテキスト情報を格納しているオブジェクトの <see cref="T:Microsoft.CLRAdmin.IDataObject" />。</param>
+        <param name="lphWatermark">このメソッドから制御が戻るときに、ウィザード 97 ページのウォーターマークとして機能するビットマップを識別するハンドル。</param>
+        <param name="lphHeader">このメソッドから制御が戻るときに、ウィザード 97 ページのヘッダーとして機能するビットマップを識別するハンドル。</param>
+        <param name="lphPalette">このメソッドから制御が戻るときに、<paramref name="lphWatermark" /> および <paramref name="lphHeader" /> によって指定されたビットマップで使用されるパレットを識別するハンドル。</param>
+        <param name="bStretch">このメソッドから制御が戻るときに、ウォーターマークとヘッダーのビットマップを並べて表示するのではなく、伸縮する必要がある場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</param>
+        <summary>Wizard 97 スタイルのウィザードとして実装されるウィザード シートのウォーターマーク ビットマップおよびヘッダー ビットマップを取得します。</summary>
+        <returns>| 戻り値 | 説明 | | --- | --- | | etch | ウォーターマーク ビットマップおよびヘッダー ビットマップが並べて表示されるのではなく、伸縮される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 |</returns>
         <remarks>To be added.</remarks>
+        <forInternalUseOnly />
       </Docs>
     </Member>
     <Member MemberName="Initialize">
@@ -402,10 +404,11 @@
         <Parameter Name="lpDataObject" Type="Microsoft.CLRAdmin.IDataObject" />
       </Parameters>
       <Docs>
-        <param name="lpDataObject">To be added.</param>
-        <summary>この API は、.NET Framework インフラストラクチャをサポートします。独自に作成したコードから直接使用するためのものではありません。</summary>
-        <returns>To be added.</returns>
+        <param name="lpDataObject">スコープ項目または結果項目に関するコンテキスト情報を格納しているオブジェクトの <see cref="T:Microsoft.CLRAdmin.IDataObject" /> を指すポインター。</param>
+        <summary>オブジェクトにページが必要かどうかを確認します。</summary>
+        <returns>| 戻り値 | 説明 | | --- | --- | | S\_OK | このデータ オブジェクトにプロパティが存在します。 | | E\_UNEXPECTED | 予期しないエラーが発生しました。 | | E\_INVALID | パラメーターが有効ではありません。 | | その他のエラー コード | このデータ オブジェクトには、ページがありません。 |</returns>
         <remarks>To be added.</remarks>
+        <forInternalUseOnly />
       </Docs>
     </Member>
   </Members>
