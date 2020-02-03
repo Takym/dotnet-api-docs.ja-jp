@@ -1,5 +1,5 @@
 <Type Name="InstrumentationManager" FullName="System.Management.Instrumentation.InstrumentationManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8901bf4b697542735d9f416a4e9e23fc34741f7b" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70355943" /></Metadata><TypeSignature Language="C#" Value="public static class InstrumentationManager" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="57abe6c0a1c40391727af378b18227de23dd9702" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76945827" /></Metadata><TypeSignature Language="C#" Value="public static class InstrumentationManager" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed InstrumentationManager extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Management.Instrumentation.InstrumentationManager" />
   <TypeSignature Language="VB.NET" Value="Public Class InstrumentationManager" />
@@ -22,39 +22,39 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 分離プロバイダーは、アプリケーションによってホストされます。 アプリケーションでは、publish/revoke または callback メソッドの2つのメソッドを使用して、WMI クラスのインスタンスを使用できるようにすることができます。 コールバックメソッドは、 <xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>メソッド<xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>とメソッドを使用します。  
+ 分離プロバイダーは、アプリケーションによってホストされます。 アプリケーションでは、publish/revoke または callback メソッドの2つのメソッドを使用して、WMI クラスのインスタンスを使用できるようにすることができます。 コールバックメソッドは、<xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A> メソッドと <xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A> メソッドを使用します。  
   
  パブリッシュ/失効モデルでは、コールバックメソッドで自分で記述する必要がある多くのメソッドに対して、WMI インフラストラクチャによって既定の動作が提供されます。 これには、列挙メソッドとバインドメソッドが含まれます。 このモデルでは、アプリケーションによってインスタンスが作成され、公開されます。 アプリケーションは、クラスの主要なプロパティが尊重されることを保証する役割を担います。 また、アプリケーションはインスタンスの削除も行います。  
   
- コールバックモデルでは、WMI インフラストラクチャは、列挙、バインド、およびプロバイダーの機能を実装するために必要なその他のメソッドを処理するメソッドをアプリケーションに提供することを想定しています。 この機能のためにアプリケーションを呼び出します。存在しない場合、または適切に実装されていない場合は失敗します。 アプリケーションは、を呼び出し<xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>て wmi クラスの型をインフラストラクチャに登録し、を呼び出す<xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>ことによって公開される wmi クラスを必要としないことを示します。  
+ コールバックモデルでは、WMI インフラストラクチャは、列挙、バインド、およびプロバイダーの機能を実装するために必要なその他のメソッドを処理するメソッドをアプリケーションに提供することを想定しています。 この機能のためにアプリケーションを呼び出します。存在しない場合、または適切に実装されていない場合は失敗します。 アプリケーションは <xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A> を呼び出すことによって WMI クラスの型をインフラストラクチャに登録し、<xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>を呼び出すことによって公開される WMI クラスを必要としないことを示します。  
   
    
   
 ## Examples  
  次の例では、パブリッシュ/取り消しモデルを使用する方法を示します。 Router クラスの2つのインスタンスが作成され、発行されます。 これらは後で失効します。  
   
-```  
+```csharp
 public class Sample_InstanceProvider  
 {  
-public int Main (string[] args)   
-{  
-Router r_one = new Router ();  
-r_one.Name = "one";  
-InstrumentationManager.Publish(r_one);  
-Router r_two = new Router ();  
-r_two.Name = "two";  
-InstrumentationManager.Publish(r_two);  
-// ....  
-InstrumentationManager.Revoke(r_one);  
-InstrumentationManager.Revoke(r_two);  
-return 0;  
-}  
+    public int Main (string[] args)   
+    {  
+        var r_one = new Router();
+        r_one.Name = "one";  
+        InstrumentationManager.Publish(r_one);  
+        var r_two = new Router ();  
+        r_two.Name = "two";  
+        InstrumentationManager.Publish(r_two);  
+        // ....  
+        InstrumentationManager.Revoke(r_one);  
+        InstrumentationManager.Revoke(r_two);  
+        return 0;  
+    }  
 }  
 ```  
   
  次の例では、登録のコールバックメソッドを使用して、RouterNew クラスを公開しています。  
   
-```  
+```csharp
 public int MainNew(string[] args)   
 {  
     InstrumentationManager.RegisterType(typeof(RouterNew));  
@@ -152,13 +152,13 @@ public int MainNew(string[] args)
   
 ## Examples  
   
-```  
-static int Main(string[] args)  
-{  
-   InstrumentationManager.RegisterType(typeof(MySampleProvider));  
-   return 0;  
-}  
-```  
+```csharp
+static int Main(string[] args)
+{
+   InstrumentationManager.RegisterType(typeof(MySampleProvider));
+   return 0;
+}
+```
   
  ]]></format>
         </remarks>

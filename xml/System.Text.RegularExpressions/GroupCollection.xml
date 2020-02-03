@@ -1,5 +1,5 @@
 <Type Name="GroupCollection" FullName="System.Text.RegularExpressions.GroupCollection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="85553489b71f4ebe112fffc72ec88c38b63c8751" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75053973" /></Metadata><TypeSignature Language="C#" Value="public class GroupCollection : System.Collections.ICollection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="117aa65a9b18592a1af4ace9fd446335efb09f79" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76956162" /></Metadata><TypeSignature Language="C#" Value="public class GroupCollection : System.Collections.ICollection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit GroupCollection extends System.Object implements class System.Collections.ICollection, class System.Collections.IEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.Text.RegularExpressions.GroupCollection" />
   <TypeSignature Language="VB.NET" Value="Public Class GroupCollection&#xA;Implements ICollection" />
@@ -60,7 +60,7 @@
 ## Examples  
  次の例では、キャプチャグループで正規表現を使用して、テキストで使用される商標と登録商標に関する情報を抽出します。 正規表現パターンは `\b(\w+?)([\u00AE\u2122])`であり、次の表に示すように解釈されます。  
   
-|パターン|説明|  
+|[パターン]|説明|  
 |-------------|-----------------|  
 |`\b`|ワード境界を探します。|  
 |`(\w+?)`|1つ以上の単語文字を検索します。 これらは共に商標名を形成します。 (この正規表現は、商標が1つの単語で構成されていることを前提としています)。これが最初のキャプチャグループです。|  
@@ -169,7 +169,7 @@
   
  正規表現は次のように定義されています。  
   
-|パターン|説明|  
+|[パターン]|説明|  
 |-------------|-----------------|  
 |`\b`|ワード境界に一致します。|  
 |`(\S+?)`|1個以上の空白以外の文字と一致します。 最初のキャプチャグループに割り当てます。|  
@@ -177,7 +177,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IndexOutOfRangeException"><paramref name="arrayIndex" /> が <paramref name="array" /> の境界の外側にあります。
 
 または
@@ -215,7 +215,7 @@
       </Parameters>
       <Docs>
         <param name="array">グループ コレクションからコピーされる要素のコピー先となる 1 次元配列。 配列には、0 から始まるインデックスが設定されている必要があります。</param>
-        <param name="arrayIndex">コピーの開始位置とする <paramref name="array" /> のインデックス (0 から始まる)。</param>
+        <param name="arrayIndex">コピーを開始する <paramref name="array" /> の 0 から始まるインデックス。</param>
         <summary>特定の配列インデックスを開始位置として、<see cref="T:System.Text.RegularExpressions.Group" /> 配列にグループ コレクションの要素をコピーします。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が null です。</exception>
@@ -237,6 +237,8 @@
       <MemberType>Property</MemberType>
       <Implements>
         <InterfaceMember>P:System.Collections.ICollection.Count</InterfaceMember>
+        <InterfaceMember>P:System.Collections.Generic.ICollection`1.Count</InterfaceMember>
+        <InterfaceMember>P:System.Collections.Generic.IReadOnlyCollection`1.Count</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>System.Text.RegularExpressions</AssemblyName>
@@ -334,6 +336,10 @@
       <MemberSignature Language="C++ CLI" Value="public:&#xA; property bool IsReadOnly { bool get(); };" />
       <MemberSignature Language="F#" Value="member this.IsReadOnly : bool" Usage="System.Text.RegularExpressions.GroupCollection.IsReadOnly" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:System.Collections.Generic.ICollection`1.IsReadOnly</InterfaceMember>
+        <InterfaceMember>P:System.Collections.IList.IsReadOnly</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>System</AssemblyName>
         <AssemblyVersion>1.0.5000.0</AssemblyVersion>
@@ -430,6 +436,9 @@
       <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::Text::RegularExpressions::Group ^ default[int] { System::Text::RegularExpressions::Group ^ get(int groupnum); };" />
       <MemberSignature Language="F#" Value="member this.Item(int) : System.Text.RegularExpressions.Group" Usage="System.Text.RegularExpressions.GroupCollection.Item" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:System.Collections.Generic.IReadOnlyList`1.Item(System.Int32)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>System.Text.RegularExpressions</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -486,7 +495,7 @@
 ## Examples  
  次の例では、2つの番号付きグループで構成される正規表現を定義しています。 最初のグループは、1つ以上の連続する数字をキャプチャします。 2番目のグループは1つの文字と一致します。 正規表現エンジンは、最初のグループの0回または1回の出現を検索するので、正規表現の一致が成功した場合でも、常に一致を検出するとは限りません。 この例では、<xref:System.Text.RegularExpressions.GroupCollection.Item%28System.Int32%29> プロパティを使用して、一致しないグループ、一致するグループ、および正規表現で定義されていないグループを取得した場合の結果を示します。 この例では、次の表に示すように、正規表現パターン `(\d+)*(\w)\2`を定義しています。  
   
-|パターン|説明|  
+|[パターン]|説明|  
 |-------------|-----------------|  
 |`(\d+)*`|10進数字の1回以上の出現と一致します。 これが最初のキャプチャ グループです。 0回または1回、このパターンに一致します。|  
 |`(\w)`|これが 2 番目のキャプチャ グループです。|  
@@ -508,6 +517,9 @@
       <MemberSignature Language="C++ CLI" Value="public:&#xA; property System::Text::RegularExpressions::Group ^ default[System::String ^] { System::Text::RegularExpressions::Group ^ get(System::String ^ groupname); };" />
       <MemberSignature Language="F#" Value="member this.Item(string) : System.Text.RegularExpressions.Group" Usage="System.Text.RegularExpressions.GroupCollection.Item" />
       <MemberType>Property</MemberType>
+      <Implements>
+        <InterfaceMember>P:System.Collections.Generic.IReadOnlyDictionary`2.Item(`0)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>System.Text.RegularExpressions</AssemblyName>
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -555,7 +567,7 @@
 ## Examples  
  次の例では、2つの名前付きグループで構成される正規表現を定義します。 最初のグループである `numbers`は、1つ以上の連続する数字をキャプチャします。 2番目のグループである `letter`は、1つの文字と一致します。 正規表現エンジンは、`numbers` グループによって定義されたパターンの0回または1回の出現を検索するため、一致が成功した場合でも、`numbers` グループは常に存在するとは限りません。 この例では、<xref:System.Text.RegularExpressions.GroupCollection.Item%28System.String%29> プロパティを使用して、一致しないグループ、一致するグループ、および正規表現で定義されていないグループを取得した場合の結果を示します。 この例では、次の表に示すように、正規表現パターン `(?<numbers>\d+)*(?<letter>\w)\k<letter>`を定義しています。  
   
-|パターン|説明|  
+|[パターン]|説明|  
 |-------------|-----------------|  
 |`(?<numbers>\d+)*`|10進数字の1回以上の出現と一致します。 `numbers` キャプチャグループの名前を指定します。 0回または1回、このパターンに一致します。|  
 |`(?<letter>\w)`|1つの単語文字と一致します。 `letter` キャプチャグループの名前を指定します。|  
