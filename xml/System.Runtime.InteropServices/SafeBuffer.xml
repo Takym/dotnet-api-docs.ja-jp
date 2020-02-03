@@ -1,5 +1,5 @@
 <Type Name="SafeBuffer" FullName="System.Runtime.InteropServices.SafeBuffer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6eb6d673b21ed94cbde1d060fc2142e293877ea4" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75085952" /></Metadata><TypeSignature Language="C#" Value="public abstract class SafeBuffer : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7b64b4ea8b3a33d9dcb1dc2623ffea3dd7287959" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76958889" /></Metadata><TypeSignature Language="C#" Value="public abstract class SafeBuffer : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SafeBuffer extends Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.InteropServices.SafeBuffer" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SafeBuffer&#xA;Inherits SafeHandleZeroOrMinusOneIsInvalid" />
@@ -43,11 +43,11 @@
       <AttributeName>System.Obsolete("SafeBuffer may be unavailable in future releases.")</AttributeName>
     </Attribute>
     <Attribute FrameworkAlternate="netstandard-1.2">
-      <AttributeName>System.ComponentModel.EditorBrowsable</AttributeName>
+      <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>読み取り用および書き込み用に使用できる管理されたメモリ バッファーを提供します。 管理されたバッファーの外部にあるメモリにアクセスしようとした場合 (アンダーランおよびオーバーラン)、例外が発生します。</summary>
+    <summary>読み取り用および書き込み用に使用できる管理されたメモリ バッファーを提供します。 管理されたバッファーの外部のメモリにアクセスしようとした場合 (アンダーランおよびオーバーラン)、例外が発生します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -287,7 +287,7 @@ finally {
         <param name="numBytes">バッファー内のバイト数。</param>
         <summary>メモリ領域の割り当てサイズを定義します (バイト単位)。 このメソッドは、<see cref="T:System.Runtime.InteropServices.SafeBuffer" /> インスタンスを使用する前に呼び出す必要があります。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="numBytes" /> が 0 未満です。  
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="numBytes" /> に 0 より小さい値が指定されています。  
   
 または 
  <paramref name="numBytes" /> が、利用できるアドレス空間を超えています。</exception>
@@ -346,10 +346,10 @@ finally {
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="numElements" /> が 0 未満です。  
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="numElements" /> に 0 より小さい値が指定されています。  
   
 または 
- <paramref name="sizeOfEachElement" /> が 0 未満です。  
+ <paramref name="sizeOfEachElement" /> に 0 より小さい値が指定されています。  
   
 または 
  <paramref name="numElements" /> に <paramref name="sizeOfEachElement" /> を乗算した値が、利用できるアドレス空間を超えています。</exception>
@@ -409,7 +409,7 @@ finally {
         <param name="numElements">メモリを割り当てる対象の値型の要素の数。</param>
         <summary>値型の数を指定して、メモリ領域の割り当てサイズを定義します。 このメソッドは、<see cref="T:System.Runtime.InteropServices.SafeBuffer" /> インスタンスを使用する前に呼び出す必要があります。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="numElements" /> が 0 未満です。  
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="numElements" /> に 0 より小さい値が指定されています。  
   
 または 
  <paramref name="numElements" /> と各要素のサイズを乗算した値が、利用できるアドレス空間を超えています。</exception>
@@ -571,11 +571,11 @@ finally {
         <param name="count">入力配列から読み取って出力配列に書き込む値型の数。</param>
         <summary>メモリの指定したオフセットから指定した数の値型を読み取り、指定したインデックスから始まる配列にそれらを書き込みます。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> が 0 未満です。  
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> に 0 より小さい値が指定されています。  
   
 または 
- <paramref name="count" /> が 0 未満です。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> は <see langword="null" /> です。</exception>
+ <paramref name="count" /> に 0 より小さい値が指定されています。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException">配列の長さからインデックスを減算した値が <paramref name="count" /> 未満です。</exception>
         <exception cref="T:System.InvalidOperationException"><see cref="Overload:System.Runtime.InteropServices.SafeBuffer.Initialize" /> メソッドが呼び出されていません。</exception>
         <altmember cref="M:System.Runtime.InteropServices.SafeBuffer.WriteArray``1(System.UInt64,``0[],System.Int32,System.Int32)" />
@@ -776,7 +776,7 @@ finally {
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> または <paramref name="count" /> が 0 未満です。</exception>
         <exception cref="T:System.ArgumentException">入力配列の長さから <paramref name="index" /> を減算した値が <paramref name="count" /> 未満です。</exception>
         <exception cref="T:System.InvalidOperationException"><see cref="Overload:System.Runtime.InteropServices.SafeBuffer.Initialize" /> メソッドが呼び出されていません。</exception>

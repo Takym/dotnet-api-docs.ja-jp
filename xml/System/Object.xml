@@ -1,5 +1,5 @@
 <Type Name="Object" FullName="System.Object">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c42a1c895bd933e298290ca0ba512ee91f7312f8" /><Meta Name="ms.sourcegitcommit" Value="f11e0152a1dd5d85dbd684f07123f1829eed3f3a" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/17/2020" /><Meta Name="ms.locfileid" Value="76164474" /></Metadata><TypeSignature Language="C#" Value="public class Object" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="594c3788028f82e879e53be9c6cf9688b75e69f6" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76959437" /></Metadata><TypeSignature Language="C#" Value="public class Object" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit object" />
   <TypeSignature Language="DocId" Value="T:System.Object" />
   <TypeSignature Language="VB.NET" Value="Public Class Object" />
@@ -220,7 +220,7 @@
 ## <a name="notes-for-callers"></a>呼び出し元に関する注意事項  
  派生クラスは、<xref:System.Object.Equals%28System.Object%29?displayProperty=nameWithType> メソッドをオーバーライドして値の等価性を実装することがよくあります。 また、型は、通常、<xref:System.IEquatable%601> インターフェイスを実装することによって、`Equals` メソッドに厳密に型指定された追加のオーバーロードを提供します。 `Equals` メソッドを呼び出して等しいかどうかをテストする場合は、現在のインスタンスが <xref:System.Object.Equals%2A?displayProperty=nameWithType> をオーバーライドし、`Equals` メソッドへの特定の呼び出しがどのように解決されるかを理解しておく必要があります。 それ以外の場合は、意図したものとは異なる等しいかどうかのテストを実行し、メソッドが予期しない値を返す可能性があります。  
   
- 具体的な例を次に示します。 同じ文字列を持つ3つの <xref:System.Text.StringBuilder> オブジェクトをインスタンス化し、`Equals` メソッドに対して4つの呼び出しを行います。 最初のメソッド呼び出しで `true`が返され、残りの3つの `false`が返されます。  
+ 次に例を示します。 同じ文字列を持つ3つの <xref:System.Text.StringBuilder> オブジェクトをインスタンス化し、`Equals` メソッドに対して4つの呼び出しを行います。 最初のメソッド呼び出しで `true`が返され、残りの3つの `false`が返されます。  
   
  [!code-csharp[System.Object.Equals#5](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.object.equals/cs/equalssb1.cs#5)]
  [!code-vb[System.Object.Equals#5](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.object.equals/vb/equalssb1.vb#5)]  
@@ -839,7 +839,7 @@
   
  たとえば、オブジェクト A と B を参照する X と呼ばれるオブジェクトについて考えてみます。オブジェクト B がオブジェクト C を参照しているとします。X の簡易コピーでは、オブジェクト A と B も参照する新しいオブジェクト X2 が作成されます。これに対し、X の詳細コピーでは新しいオブジェクト X2 が作成されます。これは、A と B のコピーである A2 と B2 の新しいオブジェクトを参照します。 B2 は、C のコピーである新しいオブジェクト C2 を参照します。この例では、簡易コピー操作と詳細コピー操作の違いについて説明します。  
   
- <xref:System.Object.MemberwiseClone%2A> メソッドによって実行される簡易コピー操作がニーズを満たさない場合は、ディープコピー操作を実装する方法が多数あります。 次に例を示します。  
+ <xref:System.Object.MemberwiseClone%2A> メソッドによって実行される簡易コピー操作がニーズを満たさない場合は、ディープコピー操作を実装する方法が多数あります。 コーディネートは次のとおりです。  
   
 -   コピーするオブジェクトのクラスコンストラクターを呼び出して、最初のオブジェクトから取得したプロパティ値を持つ2番目のオブジェクトを作成します。 これは、オブジェクトの値がクラスコンストラクターによって完全に定義されていることを前提としています。  
   
@@ -928,7 +928,7 @@
   
      値型のボックス化の詳細については、「[ボックス化とボックス化解除](~/docs/csharp/programming-guide/types/boxing-and-unboxing.md)」を参照してください。  
   
--   文字列を比較する場合。 `objA` と `objB` が文字列の場合、<xref:System.Object.ReferenceEquals%2A> メソッドは、文字列がインターンプールされている場合は `true` を返します。 値が等しいかどうかのテストは実行されません。  次の例では、1つのインターン文字列の2つのインスタンスであるため、`s1` と `s2` は等しくなります。 ただし、`s3` と `s4` は等しくありません。これは、文字列値が同一であっても、その文字列がインターンインターンに含まれていないためです。  
+-   文字列を比較する場合。 `objA` と `objB` が文字列の場合、<xref:System.Object.ReferenceEquals%2A> メソッドは、文字列がインターンプールされている場合は `true` を返します。 値が等しいかどうかのテストは実行されません。  次の例では、1つのインターン文字列の2つのインスタンスであるため、`s1` と `s2` は等しくなります。 ただし、`s3` と `s4` は同じではありませんが、文字列値が同一であっても、その文字列はインターンプールされていません。  
   
      [!code-csharp-interactive[System.Object.ReferenceEquals#2](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.object.referenceequals/cs/referenceequalsa.cs#2)]
      [!code-vb[System.Object.ReferenceEquals#2](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.object.referenceequals/vb/referenceequalsa.vb#2)]  
