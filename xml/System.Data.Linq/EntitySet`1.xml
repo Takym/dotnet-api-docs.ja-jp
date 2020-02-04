@@ -1,5 +1,5 @@
 <Type Name="EntitySet&lt;TEntity&gt;" FullName="System.Data.Linq.EntitySet&lt;TEntity&gt;">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5ed4a3fa190a6e854b87200738b4c15a66c81f5f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69128273" /></Metadata><TypeSignature Language="C#" Value="public sealed class EntitySet&lt;TEntity&gt; : System.Collections.Generic.ICollection&lt;TEntity&gt;, System.Collections.Generic.IEnumerable&lt;TEntity&gt;, System.Collections.Generic.IList&lt;TEntity&gt;, System.Collections.IList, System.ComponentModel.IListSource where TEntity : class" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="d6df7b531fe7913a9a79d521627cd7f7e264725a" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76949297" /></Metadata><TypeSignature Language="C#" Value="public sealed class EntitySet&lt;TEntity&gt; : System.Collections.Generic.ICollection&lt;TEntity&gt;, System.Collections.Generic.IEnumerable&lt;TEntity&gt;, System.Collections.Generic.IList&lt;TEntity&gt;, System.Collections.IList, System.ComponentModel.IListSource where TEntity : class" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit EntitySet`1&lt;class TEntity&gt; extends System.Object implements class System.Collections.Generic.ICollection`1&lt;!TEntity&gt;, class System.Collections.Generic.IEnumerable`1&lt;!TEntity&gt;, class System.Collections.Generic.IList`1&lt;!TEntity&gt;, class System.Collections.ICollection, class System.Collections.IEnumerable, class System.Collections.IList, class System.ComponentModel.IListSource" />
   <TypeSignature Language="DocId" Value="T:System.Data.Linq.EntitySet`1" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class EntitySet(Of TEntity)&#xA;Implements ICollection(Of TEntity), IEnumerable(Of TEntity), IList, IList(Of TEntity), IListSource" />
@@ -56,7 +56,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このクラスは、と組み合わせて<xref:System.Data.Linq.EntityRef%601>使用されます。  
+ このクラスは、<xref:System.Data.Linq.EntityRef%601>と組み合わせて使用されます。  
   
  ]]></format>
     </remarks>
@@ -210,8 +210,8 @@
       <MemberSignature Language="F#" Value="abstract member Clear : unit -&gt; unit&#xA;override this.Clear : unit -&gt; unit" Usage="entitySet.Clear " />
       <MemberType>Method</MemberType>
       <Implements>
-        <InterfaceMember>M:System.Collections.Generic.ICollection`1.Clear</InterfaceMember>
         <InterfaceMember>M:System.Collections.IList.Clear</InterfaceMember>
+        <InterfaceMember>M:System.Collections.Generic.ICollection`1.Clear</InterfaceMember>
       </Implements>
       <AssemblyInfo>
         <AssemblyName>System.Data.Linq</AssemblyName>
@@ -252,7 +252,7 @@
       <Docs>
         <param name="entity">エンティティ。</param>
         <summary><see cref="T:System.Data.Linq.EntitySet`1" /> に特定のエンティティが格納されているかどうかを示します。</summary>
-        <returns><see cref="T:System.Data.Linq.EntitySet`1" /> にエンティティが格納されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> にエンティティが格納されている場合は <see cref="T:System.Data.Linq.EntitySet`1" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -278,31 +278,31 @@
       </Parameters>
       <Docs>
         <param name="array">コピー先の配列。</param>
-        <param name="arrayIndex">配列内の開始インデックス。</param>
+        <param name="arrayIndex">配列の開始インデックス。</param>
         <summary><see cref="T:System.Data.Linq.EntitySet`1" /> を配列にコピーします。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
-## Remarks  
- 次C#の例は、このメソッドの使用方法を示しています。  
+## Examples
+
+ このメソッドの使用例を次に示します。  
   
-```  
+```csharp
 var customer = (from c in db.Customers  
    where c.CustomerID == "ALFKI"  
-   select c).Single();  
-  
-Order[] orderArray = new Order[customer.Orders.Count];  
+   select c).Single();
+
+var orderArray = new Order[customer.Orders.Count];
+customer.Orders.CopyTo(orderArray,0);
 ```  
   
- お.Visual Basic での CopyTo (orderArray, 0);  
-  
-```  
+```vb
 Dim customer = (From c In db.Customers _   
    Where c.CustomerID = "ALFKI" _   
    Select c).[Single]()  
   
-Dim orderArray As Order() = New Order(customer.Orders.Count - 1) {}  
-customer.Orders.CopyTo(orderArray, 0)  
+Dim orderArray As New Order(customer.Orders.Count - 1) {}
+customer.Orders.CopyTo(orderArray, 0)
 ```  
   
  ]]></format>
@@ -356,7 +356,7 @@ customer.Orders.CopyTo(orderArray, 0)
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>コレクションを反復処理する列挙子を返します。</summary>
+        <summary>コレクションを繰り返し処理する列挙子を返します。</summary>
         <returns><see cref="T:System.Collections.Generic.IEnumerator`1" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -423,7 +423,7 @@ customer.Orders.CopyTo(orderArray, 0)
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Data.Linq.EntitySet`1" /> で、値の読み込みまたは割り当てが行われたかどうかを示します。</summary>
-        <value><see langword="true" />に値<see cref="T:System.Data.Linq.EntitySet`1" />が読み込まれたか、割り当てられ<see langword="false" />ている場合は。それ以外の場合は。</value>
+        <value><see cref="T:System.Data.Linq.EntitySet`1" /> に値が読み込まれているか、値が割り当てられているかどうかを <see langword="true" /> します。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -537,7 +537,7 @@ customer.Orders.CopyTo(orderArray, 0)
       </ReturnValue>
       <Docs>
         <summary>まだ実行されていない遅延クエリがこの <see cref="T:System.Data.Linq.EntitySet`1" /> にあるかどうかを示します。</summary>
-        <value><see langword="true" />遅延クエリがまだ実行されていない場合は、それ以外<see langword="false" />の場合は。</value>
+        <value>遅延クエリがまだ実行されていない場合は <see langword="true" /> します。それ以外の場合は、<see langword="false" />ます。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -716,7 +716,7 @@ customer.Orders.CopyTo(orderArray, 0)
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.Generic.ICollection`1.IsReadOnly" />」をご覧ください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.Generic.ICollection`1.IsReadOnly" />」を参照してください。</summary>
         <value>コレクションが読み取り専用の場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -752,7 +752,7 @@ customer.Orders.CopyTo(orderArray, 0)
       <Docs>
         <param name="array">コレクションの要素のコピー先の配列。</param>
         <param name="index">コピー開始位置を示す配列インデックス。</param>
-        <summary>このメンバーの説明については、<see cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)" /> のトピックを参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)" />」を参照してください。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -807,7 +807,7 @@ customer.Orders.CopyTo(orderArray, 0)
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.ICollection.IsSynchronized" />」をご覧ください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.ICollection.IsSynchronized" />」を参照してください。</summary>
         <value>コレクションへのアクセスが同期されている (スレッド セーフである) 場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -839,7 +839,7 @@ customer.Orders.CopyTo(orderArray, 0)
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.ICollection.SyncRoot" />」をご覧ください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.ICollection.SyncRoot" />」を参照してください。</summary>
         <value>コレクションへのアクセスを同期するために使用できるオブジェクト。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -876,7 +876,7 @@ customer.Orders.CopyTo(orderArray, 0)
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IEnumerable.GetEnumerator" />」をご覧ください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IEnumerable.GetEnumerator" />」を参照してください。</summary>
         <returns>コレクションを反復処理するために使用できる <see cref="T:System.Collections.IEnumerator" /> オブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -911,7 +911,7 @@ customer.Orders.CopyTo(orderArray, 0)
       </Parameters>
       <Docs>
         <param name="value">リストに追加するオブジェクト。</param>
-        <summary>このメンバーの説明については、<see cref="M:System.Collections.IList.Add(System.Object)" /> のトピックを参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IList.Add(System.Object)" />」を参照してください。</summary>
         <returns>新しい要素が挿入された位置。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -968,9 +968,9 @@ customer.Orders.CopyTo(orderArray, 0)
         <Parameter Name="value" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="value">リスト内で検索するオブジェクト。</param>
-        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IList.Contains(System.Object)" />」をご覧ください。</summary>
-        <returns><see cref="T:System.Object" /> が <see cref="T:System.Collections.IList" /> に存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <param name="value">リストから検索するオブジェクトです。</param>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IList.Contains(System.Object)" />」を参照してください。</summary>
+        <returns><see langword="true" /> が <see cref="T:System.Object" /> に存在する場合は <see cref="T:System.Collections.IList" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1003,8 +1003,8 @@ customer.Orders.CopyTo(orderArray, 0)
         <Parameter Name="value" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="value">リスト内で検索するオブジェクト。</param>
-        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IList.IndexOf(System.Object)" />」をご覧ください。</summary>
+        <param name="value">リストから検索するオブジェクトです。</param>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IList.IndexOf(System.Object)" />」を参照してください。</summary>
         <returns>リストに存在する場合は <paramref name="value" /> のインデックス。それ以外の場合は -1。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1041,7 +1041,7 @@ customer.Orders.CopyTo(orderArray, 0)
       <Docs>
         <param name="index">リスト内のオブジェクトのインデックス。</param>
         <param name="value">リストに挿入するオブジェクト。</param>
-        <summary>このメンバーの説明については、<see cref="M:System.Collections.IList.Insert(System.Int32,System.Object)" /> のトピックを参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IList.Insert(System.Int32,System.Object)" />」を参照してください。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1072,7 +1072,7 @@ customer.Orders.CopyTo(orderArray, 0)
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの説明については、<see cref="P:System.Collections.IList.IsFixedSize" /> のトピックを参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.IList.IsFixedSize" />」を参照してください。</summary>
         <value>コレクションが固定サイズの場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1104,7 +1104,7 @@ customer.Orders.CopyTo(orderArray, 0)
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.IList.IsReadOnly" />」をご覧ください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.IList.IsReadOnly" />」を参照してください。</summary>
         <value>コレクションが読み取り専用の場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1140,7 +1140,7 @@ customer.Orders.CopyTo(orderArray, 0)
       </Parameters>
       <Docs>
         <param name="index">要素を設定または取得する位置を示すインデックス。</param>
-        <summary>このメンバーの説明については、<see cref="P:System.Collections.IList.Item(System.Int32)" /> のトピックを参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Collections.IList.Item(System.Int32)" />」を参照してください。</summary>
         <value>指定したインデックス位置にある要素。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1175,7 +1175,7 @@ customer.Orders.CopyTo(orderArray, 0)
       </Parameters>
       <Docs>
         <param name="value">リストから削除するオブジェクト。</param>
-        <summary>このメンバーの説明については、<see cref="M:System.Collections.IList.Remove(System.Object)" /> のトピックを参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Collections.IList.Remove(System.Object)" />」を参照してください。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1232,8 +1232,8 @@ customer.Orders.CopyTo(orderArray, 0)
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの説明については、<see cref="P:System.ComponentModel.IListSource.ContainsListCollection" /> のトピックを参照してください。</summary>
-        <value>コレクションが <see cref="T:System.Collections.IList" /> オブジェクトのコレクションである場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <summary>このメンバーの詳細については、「<see cref="P:System.ComponentModel.IListSource.ContainsListCollection" />」を参照してください。</summary>
+        <value>コレクションが <see langword="true" /> オブジェクトのコレクションである場合は <see cref="T:System.Collections.IList" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1264,7 +1264,7 @@ customer.Orders.CopyTo(orderArray, 0)
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="M:System.ComponentModel.IListSource.GetList" />」をご覧ください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.ComponentModel.IListSource.GetList" />」を参照してください。</summary>
         <returns>オブジェクトからデータ ソースに連結できる <see cref="T:System.Collections.IList" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  

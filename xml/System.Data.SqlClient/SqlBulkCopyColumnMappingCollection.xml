@@ -1,5 +1,5 @@
 <Type Name="SqlBulkCopyColumnMappingCollection" FullName="System.Data.SqlClient.SqlBulkCopyColumnMappingCollection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="feea7fe3addb15cdd75e136c1884daa0e79385f1" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75141813" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlBulkCopyColumnMappingCollection : System.Collections.CollectionBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4f6a47eb7df3b46ac0f2f861e90a1c202ea23018" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76947894" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlBulkCopyColumnMappingCollection : System.Collections.CollectionBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlBulkCopyColumnMappingCollection extends System.Collections.CollectionBase" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlBulkCopyColumnMappingCollection" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlBulkCopyColumnMappingCollection&#xA;Inherits CollectionBase" />
@@ -38,11 +38,11 @@
 ## Remarks  
  列マッピングは、データソースとターゲットテーブル間のマッピングを定義します。  
   
- マッピングが定義されていない場合 (つまり、<xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A> コレクションが空の場合)、列は序数位置に基づいて暗黙的にマップされます。 これを機能させるには、ソースとターゲットのスキーマが一致している必要があります。 そうでない場合は、<xref:System.InvalidOperationException> がスローされます。  
+ マッピングが定義されていない場合 (つまり、<xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A> コレクションが空の場合)、列は序数位置に基づいて暗黙的にマップされます。 これを行うには、コピー元のスキーマとコピー先のスキーマが一致する必要があります。 そうでない場合は、<xref:System.InvalidOperationException> がスローされます。  
   
  <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A> コレクションが空でない場合は、データソースに存在するすべての列を指定する必要はありません。 コレクションによってマップされていないものは無視されます。  
   
- ソース列とターゲット列は、名前または序数で参照できます。 同じマッピングコレクション内で、名前と序数による列参照を混在させることができます。  
+ コピー元とコピー先の列は、名前か序数のいずれかで参照できます。 同じマッピングコレクション内で、名前と序数による列参照を混在させることができます。  
   
    
   
@@ -50,7 +50,7 @@
  次の例では、 **AdventureWorks**サンプルデータベースのソーステーブルから、同じデータベース内の変換先テーブルにデータを一括コピーします。 変換先の列数が、変換元の列数と一致していても、列名と序数位置が一致しません。 <xref:System.Data.SqlClient.SqlBulkCopyColumnMapping> は、一括コピー用の列マップを作成するために、<xref:System.Data.SqlClient.SqlBulkCopy> オブジェクトの <xref:System.Data.SqlClient.SqlBulkCopyColumnMappingCollection> に追加されます。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMappingCollection#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingCollection/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMappingCollection#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingCollection/VB/source.vb#1)]  
@@ -116,7 +116,7 @@
  次の例では、 **AdventureWorks**サンプルデータベースのソーステーブルから、同じデータベース内の変換先テーブルにデータを一括コピーします。 変換先の列数が、変換元の列数と一致していても、列名と序数位置が一致しません。 <xref:System.Data.SqlClient.SqlBulkCopyColumnMapping> オブジェクトは、一括コピーの列マップを作成するために使用されます。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMapping#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMapping/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMapping#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMapping/VB/source.vb#1)]  
@@ -178,7 +178,7 @@
  次の例では、 **AdventureWorks**サンプルデータベースのソーステーブルから、同じデータベース内の変換先テーブルにデータを一括コピーします。 変換先の列数が、変換元の列数と一致していても、列名と序数位置が一致しません。 <xref:System.Data.SqlClient.SqlBulkCopyColumnMapping> オブジェクトを使用して、コピー元とコピー先の列の序数位置を使用して一括コピーの列マップを作成します。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMappingCollectionOrdinal#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingCollectionOrdinal/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMappingCollectionOrdinal#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingCollectionOrdinal/VB/source.vb#1)]  
@@ -240,7 +240,7 @@
  次の例では、 **AdventureWorks**サンプルデータベースのソーステーブルから、同じデータベース内の変換先テーブルにデータを一括コピーします。 変換先の列数が、変換元の列数と一致していても、列名と序数位置が一致しません。 <xref:System.Data.SqlClient.SqlBulkCopyColumnMapping> オブジェクトは、一括コピーの列マップを作成するために使用されます。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMappingIndexColName#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingIndexColName/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMappingIndexColName#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingIndexColName/VB/source.vb#1)]  
@@ -302,7 +302,7 @@
  次の例では、 **AdventureWorks**サンプルデータベースのソーステーブルから、同じデータベース内の変換先テーブルにデータを一括コピーします。 変換先の列数が、変換元の列数と一致していても、列名と序数位置が一致しません。 <xref:System.Data.SqlClient.SqlBulkCopyColumnMapping> オブジェクトは、一括コピーの列マップを作成するために使用されます。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMappingColNameIndex#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingColNameIndex/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMappingColNameIndex#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingColNameIndex/VB/source.vb#1)]  
@@ -364,7 +364,7 @@
  次の例では、 **AdventureWorks**サンプルデータベースのソーステーブルから、同じデータベース内の変換先テーブルにデータを一括コピーします。 変換先の列数が、変換元の列数と一致していても、列名と序数位置が一致しません。 このコードでは、列名を指定することによって <xref:System.Data.SqlClient.SqlBulkCopyColumnMapping> オブジェクトを作成します。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMappingCollection#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingCollection/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMappingCollection#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingCollection/VB/source.vb#1)]  
@@ -386,6 +386,9 @@
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void Clear();" FrameworkAlternate="netcore-1.0;netcore-1.1" />
       <MemberSignature Language="F#" Value="abstract member Clear : unit -&gt; unit&#xA;override this.Clear : unit -&gt; unit" Usage="sqlBulkCopyColumnMappingCollection.Clear " FrameworkAlternate="netcore-1.0;netcore-1.1" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.Collections.IList.Clear</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>System.Data.SqlClient</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
@@ -424,7 +427,7 @@
  次の例では、2つの一括コピー操作を実行します。 最初の操作では、販売注文ヘッダー情報をコピーし、2番目の操作では販売注文の詳細をコピーします。 この例では厳密には必要ありませんが (変換元列と変換先列の序数位置が一致するため)、各一括コピー操作の列マッピングが定義されています。 最初の一括コピーを実行した後、次の一括コピーの列マッピングが定義される前に、<xref:System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.Clear%2A> メソッドを使用する必要があります。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMappingOrdersDetails#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingOrdersDetails/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMappingOrdersDetails#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingOrdersDetails/VB/source.vb#1)]  
@@ -702,7 +705,7 @@
         <Parameter Name="index" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="index">検索する <see cref="T:System.Data.SqlClient.SqlBulkCopyColumnMapping" /> の 0 から始まるインデックス。</param>
+        <param name="index">検索する <see cref="T:System.Data.SqlClient.SqlBulkCopyColumnMapping" /> の 0 から始まるインデックスです。</param>
         <summary>指定したインデックス位置にある <see cref="T:System.Data.SqlClient.SqlBulkCopyColumnMapping" /> オブジェクトを取得します。</summary>
         <value><see cref="T:System.Data.SqlClient.SqlBulkCopyColumnMapping" /> オブジェクト。</value>
         <remarks>To be added.</remarks>
@@ -760,7 +763,7 @@
  次の例では、2つの一括コピー操作を実行します。 最初の操作では、販売注文ヘッダー情報をコピーし、2番目の操作では販売注文の詳細をコピーします。 この例では厳密には必要ありませんが (変換元列と変換先列の序数位置が一致するため)、各一括コピー操作の列マッピングが定義されています。 どちらの一括コピーにも**Salesorderid**のマッピングが含まれているため、一括コピー操作の間にコレクション全体をクリアするのではなく、 **salesorderid**マッピングを除くすべてのマッピングを削除してから、2番目の一括コピー操作に適切なマッピングを追加します。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMappingRemove#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingRemove/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMappingRemove#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingRemove/VB/source.vb#1)]  
@@ -782,6 +785,9 @@
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void RemoveAt(int index);" FrameworkAlternate="netcore-1.0;netcore-1.1" />
       <MemberSignature Language="F#" Value="abstract member RemoveAt : int -&gt; unit&#xA;override this.RemoveAt : int -&gt; unit" Usage="sqlBulkCopyColumnMappingCollection.RemoveAt index" FrameworkAlternate="netcore-1.0;netcore-1.1" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.Collections.IList.RemoveAt(System.Int32)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>System.Data.SqlClient</AssemblyName>
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
@@ -823,7 +829,7 @@
  次の例では、2つの一括コピー操作を実行します。 最初の操作では、販売注文ヘッダー情報をコピーし、2番目の操作では販売注文の詳細をコピーします。 この例では厳密には必要ありませんが (変換元列と変換先列の序数位置が一致するため)、各一括コピー操作の列マッピングが定義されています。 どちらの一括コピーにも**Salesorderid**のマッピングが含まれているため、一括コピー操作の間にコレクション全体をクリアするのではなく、 **salesorderid**マッピングを除くすべてのマッピングを削除してから、2番目の一括コピー操作に適切なマッピングを追加します。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.ColumnMappingRemoveAt#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingRemoveAt/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.ColumnMappingRemoveAt#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.ColumnMappingRemoveAt/VB/source.vb#1)]  
