@@ -1,5 +1,5 @@
 <Type Name="LazyInitializer" FullName="System.Threading.LazyInitializer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="31b21e8e787795488b17f0aa47aa1a5d32671fc4" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75158726" /></Metadata><TypeSignature Language="C#" Value="public static class LazyInitializer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0c97bffa69df408a33c3cccb98c95090b019c2cf" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76956110" /></Metadata><TypeSignature Language="C#" Value="public static class LazyInitializer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit LazyInitializer extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Threading.LazyInitializer" />
   <TypeSignature Language="VB.NET" Value="Public Class LazyInitializer" />
@@ -61,7 +61,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
  ]]></format>
     </remarks>
     <threadsafe><see cref="T:System.Threading.LazyInitializer" /> のメソッドはスレッドセーフであり、複数のスレッドから同時に呼び出すことができます。</threadsafe>
-    <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">遅延初期化</related>
+    <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
   </Docs>
   <Members>
     <MemberGroup MemberName="EnsureInitialized&lt;T&gt;">
@@ -116,7 +116,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
       </Parameters>
       <Docs>
         <typeparam name="T">初期化される参照の型。</typeparam>
-        <param name="target">まだ初期化されていない場合、初期化する参照。</param>
+        <param name="target">まだ初期化されていない場合、初期化する参照。 これが <see langword="null" /> の場合は、初期化されていないと見なされます。それ以外の場合は、初期化されていると見なされます。</param>
         <summary>まだ初期化されていない場合、型のパラメーターなしのコンストラクターを使用してターゲット参照型を初期化します。</summary>
         <returns>初期化されたオブジェクト。</returns>
         <remarks>
@@ -133,7 +133,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
         </remarks>
         <exception cref="T:System.MemberAccessException">型 <paramref name="T" /> のコンストラクターにアクセスするためのアクセス許可がありませんでした。</exception>
         <exception cref="T:System.MissingMemberException">型 <paramref name="T" /> には、パラメーターなしのコンストラクターがありません。</exception>
-        <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">遅延初期化</related>
+        <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
       </Docs>
     </Member>
     <Member MemberName="EnsureInitialized&lt;T&gt;">
@@ -196,7 +196,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
         </remarks>
         <exception cref="T:System.MissingMemberException">型 <paramref name="T" /> には、パラメーターなしのコンストラクターがありません。</exception>
         <exception cref="T:System.InvalidOperationException"><paramref name="valueFactory" /> では null (Visual Basic の場合は Nothing) を返しました。</exception>
-        <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">遅延初期化</related>
+        <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
       </Docs>
     </Member>
     <Member MemberName="EnsureInitialized&lt;T&gt;">
@@ -253,7 +253,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
         </remarks>
         <exception cref="T:System.MemberAccessException">型 <paramref name="T" /> のコンストラクターにアクセスするためのアクセス許可がありませんでした。</exception>
         <exception cref="T:System.MissingMemberException">型 <paramref name="T" /> には、パラメーターなしのコンストラクターがありません。</exception>
-        <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">遅延初期化</related>
+        <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
       </Docs>
     </Member>
     <Member MemberName="EnsureInitialized&lt;T&gt;">
@@ -294,7 +294,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
       </Parameters>
       <Docs>
         <typeparam name="T">初期化される参照の型。</typeparam>
-        <param name="target">まだ初期化されていない場合、初期化する参照。</param>
+        <param name="target">まだ初期化されていない場合、初期化する参照。 これが <see langword="null" /> の場合は、初期化されていないと見なされます。それ以外の場合は、初期化されていると見なされます。</param>
         <param name="syncLock"><paramref name="target" /> を初期化するために相互排他的ロックとして使用されるオブジェクトへの参照。 <paramref name="syncLock" /> が <see langword="null" /> の場合、新しいオブジェクトがインスタンス化されます。</param>
         <param name="valueFactory"><paramref name="target" /> を初期化するために呼び出すメソッド。</param>
         <summary>まだ初期化されていない場合、指定された関数を使用してターゲット参照型を初期化します。</summary>
@@ -358,7 +358,7 @@ ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _data
         </remarks>
         <exception cref="T:System.MemberAccessException">型 <paramref name="T" /> のコンストラクターにアクセスするためのアクセス許可がありませんでした。</exception>
         <exception cref="T:System.MissingMemberException">型 <paramref name="T" /> には、パラメーターなしのコンストラクターがありません。</exception>
-        <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">遅延初期化</related>
+        <related type="Article" href="~/docs/framework/performance/lazy-initialization.md">限定的な初期化</related>
       </Docs>
     </Member>
   </Members>
