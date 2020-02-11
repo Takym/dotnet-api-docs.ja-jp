@@ -1,5 +1,5 @@
 <Type Name="HttpRequestValidationException" FullName="System.Web.HttpRequestValidationException">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="55e089a3e4ad65e1ac95911eee462e55cbc93c73" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70332664" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpRequestValidationException : System.Web.HttpException" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="c0fdda235bebaaa7e15ce82fa0180b65f2adc038" /><Meta Name="ms.sourcegitcommit" Value="f9576bf8c61e3d46834aeeff50f858359f2a99ba" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/09/2020" /><Meta Name="ms.locfileid" Value="77105550" /></Metadata><TypeSignature Language="C#" Value="public sealed class HttpRequestValidationException : System.Web.HttpException" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit HttpRequestValidationException extends System.Web.HttpException" />
   <TypeSignature Language="DocId" Value="T:System.Web.HttpRequestValidationException" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class HttpRequestValidationException&#xA;Inherits HttpException" />
@@ -23,41 +23,41 @@
   <Docs>
     <summary>要求データの一部としてクライアントから受信した入力文字列に危険性が高い文字列が含まれている場合にスローされる例外。 このクラスは継承できません。</summary>
     <remarks>
-      <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 悪意のある入力文字列に依存するハッカーによる攻撃を防ぐため、Web アプリケーションでは、ユーザー入力の制約と検証が不可欠です。 クロスサイトスクリプティング攻撃は、このようなハッキングの一例です。 その他の種類の悪意のあるデータや望ましくないデータは、さまざまな形式の入力を通じて要求に渡すことができます。 アプリケーションの低レベルで渡されるデータの種類を制限することで、コードを使用しているプログラマが適切な検証手法を実施していない場合でも、望ましくないイベントを防ぐことができます。  
-  
- 要求の検証は、悪意のあるクライアントの入力を検出し、この例外をスローして要求の処理を中止します。 要求の中止は、クロスサイトスクリプティング攻撃など、アプリケーションのセキュリティを侵害しようとしていることを示している場合があります。 アプリケーションでは、要求の中止に関するすべての入力を明示的に確認することを強くお勧めします。 ただし、次の例に示すように、 `validateRequest`ディレクティブの属性をに`false`設定することによって、要求の検証を無効にすることができます。  
-  
- `<%@ Page validateRequest="false" %>`  
-  
- アプリケーションの要求の検証を無効にするには、次の例に示すように、アプリケーションの web.config ファイル`validateRequest`を変更また`pages`は作成`false`し、セクションの属性をに設定する必要があります。  
-  
-```  
-<configuration>   
-  <system.web>   
-    <pages validateRequest="false" />   
-  </system.web>   
-</configuration>   
-```  
-  
- サーバー上のすべてのアプリケーションに対する要求の検証を無効にするには、machine.config ファイルに対してこの変更を行うことができます。  
-  
+      <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 悪意のある入力文字列に依存するハッカーによる攻撃を防ぐため、Web アプリケーションでは、ユーザー入力の制約と検証が不可欠です。 クロスサイトスクリプティング攻撃は、このようなハッキングの一例です。 その他の種類の悪意のあるデータや望ましくないデータは、さまざまな形式の入力を通じて要求に渡すことができます。 アプリケーションの低レベルで渡されるデータの種類を制限することで、コードを使用しているプログラマが適切な検証手法を実施していない場合でも、望ましくないイベントを防ぐことができます。
+
+ 要求の検証は、悪意のあるクライアントの入力を検出し、この例外をスローして要求の処理を中止します。 要求の中止は、クロスサイトスクリプティング攻撃など、アプリケーションのセキュリティを侵害しようとしていることを示している場合があります。 アプリケーションでは、要求の中止に関するすべての入力を明示的に確認することを強くお勧めします。 ただし、次の例に示すように、ディレクティブの `validateRequest` 属性を `false`に設定することによって、要求の検証を無効にすることができます。
+
+ `<%@ Page validateRequest="false" %>`
+
+ アプリケーションの要求の検証を無効にするには、次の例に示すように、アプリケーションの web.config ファイルを変更または作成し、`pages` セクションの `validateRequest` 属性を `false`に設定する必要があります。
+
+```
+<configuration>
+  <system.web>
+    <pages validateRequest="false" />
+  </system.web>
+</configuration>
+```
+
+ サーバー上のすべてのアプリケーションに対する要求の検証を無効にするには、machine.config ファイルに対してこの変更を行うことができます。
+
 > [!NOTE]
->  アプリケーションでは、ASP.NET によって実行される要求の検証に加えて、使用するすべての入力を明示的に確認することを強くお勧めします。 要求の検証機能は、特にアプリケーションロジックに対して特別に細工された攻撃をすべてキャッチすることはできません。  
-  
-   
-  
-## Examples  
- 次のコード例は、を使用して、悪意のある<xref:System.Web.HttpRequestValidationException>ユーザーの入力を確認する方法を示しています。  
-  
+>  アプリケーションでは、ASP.NET によって実行される要求の検証に加えて、使用するすべての入力を明示的に確認することを強くお勧めします。 要求の検証機能は、特にアプリケーションロジックに対して特別に細工された攻撃をすべてキャッチすることはできません。
+
+
+
+## Examples
+ 次のコード例は、<xref:System.Web.HttpRequestValidationException>を使用して、悪意のあるユーザーの入力を確認する方法を示しています。
+
 > [!IMPORTANT]
->  この例には、ユーザー入力を受け付けるテキスト ボックスがあります。これにより、セキュリティが脆弱になる可能性があります。 既定では、ASP.NET Web ページによって、ユーザー入力にスクリプトまたは HTML 要素が含まれていないかどうかが検証されます。 詳細については、「[スクリプトによる攻略の概要](https://msdn.microsoft.com/library/772c7312-211a-4eb3-8d6e-eec0aa1dcc07)」を参照してください。  
-  
+>  この例には、ユーザー入力を受け付けるテキスト ボックスがあります。これにより、セキュリティが脆弱になる可能性があります。 既定では、ASP.NET Web ページによって、ユーザー入力にスクリプトまたは HTML 要素が含まれていないかどうかが検証されます。 詳細については、「[スクリプトによる攻略の概要](https://docs.microsoft.com/previous-versions/aspnet/w1sw53ds(v=vs.100))」を参照してください。
+
  [!code-aspx-csharp[HttpRequestValidationException#1](~/samples/snippets/csharp/VS_Snippets_WebNet/HttpRequestValidationException/CS/httprequestvalidationexception_cs.aspx#1)]
- [!code-aspx-vb[HttpRequestValidationException#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/HttpRequestValidationException/VB/HttpRequestValidationException_VB.aspx#1)]  
-  
+ [!code-aspx-vb[HttpRequestValidationException#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/HttpRequestValidationException/VB/HttpRequestValidationException_VB.aspx#1)]
+
  ]]></format>
     </remarks>
   </Docs>
@@ -114,11 +114,11 @@
         <param name="message">エラーを説明する文字列。</param>
         <summary>指定したエラー メッセージを使用して、新しい <see cref="T:System.Web.HttpRequestValidationException" /> 例外を作成します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `message`パラメーターの内容は人間が判読できるようにすることを目的としています。 文字列がローカライズさ<xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%29>れていることを確認するには、コンストラクターの呼び出し元が必要です。 `message`  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ `message` パラメーターの内容は人間が判読できるように設計されています。 `message` 文字列がローカライズされていることを確認するには、<xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%29> コンストラクターの呼び出し元が必要です。
+
  ]]></format>
         </remarks>
       </Docs>
@@ -147,14 +147,14 @@
       </Parameters>
       <Docs>
         <param name="message">例外の原因を説明するエラー メッセージ。</param>
-        <param name="innerException">現在の例外の原因となった例外。 このパラメーターが <see langword="null" /> でない場合は、内部例外を処理する <see langword="catch" /> ブロックで現在の例外が発生します。</param>
+        <param name="innerException">現在の例外の原因になった例外。 このパラメーターが <see langword="null" /> でない場合は、内部例外を処理する <see langword="catch" /> ブロックで現在の例外が発生します。</param>
         <summary>指定したエラー メッセージと、例外の原因である内部例外への参照を使用して、<see cref="T:System.Web.HttpRequestValidationException" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 前の例外の直接の結果としてスローされる例外については、<xref:System.Exception.InnerException%2A> プロパティに、前の例外への参照を含める必要があります。 <xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%2CSystem.Exception%29> `null` <xref:System.Exception.InnerException%2A>プロパティは、コンストラクターに渡されたものと同じ値を返します。または、プロパティが内部例外値を<xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%2CSystem.Exception%29>コンストラクターに提供していない場合はを返します。 <xref:System.Exception.InnerException%2A>  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 前回の例外の直接的な結果としてスローされる例外は、<xref:System.Exception.InnerException%2A> プロパティに前回の例外への参照を含める必要があります。 <xref:System.Exception.InnerException%2A> プロパティは、<xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%2CSystem.Exception%29> コンストラクターに渡されたものと同じ値を返します。 <xref:System.Exception.InnerException%2A> プロパティが <xref:System.Web.HttpRequestValidationException.%23ctor%28System.String%2CSystem.Exception%29> コンストラクターに内部例外値を指定していない場合は `null` します。
+
  ]]></format>
         </remarks>
       </Docs>

@@ -1,5 +1,5 @@
 <Type Name="FileUpload" FullName="System.Web.UI.WebControls.FileUpload">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="29976c50aa2e70e1adcd3ba21e2c26c7b684fa9e" /><Meta Name="ms.sourcegitcommit" Value="634678f7ccd2928c6b2cf792a301b079b63639af" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="07/26/2019" /><Meta Name="ms.locfileid" Value="68542512" /></Metadata><TypeSignature Language="C#" Value="public class FileUpload : System.Web.UI.WebControls.WebControl" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="37385c05ddf57f21e7d57e3b44ed51525cc49a4e" /><Meta Name="ms.sourcegitcommit" Value="f9576bf8c61e3d46834aeeff50f858359f2a99ba" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/09/2020" /><Meta Name="ms.locfileid" Value="77107097" /></Metadata><TypeSignature Language="C#" Value="public class FileUpload : System.Web.UI.WebControls.WebControl" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit FileUpload extends System.Web.UI.WebControls.WebControl" />
   <TypeSignature Language="DocId" Value="T:System.Web.UI.WebControls.FileUpload" />
   <TypeSignature Language="VB.NET" Value="Public Class FileUpload&#xA;Inherits WebControl" />
@@ -40,7 +40,7 @@
   
 -   [アップロードされたファイルの保存](#saving_uploaded_files)  
   
--   [セキュリティの考慮事項](#security_considerations)  
+-   [セキュリティに関する考慮事項](#security_considerations)  
   
 -   [メモリの制限事項](#memory_limitations)  
   
@@ -50,41 +50,41 @@
   
 <a name="introduction"></a>   
 ## <a name="introduction"></a>はじめに  
- クラス<xref:System.Web.UI.WebControls.FileUpload>は、ユーザーがクライアント上のファイルを選択して Web サーバーにアップロードできるようにする、テキストボックスコントロールと参照ボタンを表示します。 ユーザーは、コントロールのテキストボックスに、ローカルコンピューター上のファイルの完全なパス ( **C:\MyFiles\TestFile.txt**など) を入力することによって、アップロードするファイルを指定します。 または、**[参照]** ボタンをクリックしてファイルを選択し、**[ファイルの選択]** ダイアログボックスでファイルを検索することもできます。  
+ <xref:System.Web.UI.WebControls.FileUpload> クラスは、ユーザーがクライアント上のファイルを選択して Web サーバーにアップロードできるようにする、テキストボックスコントロールと参照ボタンを表示します。 ユーザーは、コントロールのテキストボックスに、ローカルコンピューター上のファイルの完全なパス ( **C:\MyFiles\TestFile.txt**など) を入力することによって、アップロードするファイルを指定します。 または、**[参照]** ボタンをクリックしてファイルを選択し、**[ファイルの選択]** ダイアログボックスでファイルを検索することもできます。  
   
- コントロールを使用して、アップロードするクライアント上のファイルの名前を取得するには、 <xref:System.Web.UI.WebControls.FileUpload.FileName%2A>プロパティを使用します。 <xref:System.Web.UI.WebControls.FileUpload> このプロパティが返すファイル名には、クライアント上のファイルのパスは含まれません。  
+ <xref:System.Web.UI.WebControls.FileUpload> コントロールを使用して、アップロードするクライアント上のファイルの名前を取得するには、<xref:System.Web.UI.WebControls.FileUpload.FileName%2A> プロパティを使用します。 このプロパティが返すファイル名には、クライアント上のファイルのパスは含まれません。  
   
- プロパティ<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A>は、アップロード<xref:System.IO.Stream>するファイルを指すオブジェクトを取得します。 ファイルの内容にバイトとしてアクセスするには、このプロパティを使用します。 たとえば、 <xref:System.Web.UI.WebControls.FileUpload.FileContent%2A>プロパティによって返さ<xref:System.IO.Stream>れるオブジェクトを使用して、ファイルの内容をバイトとして読み取り、バイト配列に格納することができます。 また、 <xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A>プロパティを使用して、ファイル内のすべてのバイトを取得することもできます。  
+ <xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> プロパティは、アップロードするファイルを指す <xref:System.IO.Stream> オブジェクトを取得します。 ファイルの内容にバイトとしてアクセスするには、このプロパティを使用します。 たとえば、<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> プロパティによって返される <xref:System.IO.Stream> オブジェクトを使用して、ファイルの内容をバイトとして読み取り、バイト配列に格納することができます。 または、<xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A> プロパティを使用して、ファイル内のすべてのバイトを取得することもできます。  
   
- プロパティ<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A>は、アップロードする<xref:System.Web.HttpPostedFile>ファイルの基になるオブジェクトを取得します。 このプロパティを使用して、ファイルの追加のプロパティにアクセスできます。 プロパティ<xref:System.Web.HttpPostedFile.ContentLength%2A>は、ファイルの長さを取得します。 プロパティ<xref:System.Web.HttpPostedFile.ContentType%2A>は、ファイルの MIME コンテンツタイプを取得します。 さらに、 <xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A>プロパティを使用して、プロパティ、 <xref:System.Web.HttpPostedFile.FileName%2A> <xref:System.Web.HttpPostedFile.InputStream%2A>プロパティ、および<xref:System.Web.HttpPostedFile.SaveAs%2A>メソッドにアクセスできます。 ただし、 <xref:System.Web.UI.WebControls.FileUpload.FileName%2A>プロパティ<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> 、プロパティ、および<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドによっても同じ機能が提供されます。  
+ <xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> プロパティは、アップロードするファイルの基になる <xref:System.Web.HttpPostedFile> オブジェクトを取得します。 このプロパティを使用して、ファイルの追加のプロパティにアクセスできます。 <xref:System.Web.HttpPostedFile.ContentLength%2A> プロパティは、ファイルの長さを取得します。 <xref:System.Web.HttpPostedFile.ContentType%2A> プロパティは、ファイルの MIME コンテンツタイプを取得します。 また、<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> プロパティを使用して、<xref:System.Web.HttpPostedFile.FileName%2A> プロパティ、<xref:System.Web.HttpPostedFile.InputStream%2A> プロパティ、および <xref:System.Web.HttpPostedFile.SaveAs%2A> メソッドにアクセスできます。 ただし、<xref:System.Web.UI.WebControls.FileUpload.FileName%2A> プロパティ、<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> プロパティ、および <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドによっても同じ機能が提供されます。  
   
 <a name="saving_uploaded_files"></a>   
 ## <a name="saving-uploaded-files"></a>アップロードされたファイルの保存  
- コントロール<xref:System.Web.UI.WebControls.FileUpload>は、アップロードするファイルをユーザーが選択した後に、ファイルをサーバーに自動的に保存しません。 ユーザーが指定したファイルを送信できるようにするには、コントロールまたは機構を明示的に指定する必要があります。 たとえば、ファイルをアップロードするためにユーザーがクリックするボタンを指定できます。 指定したファイルを保存するために記述するコードで<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>は、メソッドを呼び出す必要があります。これにより、ファイルの内容がサーバー上の指定したパスに保存されます。 通常、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>このメソッドは、サーバーへのポストバックを発生させるイベントのイベント処理メソッドで呼び出されます。 たとえば、ファイルを送信するためのボタンを指定した場合は、click イベントのイベント処理メソッド内にファイルを保存するコードを含めることができます。  
+ <xref:System.Web.UI.WebControls.FileUpload> コントロールは、アップロードするファイルをユーザーが選択した後に、ファイルをサーバーに自動的に保存しません。 ユーザーが指定したファイルを送信できるようにするには、コントロールまたは機構を明示的に指定する必要があります。 たとえば、ファイルをアップロードするためにユーザーがクリックするボタンを指定できます。 指定したファイルを保存するために記述するコードでは、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出す必要があります。これにより、ファイルの内容がサーバー上の指定したパスに保存されます。 通常、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドは、サーバーへのポストバックを発生させるイベントのイベント処理メソッドで呼び出されます。 たとえば、ファイルを送信するためのボタンを指定した場合は、click イベントのイベント処理メソッド内にファイルを保存するコードを含めることができます。  
   
- <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドを呼び出してファイルをサーバーに保存する前に、 <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> <xref:System.Web.UI.WebControls.FileUpload>プロパティを使用して、コントロールにファイルが含まれていることを確認します。 が<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A>を返す`true`場合は、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドを呼び出します。 が返さ`false`れた場合は、コントロールにファイルが含まれていないことを示すメッセージをユーザーに表示します。 既定では、 <xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A>このプロパティには0バイトが含まれているため、プロパティをチェックして、アップロードするファイルが存在するかどうかを判断しないでください。 その結果、 <xref:System.Web.UI.WebControls.FileUpload>コントロールが空白の場合でも、プロパティ<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A>は null 以外の値を返します。  
+ <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出してファイルをサーバーに保存する前に、<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> プロパティを使用して、<xref:System.Web.UI.WebControls.FileUpload> コントロールにファイルが含まれていることを確認します。 <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> が `true`を返す場合は、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出します。 `false`が返される場合は、コントロールにファイルが含まれていないことを示すメッセージをユーザーに表示します。 既定では、このプロパティには0バイトが含まれているため、<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> プロパティをチェックして、アップロードするファイルが存在するかどうかを判断しないでください。 その結果、<xref:System.Web.UI.WebControls.FileUpload> コントロールが空白の場合でも、<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> プロパティは null 以外の値を返します。  
   
 <a name="security_considerations"></a>   
 ## <a name="security-considerations"></a>セキュリティの考慮事項  
- <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドを呼び出す場合は、アップロードしたファイルを保存するディレクトリの完全なパスを指定する必要があります。 アプリケーションコードでパスを明示的に指定しないと、ユーザーがファイルをアップロードしようとしたときに例外がスローされます。 この動作により、ユーザーがアプリケーションのディレクトリ構造内の任意の場所に書き込みをしたり、機密性の高いルートディレクトリへのアクセスを防止したりして、サーバー上のファイルをセキュリティで保護することができます。  
+ <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出す場合は、アップロードしたファイルを保存するディレクトリの完全なパスを指定する必要があります。 アプリケーションコードでパスを明示的に指定しないと、ユーザーがファイルをアップロードしようとしたときに例外がスローされます。 この動作により、ユーザーがアプリケーションのディレクトリ構造内の任意の場所に書き込みをしたり、機密性の高いルートディレクトリへのアクセスを防止したりして、サーバー上のファイルをセキュリティで保護することができます。  
   
- メソッド<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>は、アップロードしたファイルを指定されたディレクトリに書き込みます。 そのため、ASP.NET アプリケーションには、サーバー上のディレクトリに対する書き込みアクセス権が必要です。 アプリケーションが書き込みアクセスを取得するには、2つの方法があります。 アップロードされたファイルを保存するディレクトリで、アプリケーションを実行しているアカウントに書き込みアクセス権を明示的に付与することができます。 または、ASP.NET アプリケーションに付与される信頼レベルを上げることもできます。 アプリケーションの実行ディレクトリへの書き込みアクセスを取得するには、アプリケーションに、 <xref:System.Web.AspNetHostingPermission> <xref:System.Web.AspNetHostingPermissionLevel.Medium?displayProperty=nameWithType>値に設定された信頼レベルを持つオブジェクトが付与されている必要があります。 信頼レベルを上げると、サーバー上のリソースへのアプリケーションのアクセスが増加します。 ただし、これは安全な方法ではありません。これは、アプリケーションを制御する悪意のあるユーザーも、この高いレベルの信頼度で実行できるためです。 ベストプラクティスとして、アプリケーションの実行に必要な最小限の特権を持つユーザーのコンテキストで ASP.NET アプリケーションを実行することをお勧めします。 ASP.NET アプリケーションのセキュリティの詳細については、「Web アプリケーションと ASP.NET の[信頼レベルとポリシーファイル](https://msdn.microsoft.com/library/f897c794-10d3-414c-86b7-59b66564bbf1)[の基本セキュリティプラクティス](https://msdn.microsoft.com/library/3eeeee9e-b09f-4c7f-8ce5-d9ca1f9322ad)」を参照してください。  
+ <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドは、アップロードしたファイルを指定されたディレクトリに書き込みます。 そのため、ASP.NET アプリケーションには、サーバー上のディレクトリに対する書き込みアクセス権が必要です。 アプリケーションが書き込みアクセスを取得するには、2つの方法があります。 アップロードされたファイルを保存するディレクトリで、アプリケーションを実行しているアカウントに書き込みアクセス権を明示的に付与することができます。 または、ASP.NET アプリケーションに付与される信頼レベルを上げることもできます。 アプリケーションの実行ディレクトリへの書き込みアクセスを取得するには、アプリケーションに、<xref:System.Web.AspNetHostingPermissionLevel.Medium?displayProperty=nameWithType> 値に設定された信頼レベルを持つ <xref:System.Web.AspNetHostingPermission> オブジェクトが付与されている必要があります。 信頼レベルを上げると、サーバー上のリソースへのアプリケーションのアクセスが増加します。 ただし、これは安全な方法ではありません。これは、アプリケーションを制御する悪意のあるユーザーも、この高いレベルの信頼度で実行できるためです。 ベストプラクティスとして、アプリケーションの実行に必要な最小限の特権を持つユーザーのコンテキストで ASP.NET アプリケーションを実行することをお勧めします。 ASP.NET アプリケーションのセキュリティの詳細については、「Web アプリケーションと ASP.NET の[信頼レベルとポリシーファイル](https://msdn.microsoft.com/library/f897c794-10d3-414c-86b7-59b66564bbf1)[の基本セキュリティプラクティス](https://msdn.microsoft.com/library/3eeeee9e-b09f-4c7f-8ce5-d9ca1f9322ad)」を参照してください。  
   
 <a name="memory_limitations"></a>   
 ## <a name="memory-limitations"></a>メモリの制限事項  
- サービス拒否攻撃から保護する方法の1つは、 <xref:System.Web.UI.WebControls.FileUpload>コントロールを使用してアップロードできるファイルのサイズを制限することです。 アップロードする予定のファイルの種類に適したサイズ制限を設定する必要があります。 既定のサイズ制限は4096キロバイト (KB) または4メガバイト (MB) です。 `maxRequestLength` [HttpRuntime](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)要素の属性を設定することにより、より大きなファイルをアップロードできるようにすることができます。 アプリケーション全体で許容される最大ファイルサイズを増やすには、 `maxRequestLength` web.config ファイルで属性を設定します。 指定されたページで許容される最大ファイルサイズを増やす`maxRequestLength`には、 `location` web.config の要素の中に属性を設定します。例については、「 [Location 要素 (ASP.NET Settings Schema)](https://msdn.microsoft.com/library/922ef7d5-da38-4661-b1c6-5b9e5ceda1d5)」を参照してください。  
+ サービス拒否攻撃から保護する方法の1つとして、<xref:System.Web.UI.WebControls.FileUpload> コントロールを使用してアップロードできるファイルのサイズを制限する方法があります。 アップロードする予定のファイルの種類に適したサイズ制限を設定する必要があります。 既定のサイズ制限は4096キロバイト (KB) または4メガバイト (MB) です。 [HttpRuntime](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/e1f13641(v=vs.100))要素の `maxRequestLength` 属性を設定することにより、より大きなファイルをアップロードできるようにすることができます。 アプリケーション全体で許容される最大ファイルサイズを増やすには、web.config ファイルで `maxRequestLength` 属性を設定します。 指定されたページで許容される最大ファイルサイズを増やすには、web.config の `location` 要素内に `maxRequestLength` 属性を設定します。例については、「 [Location 要素 (ASP.NET Settings Schema)](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/b6x6shw7(v=vs.100))」を参照してください。  
   
  大きなファイルをアップロードするときに、次のエラーメッセージが表示されることもあります。  
   
  `aspnet_wp.exe (PID: 1520) was recycled because memory consumption exceeded 460 MB (60 percent of available RAM).`  
   
- ユーザーがこのエラーメッセージを表示した場合は、 `memoryLimit` [processModel](https://msdn.microsoft.com/library/4b8fe20e-74c8-4566-b72c-ce5f83c8e32d)の要素の属性の値を、アプリケーションの web.config ファイルで増やします。 属性`memoryLimit`は、ワーカープロセスが使用できるメモリの最大量を指定します。 ワーカープロセスがこの`memoryLimit`量を超えた場合は、新しいプロセスが作成されて置き換えられ、現在のすべての要求が新しいプロセスに再割り当てされます。  
+ このエラーメッセージが表示された場合は、 [processModel](https://msdn.microsoft.com/library/4b8fe20e-74c8-4566-b72c-ce5f83c8e32d)の要素の属性 `memoryLimit` の値を、アプリケーションの web.config ファイルで増やします。 `memoryLimit` 属性は、ワーカープロセスが使用できるメモリの最大量を指定します。 ワーカープロセスが `memoryLimit` の量を超えた場合は、新しいプロセスが作成され、そのプロセスが新しいプロセスに再割り当てされます。  
   
- 要求の処理中に、アップロードするファイルが一時的にメモリまたはサーバーに格納されるかどうかを制御`requestLengthDiskThreshold`するには、 [httpRuntime](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)要素の属性を設定します。 この属性を使用すると、入力ストリームバッファーのサイズを管理できます。 既定値は256バイトです。 指定する値は、 `maxRequestLength`属性に指定した値を超えることはできません。  
+ 要求の処理中に、アップロードするファイルが一時的にメモリまたはサーバーに格納されるかどうかを制御するには、 [httpRuntime](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/e1f13641(v=vs.100))要素の `requestLengthDiskThreshold` 属性を設定します。 この属性を使用すると、入力ストリームバッファーのサイズを管理できます。 既定値は256バイトです。 指定する値は、`maxRequestLength` 属性に指定した値を超えることはできません。  
   
 <a name="using_the_FileUpload_Control_with_the_UpdatePanel_control"></a>   
 ## <a name="using-the-fileupload-control-with-the-updatepanel-control"></a>UpdatePanel コントロールでの FileUpload コントロールの使用  
- コントロール<xref:System.Web.UI.WebControls.FileUpload>は、部分ページレンダリング時の非同期ポストバックシナリオではなく、ポストバックシナリオでのみ使用されるように設計されています。 コントロール<xref:System.Web.UI.WebControls.FileUpload> <xref:System.Web.UI.PostBackTrigger>内でコントロールを使用する場合は、そのパネルのオブジェクトであるコントロールを使用してファイルをアップロードする必要があります。 <xref:System.Web.UI.UpdatePanel> <xref:System.Web.UI.UpdatePanel>コントロールは、ポストバックを使用してページ全体を更新するのではなく、ページの選択された領域を更新するために使用されます。 詳細については、「 [UpdatePanel コントロールの概要](https://msdn.microsoft.com/library/29a2265d-9674-4c19-b70e-e5560ee9689a)」および「[部分ページレンダリングの概要](https://msdn.microsoft.com/library/5c12736d-d9e9-464a-9388-3fe0f9f49e49)」を参照してください。  
+ <xref:System.Web.UI.WebControls.FileUpload> コントロールは、部分ページレンダリング時の非同期ポストバックシナリオではなく、ポストバックシナリオでのみ使用するように設計されています。 <xref:System.Web.UI.UpdatePanel> コントロール内で <xref:System.Web.UI.WebControls.FileUpload> コントロールを使用する場合は、パネルの <xref:System.Web.UI.PostBackTrigger> オブジェクトであるコントロールを使用して、ファイルをアップロードする必要があります。 <xref:System.Web.UI.UpdatePanel> コントロールは、ポストバックを使用してページ全体を更新するのではなく、ページの選択された領域を更新するために使用されます。 詳細については、「 [UpdatePanel コントロールの概要](https://docs.microsoft.com/previous-versions/aspnet/bb386454(v=vs.100))」および「[部分ページレンダリングの概要](https://docs.microsoft.com/previous-versions/aspnet/bb386573(v=vs.100))」を参照してください。  
   
 <a name="DeclarativeSyntax"></a>   
 ## <a name="declarative-syntax"></a>宣言型の構文  
@@ -131,37 +131,37 @@
    
   
 ## Examples  
- このトピックには、ソースコードが含まれた Visual Studio Web サイトプロジェクトが用意されています。を[ダウンロード](https://go.microsoft.com/fwlink/?LinkId=191897)します。  
+ このトピックでは、ソースコードが含まれている Visual Studio Web サイトプロジェクトを[ダウンロード](https://go.microsoft.com/fwlink/?LinkId=191897)できます。  
   
  ここでは、次の4つの例について説明します。  
   
--   最初の例は、コードで指定<xref:System.Web.UI.WebControls.FileUpload>されたパスにファイルを保存するコントロールを作成する方法を示しています。  
+-   最初の例は、コードで指定されたパスにファイルを保存する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示しています。  
   
--   2番目の例では、 <xref:System.Web.UI.WebControls.FileUpload>アプリケーションのファイルシステム内の指定されたディレクトリにファイルを保存するコントロールを作成する方法を示します。  
+-   2番目の例では、アプリケーションのファイルシステム内の指定されたディレクトリにファイルを保存する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示します。  
   
--   3番目の例では、 <xref:System.Web.UI.WebControls.FileUpload>指定されたパスにファイルを保存するコントロールを作成し、アップロードできるファイルのサイズを制限する方法を示します。  
+-   3番目の例では、指定されたパスにファイルを保存し、アップロードできるファイルのサイズを制限する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示します。  
   
--   4番目の例では、 <xref:System.Web.UI.WebControls.FileUpload>指定されたパスにファイルを保存するコントロールを作成し、.doc または .xls のファイル名拡張子を持つファイルのみをアップロードできるようにする方法を示します。  
+-   4番目の例では、指定されたパスにファイルを保存し、.doc または .xls のファイル名拡張子を持つファイルのみをアップロードできる <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示します。  
   
 > [!CAUTION]
->  これらの例では、 <xref:System.Web.UI.WebControls.FileUpload>コントロールの基本的な構文を示していますが、ファイルを保存する前に完了しておく必要があるすべてのエラーチェックについては説明しません。 この例より完全なコード例については、「<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>」を参照してください。  
+>  これらの例では、<xref:System.Web.UI.WebControls.FileUpload> コントロールの基本的な構文を示していますが、ファイルを保存する前に完了しておく必要があるすべてのエラーチェックについては説明しません。 この例より完全なコード例については、「<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>」を参照してください。  
   
- 次の例は、コードで指定<xref:System.Web.UI.WebControls.FileUpload>されたパスにファイルを保存するコントロールを作成する方法を示しています。 サーバー <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>上の指定されたパスにファイルを保存するために、メソッドが呼び出されます。  
+ 次の例は、コードで指定されたパスにファイルを保存する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示しています。 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドは、サーバー上の指定されたパスにファイルを保存するために呼び出されます。  
   
  [!code-aspx-csharp[FileUploadClass1#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUploadClass1/cs/fileuploadclass1cs.aspx#1)]
  [!code-aspx-vb[FileUploadClass1#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUploadClass1/VB/fileuploadclass1vb.aspx#1)]  
   
- 次の例では、アプリケーションの<xref:System.Web.UI.WebControls.FileUpload>ファイルシステム内の指定されたディレクトリにファイルを保存するコントロールを作成する方法を示します。 <xref:System.Web.HttpRequest.PhysicalApplicationPath%2A?displayProperty=nameWithType>プロパティは、現在実行しているサーバーアプリケーションのルートディレクトリの物理ファイルシステムパスを取得するために使用されます。 サーバー <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>上の指定されたパスにファイルを保存するために、メソッドが呼び出されます。  
+ 次の例では、アプリケーションのファイルシステム内の指定されたディレクトリにファイルを保存する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示します。 <xref:System.Web.HttpRequest.PhysicalApplicationPath%2A?displayProperty=nameWithType> プロパティは、現在実行しているサーバーアプリケーションのルートディレクトリの物理ファイルシステムパスを取得するために使用されます。 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドは、サーバー上の指定されたパスにファイルを保存するために呼び出されます。  
   
  [!code-aspx-csharp[FileUploadClass2#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUploadClass2/cs/fileuploadclass2cs.aspx#1)]
  [!code-aspx-vb[FileUploadClass2#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUploadClass2/VB/fileuploadclass2vb.aspx#1)]  
   
- 次の例は、コードで指定<xref:System.Web.UI.WebControls.FileUpload>されたパスにファイルを保存するコントロールを作成する方法を示しています。 このコントロールによって、アップロードできるファイルのサイズが 2 MB に制限されます。 プロパティは、基になる<xref:System.Web.HttpPostedFile.ContentLength%2A>プロパティにアクセスして、ファイルのサイズを返すために使用されます。 <xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> アップロードするファイルのサイズが 2 MB 未満の場合、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドが呼び出され、サーバー上の指定されたパスにファイルが保存されます。 アプリケーションコードの [最大ファイルサイズ] 設定を確認するだけでなく、 [httpRuntime](https://msdn.microsoft.com/library/e9b81350-8aaf-47cc-9843-5f7d0c59f369)要素の`maxRequestLength`属性を、アプリケーションの構成ファイルで許容される最大サイズに設定することもできます。  
+ 次の例は、コードで指定されたパスにファイルを保存する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示しています。 このコントロールによって、アップロードできるファイルのサイズが 2 MB に制限されます。 <xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> プロパティは、基になる <xref:System.Web.HttpPostedFile.ContentLength%2A> プロパティにアクセスするために使用され、ファイルのサイズを返します。 アップロードするファイルのサイズが 2 MB 未満の場合は、サーバー上の指定されたパスにファイルを保存するために、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドが呼び出されます。 アプリケーションコードの [最大ファイルサイズ] 設定を確認するだけでなく、 [httpRuntime](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/e1f13641(v=vs.100))要素の `maxRequestLength` 属性を、アプリケーションの構成ファイルで許容される最大サイズに設定することもできます。  
   
  [!code-aspx-csharp[FileUploadClass3#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUploadClass3/cs/fileuploadclass3cs.aspx#1)]
  [!code-aspx-vb[FileUploadClass3#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUploadClass3/VB/fileuploadclass3vb.aspx#1)]  
   
- 次の例は、コードで指定<xref:System.Web.UI.WebControls.FileUpload>されたパスにファイルを保存するコントロールを作成する方法を示しています。 この例では、ファイル名拡張子が .doc または .xls のファイルのみをアップロードできます。 <xref:System.IO.Path.GetExtension%2A?displayProperty=nameWithType>メソッドは、アップロードするファイルの拡張子を返すために呼び出されます。 ファイルの拡張子が .doc または .xls の場合、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドが呼び出され、サーバー上の指定されたパスにファイルが保存されます。  
+ 次の例は、コードで指定されたパスにファイルを保存する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示しています。 この例では、ファイル名拡張子が .doc または .xls のファイルのみをアップロードできます。 <xref:System.IO.Path.GetExtension%2A?displayProperty=nameWithType> メソッドは、アップロードするファイルの拡張子を返すために呼び出されます。 ファイルの拡張子が .doc または .xls の場合は、サーバー上の指定されたパスにファイルを保存するために、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドが呼び出されます。  
   
  [!code-aspx-csharp[FileUploadClass4#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUploadClass4/cs/fileuploadclass4cs.aspx#1)]
  [!code-aspx-vb[FileUploadClass4#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUploadClass4/VB/fileuploadclass4vb.aspx#1)]  
@@ -190,14 +190,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コンストラクターを使用して、 <xref:System.Web.UI.WebControls.FileUpload>クラスの新しいインスタンスを初期化します。 <xref:System.Web.UI.WebControls.FileUpload.%23ctor%2A> コントロール<xref:System.Web.UI.WebControls.FileUpload>は、アップロードするファイルをユーザーが選択した後に、ファイルをサーバーに自動的に保存しません。 ユーザーが指定したファイルを送信できるようにするには、コントロールまたは機構を明示的に指定する必要があります。 たとえば、ファイルをアップロードするためにユーザーがクリックするボタンを指定できます。  
+ <xref:System.Web.UI.WebControls.FileUpload.%23ctor%2A> コンストラクターを使用して、<xref:System.Web.UI.WebControls.FileUpload> クラスの新しいインスタンスを初期化します。 <xref:System.Web.UI.WebControls.FileUpload> コントロールは、アップロードするファイルをユーザーが選択した後に、ファイルをサーバーに自動的に保存しません。 ユーザーが指定したファイルを送信できるようにするには、コントロールまたは機構を明示的に指定する必要があります。 たとえば、ファイルをアップロードするためにユーザーがクリックするボタンを指定できます。  
   
    
   
 ## Examples  
- <xref:System.Web.UI.WebControls.FileUpload>クラスの新しいインスタンスを初期化する方法を次の例に示します。 この例では、コンストラクターの構文を示していますが、コントロールが作成された後に機能が追加されることはありません。  
+ 次の例は、<xref:System.Web.UI.WebControls.FileUpload> クラスの新しいインスタンスを初期化する方法を示しています。 この例では、コンストラクターの構文を示していますが、コントロールが作成された後に機能が追加されることはありません。  
   
- この例は、 <xref:System.Web.UI.WebControls.FileUpload>クラスに対して提供される大規模な例の一部です。  
+ この例は、<xref:System.Web.UI.WebControls.FileUpload> クラス用に用意されている大規模な例の一部です。  
   
  [!code-aspx-vb[FileUploadCstr#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUploadCstr/VB/fileuploadcstrvb.aspx#1)]  
   
@@ -226,12 +226,12 @@
       </Parameters>
       <Docs>
         <param name="writer">クライアントに HTML コンテンツを表示する出力ストリームを表す <see cref="T:System.Web.UI.HtmlTextWriter" />。</param>
-        <summary>指定した <see cref="T:System.Web.UI.HtmlTextWriter" /> オブジェクトに表示する <see cref="T:System.Web.UI.WebControls.FileUpload" /> コントロールの HTML 属性とスタイルを追加します。</summary>
+        <summary>指定した <see cref="T:System.Web.UI.WebControls.FileUpload" /> オブジェクトに表示する <see cref="T:System.Web.UI.HtmlTextWriter" /> コントロールの HTML 属性とスタイルを追加します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Web.UI.WebControls.FileUpload.AddAttributesToRender%2A>は、コントロールの<xref:System.Web.UI.HtmlTextWriter?displayProperty=nameWithType>出力ストリームに適切な属性とスタイルを挿入するために、コントロールの<xref:System.Web.UI.WebControls.FileUpload>開発者によって主に使用されます。 メソッドは、メソッド<xref:System.Web.UI.WebControls.WebControl.AddAttributesToRender%2A?displayProperty=nameWithType>をオーバーライドします。 <xref:System.Web.UI.WebControls.FileUpload.AddAttributesToRender%2A>  
+ <xref:System.Web.UI.WebControls.FileUpload.AddAttributesToRender%2A> メソッドは、<xref:System.Web.UI.WebControls.FileUpload> コントロールの <xref:System.Web.UI.HtmlTextWriter?displayProperty=nameWithType> 出力ストリームに適切な属性とスタイルを挿入するために、コントロールの開発者によって主に使用されます。 <xref:System.Web.UI.WebControls.FileUpload.AddAttributesToRender%2A> メソッドは、<xref:System.Web.UI.WebControls.WebControl.AddAttributesToRender%2A?displayProperty=nameWithType> メソッドをオーバーライドします。  
   
  ]]></format>
         </remarks>
@@ -302,14 +302,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コントロール<xref:System.Web.UI.WebControls.FileUpload>は、クライアントからファイルを自動的に読み取ることはありません。 ユーザーが指定したファイルを送信できるようにするには、コントロールまたは機構を明示的に指定する必要があります。 たとえば、ユーザーがクリックしてファイルをアップロードできるボタンを提供できます。 指定されたファイルを保存するために記述するコード<xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A>は、ファイルの内容を返すプロパティを呼び出すことができます。  
+ <xref:System.Web.UI.WebControls.FileUpload> コントロールは、クライアントからファイルを自動的に読み取ることはありません。 ユーザーが指定したファイルを送信できるようにするには、コントロールまたは機構を明示的に指定する必要があります。 たとえば、ユーザーがクリックしてファイルをアップロードできるボタンを提供できます。 指定したファイルを保存するために記述したコードは、ファイルの内容を返す <xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A> プロパティを呼び出すことができます。  
   
- <xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A>プロパティを呼び出す前に、 <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> <xref:System.Web.UI.WebControls.FileUpload>プロパティを使用して、アップロードするファイルがコントロールに含まれていることを確認する必要があります。 が<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A>を返す`true`場合は、 <xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A>プロパティを呼び出します。 が返さ`false`れた場合は、コントロールにファイルが含まれていないことを示すメッセージをユーザーに表示します。 ファイルが存在することを確認するためにエラー処理コードを指定しなかった場合、存在しないファイルを<xref:System.Web.HttpException>保存しようとすると例外がスローされます。  
+ <xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A> プロパティを呼び出す前に、<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> プロパティを使用して、<xref:System.Web.UI.WebControls.FileUpload> コントロールにアップロードするファイルが含まれていることを確認する必要があります。 <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> が `true`を返す場合は、<xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A> プロパティを呼び出します。 `false`が返される場合は、コントロールにファイルが含まれていないことを示すメッセージをユーザーに表示します。 ファイルが存在することを確認するためにエラー処理コードを指定しなかった場合、存在しないファイルを保存しようとすると <xref:System.Web.HttpException> 例外がスローされます。  
   
    
   
 ## Examples  
- 次の例は、コントロールを<xref:System.Web.UI.WebControls.FileUpload>作成する方法を示しています。 ユーザーが [ファイルの**アップロード**] ボタンをクリックすると、ファイルの内容がページ上のテキストボックスにバイトとして表示されます。 この例では<xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A> 、プロパティを使用してファイル全体をアップロードします。  
+ 次の例は、<xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示しています。 ユーザーが [ファイルの**アップロード**] ボタンをクリックすると、ファイルの内容がページ上のテキストボックスにバイトとして表示されます。 この例では、<xref:System.Web.UI.WebControls.FileUpload.FileBytes%2A> プロパティを使用して、ファイル全体をアップロードします。  
   
  [!code-aspx-csharp[FileUploadFileBytes#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUploadFileBytes/CS/FileUploadFileBytesCS.aspx#1)]
  [!code-aspx-vb[FileUploadFileBytes#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUploadFileBytes/VB/FileUploadFileBytesVB.aspx#1)]  
@@ -345,18 +345,18 @@
         <ReturnType>System.IO.Stream</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><see cref="T:System.Web.UI.WebControls.FileUpload" /> コントロールを使用して、アップロードするファイルを指す <see cref="T:System.IO.Stream" /> オブジェクトを取得します。</summary>
-        <value><see cref="T:System.Web.UI.WebControls.FileUpload" /> を使用して、アップロードするファイルを指す <see cref="T:System.IO.Stream" />。</value>
+        <summary><see cref="T:System.IO.Stream" /> コントロールを使用して、アップロードするファイルを指す <see cref="T:System.Web.UI.WebControls.FileUpload" /> オブジェクトを取得します。</summary>
+        <value><see cref="T:System.IO.Stream" /> を使用して、アップロードするファイルを指す <see cref="T:System.Web.UI.WebControls.FileUpload" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティ<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A>は、 <xref:System.Web.UI.WebControls.FileUpload>コントロール<xref:System.IO.Stream>を使用して、アップロードするファイルを指すオブジェクトを取得します。 ファイルの<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A>内容にアクセスするには、プロパティを使用します。 たとえば、このプロパティによって<xref:System.IO.Stream>返されるオブジェクトを使用して、ファイルの内容をバイトとして読み取り、バイト配列に格納することができます。  
+ <xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> プロパティは、<xref:System.Web.UI.WebControls.FileUpload> コントロールを使用して、アップロードするファイルを指す <xref:System.IO.Stream> オブジェクトを取得します。 ファイルの内容にアクセスするには、<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> プロパティを使用します。 たとえば、このプロパティによって返される <xref:System.IO.Stream> オブジェクトを使用して、ファイルの内容をバイトとして読み取り、バイト配列に格納することができます。  
   
    
   
 ## Examples  
- 次の例は、コントロールを<xref:System.Web.UI.WebControls.FileUpload>作成する方法を示しています。 <xref:System.Web.UI.WebControls.FileUpload.FileContent%2A>プロパティは、ファイルの内容をバイト配列に読み取るために使用されます。 ユーザーが [ファイルの**アップロード**] ボタンをクリックすると、ファイルの内容がページ上のテキストボックスにバイトとして表示されます。  
+ 次の例は、<xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示しています。 <xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> プロパティは、ファイルの内容をバイト配列に読み取るために使用されます。 ユーザーが [ファイルの**アップロード**] ボタンをクリックすると、ファイルの内容がページ上のテキストボックスにバイトとして表示されます。  
   
  [!code-aspx-csharp[FileUpload.FileContent#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUpload.FileContent/cs/fileupload.filecontentcs.aspx#1)]
  [!code-aspx-vb[FileUpload.FileContent#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUpload.FileContent/VB/fileupload.filecontentvb.aspx#1)]  
@@ -398,12 +398,12 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Web.UI.WebControls.FileUpload> コントロールを使用して、アップロードする、クライアント上のファイルの名前を取得します。 <xref:System.Web.UI.WebControls.FileUpload.FileName%2A>プロパティが返すファイル名には、クライアント上のファイルのパスは含まれません。  
+ <xref:System.Web.UI.WebControls.FileUpload> コントロールを使用して、アップロードする、クライアント上のファイルの名前を取得します。 <xref:System.Web.UI.WebControls.FileUpload.FileName%2A> プロパティによって返されるファイル名には、クライアント上のファイルのパスは含まれません。  
   
    
   
 ## Examples  
- 次の例は、コードで指定<xref:System.Web.UI.WebControls.FileUpload>されたパスにファイルを保存するコントロールを作成する方法を示しています。 <xref:System.Web.UI.WebControls.FileUpload.FileName%2A>プロパティは、アップロードするファイルの名前を取得するために使用されます。 ファイル<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>がクライアント上にあるのと同じ名前を使用して、サーバー上の指定されたパスにファイルを保存するために、メソッドが呼び出されます。 この例では、このコントロールの基本的な構文を示していますが、ファイルを保存する前に実行する必要があるすべてのエラーチェックについては説明しません。 この例より完全なコード例については、「<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>」を参照してください。  
+ 次の例は、コードで指定されたパスにファイルを保存する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示しています。 <xref:System.Web.UI.WebControls.FileUpload.FileName%2A> プロパティは、アップロードするファイルの名前を取得するために使用されます。 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドは、ファイルがクライアント上にあるのと同じ名前を使用して、サーバー上の指定したパスにファイルを保存するために呼び出されます。 この例では、このコントロールの基本的な構文を示していますが、ファイルを保存する前に実行する必要があるすべてのエラーチェックについては説明しません。 この例より完全なコード例については、「<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>」を参照してください。  
   
  [!code-aspx-csharp[FileUploadClass1#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUploadClass1/cs/fileuploadclass1cs.aspx#1)]
  [!code-aspx-vb[FileUploadClass1#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUploadClass1/VB/fileuploadclass1vb.aspx#1)]  
@@ -439,17 +439,17 @@
       </ReturnValue>
       <Docs>
         <summary>ファイルが <see cref="T:System.Web.UI.WebControls.FileUpload" /> コントロールに格納されているかどうかを示す値を取得します。</summary>
-        <value><see cref="T:System.Web.UI.WebControls.FileUpload" /> にファイルが格納されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value><see langword="true" /> にファイルが格納されている場合は <see cref="T:System.Web.UI.WebControls.FileUpload" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティ<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A>は、アップロードするファイルがコントロール<xref:System.Web.UI.WebControls.FileUpload>に含まれているかどうかを示す値を取得します。 このプロパティを使用して、ファイルに対する操作を実行する前に、アップロードするファイルが存在することを確認します。 たとえば、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドを呼び出してファイルをディスクに保存する前に、 <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A>プロパティを使用して、ファイルが存在することを確認します。 が<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A>を`true`返す場合は<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> 、メソッドを呼び出します。 が返さ`false`れた場合は、コントロールにファイルが含まれていないことを示すメッセージをユーザーに表示します。  
+ <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> プロパティは、<xref:System.Web.UI.WebControls.FileUpload> コントロールにアップロードするファイルが含まれているかどうかを示す値を取得します。 このプロパティを使用して、ファイルに対する操作を実行する前に、アップロードするファイルが存在することを確認します。 たとえば、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出してファイルをディスクに保存する前に、<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> プロパティを使用して、ファイルが存在することを確認します。 <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> が `true`を返す場合は、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出します。 `false`が返される場合は、コントロールにファイルが含まれていないことを示すメッセージをユーザーに表示します。  
   
    
   
 ## Examples  
- 次の例では、エラーチェック<xref:System.Web.UI.WebControls.FileUpload>を実行するコントロールを作成する方法を示します。 ファイルを保存する前に<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> 、メソッドを呼び出して、アップロードするファイルがコントロールに含まれていることを確認します。 さらに、同じ<xref:System.IO.File.Exists%2A?displayProperty=nameWithType>名前のファイルがパスに既に存在するかどうかを確認するために、メソッドが呼び出されます。 この場合、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドが呼び出される前に、アップロードするファイルの名前の先頭にアンダースコア文字が付きます。 これにより、既存のファイルが上書きされるのを防ぐことができます。  
+ 次の例では、エラーチェックを実行する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示します。 ファイルを保存する前に、<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> メソッドを呼び出して、アップロードするファイルがコントロールに含まれていることを確認します。 さらに、同じ名前のファイルがパスに既に存在するかどうかを確認するために、<xref:System.IO.File.Exists%2A?displayProperty=nameWithType> メソッドが呼び出されます。 この場合、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドが呼び出される前に、アップロードするファイルの名前の先頭にアンダースコア文字が付きます。 これにより、既存のファイルが上書きされるのを防ぐことができます。  
   
  [!code-aspx-csharp[FileUpload.SaveAs#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUpload.SaveAs/cs/fileupload.saveascs.aspx#1)]
  [!code-aspx-vb[FileUpload.SaveAs#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUpload.SaveAs/VB/fileupload.saveasvb.aspx#1)]  
@@ -489,7 +489,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 `false`空のファイル (ゼロバイト) がアップロードされた場合にもを返します。  
+ 空のファイル (ゼロバイト) がアップロードされた場合も、このメソッドは `false` を返します。  
   
  ]]></format>
         </remarks>
@@ -515,13 +515,13 @@
         <Parameter Name="e" Type="System.EventArgs" />
       </Parameters>
       <Docs>
-        <param name="e">イベント データを格納している <see cref="T:System.EventArgs" /> オブジェクト。</param>
+        <param name="e">イベント データを含む <see cref="T:System.EventArgs" /> オブジェクトです。</param>
         <summary><see cref="E:System.Web.UI.Control.PreRender" /> コントロールの <see cref="T:System.Web.UI.WebControls.FileUpload" /> イベントを発生させます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Web.UI.WebControls.FileUpload.OnPreRender%2A>は、ビュー <xref:System.Web.UI.WebControls.FileUpload>ステートを保存してコンテンツをレンダリングする前に、必要な事前レンダリングの手順を実行するようにコントロールに通知します。  
+ <xref:System.Web.UI.WebControls.FileUpload.OnPreRender%2A> メソッドは、ビューステートを保存してコンテンツをレンダリングする前に、必要な事前レンダリングの手順を実行するように <xref:System.Web.UI.WebControls.FileUpload> コントロールに通知します。  
   
  ]]></format>
         </remarks>
@@ -552,20 +552,20 @@
         <ReturnType>System.Web.HttpPostedFile</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><see cref="T:System.Web.UI.WebControls.FileUpload" /> コントロールを使用して、アップロードされたファイルの基になる <see cref="T:System.Web.HttpPostedFile" /> オブジェクトを取得します。</summary>
-        <value><see cref="T:System.Web.UI.WebControls.FileUpload" /> を使用してアップロードされたファイルの <see cref="T:System.Web.HttpPostedFile" />。</value>
+        <summary><see cref="T:System.Web.HttpPostedFile" /> コントロールを使用して、アップロードされたファイルの基になる <see cref="T:System.Web.UI.WebControls.FileUpload" /> オブジェクトを取得します。</summary>
+        <value><see cref="T:System.Web.HttpPostedFile" /> を使用してアップロードされたファイルの <see cref="T:System.Web.UI.WebControls.FileUpload" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- プロパティ<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A>は、 <xref:System.Web.UI.WebControls.FileUpload>コントロールを<xref:System.Web.HttpPostedFile>使用してアップロードされたファイルの基になるオブジェクトを取得します。 アップロードされたファイルの追加のプロパティにアクセスするには、このプロパティを使用します。  
+ <xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> プロパティは、<xref:System.Web.UI.WebControls.FileUpload> コントロールを使用してアップロードされたファイルの基になる <xref:System.Web.HttpPostedFile> オブジェクトを取得します。 アップロードされたファイルの追加のプロパティにアクセスするには、このプロパティを使用します。  
   
- <xref:System.Web.HttpPostedFile.ContentLength%2A>プロパティを使用して、ファイルの長さを取得できます。 <xref:System.Web.HttpPostedFile.ContentType%2A>プロパティを使用して、ファイルの MIME コンテンツタイプを取得できます。 さらに、 <xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A>プロパティを使用して、プロパティ、 <xref:System.Web.HttpPostedFile.FileName%2A> <xref:System.Web.HttpPostedFile.InputStream%2A>プロパティ、および<xref:System.Web.HttpPostedFile.SaveAs%2A>メソッドにアクセスできます。 ただし、 <xref:System.Web.UI.WebControls.FileUpload.FileName%2A>プロパティ<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> 、プロパティ、および<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドによっても同じ機能が提供されます。  
+ <xref:System.Web.HttpPostedFile.ContentLength%2A> プロパティを使用して、ファイルの長さを取得できます。 <xref:System.Web.HttpPostedFile.ContentType%2A> プロパティを使用して、ファイルの MIME コンテンツタイプを取得できます。 また、<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> プロパティを使用して、<xref:System.Web.HttpPostedFile.FileName%2A> プロパティ、<xref:System.Web.HttpPostedFile.InputStream%2A> プロパティ、および <xref:System.Web.HttpPostedFile.SaveAs%2A> メソッドにアクセスできます。 ただし、<xref:System.Web.UI.WebControls.FileUpload.FileName%2A> プロパティ、<xref:System.Web.UI.WebControls.FileUpload.FileContent%2A> プロパティ、および <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドによっても同じ機能が提供されます。  
   
    
   
 ## Examples  
- 次の例は、コントロールを<xref:System.Web.UI.WebControls.FileUpload>作成する方法を示しています。 ユーザーが [ファイルの**アップロード**] ボタンをクリックすると、ファイルの内容がページ上のテキストボックスにバイトとして表示されます。 この例では<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> 、プロパティを使用<xref:System.Web.HttpPostedFile.ContentLength%2A?displayProperty=nameWithType>してプロパティにアクセスします。 <xref:System.Web.HttpPostedFile.ContentLength%2A>プロパティは、ファイルの内容をバイト配列にコピーする前に、ファイルの長さを決定するために使用されます。  
+ 次の例は、<xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示しています。 ユーザーが [ファイルの**アップロード**] ボタンをクリックすると、ファイルの内容がページ上のテキストボックスにバイトとして表示されます。 この例では、<xref:System.Web.UI.WebControls.FileUpload.PostedFile%2A> プロパティを使用して、<xref:System.Web.HttpPostedFile.ContentLength%2A?displayProperty=nameWithType> プロパティにアクセスします。 <xref:System.Web.HttpPostedFile.ContentLength%2A> プロパティは、ファイルの内容をバイト配列にコピーする前に、ファイルの長さを決定するために使用されます。  
   
  [!code-aspx-csharp[FileUpload.FileContent#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUpload.FileContent/cs/fileupload.filecontentcs.aspx#1)]
  [!code-aspx-vb[FileUpload.FileContent#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUpload.FileContent/VB/fileupload.filecontentvb.aspx#1)]  
@@ -624,13 +624,13 @@
         <Parameter Name="writer" Type="System.Web.UI.HtmlTextWriter" />
       </Parameters>
       <Docs>
-        <param name="writer"><see cref="T:System.Web.UI.WebControls.FileUpload" /> コントロールの内容を受け取る <see cref="T:System.Web.UI.HtmlTextWriter" /> オブジェクト。</param>
-        <summary>指定された <see cref="T:System.Web.UI.HtmlTextWriter" /> オブジェクトに <see cref="T:System.Web.UI.WebControls.FileUpload" /> コントロールの内容を渡します。このオブジェクトが、クライアントに表示する内容を書き込みます。</summary>
+        <param name="writer"><see cref="T:System.Web.UI.HtmlTextWriter" /> コントロールの内容を受け取る <see cref="T:System.Web.UI.WebControls.FileUpload" /> オブジェクト。</param>
+        <summary>指定された <see cref="T:System.Web.UI.WebControls.FileUpload" /> オブジェクトに <see cref="T:System.Web.UI.HtmlTextWriter" /> コントロールの内容を渡します。このオブジェクトが、クライアントに表示する内容を書き込みます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Web.UI.WebControls.FileUpload.Render%2A>は、指定<xref:System.Web.UI.WebControls.FileUpload>された<xref:System.Web.UI.HtmlTextWriter?displayProperty=nameWithType>オブジェクトにコントロールの内容を送信します。このオブジェクトは、クライアントに表示するコンテンツを書き込みます。  
+ <xref:System.Web.UI.WebControls.FileUpload.Render%2A> メソッドは、指定された <xref:System.Web.UI.HtmlTextWriter?displayProperty=nameWithType> オブジェクトに <xref:System.Web.UI.WebControls.FileUpload> コントロールの内容を送信します。このオブジェクトは、クライアントに表示するコンテンツを書き込みます。  
   
  ]]></format>
         </remarks>
@@ -663,20 +663,20 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>は、アップロードされたファイルの内容を Web サーバー上の指定したパスに保存します。  
+ <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドは、アップロードされたファイルの内容を Web サーバー上の指定したパスに保存します。  
   
- コントロール<xref:System.Web.UI.WebControls.FileUpload>は、アップロードするファイルをユーザーが選択した後に、ファイルをサーバーに自動的に保存しません。 ユーザーが指定したファイルを送信できるようにするには、コントロールまたは機構を明示的に指定する必要があります。 たとえば、ファイルをアップロードするためにユーザーがクリックするボタンを指定できます。 指定したファイルを保存するために記述するコードで<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>は、メソッドを呼び出す必要があります。これにより、ファイルの内容がサーバー上の指定したパスに保存されます。 通常、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>このメソッドは、サーバーへのポストバックを発生させるイベントのイベント処理メソッドで呼び出されます。 たとえば、ファイルを送信するためのボタンを指定した場合、ファイルをサーバーに保存するコードは、クリックイベントのイベント処理メソッド内に含めることができます。  
+ <xref:System.Web.UI.WebControls.FileUpload> コントロールは、アップロードするファイルをユーザーが選択した後に、ファイルをサーバーに自動的に保存しません。 ユーザーが指定したファイルを送信できるようにするには、コントロールまたは機構を明示的に指定する必要があります。 たとえば、ファイルをアップロードするためにユーザーがクリックするボタンを指定できます。 指定したファイルを保存するために記述するコードでは、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出す必要があります。これにより、ファイルの内容がサーバー上の指定したパスに保存されます。 通常、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドは、サーバーへのポストバックを発生させるイベントのイベント処理メソッドで呼び出されます。 たとえば、ファイルを送信するためのボタンを指定した場合、ファイルをサーバーに保存するコードは、クリックイベントのイベント処理メソッド内に含めることができます。  
   
- <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドを呼び出す場合は、アップロードしたファイルを保存するサーバー上のディレクトリの完全なパスを指定する必要があります。 アプリケーションコードでパスを明示的に指定しないと、 <xref:System.Web.HttpException>ユーザーがファイルをアップロードしようとしたときに例外がスローされます。 この動作により、アップロードしたファイルを保存するパスをユーザーが指定できないようにすることで、サーバー上のファイルをセキュリティで保護することができます。  
+ <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出す場合は、アップロードしたファイルを保存するサーバー上のディレクトリの完全なパスを指定する必要があります。 アプリケーションコードでパスを明示的に指定しない場合、ユーザーがファイルをアップロードしようとすると <xref:System.Web.HttpException> 例外がスローされます。 この動作により、アップロードしたファイルを保存するパスをユーザーが指定できないようにすることで、サーバー上のファイルをセキュリティで保護することができます。  
   
- <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドを呼び出す前に、 <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> <xref:System.Web.UI.WebControls.FileUpload>プロパティを使用して、アップロードするファイルがコントロールに含まれていることを確認する必要があります。 が<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A>を返す`true`場合は、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドを呼び出します。 が返さ`false`れた場合は、コントロールにファイルが含まれていないことを示すメッセージをユーザーに表示します。 ファイルが存在することを確認するためにエラー処理コードを指定しなかった場合、存在しないファイルを<xref:System.Web.HttpException>保存しようとすると例外がスローされます。  
+ <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出す前に、<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> プロパティを使用して、<xref:System.Web.UI.WebControls.FileUpload> コントロールにアップロードするファイルが含まれていることを確認する必要があります。 <xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> が `true`を返す場合は、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドを呼び出します。 `false`が返される場合は、コントロールにファイルが含まれていないことを示すメッセージをユーザーに表示します。 ファイルが存在することを確認するためにエラー処理コードを指定しなかった場合、存在しないファイルを保存しようとすると <xref:System.Web.HttpException> 例外がスローされます。  
   
- への<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>呼び出しを機能させるには、ASP.NET アプリケーションにサーバー上のディレクトリへの書き込みアクセス権が必要です。 アプリケーションが書き込みアクセスを取得するには、2つの方法があります。 アップロードされたファイルを保存するディレクトリで、アプリケーションを実行しているアカウントに書き込みアクセス権を明示的に付与することができます。 または、ASP.NET アプリケーションに付与される信頼レベルを上げることもできます。 アプリケーションの実行ディレクトリへの書き込みアクセスを取得するには、アプリケーションに、 <xref:System.Web.AspNetHostingPermission> <xref:System.Web.AspNetHostingPermissionLevel.Medium?displayProperty=nameWithType>値に設定された信頼レベルを持つオブジェクトが付与されている必要があります。 信頼レベルを上げると、サーバー上のリソースへのアプリケーションのアクセスが増加します。 ただし、これは安全な方法ではありません。これは、アプリケーションを制御する悪意のあるユーザーも、この高いレベルの信頼度で実行できるためです。 ベストプラクティスとして、アプリケーションの実行に必要な最小限の特権を持つユーザーのコンテキストで ASP.NET アプリケーションを実行することをお勧めします。 ASP.NET アプリケーションのセキュリティの詳細については、「Web アプリケーションと ASP.NET の[信頼レベルとポリシーファイル](https://msdn.microsoft.com/library/f897c794-10d3-414c-86b7-59b66564bbf1)[の基本セキュリティプラクティス](https://msdn.microsoft.com/library/3eeeee9e-b09f-4c7f-8ce5-d9ca1f9322ad)」を参照してください。  
+ <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> の呼び出しを機能させるには、ASP.NET アプリケーションにサーバー上のディレクトリへの書き込みアクセス権が必要です。 アプリケーションが書き込みアクセスを取得するには、2つの方法があります。 アップロードされたファイルを保存するディレクトリで、アプリケーションを実行しているアカウントに書き込みアクセス権を明示的に付与することができます。 または、ASP.NET アプリケーションに付与される信頼レベルを上げることもできます。 アプリケーションの実行ディレクトリへの書き込みアクセスを取得するには、アプリケーションに、<xref:System.Web.AspNetHostingPermissionLevel.Medium?displayProperty=nameWithType> 値に設定された信頼レベルを持つ <xref:System.Web.AspNetHostingPermission> オブジェクトが付与されている必要があります。 信頼レベルを上げると、サーバー上のリソースへのアプリケーションのアクセスが増加します。 ただし、これは安全な方法ではありません。これは、アプリケーションを制御する悪意のあるユーザーも、この高いレベルの信頼度で実行できるためです。 ベストプラクティスとして、アプリケーションの実行に必要な最小限の特権を持つユーザーのコンテキストで ASP.NET アプリケーションを実行することをお勧めします。 ASP.NET アプリケーションのセキュリティの詳細については、「Web アプリケーションと ASP.NET の[信頼レベルとポリシーファイル](https://msdn.microsoft.com/library/f897c794-10d3-414c-86b7-59b66564bbf1)[の基本セキュリティプラクティス](https://msdn.microsoft.com/library/3eeeee9e-b09f-4c7f-8ce5-d9ca1f9322ad)」を参照してください。  
   
    
   
 ## Examples  
- 次の例では、エラーチェック<xref:System.Web.UI.WebControls.FileUpload>を実行するコントロールを作成する方法を示します。 ファイルが保存<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A>される前に、メソッドが呼び出されて、アップロードするファイルが存在することを確認します。 さらに、同じ<xref:System.IO.File.Exists%2A?displayProperty=nameWithType>名前のファイルがパスに既に存在するかどうかを確認するために、メソッドが呼び出されます。 この値が指定されている場合、 <xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A>メソッドが呼び出される前に、アップロードするファイルの名前の先頭に数字が付いています。 これにより、既存のファイルが上書きされるのを防ぐことができます。  
+ 次の例では、エラーチェックを実行する <xref:System.Web.UI.WebControls.FileUpload> コントロールを作成する方法を示します。 ファイルを保存する前に、<xref:System.Web.UI.WebControls.FileUpload.HasFile%2A> メソッドを呼び出して、アップロードするファイルが存在することを確認します。 また、<xref:System.IO.File.Exists%2A?displayProperty=nameWithType> メソッドを呼び出して、同じ名前のファイルがパスに既に存在するかどうかを確認します。 この値が指定されている場合、<xref:System.Web.UI.WebControls.FileUpload.SaveAs%2A> メソッドが呼び出される前に、アップロードするファイルの名前の先頭に数字が付きます。 これにより、既存のファイルが上書きされるのを防ぐことができます。  
   
  [!code-aspx-csharp[FileUpload.SaveAs#1](~/samples/snippets/csharp/VS_Snippets_WebNet/FileUpload.SaveAs/cs/fileupload.saveascs.aspx#1)]
  [!code-aspx-vb[FileUpload.SaveAs#1](~/samples/snippets/visualbasic/VS_Snippets_WebNet/FileUpload.SaveAs/VB/fileupload.saveasvb.aspx#1)]  
@@ -685,7 +685,7 @@
         </remarks>
         <exception cref="T:System.Web.HttpException"><paramref name="filename" /> が完全パスではありません。</exception>
         <altmember cref="P:System.Web.UI.WebControls.FileUpload.HasFile" />
-        <related type="Article" href="https://msdn.microsoft.com/library/3eeeee9e-b09f-4c7f-8ce5-d9ca1f9322ad">Web アプリケーションの基本的なセキュリティプラクティス</related>
+        <related type="Article" href="https://msdn.microsoft.com/library/3eeeee9e-b09f-4c7f-8ce5-d9ca1f9322ad">Web アプリケーションのセキュリティに関する基本的な対策</related>
       </Docs>
     </Member>
   </Members>

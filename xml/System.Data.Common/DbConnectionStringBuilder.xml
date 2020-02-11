@@ -1,5 +1,5 @@
 <Type Name="DbConnectionStringBuilder" FullName="System.Data.Common.DbConnectionStringBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="e48dbb575d5e2cc3c91ed772d7da38d2412be879" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75142918" /></Metadata><TypeSignature Language="C#" Value="public class DbConnectionStringBuilder : System.Collections.IDictionary, System.ComponentModel.ICustomTypeDescriptor" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="7702ef46bdc8464c1f3a22adb0882c8ded570bcf" /><Meta Name="ms.sourcegitcommit" Value="8dc7427b3f8ede13c290b671feeb1dc33978e582" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/06/2020" /><Meta Name="ms.locfileid" Value="77044366" /></Metadata><TypeSignature Language="C#" Value="public class DbConnectionStringBuilder : System.Collections.IDictionary, System.ComponentModel.ICustomTypeDescriptor" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DbConnectionStringBuilder extends System.Object implements class System.Collections.ICollection, class System.Collections.IDictionary, class System.Collections.IEnumerable, class System.ComponentModel.ICustomTypeDescriptor" />
   <TypeSignature Language="DocId" Value="T:System.Data.Common.DbConnectionStringBuilder" />
   <TypeSignature Language="VB.NET" Value="Public Class DbConnectionStringBuilder&#xA;Implements ICustomTypeDescriptor, IDictionary" />
@@ -44,56 +44,56 @@
   <Docs>
     <summary>厳密に型指定された接続文字列ビルダーのための基底クラスを提供します。</summary>
     <remarks>
-      <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Data.Common.DbConnectionStringBuilder> クラスは、厳密に型指定された接続文字列ビルダー (<xref:System.Data.SqlClient.SqlConnectionStringBuilder>、<xref:System.Data.OleDb.OleDbConnectionStringBuilder>など) が派生する基本クラスを提供します。 接続文字列ビルダーを使用すると、開発者は構文的に正しい接続文字列をプログラムによって作成し、既存の接続文字列を解析して再構築することができます。  
-  
- <xref:System.Data.Common.DbConnectionStringBuilder> は、データベースに依存しない方法で定義されています。 <xref:System.Data.Common> 名前空間の追加により、開発者は、任意のデータベースに対して動作する接続文字列を作成するためにプログラミングできる基本クラスが必要になります。 したがって、<xref:System.Data.Common.DbConnectionStringBuilder> クラスを使用すると、ユーザーは任意のキーと値のペアを割り当て、結果として得られる接続文字列を厳密に型指定されたプロバイダーに渡すことができます。 .NET Framework の一部として含まれているすべてのデータプロバイダーは、<xref:System.Data.Common.DbConnectionStringBuilder>: <xref:System.Data.SqlClient.SqlConnectionStringBuilder>、<xref:System.Data.OracleClient.OracleConnectionStringBuilder>、<xref:System.Data.Odbc.OdbcConnectionStringBuilder>、および <xref:System.Data.OleDb.OleDbConnectionStringBuilder>から継承する厳密に型指定されたクラスを提供します。  
-  
- 開発者は任意のプロバイダーの接続文字列を作成、割り当て、および編集できます。 特定のキーと値のペアをサポートするプロバイダーの場合、接続文字列ビルダーは、既知のペアに対応する厳密に型指定されたプロパティを提供します。 不明な値をサポートする機能を必要とするプロバイダーをサポートするために、開発者は任意のキーと値のペアを指定することもできます。  
-  
- <xref:System.Data.Common.DbConnectionStringBuilder> クラスは、<xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスを実装します。 これは、デザイン時にクラスが Visual Studio デザイナーで動作することを意味します。 開発者がデザイナーを使用して、厳密に型指定されたデータセットと、Visual Studio 内で厳密に型指定された接続を構築する場合、厳密に型指定された接続文字列ビルダークラスはその型に関連付けられているプロパティを表示し、コンバーターも含まれます。既知のキーの共通値をマップします。  
-  
- アプリケーションの一部として接続文字列を作成する必要がある開発者は、<xref:System.Data.Common.DbConnectionStringBuilder> クラスまたはその厳密に型指定された派生クラスを使用して、接続文字列を作成および変更できます。 <xref:System.Data.Common.DbConnectionStringBuilder> クラスを使用すると、アプリケーション構成ファイルに格納されている接続文字列を簡単に管理できます。  
-  
- 開発者は、厳密に型指定された接続文字列ビルダークラスを使用するか、<xref:System.Data.Common.DbConnectionStringBuilder> クラスを使用して、接続文字列を作成できます。 <xref:System.Data.Common.DbConnectionStringBuilder> は、有効なキーと値のペアのチェックを実行しません。 したがって、このクラスを使用して無効な接続文字列を作成することは可能です。 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> は、SQL Server でサポートされているキーと値のペアのみをサポートしています。無効なペアを追加しようとすると、例外がスローされます。  
-  
- <xref:System.Data.Common.DbConnectionStringBuilder.Add%2A> メソッドと <xref:System.Data.Common.DbConnectionStringBuilder.Item%2A> プロパティハンドルの両方が、悪意のあるエントリの挿入を試みます。 たとえば、次のコードは、入れ子になったキーと値のペアを正しくエスケープします。  
-  
-```vb  
-Dim builder As New System.Data.Common.DbConnectionStringBuilder  
-builder("Data Source") = "(local)"  
-builder("integrated sSecurity") = True  
-builder("Initial Catalog") = "AdventureWorks;NewValue=Bad"  
-```  
-  
-```csharp  
-System.Data.Common.DbConnectionStringBuilder builder =   
-    new System.Data.Common.DbConnectionStringBuilder();  
-builder["Data Source"] = "(local)";  
-builder["integrated Security"] = true;  
-builder["Initial Catalog"] = "AdventureWorks;NewValue=Bad";  
-```  
-  
- 結果は、無効な値が安全に処理される、次の接続文字列になります。  
-  
-```  
-data source=(local);integrated security=True;  
-initial catalog="AdventureWorks;NewValue=Bad"  
-```  
-  
-   
-  
-## Examples  
- 次のコンソールアプリケーションでは、2つの接続文字列が構築されます。1つは Microsoft Jet データベース用、もう1つは SQL Server データベース用です。 どちらの場合も、コードは汎用 <xref:System.Data.Common.DbConnectionStringBuilder> クラスを使用して接続文字列を作成し、<xref:System.Data.Common.DbConnectionStringBuilder> インスタンスの <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティを厳密な型の接続クラスのコンストラクターに渡します。 これは必須ではありません。このコードでは、厳密に型指定された個々の接続文字列ビルダーインスタンスを作成することもできます。 また、この例では、既存の接続文字列を解析し、接続文字列の内容を操作するさまざまな方法を示します。  
-  
+      <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Data.Common.DbConnectionStringBuilder> クラスは、厳密に型指定された接続文字列ビルダー (<xref:System.Data.SqlClient.SqlConnectionStringBuilder>、<xref:System.Data.OleDb.OleDbConnectionStringBuilder>など) が派生する基本クラスを提供します。 接続文字列ビルダーを使用すると、開発者は構文的に正しい接続文字列をプログラムによって作成し、既存の接続文字列を解析して再構築することができます。
+
+ <xref:System.Data.Common.DbConnectionStringBuilder> は、データベースに依存しない方法で定義されています。 <xref:System.Data.Common> 名前空間の追加により、開発者は、任意のデータベースに対して動作する接続文字列を作成するためにプログラミングできる基本クラスが必要になります。 したがって、<xref:System.Data.Common.DbConnectionStringBuilder> クラスを使用すると、ユーザーは任意のキーと値のペアを割り当て、結果として得られる接続文字列を厳密に型指定されたプロバイダーに渡すことができます。 .NET Framework の一部として含まれているすべてのデータプロバイダーは、<xref:System.Data.Common.DbConnectionStringBuilder>: <xref:System.Data.SqlClient.SqlConnectionStringBuilder>、<xref:System.Data.OracleClient.OracleConnectionStringBuilder>、<xref:System.Data.Odbc.OdbcConnectionStringBuilder>、および <xref:System.Data.OleDb.OleDbConnectionStringBuilder>から継承する厳密に型指定されたクラスを提供します。
+
+ 開発者は任意のプロバイダーの接続文字列を作成、割り当て、および編集できます。 特定のキーと値のペアをサポートするプロバイダーの場合、接続文字列ビルダーは、既知のペアに対応する厳密に型指定されたプロパティを提供します。 不明な値をサポートする機能を必要とするプロバイダーをサポートするために、開発者は任意のキーと値のペアを指定することもできます。
+
+ <xref:System.Data.Common.DbConnectionStringBuilder> クラスによって、<xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスが実装されます。 これは、デザイン時にクラスが Visual Studio デザイナーで動作することを意味します。 開発者がデザイナーを使用して、厳密に型指定されたデータセットと、Visual Studio 内で厳密に型指定された接続を構築する場合、厳密に型指定された接続文字列ビルダークラスはその型に関連付けられているプロパティを表示し、コンバーターも含まれます。既知のキーの共通値をマップします。
+
+ アプリケーションの一部として接続文字列を作成する必要がある開発者は、<xref:System.Data.Common.DbConnectionStringBuilder> クラスまたはその厳密に型指定された派生クラスを使用して、接続文字列を作成および変更できます。 <xref:System.Data.Common.DbConnectionStringBuilder> クラスを使用すると、アプリケーション構成ファイルに格納されている接続文字列を簡単に管理できます。
+
+ 開発者は、厳密に型指定された接続文字列ビルダークラスを使用するか、<xref:System.Data.Common.DbConnectionStringBuilder> クラスを使用して、接続文字列を作成できます。 <xref:System.Data.Common.DbConnectionStringBuilder> は、有効なキーと値のペアのチェックを実行しません。 したがって、このクラスを使用して無効な接続文字列を作成することは可能です。 <xref:System.Data.SqlClient.SqlConnectionStringBuilder> は、SQL Server でサポートされているキーと値のペアのみをサポートしています。無効なペアを追加しようとすると、例外がスローされます。
+
+ <xref:System.Data.Common.DbConnectionStringBuilder.Add%2A> メソッドと <xref:System.Data.Common.DbConnectionStringBuilder.Item%2A> プロパティハンドルの両方が、悪意のあるエントリの挿入を試みます。 たとえば、次のコードは、入れ子になったキーと値のペアを正しくエスケープします。
+
+```vb
+Dim builder As New System.Data.Common.DbConnectionStringBuilder
+builder("Data Source") = "(local)"
+builder("integrated sSecurity") = True
+builder("Initial Catalog") = "AdventureWorks;NewValue=Bad"
+```
+
+```csharp
+System.Data.Common.DbConnectionStringBuilder builder =
+    new System.Data.Common.DbConnectionStringBuilder();
+builder["Data Source"] = "(local)";
+builder["integrated Security"] = true;
+builder["Initial Catalog"] = "AdventureWorks;NewValue=Bad";
+```
+
+ 結果は、無効な値が安全に処理される、次の接続文字列になります。
+
+```
+data source=(local);integrated security=True;
+initial catalog="AdventureWorks;NewValue=Bad"
+```
+
+
+
+## Examples
+ 次のコンソールアプリケーションでは、2つの接続文字列が構築されます。1つは Microsoft Jet データベース用、もう1つは SQL Server データベース用です。 どちらの場合も、コードは汎用 <xref:System.Data.Common.DbConnectionStringBuilder> クラスを使用して接続文字列を作成し、<xref:System.Data.Common.DbConnectionStringBuilder> インスタンスの <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティを厳密な型の接続クラスのコンストラクターに渡します。 これは必須ではありません。このコードでは、厳密に型指定された個々の接続文字列ビルダーインスタンスを作成することもできます。 また、この例では、既存の接続文字列を解析し、接続文字列の内容を操作するさまざまな方法を示します。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder/VB/source.vb#1)]  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder/VB/source.vb#1)]
+
  ]]></format>
     </remarks>
-    <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+    <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
     <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
   </Docs>
   <Members>
@@ -105,7 +105,7 @@ initial catalog="AdventureWorks;NewValue=Bad"
       </AssemblyInfo>
       <Docs>
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> クラスの新しいインスタンスを初期化します。</summary>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </MemberGroup>
@@ -139,7 +139,7 @@ initial catalog="AdventureWorks;NewValue=Bad"
       <Docs>
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -175,14 +175,14 @@ initial catalog="AdventureWorks;NewValue=Bad"
         <param name="useOdbcRules">フィールドの区切りに <see langword="true" /> を使用する場合、{}。引用符を使用する場合、<see langword="false" />。</param>
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> クラスの新しいインスタンスを初期化します。必要に応じて、値を引用符で囲むことについての ODBC の規則が使用されます。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- `useOdbcRules` が `true`場合、この <xref:System.Data.Common.DbConnectionStringBuilder> は ODBC ルールを使用して値を引用符で囲みます (角かっこ ({}) を使用して値を囲む)。 `useOdbcRules` が `false`場合、この <xref:System.Data.Common.DbConnectionStringBuilder> は引用符文字 ("") を使用して値を区切ります。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ `useOdbcRules` が `true`場合、この <xref:System.Data.Common.DbConnectionStringBuilder> は ODBC ルールを使用して値を引用符で囲みます (角かっこ ({}) を使用して値を囲む)。 `useOdbcRules` が `false`場合、この <xref:System.Data.Common.DbConnectionStringBuilder> は引用符文字 ("") を使用して値を区切ります。
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -225,32 +225,33 @@ initial catalog="AdventureWorks;NewValue=Bad"
         <param name="value">指定したキーの値。</param>
         <summary>指定したキーおよび値を持つエントリを <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> に追加します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- また、<xref:System.Data.Common.DbConnectionStringBuilder.Item%2A> プロパティを使用して、ディクショナリに存在しないキーの値を設定することによって、新しい要素を追加することもできます。 たとえば、`myCollection["myNonexistentKey"] = myValue` のように指定します。  
-  
- Null`Nothing` (Visual Basic) キーを渡して <xref:System.Data.Common.DbConnectionStringBuilder.Add%2A> メソッドを呼び出すと、<xref:System.ArgumentNullException>がスローされます。 ただし、null 値を渡すことによって <xref:System.Data.Common.DbConnectionStringBuilder.Add%2A> メソッドを呼び出すと、キーと値のペアが削除されます。  
-  
-   
-  
-## Examples  
- 次の例では、新しい <xref:System.Data.Common.DbConnectionStringBuilder> を作成し、項目を追加します。 このコードでは、<xref:System.Data.Common.DbConnectionStringBuilder.Add%2A> メソッドを使用して既存の項目を上書きする方法も示しています。また、<xref:System.ArgumentNullException>をスローするコメント付きブロックが含まれています。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ また、<xref:System.Data.Common.DbConnectionStringBuilder.Item%2A> プロパティを使用して、ディクショナリに存在しないキーの値を設定することによって、新しい要素を追加することもできます。 (例: `myCollection["myNonexistentKey"] = myValue`)。
+
+ Null`Nothing` (Visual Basic) キーを渡して <xref:System.Data.Common.DbConnectionStringBuilder.Add%2A> メソッドを呼び出すと、<xref:System.ArgumentNullException>がスローされます。 ただし、null 値を渡すことによって <xref:System.Data.Common.DbConnectionStringBuilder.Add%2A> メソッドを呼び出すと、キーと値のペアが削除されます。
+
+
+
+## Examples
+ 次の例では、新しい <xref:System.Data.Common.DbConnectionStringBuilder> を作成し、項目を追加します。 このコードでは、<xref:System.Data.Common.DbConnectionStringBuilder.Add%2A> メソッドを使用して既存の項目を上書きする方法も示しています。また、<xref:System.ArgumentNullException>をスローするコメント付きブロックが含まれています。
+
 > [!NOTE]
->  この例には、<xref:System.Data.Common.DbConnectionStringBuilder> による接続文字列の操作方法を示すために、パスワードが含まれています。 実際のアプリケーションでは、Windows 認証を使用することをお勧めします。 パスワードを使用する必要がある場合も、ハードコードされたパスワードをアプリケーションに含めないでください。  
-  
+>  この例には、<xref:System.Data.Common.DbConnectionStringBuilder> による接続文字列の操作方法を示すために、パスワードが含まれています。 実際のアプリケーションでは、Windows 認証を使用することをお勧めします。 パスワードを使用する必要がある場合も、ハードコードされたパスワードをアプリケーションに含めないでください。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.Add#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Add/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.Add#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Add/VB/source.vb#1)]  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.Add#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Add/VB/source.vb#1)]
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="keyword" /> が null 参照 (Visual Basic の場合は <see langword="Nothing" />) です。</exception>
-        <exception cref="T:System.NotSupportedException"><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> は読み取り専用です。  
-  
-または 
+        <exception cref="T:System.NotSupportedException"><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> は読み取り専用です。
+
+または
+
 <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> は固定サイズです。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -262,7 +263,7 @@ initial catalog="AdventureWorks;NewValue=Bad"
       </AssemblyInfo>
       <Docs>
         <summary>既存の <see cref="T:System.Text.StringBuilder" /> オブジェクトにキーと値を追加する、効率的かつ安全な方法を提供します。</summary>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </MemberGroup>
@@ -303,26 +304,26 @@ initial catalog="AdventureWorks;NewValue=Bad"
       </Parameters>
       <Docs>
         <param name="builder">キー/値ペアを追加する対象の <see cref="T:System.Text.StringBuilder" />。</param>
-        <param name="keyword">追加されるキー。</param>
+        <param name="keyword">追加するキー。</param>
         <param name="value">指定されたキーの値。</param>
         <summary>既存の <see cref="T:System.Text.StringBuilder" /> オブジェクトにキーと値を追加する、効率的かつ安全な方法を提供します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメソッドを使用すると、<xref:System.Text.StringBuilder> を使用してキーと値のペアのコレクションを作成し、<xref:System.Data.Common.DbConnectionStringBuilder> インスタンスを作成して維持するオーバーヘッドを発生させることなく、キーと値のペアを追加するときに、<xref:System.Data.Common.DbConnectionStringBuilder> クラスに含まれる機能を利用できるようになります。 `AppendKeyValuePair` メソッドは、キーと値を正しく書式設定し、指定された <xref:System.Text.StringBuilder>に新しい文字列を追加します。  
-  
-   
-  
-## Examples  
- 一部のプロセスで接続文字列が作成されているが、アプリケーションでその接続文字列を単純に変更する必要がある場合は、<xref:System.Text.StringBuilder> オブジェクトを使用してキーと値のペアを追加する方が効率的な場合があります。 開発者は、新しい <xref:System.Data.Common.DbConnectionStringBuilder>を作成するのではなく、`AppendKeyValuePair` メソッドを呼び出して、指定された接続文字列を含む <xref:System.Text.StringBuilder> を渡すことができます。 次の手順は、この手法の簡単な例を示しています。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメソッドを使用すると、<xref:System.Text.StringBuilder> を使用してキーと値のペアのコレクションを作成し、<xref:System.Data.Common.DbConnectionStringBuilder> インスタンスを作成して維持するオーバーヘッドを発生させることなく、キーと値のペアを追加するときに、<xref:System.Data.Common.DbConnectionStringBuilder> クラスに含まれる機能を利用できるようになります。 `AppendKeyValuePair` メソッドは、キーと値を正しく書式設定し、指定された <xref:System.Text.StringBuilder>に新しい文字列を追加します。
+
+
+
+## Examples
+ 一部のプロセスで接続文字列が作成されているが、アプリケーションでその接続文字列を単純に変更する必要がある場合は、<xref:System.Text.StringBuilder> オブジェクトを使用してキーと値のペアを追加する方が効率的な場合があります。 開発者は、新しい <xref:System.Data.Common.DbConnectionStringBuilder>を作成するのではなく、`AppendKeyValuePair` メソッドを呼び出して、指定された接続文字列を含む <xref:System.Text.StringBuilder> を渡すことができます。 次の手順は、この手法の簡単な例を示しています。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.AppendKeyValuePair#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.AppendKeyValuePair/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.AppendKeyValuePair#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.AppendKeyValuePair/VB/source.vb#1)]  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.AppendKeyValuePair#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.AppendKeyValuePair/VB/source.vb#1)]
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -362,29 +363,29 @@ initial catalog="AdventureWorks;NewValue=Bad"
       </Parameters>
       <Docs>
         <param name="builder">キー/値ペアを追加する対象の <see cref="T:System.Text.StringBuilder" />。</param>
-        <param name="keyword">追加されるキー。</param>
+        <param name="keyword">追加するキー。</param>
         <param name="value">指定されたキーの値。</param>
         <param name="useOdbcRules">フィールドの区切りに <see langword="true" /> を使用する場合、{}。引用符を使用する場合、<see langword="false" />。</param>
         <summary>既存の <see cref="T:System.Text.StringBuilder" /> オブジェクトにキーと値を追加する、効率的かつ安全な方法を提供します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメソッドを使用すると、開発者は、<xref:System.Text.StringBuilder> を使用してキーと値のペアのコレクションを作成し、キーと値のペアを追加するときに、<xref:System.Data.Common.DbConnectionStringBuilder> クラスに含まれる機能を利用できるようになります。 <xref:System.Data.Common.DbConnectionStringBuilder> インスタンスを作成して維持するオーバーヘッドが発生することはありません。 `AppendKeyValuePair` メソッドは、キーと値を正しく書式設定し、指定された <xref:System.Text.StringBuilder>に新しい文字列を追加します。  
-  
- ほとんどのデータソースでは引用符を使用してフィールドを区切ることができますが、odbc では無効です。 ODBC 接続文字列の場合は、中かっこ ({}) を使用する必要があります。 <xref:System.Data.Common.DbConnectionStringBuilder> で区切りフィールドに ODBC ルールを使用するには、`useOdbcRules` パラメーターを `true`に設定します。  
-  
-   
-  
-## Examples  
- 一部のプロセスで接続文字列が作成されているが、アプリケーションでその接続文字列を単純に変更する必要がある場合は、<xref:System.Text.StringBuilder> オブジェクトを使用してキーと値のペアを追加する方が効率的な場合があります。 開発者は、新しい <xref:System.Data.Common.DbConnectionStringBuilder>を作成するのではなく、`AppendKeyValuePair` メソッドを呼び出して、指定された接続文字列を含む <xref:System.Text.StringBuilder> を渡すことができます。 次の手順では、値を引用符で囲んで ODBC ルールを使用して、この手法の簡単な例を示します。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメソッドを使用すると、開発者は、<xref:System.Text.StringBuilder> を使用してキーと値のペアのコレクションを作成し、キーと値のペアを追加するときに、<xref:System.Data.Common.DbConnectionStringBuilder> クラスに含まれる機能を利用できるようになります。 <xref:System.Data.Common.DbConnectionStringBuilder> インスタンスを作成して維持するオーバーヘッドが発生することはありません。 `AppendKeyValuePair` メソッドは、キーと値を正しく書式設定し、指定された <xref:System.Text.StringBuilder>に新しい文字列を追加します。
+
+ ほとんどのデータソースでは引用符を使用してフィールドを区切ることができますが、odbc では無効です。 ODBC 接続文字列の場合は、中かっこ ({}) を使用する必要があります。 <xref:System.Data.Common.DbConnectionStringBuilder> で区切りフィールドに ODBC ルールを使用するには、`useOdbcRules` パラメーターを `true`に設定します。
+
+
+
+## Examples
+ 一部のプロセスで接続文字列が作成されているが、アプリケーションでその接続文字列を単純に変更する必要がある場合は、<xref:System.Text.StringBuilder> オブジェクトを使用してキーと値のペアを追加する方が効率的な場合があります。 開発者は、新しい <xref:System.Data.Common.DbConnectionStringBuilder>を作成するのではなく、`AppendKeyValuePair` メソッドを呼び出して、指定された接続文字列を含む <xref:System.Text.StringBuilder> を渡すことができます。 次の手順では、値を引用符で囲んで ODBC ルールを使用して、この手法の簡単な例を示します。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.AppendKeyValuePair#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.AppendKeyValuePair/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.AppendKeyValuePair#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.AppendKeyValuePair/VB/source.vb#1)]  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.AppendKeyValuePair#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.AppendKeyValuePair/VB/source.vb#1)]
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -432,16 +433,16 @@ initial catalog="AdventureWorks;NewValue=Bad"
       </ReturnValue>
       <Docs>
         <summary><see cref="P:System.Data.Common.DbConnectionStringBuilder.ConnectionString" /> プロパティを Visual Studio デザイナーに表示するかどうかを示す値を取得または設定します。</summary>
-        <value>接続文字列がデザイナー内に表示される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="true" /> です。</value>
+        <value>接続文字列がデザイナー内に表示される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定では、 <see langword="true" />です。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Data.Common.DbConnectionStringBuilder> クラスを利用するデザイナーを作成する開発者は、接続文字列をデザイナーのプロパティグリッド内で表示または非表示にできる必要があります。 <xref:System.Data.Common.DbConnectionStringBuilder.BrowsableConnectionString%2A> プロパティを使用すると、プロパティを `false`に設定することによって、プロパティを非表示にする必要があることを開発者に示すことができます。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Data.Common.DbConnectionStringBuilder> クラスを利用するデザイナーを作成する開発者は、接続文字列をデザイナーのプロパティグリッド内で表示または非表示にできる必要があります。 <xref:System.Data.Common.DbConnectionStringBuilder.BrowsableConnectionString%2A> プロパティを使用すると、プロパティを `false`に設定することによって、プロパティを非表示にする必要があることを開発者に示すことができます。
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -482,15 +483,15 @@ initial catalog="AdventureWorks;NewValue=Bad"
       <Docs>
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> インスタンスの内容を消去します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Data.Common.DbConnectionStringBuilder.Clear%2A> メソッドは、すべてのキーと値のペアを <xref:System.Data.Common.DbConnectionStringBuilder> から削除し、対応するすべてのプロパティをリセットします。 これには、<xref:System.Data.Common.DbConnectionStringBuilder.Count%2A> プロパティを0に設定し、<xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティを空の文字列に設定することが含まれます。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Data.Common.DbConnectionStringBuilder.Clear%2A> メソッドは、すべてのキーと値のペアを <xref:System.Data.Common.DbConnectionStringBuilder> から削除し、対応するすべてのプロパティをリセットします。 これには、<xref:System.Data.Common.DbConnectionStringBuilder.Count%2A> プロパティを0に設定し、<xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティを空の文字列に設定することが含まれます。
+
  ]]></format>
         </remarks>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> は読み取り専用です。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -526,11 +527,11 @@ initial catalog="AdventureWorks;NewValue=Bad"
       <Docs>
         <summary>関連する <see cref="T:System.ComponentModel.PropertyDescriptor" /> 上の <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> オブジェクトのコレクションをクリアします。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメソッドは、<xref:System.Data.Common.DbConnectionStringBuilder>上の関連付けられているすべてのプロパティ記述子をクリアするために、デザイナーによって使用されます。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメソッドは、<xref:System.Data.Common.DbConnectionStringBuilder>上の関連付けられているすべてのプロパティ記述子をクリアするために、デザイナーによって使用されます。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -575,42 +576,42 @@ initial catalog="AdventureWorks;NewValue=Bad"
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> に関連付けられた接続文字列を取得または設定します。</summary>
         <value><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> 内に含まれるキーと値のペアから作成された、現在の接続文字列。 既定値は空の文字列です。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このプロパティは、<xref:System.Data.Common.DbConnectionStringBuilder>によって管理されるコレクション内に格納されているキーと値のペアのセミコロン区切りのリストを返します。 各ペアには、等号で区切られたキーと値が含まれています。 一般的な接続文字列の例を次に示します。  
-  
-```  
-"Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AdventureWorks;Data Source=(local)"  
-```  
-  
- データプロバイダーは、接続文字列プロパティごとに特定のキーと値を必要とする場合があります。 これらの値は個別に記載されています。 <xref:System.Data.Common.DbConnectionStringBuilder> クラスは、その接続文字列に関連付けられているキーと値のペアを検証しませんが、それを継承するクラスは使用できます。  
-  
- <xref:System.Data.Common.DbConnectionStringBuilder> クラスの <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティは、通常、等号で区切られたキー/値ペアのセミコロン区切りのリストを作成および解析するメカニズムとして機能します。 接続文字列に固有の検証やその他のサポートは提供されません。 <xref:System.Data.Common.DbConnectionStringBuilder> コレクションに項目を追加すると、<xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティに変更が反映されます。 <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティに値を割り当てた場合、<xref:System.Data.Common.DbConnectionStringBuilder> はセミコロンと等号 (=) 記号を使用して値の解析を試みます。  
-  
-   
-  
-## Examples  
- 次の例は、<xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティの動作を示しています。 次に例を示します。  
-  
--   キーと値のペアを一度に1つずつ空の <xref:System.Data.Common.DbConnectionStringBuilder>に追加することによって、接続文字列を作成します。  
-  
--   完全な接続文字列を <xref:System.Data.Common.DbConnectionStringBuilder> インスタンスの <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティに割り当て、文字列内の1つのキーと値のペアを変更します。  
-  
--   任意のキー/値ペアのセットを <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティ (つまり、接続文字列としてリモートではない文字列) に割り当て、値の1つを変更します。  
-  
--   <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティに無効な接続文字列を割り当てて、スローされた例外を示します。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このプロパティは、<xref:System.Data.Common.DbConnectionStringBuilder>によって管理されるコレクション内に格納されているキーと値のペアのセミコロン区切りのリストを返します。 各ペアには、等号で区切られたキーと値が含まれています。 一般的な接続文字列の例を次に示します。
+
+```
+"Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AdventureWorks;Data Source=(local)"
+```
+
+ データプロバイダーは、接続文字列プロパティごとに特定のキーと値を必要とする場合があります。 これらの値は個別に記載されています。 <xref:System.Data.Common.DbConnectionStringBuilder> クラスは、その接続文字列に関連付けられているキーと値のペアを検証しませんが、それを継承するクラスは使用できます。
+
+ <xref:System.Data.Common.DbConnectionStringBuilder> クラスの <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティは、通常、等号で区切られたキー/値ペアのセミコロン区切りのリストを作成および解析するメカニズムとして機能します。 接続文字列に固有の検証やその他のサポートは提供されません。 <xref:System.Data.Common.DbConnectionStringBuilder> コレクションに項目を追加すると、<xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティに変更が反映されます。 <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティに値を割り当てた場合、<xref:System.Data.Common.DbConnectionStringBuilder> はセミコロンと等号 (=) 記号を使用して値の解析を試みます。
+
+
+
+## Examples
+ 次の例は、<xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティの動作を示しています。 この例では、次の処理を実行します。
+
+-   キーと値のペアを一度に1つずつ空の <xref:System.Data.Common.DbConnectionStringBuilder>に追加することによって、接続文字列を作成します。
+
+-   完全な接続文字列を <xref:System.Data.Common.DbConnectionStringBuilder> インスタンスの <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティに割り当て、文字列内の1つのキーと値のペアを変更します。
+
+-   任意のキー/値ペアのセットを <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティ (つまり、接続文字列としてリモートではない文字列) に割り当て、値の1つを変更します。
+
+-   <xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティに無効な接続文字列を割り当てて、スローされた例外を示します。
+
 > [!NOTE]
->  この例には、<xref:System.Data.Common.DbConnectionStringBuilder> による接続文字列の操作方法を示すために、パスワードが含まれています。 実際のアプリケーションでは、Windows 認証を使用することをお勧めします。 パスワードを使用する必要がある場合も、ハードコードされたパスワードをアプリケーションに含めないでください。  
-  
+>  この例には、<xref:System.Data.Common.DbConnectionStringBuilder> による接続文字列の操作方法を示すために、パスワードが含まれています。 実際のアプリケーションでは、Windows 認証を使用することをお勧めします。 パスワードを使用する必要がある場合も、ハードコードされたパスワードをアプリケーションに含めないでください。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.ConnectionString#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.ConnectionString/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.ConnectionString#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.ConnectionString/VB/source.vb#1)]  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.ConnectionString#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.ConnectionString/VB/source.vb#1)]
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException">無効な接続文字列引数が指定されています。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -648,30 +649,30 @@ initial catalog="AdventureWorks;NewValue=Bad"
         <Parameter Name="keyword" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="keyword"><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> 内で検索されるキー。</param>
+        <param name="keyword"><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> から検索するキーです。</param>
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> に特定のキーが格納されているかどうかを判断します。</summary>
         <returns>指定したキーを持つエントリが <see langword="true" /> に格納されている場合は <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Examples  
+          <format type="text/markdown"><![CDATA[
+
+## Examples
  [!code-csharp[DataWorks DbConnectionStringBuilder.ContainsKey#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.ContainsKey/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.ContainsKey#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.ContainsKey/VB/source.vb#1)]  
-  
- このコードを実行すると、次の出力が生成されます。  
-  
-```  
-Contents of the DbConnectionStringBuilder:  
-provider="Provider=Microsoft.Jet.OLEDB.4.0";data   
-source=C:\MyExcel.xls;extended  
-properties="Excel 8.0;HDR=Yes;IMEX=1"  
-The collection contains the key "Data Source".  
-```  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.ContainsKey#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.ContainsKey/VB/source.vb#1)]
+
+ このコードを実行すると、次の出力が生成されます。
+
+```
+Contents of the DbConnectionStringBuilder:
+provider="Provider=Microsoft.Jet.OLEDB.4.0";data
+source=C:\MyExcel.xls;extended
+properties="Excel 8.0;HDR=Yes;IMEX=1"
+The collection contains the key "Data Source".
+```
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="keyword" /> が null 参照 (Visual Basic の場合は <see langword="Nothing" />) です。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -717,17 +718,17 @@ The collection contains the key "Data Source".
         <summary><see cref="P:System.Data.Common.DbConnectionStringBuilder.ConnectionString" /> プロパティ内に含まれる現在のキー数を取得します。</summary>
         <value><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> インスタンスで保守されている接続文字列内に含まれるキーの数。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Examples  
- 次の例では、<xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティの内容を変更する前と後の両方で、<xref:System.Data.Common.DbConnectionStringBuilder.Count%2A> プロパティを示します。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Examples
+ 次の例では、<xref:System.Data.Common.DbConnectionStringBuilder.ConnectionString%2A> プロパティの内容を変更する前と後の両方で、<xref:System.Data.Common.DbConnectionStringBuilder.Count%2A> プロパティを示します。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.Count#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Count/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.Count#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Count/VB/source.vb#1)]  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.Count#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Count/VB/source.vb#1)]
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -769,32 +770,32 @@ The collection contains the key "Data Source".
         <summary>この <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> オブジェクトの接続情報を、提供されたオブジェクトの接続情報を比較します。</summary>
         <returns><see langword="true" /> オブジェクトの両方の接続情報により同等の接続文字列が生じる場合は <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- キー名の比較では大文字と小文字が区別されません。値の比較では大文字と小文字が区別されます。  
-  
- <xref:System.Data.Common.DbConnectionStringBuilder.EquivalentTo%2A> メソッドは、キーと値のペアが等しい場合に、順序に関係なく `true` を返します。 2つの接続文字列の接続動作は同じです。これは、接続文字列内で順序が重要ではないためです。 ただし、このような接続文字列に基づいて接続の接続プールの動作に影響を与える場合があります。  
-  
-   
-  
-## Examples  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ キー名の比較では大文字と小文字が区別されません。値の比較では大文字と小文字が区別されます。
+
+ <xref:System.Data.Common.DbConnectionStringBuilder.EquivalentTo%2A> メソッドは、キーと値のペアが等しい場合に、順序に関係なく `true` を返します。 2つの接続文字列の接続動作は同じです。これは、接続文字列内で順序が重要ではないためです。 ただし、このような接続文字列に基づいて接続の接続プールの動作に影響を与える場合があります。
+
+
+
+## Examples
  [!code-csharp[DataWorks DbConnectionStringBuilder.EquivalentTo#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.EquivalentTo/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.EquivalentTo#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.EquivalentTo/VB/source.vb#1)]  
-  
- このサンプルでは、次の出力が表示されます。  
-  
-```  
-builder1 = value1=SomeValue;value2=20;value3=30;value4=40  
-builder2 = value2=20;value3=30;value4=40;value1=SomeValue  
-builder3 = value2=20;value3=30;value4=40;value1=SOMEVALUE  
-builder1.EquivalentTo(builder2) = True  
-builder2.EquivalentTo(builder3) = False  
-```  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.EquivalentTo#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.EquivalentTo/VB/source.vb#1)]
+
+ このサンプルでは、次の出力が表示されます。
+
+```
+builder1 = value1=SomeValue;value2=20;value3=30;value4=40
+builder2 = value2=20;value3=30;value4=40;value1=SomeValue
+builder3 = value2=20;value3=30;value4=40;value1=SOMEVALUE
+builder1.EquivalentTo(builder2) = True
+builder2.EquivalentTo(builder3) = False
+```
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -833,7 +834,7 @@ builder2.EquivalentTo(builder3) = False
         <param name="propertyDescriptors">この <see cref="T:System.Collections.Hashtable" /> に関する情報が格納される <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。</param>
         <summary>指定された <see cref="T:System.Collections.Hashtable" /> に、この <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> のすべてのプロパティに関する情報を格納します。</summary>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -877,16 +878,16 @@ builder2.EquivalentTo(builder3) = False
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> が固定サイズかどうかを示す値を取得します。</summary>
         <value><see langword="true" /> が固定サイズの場合は <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 固定サイズのコレクションでは、コレクションの作成後に要素を追加または削除することはできませんが、既存の要素を変更することはできます。  
-  
- 固定サイズのコレクションは、要素の追加と削除を防ぐラッパーを持つコレクションにすぎません。したがって、要素の追加や削除など、基になるコレクションに変更が加えられた場合、固定サイズのコレクションにはこれらの変更が反映されます。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 固定サイズのコレクションでは、コレクションの作成後に要素を追加または削除することはできませんが、既存の要素を変更することはできます。
+
+ 固定サイズのコレクションは、要素の追加と削除を防ぐラッパーを持つコレクションにすぎません。したがって、要素の追加や削除など、基になるコレクションに変更が加えられた場合、固定サイズのコレクションにはこれらの変更が反映されます。
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -928,18 +929,18 @@ builder2.EquivalentTo(builder3) = False
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> が読み取り専用かどうかを示す値を取得します。</summary>
-        <value><see langword="true" /> が読み取り専用の場合は <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value><see langword="true" /> が読み取り専用の場合は <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。それ以外の場合は <see langword="false" />。 既定では、 <see langword="false" />です。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- 読み取り専用コレクションでは、コレクションの作成後に要素の追加、削除、または変更を行うことはできません。  
-  
- 読み取り専用コレクションは、コレクションを変更できないようにするラッパーを含むコレクションです。したがって、基になるコレクションに変更が加えられた場合、読み取り専用コレクションにはこれらの変更が反映されます。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ 読み取り専用コレクションでは、コレクションの作成後に要素の追加、削除、または変更を行うことはできません。
+
+ 読み取り専用コレクションは、コレクションを変更できないようにするラッパーを含むコレクションです。したがって、基になるコレクションに変更が加えられた場合、読み取り専用コレクションにはこれらの変更が反映されます。
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -983,32 +984,33 @@ builder2.EquivalentTo(builder3) = False
       </Parameters>
       <Docs>
         <param name="keyword">取得または設定する項目のキー。</param>
-        <summary>指定されたキーに関連付けられている値を取得または設定します。</summary>
-        <value>指定されたキーに関連付けられている値。 指定したキーが見つからない場合、そのキーを取得しようとした場合はnull 参照が返され (Visual Basic では <see langword="Nothing" />)、そのキーを設定しようとした場合は、指定したキーを使用して新しい要素が作成されます。  
-  
+        <summary>指定されたキーに関連付けられた値を取得または設定します。</summary>
+        <value>指定されたキーに関連付けられている値。 指定したキーが見つからない場合、そのキーを取得しようとした場合はnull 参照が返され (Visual Basic では <see langword="Nothing" />)、そのキーを設定しようとした場合は、指定したキーを使用して新しい要素が作成されます。
+
 null キー (Visual Basic では <see langword="Nothing" />) を渡すと、<see cref="T:System.ArgumentNullException" /> がスローされます。 null 値を割り当てると、キー/値ペアが削除されます。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このプロパティを設定すると、指定したキーがディクショナリに既に存在する場合、値は置き換えられます。それ以外の場合は、新しい要素が作成されます。  
-  
-   
-  
-## Examples  
- 次のコンソールアプリケーションでは、<xref:System.Data.Common.DbConnectionStringBuilder.Item%2A> プロパティを使用して、新しい <xref:System.Data.Common.DbConnectionStringBuilder> を作成し、キーと値のペアを接続文字列に追加します。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このプロパティを設定すると、指定したキーがディクショナリに既に存在する場合、値は置き換えられます。それ以外の場合は、新しい要素が作成されます。
+
+
+
+## Examples
+ 次のコンソールアプリケーションでは、<xref:System.Data.Common.DbConnectionStringBuilder.Item%2A> プロパティを使用して、新しい <xref:System.Data.Common.DbConnectionStringBuilder> を作成し、キーと値のペアを接続文字列に追加します。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.Item#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Item/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.Item#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Item/VB/source.vb#1)]  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.Item#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Item/VB/source.vb#1)]
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="keyword" /> が null 参照 (Visual Basic の場合は <see langword="Nothing" />) です。</exception>
-        <exception cref="T:System.NotSupportedException">このプロパティが設定されていますが、<see cref="T:System.Data.Common.DbConnectionStringBuilder" /> が読み取り専用です。  
-  
-または 
+        <exception cref="T:System.NotSupportedException">このプロパティが設定されていますが、<see cref="T:System.Data.Common.DbConnectionStringBuilder" /> が読み取り専用です。
+
+または
+
 プロパティが設定済みで、コレクション内に <paramref name="keyword" /> が存在せず、<see cref="T:System.Data.Common.DbConnectionStringBuilder" /> が固定サイズです。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1054,24 +1056,24 @@ null キー (Visual Basic では <see langword="Nothing" />) を渡すと、<see
         <summary><see cref="T:System.Collections.ICollection" /> 内のキーが格納されている <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> を取得します。</summary>
         <value><see cref="T:System.Collections.ICollection" /> 内のキーが格納されている <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Collections.ICollection> 内の値の順序は指定されていませんが、<xref:System.Collections.ICollection> プロパティによって返される <xref:System.Data.Common.DbConnectionStringBuilder.Values%2A> 内の関連する値と同じ順序です。  
-  
- 返された <xref:System.Collections.ICollection> が静的コピーではありません。代わりに、<xref:System.Collections.ICollection> によって元の <xref:System.Data.Common.DbConnectionStringBuilder>のキーが参照されます。 したがって、<xref:System.Data.Common.DbConnectionStringBuilder> に対する変更は、<xref:System.Collections.ICollection>に反映されます。  
-  
-   
-  
-## Examples  
- 次のコンソールアプリケーションの例では、新しい <xref:System.Data.Common.DbConnectionStringBuilder>を作成し、いくつかのキーを追加します。 このコードは、<xref:System.Data.Common.DbConnectionStringBuilder.Keys%2A> プロパティによって返される、キーと値のペアを表示する <xref:System.Collections.ICollection> をループし、新しいキーを追加します。 <xref:System.Data.Common.DbConnectionStringBuilder.Keys%2A> プロパティは動的な <xref:System.Collections.ICollection>を返すため、2番目のループでは、最新の項目を含むすべてのキーと値のペアが表示されます。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Collections.ICollection> 内の値の順序は指定されていませんが、<xref:System.Collections.ICollection> プロパティによって返される <xref:System.Data.Common.DbConnectionStringBuilder.Values%2A> 内の関連する値と同じ順序です。
+
+ 返された <xref:System.Collections.ICollection> が静的コピーではありません。代わりに、<xref:System.Collections.ICollection> によって元の <xref:System.Data.Common.DbConnectionStringBuilder>のキーが参照されます。 したがって、<xref:System.Data.Common.DbConnectionStringBuilder> に対する変更は、<xref:System.Collections.ICollection>に反映されます。
+
+
+
+## Examples
+ 次のコンソールアプリケーションの例では、新しい <xref:System.Data.Common.DbConnectionStringBuilder>を作成し、いくつかのキーを追加します。 このコードは、<xref:System.Data.Common.DbConnectionStringBuilder.Keys%2A> プロパティによって返される、キーと値のペアを表示する <xref:System.Collections.ICollection> をループし、新しいキーを追加します。 <xref:System.Data.Common.DbConnectionStringBuilder.Keys%2A> プロパティは動的な <xref:System.Collections.ICollection>を返すため、2番目のループでは、最新の項目を含むすべてのキーと値のペアが表示されます。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.Keys#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Keys/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.Keys#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Keys/VB/source.vb#1)]  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.Keys#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Keys/VB/source.vb#1)]
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1113,33 +1115,33 @@ null キー (Visual Basic では <see langword="Nothing" />) を渡すと、<see
         <summary>指定されたキーを持つエントリを <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> インスタンスから削除します。</summary>
         <returns>キーが接続文字列内に存在していて削除された場合は <see langword="true" />、キーが存在しなかった場合は <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Data.Common.DbConnectionStringBuilder.Remove%2A> メソッドは成功を示す値を返すため、<xref:System.Data.Common.DbConnectionStringBuilder> インスタンスからキーと値のペアを削除する前に、キーを検索する必要はありません。  
-  
-   
-  
-## Examples  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Data.Common.DbConnectionStringBuilder.Remove%2A> メソッドは成功を示す値を返すため、<xref:System.Data.Common.DbConnectionStringBuilder> インスタンスからキーと値のペアを削除する前に、キーを検索する必要はありません。
+
+
+
+## Examples
  [!code-csharp[DataWorks DbConnectionStringBuilder.Remove#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Remove/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.Remove#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Remove/VB/source.vb#1)]  
-  
- このサンプルでは、次の出力が表示されます。  
-  
-```  
-Removed 'Provider'  
-data source=C:\Demo.mdb;jet oledb:system database=system.mdw  
-Unable to remove 'User ID'  
-data source=C:\Demo.mdb;jet oledb:system database=system.mdw  
-Removed 'DATA SOURCE'  
-jet oledb:system database=system.mdw  
-```  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.Remove#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Remove/VB/source.vb#1)]
+
+ このサンプルでは、次の出力が表示されます。
+
+```
+Removed 'Provider'
+data source=C:\Demo.mdb;jet oledb:system database=system.mdw
+Unable to remove 'User ID'
+data source=C:\Demo.mdb;jet oledb:system database=system.mdw
+Removed 'DATA SOURCE'
+jet oledb:system database=system.mdw
+```
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="keyword" /> が null (Visual Basic の場合は <see langword="Nothing" />) です。</exception>
         <exception cref="T:System.NotSupportedException"><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> が読み取り専用であるか、<see cref="T:System.Data.Common.DbConnectionStringBuilder" /> が固定サイズです。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1177,18 +1179,18 @@ jet oledb:system database=system.mdw
         <Parameter Name="keyword" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="keyword"><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> 内で検索されるキー。</param>
+        <param name="keyword"><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> から検索するキーです。</param>
         <summary>指定されたキーが、この <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> インスタンスに存在するかどうかを示します。</summary>
         <returns>指定したキーを持つエントリが <see langword="true" /> に格納されている場合は <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメソッドの動作は、<xref:System.Data.Common.DbConnectionStringBuilder.ContainsKey%2A> メソッドと同じです。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメソッドの動作は、<xref:System.Data.Common.DbConnectionStringBuilder.ContainsKey%2A> メソッドと同じです。
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -1228,17 +1230,17 @@ jet oledb:system database=system.mdw
         <Parameter Name="index" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="array"><see cref="T:System.Array" /> から要素がコピーされる 1 次元の <see cref="T:System.Collections.ICollection" />。 <see cref="T:System.Array" /> には、0 から始まるインデックス番号が必要です。</param>
-        <param name="index">コピーの開始位置とする <paramref name="array" /> のインデックス (0 から始まる)。</param>
+        <param name="array"><see cref="T:System.Array" /> のコピー先である、1 次元の <see cref="T:System.Collections.ICollection" /> です。 <see cref="T:System.Array" /> には、0 から始まるインデックスが設定されている必要があります。</param>
+        <param name="index">コピーを開始する <paramref name="array" /> の 0 から始まるインデックス。</param>
         <summary><see cref="T:System.Collections.ICollection" /> の要素を <see cref="T:System.Array" /> にコピーします。<see cref="T:System.Array" /> の特定のインデックスからコピーが開始されます。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.ICollection> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.Collections.ICollection.CopyTo%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.ICollection> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.Collections.ICollection.CopyTo%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1278,16 +1280,16 @@ jet oledb:system database=system.mdw
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><see cref="T:System.Collections.ICollection" /> へのアクセスが同期されている (スレッド セーフである) かどうかを示す値を取得します。</summary>
+        <summary><see cref="T:System.Collections.ICollection" /> へのアクセスが同期されるかどうか (スレッド セーフかどうか) を示す値を取得します。</summary>
         <value><see langword="true" /> へのアクセスが同期されている (スレッド セーフである) 場合は <see cref="T:System.Collections.ICollection" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.ICollection> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.Collections.ICollection.IsSynchronized%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.ICollection> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.Collections.ICollection.IsSynchronized%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1327,16 +1329,16 @@ jet oledb:system database=system.mdw
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary><see cref="T:System.Collections.ICollection" /> へのアクセスを同期するために使用できるオブジェクトを取得します。</summary>
-        <value><see cref="T:System.Collections.ICollection" /> へのアクセスを同期するために使用できるオブジェクト。</value>
+        <summary><see cref="T:System.Collections.ICollection" /> へのアクセスの同期に使用できるオブジェクトを取得します。</summary>
+        <value><see cref="T:System.Collections.ICollection" /> へのアクセスの同期に使用できるオブジェクトです。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.ICollection> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.Collections.ICollection.SyncRoot%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.ICollection> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.Collections.ICollection.SyncRoot%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1383,13 +1385,13 @@ jet oledb:system database=system.mdw
         <param name="value">追加する要素の値として使用する <see cref="T:System.Object" />。</param>
         <summary>指定したキーおよび値を持つ要素を <see cref="T:System.Collections.IDictionary" /> オブジェクトに追加します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.Collections.IDictionary.Add%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.Collections.IDictionary.Add%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1435,13 +1437,13 @@ jet oledb:system database=system.mdw
         <summary>指定したキーを持つ要素が <see cref="T:System.Collections.IDictionary" /> オブジェクトに格納されているかどうかを確認します。</summary>
         <returns>指定したキーを持つ要素を <see langword="true" /> が保持している場合は <see cref="T:System.Collections.IDictionary" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.Collections.IDictionary.Contains%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.Collections.IDictionary.Contains%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1484,13 +1486,13 @@ jet oledb:system database=system.mdw
         <summary><see cref="T:System.Collections.IDictionaryEnumerator" /> オブジェクトの <see cref="T:System.Collections.IDictionary" /> オブジェクトを返します。</summary>
         <returns><see cref="T:System.Collections.IDictionaryEnumerator" /> オブジェクトの <see cref="T:System.Collections.IDictionary" /> オブジェクト。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.Collections.IDictionary.GetEnumerator%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.Collections.IDictionary.GetEnumerator%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1599,13 +1601,13 @@ jet oledb:system database=system.mdw
         <summary>指定したキーを持つ要素を取得または設定します。</summary>
         <value>指定したキーを持つ要素。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.Collections.IDictionary.Item%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.Collections.IDictionary.Item%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1650,13 +1652,13 @@ jet oledb:system database=system.mdw
         <param name="keyword">削除する要素のキー。</param>
         <summary>指定したキーを持つ要素を <see cref="T:System.Collections.IDictionary" /> オブジェクトから削除します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.Collections.IDictionary.Remove%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IDictionary> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.Collections.IDictionary.Remove%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1696,16 +1698,16 @@ jet oledb:system database=system.mdw
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>コレクションを反復処理する列挙子を返します。</summary>
-        <returns>コレクションを反復処理するために使用できる <see cref="T:System.Collections.IEnumerator" /> オブジェクト。</returns>
+        <summary>コレクションを繰り返し処理する列挙子を返します。</summary>
+        <returns>コレクションの反復処理に使用できる <see cref="T:System.Collections.IEnumerator" /> オブジェクトです。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IEnumerable> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.Collections.IEnumerable.GetEnumerator%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.Collections.IEnumerable> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.Collections.IEnumerable.GetEnumerator%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1746,13 +1748,13 @@ jet oledb:system database=system.mdw
         <summary>コンポーネントのこのインスタンスのカスタム属性のコレクションを返します。</summary>
         <returns>このオブジェクトの属性を格納している <see cref="T:System.ComponentModel.AttributeCollection" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetAttributes%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetAttributes%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1793,13 +1795,13 @@ jet oledb:system database=system.mdw
         <summary>コンポーネントのこのインスタンスのクラス名を返します。</summary>
         <returns>オブジェクトのクラス名。クラスに名前がない場合は <see langword="null" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetClassName%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetClassName%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1840,13 +1842,13 @@ jet oledb:system database=system.mdw
         <summary>コンポーネントのこのインスタンスの名前を返します。</summary>
         <returns>オブジェクト名。オブジェクトに名前がない場合は <see langword="null" /> 。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.ComponentModel.ICustomTypeDescriptor.GetComponentName%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.ComponentModel.ICustomTypeDescriptor.GetComponentName%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1887,13 +1889,13 @@ jet oledb:system database=system.mdw
         <summary>コンポーネントのこのインスタンスの型コンバーターを返します。</summary>
         <returns>このオブジェクトのコンバーターである <see cref="T:System.ComponentModel.TypeConverter" />。このオブジェクトの <see langword="null" /> がない場合は <see cref="T:System.ComponentModel.TypeConverter" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetConverter%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetConverter%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1931,16 +1933,16 @@ jet oledb:system database=system.mdw
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>コンポーネントのこのインスタンスの既定のイベントを返します。</summary>
+        <summary>このコンポーネント インスタンスの既定のイベントを返します。</summary>
         <returns>このオブジェクトの既定のイベントを表す <see cref="T:System.ComponentModel.EventDescriptor" />。このオブジェクトにイベントがない場合は <see langword="null" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetDefaultEvent%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetDefaultEvent%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -1978,16 +1980,16 @@ jet oledb:system database=system.mdw
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>コンポーネントのこのインスタンスの既定のプロパティを返します。</summary>
+        <summary>このコンポーネント インスタンスの既定のプロパティを返します。</summary>
         <returns>このオブジェクトの既定のプロパティを表す <see cref="T:System.ComponentModel.PropertyDescriptor" />。このオブジェクトにプロパティがない場合は <see langword="null" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetDefaultProperty%2A>」をご覧ください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ このメンバーの詳細については、「<xref:System.ComponentModel.ICustomTypeDescriptor.GetDefaultProperty%2A>」をご覧ください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -2028,16 +2030,16 @@ jet oledb:system database=system.mdw
       </Parameters>
       <Docs>
         <param name="editorBaseType">このオブジェクトのエディターを表す <see cref="T:System.Type" />。</param>
-        <summary>コンポーネントのこのインスタンスに対して指定されている型のエディターを返します。</summary>
+        <summary>このコンポーネント インスタンスの指定された型のエディターを返します。</summary>
         <returns>指定した型の、このオブジェクトのエディターとなる <see cref="T:System.Object" />。エディターが見つからない場合は <see langword="null" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.ComponentModel.ICustomTypeDescriptor.GetEditor%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.ComponentModel.ICustomTypeDescriptor.GetEditor%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -2088,13 +2090,13 @@ jet oledb:system database=system.mdw
         <summary>コンポーネントのこのインスタンスのイベントを返します。</summary>
         <returns>このコンポーネント インスタンスのイベントを表す <see cref="T:System.ComponentModel.EventDescriptorCollection" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.ComponentModel.ICustomTypeDescriptor.GetEvents%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.ComponentModel.ICustomTypeDescriptor.GetEvents%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -2138,13 +2140,13 @@ jet oledb:system database=system.mdw
         <summary>フィルターとして指定された属性配列を使用して、コンポーネントのこのインスタンスのイベントを返します。</summary>
         <returns>このコンポーネント インスタンスのフィルター処理したイベントを表す <see cref="T:System.ComponentModel.EventDescriptorCollection" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.ComponentModel.ICustomTypeDescriptor.GetEvents%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.ComponentModel.ICustomTypeDescriptor.GetEvents%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -2195,13 +2197,13 @@ jet oledb:system database=system.mdw
         <summary>コンポーネントのこのインスタンスのプロパティを返します。</summary>
         <returns>このコンポーネント インスタンスのプロパティを表す <see cref="T:System.ComponentModel.PropertyDescriptorCollection" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.ComponentModel.ICustomTypeDescriptor.GetProperties%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.ComponentModel.ICustomTypeDescriptor.GetProperties%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -2245,13 +2247,13 @@ jet oledb:system database=system.mdw
         <summary>属性配列をフィルターとして使用して、コンポーネントのこのインスタンスのプロパティを返します。</summary>
         <returns>このコンポーネント インスタンスのフィルター処理したプロパティを表す <see cref="T:System.ComponentModel.PropertyDescriptorCollection" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.ComponentModel.ICustomTypeDescriptor.GetProperties%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.ComponentModel.ICustomTypeDescriptor.GetProperties%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -2292,16 +2294,16 @@ jet oledb:system database=system.mdw
       </Parameters>
       <Docs>
         <param name="pd">所有者を見つけるプロパティを表す <see cref="T:System.ComponentModel.PropertyDescriptor" />。</param>
-        <summary>指定したプロパティ記述子によって記述されたプロパティを含むオブジェクトを返します。</summary>
+        <summary>指定されたプロパティ記述子で記述されているプロパティを格納したオブジェクトを返します。</summary>
         <returns>指定したプロパティの所有者を表す <see cref="T:System.Object" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。  
-  
- 詳細については、「 <xref:System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner%2A>」を参照してください。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ このメンバーは、明示的なインターフェイス メンバーの実装です。 これは、<xref:System.Data.Common.DbConnectionStringBuilder> のインスタンスが <xref:System.ComponentModel.ICustomTypeDescriptor> インターフェイスにキャストされる場合のみ、使用できます。
+
+ 詳細については、<xref:System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner%2A> を参照してください。
+
  ]]></format>
         </remarks>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
@@ -2342,7 +2344,7 @@ jet oledb:system database=system.mdw
         <summary><see cref="T:System.Data.Common.DbConnectionStringBuilder" /> に関連付けられた接続文字列を返します。</summary>
         <returns>現在の <see cref="P:System.Data.Common.DbConnectionStringBuilder.ConnectionString" /> プロパティ。</returns>
         <remarks>To be added.</remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -2386,32 +2388,32 @@ jet oledb:system database=system.mdw
         <summary>提供されたキーに対応する値をこの <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> から取得します。</summary>
         <returns><see langword="true" /> が接続文字列内で見つかった場合は <paramref name="keyword" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Data.Common.DbConnectionStringBuilder.TryGetValue%2A> メソッドを使用すると、開発者は最初に <xref:System.Data.Common.DbConnectionStringBuilder.ContainsKey%2A> メソッドを呼び出さなくても、<xref:System.Data.Common.DbConnectionStringBuilder> から値を安全に取得できます。 <xref:System.Data.Common.DbConnectionStringBuilder.TryGetValue%2A> は呼び出し時に例外を発生させないため、存在しないキーを渡しても、値を取得する前にキーを探す必要はありません。 存在しないキーを使用して <xref:System.Data.Common.DbConnectionStringBuilder.TryGetValue%2A> を呼び出すと、`value` パラメーターに null 値 (`Nothing` Visual Basic) が挿入されます。  
-  
-   
-  
-## Examples  
- 次の例では、<xref:System.Data.Common.DbConnectionStringBuilder.TryGetValue%2A> メソッドを呼び出して、いくつかの考えられる結果を示します。  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Data.Common.DbConnectionStringBuilder.TryGetValue%2A> メソッドを使用すると、開発者は最初に <xref:System.Data.Common.DbConnectionStringBuilder.ContainsKey%2A> メソッドを呼び出さなくても、<xref:System.Data.Common.DbConnectionStringBuilder> から値を安全に取得できます。 <xref:System.Data.Common.DbConnectionStringBuilder.TryGetValue%2A> は呼び出し時に例外を発生させないため、存在しないキーを渡しても、値を取得する前にキーを探す必要はありません。 存在しないキーを使用して <xref:System.Data.Common.DbConnectionStringBuilder.TryGetValue%2A> を呼び出すと、`value` パラメーターに null 値 (`Nothing` Visual Basic) が挿入されます。
+
+
+
+## Examples
+ 次の例では、<xref:System.Data.Common.DbConnectionStringBuilder.TryGetValue%2A> メソッドを呼び出して、いくつかの考えられる結果を示します。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.TryGetValue#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.TryGetValue/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.TryGetValue#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.TryGetValue/VB/source.vb#1)]  
-  
- このサンプルを実行すると、次の結果が表示されます。  
-  
-```  
-Provider=sqloledb  
-DATA SOURCE=192.168.168.1,1433  
-Unable to retrieve value for //InvalidKey//  
-Unable to retrieve value for null key.  
-```  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.TryGetValue#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.TryGetValue/VB/source.vb#1)]
+
+ このサンプルを実行すると、次の結果が表示されます。
+
+```
+Provider=sqloledb
+DATA SOURCE=192.168.168.1,1433
+Unable to retrieve value for //InvalidKey//
+Unable to retrieve value for null key.
+```
+
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="keyword" /> に null 値 (Visual Basic の場合は <see langword="Nothing" />) が含まれています。</exception>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -2457,37 +2459,37 @@ Unable to retrieve value for null key.
         <summary><see cref="T:System.Collections.ICollection" /> 内の値を格納している <see cref="T:System.Data.Common.DbConnectionStringBuilder" /> を取得します。</summary>
         <value><see cref="T:System.Collections.ICollection" /> 内の値が格納されている <see cref="T:System.Data.Common.DbConnectionStringBuilder" />。</value>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- <xref:System.Collections.ICollection> 内の値の順序は指定されていませんが、<xref:System.Data.Common.DbConnectionStringBuilder.Keys%2A> メソッドによって返される <xref:System.Collections.ICollection> 内の関連付けられているキーと同じ順序です。  
-  
- 返された <xref:System.Collections.ICollection> が静的コピーではありません。代わりに、<xref:System.Collections.ICollection> は元の <xref:System.Data.Common.DbConnectionStringBuilder>の値を参照します。 したがって、<xref:System.Data.Common.DbConnectionStringBuilder> に対する変更は、<xref:System.Collections.ICollection>に反映されます。  
-  
-   
-  
-## Examples  
-  
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+ <xref:System.Collections.ICollection> 内の値の順序は指定されていませんが、<xref:System.Data.Common.DbConnectionStringBuilder.Keys%2A> メソッドによって返される <xref:System.Collections.ICollection> 内の関連付けられているキーと同じ順序です。
+
+ 返された <xref:System.Collections.ICollection> が静的コピーではありません。代わりに、<xref:System.Collections.ICollection> は元の <xref:System.Data.Common.DbConnectionStringBuilder>の値を参照します。 したがって、<xref:System.Data.Common.DbConnectionStringBuilder> に対する変更は、<xref:System.Collections.ICollection>に反映されます。
+
+
+
+## Examples
+
 > [!NOTE]
->  この例には、<xref:System.Data.Common.DbConnectionStringBuilder> による接続文字列の操作方法を示すために、パスワードが含まれています。 実際のアプリケーションでは、Windows 認証を使用することをお勧めします。 パスワードを使用する必要がある場合も、ハードコードされたパスワードをアプリケーションに含めないでください。  
-  
+>  この例には、<xref:System.Data.Common.DbConnectionStringBuilder> による接続文字列の操作方法を示すために、パスワードが含まれています。 実際のアプリケーションでは、Windows 認証を使用することをお勧めします。 パスワードを使用する必要がある場合も、ハードコードされたパスワードをアプリケーションに含めないでください。
+
  [!code-csharp[DataWorks DbConnectionStringBuilder.Values#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Values/CS/source.cs#1)]
- [!code-vb[DataWorks DbConnectionStringBuilder.Values#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Values/VB/source.vb#1)]  
-  
- 次の出力が表示されます。  
-  
-```  
-MSDataShape.1  
-false  
-MSDAORA  
-orac  
-username  
-*******  
-```  
-  
+ [!code-vb[DataWorks DbConnectionStringBuilder.Values#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks DbConnectionStringBuilder.Values/VB/source.vb#1)]
+
+ 次の出力が表示されます。
+
+```
+MSDataShape.1
+false
+MSDAORA
+orac
+username
+*******
+```
+
  ]]></format>
         </remarks>
-        <related type="Article" href="https://msdn.microsoft.com/library/745c5f95-2f02-4674-b378-6d51a7ec2490">接続文字列の操作</related>
+        <related type="Article" href="~/docs/framework/data/adonet/connection-strings.md">ADO.NET での接続文字列</related>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>

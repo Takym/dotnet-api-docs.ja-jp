@@ -1,5 +1,5 @@
 <Type Name="Grammar" FullName="System.Speech.Recognition.Grammar">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1e8a7757cdbb2cd463dcccaa8ce68a6de2defeec" /><Meta Name="ms.sourcegitcommit" Value="c573d537afba2d4c1463538f1095f2f155025464" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/16/2019" /><Meta Name="ms.locfileid" Value="72408057" /></Metadata><TypeSignature Language="C#" Value="public class Grammar" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="701f57492c2b3a35669d82a9e653a67e63723a87" /><Meta Name="ms.sourcegitcommit" Value="f9576bf8c61e3d46834aeeff50f858359f2a99ba" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/09/2020" /><Meta Name="ms.locfileid" Value="77101962" /></Metadata><TypeSignature Language="C#" Value="public class Grammar" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Grammar extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Speech.Recognition.Grammar" />
   <TypeSignature Language="VB.NET" Value="Public Class Grammar" />
@@ -25,31 +25,31 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 音声認識文法は、音声認識エンジンが意味のある入力として認識できることを定義する一連の規則または制約です。 音声認識文法の作成と使用の詳細については、「[音声認識](https://docs.microsoft.com/previous-versions/office/developer/speech-technologies/hh361633(v=office.14))」、「 [XML を使用した文法の作成](https://msdn.microsoft.com/library/2d799487-49c6-4cc9-b42f-f71cd3824fe1)」、「 [GrammarBuilder を使用](https://msdn.microsoft.com/library/7e2cc577-cb05-4318-9da3-7c8675d3d9ae)した文法の作成」、および「 [Srgsgrammar を使用](https://docs.microsoft.com/previous-versions/office/developer/speech-technologies/hh361680(v%3doffice.14))した文法の作成」を参照してください。  
+ 音声認識文法は、音声認識エンジンが意味のある入力として認識できることを定義する一連の規則または制約です。 音声認識文法の作成と使用の詳細については、「[音声認識](https://docs.microsoft.com/previous-versions/office/developer/speech-technologies/hh361633(v=office.14))」と「 [SrgsGrammar を使用](https://docs.microsoft.com/previous-versions/office/developer/speech-technologies/hh361680(v%3doffice.14))した文法の作成」を参照してください。  
   
- 文法を作成したら、音声認識エンジンが読み込むことができる @no__t 0 オブジェクトにビルドし、アプリケーションが実行時に音声認識を管理するために使用できるようにする必要があります。 @No__t 0 のコンストラクターを使用して、<xref:System.Speech.Recognition.GrammarBuilder> または @no__t 3 のオブジェクトから、またはサポートされている形式の文法の説明を含むファイルまたは @no__t 4 から @no__t インスタンスを作成できます。 サポートされている形式は次のとおりです。  
+ 文法を作成したら、音声認識エンジンが読み込むことができる <xref:System.Speech.Recognition.Grammar> オブジェクトにビルドし、アプリケーションが実行時に音声認識を管理するために使用できるようにする必要があります。 <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用して、<xref:System.Speech.Recognition.GrammarBuilder> または <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> オブジェクト、またはサポートされている形式で文法の説明を含むファイルまたは <xref:System.IO.Stream> から <xref:System.Speech.Recognition.Grammar> インスタンスを作成できます。 サポートされている形式は次のとおりです。  
   
 -   W3C[音声認識文法仕様 (SRGS) バージョン 1.0](https://go.microsoft.com/fwlink/?LinkId=201761)に準拠する XML フォーマットファイル  
   
 -   拡張子が cfg のバイナリファイルにコンパイルされた文法  
   
- 引数で XML 形式の文法ファイルを受け取る文法コンストラクターは、XML 文法をバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 @No__t-1 メソッドの1つを使用して事前に文法をコンパイルすることで、XML 形式の文法から @no__t 0 オブジェクトを構築するために必要な時間を短縮できます。  
+ 引数で XML 形式の文法ファイルを受け取る文法コンストラクターは、XML 文法をバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsGrammarCompiler.Compile%2A> メソッドのいずれかを使用して事前に文法をコンパイルすることで、XML 形式の文法から <xref:System.Speech.Recognition.Grammar> オブジェクトを構築するために必要な時間を短縮できます。  
   
- @No__t 0 または @no__t オブジェクトによって管理されるアプリケーションの音声認識エンジンは、複数の音声認識文法を読み込むことができます。 アプリケーションでは、個々の文法を個別に有効または無効にするには、@no__t 0 のプロパティを設定し、<xref:System.Speech.Recognition.Grammar.Priority%2A> や <xref:System.Speech.Recognition.Grammar.Weight%2A> のプロパティなどの <xref:System.Speech.Recognition.Grammar> プロパティを使用して認識動作を変更します。  
+ <xref:System.Speech.Recognition.SpeechRecognizer> または <xref:System.Speech.Recognition.SpeechRecognitionEngine> オブジェクトによって管理されるアプリケーションの音声認識エンジンは、複数の音声認識文法を読み込むことができます。 アプリケーションでは、<xref:System.Speech.Recognition.Grammar.Enabled%2A> プロパティを設定して個々の文法を個別に有効または無効にしたり、<xref:System.Speech.Recognition.Grammar.Priority%2A> や <xref:System.Speech.Recognition.Grammar.Weight%2A> プロパティなどの <xref:System.Speech.Recognition.Grammar> プロパティを使用して認識動作を変更したりできます。  
   
  文法の <xref:System.Speech.Recognition.Grammar.SpeechRecognized> イベントは、入力が文法を通じたパスに一致したときに発生します。  
   
 > [!NOTE]
->  @No__t 0 のオブジェクトを構築するために使用する URI または DLL の安全性を確認することをお勧めします。  
+>  <xref:System.Speech.Recognition.Grammar> オブジェクトの構築に使用される URI または DLL の安全性を確認することをお勧めします。  
 >   
->  Windows および Speech プラットフォームは、DLL またはスクリプトをサポートする文法から @no__t 0 インスタンスを構築するアプリケーションのセキュリティを提供します。  
+>  Windows および Speech プラットフォームは、DLL またはスクリプトをサポートする文法から <xref:System.Speech.Recognition.Grammar> インスタンスを構築するアプリケーションのセキュリティを提供します。  
 >   
->  @No__t 0 のオブジェクトのスクリプトは、`Internet Zone` の web ページからダウンロードした場合と同じように実行されます。 共通言語ランタイム (CLR) は、読み込まれたすべての DLL を分離して、文法の定義を取得します。  
+>  <xref:System.Speech.Recognition.Grammar> オブジェクトのスクリプトは、`Internet Zone`内の web ページからダウンロードした場合と同じように実行されます。 共通言語ランタイム (CLR) は、読み込まれたすべての DLL を分離して、文法の定義を取得します。  
   
    
   
 ## Examples  
- 次の例では、XML ファイル (都市 .xml) で定義されている音声認識文法から @no__t 0 オブジェクトを構築します。 次の XML の例では、都市 .xml ファイルの内容が表示されます。  
+ 次の例では、XML ファイル (都市 .xml) で定義されている音声認識文法から <xref:System.Speech.Recognition.Grammar> オブジェクトを構築します。 次の XML の例では、都市 .xml ファイルの内容が表示されます。  
   
 ```csharp  
 // Load a cities grammar from a local file and return the grammar object.   
@@ -112,17 +112,17 @@ private static Grammar CreateGrammarFromFile()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t 0 のコンストラクターを使用して、<xref:System.Speech.Recognition.GrammarBuilder> または @no__t オブジェクトから @no__t インスタンスを作成したり、サポートされている形式の文法の説明を含むファイルまたは <xref:System.IO.Stream> を作成したりできます。 サポートされている形式は次のとおりです。  
+ <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用して、<xref:System.Speech.Recognition.GrammarBuilder> または <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> オブジェクト、またはサポートされている形式で文法の説明を含むファイルまたは <xref:System.IO.Stream> から <xref:System.Speech.Recognition.Grammar> インスタンスを作成できます。 サポートされている形式は次のとおりです。  
   
 -   W3C[音声認識文法仕様 (SRGS) バージョン 1.0](https://go.microsoft.com/fwlink/?LinkId=201761)に準拠する XML フォーマットファイル  
   
 -   拡張子が cfg のバイナリファイルにコンパイルされた文法  
   
- 引数で XML 形式の文法ファイルを受け取る文法コンストラクターは、XML 文法をバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 @No__t-1 メソッドの1つを使用して事前に文法をコンパイルすることで、XML 形式の文法から @no__t 0 オブジェクトを構築するために必要な時間を短縮できます。  
+ 引数で XML 形式の文法ファイルを受け取る文法コンストラクターは、XML 文法をバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsGrammarCompiler.Compile%2A> メソッドのいずれかを使用して事前に文法をコンパイルすることで、XML 形式の文法から <xref:System.Speech.Recognition.Grammar> オブジェクトを構築するために必要な時間を短縮できます。  
   
- 音声認識の文法では、ルート規則を定義できます。 ルート規則として使用する規則を指定する @no__t 0 オブジェクトを作成するには、`ruleName` パラメーターを受け取るコンストラクターを使用します。  
+ 音声認識の文法では、ルート規則を定義できます。 ルート規則として使用する規則を指定する <xref:System.Speech.Recognition.Grammar> オブジェクトを作成するには、`ruleName` パラメーターを受け取るコンストラクターを使用します。  
   
- 相対規則参照を解決するためのベース URI を指定する @no__t 0 オブジェクトを作成するには、`baseUri` パラメーターを受け取るコンストラクターを使用します。  
+ 相対規則参照を解決するためのベース URI を指定する <xref:System.Speech.Recognition.Grammar> オブジェクトを作成するには、`baseUri` パラメーターを受け取るコンストラクターを使用します。  
   
  ]]></format>
         </remarks>
@@ -175,17 +175,17 @@ private static Grammar CreateGrammarFromFile()
 ## Remarks  
  このコンストラクターは、初期化ハンドラーにパラメーターを渡しません。また、説明では、引数を必要とする初期化ハンドラーを定義しないでください。  
   
- このコンストラクターは、次の形式の @no__t 0 インスタンスを作成できます。  
+ このコンストラクターは、次の形式から <xref:System.Speech.Recognition.Grammar> インスタンスを作成できます。  
   
 -   W3C[音声認識文法仕様 (SRGS) バージョン 1.0](https://go.microsoft.com/fwlink/?LinkId=201761)に準拠する XML フォーマットファイル  
   
 -   拡張子が cfg のバイナリファイルにコンパイルされた文法  
   
- このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 @No__t-1 メソッドの1つを使用して事前に文法をコンパイルすることで、XML 形式の文法から @no__t 0 オブジェクトを構築するために必要な時間を短縮できます。  
+ このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsGrammarCompiler.Compile%2A> メソッドのいずれかを使用して事前に文法をコンパイルすることで、XML 形式の文法から <xref:System.Speech.Recognition.Grammar> オブジェクトを構築するために必要な時間を短縮できます。  
   
- SRGS 文法では、ルートルールを定義できます。 ストリームから @no__t 0 オブジェクトを作成し、ルート規則を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> または <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
+ SRGS 文法では、ルートルールを定義できます。 ストリームから <xref:System.Speech.Recognition.Grammar> オブジェクトを作成し、ルート規則を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> または <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
   
- ストリームから @no__t 0 オブジェクトを作成し、相対ルール参照を解決するために使用するベース URI を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
+ ストリームから <xref:System.Speech.Recognition.Grammar> オブジェクトを作成し、相対規則参照を解決するために使用するベース URI を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
   
    
   
@@ -239,7 +239,7 @@ private static Grammar CreateGrammarFromStream()
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="stream" /> は、ルート ルールを含まない文法を表します。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException">ストリームに文法の有効な説明が含まれていないか、解決できない規則の参照を含む文法について説明しています。</exception>
         <altmember cref="T:System.IO.Stream" />
         <altmember cref="T:System.Speech.Recognition.SpeechRecognitionEngine" />
@@ -267,18 +267,12 @@ private static Grammar CreateGrammarFromStream()
         <param name="builder">音声認識文法の制約を格納している <see cref="T:System.Speech.Recognition.GrammarBuilder" /> のインスタンス。</param>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> オブジェクトから <see cref="T:System.Speech.Recognition.GrammarBuilder" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
-          <format type="text/markdown"><![CDATA[  
-  
-## Remarks  
- @No__t-0 クラスを使用して文法を定義する方法の詳細については、「 [GrammarBuilder を使用して文法を作成](https://msdn.microsoft.com/library/7e2cc577-cb05-4318-9da3-7c8675d3d9ae)する」を参照してください。  
-  
-   
+          <format type="text/markdown"><![CDATA[    
   
 ## Examples  
- 次の例では、<xref:System.Speech.Recognition.Choices> および <xref:System.Speech.Recognition.GrammarBuilder> のオブジェクトを使用して、音声認識の文法を作成します。 @No__t 0 コンストラクターは、<xref:System.Speech.Recognition.GrammarBuilder> オブジェクトから1つの @no__t オブジェクトを作成します。  
+ 次の例では、<xref:System.Speech.Recognition.Choices> および <xref:System.Speech.Recognition.GrammarBuilder> オブジェクトを使用して、音声認識の文法を作成します。 <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターは、<xref:System.Speech.Recognition.GrammarBuilder> オブジェクトから <xref:System.Speech.Recognition.Grammar> オブジェクトを作成します。  
   
-```csharp  
-  
+```csharp
 // Create a grammar using a GrammarBuilder and return the new grammar.   
 private static Grammar CreateGrammarBuilderGrammar()  
 {  
@@ -333,16 +327,16 @@ private static Grammar CreateGrammarBuilderGrammar()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、初期化ハンドラーにパラメーターを渡しません。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> には、引数を必要とする初期化ハンドラーを含めることはできません。  
+ このコンストラクターは、初期化ハンドラーにパラメーターを渡さず、<xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> に引数を必要とする初期化ハンドラーを含めることはできません。  
   
- @No__t 0 はルートルールを持つことができます。 ルート規則を指定する @no__t 0 オブジェクトを作成するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> または <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
+ <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> には、ルート規則を設定できます。 ルート規則を指定する <xref:System.Speech.Recognition.Grammar> オブジェクトを作成するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> または <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
   
- @No__t-1 からの音声認識 <xref:System.Speech.Recognition.Grammar> を作成し、相対規則参照を解決するために使用するベース URI を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
+ <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> から音声認識 <xref:System.Speech.Recognition.Grammar> を作成し、相対規則参照を解決するために使用するベース URI を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
   
    
   
 ## Examples  
- 次の例では、@no__t 0 のインスタンスで音声認識文法を作成します。これは、@no__t 1 のオブジェクトを構築するために使用されます。  
+ 次の例では、<xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> インスタンスに音声認識文法を作成し、<xref:System.Speech.Recognition.Grammar> オブジェクトを構築するために使用します。  
   
 ```csharp  
 private static Grammar CreateSrgsDocumentGrammar()  
@@ -389,7 +383,7 @@ private static Grammar CreateSrgsDocumentGrammar()
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="srgsDocument" /> にはルート ルールが含まれていません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="srgsDocument" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="srgsDocument" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException"><paramref name="srgsDocument" /> には、解決できないルール参照が含まれています。</exception>
         <altmember cref="N:System.Speech.Recognition.SrgsGrammar" />
         <altmember cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" />
@@ -428,22 +422,22 @@ private static Grammar CreateSrgsDocumentGrammar()
 ## Remarks  
  このコンストラクターは、初期化ハンドラーにパラメーターを渡しません。また、説明では、引数を必要とする初期化ハンドラーを定義しないでください。  
   
- このコンストラクターは、次の形式の @no__t 0 インスタンスを作成できます。  
+ このコンストラクターは、次の形式から <xref:System.Speech.Recognition.Grammar> インスタンスを作成できます。  
   
 -   W3C[音声認識文法仕様 (SRGS) バージョン 1.0](https://go.microsoft.com/fwlink/?LinkId=201761)に準拠する XML フォーマットファイル  
   
 -   拡張子が cfg のバイナリファイルにコンパイルされた文法  
   
- このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 @No__t-1 メソッドの1つを使用して事前に文法をコンパイルすることで、XML 形式の文法から @no__t 0 オブジェクトを構築するために必要な時間を短縮できます。  
+ このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsGrammarCompiler.Compile%2A> メソッドのいずれかを使用して事前に文法をコンパイルすることで、XML 形式の文法から <xref:System.Speech.Recognition.Grammar> オブジェクトを構築するために必要な時間を短縮できます。  
   
- SRGS 文法では、ルートルールを定義できます。 文字列から @no__t 0 オブジェクトを作成し、ルート規則を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
+ SRGS 文法では、ルートルールを定義できます。 文字列から <xref:System.Speech.Recognition.Grammar> オブジェクトを作成し、ルート規則を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
   
- 相対規則参照を解決するために使用するベース URI を指定する @no__t 0 オブジェクトを作成するには、ファイルストリームでファイルを開き、<xref:System.Speech.Recognition.Grammar.%23ctor%2A?displayProperty=nameWithType> コンストラクターを使用します。  
+ 相対規則参照を解決するために使用するベース URI を指定する <xref:System.Speech.Recognition.Grammar> オブジェクトを作成するには、ファイルストリームでファイルを開き、<xref:System.Speech.Recognition.Grammar.%23ctor%2A?displayProperty=nameWithType> コンストラクターを使用します。  
   
    
   
 ## Examples  
- 次の例では、ローカルの SRGS ファイルから音声認識の文法を読み込み、@no__t 0 のオブジェクトを構築します。 このC#例の後に示す xml の例では、都市 .xml ファイルの内容が表示されます。  
+ 次の例では、ローカルの SRGS ファイルから音声認識文法を読み込み、<xref:System.Speech.Recognition.Grammar> オブジェクトを構築します。 このC#例の後に示す xml の例では、都市 .xml ファイルの内容が表示されます。  
   
 ```csharp  
 // Load a cities grammar from a local file and  
@@ -490,7 +484,7 @@ private static Grammar CreateGrammarFromFile()
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> に空の文字列 ("") を含むか、ルート規則を含まない文法についてファイルで定義します。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException">ファイルに有効な説明が含まれていないか、解決できない規則の参照を含む文法について説明しています。</exception>
         <altmember cref="T:System.Speech.Recognition.SpeechRecognitionEngine" />
         <altmember cref="T:System.Speech.Recognition.SpeechRecognizer" />
@@ -528,15 +522,15 @@ private static Grammar CreateGrammarFromFile()
 ## Remarks  
  このコンストラクターは、初期化ハンドラーにパラメーターを渡しません。また、説明では、引数を必要とする初期化ハンドラーを定義しないでください。  
   
- このコンストラクターは、次の形式の @no__t 0 インスタンスを作成できます。  
+ このコンストラクターは、次の形式から <xref:System.Speech.Recognition.Grammar> インスタンスを作成できます。  
   
 -   W3C[音声認識文法仕様 (SRGS) バージョン 1.0](https://go.microsoft.com/fwlink/?LinkId=201761)に準拠する XML フォーマットファイル  
   
 -   拡張子が cfg のバイナリファイルにコンパイルされた文法  
   
- このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 @No__t-1 メソッドの1つを使用して事前に文法をコンパイルすることで、XML 形式の文法から @no__t 0 オブジェクトを構築するために必要な時間を短縮できます。  
+ このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsGrammarCompiler.Compile%2A> メソッドのいずれかを使用して事前に文法をコンパイルすることで、XML 形式の文法から <xref:System.Speech.Recognition.Grammar> オブジェクトを構築するために必要な時間を短縮できます。  
   
- ストリームから @no__t 0 を作成し、相対規則参照を解決するために使用するベース URI を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
+ ストリームから <xref:System.Speech.Recognition.Grammar> を作成し、相対規則参照を解決するために使用するベース URI を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
   
    
   
@@ -589,7 +583,7 @@ private static Grammar CreateGrammarFromStream2()
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="ruleName" /> は解決できないか、パブリックではないか、<paramref name="ruleName" /> が <see langword="null" /> で文法の説明がルート規則を定義していません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException">ストリームに有効な説明が含まれていないか、解決できない規則の参照を含む文法について説明しています。</exception>
         <altmember cref="T:System.IO.Stream" />
         <altmember cref="T:System.Speech.Recognition.SpeechRecognitionEngine" />
@@ -620,20 +614,20 @@ private static Grammar CreateGrammarFromStream2()
       </Parameters>
       <Docs>
         <param name="srgsDocument">音声認識文法の制約。</param>
-        <param name="ruleName">音声認識文法のエントリ ポイントとして使用するルールの識別子、または <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> の既定のルート ルールを使用する場合は <see langword="null" />。</param>
+        <param name="ruleName">音声認識文法のエントリ ポイントとして使用するルールの識別子、または <see langword="null" /> の既定のルート ルールを使用する場合は <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" />。</param>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> オブジェクトと指定したルート ルールから <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、初期化ハンドラーにパラメーターを渡しません。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> には、引数を必要とする初期化ハンドラーを含めることはできません。  
+ このコンストラクターは、初期化ハンドラーにパラメーターを渡さず、<xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> に引数を必要とする初期化ハンドラーを含めることはできません。  
   
- @No__t から @no__t 0 オブジェクトを作成し、相対ルール参照を解決するために使用するベース URI を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
+ <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> から <xref:System.Speech.Recognition.Grammar> オブジェクトを作成し、相対ルール参照を解決するために使用するベース URI を指定するには、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
   
    
   
 ## Examples  
- 次の例では、@no__t 0 のインスタンスで音声認識文法を作成し、文法のルート規則として使用する規則を指定します。 この例では、@no__t 1 のインスタンスから @no__t 0 のオブジェクトを構築し、音声認識エンジンに読み込みます。  
+ 次の例では、<xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> インスタンスに音声認識文法を作成し、文法のルート規則として使用する規則を指定します。 この例では、<xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> インスタンスから <xref:System.Speech.Recognition.Grammar> オブジェクトを構築し、音声認識エンジンに読み込みます。  
   
 ```csharp  
 using System;  
@@ -714,7 +708,7 @@ namespace SampleRecognition
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="ruleName" /> は解決できないか、パブリックではないか、<paramref name="ruleName" /> が <see langword="null" /> で <paramref name="srgsDocument" /> にルート規則が含まれていません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="srgsDocument" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="srgsDocument" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException"><paramref name="srgsDocument" /> には、解決できないルール参照が含まれています。</exception>
         <altmember cref="N:System.Speech.Recognition.SrgsGrammar" />
         <altmember cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" />
@@ -755,15 +749,15 @@ namespace SampleRecognition
 ## Remarks  
  このコンストラクターは、初期化ハンドラーにパラメーターを渡しません。また、説明では、引数を必要とする初期化ハンドラーを定義しないでください。  
   
- このコンストラクターは、次の形式の @no__t 0 インスタンスを作成できます。  
+ このコンストラクターは、次の形式から <xref:System.Speech.Recognition.Grammar> インスタンスを作成できます。  
   
 -   W3C[音声認識文法仕様 (SRGS) バージョン 1.0](https://go.microsoft.com/fwlink/?LinkId=201761)に準拠する XML フォーマットファイル  
   
 -   拡張子が cfg のバイナリファイルにコンパイルされた文法  
   
- このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 @No__t-1 メソッドの1つを使用して事前に文法をコンパイルすることで、XML 形式の文法から @no__t 0 オブジェクトを構築するために必要な時間を短縮できます。  
+ このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsGrammarCompiler.Compile%2A> メソッドのいずれかを使用して事前に文法をコンパイルすることで、XML 形式の文法から <xref:System.Speech.Recognition.Grammar> オブジェクトを構築するために必要な時間を短縮できます。  
   
- 相対規則参照を解決するために使用するベース URI を指定する @no__t 0 を作成するには、ファイルのファイルストリームを開き、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
+ 相対規則参照を解決するために使用するベース URI を指定する <xref:System.Speech.Recognition.Grammar> を作成するには、ファイルのファイルストリームを開き、<xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターを使用します。  
   
    
   
@@ -815,7 +809,7 @@ private static Grammar CreateGrammarFromFile2()
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="ruleName" /> は解決できないか、パブリックではないか、<paramref name="path" /> が空の文字列 ("") か、<paramref name="ruleName" /> が <see langword="null" /> で文法の説明がルート規則を定義していません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException">ファイルに有効な説明が含まれていないか、解決できない規則の参照を含む文法について説明しています。</exception>
         <altmember cref="T:System.Speech.Recognition.SpeechRecognitionEngine" />
         <altmember cref="T:System.Speech.Recognition.SpeechRecognizer" />
@@ -847,7 +841,7 @@ private static Grammar CreateGrammarFromFile2()
       <Docs>
         <param name="stream">文法の仕様を含む入出力オブジェクト (ファイル、VisualStudio リソース、DLL など) に接続された <see cref="T:System.IO.Stream" />。</param>
         <param name="ruleName">音声認識文法のエントリ ポイントとして使用するルールの識別子。または、文法の説明の既定のルート ルールを使用する場合は <see langword="null" />。</param>
-        <param name="parameters">エントリ ポイントの <see cref="P:System.Speech.Recognition.SrgsGrammar.SrgsRule.OnInit" /> プロパティによって指定された初期化ハンドラーに渡されるパラメーター、または作成する <see cref="T:System.Speech.Recognition.Grammar" /> のルート ルール。 このパラメーターは null でもかまいません。</param>
+        <param name="parameters">エントリ ポイントの <see cref="P:System.Speech.Recognition.SrgsGrammar.SrgsRule.OnInit" /> プロパティによって指定された初期化ハンドラーに渡されるパラメーター、または作成する <see cref="T:System.Speech.Recognition.Grammar" /> のルート ルール。 このパラメーターは null である場合があります。</param>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> と指定したルート ルールから <see cref="T:System.IO.Stream" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -901,15 +895,15 @@ private static Grammar CreateGrammarFromFile2()
 ## Remarks  
  このコンストラクターは、初期化ハンドラーにパラメーターを渡しません。また、説明では、引数を必要とする初期化ハンドラーを定義しないでください。  
   
- このコンストラクターは、次の形式の @no__t 0 インスタンスを作成できます。  
+ このコンストラクターは、次の形式から <xref:System.Speech.Recognition.Grammar> インスタンスを作成できます。  
   
 -   W3C[音声認識文法仕様 (SRGS) バージョン 1.0](https://go.microsoft.com/fwlink/?LinkId=201761)に準拠する XML フォーマットファイル  
   
 -   拡張子が cfg のバイナリファイルにコンパイルされた文法  
   
- このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 @No__t-1 メソッドの1つを使用して事前に文法をコンパイルすることで、XML 形式の文法から @no__t 0 オブジェクトを構築するために必要な時間を短縮できます。  
+ このコンストラクターは、XML 形式の文法ファイルをバイナリ形式にコンパイルして、音声認識エンジンによる読み込みと使用のために最適化します。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsGrammarCompiler.Compile%2A> メソッドのいずれかを使用して事前に文法をコンパイルすることで、XML 形式の文法から <xref:System.Speech.Recognition.Grammar> オブジェクトを構築するために必要な時間を短縮できます。  
   
- このコンストラクターは `baseUri` を検証しません。 ただし、<xref:System.Speech.Recognition.SpeechRecognitionEngine> オブジェクトまたは <xref:System.Speech.Recognition.SpeechRecognizer> オブジェクトの `LoadGrammar` メソッドは、文法の説明に含まれるすべてのルール参照を解決できない場合に例外をスローします。 @No__t-0 が `null` ではない場合、`LoadGrammar` メソッドは URI を使用して、解決できない規則の参照を解決します。 @No__t-0 がファイルを表している場合、@no__t は、相対ルール参照を解決しようとするときに、指定されたファイルとファイルのディレクトリの両方を使用します。  
+ このコンストラクターは `baseUri`を検証しません。 ただし、<xref:System.Speech.Recognition.SpeechRecognitionEngine> または <xref:System.Speech.Recognition.SpeechRecognizer> オブジェクトの `LoadGrammar` メソッドは、文法の説明に含まれるすべての規則の参照を解決できない場合、例外をスローします。 `baseUri` が `null`されていない場合、`LoadGrammar` メソッドは URI を使用して、解決できない規則の参照を解決します。 `baseUri` がファイルを表している場合、`LoadGrammar` は、相対ルール参照を解決しようとするときに、指定されたファイルとファイルのディレクトリの両方を使用します。  
   
    
   
@@ -981,7 +975,7 @@ private static Grammar CreateGrammarFromStream3()
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="ruleName" /> は解決できないか、パブリックではないか、<paramref name="ruleName" /> が <see langword="null" /> で文法の説明がルート規則を定義していません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException">ストリームに有効な説明が含まれていないか、解決できない規則の参照を含む文法について説明しています。</exception>
         <altmember cref="T:System.IO.Stream" />
         <altmember cref="T:System.Speech.Recognition.SpeechRecognizer" />
@@ -1014,7 +1008,7 @@ private static Grammar CreateGrammarFromStream3()
       <Docs>
         <param name="srgsDocument">音声認識文法の制約を格納している <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> のインスタンス。</param>
         <param name="ruleName">音声認識文法のエントリ ポイントとして使用するルールの識別子。または、文法の説明の既定のルート ルールを使用する場合は <see langword="null" />。</param>
-        <param name="parameters">エントリ ポイントの <see cref="P:System.Speech.Recognition.SrgsGrammar.SrgsRule.OnInit" /> プロパティによって指定された初期化ハンドラーに渡されるパラメーター、または作成する <see cref="T:System.Speech.Recognition.Grammar" /> のルート ルール。 このパラメーターは null でもかまいません。</param>
+        <param name="parameters">エントリ ポイントの <see cref="P:System.Speech.Recognition.SrgsGrammar.SrgsRule.OnInit" /> プロパティによって指定された初期化ハンドラーに渡されるパラメーター、または作成する <see cref="T:System.Speech.Recognition.Grammar" /> のルート ルール。 このパラメーターは null である場合があります。</param>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> のインスタンスから <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> クラスの新しいインスタンスを初期化し、文法へのエントリ ポイントである規則の名前を指定します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1026,7 +1020,7 @@ private static Grammar CreateGrammarFromStream3()
         </remarks>
         <exception cref="T:System.ArgumentException">-   いずれかのパラメーターに無効な値が含まれています。  
   
--   <paramref name="srgsDocument" /> で指定された <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> は、<paramref name="ruleName" /> が指定した規則を含みません。  
+-   <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> で指定された <paramref name="srgsDocument" /> は、<paramref name="ruleName" /> が指定した規則を含みません。  
   
 -   配置パラメーターの内容が、ルールのいずれの初期化ハンドラーの引数とも一致しません。</exception>
       </Docs>
@@ -1058,21 +1052,21 @@ private static Grammar CreateGrammarFromStream3()
       </Parameters>
       <Docs>
         <param name="srgsDocument">音声認識文法の制約。</param>
-        <param name="ruleName">音声認識文法のエントリ ポイントとして使用するルールの識別子、または <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> の既定のルート ルールを使用する場合は <see langword="null" />。</param>
+        <param name="ruleName">音声認識文法のエントリ ポイントとして使用するルールの識別子、または <see langword="null" /> の既定のルート ルールを使用する場合は <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" />。</param>
         <param name="baseUri"><see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> で相対的なルール参照を解決するために使用するベース URI または <see langword="null" />。</param>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> オブジェクトから <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> クラスの新しいインスタンスを初期化します。ルート規則を指定し、相対的な規則の参照を解決するためにベース URI (Uniform Resource Identifier) を定義します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このコンストラクターは、初期化ハンドラーにパラメーターを渡しません。 <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> には、引数を必要とする初期化ハンドラーを含めることはできません。  
+ このコンストラクターは、初期化ハンドラーにパラメーターを渡さず、<xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> に引数を必要とする初期化ハンドラーを含めることはできません。  
   
- このコンストラクターは `baseUri` を検証しません。 ただし、<xref:System.Speech.Recognition.SpeechRecognitionEngine> オブジェクトまたは <xref:System.Speech.Recognition.SpeechRecognizer> オブジェクトの `LoadGrammar` メソッドは、文法の説明に含まれるすべてのルール参照を解決できない場合に例外をスローします。 @No__t-0 が `null` ではない場合、`LoadGrammar` メソッドは URI を使用して、解決できない規則の参照を解決します。 @No__t-0 がファイルを表している場合、`LoadGrammar` メソッドは、相対ルール参照を解決しようとしたときに、指定されたファイルとファイルのディレクトリの両方を使用します。  
+ このコンストラクターは `baseUri`を検証しません。 ただし、<xref:System.Speech.Recognition.SpeechRecognitionEngine> または <xref:System.Speech.Recognition.SpeechRecognizer> オブジェクトの `LoadGrammar` メソッドは、文法の説明に含まれるすべての規則の参照を解決できない場合、例外をスローします。 `baseUri` が `null`されていない場合、`LoadGrammar` メソッドは URI を使用して、解決できない規則の参照を解決します。 `baseUri` がファイルを表している場合、`LoadGrammar` メソッドは、相対ルール参照を解決しようとするときに、指定されたファイルとファイルのディレクトリの両方を使用します。  
   
    
   
 ## Examples  
- 次の例では、都市 .xml ファイルへの相対ルール参照を含む @no__t 0 で音声認識文法を作成し、ルール参照を解決するために使用する URI を指定します。 このC#例の後に示す xml の例では、都市 .xml ファイルの内容が表示されます。  
+ 次の例では、都市 .xml ファイルへの相対ルール参照を含む <xref:System.Speech.Recognition.SrgsGrammar.SrgsDocument> で音声認識文法を作成し、ルール参照を解決するために使用する URI を指定します。 このC#例の後に示す xml の例では、都市 .xml ファイルの内容が表示されます。  
   
 ```csharp  
   
@@ -1141,7 +1135,7 @@ private static Grammar CreateSrgsDocumentGrammar3()
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="ruleName" /> は解決できないか、パブリックではないか、<paramref name="ruleName" /> が <see langword="null" /> で <paramref name="srgsDocument" /> にルート規則が含まれていません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="srgsDocument" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="srgsDocument" /> は <see langword="null" /> です。</exception>
         <exception cref="T:System.FormatException"><paramref name="srgsDocument" /> には、解決できないルール参照が含まれています。</exception>
         <altmember cref="N:System.Speech.Recognition.SrgsGrammar" />
         <altmember cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" />
@@ -1171,7 +1165,7 @@ private static Grammar CreateSrgsDocumentGrammar3()
       <Docs>
         <param name="path">文法仕様を含むファイル (DLL を含む) のパス。</param>
         <param name="ruleName">音声認識文法のエントリ ポイントとして使用するルールの識別子。または、文法の説明の既定のルート ルールを使用する場合は <see langword="null" />。</param>
-        <param name="parameters">エントリ ポイントの <see cref="P:System.Speech.Recognition.SrgsGrammar.SrgsRule.OnInit" /> プロパティによって指定された初期化ハンドラーに渡されるパラメーター、または作成する <see cref="T:System.Speech.Recognition.Grammar" /> のルート ルール。 このパラメーターは null でもかまいません。</param>
+        <param name="parameters">エントリ ポイントの <see cref="P:System.Speech.Recognition.SrgsGrammar.SrgsRule.OnInit" /> プロパティによって指定された初期化ハンドラーに渡されるパラメーター、または作成する <see cref="T:System.Speech.Recognition.Grammar" /> のルート ルール。 このパラメーターは null である場合があります。</param>
         <summary>文法定義を含むファイルから <see cref="T:System.Speech.Recognition.Grammar" /> クラスの新しいインスタンスを初期化し、文法へのエントリ ポイントであるルールの名前を指定します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1217,7 +1211,7 @@ private static Grammar CreateSrgsDocumentGrammar3()
         <param name="stream">文法の仕様を含む入出力オブジェクト (ファイル、VisualStudio リソース、DLL など) に接続された <see cref="T:System.IO.Stream" />。</param>
         <param name="ruleName">音声認識文法のエントリ ポイントとして使用するルールの識別子。または、文法の説明の既定のルート ルールを使用する場合は <see langword="null" />。</param>
         <param name="baseUri">文法の説明で相対的なルール参照を解決するために使用するベース URI または <see langword="null" />。</param>
-        <param name="parameters">エントリ ポイントの <see cref="P:System.Speech.Recognition.SrgsGrammar.SrgsRule.OnInit" /> プロパティによって指定された初期化ハンドラーに渡されるパラメーター、または作成する <see cref="T:System.Speech.Recognition.Grammar" /> のルート ルール。 このパラメーターは null でもかまいません。</param>
+        <param name="parameters">エントリ ポイントの <see cref="P:System.Speech.Recognition.SrgsGrammar.SrgsRule.OnInit" /> プロパティによって指定された初期化ハンドラーに渡されるパラメーター、または作成する <see cref="T:System.Speech.Recognition.Grammar" /> のルート ルール。 このパラメーターは null である場合があります。</param>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> クラスの新しいインスタンス <see cref="T:System.IO.Stream" /> を初期化し、ルート規則および相対参照を解決するためのベース URI を指定します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1275,7 +1269,7 @@ private static Grammar CreateSrgsDocumentGrammar3()
         </remarks>
         <exception cref="T:System.ArgumentException">-   いずれかのパラメーターに無効な値が含まれています。  
   
--   <paramref name="srgsDocument" /> で指定された <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> は、<paramref name="ruleName" /> が指定した規則を含みません。  
+-   <see cref="T:System.Speech.Recognition.SrgsGrammar.SrgsDocument" /> で指定された <paramref name="srgsDocument" /> は、<paramref name="ruleName" /> が指定した規則を含みません。  
   
 -   配置パラメーターの内容が、ルールのいずれの初期化ハンドラーの引数とも一致しません。  
   
@@ -1305,17 +1299,17 @@ private static Grammar CreateSrgsDocumentGrammar3()
       </ReturnValue>
       <Docs>
         <summary>音声認識エンジンが <see cref="T:System.Speech.Recognition.Grammar" /> を使用して認識を実行できるかどうかを制御する値を取得または設定します。</summary>
-        <value><see langword="Enabled" /> プロパティは、音声認識エンジンが音声認識文法を使用して認識を実行している場合は <see langword="true" /> を、それ以外の場合は <see langword="false" /> を返します。 既定値は、<see langword="true" /> です。</value>
+        <value><see langword="Enabled" /> プロパティは、音声認識エンジンが音声認識文法を使用して認識を実行している場合は <see langword="true" /> を、それ以外の場合は <see langword="false" /> を返します。 既定では、 <see langword="true" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t-0 のインスタンスは、音声認識エンジンによって読み込まれたものとは無関係に有効または無効にすることができます。  
+ <xref:System.Speech.Recognition.Grammar> のインスタンスは、音声認識エンジンによって読み込まれたものとは無関係に有効または無効にすることができます。  
   
    
   
 ## Examples  
- 次の例では、@no__t 0 のオブジェクトに関する情報を[コンソール](https://go.microsoft.com/fwlink/?LinkId=159613)に書き込みます。  
+ 次の例では、<xref:System.Speech.Recognition.Grammar> オブジェクトに関する情報を[コンソール](https://go.microsoft.com/fwlink/?LinkId=159613)に書き込みます。  
   
 ```csharp  
   
@@ -1373,15 +1367,15 @@ private static void DumpGrammarStatus(Grammar item)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 厳密に型指定された @no__t 0 オブジェクト (`IsStg` は `true`) は、厳密に型指定された結果 (未加工テキストではなくオブジェクト) をクライアントアプリケーションに返すことができます。 たとえば、厳密に型指定された文法では、生の認識された入力ではなく <xref:System.DateTime> オブジェクトが返される場合があります。  
+ 厳密に型指定された <xref:System.Speech.Recognition.Grammar> オブジェクト (`IsStg` 等号 `true`) は、厳密に型指定された結果 (未加工テキストではなくオブジェクト) をクライアントアプリケーションに返すことができます。 たとえば、厳密に型指定された文法では、生の認識された入力ではなく <xref:System.DateTime> オブジェクトが返される場合があります。  
   
  文法の規則にコードをアタッチすることにより、厳密に型指定された文法を実装できます。 認識エンジンは、現在の部分的な結果を入力として取得して、特定の規則を処理するときに、関連付けられたコードが実行され、テキスト情報がリッチ型オブジェクトになります。 これにより、クライアントは、強化されたセマンティックチェック、複数のカルチャのサポート、および内部文法ロジックをより簡単に使用できるようになります。  
   
- 厳密に型指定された @no__t 0 オブジェクトのインスタンスは、通常、アセンブリ内のリソースから共通言語ランタイム (CLR) の @no__t として取得されます。 さまざまな言語をサポートするために使用されるローカライズされた型は、そのような @no__t 0 オブジェクトの例です。  
+ 厳密に型指定された <xref:System.Speech.Recognition.Grammar> オブジェクトのインスタンスは、通常、アセンブリ内のリソースから共通言語ランタイム (CLR) の <xref:System.Type> として取得されます。 さまざまな言語をサポートするために使用されるローカライズされた型は、そのような <xref:System.Speech.Recognition.Grammar> オブジェクトの例です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>@No__t-0 から継承する厳密に型指定された文法では、<see langword="IsStg" /> の既定の動作をオーバーライドする必要があります。これは <see langword="false" /> を返します。</para></block>
+        <block subset="none" type="overrides"><para><see cref="T:System.Speech.Recognition.Grammar" /> から継承する厳密に型指定された文法は、<see langword="IsStg" />の既定の動作をオーバーライドする必要があります。これは <see langword="false" />を返します。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Loaded">
@@ -1402,17 +1396,17 @@ private static void DumpGrammarStatus(Grammar item)
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> が音声認識エンジンによって読み込まれたかどうかを取得します。</summary>
-        <value><see langword="Loaded" /> プロパティは、参照されている音声認識文法が音声認識エンジンに現在読み込まれている場合は <see langword="true" /> を、それ以外の場合は <see langword="false" /> を返します。 既定値は、<see langword="false" /> です。</value>
+        <value><see langword="Loaded" /> プロパティは、参照されている音声認識文法が音声認識エンジンに現在読み込まれている場合は <see langword="true" /> を、それ以外の場合は <see langword="false" /> を返します。 既定では、 <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t 0 が読み込まれると、<xref:System.Speech.Recognition.Grammar.Weight%2A>、<xref:System.Speech.Recognition.Grammar.Priority%2A> の値は変更できません。  
+ <xref:System.Speech.Recognition.Grammar> が読み込まれると、<xref:System.Speech.Recognition.Grammar.Weight%2A>の値と <xref:System.Speech.Recognition.Grammar.Priority%2A> を変更することはできません。  
   
    
   
 ## Examples  
- 次の例では、@no__t 0 のオブジェクトに関する情報を[コンソール](https://go.microsoft.com/fwlink/?LinkId=159613)に書き込みます。  
+ 次の例では、<xref:System.Speech.Recognition.Grammar> オブジェクトに関する情報を[コンソール](https://go.microsoft.com/fwlink/?LinkId=159613)に書き込みます。  
   
 ```csharp  
   
@@ -1468,14 +1462,14 @@ private static void DumpGrammarStatus(Grammar item)
       </Parameters>
       <Docs>
         <param name="type">アセンブリでは、<see cref="T:System.Type" /> に基づくオブジェクトの <see cref="T:System.Speech.Recognition.Grammar" /> です。</param>
-        <param name="onInitParameters"><see cref="T:System.Speech.Recognition.Grammar" /> に基づいて localizedobject の初期化メソッドに渡すパラメーター。 このパラメーターは null でもかまいません。</param>
+        <param name="onInitParameters"><see cref="T:System.Speech.Recognition.Grammar" /> に基づいて localizedobject の初期化メソッドに渡すパラメーター。 このパラメーターは null である場合があります。</param>
         <summary><see langword="LoadLocalizedGrammarFromType" /> メソッドは、<see cref="T:System.Speech.Recognition.Grammar" /> から派生する <see cref="T:System.Type" /> オブジェクトのローカライズ インスタンスを返します。</summary>
         <returns><see langword="LoadLocalizedGrammarFromType" /> メソッドは、<see cref="T:System.Speech.Recognition.Grammar" /> に基づいて有効なオブジェクトを返します。エラーがある場合は <see langword="null" /> を返します。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t 0 で取得したローカライズされた文法は通常、厳密に型指定されています (厳密に型指定された文法の詳細については、@no__t を参照してください)。 @No__t-0 が null 参照 (Visual Basic では Nothing) の場合、ローカライズされた文法には初期化メソッドがないか、引数を受け取らないメソッドが含まれている必要があります。  
+ `LoadLocalizedGrammarFromType` で取得したローカライズされた文法は、通常、厳密に型指定されています (厳密に型指定された文法の詳細については、<xref:System.Speech.Recognition.Grammar.IsStg%2A> を参照) `onInitParameters` が null 参照 (Visual Basic では Nothing) である場合、ローカライズされた文法には初期化メソッドがないか、引数を受け取らないメソッドが含まれている必要があります。  
   
  ]]></format>
         </remarks>
@@ -1504,12 +1498,12 @@ private static void DumpGrammarStatus(Grammar item)
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> オブジェクトの名前を取得または設定します。</summary>
-        <value><see langword="Name" /> プロパティは、<see cref="T:System.Speech.Recognition.Grammar" /> オブジェクトの名前を返します。 既定値は、<see langword="null" /> です。</value>
+        <value><see langword="Name" /> プロパティは、<see cref="T:System.Speech.Recognition.Grammar" /> オブジェクトの名前を返します。 既定では、 <see langword="null" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Examples  
- 次の例では、2つの @no__t 0 オブジェクトを作成します。1つは数字、もう1つは分数です。 文法オブジェクトには、名前と相対的な重みと優先度が割り当てられ、インプロセス音声認識エンジンによって読み込まれます。 @No__t-0、`CreateFractionsGrammar`、`recognizer_SpeechRecognized` の各メソッドは、ここには示されていません。  
+ 次の例では、2つの <xref:System.Speech.Recognition.Grammar> オブジェクトを作成します。1つは数字、もう1つは分数です。 文法オブジェクトには、名前と相対的な重みと優先度が割り当てられ、インプロセス音声認識エンジンによって読み込まれます。 ここでは、`CreateDigitsGrammar`、`CreateFractionsGrammar`、および `recognizer_SpeechRecognized` の各メソッドについては説明していません。  
   
 ```csharp  
   
@@ -1575,12 +1569,12 @@ recognizer.RecognizeAsync(RecognizeMode.Multiple);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 複数の文法で同じ認識結果が生成される場合は、`Priority` プロパティを使用して文法を選択します。 音声認識エンジンに複数の音声認識文法が読み込まれ、入力に一致するものがある場合、その一致が認識エンジンによって最適な結果となります。そのため、認識エンジンは、@no__t が最高の文法を使用します。 同一の認識結果を生成する文法も @no__t 0 の値が同じである場合、レコグナイザーが使用する文法は未定義です。  
+ 複数の文法で同じ認識結果が生成される場合は、`Priority` プロパティを使用して文法を選択します。 音声認識エンジンに複数の音声認識文法が読み込まれ、入力に一致するものがある場合、その一致が認識エンジンによって最適な結果となります。そのため、認識エンジンでは、`Priority`が最も高い文法が使用されます。 同じ認識結果を生成する文法も同じ `Priority` 値を持つ場合、レコグナイザーが使用する文法は未定義です。  
   
    
   
 ## Examples  
- 次の例では、2つの @no__t 0 オブジェクトを作成します。1つは数字、もう1つは分数です。 @No__t 0 のオブジェクトには、名前と相対的な重みと優先度が割り当てられ、インプロセス音声認識エンジンによって読み込まれます。 @No__t-0、`CreateFractionsGrammar`、`recognizer_SpeechRecognized` の各メソッドは、ここには示されていません。  
+ 次の例では、2つの <xref:System.Speech.Recognition.Grammar> オブジェクトを作成します。1つは数字、もう1つは分数です。 <xref:System.Speech.Recognition.Grammar> オブジェクトには、名前と相対的な重みと優先度が割り当てられ、インプロセス音声認識エンジンによって読み込まれます。 ここでは、`CreateDigitsGrammar`、`CreateFractionsGrammar`、および `recognizer_SpeechRecognized` の各メソッドについては説明していません。  
   
 ```csharp  
   
@@ -1671,21 +1665,21 @@ recognizer.RecognizeAsync(RecognizeMode.Multiple);
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Speech.Recognition.Grammar" /> オブジェクトのルート規則またはエントリ ポイントの名前を取得します。</summary>
-        <value><see langword="RuleName" /> プロパティは、参照先音声認識文法のルート規則の ID を返します。 既定値は、<see langword="null" /> です。</value>
+        <value><see langword="RuleName" /> プロパティは、参照先音声認識文法のルート規則の ID を返します。 既定では、 <see langword="null" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- @No__t 0 のオブジェクトを構築し、そのルートルールの名前を設定するには、`ruleName` パラメーターを受け取る <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターのいずれかを使用します。  
+ <xref:System.Speech.Recognition.Grammar> オブジェクトを構築し、そのルートルールの名前を設定するには、`ruleName` パラメーターを受け取る <xref:System.Speech.Recognition.Grammar.%23ctor%2A> コンストラクターのいずれかを使用します。  
   
- @No__t-0 のルート規則に名前がない場合、プロパティは `null` を返します。  
+ <xref:System.Speech.Recognition.Grammar> のルートルールに名前がない場合、プロパティは `null`を返します。  
   
- @No__t-1 オブジェクトから構築された @no__t 0 のインスタンスのルート規則には、通常名前が付いていないため、<xref:System.Speech.Recognition.Grammar.RuleName%2A> は `null` を返します。  
+ <xref:System.Speech.Recognition.GrammarBuilder> オブジェクトから構築された <xref:System.Speech.Recognition.Grammar> インスタンスのルート規則には、通常名前が付いていないため、<xref:System.Speech.Recognition.Grammar.RuleName%2A> は `null`を返します。  
   
    
   
 ## Examples  
- 次の例では、@no__t 0 のオブジェクトに関する情報を[コンソール](https://go.microsoft.com/fwlink/?LinkId=159613)に書き込みます。  
+ 次の例では、<xref:System.Speech.Recognition.Grammar> オブジェクトに関する情報を[コンソール](https://go.microsoft.com/fwlink/?LinkId=159613)に書き込みます。  
   
 ```csharp  
   
@@ -1737,14 +1731,14 @@ private static void DumpGrammarStatus(Grammar item)
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- また、音声認識エンジンは、入力を認識するときに @no__t 0 のイベントを発生させます。 @No__t-0 オブジェクトの @no__t イベントは、音声認識エンジンの `SpeechRecognized` イベントの前に発生します。 詳細については、<xref:System.Speech.Recognition.SpeechRecognizer.SpeechRecognized?displayProperty=nameWithType>、<xref:System.Speech.Recognition.SpeechRecognitionEngine.SpeechRecognized?displayProperty=nameWithType>、および <xref:System.Speech.Recognition.SpeechRecognitionEngine.RecognizeCompleted> の各イベントを参照してください。  
+ また、音声認識エンジンは、入力を認識すると `SpeechRecognized` イベントを発生させます。 <xref:System.Speech.Recognition.Grammar> オブジェクトの <xref:System.Speech.Recognition.Grammar.SpeechRecognized> イベントは、音声認識エンジンの `SpeechRecognized` イベントの前に発生します。 詳細については、「<xref:System.Speech.Recognition.SpeechRecognizer.SpeechRecognized?displayProperty=nameWithType>、<xref:System.Speech.Recognition.SpeechRecognitionEngine.SpeechRecognized?displayProperty=nameWithType>、および <xref:System.Speech.Recognition.SpeechRecognitionEngine.RecognizeCompleted> イベント」を参照してください。  
   
- 特定の文法に固有のタスクは、常に @no__t 0 オブジェクトの @no__t イベントのハンドラーによって処理される必要があります。  
+ 特定の文法に固有のタスクは、常に、<xref:System.Speech.Recognition.Grammar> オブジェクトの <xref:System.Speech.Recognition.Grammar.SpeechRecognized> イベントのハンドラーによって処理される必要があります。  
   
    
   
 ## Examples  
- 次の例は、<xref:System.Speech.Recognition.Grammar> オブジェクトの @no__t イベントに対するイベントハンドラーの使用方法を示しています。 認識結果を[コンソール](https://go.microsoft.com/fwlink/?LinkId=159613)に出力します。  
+ 次の例は、<xref:System.Speech.Recognition.Grammar> オブジェクトの <xref:System.Speech.Recognition.Grammar.SpeechRecognized> イベントに対してイベントハンドラーを使用する方法を示しています。 認識結果を[コンソール](https://go.microsoft.com/fwlink/?LinkId=159613)に出力します。  
   
 ```csharp  
 public partial class Form1 : Form  
@@ -1812,15 +1806,15 @@ public partial class Form1 : Form
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 厳密に型指定された @no__t 0 オブジェクト (`IsStg` は `true`) は、厳密に型指定された結果 (未加工テキストではなくオブジェクト) をクライアントアプリケーションに返すことができます。 たとえば、厳密に型指定された文法では、生の認識された入力ではなく <xref:System.DateTime> オブジェクトが返される場合があります。  
+ 厳密に型指定された <xref:System.Speech.Recognition.Grammar> オブジェクト (`IsStg` 等号 `true`) は、厳密に型指定された結果 (未加工テキストではなくオブジェクト) をクライアントアプリケーションに返すことができます。 たとえば、厳密に型指定された文法では、生の認識された入力ではなく <xref:System.DateTime> オブジェクトが返される場合があります。  
   
  文法の規則にコードをアタッチすることにより、厳密に型指定された文法を実装できます。 認識エンジンは、現在の部分的な結果を入力として取得して、特定の規則を処理するときに、関連付けられたコードが実行され、テキスト情報がリッチ型オブジェクトになります。 これにより、クライアントは、強化されたセマンティックチェック、複数のカルチャのサポート、および内部文法ロジックをより簡単に使用できるようになります。  
   
- 厳密に型指定された @no__t 0 オブジェクトのインスタンスは、通常、アセンブリ内のリソースから共通言語ランタイム (CLR) の @no__t として取得されます。 さまざまな言語をサポートするために使用されるローカライズされた型は、そのような @no__t 0 オブジェクトの例です。  
+ 厳密に型指定された <xref:System.Speech.Recognition.Grammar> オブジェクトのインスタンスは、通常、アセンブリ内のリソースから共通言語ランタイム (CLR) の <xref:System.Type> として取得されます。 さまざまな言語をサポートするために使用されるローカライズされた型は、そのような <xref:System.Speech.Recognition.Grammar> オブジェクトの例です。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para>厳密に型指定された文法で初期化が必要な場合は、コンストラクターまたは初期化メソッドで @no__t 0 を呼び出す必要があります。</para></block>
+        <block subset="none" type="overrides"><para>厳密に型指定された文法で初期化が必要な場合は、コンストラクターまたは初期化メソッドで <see langword="StgInit" /> を呼び出す必要があります。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Weight">
@@ -1851,16 +1845,16 @@ public partial class Form1 : Form
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 認識エンジンによる**重み**の使用は複雑であるため、特定の文法のパフォーマンスに与える影響は、<xref:System.Speech.Recognition.Grammar.Priority%2A> とは直接的に予測できません。  
+ 認識エンジンによる**重み**の使用は複雑であるため、特定の文法のパフォーマンスに与える影響は、<xref:System.Speech.Recognition.Grammar.Priority%2A>の場合とは直接的に予測できません。  
   
  音声認識は重み付けされたシステムです。 文法の重み、文法内の代替手段として定義されている重み、および音声モデルによって定義される確率の組み合わせに基づいて、すべての認識パスを評価します。 音声認識エンジンは、これらの重みと確率の組み合わせを使用して、潜在的な代替認識をランク付けします。 重みが高い文法は、重みの低い文法よりも認識の順位付けに寄与します。  
   
- 音声認識エンジンの <xref:System.Speech.Recognition.Grammar.Weight%2A> プロパティの効果は、レコグナイザーの実装に依存します。 @No__t 0 のプロパティを使用して、アプリケーションの音声認識の精度を調整することもできますが、特定の認識環境の診断スタディを制御した後で、認識エンジンに関する詳細情報を使用して、使用.  
+ 音声認識エンジンの <xref:System.Speech.Recognition.Grammar.Weight%2A> プロパティの効果は、レコグナイザーの実装によって異なります。 <xref:System.Speech.Recognition.Grammar.Weight%2A> プロパティは、アプリケーションの音声認識の精度を調整するために使用できますが、特定の認識環境の診断スタディを制御した後で使用する必要があります。また、認識エンジンに関するすべての情報を使用します。  
   
    
   
 ## Examples  
- 次の例では、2つの @no__t 0 オブジェクトを作成します。1つは数字、もう1つは分数です。 @No__t 0 のオブジェクトには、名前と相対的な重みと優先度が割り当てられ、インプロセス音声認識エンジンによって読み込まれます。 @No__t-0、`CreateFractionsGrammar`、`recognizer_SpeechRecognized` の各メソッドは、ここには示されていません。  
+ 次の例では、2つの <xref:System.Speech.Recognition.Grammar> オブジェクトを作成します。1つは数字、もう1つは分数です。 <xref:System.Speech.Recognition.Grammar> オブジェクトには、名前と相対的な重みと優先度が割り当てられ、インプロセス音声認識エンジンによって読み込まれます。 ここでは、`CreateDigitsGrammar`、`CreateFractionsGrammar`、および `recognizer_SpeechRecognized` の各メソッドについては説明していません。  
   
 ```csharp  
   

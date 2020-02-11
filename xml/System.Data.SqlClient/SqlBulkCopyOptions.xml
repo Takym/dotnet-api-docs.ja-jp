@@ -1,5 +1,5 @@
 <Type Name="SqlBulkCopyOptions" FullName="System.Data.SqlClient.SqlBulkCopyOptions">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="2819cd1fcd383ad6d307b856a745ed7e0f38d612" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75141839" /></Metadata><TypeSignature Language="C#" Value="public enum SqlBulkCopyOptions" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fae6902c11919797e6bb11116452f91425d49a53" /><Meta Name="ms.sourcegitcommit" Value="f9576bf8c61e3d46834aeeff50f858359f2a99ba" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/09/2020" /><Meta Name="ms.locfileid" Value="77099232" /></Metadata><TypeSignature Language="C#" Value="public enum SqlBulkCopyOptions" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed SqlBulkCopyOptions extends System.Enum" />
   <TypeSignature Language="DocId" Value="T:System.Data.SqlClient.SqlBulkCopyOptions" />
   <TypeSignature Language="VB.NET" Value="Public Enum SqlBulkCopyOptions" />
@@ -48,14 +48,14 @@
  オプションが一括読み込みの動作方法をどのように変更するかを確認するには、dbo でサンプルを実行し**ます。BulkCopyDemoMatchingColumns**テーブルが空です。 ソースからすべての行が読み込まれます。 次に、テーブルを空にせずにサンプルを再実行します。 例外がスローされ、コードは、主キーの違反が原因で行が追加されていないことを通知するメッセージをコンソールウィンドウに書き込みます。  
   
 > [!IMPORTANT]
->  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードは、 **SqlBulkCopy**のみを使用する構文を示すために用意されています。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
+>  このサンプルは、「[一括コピーの例のセットアップ](~/docs/framework/data/adonet/sql/bulk-copy-example-setup.md)」で説明されているように作業テーブルを作成しない限り、実行されません。 このコードでは、**SqlBulkCopy** だけを使用した構文について説明します。 コピー元とコピー先のテーブルが同じ SQL Server インスタンス内にある場合は、Transact-sql の `INSERT … SELECT` ステートメントを使用してデータをコピーする方が簡単で高速です。  
   
  [!code-csharp[DataWorks SqlBulkCopy.KeepIdentity#1](~/samples/snippets/csharp/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.KeepIdentity/CS/source.cs#1)]
  [!code-vb[DataWorks SqlBulkCopy.KeepIdentity#1](~/samples/snippets/visualbasic/VS_Snippets_ADO.NET/DataWorks SqlBulkCopy.KeepIdentity/VB/source.vb#1)]  
   
  ]]></format>
     </remarks>
-    <related type="Article" href="https://msdn.microsoft.com/library/83a7a0d2-8018-4354-97b9-0b1d99f8342b">一括コピー操作の実行</related>
+    <related type="Article" href="~/docs/framework/data/adonet/sql/bulk-copy-operations-in-sql-server.md">SQL Server でのバルク コピー操作</related>
     <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
   </Docs>
   <Members>
@@ -79,7 +79,7 @@
       </ReturnValue>
       <MemberValue>64</MemberValue>
       <Docs>
-        <summary>指定した場合、**AllowEncryptedValueModifications** を使用して、データを復号化せずにテーブル間またはデータベース間で暗号化されたデータを一括コピーできます。 通常、アプリケーションは 1 つのテーブルからデータの復号化をしないで暗号化された列からデータを選択し (列暗号化のキーワード設定を無効にして、アプリケーションはデータベースに接続します)、その後、このオプションを使用してまだ暗号化されているデータを一括挿入します。 詳細については、「[Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine)」を参照してください。  
+        <summary>指定した場合、**AllowEncryptedValueModifications** を使用して、データを復号化せずにテーブル間またはデータベース間で暗号化されたデータを一括コピーできます。 一般的に、アプリケーションはデータを復号せずに 1 つのテーブルの暗号化された列からデータを選択し (アプリは、列の暗号化設定キーワードを無効に設定しているデータベースに接続します)、それからこのオプションを使用し、依然として暗号化されたままのデータを一括挿入します。 詳細については、「 [Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine)」を参照してください。  
   
 **AllowEncryptedValueModifications** を指定する場合は、これによりデータベースが破損する可能性がありますのでご注意ください。これはデータが実際に暗号化されているかどうか、またデータが対象の列と同じ暗号化の種類、アルゴリズム、およびキーを使用して正しく暗号化されているかどうかをドライバーが確認しないためです。</summary>
       </Docs>
@@ -116,7 +116,7 @@
       </ReturnValue>
       <MemberValue>2</MemberValue>
       <Docs>
-        <summary>データの挿入中に、制約をチェックします。 既定では、制約がチェックされません。</summary>
+        <summary>データが挿入される際の制約をチェックします。 既定では、制約がチェックされません。</summary>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -188,7 +188,7 @@
       </ReturnValue>
       <MemberValue>16</MemberValue>
       <Docs>
-        <summary>指定した場合は、サーバーが、データベースに挿入される行の挿入トリガーを起動することになります。</summary>
+        <summary>このオプションを指定すると、データベースに挿入される行に対する挿入トリガーがサーバーで発生します。</summary>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -224,7 +224,7 @@
       </ReturnValue>
       <MemberValue>1</MemberValue>
       <Docs>
-        <summary>ソースの ID 値を保持します。 指定しない場合は、コピー先で ID 値が割り当てられます。</summary>
+        <summary>ソースの ID 値が保持されます。 指定しない場合は、コピー先で ID 値が割り当てられます。</summary>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -260,7 +260,7 @@
       </ReturnValue>
       <MemberValue>8</MemberValue>
       <Docs>
-        <summary>既定値の設定に関係なく、コピー先テーブル内の null 値を保持します。 指定しない場合は、必要に応じて null 値は既定値に置き換えられます。</summary>
+        <summary>既定値の設定に関係なく、コピー先のテーブル内の null 値が保持されます。 指定しない場合は、必要に応じて null 値は既定値に置き換えられます。</summary>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -296,7 +296,7 @@
       </ReturnValue>
       <MemberValue>4</MemberValue>
       <Docs>
-        <summary>一括コピー操作の実行中に、一括更新ロックを取得します。 指定しない場合、行ロックが使用されます。</summary>
+        <summary>一括コピー操作の実行中、一括更新のロックを取得します。 指定しない場合、行ロックが使用されます。</summary>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
@@ -332,7 +332,7 @@
       </ReturnValue>
       <MemberValue>32</MemberValue>
       <Docs>
-        <summary>指定した場合は、一括コピー操作の各バッチが、トランザクション内で発生します。 このオプションを指示し、コンストラクターに <see cref="T:System.Data.SqlClient.SqlTransaction" /> オブジェクトも指定すると、<see cref="T:System.ArgumentException" /> が発生します。</summary>
+        <summary>指定した場合、一括コピー操作の各バッチがトランザクション内で発生します。 このオプションを指示し、コンストラクターに <see cref="T:System.Data.SqlClient.SqlTransaction" /> オブジェクトも指定すると、<see cref="T:System.ArgumentException" /> が発生します。</summary>
         <related type="Article" href="~/docs/framework/data/adonet/ado-net-overview.md">ADO.NET の概要</related>
       </Docs>
     </Member>
