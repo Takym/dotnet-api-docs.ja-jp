@@ -1,5 +1,5 @@
 <Type Name="Rfc3161TimestampToken" FullName="System.Security.Cryptography.Pkcs.Rfc3161TimestampToken">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6276fbf41674bc53785acfc3e9a213e7ea1c165a" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76958828" /></Metadata><TypeSignature Language="C#" Value="public sealed class Rfc3161TimestampToken" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f903416d018e753fddc34d7b0fd7b79ce1daed93" /><Meta Name="ms.sourcegitcommit" Value="f9576bf8c61e3d46834aeeff50f858359f2a99ba" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/09/2020" /><Meta Name="ms.locfileid" Value="77102209" /></Metadata><TypeSignature Language="C#" Value="public sealed class Rfc3161TimestampToken" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Rfc3161TimestampToken extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Rfc3161TimestampToken" />
@@ -18,7 +18,7 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>IETF RFC 3161 のタイムスタンプ トークンを表します。</summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -43,11 +43,12 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>RFC3161 タイムスタンプ トークンの署名済み Cryptographic Message Syntax (CMS) 形式を取得します。</summary>
-        <returns><see cref="T:System.Security.Cryptography.Pkcs.SignedCms" /> の <see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken" /> 形式です。</returns>
+        <summary>RFC3161 のタイムスタンプ トークンの署名済み Cryptographic Message Syntax (CMS) 形式を取得します。</summary>
+        <returns><see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken" /> の <see cref="T:System.Security.Cryptography.Pkcs.SignedCms" /> 形式です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
+## Remarks
 このメソッドを連続して呼び出すと、同じオブジェクトが返されます。
 
 <xref:System.Security.Cryptography.Pkcs.SignedCms> クラスは変更可能ですが、そのオブジェクトに対する変更は、それを生成した <xref:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken> オブジェクトには反映されません。
@@ -78,8 +79,8 @@
         <ReturnType>System.Security.Cryptography.Pkcs.Rfc3161TimestampTokenInfo</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary><see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampTokenInfo" /> としてタイムスタンプ トークンの詳細を取得します。</summary>
+        <value>このタイムスタンプトークンの詳細を <see cref="T:System.Security.Cryptography.Pkcs.Rfc3161TimestampTokenInfo" />として表示します。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -108,11 +109,11 @@
         <Parameter Name="bytesConsumed" Type="System.Int32" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="encodedBytes">To be added.</param>
-        <param name="token">To be added.</param>
-        <param name="bytesConsumed">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="encodedBytes">DER でエンコードされたタイムスタンプ トークンを格納するバッファー。</param>
+        <param name="token">デコードが正常に実行された場合は、正常にデコードされたタイムスタンプ トークンがこのメソッドにより返されます。デコードに失敗した場合は <see langword="null" />。 このパラメーターは初期化前として処理されます。</param>
+        <param name="bytesConsumed">このメソッドから制御が戻るときに、<paramref name="encodedBytes" /> から読み取られたバイト数。 このパラメーターは初期化前として処理されます。</param>
+        <summary><paramref name="encodedBytes" /> のコンテンツを、DER でエンコードされたタイムスタンプ トークンとして解釈しようとします。</summary>
+        <returns><paramref name="encodedBytes" /> がタイムスタンプ トークンとして正常に解釈された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -140,12 +141,26 @@
         <Parameter Name="extraCandidates" Type="System.Security.Cryptography.X509Certificates.X509Certificate2Collection" />
       </Parameters>
       <Docs>
-        <param name="data">To be added.</param>
-        <param name="signerCertificate">To be added.</param>
-        <param name="extraCandidates">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="data">このタイムスタンプ トークンに対して検証するデータ。</param>
+        <param name="signerCertificate">このトークンに署名したタイムスタンプ機関 (TSA) からの証明書が返されます。または、証明書の署名者を特定できない場合は <see langword="null" /> が返されます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="extraCandidates">タイムスタンプ機関 (TSA) 証明書として考慮する、トークン内に含まれる可能性のある証明書以外のオプションの証明書のコレクション。</param>
+        <summary>提供されるデータに対し、現在のトークンが有効なタイムスタンプ トークンであるか検証します。</summary>
+        <returns>タイムスタンプ機関 (TSA) 証明書が見つかった場合、証明書の公開キーがトークンの署名を検証した場合、トークンが指定したデータのハッシュと一致する場合は <see langword="true" />。それ以外の場合は、<see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+この方法では、タイムスタンプ機関 (TSA) 証明書に必要な拡張キー使用法の値 (1.3.6.1.5.5.7.3.8) があること、トークンの埋め込み ESSCertID または ESSCertID2 識別子と一致すること、トークンのタイムスタンプを含む有効範囲があることが必要です。値には、トークンの署名を正常に検証する公開キーがあります。
+
+このメソッドは、適切な TSA 証明書を決定した後、トークン内に埋め込まれているアルゴリズム識別子を使用して `data` のダイジェストを計算します。
+そのダイジェストがトークンの埋め込みダイジェストと一致する場合、証明書は `signerCertificate` を介して報告され、メソッドは `true`を返します。
+
+ダイジェストが一致しない場合、または TSA 証明書を特定できなかった場合、メソッドは `signerCertificate` を `null` として報告し、`false`を返します。
+
+          ]]></format>
+        </remarks>
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken.VerifySignatureForHash(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.X509Certificates.X509Certificate2@,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)" />
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken.VerifySignatureForHash(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.Oid,System.Security.Cryptography.X509Certificates.X509Certificate2@,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)" />
       </Docs>
     </Member>
     <Member MemberName="VerifySignatureForHash">
@@ -173,13 +188,27 @@
         <Parameter Name="extraCandidates" Type="System.Security.Cryptography.X509Certificates.X509Certificate2Collection" />
       </Parameters>
       <Docs>
-        <param name="hash">To be added.</param>
-        <param name="hashAlgorithm">To be added.</param>
-        <param name="signerCertificate">To be added.</param>
-        <param name="extraCandidates">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="hash">このタイムスタンプ トークンに対して検証する暗号化ハッシュ。</param>
+        <param name="hashAlgorithm"><paramref name="hash" /> を生成したアルゴリズム。</param>
+        <param name="signerCertificate">このトークンに署名したタイムスタンプ機関 (TSA) からの証明書が返されます。または、証明書の署名者を特定できない場合は <see langword="null" /> が返されます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="extraCandidates">タイムスタンプ機関 (TSA) 証明書として考慮する、トークン内に含まれる可能性のある証明書以外のオプションの証明書のコレクション。</param>
+        <summary>提供されたデータ ハッシュおよびアルゴリズム識別子に対し、現在のトークンが有効なタイムスタンプ トークンであるか検証します。</summary>
+        <returns>タイムスタンプ機関 (TSA) 証明書が見つかった場合、証明書の公開キーがトークンの署名を検証した場合、トークンが指定したデータ ハッシュおよびアルゴリズムのハッシュと一致する場合は <see langword="true" />。それ以外の場合は、<see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+この方法では、タイムスタンプ機関 (TSA) 証明書に必要な拡張キー使用法の値 (1.3.6.1.5.5.7.3.8) があること、トークンの埋め込み ESSCertID または ESSCertID2 識別子と一致すること、トークンのタイムスタンプを含む有効範囲があることが必要です。値には、トークンの署名を正常に検証する公開キーがあります。
+
+このメソッドは、適切な TSA 証明書を決定した後、指定されたダイジェストとアルゴリズム識別子をトークンの適切な値と比較します。
+ダイジェストとアルゴリズムの両方がトークンの値と一致する場合、証明書は `signerCertificate` を介して報告され、メソッドは `true`を返します。
+
+ダイジェストが一致しない場合、アルゴリズムが一致しない場合、または TSA 証明書を特定できなかった場合、メソッドは `signerCertificate` を `null` として報告し、`false`を返します。
+
+          ]]></format>
+        </remarks>
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken.VerifySignatureForData(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.X509Certificates.X509Certificate2@,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)" />
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken.VerifySignatureForHash(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.Oid,System.Security.Cryptography.X509Certificates.X509Certificate2@,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)" />
       </Docs>
     </Member>
     <Member MemberName="VerifySignatureForHash">
@@ -207,13 +236,28 @@
         <Parameter Name="extraCandidates" Type="System.Security.Cryptography.X509Certificates.X509Certificate2Collection" />
       </Parameters>
       <Docs>
-        <param name="hash">To be added.</param>
-        <param name="hashAlgorithmId">To be added.</param>
-        <param name="signerCertificate">To be added.</param>
-        <param name="extraCandidates">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="hash">このタイムスタンプ トークンに対して検証する暗号化ハッシュ。</param>
+        <param name="hashAlgorithm"><paramref name="hash" /> を生成したアルゴリズムのオブジェクト識別子の表現。</param>
+        <param name="signerCertificate">このトークンに署名したタイムスタンプ機関 (TSA) からの証明書が返されます。または、証明書の署名者を特定できない場合は <see langword="null" /> が返されます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="extraCandidates">タイムスタンプ機関 (TSA) 証明書として考慮する、トークン内に含まれる可能性のある証明書以外のオプションの証明書のコレクション。</param>
+        <summary>提供されたデータ ハッシュおよびアルゴリズム識別子に対し、現在のトークンが有効なタイムスタンプ トークンであるか検証します。</summary>
+        <returns>タイムスタンプ機関 (TSA) 証明書が見つかった場合、証明書の公開キーがトークンの署名を検証した場合、トークンが指定したデータ ハッシュおよびアルゴリズムのハッシュと一致する場合は <see langword="true" />。それ以外の場合は、<see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+このメソッドでは、TSA 証明書に必要な拡張キー使用法の値 (1.3.6.1.5.5.7.3.8) が含まれていること、トークンの埋め込み ESSCertID または ESSCertID2 識別子と一致していること、トークンのタイムスタンプ値を含む有効範囲があること、および公開キーを持っていることが必要です。これにより、トークンの署名が正常に検証されます。
+
+このメソッドは、適切な TSA 証明書を決定した後、指定されたダイジェストとアルゴリズム識別子をトークンの適切な値と比較します。
+ダイジェストとアルゴリズムの両方がトークンの値と一致する場合、証明書は `signerCertificate` を介して報告され、メソッドは `true`を返します。
+
+ダイジェストが一致しない場合、アルゴリズムが一致しない場合、または TSA 証明書を特定できなかった場合、メソッドは `signerCertificate` を `null` として報告し、`false`を返します。
+
+          ]]></format>
+        </remarks>
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken.VerifySignatureForData(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.X509Certificates.X509Certificate2@,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)" />
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken.VerifySignatureForHash(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.X509Certificates.X509Certificate2@,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)" />
       </Docs>
     </Member>
     <Member MemberName="VerifySignatureForSignerInfo">
@@ -239,12 +283,31 @@
         <Parameter Name="extraCandidates" Type="System.Security.Cryptography.X509Certificates.X509Certificate2Collection" />
       </Parameters>
       <Docs>
-        <param name="signerInfo">To be added.</param>
-        <param name="signerCertificate">To be added.</param>
-        <param name="extraCandidates">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="signerInfo">タイムスタンプが作成されたことを確認する CMS 署名者情報。</param>
+        <param name="signerCertificate">このトークンに署名したタイムスタンプ機関 (TSA) からの証明書が返されます。または、証明書の署名者を特定できない場合は <see langword="null" /> が返されます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="extraCandidates">タイムスタンプ機関 (TSA) 証明書として考慮する、トークン内に含まれる可能性のある証明書以外のオプションの証明書のコレクション。</param>
+        <summary>提供される <see cref="T:System.Security.Cryptography.Pkcs.SignerInfo" /> に対し、現在のトークンが有効なタイムスタンプ トークンであるか検証します。</summary>
+        <returns>タイムスタンプ機関 (TSA) 証明書が見つかった場合、証明書の公開キーがトークンの署名を検証した場合、トークンが <paramref name="signerInfo" />の署名と一致する場合は <see langword="true" />。それ以外の場合は、<see langword="false" />。</returns>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+このメソッドは、IETF RFC 3161 付録 A (CMS を使用した署名タイムスタンプ属性) に従って、タイムスタンプトークンが暗号化メッセージ構文 (CMS) <xref:System.Security.Cryptography.Pkcs.SignerInfo>に対して有効であることを確認します。
+
+このメソッドでは、TSA 証明書に必要な拡張キー使用法の値 (1.3.6.1.5.5.7.3.8) が含まれていること、トークンの埋め込み ESSCertID または ESSCertID2 識別子と一致していること、トークンのタイムスタンプ値を含む有効範囲があること、および公開キーを持っていることが必要です。これにより、トークンの署名が正常に検証されます。
+
+このメソッドは、適切な TSA 証明書を決定した後、指定された `signerInfo` の署名値がトークンのダイジェストおよびアルゴリズム識別子と一致するかどうかを判断します。
+`signerInfo` シグネチャがトークンのダイジェストとアルゴリズム識別子と一致する場合、証明書は `signerCertificate` を介して報告され、メソッドは `true`を返します。
+
+`signerInfo` 署名が一致しない場合、または TSA 証明書を特定できなかった場合、メソッドは `signerCertificate` を `null` として報告し、`false`を返します。
+
+このメソッドは、`signerInfo` の <xref:System.Security.Cryptography.Pkcs.SignerInfo.UnsignedAttributes> を考慮しません。また、`signerInfo` シグネチャが署名 mind に署名されたデータに適しているかどうかを判断することもありません。
+
+          ]]></format>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException"><paramref name="signerInfo" /> が <see langword="null" />です。</exception>
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken.VerifySignatureForData(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.X509Certificates.X509Certificate2@,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)" />
+        <altmember cref="M:System.Security.Cryptography.Pkcs.Rfc3161TimestampToken.VerifySignatureForHash(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.Oid,System.Security.Cryptography.X509Certificates.X509Certificate2@,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)" />
       </Docs>
     </Member>
   </Members>
