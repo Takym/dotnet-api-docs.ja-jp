@@ -1,6 +1,6 @@
 <Namespace Name="System.Diagnostics.PerformanceData">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b1c5ad58fc8cb70eeab256e01ab98bfc4478c7cb" /><Meta Name="ms.sourcegitcommit" Value="08fc3691deb7adaf0dfd751b9d9d0b23a3d3a7b8" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/09/2019" /><Meta Name="ms.locfileid" Value="68908473" /></Metadata><Docs>
-    <summary>カウンター データを提供するには、この名前空間のクラスを使用します。 カウンターは、パフォーマンス モニターなどのコンシューマーにパフォーマンス メトリックスを公開するために使われます。 名前空間には、カウンター データを使用するためのクラスは含まれません。 パフォーマンス カウンター アーキテクチャの詳細については、「<see href="https://msdn.microsoft.com/library/windows/desktop/aa373083\(v=vs.85\">パフォーマンス カウンター</see>」をご覧ください。</summary>
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f5a019ddec2c0a3c01602f5347c525eb833fc61d" /><Meta Name="ms.sourcegitcommit" Value="a8ff98b48bda124cfcb2605f5da9b21bc6dcd791" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/14/2020" /><Meta Name="ms.locfileid" Value="77218525" /></Metadata><Docs>
+    <summary>カウンター データを提供するには、この名前空間のクラスを使用します。 カウンターは、パフォーマンス モニターなどのコンシューマーにパフォーマンス メトリックスを公開するために使われます。 名前空間には、カウンター データを使用するためのクラスは含まれません。 パフォーマンス カウンター アーキテクチャの詳細については、「<see href="/windows/win32/perfctrs/performance-counters-portal">パフォーマンス カウンター</see>」を参照してください。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -15,9 +15,9 @@
   
     -   CounterAttribute 要素の name 属性の参照値は無視されます。  
   
-     マニフェストの記述の詳細については、「[パフォーマンスカウンターのスキーマ](https://msdn.microsoft.com/library/windows/desktop/aa373092\(v=vs.85\).aspx)」を参照してください。  
+     マニフェストの記述の詳細については、「[パフォーマンスカウンターのスキーマ](/windows/win32/perfctrs/performance-counters-schema)」を参照してください。  
   
-2.  マニフェストを記述した後、 [ctrpp](https://msdn.microsoft.com/library/windows/desktop/aa372128\(v=vs.85\).aspx)ツールを使用してマニフェストをコンパイルします (ctrpp)。 このツールでは、.h、.c、.rc、* _r という4つのファイルが生成されます。 .H ファイルと .c ファイルは無視してかまいません。 .Rc ファイルには、マニフェストで定義されているローカライズされた文字列が含まれています。 プロジェクトに含めるコンパイル済みのリソースファイル (.res) を作成するには、.rc ファイルと * _r ファイルを使用します。 次の呼び出しは、リソースファイルをコンパイルする方法を示しています。  
+2.  マニフェストを記述した後、 [ctrpp](/windows/win32/perfctrs/ctrpp)ツールを使用してマニフェストをコンパイルします (ctrpp)。 このツールでは、.h、.c、.rc、* _r という4つのファイルが生成されます。 .H ファイルと .c ファイルは無視してかまいません。 .Rc ファイルには、マニフェストで定義されているローカライズされた文字列が含まれています。 .Rc ファイルと * _r ファイルを使用して、プロジェクトに含めるコンパイル済みのリソースファイル (.res) を作成します。 次の呼び出しは、リソースファイルをコンパイルする方法を示しています。  
   
     ```console  
     rc /r /i "c:\Program Files\Microsoft SDKs\Windows\v6.0\Include" provider.rc  
@@ -29,15 +29,15 @@
   
 3.  プロバイダーを作成します。 次の手順は、プロバイダーによる呼び出しを示しています。  
   
-    1.  カウンターセット<xref:System.Diagnostics.PerformanceData.CounterSet.%23ctor%2A?displayProperty=nameWithType>を定義するには、コンストラクターを呼び出します。 マニフェストで定義されている各カウンターセットに対して、このメソッドを呼び出します。  
+    1.  <xref:System.Diagnostics.PerformanceData.CounterSet.%23ctor%2A?displayProperty=nameWithType> コンストラクターを呼び出して、カウンターセットを定義します。 マニフェストで定義されている各カウンターセットに対して、このメソッドを呼び出します。  
   
-    2.  各カウンターセットに対して、 <xref:System.Diagnostics.PerformanceData.CounterSet.AddCounter%2A?displayProperty=nameWithType>メソッドの1つを呼び出して、セットにカウンターを追加します。 カウンターセットで定義されている各カウンターに対して、このメソッドを呼び出します。  
+    2.  各カウンターセットに対して、<xref:System.Diagnostics.PerformanceData.CounterSet.AddCounter%2A?displayProperty=nameWithType> メソッドの1つを呼び出して、セットにカウンターを追加します。 カウンターセットで定義されている各カウンターに対して、このメソッドを呼び出します。  
   
-    3.  <xref:System.Diagnostics.PerformanceData.CounterSet.CreateCounterSetInstance%2A?displayProperty=nameWithType>メソッドを呼び出して、カウンターセットのインスタンスを作成します (カウンターデータを格納しているインスタンス)。 単一インスタンスのカウンターセットの場合は、このメソッドを1回呼び出します。 複数インスタンスのカウンターセットの場合は、カウンターデータを提供する必要がある各インスタンスに対してこのメソッドを呼び出します (インスタンスごとに一意の名前を使用します)。  
+    3.  <xref:System.Diagnostics.PerformanceData.CounterSet.CreateCounterSetInstance%2A?displayProperty=nameWithType> メソッドを呼び出して、カウンターセットのインスタンスを作成します (カウンターデータを格納しているインスタンス)。 単一インスタンスのカウンターセットの場合は、このメソッドを1回呼び出します。 複数インスタンスのカウンターセットの場合は、カウンターデータを提供する必要がある各インスタンスに対してこのメソッドを呼び出します (インスタンスごとに一意の名前を使用します)。  
   
-    4.  カウンターの<xref:System.Diagnostics.PerformanceData.CounterSetInstance.Counters%2A?displayProperty=nameWithType>カウンターデータにアクセスして設定するには、プロパティを使用します。  
+    4.  カウンターのカウンターデータにアクセスして設定するには、<xref:System.Diagnostics.PerformanceData.CounterSetInstance.Counters%2A?displayProperty=nameWithType> プロパティを使用します。  
   
-4.  プロバイダーが完成したら、 [LodCtr](https://docs.microsoft.com/windows/desktop/perfctrs/adding-counter-names-and-descriptions-to-the-registry#running-the-lodctr-tool)ツールを使用して、コンピューターにカウンターを登録します。 たとえば、オブジェクトに適用された  
+4.  プロバイダーが完成したら、 [LodCtr](/windows/desktop/perfctrs/adding-counter-names-and-descriptions-to-the-registry#running-the-lodctr-tool)ツールを使用して、コンピューターにカウンターを登録します。 たとえば、次のように入力します。  
   
     ```console  
     lodctr /m:provider.man  

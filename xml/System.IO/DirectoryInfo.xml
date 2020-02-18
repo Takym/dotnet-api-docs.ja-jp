@@ -1,5 +1,5 @@
 <Type Name="DirectoryInfo" FullName="System.IO.DirectoryInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="15a07f7c16903a6da1e60ecc54b8b6f99a04ce05" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75132492" /></Metadata><TypeSignature Language="C#" Value="public sealed class DirectoryInfo : System.IO.FileSystemInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="abb71d42226a6807d21f231a68e7c7c93f4130db" /><Meta Name="ms.sourcegitcommit" Value="a8ff98b48bda124cfcb2605f5da9b21bc6dcd791" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/14/2020" /><Meta Name="ms.locfileid" Value="77225281" /></Metadata><TypeSignature Language="C#" Value="public sealed class DirectoryInfo : System.IO.FileSystemInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable sealed beforefieldinit DirectoryInfo extends System.IO.FileSystemInfo" />
   <TypeSignature Language="DocId" Value="T:System.IO.DirectoryInfo" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class DirectoryInfo&#xA;Inherits FileSystemInfo" />
@@ -154,11 +154,10 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> に、"、&lt;、&gt;、| など、無効な文字が含まれています。</exception>
         <exception cref="T:System.IO.PathTooLongException">指定されたパスかファイル名、またはその両方がシステム定義の最大文字数を超えています。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルとディレクトリから読み取りを行う場合。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" /></permission>
         <altmember cref="T:System.IO.DriveInfo" />
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
@@ -229,7 +228,6 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IOException">ディレクトリを作成できません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルの書き込みに使用します。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Write" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -273,16 +271,44 @@
   
  共通 I/O タスクの一覧は、 [共通 I/O タスク](~/docs/standard/io/common-i-o-tasks.md) を参照してください。  
   
+> [!IMPORTANT]
+> このメソッドは、`System.Security.AccessControl` アセンブリ: <xref:System.IO.FileSystemAclExtensions.Create(System.IO.DirectoryInfo,System.Security.AccessControl.DirectorySecurity)>の一部として、`FileSystemAclExtensions` クラスの拡張メソッドとして .NET Core 3.1 に移植されました。
+
+## Examples
+
+次のコード例では、指定されたディレクトリセキュリティ属性を使用して、ユーザーの一時フォルダー内に新しいディレクトリを作成します。
+
+```csharp
+using System.IO;
+using System.Security.AccessControl;
+using System.Security.Principal;
+namespace ConsoleApp
+{
+    class Program
+    {
+        static void Main()
+        {
+            DirectorySecurity security = new DirectorySecurity();
+            SecurityIdentifier identity = new SecurityIdentifier(WellKnownSidType.BuiltinUsersSid, null);
+            FileSystemAccessRule accessRule = new FileSystemAccessRule(identity, FileSystemRights.FullControl, AccessControlType.Allow);
+            security.AddAccessRule(accessRule);
+            string path = Path.Combine(Path.GetTempPath(), "directoryToCreate");
+            DirectoryInfo dirInfo = new DirectoryInfo(path);
+            dirInfo.Create(security);
+        }
+    }
+}
+```
+
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.IOException"><paramref name="path" /> で指定されたディレクトリは読み取り専用であるか、空ではありません。</exception>
         <exception cref="T:System.UnauthorizedAccessException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> は長さ 0 の文字列で、空白のみで構成されるか、または <see cref="F:System.IO.Path.InvalidPathChars" /> で定義される 1 つ以上の正しくない文字を含んでいます。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.PathTooLongException">指定されたパスかファイル名、またはその両方がシステム定義の最大文字数を超えています。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">マップされていないドライブにあるなど、指定されたパスが無効です。</exception>
         <exception cref="T:System.NotSupportedException">コロン (:) 文字だけで、ディレクトリを作成しようとしました。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ディレクトリを作成するためのアクセス許可。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.EnvironmentPermissionAccess.Read" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="CreateSubdirectory">
@@ -358,7 +384,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> は有効なファイル パスを指定していないか、または無効な <see langword="DirectoryInfo" /> 文字を含んでいます。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">マップされていないドライブにあるなど、指定されたパスが無効です。</exception>
         <exception cref="T:System.IO.IOException">サブディレクトリを作成できません。  
   
@@ -370,7 +396,6 @@
 または 
 呼び出し元には、返された <see cref="T:System.IO.DirectoryInfo" /> オブジェクトで記述されているディレクトリを読み取るためのコード アクセス許可がありません。  <paramref name="path" /> パラメーターが既存のディレクトリを記述する場合、これが発生する可能性があります。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="path" /> に、ドライブ ラベル ("C:\\") の一部ではないコロン文字 (:) が含まれています。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルの読み取りと書き込みを行います。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" />、<see cref="F:System.Security.Permissions.FileIOPermissionAccess.Write" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -423,7 +448,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="path" /> は有効なファイル パスを指定していないか、または無効な <see langword="DirectoryInfo" /> 文字を含んでいます。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="path" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">マップされていないドライブにあるなど、指定されたパスが無効です。</exception>
         <exception cref="T:System.IO.IOException">サブディレクトリを作成できません。  
   
@@ -435,7 +460,6 @@
 または 
 呼び出し元には、返された <see cref="T:System.IO.DirectoryInfo" /> オブジェクトで記述されているディレクトリを読み取るためのコード アクセス許可がありません。  <paramref name="path" /> パラメーターが既存のディレクトリを記述する場合、これが発生する可能性があります。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="path" /> に、ドライブ ラベル ("C:\\") の一部ではないコロン文字 (:) が含まれています。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルの読み取りと書き込みを行います。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" />、<see cref="F:System.Security.Permissions.FileIOPermissionAccess.Write" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="Delete">
@@ -514,7 +538,6 @@
 または 
 ディレクトリに開いているハンドルがあり、オペレーティング システムが Windows XP かそれ以前のバージョンです。 このハンドルが開いている原因は、ディレクトリを列挙したことにある可能性があります。 詳細については、「[方法: ディレクトリとファイルを列挙する](~/docs/standard/io/how-to-enumerate-directories-and-files.md)」をご覧ください。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ディレクトリの作成に使用します。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Write" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -594,7 +617,6 @@
 または 
 ディレクトリまたはそのファイルのうちの 1 つについて開かれているハンドルがあり、かつオペレーティング システムが Windows XP 以前です。 このハンドルが開いている原因は、ディレクトリおよびファイルを列挙したことにある可能性があります。 詳細については、「[方法: ディレクトリとファイルを列挙する](~/docs/standard/io/how-to-enumerate-directories-and-files.md)」をご覧ください。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermissionAccess">削除する <see langword="DirectoryInfo" /> およびサブディレクトリへの書き込みアクセス許可には書き込みフラグが必要です。</permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -741,12 +763,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateDirectories%2A> メソッドと <xref:System.IO.DirectoryInfo.GetDirectories%2A> メソッドは次のように異なります。  
   
@@ -776,7 +798,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
       </Docs>
@@ -818,12 +840,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateDirectories%2A> メソッドと <xref:System.IO.DirectoryInfo.GetDirectories%2A> メソッドは次のように異なります。  
   
@@ -853,7 +875,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
       </Docs>
@@ -897,7 +919,7 @@
       </Parameters>
       <Docs>
         <param name="searchPattern">ディレクトリの名前と照合する検索文字列。  このパラメーターには有効なリテラルのパスとワイルドカード (* と ?) 文字の組み合わせを含めることができますが、正規表現はサポートされていません。</param>
-        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、すべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。 既定値は <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />です。</param>
+        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、またはすべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。 既定値は <see cref="F:System.IO.SearchOption.TopDirectoryOnly" /> です。</param>
         <summary>指定された検索パターンと、サブディレクトリを検索するかどうかを指定するオプションの設定に一致する列挙可能なディレクトリ情報のコレクションを返します。</summary>
         <returns><paramref name="searchPattern" /> と <paramref name="searchOption" /> に一致する列挙可能なディレクトリのコレクション。</returns>
         <remarks>
@@ -906,12 +928,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateDirectories%2A> メソッドと <xref:System.IO.DirectoryInfo.GetDirectories%2A> メソッドは次のように異なります。  
   
@@ -949,7 +971,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="searchOption" /> が有効な <see cref="T:System.IO.SearchOption" /> 値ではありません。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -1103,12 +1125,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateFiles%2A> メソッドと <xref:System.IO.DirectoryInfo.GetFiles%2A> メソッドは次のように異なります。  
   
@@ -1148,7 +1170,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが正しくありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
       </Docs>
@@ -1190,12 +1212,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateFiles%2A> メソッドと <xref:System.IO.DirectoryInfo.GetFiles%2A> メソッドは次のように異なります。  
   
@@ -1227,7 +1249,7 @@
 
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが正しくありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
       </Docs>
@@ -1271,7 +1293,7 @@
       </Parameters>
       <Docs>
         <param name="searchPattern">ファイル名と照合する検索文字列。  このパラメーターには有効なリテラルのパスとワイルドカード (* と ?) 文字の組み合わせを含めることができますが、正規表現はサポートされていません。</param>
-        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、すべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。 既定値は <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />です。</param>
+        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、またはすべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。 既定値は <see cref="F:System.IO.SearchOption.TopDirectoryOnly" /> です。</param>
         <summary>指定された検索パターンと、サブディレクトリを検索するかどうかを指定するオプションの設定に一致する列挙可能なファイル情報のコレクションを返します。</summary>
         <returns><paramref name="searchPattern" /> と <paramref name="searchOption" /> に一致する列挙可能なファイルのコレクション。</returns>
         <remarks>
@@ -1280,12 +1302,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateFiles%2A> メソッドと <xref:System.IO.DirectoryInfo.GetFiles%2A> メソッドは次のように異なります。  
   
@@ -1325,7 +1347,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="searchOption" /> が有効な <see cref="T:System.IO.SearchOption" /> 値ではありません。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -1463,12 +1485,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateFileSystemInfos%2A> メソッドと <xref:System.IO.DirectoryInfo.GetFileSystemInfos%2A> メソッドは次のように異なります。  
   
@@ -1498,7 +1520,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <altmember cref="T:System.IO.FileSystemWatcher" />
@@ -1541,12 +1563,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateFileSystemInfos%2A> メソッドと <xref:System.IO.DirectoryInfo.GetFileSystemInfos%2A> メソッドは次のように異なります。  
   
@@ -1576,7 +1598,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
       </Docs>
@@ -1620,7 +1642,7 @@
       </Parameters>
       <Docs>
         <param name="searchPattern">ディレクトリの名前と照合する検索文字列。  このパラメーターには有効なリテラルのパスとワイルドカード (* と ?) 文字の組み合わせを含めることができますが、正規表現はサポートされていません。</param>
-        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、すべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。 既定値は <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />です。</param>
+        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、またはすべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。 既定値は <see cref="F:System.IO.SearchOption.TopDirectoryOnly" /> です。</param>
         <summary>指定された検索パターンと、サブディレクトリを検索するかどうかを指定するオプションの設定に一致する列挙可能なファイル システム情報のコレクションを返します。</summary>
         <returns><paramref name="searchPattern" /> および <paramref name="searchOption" /> に一致する列挙可能なファイル システム情報オブジェクトのコレクション。</returns>
         <remarks>
@@ -1629,12 +1651,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  <xref:System.IO.DirectoryInfo.EnumerateFileSystemInfos%2A> メソッドと <xref:System.IO.DirectoryInfo.GetFileSystemInfos%2A> メソッドは次のように異なります。  
   
@@ -1664,7 +1686,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="searchOption" /> が有効な <see cref="T:System.IO.SearchOption" /> 値ではありません。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -1843,8 +1865,6 @@
   
  呼び出し元に、必要なアクセス許可がありません。</exception>
         <exception cref="T:System.IO.IOException">ディレクトリを開くときに、I/O エラーが発生しました。</exception>
-        <exception cref="T:System.PlatformNotSupportedException">現在のオペレーティング システムは Microsoft Windows 2000 以降ではありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ディレクトリのアクセス制御リスト (ACL) を列挙するアクセス許可。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.NoAccess" />、<see cref="F:System.Security.AccessControl.AccessControlActions.View" /></permission>
       </Docs>
     </Member>
     <Member MemberName="GetAccessControl">
@@ -1887,8 +1907,6 @@
   
  </description></item><item><term><see cref="T:System.IO.IOException" /></term><description> ディレクトリを開くときに、I/O エラーが発生しました。  
   
- </description></item><item><term><see cref="T:System.PlatformNotSupportedException" /></term><description> 現在のオペレーティング システムは Microsoft Windows 2000 以降ではありません。  
-  
  </description></item><item><term><see cref="T:System.UnauthorizedAccessException" /></term><description> ディレクトリが読み取り専用です。  
   
 または 
@@ -1908,7 +1926,6 @@
   
  ]]></format>
         </remarks>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ディレクトリのアクセス制御リスト (ACL) を列挙するアクセス許可。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.NoAccess" />、<see cref="F:System.Security.AccessControl.AccessControlActions.View" /></permission>
       </Docs>
     </Member>
     <MemberGroup MemberName="GetDirectories">
@@ -1960,7 +1977,7 @@
       <Parameters />
       <Docs>
         <summary>現在のディレクトリのサブディレクトリを返します。</summary>
-        <returns><see cref="T:System.IO.DirectoryInfo" /> オブジェクトの配列。</returns>
+        <returns><see cref="T:System.IO.DirectoryInfo" /> オブジェクトの配列です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1997,7 +2014,6 @@
         <exception cref="T:System.IO.DirectoryNotFoundException"><see cref="T:System.IO.DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <exception cref="T:System.UnauthorizedAccessException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">を参照してください。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -2052,12 +2068,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  このメソッドは、次の <xref:System.IO.DirectoryInfo> プロパティの値を事前に設定します。  
   
@@ -2087,10 +2103,9 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see langword="DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.UnauthorizedAccessException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルとディレクトリからの読み取り、およびパスへのアクセスに使用します。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" />、<see cref="F:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -2133,12 +2148,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  このメソッドは、次の <xref:System.IO.DirectoryInfo> プロパティの値を事前に設定します。  
   
@@ -2159,7 +2174,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see langword="DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.UnauthorizedAccessException">呼び出し元に、必要なアクセス許可がありません。</exception>
       </Docs>
@@ -2204,7 +2219,7 @@
       </Parameters>
       <Docs>
         <param name="searchPattern">ディレクトリの名前と照合する検索文字列。  このパラメーターには有効なリテラルのパスとワイルドカード (* と ?) 文字の組み合わせを含めることができますが、正規表現はサポートされていません。</param>
-        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、すべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。</param>
+        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、またはすべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。</param>
         <summary>指定した検索条件に一致し、サブディレクトリを検索するかどうかを決定する値を持つ、現在の <see cref="T:System.IO.DirectoryInfo" /> 内のディレクトリの配列を返します。</summary>
         <returns><see langword="DirectoryInfo" /> に一致する <paramref name="searchPattern" /> 型の配列。</returns>
         <remarks>
@@ -2213,12 +2228,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  サブディレクトリが存在しない場合、または `searchPattern` パラメーターに一致するサブディレクトリがない場合、このメソッドは空の配列を返します。  
   
@@ -2250,11 +2265,10 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="searchOption" /> が有効な <see cref="T:System.IO.SearchOption" /> 値ではありません。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException"><see langword="DirectoryInfo" /> オブジェクト内のカプセル化されたパスが有効ではありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.UnauthorizedAccessException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルとディレクトリからの読み取り、およびパスへのアクセスに使用します。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" />、<see cref="F:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -2309,7 +2323,7 @@
       <Parameters />
       <Docs>
         <summary>現在のディレクトリからファイル一覧を返します。</summary>
-        <returns><see cref="T:System.IO.FileInfo" /> 型の配列。</returns>
+        <returns><see cref="T:System.IO.FileInfo" /> 型の配列です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2355,7 +2369,6 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.IO.DirectoryNotFoundException">マップされていないドライブにあるなど、パスが正しくありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">を参照してください。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -2403,14 +2416,14 @@
       <Docs>
         <param name="searchPattern">ファイル名と照合する検索文字列。  このパラメーターには有効なリテラルのパスとワイルドカード (* と ?) 文字の組み合わせを含めることができますが、正規表現はサポートされていません。</param>
         <summary>現在のディレクトリから、指定した検索パターンに一致するファイル一覧を返します。</summary>
-        <returns><see cref="T:System.IO.FileInfo" /> 型の配列。</returns>
+        <returns><see cref="T:System.IO.FileInfo" /> 型の配列です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
@@ -2473,10 +2486,9 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">パスが正しくありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">パスへのアクセス、およびファイルとディレクトリからの読み取りのために使用します。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" />、<see cref="F:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -2519,7 +2531,7 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
@@ -2574,7 +2586,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">パスが正しくありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
       </Docs>
@@ -2619,9 +2631,9 @@
       </Parameters>
       <Docs>
         <param name="searchPattern">ファイル名と照合する検索文字列。  このパラメーターには有効なリテラルのパスとワイルドカード (* と ?) 文字の組み合わせを含めることができますが、正規表現はサポートされていません。</param>
-        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、すべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。</param>
+        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、またはすべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。</param>
         <summary>現在のディレクトリから、指定した検索パターンに一致し、サブディレクトリを検索するかどうかを決定する値を持つファイル一覧を返します。</summary>
-        <returns><see cref="T:System.IO.FileInfo" /> 型の配列。</returns>
+        <returns><see cref="T:System.IO.FileInfo" /> 型の配列です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2692,11 +2704,10 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="searchOption" /> が有効な <see cref="T:System.IO.SearchOption" /> 値ではありません。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">パスが正しくありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">パスへのアクセス、およびファイルとディレクトリからの読み取りのために使用します。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" />、<see cref="F:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -2843,12 +2854,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  このメソッドは再帰的ではありません。  
   
@@ -2885,10 +2896,9 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">指定されたパスが正しくありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルとディレクトリからの読み取り、およびパスへのアクセスに使用します。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" />、<see cref="F:System.Security.Permissions.FileIOPermissionAccess.PathDiscovery" /></permission>
         <altmember cref="T:System.IO.FileSystemInfo" />
         <altmember cref="T:System.IO.FileSystemWatcher" />
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
@@ -2933,12 +2943,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  このメソッドは再帰的ではありません。  
   
@@ -2967,7 +2977,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">指定されたパスが正しくありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
       </Docs>
@@ -3011,7 +3021,7 @@
       </Parameters>
       <Docs>
         <param name="searchPattern">ディレクトリおよびファイルの名前と照合する検索文字列。  このパラメーターには有効なリテラルのパスとワイルドカード (* と ?) 文字の組み合わせを含めることができますが、正規表現はサポートされていません。</param>
-        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、すべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。 既定値は <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />です。</param>
+        <param name="searchOption">検索操作に現在のディレクトリのみを含めるのか、またはすべてのサブディレクトリを含めるのかを指定する列挙値の 1 つ。 既定値は <see cref="F:System.IO.SearchOption.TopDirectoryOnly" /> です。</param>
         <summary>指定した検索条件に一致するファイルおよびサブディレクトリを表す <see cref="T:System.IO.FileSystemInfo" /> オブジェクトの配列を取得します。</summary>
         <returns>検索条件に一致するファイル システム エントリの配列。</returns>
         <remarks>
@@ -3020,12 +3030,12 @@
 ## Remarks  
  `searchPattern` には、リテラル文字とワイルドカード文字の組み合わせを使用できますが、正規表現はサポートされていません。 `searchPattern`では、次のワイルドカード指定子を使用できます。  
   
-|ワイルドカード指定子|一致件数|  
+|ワイルドカード指定子|次と一致する|  
 |------------------------|-------------|  
 |\* (アスタリスク)|その位置に0個以上の文字が含まれています。|  
 |? (疑問符)|その位置に0個または1個の文字。|  
   
- ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 ". `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
+ ワイルドカード以外の文字はリテラル文字です。 たとえば、"\*t" という文字列は、末尾に文字 "t" が付いているすべての名前を検索します。 " など)。 `searchPattern` 文字列 "s\*" は、文字 "s" で始まる `path` 内のすべての名前を検索します。  
   
  サブディレクトリの場合、このメソッドによって返される <xref:System.IO.FileSystemInfo> オブジェクトは、派生クラス <xref:System.IO.DirectoryInfo>にキャストできます。 <xref:System.IO.FileSystemInfo.Attributes%2A?displayProperty=nameWithType> プロパティによって返される <xref:System.IO.FileAttributes> 値を使用して、<xref:System.IO.FileSystemInfo> がファイルまたはディレクトリを表しているかどうかを判断します。  
   
@@ -3048,7 +3058,7 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="searchPattern" /> に、<see cref="M:System.IO.Path.GetInvalidPathChars" /> メソッドによって定義された 1 つ以上の無効な文字が含まれています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="searchPattern" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="searchOption" /> が有効な <see cref="T:System.IO.SearchOption" /> 値ではありません。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">指定されたパスが正しくありません (たとえば、マップされていないドライブにあるなど)。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
@@ -3118,7 +3128,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="destDirName" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="destDirName" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="destDirName" /> が空の文字列 (''") です。</exception>
         <exception cref="T:System.IO.IOException">ディレクトリを別のボリュームに移動しようとしました。  
   
@@ -3132,7 +3142,6 @@
 移動するディレクトリと対象のディレクトリの名前が同じです。</exception>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
         <exception cref="T:System.IO.DirectoryNotFoundException">対象のディレクトリが見つかりません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルとディレクトリの読み取りと書き込み、および宛先ディレクトリへのアクセスに使用します。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.Read" />、<see cref="F:System.Security.Permissions.FileIOPermissionAccess.Write" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -3266,7 +3275,6 @@
           ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルとディレクトリからの読み取り、およびパスへのアクセスに使用します。 関連付けられた列挙型: <see cref="T:System.Security.Permissions.FileIOPermissionAccess" />、<see cref="T:System.Security.Permissions.FileIOPermissionAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -3323,7 +3331,6 @@
  ]]></format>
         </remarks>
         <exception cref="T:System.Security.SecurityException">呼び出し元に、必要なアクセス許可がありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ファイルとディレクトリからの読み取り、およびパスへのアクセスに使用します。 関連付けられた列挙型: <see cref="T:System.Security.Permissions.FileIOPermissionAccess" />、<see cref="T:System.Security.Permissions.FileIOPermissionAccess" /></permission>
         <related type="Article" href="~/docs/standard/io/index.md">ファイルおよびストリーム入出力</related>
         <related type="Article" href="~/docs/standard/io/how-to-read-text-from-a-file.md">方法 : ファイルからテキストを読み取る</related>
         <related type="Article" href="~/docs/standard/io/how-to-write-text-to-a-file.md">方法 : ファイルにテキストを書き込む</related>
@@ -3401,8 +3408,6 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="directorySecurity" /> パラメーターが <see langword="null" /> です。</exception>
         <exception cref="T:System.SystemException">ファイルを検出または変更できませんでした。</exception>
         <exception cref="T:System.UnauthorizedAccessException">現在のプロセスには、ファイルを開くために必要なアクセス権がありません。</exception>
-        <exception cref="T:System.PlatformNotSupportedException">現在のオペレーティング システムは Microsoft Windows 2000 以降ではありません。</exception>
-        <permission cref="T:System.Security.Permissions.FileIOPermission">ディレクトリのアクセス制御リスト (ACL) を列挙するアクセス許可。 セキュリティアクション: <see cref="F:System.Security.Permissions.SecurityAction.Demand" />。 関連付けられた列挙型: <see cref="F:System.Security.Permissions.FileIOPermissionAccess.NoAccess" />、<see cref="F:System.Security.AccessControl.AccessControlActions.View" /></permission>
       </Docs>
     </Member>
     <Member MemberName="ToString">
