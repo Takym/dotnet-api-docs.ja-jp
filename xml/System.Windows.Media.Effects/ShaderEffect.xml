@@ -1,5 +1,5 @@
 <Type Name="ShaderEffect" FullName="System.Windows.Media.Effects.ShaderEffect">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4f4e511f7b5bbda791d5be6590bf019f2c160b65" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69448344" /></Metadata><TypeSignature Language="C#" Value="public abstract class ShaderEffect : System.Windows.Media.Effects.Effect" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="2ceb5835f58beedbee8deda5e9e3e1e6b4cc8053" /><Meta Name="ms.sourcegitcommit" Value="a8ff98b48bda124cfcb2605f5da9b21bc6dcd791" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/14/2020" /><Meta Name="ms.locfileid" Value="77230057" /></Metadata><TypeSignature Language="C#" Value="public abstract class ShaderEffect : System.Windows.Media.Effects.Effect" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract ShaderEffect extends System.Windows.Media.Effects.Effect" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Media.Effects.ShaderEffect" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ShaderEffect&#xA;Inherits Effect" />
@@ -20,13 +20,13 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 1つの<xref:System.Windows.Media.Effects.ShaderEffect>ピクセルシェーダーに基づくカスタム効果を実装するには、クラスから派生します。  
+ 1つのピクセルシェーダーに基づいてカスタム効果を実装するには、<xref:System.Windows.Media.Effects.ShaderEffect> クラスから派生させます。  
   
  次の手順は、カスタム効果を作成する方法を示しています。  
   
-1.  プリコンパイル<xref:System.Windows.Media.Effects.PixelShader>済みの高レベルシェーディング言語 (HLSL) のバイトコードからを読み込みます。  
+1.  プリコンパイル済みの高レベルシェーディング言語 (HLSL) バイトコードから <xref:System.Windows.Media.Effects.PixelShader> を読み込みます。  
   
-2.  効果と<xref:System.Windows.Media.Brush>ベースのサーフェイス入力のパラメーターを表す依存関係プロパティを定義します。 <xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>オーバーロードのいずれかを使用して、HLSL バイトコードで参照されているレジスタ番号にこれらの入力を関連付けます。  
+2.  効果のパラメーターと <xref:System.Windows.Media.Brush>ベースのサーフェイス入力を表す依存関係プロパティを定義します。 <xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A> のオーバーロードのいずれかを使用して、HLSL バイトコードで参照されているレジスタ番号にこれらの入力を関連付けます。  
   
  サンプラーの数は4に制限されています。  
   
@@ -38,7 +38,7 @@
   
 -   次のデータ型は、PS 3.0 シェーダーでのみサポートされています。 下位のシェーダーバージョンで使用されている場合は、例外がスローされます。  
   
-    -   `int`および`int`に変換可能な型`byte`: `sbyte` `uint` 、、`ulong`、 `long` 、`ushort`、、、 `short``char`  
+    -   `int`に変換可能な `int` と型: `uint`、`byte`、`sbyte`、`long`、`ulong`、`short`、`ushort`、`char`  
   
     -   `bool`  
   
@@ -46,7 +46,7 @@
   
 -   コンピューターに複数のビデオカードがある場合、その動作は、最も解像度の低いビデオカードによって定義されます。 たとえば、コンピューターに2つのビデオカードがあり、そのうちの1つが PS 3.0 をサポートしていて、そのうちの1つが PS をサポートしている場合、コンピューターが PS 3.0 をサポートしていない場合と同じ動作になります。  
   
--   コンピューターがハードウェアでの ps 3.0 のレンダリングをサポートしていても、無効な ps <xref:System.Windows.Media.Effects.PixelShader.InvalidPixelShaderEncountered> 3.0 シェーダーが割り当てられている場合は、イベントが発生します。 無効な PS 3.0 シェーダーの例としては、 `ps_3_sw`フラグを使用してコンパイルされたものがあります。 クラス<xref:System.Windows.Media.Effects.ShaderEffect>は、fxc .exe に渡される`ps_3_0`フラグを使用してコンパイルされた PS 3.0 シェーダーのみを受け入れます。 詳細については、「[効果-コンパイラツール](https://go.microsoft.com/fwlink/?LinkId=166293)」を参照してください。  
+-   コンピューターがハードウェアでのレンダリング PS 3.0 をサポートしていても、無効な PS 3.0 シェーダーが割り当てられている場合は、<xref:System.Windows.Media.Effects.PixelShader.InvalidPixelShaderEncountered> イベントが発生します。 無効な PS 3.0 シェーダーの例としては、`ps_3_sw` フラグを使用してコンパイルされたものがあります。 <xref:System.Windows.Media.Effects.ShaderEffect> クラスは、fxc .exe に渡される `ps_3_0` フラグを使用してコンパイルされた PS 3.0 シェーダーのみを受け入れます。 詳細については、「[効果-コンパイラツール](https://go.microsoft.com/fwlink/?LinkId=166293)」を参照してください。  
   
 > [!NOTE]
 >  PS 2.0 シェーダーは、ソフトウェアでレンダリングするときに実行されます。 ただし、PS 3.0 がシステムのハードウェアでサポートされている場合でも、ソフトウェアのレンダリング中に PS 3.0 シェーダーは実行されません。  
@@ -54,11 +54,11 @@
    
   
 ## Examples  
- <xref:System.Windows.Media.Effects.ShaderEffect>クラスから派生する方法を次のコード例に示します。  
+ 次のコード例は、<xref:System.Windows.Media.Effects.ShaderEffect> クラスから派生する方法を示しています。  
   
  [!code-csharp[System.Windows.Media.Effects.ShaderEffect#1](~/samples/snippets/csharp/VS_Snippets_Wpf/System.Windows.Media.Effects.ShaderEffect/CS/ThresholdEffect.cs#1)]  
   
- 次のコード例は、前<xref:System.Windows.Media.Effects.ShaderEffect>のクラスに対応するシェーダーを示しています。  
+ 次のコード例は、前の <xref:System.Windows.Media.Effects.ShaderEffect> クラスに対応するシェーダーを示しています。  
   
  [!code-csharp[System.Windows.Media.Effects.ShaderEffect#10](~/samples/snippets/csharp/VS_Snippets_Wpf/System.Windows.Media.Effects.ShaderEffect/CS/Threshold.fx#10)]  
   
@@ -68,7 +68,6 @@
   
  ]]></format>
     </remarks>
-    <permission cref="T:System.Security.Permissions.UIPermission">UI リソースにフルアクセスできます。 関連付けられた列挙型:<see cref="F:System.Security.Permissions.UIPermissionWindow.AllWindows" /></permission>
     <altmember cref="T:System.Windows.Media.Effects.Effect" />
     <altmember cref="T:System.Windows.Media.Effects.PixelShader" />
   </Docs>
@@ -115,7 +114,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.Windows.Media.Effects.ShaderEffect.Clone%2A>を使用すると、固定<xref:System.Windows.Freezable>されたオブジェクトの変更可能なコピーを作成できます。 便宜上、このメソッドは、厳密に<xref:System.Windows.Freezable.Clone%2A>型指定された実装を提供するために、継承されたメソッドをシャドウします。  
+ <xref:System.Windows.Media.Effects.ShaderEffect.Clone%2A> メソッドを使用すると、固定された <xref:System.Windows.Freezable> オブジェクトの変更可能なコピーを作成できます。 便宜上、このメソッドは、厳密に型指定された実装を提供するために、継承された <xref:System.Windows.Freezable.Clone%2A> メソッドをシャドウします。  
   
  ]]></format>
         </remarks>
@@ -174,7 +173,7 @@
 ## Remarks  
  このメソッドを使用して、固定された <xref:System.Windows.Freezable> オブジェクト (または任意の <xref:System.Windows.Freezable> オブジェクト) の変更可能なコピーを作成します。 便宜上、このメソッドは、厳密に型指定された実装を使用して、継承されたバージョンをシャドウします。  
   
- 詳細については、「<xref:System.Windows.Freezable.CloneCurrentValue%2A?displayProperty=nameWithType>」を参照してください。  
+ 詳細については、<xref:System.Windows.Freezable.CloneCurrentValue%2A?displayProperty=nameWithType> を参照してください。  
   
  ]]></format>
         </remarks>
@@ -252,7 +251,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A>プロパティを使用して、画面空間に対するテクスチャ座標の部分的な派生を含むシェーダーレジスタを指定します。 たとえば、が 4 <xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A>に設定されている場合、シェーダーレジスタ c4 が使用されます。 Register c4 には、4つの float フィールドが含まれています。 次の高レベルシェーディング言語 (HLSL) コードは、このレジスタの使用方法を示しています。 値`nextPixelUV`は、右側の次のピクセルを表します。  
+ 画面空間に対するテクスチャ座標の部分的な派生を含むシェーダーレジスタを指定するには、<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A> プロパティを使用します。 たとえば、<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A> が4に設定されている場合、シェーダーレジスタ c4 が使用されます。 Register c4 には、4つの float フィールドが含まれています。 次の高レベルシェーディング言語 (HLSL) コードは、このレジスタの使用方法を示しています。 `nextPixelUV` 値は、右側の次のピクセルを表します。  
   
 ```  
 float4 ddxUvDdyUv : register(c4);  
@@ -265,7 +264,7 @@ nextPixelUV.v = ddxUvDdyUv.y + v;
 tex2D(sampler, nextPixelUV);  
 ```  
   
- 次の表は、に指定され<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A>たレジスタがどのように入力されるかを示しています。  
+ 次の表は、<xref:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex%2A> に対して指定されたレジスタがどのように入力されるかを示しています。  
   
 |レジスタ定数|派生値|  
 |-----------------------|----------------------|  
@@ -274,12 +273,12 @@ tex2D(sampler, nextPixelUV);
 |z コンポーネント|ddy(u)|  
 |w コンポーネント|ddy(v)|  
   
- テクスチャ座標はとし`(u, v)`て示されます。 `ddx(u)`画面空間の x 座標に対するテクスチャ座標コンポーネント`u`の定数部分派生です。 `ddy(u)`は、画面空間の y 座標に`u`対するテクスチャ座標の部分派生です。 同様に`ddx(v)` 、 `ddy(v)`とは、テクスチャ座標コンポーネントの対応する画面領域の`v`派生要素です。  
+ テクスチャ座標は `(u, v)`として示されます。 `ddx(u)` は、画面空間の x 座標に対するテクスチャ座標成分 `u` の定数部分派生です。 `ddy(u)` は、画面空間の y 座標に対するテクスチャ座標 `u` の部分派生です。 同様に、`ddx(v)` と `ddy(v)` は、テクスチャ座標成分 `v`に対応する画面領域の派生要素です。  
   
 > [!NOTE]
 >  HLSL には、これらの値を計算するための ddx および ddy 命令がありますが、これらの手順はすべての PixelShader 2.0 ハードウェアで使用できるわけではありません。  
   
- これらの定数は、次のように考えることができます。 (X 方向`ddx(u)`に) 画面領域の右側に1ピクセルずつステップインする`v`と`ddx(v)` 、はテクスチャ空間の変化`u`する量を示し、はテクスチャ空間の変化量を示します。 描画時に効果が軸平行になっている場合、 `ddx(v)`は0になります。 レンダリング時に効果を回転させる場合、 `ddx(v)`は0以外になります。  
+ これらの定数は、次のように考えることができます。 画面のスペース (x 方向) の右側に1ピクセルずつステップインする場合、`ddx(u)` はテクスチャ空間の変化 `u` 量であり、`ddx(v)` はテクスチャ空間の変化 `v` 量です。 描画時に効果が軸平行になっている場合、`ddx(v)` は0になります。 描画時に効果を回転させる場合、`ddx(v)` は0以外になります。  
   
  ]]></format>
         </remarks>
@@ -308,7 +307,7 @@ tex2D(sampler, nextPixelUV);
         <Parameter Name="sourceFreezable" Type="System.Windows.Freezable" />
       </Parameters>
       <Docs>
-        <param name="sourceFreezable">コピー対象のインスタンス。</param>
+        <param name="sourceFreezable">コピーするインスタンス。</param>
         <summary>基本プロパティ値 (アニメーション化されていない値) を使用して、インスタンスを、指定した <see cref="T:System.Windows.Freezable" /> の固定された複製にします。</summary>
         <remarks>To be added.</remarks>
         <altmember cref="M:System.Windows.Freezable.GetAsFrozenCore(System.Windows.Freezable)" />
@@ -462,7 +461,7 @@ tex2D(sampler, nextPixelUV);
 |||  
 |-|-|  
 |識別子フィールド|<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderProperty>|  
-|メタデータプロパティがに設定される`true`|None|  
+|メタデータプロパティが `true` に設定される|なし|  
   
  ]]></format>
         </remarks>
@@ -497,7 +496,7 @@ tex2D(sampler, nextPixelUV);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- シェーダー定数<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback%2A>の依存関係プロパティを登録するときに、メソッドを使用します。 メソッド<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback%2A>は、呼び出さ<xref:System.Windows.PropertyChangedCallback>れたときに、によって`floatRegisterIndex`指定された依存関係プロパティとシェーダー定数レジスタとの間の関連付けを作成するデリゲートを構築します。  
+ シェーダー定数の依存関係プロパティを登録する場合は、<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback%2A> メソッドを使用します。 <xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback%2A> メソッドは、呼び出されたときに、`floatRegisterIndex`によって指定された依存関係プロパティとシェーダー定数レジスタとの間の関連付けを作成する、<xref:System.Windows.PropertyChangedCallback> デリゲートを構築します。  
   
  ]]></format>
         </remarks>
@@ -571,7 +570,7 @@ tex2D(sampler, nextPixelUV);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- シェーダーサンプラー <xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback%2A>の値依存関係プロパティ<xref:System.Windows.Media.Brush>を登録するときに、メソッドを使用します。 メソッド<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback%2A>は、呼び出さ<xref:System.Windows.PropertyChangedCallback>れると、によって`samplerRegisterIndex`指定された依存関係プロパティとシェーダーサンプラーレジスタとの間の関連付けを作成するデリゲートを構築します。  
+ <xref:System.Windows.Media.Brush>値の依存関係プロパティをシェーダーサンプラーに登録する場合は、<xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback%2A> メソッドを使用します。 <xref:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback%2A> メソッドは、呼び出されたときに、`samplerRegisterIndex`によって指定された依存関係プロパティとシェーダーサンプラーレジスタとの間の関連付けを作成する、<xref:System.Windows.PropertyChangedCallback> デリゲートを構築します。  
   
  ]]></format>
         </remarks>
@@ -607,7 +606,7 @@ tex2D(sampler, nextPixelUV);
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- シェーダーサンプラー <xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>の値依存関係プロパティ<xref:System.Windows.Media.Brush>を登録するときに、メソッドを使用します。 メソッド<xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A>は、呼び出さ<xref:System.Windows.PropertyChangedCallback>れると、によって`samplerRegisterIndex`指定された依存関係プロパティとシェーダーサンプラーレジスタとの間の関連付けを作成するデリゲートを構築します。  
+ <xref:System.Windows.Media.Brush>値の依存関係プロパティをシェーダーサンプラーに登録する場合は、<xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A> メソッドを使用します。 <xref:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty%2A> メソッドは、呼び出されたときに、`samplerRegisterIndex`によって指定された依存関係プロパティとシェーダーサンプラーレジスタとの間の関連付けを作成する、<xref:System.Windows.PropertyChangedCallback> デリゲートを構築します。  
   
  ]]></format>
         </remarks>
