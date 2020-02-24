@@ -1,5 +1,5 @@
 <Type Name="Control" FullName="System.Web.UI.Control">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4e94455c667cc034cf0088f21d5904d76c043eef" /><Meta Name="ms.sourcegitcommit" Value="a8ff98b48bda124cfcb2605f5da9b21bc6dcd791" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/14/2020" /><Meta Name="ms.locfileid" Value="77244422" /></Metadata><TypeSignature Language="C#" Value="public class Control : IDisposable, System.ComponentModel.IComponent, System.Web.UI.IControlBuilderAccessor, System.Web.UI.IControlDesignerAccessor, System.Web.UI.IDataBindingsAccessor, System.Web.UI.IExpressionsAccessor, System.Web.UI.IParserAccessor, System.Web.UI.IUrlResolutionService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a5ee37afa0001d9017899675141efc91a150d1de" /><Meta Name="ms.sourcegitcommit" Value="c51dea0200e1810da01128ade89cbe2b6bb1c242" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/19/2020" /><Meta Name="ms.locfileid" Value="77463038" /></Metadata><TypeSignature Language="C#" Value="public class Control : IDisposable, System.ComponentModel.IComponent, System.Web.UI.IControlBuilderAccessor, System.Web.UI.IControlDesignerAccessor, System.Web.UI.IDataBindingsAccessor, System.Web.UI.IExpressionsAccessor, System.Web.UI.IParserAccessor, System.Web.UI.IUrlResolutionService" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Control extends System.Object implements class System.ComponentModel.IComponent, class System.IDisposable, class System.Web.UI.IControlBuilderAccessor, class System.Web.UI.IControlDesignerAccessor, class System.Web.UI.IDataBindingsAccessor, class System.Web.UI.IExpressionsAccessor, class System.Web.UI.IParserAccessor, class System.Web.UI.IUrlResolutionService" />
   <TypeSignature Language="DocId" Value="T:System.Web.UI.Control" />
   <TypeSignature Language="VB.NET" Value="Public Class Control&#xA;Implements IComponent, IControlBuilderAccessor, IControlDesignerAccessor, IDataBindingsAccessor, IDisposable, IExpressionsAccessor, IParserAccessor, IUrlResolutionService" />
@@ -716,15 +716,15 @@ span#ProductIDLabel { background-color: white; }
 
  次の例は、ユーザーコントロールを示しています。
 
-
+ [!code-aspx-csharp[System.Web.UI.ClientIDMode#1](~/samples/snippets/common/VS_Snippets_WebNet/system.web.ui.clientidmode/common/seasons.ascx)]
 
  次の例は、ユーザーコントロールを含むコンテンツページを示しています。
 
-
+ [!code-aspx-csharp[System.Web.UI.ClientIDMode#2](~/samples/snippets/common/VS_Snippets_WebNet/system.web.ui.clientidmode/common/seasons.aspx)]
 
  次の例は、コンテンツページを含むマスターページを示しています。
 
-
+ [!code-aspx-csharp[System.Web.UI.ClientIDMode#3](~/samples/snippets/common/VS_Snippets_WebNet/system.web.ui.clientidmode/common/seasons.master)]
 
  ]]></format>
         </remarks>
@@ -787,15 +787,14 @@ span#ProductIDLabel { background-color: white; }
 
 
 ## Examples
- 次の例は、<xref:System.Web.UI.WebControls.ListView> コントロールに含まれているコントロール <xref:System.Web.UI.WebControls.Label> を示しています。 <xref:System.Web.UI.WebControls.ListView> コントロールでは、<xref:System.Web.UI.Control.ClientIDMode%2A> プロパティが <xref:System.Web.UI.ClientIDMode.Predictable> に設定され、<xref:System.Web.UI.WebControls.ListView.ClientIDRowSuffix%2A> プロパティが `ProductID`に設定されます。 レンダリングされた HTML では、3つの `ProductIDLabel` コントロールに対応する3つの `span` 要素を作成します。 ページを実行すると、`span` 要素の `id` 属性は次の値に設定されます。
 
--   `ListView1_ProductIDLabel_1`
+次の例は、<xref:System.Web.UI.WebControls.ListView> コントロールに含まれているコントロール <xref:System.Web.UI.WebControls.Label> を示しています。 <xref:System.Web.UI.WebControls.ListView> コントロールでは、<xref:System.Web.UI.Control.ClientIDMode%2A> プロパティが <xref:System.Web.UI.ClientIDMode.Predictable> に設定され、<xref:System.Web.UI.WebControls.ListView.ClientIDRowSuffix%2A> プロパティが `ProductID`に設定されます。 レンダリングされた HTML では、3つの `ProductIDLabel` コントロールに対応する3つの `span` 要素を作成します。 ページを実行すると、`span` 要素の `id` 属性は次の値に設定されます。
 
--   `ListView1_ProductIDLabel_34`
+- `ListView1_ProductIDLabel_1`
+- `ListView1_ProductIDLabel_34`
+- `ListView1_ProductIDLabel_43`
 
--   `ListView1_ProductIDLabel_43`
-
-
+[!code-aspx-csharp[System.Web.UI.ClientIDMode#11](~/samples/snippets/common/VS_Snippets_WebNet/system.web.ui.clientidmode/common/predictable.aspx#11)]
 
  ]]></format>
         </remarks>
@@ -1661,7 +1660,8 @@ span#ProductIDLabel { background-color: white; }
 ## Examples
  次の例では、`Click`という名前のイベントを作成します。このイベントは、ページからイベントが呼び出されたときに、コントロールの <xref:System.ComponentModel.EventHandlerList> コレクションからハンドラーを追加および削除します。
 
- **メモ**この例では、コントロールが保持するイベントの一覧から、コントロールによってイベントが追加および削除される方法を最適化します。 カスタムコントロールを作成し、イベントを定義する場合は、次のようなコードを使用します。 この手法はでC#使用できますが、Visual Basic では使用できません。
+ > [!NOTE]
+ > この例では、コントロールが保持するイベントの一覧から、コントロールによってイベントが追加および削除される方法を最適化します。 カスタムコントロールを作成し、イベントを定義する場合は、次のようなコードを使用します。 この手法はでC#使用できますが、Visual Basic では使用できません。
 
  [!code-csharp[System.Web.UI.Page_VerifyRenderingInServerForm#1](~/samples/snippets/csharp/VS_Snippets_WebNet/System.Web.UI.Page_VerifyRenderingInServerForm/CS/testlinkbutton.cs#1)]
 
@@ -4021,7 +4021,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
         <ReturnType>System.Web.UI.ControlBuilder</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IControlBuilderAccessor.ControlBuilder" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IControlBuilderAccessor.ControlBuilder" />」をご覧ください。</summary>
         <value>コントロールを作成した <see cref="T:System.Web.UI.ControlBuilder" />。ビルダーが使用されなかった場合は <see langword="null" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
@@ -4058,7 +4058,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="M:System.Web.UI.IControlDesignerAccessor.GetDesignModeState" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Web.UI.IControlDesignerAccessor.GetDesignModeState" />」をご覧ください。</summary>
         <returns>コントロールの状態の <see cref="T:System.Collections.IDictionary" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
@@ -4098,7 +4098,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
       </Parameters>
       <Docs>
         <param name="data">コントロールのデザイン時データを格納する <see cref="T:System.Collections.IDictionary" />。</param>
-        <summary>このメンバーの詳細については、「<see cref="M:System.Web.UI.IControlDesignerAccessor.SetDesignModeState(System.Collections.IDictionary)" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Web.UI.IControlDesignerAccessor.SetDesignModeState(System.Collections.IDictionary)" />」をご覧ください。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -4132,7 +4132,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
       </Parameters>
       <Docs>
         <param name="owner">コントロールの所有者。</param>
-        <summary>このメンバーの詳細については、「<see cref="M:System.Web.UI.IControlDesignerAccessor.SetOwnerControl(System.Web.UI.Control)" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Web.UI.IControlDesignerAccessor.SetOwnerControl(System.Web.UI.Control)" />」をご覧ください。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -4166,7 +4166,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
         <ReturnType>System.Collections.IDictionary</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IControlDesignerAccessor.UserData" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IControlDesignerAccessor.UserData" />」をご覧ください。</summary>
         <value>コントロールに関する情報が格納されている <see cref="T:System.Collections.IDictionary" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
@@ -4198,7 +4198,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
         <ReturnType>System.Web.UI.DataBindingCollection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IDataBindingsAccessor.DataBindings" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IDataBindingsAccessor.DataBindings" />」をご覧ください。</summary>
         <value>データ連結のコレクション。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
@@ -4230,7 +4230,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IDataBindingsAccessor.HasDataBindings" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IDataBindingsAccessor.HasDataBindings" />」をご覧ください。</summary>
         <value>コントロールにデータ バインディング ロジックが含まれる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
@@ -4262,7 +4262,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
         <ReturnType>System.Web.UI.ExpressionBindingCollection</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IExpressionsAccessor.Expressions" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IExpressionsAccessor.Expressions" />」をご覧ください。</summary>
         <value>コントロールのプロパティと式を表す <see cref="T:System.Web.UI.ExpressionBindingCollection" /> オブジェクトが格納された <see cref="T:System.Web.UI.ExpressionBinding" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
@@ -4294,7 +4294,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IExpressionsAccessor.HasExpressions" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="P:System.Web.UI.IExpressionsAccessor.HasExpressions" />」をご覧ください。</summary>
         <value>コントロールに、式によって設定されるプロパティがある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[
@@ -4335,7 +4335,7 @@ HyperLink1.NavigateUrl = HyperLink1.GetRouteUrl("Product",
       </Parameters>
       <Docs>
         <param name="obj">追加するオブジェクト。</param>
-        <summary>このメンバーの詳細については、「<see cref="M:System.Web.UI.IParserAccessor.AddParsedSubObject(System.Object)" />」を参照してください。</summary>
+        <summary>このメンバーの詳細については、「<see cref="M:System.Web.UI.IParserAccessor.AddParsedSubObject(System.Object)" />」をご覧ください。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
