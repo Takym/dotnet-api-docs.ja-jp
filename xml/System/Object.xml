@@ -1,5 +1,5 @@
 <Type Name="Object" FullName="System.Object">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="594c3788028f82e879e53be9c6cf9688b75e69f6" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76959437" /></Metadata><TypeSignature Language="C#" Value="public class Object" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5ee09999914b4fe7e348031b30aee356fc7bd3f5" /><Meta Name="ms.sourcegitcommit" Value="680de32f79f8c8de4a5a49d10643b022a47ae46b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/25/2020" /><Meta Name="ms.locfileid" Value="77608110" /></Metadata><TypeSignature Language="C#" Value="public class Object" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi serializable beforefieldinit object" />
   <TypeSignature Language="DocId" Value="T:System.Object" />
   <TypeSignature Language="VB.NET" Value="Public Class Object" />
@@ -211,7 +211,7 @@
   
  <xref:System.Object> クラスは .NET Framework 内のすべての型の基底クラスであるため、<xref:System.Object.Equals%28System.Object%29?displayProperty=nameWithType> メソッドは、他のすべての型に対して既定の等値比較を提供します。 ただし、型は、多くの場合、<xref:System.Object.Equals%2A> メソッドをオーバーライドして値の等価性を実装します。 詳細については、以下を参照してください。の呼び出し元とメモ継承先のセクションです。  
   
-## <a name="notes-for-the-includewrtincludeswrt-mdmd"></a>[!INCLUDE[wrt](~/includes/wrt-md.md)] のメモ  
+## <a name="notes-for-the-wrt"></a>[!INCLUDE[wrt](~/includes/wrt-md.md)] のメモ  
  [!INCLUDE[wrt](~/includes/wrt-md.md)]内のクラスで <xref:System.Object.Equals%28System.Object%29> メソッドオーバーロードを呼び出すと、<xref:System.Object.Equals%28System.Object%29>をオーバーライドしないクラスの既定の動作が提供されます。 これは、.NET Framework が [!INCLUDE[wrt](~/includes/wrt-md.md)] に提供するサポートの一部です (「 [Windows ストアアプリと Windows ランタイムの .NET Framework サポート](~/docs/standard/cross-platform/support-for-windows-store-apps-and-windows-runtime.md)」を参照してください)。 [!INCLUDE[wrt](~/includes/wrt-md.md)] のクラスは <xref:System.Object>を継承せず、現在は <xref:System.Object.Equals%28System.Object%29> メソッドを実装していません。 ただし、 C#または Visual Basic コードで使用する場合、<xref:System.Object.ToString%2A>、<xref:System.Object.Equals%28System.Object%29>、および <xref:System.Object.GetHashCode%2A> メソッドがあるように見えます。 .NET Framework は、これらのメソッドの既定の動作を提供します。  
   
 > [!NOTE]
@@ -624,7 +624,7 @@
   
  ハッシュテーブルのキーとして使用されているオブジェクトが <xref:System.Object.GetHashCode%2A>の便利な実装を提供していない場合は、<xref:System.Collections.Hashtable> クラスコンストラクターのいずれかのオーバーロードに <xref:System.Collections.IEqualityComparer> の実装を指定することで、ハッシュコードプロバイダーを指定できます。  
   
-## <a name="notes-for-the-includewrtincludeswrt-mdmd"></a>[!INCLUDE[wrt](~/includes/wrt-md.md)] のメモ  
+## <a name="notes-for-the-wrt"></a>[!INCLUDE[wrt](~/includes/wrt-md.md)] のメモ  
  [!INCLUDE[wrt](~/includes/wrt-md.md)]のクラスで <xref:System.Object.GetHashCode%2A> メソッドを呼び出すと、<xref:System.Object.GetHashCode%2A>をオーバーライドしないクラスの既定の動作が提供されます。 これは、.NET Framework が [!INCLUDE[wrt](~/includes/wrt-md.md)] に提供するサポートの一部です (「 [Windows ストアアプリと Windows ランタイムの .NET Framework サポート](~/docs/standard/cross-platform/support-for-windows-store-apps-and-windows-runtime.md)」を参照してください)。 [!INCLUDE[wrt](~/includes/wrt-md.md)] のクラスは <xref:System.Object>を継承せず、現在は <xref:System.Object.GetHashCode%2A>を実装していません。 ただし、 C#または Visual Basic コードで使用する場合、<xref:System.Object.ToString%2A>、<xref:System.Object.Equals%28System.Object%29>、および <xref:System.Object.GetHashCode%2A> メソッドがあるように見えます。 .NET Framework は、これらのメソッドの既定の動作を提供します。  
   
 > [!NOTE]
@@ -648,7 +648,7 @@
  [!code-csharp[System.Object.GetHashCode#3](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.object.gethashcode/cs/xor2.cs#3)]
  [!code-vb[System.Object.GetHashCode#3](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.object.gethashcode/vb/xor2.vb#3)]  
   
- 2つ目の代替ソリューションでは、連続するフィールドのハッシュコードを2つ以上のビットで左にシフトすることで、個々のハッシュコードを重み付けします。 最適です。破棄するのではなく、ビット31を超えてシフトされたビットは、破棄されるのではなく、ラップする必要があります。 ビットは Visual Basic との両方C#の左シフト演算子によって破棄されるため、次のような左シフトアンドラップメソッドを作成する必要があります。  
+ 2つ目の代替ソリューションでは、連続するフィールドのハッシュコードを2つ以上のビットで左にシフトすることで、個々のハッシュコードを重み付けします。 理想的には、ビット31を超えてシフトされたビットは、破棄されるのではなく、ラップする必要があります。 ビットは Visual Basic との両方C#の左シフト演算子によって破棄されるため、次のような左シフトアンドラップメソッドを作成する必要があります。  
   
  [!code-csharp[System.Object.GetHashCode#4](~/samples/snippets/csharp/VS_Snippets_CLR_System/system.object.gethashcode/cs/shift1.cs#4)]
  [!code-vb[System.Object.GetHashCode#4](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.object.gethashcode/vb/shift1.vb#4)]  
@@ -912,7 +912,7 @@
         <param name="objA">比較する最初のオブジェクト。</param>
         <param name="objB">比較する 2 番目のオブジェクト。</param>
         <summary>指定した複数の <see cref="T:System.Object" /> インスタンスが同一インスタンスかどうかを判断します。</summary>
-        <returns><see langword="true" /> が <paramref name="objA" /> と同一のインスタンスである場合、または両方のインスタンスが <paramref name="objB" />null**参照の場合は**。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> が <paramref name="objA" /> と同一のインスタンスである場合、または両方のインスタンスが <paramref name="objB" />null** 参照の場合は **。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1086,7 +1086,7 @@
      [!code-vb[System.Object.ToString#8](~/samples/snippets/visualbasic/VS_Snippets_CLR_System/system.object.tostring/vb/customize2.vb#8)]  
   
 <a name="WinRT"></a>   
-## <a name="notes-for-the-includewrtincludeswrt-mdmd"></a>[!INCLUDE[wrt](~/includes/wrt-md.md)] のメモ  
+## <a name="notes-for-the-wrt"></a>[!INCLUDE[wrt](~/includes/wrt-md.md)] のメモ  
  [!INCLUDE[wrt](~/includes/wrt-md.md)]のクラスで <xref:System.Object.ToString%2A> メソッドを呼び出すと、<xref:System.Object.ToString%2A>をオーバーライドしないクラスの既定の動作が提供されます。 これは、.NET Framework が [!INCLUDE[wrt](~/includes/wrt-md.md)] に提供するサポートの一部です (「 [Windows ストアアプリと Windows ランタイムの .NET Framework サポート](~/docs/standard/cross-platform/support-for-windows-store-apps-and-windows-runtime.md)」を参照してください)。 [!INCLUDE[wrt](~/includes/wrt-md.md)] のクラスは <xref:System.Object>を継承せず、常に <xref:System.Object.ToString%2A>を実装することはありません。 ただし、これらのメソッドをC#または Visual Basic コードで使用すると、これらのメソッドは常に <xref:System.Object.ToString%2A>、<xref:System.Object.Equals%28System.Object%29>、および <xref:System.Object.GetHashCode%2A> に表示されます。また、.NET Framework は、これらのメソッドの既定の動作を提供します。  
   
  [!INCLUDE[net_v451](~/includes/net-v451-md.md)]以降では、共通言語ランタイムは、<xref:System.Object.ToString%2A?displayProperty=nameWithType>の既定の実装に戻る前に、[!INCLUDE[wrt](~/includes/wrt-md.md)] オブジェクトに対して[Istringable](https://msdn.microsoft.com/library/windows/apps/windows.foundation.istringable.tostring.aspx)を使用します。  
@@ -1094,7 +1094,7 @@
 > [!NOTE]
 >  または Visual Basic でC#記述された [!INCLUDE[wrt](~/includes/wrt-md.md)] クラスは、<xref:System.Object.ToString%2A> メソッドをオーバーライドできます。  
   
-### <a name="the-includewrtincludeswrt-mdmd-and-the-istringable-interface"></a>[!INCLUDE[wrt](~/includes/wrt-md.md)] と IStringable インターフェイス  
+### <a name="the-wrt-and-the-istringable-interface"></a>[!INCLUDE[wrt](~/includes/wrt-md.md)] と IStringable インターフェイス  
  [!INCLUDE[win81](~/includes/win81-md.md)]以降では、[!INCLUDE[wrt](~/includes/wrt-md.md)] に[istringable](https://msdn.microsoft.com/library/windows/apps/windows.foundation.istringable.aspx)インターフェイスが含まれています。このインターフェイスは、単一のメソッドである[istringable](https://msdn.microsoft.com/library/windows/apps/windows.foundation.istringable.tostring.aspx)を使用して、<xref:System.Object.ToString%2A?displayProperty=nameWithType>によって提供される基本的な書式設定のサポートを提供します。 あいまいさを防ぐには、マネージ型に[Istringable](https://msdn.microsoft.com/library/windows/apps/windows.foundation.istringable.aspx)を実装しないでください。  
   
  マネージオブジェクトがネイティブコードまたは JavaScript やC++/cx などの言語で記述されたコードによって呼び出されると、 [istringable](https://msdn.microsoft.com/library/windows/apps/windows.foundation.istringable.aspx)を実装するように見えます。 共通言語ランタイムは、 [istringable](https://msdn.microsoft.com/library/windows/apps/windows.foundation.istringable.tostring.aspx)からの呼び出しを、マネージオブジェクトに実装されてい[ないイベントの](https://msdn.microsoft.com/library/windows/apps/windows.foundation.istringable.aspx)<xref:System.Object.ToString%2A?displayProperty=nameWithType> に自動的にルーティングします。  
