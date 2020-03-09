@@ -1,5 +1,5 @@
 <Type Name="DesignerSerializationManager" FullName="System.ComponentModel.Design.Serialization.DesignerSerializationManager">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5f4fe6a425a57892882654a469c0f4d8f4ea7968" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75149262" /></Metadata><TypeSignature Language="C#" Value="public class DesignerSerializationManager : IServiceProvider, System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="ada419db3e6f5b7b6fa2110c18bde803c323e0ea" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78711913" /></Metadata><TypeSignature Language="C#" Value="public class DesignerSerializationManager : IServiceProvider, System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DesignerSerializationManager extends System.Object implements class System.ComponentModel.Design.Serialization.IDesignerSerializationManager, class System.IServiceProvider" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.Serialization.DesignerSerializationManager" />
   <TypeSignature Language="VB.NET" Value="Public Class DesignerSerializationManager&#xA;Implements IDesignerSerializationManager, IServiceProvider" />
@@ -14,6 +14,9 @@
     <AssemblyName>System.Windows.Forms.Design</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.Design" FromVersion="4.0.0.0" To="System.Windows.Forms.Design" ToVersion="4.0.0.0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -77,14 +80,14 @@
 ## <a name="global-state"></a>グローバル状態  
  この状態は、シリアル化マネージャーのオブジェクトによって所有されていますが、現在のシリアル化セッションからは独立しています。  
   
-|Object|使用法|  
+|Object|使用方法|  
 |------------|-----------|  
 |シリアル化プロバイダー|オブジェクトは、独自のシリアル化プロバイダーとして追加できます。 これらのプロバイダーは、シリアライザーの検索に使用されるため、シリアル化セッションを直後します。|  
   
 ## <a name="session-owned-state"></a>セッション所有の状態  
  この状態はセッションによって所有され、セッションが破棄されると破棄されます。 そのため、この状態を操作するプロパティやメソッドにアクセスしても、シリアル化マネージャーがアクティブなセッションにない場合は例外がスローされます。  
   
-|Object|使用法|  
+|Object|使用方法|  
 |------------|-----------|  
 |<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ResolveName> イベント|<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ResolveName> イベントは、名前のその他の解決を提供するために、シリアライザーによってアタッチされます。 セッションが終了すると、すべてのハンドラーがこのイベントからデタッチされます。|  
 |<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete> イベント|<xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete> イベントは、セッションが破棄される直前に発生します。 次に、すべてのハンドラーがこのイベントからデタッチされます。|  
@@ -175,7 +178,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="provider" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="provider" /> が <see langword="null" />です。</exception>
         <altmember cref="T:System.IServiceProvider" />
         <altmember cref="P:System.ComponentModel.Design.Serialization.DesignerSerializationManager.PreserveNames" />
         <altmember cref="P:System.ComponentModel.Design.Serialization.DesignerSerializationManager.ValidateRecycledTypes" />
@@ -219,6 +222,7 @@
       <MemberSignature Language="C#" Value="protected virtual object CreateInstance (Type type, System.Collections.ICollection arguments, string name, bool addToContainer);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance object CreateInstance(class System.Type type, class System.Collections.ICollection arguments, string name, bool addToContainer) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function CreateInstance (type As Type, arguments As ICollection, name As String, addToContainer As Boolean) As Object" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; virtual System::Object ^ CreateInstance(Type ^ type, System::Collections::ICollection ^ arguments, System::String ^ name, bool addToContainer);" />
       <MemberSignature Language="F#" Value="abstract member CreateInstance : Type * System.Collections.ICollection * string * bool -&gt; obj&#xA;override this.CreateInstance : Type * System.Collections.ICollection * string * bool -&gt; obj" Usage="designerSerializationManager.CreateInstance (type, arguments, name, addToContainer)" />
       <MemberType>Method</MemberType>
@@ -247,7 +251,7 @@
         <param name="type">作成するインスタンスの型。</param>
         <param name="arguments">型のコンストラクターのパラメーター。 パラメーターなしのコンストラクターを呼び出すには、これが <see langword="null" /> でも空のコレクションでもかまいません。</param>
         <param name="name">オブジェクトに付ける名前。 <see langword="null" /> の場合、オブジェクトに名前は付けられません。ただし、オブジェクトをコンテナーに追加し、そのコンテナーによってオブジェクトに名前が付けられる場合を除きます。</param>
-        <param name="addToContainer">オブジェクトが <see langword="true" /> を実装しているときに、コンテナーにオブジェクトを追加する場合は <see cref="T:System.ComponentModel.IComponent" />。それ以外の場合は <see langword="false" />。</param>
+        <param name="addToContainer">オブジェクトが <see cref="T:System.ComponentModel.IComponent" /> を実装しているときに、コンテナーにオブジェクトを追加する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary>型のインスタンスを作成します。</summary>
         <returns><paramref name="type" /> で指定した型の新しいインスタンス。</returns>
         <remarks>
@@ -361,7 +365,7 @@
       <Docs>
         <param name="typeName">取得する型の名前。</param>
         <summary>指定された型名に対応する型を取得します。</summary>
-        <returns>指定された種類です。</returns>
+        <returns>指定された型。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -641,7 +645,7 @@
       </ReturnValue>
       <Docs>
         <summary><see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> メソッドが、コンテナーに指定した名前が存在することをチェックする必要があるかどうかを示す値を取得または設定します。</summary>
-        <value><see langword="true" /> が指定したコンポーネント名を渡す場合は <see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />。<see langword="false" /> がコンテナーに指定した名前が存在するかどうかチェックする場合は <see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />。 既定値は、<see langword="true" /> です。</value>
+        <value><see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> が指定したコンポーネント名を渡す場合は <see langword="true" />。<see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> がコンテナーに指定した名前が存在するかどうかチェックする場合は <see langword="false" />。 既定値は、<see langword="true" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -724,7 +728,7 @@
       </ReturnValue>
       <Docs>
         <summary><see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> が型の新しいインスタンスを常に作成するかどうかを示す値が取得または設定されます。</summary>
-        <value><see langword="true" /> が既存のインスタンスを返す場合は <see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />。<see langword="false" /> が型の新しいインスタンスを作成する場合は <see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />。 既定値は、<see langword="false" /> です。</value>
+        <value><see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> が既存のインスタンスを返す場合は <see langword="true" />。<see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> が型の新しいインスタンスを作成する場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -796,6 +800,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#AddSerializationProvider(System.ComponentModel.Design.Serialization.IDesignerSerializationProvider)" />
       <MemberSignature Language="VB.NET" Value="Sub AddSerializationProvider (provider As IDesignerSerializationProvider) Implements IDesignerSerializationManager.AddSerializationProvider" />
       <MemberSignature Language="C++ CLI" Value=" virtual void System.ComponentModel.Design.Serialization.IDesignerSerializationManager.AddSerializationProvider(System::ComponentModel::Design::Serialization::IDesignerSerializationProvider ^ provider) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::AddSerializationProvider;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.AddSerializationProvider : System.ComponentModel.Design.Serialization.IDesignerSerializationProvider -&gt; unit&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.AddSerializationProvider : System.ComponentModel.Design.Serialization.IDesignerSerializationProvider -&gt; unit" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.AddSerializationProvider provider" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.AddSerializationProvider(System.ComponentModel.Design.Serialization.IDesignerSerializationProvider)</InterfaceMember>
@@ -836,7 +841,7 @@
       <MemberSignature Language="DocId" Value="P:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#Context" />
       <MemberSignature Language="VB.NET" Value=" ReadOnly Property Context As ContextStack Implements IDesignerSerializationManager.Context" />
       <MemberSignature Language="C++ CLI" Value="property System::ComponentModel::Design::Serialization::ContextStack ^ System::ComponentModel::Design::Serialization::IDesignerSerializationManager::Context { System::ComponentModel::Design::Serialization::ContextStack ^ get(); };" />
-      <MemberSignature Language="F#" Usage="System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Context" />
+      <MemberSignature Language="F#" Value="member this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Context : System.ComponentModel.Design.Serialization.ContextStack" Usage="System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Context" />
       <MemberType>Property</MemberType>
       <Implements>
         <InterfaceMember>P:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Context</InterfaceMember>
@@ -873,7 +878,9 @@
       <MemberSignature Language="C#" Value="object IDesignerSerializationManager.CreateInstance (Type type, System.Collections.ICollection arguments, string name, bool addToContainer);" />
       <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance object System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance(class System.Type type, class System.Collections.ICollection arguments, string name, bool addToContainer) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Function CreateInstance (type As Type, arguments As ICollection, name As String, addToContainer As Boolean) As Object Implements IDesignerSerializationManager.CreateInstance" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::Object ^ System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance(Type ^ type, System::Collections::ICollection ^ arguments, System::String ^ name, bool addToContainer) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::CreateInstance;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance : Type * System.Collections.ICollection * string * bool -&gt; obj&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance : Type * System.Collections.ICollection * string * bool -&gt; obj" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance (type, arguments, name, addToContainer)" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)</InterfaceMember>
@@ -899,7 +906,7 @@
       <Docs>
         <param name="type">作成するデータ型。</param>
         <param name="arguments">型のコンストラクターに渡す引数。</param>
-        <param name="name">オブジェクトの名前です。 この名前は、<see cref="M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance(System.String)" /> を使用して後からオブジェクトにアクセスするときに使用できます。 <see langword="null" /> が渡された場合でもオブジェクトは作成されますが、そのオブジェクトには名前を指定する方法ではアクセスできません。</param>
+        <param name="name">オブジェクトの名前。 この名前は、<see cref="M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance(System.String)" /> を使用して後からオブジェクトにアクセスするときに使用できます。 <see langword="null" /> が渡された場合でもオブジェクトは作成されますが、そのオブジェクトには名前を指定する方法ではアクセスできません。</param>
         <param name="addToContainer">このオブジェクトをデザイン コンテナーに追加する場合は <see langword="true" />。 この値を有効にするには、オブジェクトが <see cref="T:System.ComponentModel.IComponent" /> を実装していることが必要です。</param>
         <summary><see cref="M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> メソッドを実装します。</summary>
         <returns>新しく作成したオブジェクト インスタンス。</returns>
@@ -912,6 +919,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#GetInstance(System.String)" />
       <MemberSignature Language="VB.NET" Value="Function GetInstance (name As String) As Object Implements IDesignerSerializationManager.GetInstance" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::Object ^ System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance(System::String ^ name) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::GetInstance;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance : string -&gt; obj&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance : string -&gt; obj" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance name" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance(System.String)</InterfaceMember>
@@ -936,7 +944,7 @@
         <summary>指定した名前の作成済みオブジェクトのインスタンスを取得します。</summary>
         <returns>指定した名前を持つオブジェクトのインスタンス。その名前のオブジェクトが見つからない場合は <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.InvalidOperationException">このプロパティは、シリアル化セッション外部でアクセスされました。</exception>
         <altmember cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />
         <altmember cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#GetName(System.Object)" />
@@ -948,6 +956,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#GetName(System.Object)" />
       <MemberSignature Language="VB.NET" Value="Function GetName (value As Object) As String Implements IDesignerSerializationManager.GetName" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::String ^ System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetName(System::Object ^ value) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::GetName;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetName : obj -&gt; string&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetName : obj -&gt; string" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetName value" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetName(System.Object)</InterfaceMember>
@@ -979,7 +988,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="value" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="value" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.InvalidOperationException">このプロパティは、シリアル化セッション外部でアクセスされました。</exception>
         <altmember cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />
         <altmember cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#GetInstance(System.String)" />
@@ -993,6 +1002,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#GetSerializer(System.Type,System.Type)" />
       <MemberSignature Language="VB.NET" Value="Function GetSerializer (objectType As Type, serializerType As Type) As Object Implements IDesignerSerializationManager.GetSerializer" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::Object ^ System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer(Type ^ objectType, Type ^ serializerType) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::GetSerializer;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer : Type * Type -&gt; obj&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer : Type * Type -&gt; obj" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer (objectType, serializerType)" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetSerializer(System.Type,System.Type)</InterfaceMember>
@@ -1032,6 +1042,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#GetType(System.String)" />
       <MemberSignature Language="VB.NET" Value="Function GetType (typeName As String) As Type Implements IDesignerSerializationManager.GetType" />
       <MemberSignature Language="C++ CLI" Value=" virtual Type ^ System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetType(System::String ^ typeName) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::GetType;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetType : string -&gt; Type&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetType : string -&gt; Type" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetType typeName" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetType(System.String)</InterfaceMember>
@@ -1065,7 +1076,7 @@
       <MemberSignature Language="DocId" Value="P:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#Properties" />
       <MemberSignature Language="VB.NET" Value=" ReadOnly Property Properties As PropertyDescriptorCollection Implements IDesignerSerializationManager.Properties" />
       <MemberSignature Language="C++ CLI" Value="property System::ComponentModel::PropertyDescriptorCollection ^ System::ComponentModel::Design::Serialization::IDesignerSerializationManager::Properties { System::ComponentModel::PropertyDescriptorCollection ^ get(); };" />
-      <MemberSignature Language="F#" Usage="System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Properties" />
+      <MemberSignature Language="F#" Value="member this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Properties : System.ComponentModel.PropertyDescriptorCollection" Usage="System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Properties" />
       <MemberType>Property</MemberType>
       <Implements>
         <InterfaceMember>P:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.Properties</InterfaceMember>
@@ -1094,6 +1105,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#RemoveSerializationProvider(System.ComponentModel.Design.Serialization.IDesignerSerializationProvider)" />
       <MemberSignature Language="VB.NET" Value="Sub RemoveSerializationProvider (provider As IDesignerSerializationProvider) Implements IDesignerSerializationManager.RemoveSerializationProvider" />
       <MemberSignature Language="C++ CLI" Value=" virtual void System.ComponentModel.Design.Serialization.IDesignerSerializationManager.RemoveSerializationProvider(System::ComponentModel::Design::Serialization::IDesignerSerializationProvider ^ provider) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::RemoveSerializationProvider;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.RemoveSerializationProvider : System.ComponentModel.Design.Serialization.IDesignerSerializationProvider -&gt; unit&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.RemoveSerializationProvider : System.ComponentModel.Design.Serialization.IDesignerSerializationProvider -&gt; unit" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.RemoveSerializationProvider provider" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.RemoveSerializationProvider(System.ComponentModel.Design.Serialization.IDesignerSerializationProvider)</InterfaceMember>
@@ -1134,6 +1146,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#ReportError(System.Object)" />
       <MemberSignature Language="VB.NET" Value="Sub ReportError (errorInformation As Object) Implements IDesignerSerializationManager.ReportError" />
       <MemberSignature Language="C++ CLI" Value=" virtual void System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ReportError(System::Object ^ errorInformation) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::ReportError;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ReportError : obj -&gt; unit&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ReportError : obj -&gt; unit" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ReportError errorInformation" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ReportError(System.Object)</InterfaceMember>
@@ -1176,6 +1189,7 @@
       <MemberSignature Language="ILAsm" Value=".event class System.ComponentModel.Design.Serialization.ResolveNameEventHandler System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ResolveName" />
       <MemberSignature Language="DocId" Value="E:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#ResolveName" />
       <MemberSignature Language="VB.NET" Value="Custom Event ResolveName As ResolveNameEventHandler Implements System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
+      <MemberSignature Language="F#" Value="member this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ResolveName : System.ComponentModel.Design.Serialization.ResolveNameEventHandler " Usage="member this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ResolveName : System.ComponentModel.Design.Serialization.ResolveNameEventHandler " />
       <MemberType>Event</MemberType>
       <Implements>
         <InterfaceMember>E:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.ResolveName</InterfaceMember>
@@ -1214,6 +1228,7 @@
       <MemberSignature Language="ILAsm" Value=".event class System.EventHandler System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete" />
       <MemberSignature Language="DocId" Value="E:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#SerializationComplete" />
       <MemberSignature Language="VB.NET" Value="Custom Event SerializationComplete As EventHandler Implements System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
+      <MemberSignature Language="F#" Value="member this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete : EventHandler " Usage="member this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete : System.EventHandler " />
       <MemberType>Event</MemberType>
       <Implements>
         <InterfaceMember>E:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SerializationComplete</InterfaceMember>
@@ -1254,6 +1269,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#ComponentModel#Design#Serialization#IDesignerSerializationManager#SetName(System.Object,System.String)" />
       <MemberSignature Language="VB.NET" Value="Sub SetName (instance As Object, name As String) Implements IDesignerSerializationManager.SetName" />
       <MemberSignature Language="C++ CLI" Value=" virtual void System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SetName(System::Object ^ instance, System::String ^ name) = System::ComponentModel::Design::Serialization::IDesignerSerializationManager::SetName;" />
+      <MemberSignature Language="F#" Value="abstract member System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SetName : obj * string -&gt; unit&#xA;override this.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SetName : obj * string -&gt; unit" Usage="designerSerializationManager.System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SetName (instance, name)" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.SetName(System.Object,System.String)</InterfaceMember>
@@ -1300,6 +1316,7 @@
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.System#IServiceProvider#GetService(System.Type)" />
       <MemberSignature Language="VB.NET" Value="Function GetService (serviceType As Type) As Object Implements IServiceProvider.GetService" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::Object ^ System.IServiceProvider.GetService(Type ^ serviceType) = IServiceProvider::GetService;" />
+      <MemberSignature Language="F#" Value="abstract member System.IServiceProvider.GetService : Type -&gt; obj&#xA;override this.System.IServiceProvider.GetService : Type -&gt; obj" Usage="designerSerializationManager.System.IServiceProvider.GetService serviceType" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.IServiceProvider.GetService(System.Type)</InterfaceMember>
@@ -1329,8 +1346,8 @@
         <summary>このメンバーの説明については、<see cref="M:System.IServiceProvider.GetService(System.Type)" /> メソッドのトピックを参照してください。</summary>
         <returns><paramref name="serviceType" /> 型のサービス オブジェクト。  
   
-または 
- <see langword="null" /> 型のサービス オブジェクトが存在しない場合は <paramref name="serviceType" />。</returns>
+- または - 
+ <paramref name="serviceType" /> 型のサービス オブジェクトが存在しない場合は <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1368,7 +1385,7 @@
       </ReturnValue>
       <Docs>
         <summary><see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> メソッドによって、一致する名前が同じ型を参照していることが検査されるかどうかを示す値が取得または設定されます。</summary>
-        <value><see langword="true" /> が型を検査する場合は <see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" />。検査しない場合は <see langword="false" />。 既定値は、<see langword="true" /> です。</value>
+        <value><see cref="M:System.ComponentModel.Design.Serialization.DesignerSerializationManager.CreateInstance(System.Type,System.Collections.ICollection,System.String,System.Boolean)" /> が型を検査する場合は <see langword="true" />。検査しない場合は <see langword="false" />。 既定値は、<see langword="true" /> です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
