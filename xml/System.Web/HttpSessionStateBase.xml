@@ -1,5 +1,5 @@
 <Type Name="HttpSessionStateBase" FullName="System.Web.HttpSessionStateBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9020fd49fa068fc4f264b688c5f71c108f0ce30a" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76957737" /></Metadata><TypeSignature Language="C#" Value="public abstract class HttpSessionStateBase : System.Collections.ICollection" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="42167159a7d0eea0ebae470b1789a241da99190a" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78803580" /></Metadata><TypeSignature Language="C#" Value="public abstract class HttpSessionStateBase : System.Collections.ICollection" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit HttpSessionStateBase extends System.Object implements class System.Collections.ICollection, class System.Collections.IEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.Web.HttpSessionStateBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class HttpSessionStateBase&#xA;Implements ICollection" />
@@ -13,6 +13,9 @@
     <AssemblyName>System.Web.Abstractions</AssemblyName>
     <AssemblyVersion>3.5.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.Web.Abstractions" FromVersion="4.0.0.0" To="System.Web" ToVersion="4.0.0.0" FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -30,7 +33,7 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>セッション状態の値、セッション レベルの設定、有効期間管理メソッドへのアクセスを提供するクラスの基底クラスとして機能します。</summary>
+    <summary>セッション状態値、セッションレベルの設定、および有効期間管理メソッドへのアクセスを提供するクラスの基本クラスとして機能します。</summary>
     <remarks>
       <format type="text/markdown"><![CDATA[  
   
@@ -120,7 +123,7 @@
       </Parameters>
       <Docs>
         <param name="name">セッション状態コレクションに追加する項目の名前。</param>
-        <param name="value">セッション状態コレクションに追加する項目の値。</param>
+        <param name="value">セッション状態のコレクションに追加する項目の値。</param>
         <summary>派生クラスでオーバーライドされると、セッション状態コレクションに項目を追加します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
@@ -225,7 +228,7 @@
       </ReturnValue>
       <Docs>
         <summary>派生クラスでオーバーライドされると、アプリケーションが Cookie なしのセッション用に構成されているかどうかを示す値を取得します。</summary>
-        <value>アプリケーションが Cookie なしのセッション用に構成されているかどうかを示す Cookie モード値の 1 つ。</value>
+        <value>アプリケーションがクッキーなしのセッション用に構成されているかどうかを示すクッキー モード値の 1 つ。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -234,6 +237,7 @@
       <MemberSignature Language="C#" Value="public virtual void CopyTo (Array array, int index);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void CopyTo(class System.Array array, int32 index) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Web.HttpSessionStateBase.CopyTo(System.Array,System.Int32)" />
+      <MemberSignature Language="VB.NET" Value="Public Overridable Sub CopyTo (array As Array, index As Integer)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void CopyTo(Array ^ array, int index);" />
       <MemberSignature Language="F#" Value="abstract member CopyTo : Array * int -&gt; unit&#xA;override this.CopyTo : Array * int -&gt; unit" Usage="httpSessionStateBase.CopyTo (array, index)" />
       <MemberType>Method</MemberType>
@@ -317,7 +321,7 @@
       <Parameters />
       <Docs>
         <summary>派生クラスでオーバーライドされた場合は、現在のセッションですべてのセッション状態変数名を読み取るために使用できる列挙子を返します。</summary>
-        <returns>セッション状態コレクション内の変数名を反復処理できる列挙子。</returns>
+        <returns>セッション状態のコレクションの変数名を反復処理できる列挙子。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -342,7 +346,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>派生クラスでオーバーライドされると、セッション ID が URL に埋め込まれているかどうかを示す値を取得します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、セッション ID が URL に埋め込まれているかどうかを示す値を取得します。</summary>
         <value>セッション ID が URL に埋め込まれている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
@@ -368,8 +372,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>派生クラスでオーバーライドされると、現在の要求でセッションが作成されたかどうかを示す値を取得します。</summary>
-        <value>現在の要求でセッションが作成された場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</value>
+        <summary>派生クラスでオーバーライドされた場合、現在の要求でセッションが作成されたかどうかを示す値を取得します。</summary>
+        <value>現在の要求でセッションが作成された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -424,7 +428,7 @@
       </ReturnValue>
       <Docs>
         <summary>派生クラスでオーバーライドされるとき、セッション状態の値のコレクションへのアクセスが同期 (スレッド セーフ) されるかどうかを示す値を取得します。</summary>
-        <value>コレクションへのアクセスが同期されている (スレッド セーフである) 場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</value>
+        <value>コレクションへのアクセスが同期されている (スレッド セーフである) 場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -463,7 +467,7 @@
       <Docs>
         <param name="index">セッションの値のインデックス。</param>
         <summary>派生クラスでオーバーライドされると、指定したインデックスを使用して、セッションの値を取得または設定します。</summary>
-        <value>指定したインデックスに格納されているセッション状態の値。</value>
+        <value>指定したインデックスに格納されるセッション状態値。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -493,7 +497,7 @@
       <Docs>
         <param name="name">セッションの値のキー名。</param>
         <summary>派生クラスでオーバーライドされている場合、指定した名前を使用してセッションの値を取得または設定します。</summary>
-        <value>指定した名前を持つセッション状態の値。項目が存在しない場合は <see langword="null" />。</value>
+        <value>指定された名前のセッション状態値。項目が存在しない場合は <see langword="null" />。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -662,7 +666,7 @@
       </Parameters>
       <Docs>
         <param name="index">セッション状態コレクションから削除する項目のインデックス。</param>
-        <summary>派生クラスでオーバーライドされると、指定されたインデックス位置にある項目を、セッション状態コレクションから削除します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、セッション状態のコレクションの指定したインデックス位置にある項目を削除します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -713,7 +717,7 @@
         <ReturnType>System.Web.HttpStaticObjectsCollectionBase</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>派生クラスでオーバーライドされた場合は、サーバー コントロールとしてマークされ、アプリケーションの Global.asax ファイル内の現在のセッションに範囲指定された <see langword="object" /> 要素で宣言されているオブジェクトのコレクションを取得します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、サーバー コントロールとしてマークされており、アプリケーションの Global.asax ファイル内の現在のセッションをスコープとする <see langword="object" /> 要素で宣言されているオブジェクトのコレクションを取得します。</summary>
         <value>Global.asax ファイルで宣言されているオブジェクト。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
@@ -742,8 +746,8 @@
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>派生クラスでオーバーライドされると、セッション状態の値のコレクションへのアクセスを同期するために使用できるオブジェクトを取得します。</summary>
-        <value>コレクションへのアクセスを同期するために使用できるオブジェクト。</value>
+        <summary>派生クラスでオーバーライドされた場合、セッション状態値のコレクションへのアクセスの同期に使用できるオブジェクトを取得します。</summary>
+        <value>コレクションへのアクセスの同期に使用できるオブジェクトです。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -768,7 +772,7 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>派生クラスでオーバーライドされたときに、ある要求から次の要求までの経過時間がそれを超えるとセッション状態プロバイダーがセッションを終了する時間を、分単位で取得または設定します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、セッション状態プロバイダーがセッションを終了するまでに要求間での経過を許可する時間を分単位で取得または設定します。</summary>
         <value>タイムアウト期間 (分)。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>

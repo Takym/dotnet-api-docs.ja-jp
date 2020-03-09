@@ -1,5 +1,5 @@
 <Type Name="AuthorizationRule" FullName="System.Security.AccessControl.AuthorizationRule">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0cde22c08493a8eacf0a1295669940a241a8f04a" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69265314" /></Metadata><TypeSignature Language="C#" Value="public abstract class AuthorizationRule" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="da394bba0737fd9a02fc110cd8f9b5b897eec9e6" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78830321" /></Metadata><TypeSignature Language="C#" Value="public abstract class AuthorizationRule" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit AuthorizationRule extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.AccessControl.AuthorizationRule" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class AuthorizationRule" />
@@ -31,6 +31,7 @@
       <MemberSignature Language="C#" Value="protected internal AuthorizationRule (System.Security.Principal.IdentityReference identity, int accessMask, bool isInherited, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags);" />
       <MemberSignature Language="ILAsm" Value=".method familyorassemblyhidebysig specialname rtspecialname instance void .ctor(class System.Security.Principal.IdentityReference identity, int32 accessMask, bool isInherited, valuetype System.Security.AccessControl.InheritanceFlags inheritanceFlags, valuetype System.Security.AccessControl.PropagationFlags propagationFlags) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Security.AccessControl.AuthorizationRule.#ctor(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags)" />
+      <MemberSignature Language="VB.NET" Value="Protected Friend Sub New (identity As IdentityReference, accessMask As Integer, isInherited As Boolean, inheritanceFlags As InheritanceFlags, propagationFlags As PropagationFlags)" />
       <MemberSignature Language="C++ CLI" Value="protected public:&#xA; AuthorizationRule(System::Security::Principal::IdentityReference ^ identity, int accessMask, bool isInherited, System::Security::AccessControl::InheritanceFlags inheritanceFlags, System::Security::AccessControl::PropagationFlags propagationFlags);" />
       <MemberSignature Language="F#" Value="new System.Security.AccessControl.AuthorizationRule : System.Security.Principal.IdentityReference * int * bool * System.Security.AccessControl.InheritanceFlags * System.Security.AccessControl.PropagationFlags -&gt; System.Security.AccessControl.AuthorizationRule" Usage="new System.Security.AccessControl.AuthorizationRule (identity, accessMask, isInherited, inheritanceFlags, propagationFlags)" />
       <MemberType>Constructor</MemberType>
@@ -55,15 +56,15 @@
         <Parameter Name="propagationFlags" Type="System.Security.AccessControl.PropagationFlags" />
       </Parameters>
       <Docs>
-        <param name="identity">アクセス規則を適用する ID。 このパラメーターは <see cref="T:System.Security.Principal.SecurityIdentifier" />としてキャスト可能なオブジェクトである必要があります。</param>
+        <param name="identity">アクセス規則を適用する ID。 このパラメーターは <see cref="T:System.Security.Principal.SecurityIdentifier" /> としてキャスト可能なオブジェクトである必要があります。</param>
         <param name="accessMask">この規則のアクセス マスク。 アクセス マスクは 32 ビットの匿名ビットのコレクションです。アクセス マスクの意味は、各インテグレーターによって定義されます。</param>
         <param name="isInherited">この規則を親コンテナーから継承する<see langword="true" /> 。</param>
         <param name="inheritanceFlags">アクセス規則の継承プロパティ。</param>
-        <param name="propagationFlags">継承されたアクセス規則を自動的に伝達させるかどうか。 <paramref name="inheritanceFlags" /> が <see cref="F:System.Security.AccessControl.InheritanceFlags.None" /> に設定されている場合、反映フラグは無視されます。</param>
+        <param name="propagationFlags">継承されたアクセス規則を自動的に伝達させるかどうか。 <paramref name="inheritanceFlags" /> が <see cref="F:System.Security.AccessControl.InheritanceFlags.None" /> に設定されている場合、伝達フラグは無視されます。</param>
         <summary>指定した値を使用して、<see cref="T:System.Security.AccessControl.AccessRule" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentException"><paramref name="identity" /> パラメーターの値を <see cref="T:System.Security.Principal.SecurityIdentifier" /> としてキャストできません。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="accessMask" /> パラメーターの値がゼロ (0) です。または、<paramref name="inheritanceFlags" /> パラメーターまたは <paramref name="propagationFlags" /> パラメーターに認識されないフラグ値が格納されています。</exception>
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="accessMask" /> パラメーターの値が 0 であるか、認識されないフラグの値が <paramref name="inheritanceFlags" /> または <paramref name="propagationFlags" /> パラメーターに含まれています。</exception>
       </Docs>
     </Member>
     <Member MemberName="AccessMask">
@@ -181,7 +182,7 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>この規則を明示的に設定するか、または親コンテナー オブジェクトから継承するかを指定する値を取得します。</summary>
+        <summary>このルールが明示的に設定されているか、または親コンテナー オブジェクトから継承されているかを示す値を取得します。</summary>
         <value>この規則を明示的に設定せず、親コンテナーから継承する場合は <see langword="true" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -211,7 +212,7 @@
         <ReturnType>System.Security.AccessControl.PropagationFlags</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>反映フラグの値を取得します。このフラグから、この規則を子オブジェクトに反映させる方法を判断します。 このプロパティは、<see cref="T:System.Security.AccessControl.InheritanceFlags" /> 列挙体の値が <see cref="F:System.Security.AccessControl.InheritanceFlags.None" /> でない場合にのみ重要です。</summary>
+        <summary>このルールの継承を子オブジェクトに反映する方法を決定する、伝達のフラグの値を取得します。 このプロパティは、<see cref="T:System.Security.AccessControl.InheritanceFlags" /> 列挙体の値が <see cref="F:System.Security.AccessControl.InheritanceFlags.None" /> でない場合にのみ重要です。</summary>
         <value>列挙値のビットごとの組み合わせ。</value>
         <remarks>To be added.</remarks>
       </Docs>

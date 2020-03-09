@@ -1,5 +1,5 @@
 <Type Name="ReservationCollection" FullName="System.IO.Log.ReservationCollection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="0b5f7c5e00b035f2197d50e122641e5237cd5df1" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69245115" /></Metadata><TypeSignature Language="C#" Value="public abstract class ReservationCollection : System.Collections.Generic.ICollection&lt;long&gt;, System.Collections.Generic.IEnumerable&lt;long&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5e92f46778c60df82ff95eedf0bd6328a9760f43" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78827487" /></Metadata><TypeSignature Language="C#" Value="public abstract class ReservationCollection : System.Collections.Generic.ICollection&lt;long&gt;, System.Collections.Generic.IEnumerable&lt;long&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ReservationCollection extends System.Object implements class System.Collections.Generic.ICollection`1&lt;int64&gt;, class System.Collections.Generic.IEnumerable`1&lt;int64&gt;, class System.Collections.IEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.IO.Log.ReservationCollection" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ReservationCollection&#xA;Implements ICollection(Of Long), IEnumerable(Of Long)" />
@@ -238,6 +238,9 @@ recordSequence.Append(undoRecordData, userSqn, previousSqn, RecordAppendOptions.
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void CopyTo(cli::array &lt;long&gt; ^ array, int arrayIndex);" />
       <MemberSignature Language="F#" Value="abstract member CopyTo : int64[] * int -&gt; unit&#xA;override this.CopyTo : int64[] * int -&gt; unit" Usage="reservationCollection.CopyTo (array, arrayIndex)" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>System.IO.Log</AssemblyName>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
@@ -253,13 +256,13 @@ recordSequence.Append(undoRecordData, userSqn, previousSqn, RecordAppendOptions.
       <Docs>
         <param name="array">コピー先の配列。</param>
         <param name="arrayIndex">配列内のコピーを開始する位置を示す、0 から始まるインデックスです。</param>
-        <summary>コレクション全体を 1 次元配列にコピーします。コピー操作は、コピー先配列の指定したインデックスから始まります。 このメソッドは継承できません。</summary>
+        <summary>1 次元配列にコレクション全体をコピーします。その際、コピー対象の配列の指定したインデックス位置からコピーを開始します。 このメソッドは継承できません。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> または <paramref name="arrayIndex" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> 、または <paramref name="arrayIndex" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex" /> が 0 未満か、<paramref name="array" /> の長さ以上の値です。</exception>
         <exception cref="T:System.ArgumentException">指定された配列は、データをコピーするには領域が不足しています。  
   
-- または - 
+または 
  <paramref name="array" /> が 1 次元配列ではありません。要求された処理に使用できるのは 1 次元配列のみです。</exception>
         <exception cref="T:System.ObjectDisposedException">シーケンスが破棄された後にメソッドが呼び出されました。</exception>
         <exception cref="T:System.OutOfMemoryException">プログラムの実行を継続する十分なメモリがありません。</exception>
@@ -430,7 +433,7 @@ recordSequence.Append(undoRecordData, userSqn, previousSqn, RecordAppendOptions.
       </ReturnValue>
       <Docs>
         <summary>コレクションが読み取り専用かどうかを示す値を取得します。</summary>
-        <value>このプロパティは常に <see langword="false" /> を返します。</value>
+        <value>このプロパティは、常に <see langword="false" /> を返します。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -583,7 +586,7 @@ recordSequence.Append(undoRecordData, userSqn, previousSqn, RecordAppendOptions.
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- から<xref:System.IO.Log.ReservationCollection>継承する場合は、の<xref:System.IO.Log.ReservationCollection.Add%2A>呼び出しの外部で予約が行われるときに、このメソッドを呼び出す必要があります。  
+ <xref:System.IO.Log.ReservationCollection>から継承する場合は、<xref:System.IO.Log.ReservationCollection.Add%2A>の呼び出しの外部で予約が行われるときに、このメソッドを呼び出す必要があります。  
   
  ]]></format>
         </remarks>
@@ -595,6 +598,7 @@ recordSequence.Append(undoRecordData, userSqn, previousSqn, RecordAppendOptions.
       <MemberSignature Language="DocId" Value="M:System.IO.Log.ReservationCollection.System#Collections#IEnumerable#GetEnumerator" />
       <MemberSignature Language="VB.NET" Value="Function GetEnumerator () As IEnumerator Implements IEnumerable.GetEnumerator" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::Collections::IEnumerator ^ System.Collections.IEnumerable.GetEnumerator() = System::Collections::IEnumerable::GetEnumerator;" />
+      <MemberSignature Language="F#" Value="abstract member System.Collections.IEnumerable.GetEnumerator : unit -&gt; System.Collections.IEnumerator&#xA;override this.System.Collections.IEnumerable.GetEnumerator : unit -&gt; System.Collections.IEnumerator" Usage="reservationCollection.System.Collections.IEnumerable.GetEnumerator " />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Collections.IEnumerable.GetEnumerator</InterfaceMember>

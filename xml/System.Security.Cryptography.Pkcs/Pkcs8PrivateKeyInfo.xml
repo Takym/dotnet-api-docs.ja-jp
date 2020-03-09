@@ -1,5 +1,5 @@
 <Type Name="Pkcs8PrivateKeyInfo" FullName="System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f962c30e000e696407583736851efba335a419d4" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75079751" /></Metadata><TypeSignature Language="C#" Value="public sealed class Pkcs8PrivateKeyInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9535b27112120a7650f9d883e920de4dbb066aa6" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78833298" /></Metadata><TypeSignature Language="C#" Value="public sealed class Pkcs8PrivateKeyInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Pkcs8PrivateKeyInfo extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Pkcs8PrivateKeyInfo" />
@@ -21,7 +21,7 @@
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public Pkcs8PrivateKeyInfo (System.Security.Cryptography.Oid algorithmId, Nullable&lt;ReadOnlyMemory&lt;byte&gt;&gt; algorithmParameters, ReadOnlyMemory&lt;byte&gt; privateKey, bool skipCopies = false);" />
+      <MemberSignature Language="C#" Value="public Pkcs8PrivateKeyInfo (System.Security.Cryptography.Oid algorithmId, ReadOnlyMemory&lt;byte&gt;? algorithmParameters, ReadOnlyMemory&lt;byte&gt; privateKey, bool skipCopies = false);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.Security.Cryptography.Oid algorithmId, valuetype System.Nullable`1&lt;valuetype System.ReadOnlyMemory`1&lt;unsigned int8&gt;&gt; algorithmParameters, valuetype System.ReadOnlyMemory`1&lt;unsigned int8&gt; privateKey, bool skipCopies) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo.#ctor(System.Security.Cryptography.Oid,System.Nullable{System.ReadOnlyMemory{System.Byte}},System.ReadOnlyMemory{System.Byte},System.Boolean)" />
       <MemberSignature Language="VB.NET" Value="Public Sub New (algorithmId As Oid, algorithmParameters As Nullable(Of ReadOnlyMemory(Of Byte)), privateKey As ReadOnlyMemory(Of Byte), Optional skipCopies As Boolean = false)" />
@@ -43,7 +43,7 @@
         <param name="algorithmId">このキーの対象となる非対称アルゴリズムを示すオブジェクト識別子 (OID)。</param>
         <param name="algorithmParameters">このキーに関連付けられている BER でエンコードされたアルゴリズム パラメーター、またはエンコード時にアルゴリズム パラメーターを省略する場合は <see langword="null" />。</param>
         <param name="privateKey">アルゴリズム固有のエンコードされた秘密キー。</param>
-        <param name="skipCopies">防御用のコピーを作成しないで <see langword="true" /> および <paramref name="algorithmParameters" /> を格納する場合は <paramref name="privateKey" />、それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</param>
+        <param name="skipCopies">防御用のコピーを作成しないで <see langword="true" /> および <paramref name="algorithmParameters" /> を格納する場合は <paramref name="privateKey" />、それ以外の場合は <see langword="false" />。 既定では、 <see langword="false" />です。</param>
         <summary><see cref="T:System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -90,7 +90,7 @@
       </Docs>
     </Member>
     <Member MemberName="AlgorithmParameters">
-      <MemberSignature Language="C#" Value="public Nullable&lt;ReadOnlyMemory&lt;byte&gt;&gt; AlgorithmParameters { get; }" />
+      <MemberSignature Language="C#" Value="public ReadOnlyMemory&lt;byte&gt;? AlgorithmParameters { get; }" />
       <MemberSignature Language="ILAsm" Value=".property instance valuetype System.Nullable`1&lt;valuetype System.ReadOnlyMemory`1&lt;unsigned int8&gt;&gt; AlgorithmParameters" />
       <MemberSignature Language="DocId" Value="P:System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo.AlgorithmParameters" />
       <MemberSignature Language="VB.NET" Value="Public ReadOnly Property AlgorithmParameters As Nullable(Of ReadOnlyMemory(Of Byte))" />
@@ -188,8 +188,8 @@
       </Parameters>
       <Docs>
         <param name="source">PKCS#8 PrivateKeyInfo 値として解釈するデータ。</param>
-        <param name="bytesRead">このメソッドから制御が戻ったときに、<paramref name="source" /> から読み込まれたバイト数を示す値が含まれます。 このパラメーターは初期化前として処理されます。</param>
-        <param name="skipCopy">防御用のコピーを作成しないで <see langword="true" /> を格納する場合は <paramref name="source" />、それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</param>
+        <param name="bytesRead">このメソッドから制御が戻ったときに、<paramref name="source" /> から読み込まれたバイト数を示す値が含まれます。 このパラメーターは未初期化として扱われます。</param>
+        <param name="skipCopy">防御用のコピーを作成しないで <see langword="true" /> を格納する場合は <paramref name="source" />、それ以外の場合は <see langword="false" />。 既定では、 <see langword="false" />です。</param>
         <summary>指定されたデータを PKCS#8 PrivateKeyInfo として読み取り、その内容のオブジェクト ビューを返します。</summary>
         <returns>PKCS#8 PrivateKeyInfo としてデコードされた内容のオブジェクト ビュー。</returns>
         <remarks>
@@ -231,7 +231,7 @@
       <Docs>
         <param name="passwordBytes">キー マテリアルを暗号化解除するときにパスワードとして使用するバイト。</param>
         <param name="source">ASN.1-BER エンコードで PKCS#8 EncryptedPrivateKeyInfo 構造体として読み取るデータ。</param>
-        <param name="bytesRead">このメソッドから制御が戻ったときに、<paramref name="source" /> から読み込まれたバイト数を示す値が含まれます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="bytesRead">このメソッドから制御が戻ったときに、<paramref name="source" /> から読み込まれたバイト数を示す値が含まれます。 このパラメーターは未初期化として扱われます。</param>
         <summary>指定されたバイト ベースのパスワードを使用して指定されたデータを復号化し、その出力を PKCS#8 PrivateKeyInfo のオブジェクト ビューにデコードします。</summary>
         <returns>復号化されて PKCS#8 PrivateKeyInfo としてデコードされた内容のオブジェクト ビュー。</returns>
         <remarks>
@@ -283,7 +283,7 @@
       <Docs>
         <param name="password">キー マテリアルを復号化するときに使用するパスワード。</param>
         <param name="source">ASN.1-BER エンコードでの PKCS#8 EncryptedPrivateKeyInfo 構造体のバイト。</param>
-        <param name="bytesRead">このメソッドから制御が戻ったときに、<paramref name="source" /> から読み込まれたバイト数を示す値が含まれます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="bytesRead">このメソッドから制御が戻ったときに、<paramref name="source" /> から読み込まれたバイト数を示す値が含まれます。 このパラメーターは未初期化として扱われます。</param>
         <summary>指定された文字ベースのパスワードを使用して指定されたデータを復号化し、その出力を PKCS#8 PrivateKeyInfo のオブジェクト ビューにデコードします。</summary>
         <returns>復号化されて PKCS#8 PrivateKeyInfo としてデコードされた内容のオブジェクト ビュー。</returns>
         <remarks>
@@ -329,6 +329,7 @@
       <MemberSignature Language="C#" Value="public byte[] Encrypt (ReadOnlySpan&lt;byte&gt; passwordBytes, System.Security.Cryptography.PbeParameters pbeParameters);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance unsigned int8[] Encrypt(valuetype System.ReadOnlySpan`1&lt;unsigned int8&gt; passwordBytes, class System.Security.Cryptography.PbeParameters pbeParameters) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo.Encrypt(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.PbeParameters)" />
+      <MemberSignature Language="VB.NET" Value="Public Function Encrypt (passwordBytes As ReadOnlySpan(Of Byte), pbeParameters As PbeParameters) As Byte()" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; cli::array &lt;System::Byte&gt; ^ Encrypt(ReadOnlySpan&lt;System::Byte&gt; passwordBytes, System::Security::Cryptography::PbeParameters ^ pbeParameters);" />
       <MemberSignature Language="F#" Value="member this.Encrypt : ReadOnlySpan&lt;byte&gt; * System.Security.Cryptography.PbeParameters -&gt; byte[]" Usage="pkcs8PrivateKeyInfo.Encrypt (passwordBytes, pbeParameters)" />
       <MemberType>Method</MemberType>
@@ -367,6 +368,7 @@
       <MemberSignature Language="C#" Value="public byte[] Encrypt (ReadOnlySpan&lt;char&gt; password, System.Security.Cryptography.PbeParameters pbeParameters);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance unsigned int8[] Encrypt(valuetype System.ReadOnlySpan`1&lt;char&gt; password, class System.Security.Cryptography.PbeParameters pbeParameters) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo.Encrypt(System.ReadOnlySpan{System.Char},System.Security.Cryptography.PbeParameters)" />
+      <MemberSignature Language="VB.NET" Value="Public Function Encrypt (password As ReadOnlySpan(Of Char), pbeParameters As PbeParameters) As Byte()" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; cli::array &lt;System::Byte&gt; ^ Encrypt(ReadOnlySpan&lt;char&gt; password, System::Security::Cryptography::PbeParameters ^ pbeParameters);" />
       <MemberSignature Language="F#" Value="member this.Encrypt : ReadOnlySpan&lt;char&gt; * System.Security.Cryptography.PbeParameters -&gt; byte[]" Usage="pkcs8PrivateKeyInfo.Encrypt (password, pbeParameters)" />
       <MemberType>Method</MemberType>
@@ -445,7 +447,7 @@
       </Parameters>
       <Docs>
         <param name="destination">PKCS#8 PrivateKeyInfo データを受け取るバイト スパン。</param>
-        <param name="bytesWritten">このメソッドから制御が戻ったときに、<paramref name="destination" /> に書き込まれたバイト数を示す値が含まれます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="bytesWritten">このメソッドから制御が戻ったときに、<paramref name="destination" /> に書き込まれたバイト数を示す値が含まれます。 このパラメーターは未初期化として扱われます。</param>
         <summary>このインスタンスのプロパティ データを PKCS#8 PrivateKeyInfo としてエンコードすることを試み、指定されたバッファーに結果を書き込みます。</summary>
         <returns><see langword="true" /> が出力を受け入れるだけの十分な大きさの場合は <paramref name="destination" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
@@ -456,6 +458,7 @@
       <MemberSignature Language="C#" Value="public bool TryEncrypt (ReadOnlySpan&lt;byte&gt; passwordBytes, System.Security.Cryptography.PbeParameters pbeParameters, Span&lt;byte&gt; destination, out int bytesWritten);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool TryEncrypt(valuetype System.ReadOnlySpan`1&lt;unsigned int8&gt; passwordBytes, class System.Security.Cryptography.PbeParameters pbeParameters, valuetype System.Span`1&lt;unsigned int8&gt; destination, [out] int32&amp; bytesWritten) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo.TryEncrypt(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.PbeParameters,System.Span{System.Byte},System.Int32@)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TryEncrypt (passwordBytes As ReadOnlySpan(Of Byte), pbeParameters As PbeParameters, destination As Span(Of Byte), ByRef bytesWritten As Integer) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; bool TryEncrypt(ReadOnlySpan&lt;System::Byte&gt; passwordBytes, System::Security::Cryptography::PbeParameters ^ pbeParameters, Span&lt;System::Byte&gt; destination, [Runtime::InteropServices::Out] int % bytesWritten);" />
       <MemberSignature Language="F#" Value="member this.TryEncrypt : ReadOnlySpan&lt;byte&gt; * System.Security.Cryptography.PbeParameters * Span&lt;byte&gt; * int -&gt; bool" Usage="pkcs8PrivateKeyInfo.TryEncrypt (passwordBytes, pbeParameters, destination, bytesWritten)" />
       <MemberType>Method</MemberType>
@@ -478,7 +481,7 @@
         <param name="passwordBytes">キー マテリアルを暗号化するときにパスワードとして使用するバイト。</param>
         <param name="pbeParameters">キー マテリアルを暗号化するときに使用する、パスワードベースの暗号化 (PBE) パラメーター。</param>
         <param name="destination">PKCS#8 EncryptedPrivateKeyInfo データを受け取るバイト スパン。</param>
-        <param name="bytesWritten">このメソッドから制御が戻ったときに、<paramref name="destination" /> に書き込まれたバイト数を示す値が含まれます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="bytesWritten">このメソッドから制御が戻ったときに、<paramref name="destination" /> に書き込まれたバイト数を示す値が含まれます。 このパラメーターは未初期化として扱われます。</param>
         <summary>指定されたバイト ベースのパスワードと暗号化パラメーターを使用して暗号化した後、このオブジェクトのプロパティの内容から PKCS#8 EncryptedPrivateKeyInfo を生成することを試み、指定されたバッファーに結果を書き込みます。</summary>
         <returns><see langword="true" /> が出力を受け入れるだけの十分な大きさの場合は <paramref name="destination" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
@@ -497,6 +500,7 @@
       <MemberSignature Language="C#" Value="public bool TryEncrypt (ReadOnlySpan&lt;char&gt; password, System.Security.Cryptography.PbeParameters pbeParameters, Span&lt;byte&gt; destination, out int bytesWritten);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool TryEncrypt(valuetype System.ReadOnlySpan`1&lt;char&gt; password, class System.Security.Cryptography.PbeParameters pbeParameters, valuetype System.Span`1&lt;unsigned int8&gt; destination, [out] int32&amp; bytesWritten) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Security.Cryptography.Pkcs.Pkcs8PrivateKeyInfo.TryEncrypt(System.ReadOnlySpan{System.Char},System.Security.Cryptography.PbeParameters,System.Span{System.Byte},System.Int32@)" />
+      <MemberSignature Language="VB.NET" Value="Public Function TryEncrypt (password As ReadOnlySpan(Of Char), pbeParameters As PbeParameters, destination As Span(Of Byte), ByRef bytesWritten As Integer) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; bool TryEncrypt(ReadOnlySpan&lt;char&gt; password, System::Security::Cryptography::PbeParameters ^ pbeParameters, Span&lt;System::Byte&gt; destination, [Runtime::InteropServices::Out] int % bytesWritten);" />
       <MemberSignature Language="F#" Value="member this.TryEncrypt : ReadOnlySpan&lt;char&gt; * System.Security.Cryptography.PbeParameters * Span&lt;byte&gt; * int -&gt; bool" Usage="pkcs8PrivateKeyInfo.TryEncrypt (password, pbeParameters, destination, bytesWritten)" />
       <MemberType>Method</MemberType>
@@ -519,7 +523,7 @@
         <param name="password">キー マテリアルを暗号化するときに使用するパスワード。</param>
         <param name="pbeParameters">キー マテリアルを暗号化するときに使用する、パスワードベースの暗号化 (PBE) パラメーター。</param>
         <param name="destination">PKCS#8 EncryptedPrivateKeyInfo データを受け取るバイト スパン。</param>
-        <param name="bytesWritten">このメソッドから制御が戻ったときに、<paramref name="destination" /> に書き込まれたバイト数を示す値が含まれます。 このパラメーターは初期化前として処理されます。</param>
+        <param name="bytesWritten">このメソッドから制御が戻ったときに、<paramref name="destination" /> に書き込まれたバイト数を示す値が含まれます。 このパラメーターは未初期化として扱われます。</param>
         <summary>指定された文字ベースのパスワードと暗号化パラメーターを使用して暗号化した後、このオブジェクトのプロパティの内容から PKCS#8 EncryptedPrivateKeyInfo を生成することを試み、指定されたバッファーに結果を書き込みます。</summary>
         <returns><see langword="true" /> が出力を受け入れるだけの十分な大きさの場合は <paramref name="destination" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>

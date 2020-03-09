@@ -1,10 +1,11 @@
 <Type Name="WorkflowInstance" FullName="System.Activities.Hosting.WorkflowInstance">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="7515c1e78c10083fc9644beb8219dc6cacc08083" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70339381" /></Metadata><TypeSignature Language="C#" Value="public abstract class WorkflowInstance" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract WorkflowInstance extends System.Object" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="0e317c42be11656ed6af959d3ea3724621229930" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78803723" /></Metadata><TypeSignature Language="C#" Value="public abstract class WorkflowInstance" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit WorkflowInstance extends System.Object" FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1" />
   <TypeSignature Language="DocId" Value="T:System.Activities.Hosting.WorkflowInstance" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class WorkflowInstance" />
   <TypeSignature Language="C++ CLI" Value="public ref class WorkflowInstance abstract" />
   <TypeSignature Language="F#" Value="type WorkflowInstance = class" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract WorkflowInstance extends System.Object" FrameworkAlternate="netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
   <AssemblyInfo>
     <AssemblyName>System.Activities</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -19,9 +20,9 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Activities.Hosting.WorkflowInstance> は、単一スレッドであり、ホストがそのスレッドへのすべてのアクセスを同期化していることを前提としています。 複数の API を同時に呼び出すと、<xref:System.InvalidOperationException> がスローされます。  
+ <xref:System.Activities.Hosting.WorkflowInstance> はシングルスレッドであり、ホストがすべてのアクセスを同期することを前提としています。 複数の API を同時に呼び出すと、<xref:System.InvalidOperationException> がスローされます。  
   
- 内部的に<xref:System.Activities.Hosting.WorkflowInstance>は、には次の2つの状態があります。実行中および一時停止中です。 ランタイムの状態を Paused から Running に遷移させる唯一の方法は、<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A> を呼び出すことです。 ランタイムが Paused の間は、すべてのアクション (Pause を除く) の取得のみを行うことができます。 ランタイムは、次の状況のときに、自然に Paused になります。  
+ 内部的には、<xref:System.Activities.Hosting.WorkflowInstance> は、Running と Paused の 2 つの状態を持ちます。 ランタイムの状態を Paused から Running に遷移させる唯一の方法は、<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A> を呼び出すことです。 ランタイムが Paused の間は、すべてのアクション (Pause を除く) の取得のみを行うことができます。 ランタイムは、次の状況のときに、自然に Paused になります。  
   
 -   ランタイムに致命的なエラーが発生しました。 ホストは <xref:System.Activities.Hosting.WorkflowInstance.OnRequestAbort%2A> (Paused への遷移は通知しません) を介してシグナルを受信し、次に、<xref:System.Activities.Hosting.WorkflowInstance.OnNotifyPaused%2A> を介して通知を受けます。  
   
@@ -33,9 +34,9 @@
   
  <xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.RequestPause%2A> プロパティによって返された <xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl> インスタンスの <xref:System.Activities.Hosting.WorkflowInstance.Controller%2A> メソッドは、<xref:System.Activities.Hosting.WorkflowInstance> が Running 状態のときに呼び出すことができる唯一のメソッドです。 他のすべてのメソッドは、呼び出されると <xref:System.InvalidOperationException> をスローします。<xref:System.Activities.Hosting.WorkflowInstance> がある状態から別の状態へ遷移する方法のルールを考えると、Running および Paused の一般概念を次のように定義できます。  
   
--   Running-の呼び出し<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A>と次の WorkflowInstance との間の状態。 onnotify *。  
+-   Running-<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A> の呼び出しと次の WorkflowInstance との間の状態。 OnNotify *。  
   
--   一時停止-最後の WorkflowInstance. OnNotify * との次の呼び出し<xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A>の間の状態。  
+-   一時停止-最後の WorkflowInstance. OnNotify * と <xref:System.Activities.Hosting.WorkflowInstance.WorkflowInstanceControl.Run%2A>の次の呼び出しの間の状態。  
   
  ]]></format>
     </remarks>
@@ -348,7 +349,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ワークフローインスタンスが初期化されてからが返さ<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A> `true`れた後にこの<xref:System.InvalidOperationException>プロパティを設定すると、がスローされます。  
+ ワークフローインスタンスが初期化された後にこのプロパティが設定され、<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A> が `true`を返す場合、<xref:System.InvalidOperationException> がスローされます。  
   
  ]]></format>
         </remarks>
@@ -573,6 +574,7 @@
       <MemberSignature Language="C#" Value="protected internal abstract IAsyncResult OnBeginResumeBookmark (System.Activities.Bookmark bookmark, object value, TimeSpan timeout, AsyncCallback callback, object state);" />
       <MemberSignature Language="ILAsm" Value=".method familyorassemblyhidebysig newslot virtual instance class System.IAsyncResult OnBeginResumeBookmark(class System.Activities.Bookmark bookmark, object value, valuetype System.TimeSpan timeout, class System.AsyncCallback callback, object state) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Activities.Hosting.WorkflowInstance.OnBeginResumeBookmark(System.Activities.Bookmark,System.Object,System.TimeSpan,System.AsyncCallback,System.Object)" />
+      <MemberSignature Language="VB.NET" Value="Protected Friend MustOverride Function OnBeginResumeBookmark (bookmark As Bookmark, value As Object, timeout As TimeSpan, callback As AsyncCallback, state As Object) As IAsyncResult" />
       <MemberSignature Language="C++ CLI" Value="protected public:&#xA; abstract IAsyncResult ^ OnBeginResumeBookmark(System::Activities::Bookmark ^ bookmark, System::Object ^ value, TimeSpan timeout, AsyncCallback ^ callback, System::Object ^ state);" />
       <MemberSignature Language="F#" Value="abstract member OnBeginResumeBookmark : System.Activities.Bookmark * obj * TimeSpan * AsyncCallback * obj -&gt; IAsyncResult" Usage="workflowInstance.OnBeginResumeBookmark (bookmark, value, timeout, callback, state)" />
       <MemberType>Method</MemberType>
@@ -747,6 +749,7 @@
       <MemberSignature Language="C#" Value="protected abstract void OnNotifyUnhandledException (Exception exception, System.Activities.Activity source, string sourceInstanceId);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void OnNotifyUnhandledException(class System.Exception exception, class System.Activities.Activity source, string sourceInstanceId) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Activities.Hosting.WorkflowInstance.OnNotifyUnhandledException(System.Exception,System.Activities.Activity,System.String)" />
+      <MemberSignature Language="VB.NET" Value="Protected MustOverride Sub OnNotifyUnhandledException (exception As Exception, source As Activity, sourceInstanceId As String)" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; abstract void OnNotifyUnhandledException(Exception ^ exception, System::Activities::Activity ^ source, System::String ^ sourceInstanceId);" />
       <MemberSignature Language="F#" Value="abstract member OnNotifyUnhandledException : Exception * System.Activities.Activity * string -&gt; unit" Usage="workflowInstance.OnNotifyUnhandledException (exception, source, sourceInstanceId)" />
       <MemberType>Method</MemberType>
@@ -826,7 +829,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 拡張機能は型によってキー指定され、拡張機能が提供されたホストは、存在する場合は常に使用されます。 <xref:System.Activities.Hosting.WorkflowInstanceExtensionManager.Add%2A> によって追加される拡張機能は、オブジェクトのランタイム型を型のキーとして使用します。 によって<xref:System.Activities.Hosting.WorkflowInstanceExtensionManager.Add%2A>追加された拡張機能プロバイダーは、Func\<t > の型 t を型キーとして使用します。 宣言された型に対してホストの拡張機能が存在する場合、または AddDefaultExtensionProvider を介して提供された広範な型が存在する場合、さまざまな *ActivityMetadata.AddDefaultExtensionProvider メソッドを介してアクティビティから提供された拡張機能のプロバイダーは破棄されます func\<streamwriter > が指定され、\<func TextWriter >\<が指定されている場合、func streamwriter > のみが保持されます)。 アクティビティ (*ActivityMetadata.RequireExtension を呼び出すことによって表される) によって要求されるコレクションに拡張機能が存在しない場合、<xref:System.Activities.ValidationException> がスローされます。  
+ 拡張機能は型によってキー指定され、拡張機能が提供されたホストは、存在する場合は常に使用されます。 <xref:System.Activities.Hosting.WorkflowInstanceExtensionManager.Add%2A> によって追加される拡張機能は、オブジェクトのランタイム型を型のキーとして使用します。 <xref:System.Activities.Hosting.WorkflowInstanceExtensionManager.Add%2A> によって追加された拡張機能プロバイダーは、Func\<T > の型の T を型キーとして使用します。 宣言された型に対してホストの拡張機能が存在する場合、または AddDefaultExtensionProvider を介して提供された広範な型が存在する場合、さまざまな *ActivityMetadata.AddDefaultExtensionProvider メソッドを介してアクティビティから提供された拡張機能のプロバイダーは破棄されます Func\<StreamWriter > が指定され、Func\<TextWriter > が指定されている場合、func\<StreamWriter > のみが保持されます)。 アクティビティ (*ActivityMetadata.RequireExtension を呼び出すことによって表される) によって要求されるコレクションに拡張機能が存在しない場合、<xref:System.Activities.ValidationException> がスローされます。  
   
  ]]></format>
         </remarks>
@@ -849,7 +852,7 @@
       </ReturnValue>
       <Docs>
         <summary>ホストが <see cref="P:System.Runtime.DurableInstancing.InstanceView.InstanceKeys" /> とランタイム インスタンスの関連付けをサポートしているかどうかを示す値を取得します。</summary>
-        <value>ホストが <see cref="P:System.Runtime.DurableInstancing.InstanceView.InstanceKeys" /> とワークフロー インスタンスの関連付けをサポートしている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value>ホストが <see langword="true" /> とワークフロー インスタンスの関連付けをサポートしている場合は <see cref="P:System.Runtime.DurableInstancing.InstanceView.InstanceKeys" />。それ以外の場合は <see langword="false" />。</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -880,7 +883,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ワークフローインスタンスが初期化されてからが返さ<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A> `true`れた後にこの<xref:System.InvalidOperationException>プロパティを設定すると、がスローされます。  
+ ワークフローインスタンスが初期化された後にこのプロパティが設定され、<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A> が `true`を返す場合、<xref:System.InvalidOperationException> がスローされます。  
   
  ]]></format>
         </remarks>
@@ -908,7 +911,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- が<xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A>を`true`返す<xref:System.InvalidOperationException>場合は、がスローされます。  
+ <xref:System.Activities.Hosting.WorkflowInstance.IsReadOnly%2A> が `true`を返す場合、<xref:System.InvalidOperationException> がスローされます。  
   
  ]]></format>
         </remarks>
