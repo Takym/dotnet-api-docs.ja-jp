@@ -1,5 +1,5 @@
 <Type Name="OperationContractAttribute" FullName="System.ServiceModel.OperationContractAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="17b2c3f38232e959d274f9518c9f6448e6f0ceb5" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75159818" /></Metadata><TypeSignature Language="C#" Value="public sealed class OperationContractAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="4ff95f3fe3e7d6e11c852218ea18c7d339cc94ca" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78787668" /></Metadata><TypeSignature Language="C#" Value="public sealed class OperationContractAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit OperationContractAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.OperationContractAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class OperationContractAttribute&#xA;Inherits Attribute" />
@@ -22,6 +22,11 @@
     <AssemblyVersion>4.6.0.0</AssemblyVersion>
     <AssemblyVersion>4.7.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.ServiceModel" FromVersion="4.0.0.0" To="System.ServiceModel.Primitives" ToVersion="4.6.0.0" FrameworkAlternate="dotnet-plat-ext-2.1;dotnet-plat-ext-2.2;dotnet-plat-ext-3.0" />
+    <TypeForwarding From="System.ServiceModel" FromVersion="4.0.0.0" To="System.ServiceModel.Primitives" ToVersion="4.7.0.0" FrameworkAlternate="dotnet-plat-ext-3.1" />
+    <TypeForwarding From="System.ServiceModel" FromVersion="4.0.0.0" To="System.ServiceModel.Primitives" ToVersion="0.0.0.0" FrameworkAlternate="dotnet-uwp-10.0" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Attribute</BaseTypeName>
   </Base>
@@ -61,7 +66,7 @@
   
  <xref:System.ServiceModel.OperationContractAttribute.AsyncPattern%2A> プロパティは、`Begin`\<*methodname*> および `End`\<*methodname*> メソッドのペアが、非同期的に実装された単一の操作 (クライアントまたはサービスであるかどうか) を形成することを示します。 サービスが操作を非同期に実装する能力はサービス実装の詳細であり、メタデータ (Web サービス記述言語 (WSDL) など) には公開されません。  
   
- 同様に、クライアントは、サービス メソッドの実装方法とは無関係に、操作を非同期で呼び出すことを選択できます。 クライアント内でのサービス操作の非同期での呼び出しは、サービス メソッドの実行に多少の時間がかかるが、情報をクライアントに直接返す必要がある場合に使用することをお勧めします。 詳細については、「<xref:System.ServiceModel.OperationContractAttribute.AsyncPattern%2A>」を参照してください。  
+ 同様に、クライアントは、サービス メソッドの実装方法とは無関係に、操作を非同期で呼び出すことを選択できます。 クライアント内でのサービス操作の非同期での呼び出しは、サービス メソッドの実行に多少の時間がかかるが、情報をクライアントに直接返す必要がある場合に使用することをお勧めします。 詳細については、<xref:System.ServiceModel.OperationContractAttribute.AsyncPattern%2A> を参照してください。  
   
  <xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> プロパティは、メソッドが、基になる空の応答メッセージも含めてまったく値を返さないことを示します。 この種のメソッドは、通知やイベント スタイルの通信に便利です。 この種のメソッドは応答メッセージを返すことができないため、メソッドの宣言では `void` を返す必要があります。  
   
@@ -69,7 +74,7 @@
 >  プログラムによってこの属性の情報ストアを取得する場合は、リフレクションではなく <xref:System.ServiceModel.Description.ContractDescription> クラスを使用します。  
   
 > [!NOTE]
->  <xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> プロパティが `false` (既定) に設定されている場合は、`void` を返すメソッドであっても、基になるメッセージ レベルでは双方向メソッドとなります。 この場合、インフラストラクチャにより、メソッドが返した呼び出し元に示す空のメッセージが作成および送信されます。 このアプローチを使用して、アプリケーションとインフラストラクチャは、エラー情報 (SOAP エラーなど) をクライアントに返信できます。 応答メッセージの作成とディスパッチを回避する唯一の方法は、<xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> を `true` に設定することです。 詳細については、「[一方向サービス](~/docs/framework/wcf/feature-details/one-way-services.md)」を参照してください。  
+>  <xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> プロパティが `false` (既定) に設定されている場合は、`void` を返すメソッドであっても、基になるメッセージ レベルでは双方向メソッドとなります。 この場合、インフラストラクチャは、空のメッセージを作成して送信することで、メソッドが戻ったことを呼び出し元に示します。 このアプローチを使用して、アプリケーションとインフラストラクチャは、エラー情報 (SOAP エラーなど) をクライアントに返信できます。 応答メッセージの作成とディスパッチを回避する唯一の方法は、<xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> を `true` に設定することです。 詳細については、「[一方向サービス](~/docs/framework/wcf/feature-details/one-way-services.md)」を参照してください。  
   
  <xref:System.ServiceModel.OperationContractAttribute.Action%2A> プロパティと <xref:System.ServiceModel.OperationContractAttribute.ReplyAction%2A> プロパティを使用すると、SOAP メッセージの既定のアクションを変更するだけではなく、認識されないメッセージ用のハンドラーを作成したり、ダイレクト メッセージ プログラミングでのアクションの追加を無効にしたりできます。 クライアントが他の操作の前に特定のサービス操作を呼び出すことができないようにするには、<xref:System.ServiceModel.OperationContractAttribute.IsInitiating%2A> プロパティを使用します。 クライアントが特定のサービス操作を呼び出した後に、WCF がチャネルを閉じるようにするには、<xref:System.ServiceModel.OperationContractAttribute.IsTerminating%2A> プロパティを使用します。 詳細については、「[セッションの使用](~/docs/framework/wcf/using-sessions.md)」を参照してください。  
   
@@ -198,7 +203,7 @@ public class OneAndTwoWay
 -   サービス操作は <xref:System.ServiceModel.Channels.Message> オブジェクトだけを受け取ることができ、何も返しません (つまり`void` を返します)。  
   
 > [!NOTE]
->  サービス コントラクトは、<xref:System.ServiceModel.OperationContractAttribute.Action%2A> プロパティが "*" に設定されたサービス操作を 1 つだけ持つことができます。 サービスクラスが実装する同じ listenUri でホストされているサービスコントラクトのグループは、<xref:System.ServiceModel.OperationContractAttribute.IsInitiating%2A> プロパティが `false`に設定されている場合、<xref:System.ServiceModel.OperationContractAttribute.Action%2A> プロパティが "\*" に設定された多数のサービス操作を持つことができます。 ただし、<xref:System.ServiceModel.OperationContractAttribute.Action%2A> プロパティを "\*" に設定し、<xref:System.ServiceModel.OperationContractAttribute.IsInitiating%2A> プロパティを true に設定することができるのは、これらのサービス操作の1つだけです。 詳細については、「<xref:System.ServiceModel.OperationContractAttribute.IsInitiating%2A>」をご覧ください。  
+>  サービス コントラクトは、<xref:System.ServiceModel.OperationContractAttribute.Action%2A> プロパティが "*" に設定されたサービス操作を 1 つだけ持つことができます。 サービスクラスが実装する同じ listenUri でホストされているサービスコントラクトのグループは、<xref:System.ServiceModel.OperationContractAttribute.IsInitiating%2A> プロパティが `false`に設定されている場合、<xref:System.ServiceModel.OperationContractAttribute.Action%2A> プロパティが "\*" に設定された多数のサービス操作を持つことができます。 ただし、<xref:System.ServiceModel.OperationContractAttribute.Action%2A> プロパティを "\*" に設定し、<xref:System.ServiceModel.OperationContractAttribute.IsInitiating%2A> プロパティを true に設定することができるのは、これらのサービス操作の1つだけです。 詳細については、「<xref:System.ServiceModel.OperationContractAttribute.IsInitiating%2A>」を参照してください。  
   
    
   
@@ -214,7 +219,7 @@ public class OneAndTwoWay
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException">値が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException">値は <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="AsyncPattern">
@@ -255,7 +260,7 @@ public class OneAndTwoWay
       </ReturnValue>
       <Docs>
         <summary>サービス コントラクト内で <see langword="Begin" />&lt;*methodName*&gt; メソッドと <see langword="End" />&lt;*methodName*&gt; メソッドのペアを使用して、操作が非同期的に実装されることを示します。</summary>
-        <value><see langword="Begin" />&lt;*methodname*&gt;メソッドが <see langword="End" />&lt;*methodname*&gt; メソッドによって照合され、サービスインターフェイスで非同期メソッドペアとして実装される操作としてインフラストラクチャによって処理できる場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。 既定値は、<see langword="false" /> です。</value>
+        <value><see langword="Begin" />&lt;*methodname*&gt;メソッドが <see langword="End" />&lt;*methodname*&gt; メソッドによって照合され、サービスインターフェイスで非同期メソッドペアとして実装される操作としてインフラストラクチャによって処理できる場合は <see langword="true" />。それ以外の場合は、<see langword="false" />ます。 既定では、 <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -325,7 +330,7 @@ public interface IAddTwoNumbers
       </ReturnValue>
       <Docs>
         <summary>この操作のメッセージの暗号化、署名、または両方が必要かどうかを示す値を取得または設定します。</summary>
-        <value><see langword="true" /> プロパティが <see cref="P:System.ServiceModel.OperationContractAttribute.ProtectionLevel" /> 以外の値に設定されている場合は <see cref="F:System.Net.Security.ProtectionLevel.None" />。それ以外は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value><see langword="true" /> プロパティが <see cref="P:System.ServiceModel.OperationContractAttribute.ProtectionLevel" /> 以外の値に設定されている場合は <see cref="F:System.Net.Security.ProtectionLevel.None" />。それ以外は <see langword="false" />。 既定では、 <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -371,7 +376,7 @@ public interface IAddTwoNumbers
       </ReturnValue>
       <Docs>
         <summary>メソッドが (セッションが存在する場合に) サーバー上でセッションを開始できる操作を実装するかどうかを示す値を取得または設定します。</summary>
-        <value>サーバーでのセッションの開始操作が許可されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="true" /> です。</value>
+        <value>サーバーでのセッションの開始操作が許可されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定では、 <see langword="true" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -475,7 +480,7 @@ public class InitializeAndTerminateService
       </ReturnValue>
       <Docs>
         <summary>操作が応答メッセージを返すかどうかを示す値を取得または設定します。</summary>
-        <value>このメソッドが要求メッセージを受け取り、応答メッセージを返さない場合は <see langword="true" />、それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value>このメソッドが要求メッセージを受け取り、応答メッセージを返さない場合は <see langword="true" />、それ以外の場合は <see langword="false" />。 既定では、 <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -484,7 +489,7 @@ public class InitializeAndTerminateService
   
  クライアントとサーバーが互いに独立して通信する二重 (双方向) サービス指向アプリケーションでは、クライアント チャネルは、そのメソッドで <xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> プロパティを使用して、サービスがクライアントへの一方向の呼び出しを実行できることを示すことができます。クライアントでは、この呼び出しをイベントとして処理できます。 サービスは応答メッセージの受信を想定していないため、返信の呼び出しやメッセージは生成されません。  
   
- <xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> プロパティが `false` (既定) に設定されている場合は、`void` を返すメソッドであっても、応答メッセージが返されます。 この場合、インフラストラクチャにより、メソッドが返した呼び出し元に示す空のメッセージが作成および送信されます。 (この方法を使用すると、インフラストラクチャは SOAP エラーをクライアントに送信できます)。応答メッセージの作成とディスパッチをキャンセルする唯一の方法は、`true` に <xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> を設定することです。  
+ <xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> プロパティが `false` (既定) に設定されている場合は、`void` を返すメソッドであっても、応答メッセージが返されます。 この場合、インフラストラクチャは、空のメッセージを作成して送信することで、メソッドが戻ったことを呼び出し元に示します。 (この方法を使用すると、インフラストラクチャは SOAP エラーをクライアントに送信できます)。応答メッセージの作成とディスパッチをキャンセルする唯一の方法は、`true` に <xref:System.ServiceModel.OperationContractAttribute.IsOneWay%2A> を設定することです。  
   
  一方向メソッドは、値を返すことも、`ref` パラメーターと `out` パラメーターのどちらを持つこともできません。これらに該当する場合は <xref:System.InvalidOperationException?displayProperty=nameWithType> 例外がスローされます。  
   
@@ -564,7 +569,7 @@ public class OneAndTwoWay
       </ReturnValue>
       <Docs>
         <summary>応答メッセージが存在する場合に、そのメッセージの送信後にセッションを終了するようにサービス操作がサーバーに指示するかどうかを示す値を取得または設定します。</summary>
-        <value>操作によってサーバーがセッションを終了する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value>操作によってサーバーがセッションを終了する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定では、 <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -659,7 +664,7 @@ public class InitializeAndTerminateService
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>操作の名前を取得または設定します。</summary>
+        <summary>操作の名前を取得します。値の設定も可能です。</summary>
         <value>操作の名前。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -677,7 +682,7 @@ public class InitializeAndTerminateService
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><see cref="P:System.ServiceModel.OperationContractAttribute.Name" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><see cref="P:System.ServiceModel.OperationContractAttribute.Name" /> が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException">値が空の文字列です。</exception>
       </Docs>
     </Member>
@@ -708,7 +713,7 @@ public class InitializeAndTerminateService
       </ReturnValue>
       <Docs>
         <summary>操作のメッセージの暗号化、署名、または両方が必要かどうかを示す値を取得または設定します。</summary>
-        <value><see cref="T:System.Net.Security.ProtectionLevel" /> 値の 1 つ。 既定値は、<see cref="F:System.Net.Security.ProtectionLevel.None" /> です。</value>
+        <value><see cref="T:System.Net.Security.ProtectionLevel" /> 値のいずれか 1 つです。 既定では、 <see cref="F:System.Net.Security.ProtectionLevel.None" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -782,7 +787,7 @@ public class InitializeAndTerminateService
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 応答メッセージのアクション ヘッダーに特定の値を指定する以外に、文字列 "*" (アスタリスク) を指定することもできます。 サービスでアスタリスクを指定すると、メッセージに応答アクションを追加しないよう WCF に指示します。これは、メッセージに対して直接プログラミングを行う場合に便利です。 クライアントアプリケーションでアスタリスクを指定すると、応答アクションを検証しないよう WCF に指示します。  
+ 応答メッセージのアクション ヘッダーには、値のほかに文字列 "*" (アスタリスク) を指定することもできます。 サービスでアスタリスクを指定すると、メッセージに応答アクションを追加しないよう WCF に指示します。これは、メッセージに対して直接プログラミングを行う場合に便利です。 クライアントアプリケーションでアスタリスクを指定すると、応答アクションを検証しないよう WCF に指示します。  
   
    
   
@@ -794,7 +799,7 @@ public class InitializeAndTerminateService
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><see cref="P:System.ServiceModel.OperationContractAttribute.ReplyAction" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><see cref="P:System.ServiceModel.OperationContractAttribute.ReplyAction" /> が <see langword="null" /> です。</exception>
       </Docs>
     </Member>
   </Members>
