@@ -1,5 +1,5 @@
 <Type Name="MsmqBindingBase" FullName="System.ServiceModel.MsmqBindingBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="bdc487c6c9c69a403ec3441cef99a650b63a8fa9" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69101825" /></Metadata><TypeSignature Language="C#" Value="public abstract class MsmqBindingBase : System.ServiceModel.Channels.Binding, System.ServiceModel.Channels.IBindingRuntimePreferences" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="08f3e4bb26a58dd23a85b88dff1fae65ac4ef08c" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78787824" /></Metadata><TypeSignature Language="C#" Value="public abstract class MsmqBindingBase : System.ServiceModel.Channels.Binding, System.ServiceModel.Channels.IBindingRuntimePreferences" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit MsmqBindingBase extends System.ServiceModel.Channels.Binding implements class System.ServiceModel.Channels.IBindingRuntimePreferences" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.MsmqBindingBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class MsmqBindingBase&#xA;Inherits Binding&#xA;Implements IBindingRuntimePreferences" />
@@ -119,11 +119,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 配信不能キューは、配信に失敗した期限切れメッセージに対する送信元アプリケーションのキュー マネージャーのキューです。 使用する配信不能キューの型を指定する配信不能キュー列挙体。 次の値があります。  
+ 配信不能キューは、配信に失敗した期限切れメッセージに対する送信元アプリケーションのキュー マネージャーのキューです。 使用する配信不能キューの型を指定する配信不能キュー列挙体。 値は次のとおりです。  
   
 -   `None` : 配信不能キューは必要ありません。 メッセージの配信に失敗した場合、そのメッセージのレコードは配信不能キュー内では維持されません。 これは、<xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A> を `false` に設定した場合の既定値です。  
   
--   `System`: 配信に失敗したメッセージの記録に、システム全体をスコープとする配信不能キューが使用されます。 メッセージ キュー (MSMQ) にはトランザクション システム配信不能キューおよび非トランザクション システム配信不能キューがあり、それぞれトランザクション キューからの配信に失敗した期限切れメッセージおよび非トランザクション キューからの配信に失敗したメッセージを記録します。 これは、<xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A> を `true` に設定した場合の既定値です。  
+-   `System`{2}: 配信に失敗したメッセージの記録に、システム全体をスコープとする配信不能キューが使用されます。 メッセージ キュー (MSMQ) にはトランザクション システム配信不能キューおよび非トランザクション システム配信不能キューがあり、それぞれトランザクション キューからの配信に失敗した期限切れメッセージおよび非トランザクション キューからの配信に失敗したメッセージを記録します。 これは、<xref:System.ServiceModel.MsmqBindingBase.ExactlyOnce%2A> を `true` に設定した場合の既定値です。  
   
 -   `Custom` : 配信に失敗したメッセージを記録するために使用される、<xref:System.ServiceModel.MsmqBindingBase.CustomDeadLetterQueue%2A> プロパティで指定されたキューです。  
   
@@ -135,7 +135,7 @@
   
 -   認証されていないメッセージが、認証されたメッセージだけを受け取るキューに送信されています。  
   
--   暗号化されていないメッセージが、暗号化されたメッセージだけを受け取るキューに送信されています。  
+-   暗号化されていないメッセージが、暗号化されているメッセージだけを受け入れるキューに送信されている。  
   
 -   受信側に配信される前にメッセージの期限が切れました。  
   
@@ -145,7 +145,7 @@
   
 -   メッセージに結び付けられているデジタル署名が無効です。  
   
--   暗号化されているメッセージを、送信先のキュー マネージャーが解読できません。  
+-   暗号化されたメッセージを送信先キュー マネージャーが解読できない。  
   
 -   送信先のキューは、メッセージが取得される前に完全削除または削除されています。  
   
@@ -176,7 +176,7 @@
       </ReturnValue>
       <Docs>
         <summary>このバインディングによって処理されるメッセージが永続的なものか不安定なものかを示す値を取得または設定します。</summary>
-        <value>このバインディングによって処理されたメッセージが非揮発性の場合は <see langword="true" />。揮発性の場合は <see langword="false" />。 既定値は、<see langword="true" /> です。</value>
+        <value>このバインディングによって処理されたメッセージが非揮発性の場合は <see langword="true" />。揮発性の場合は <see langword="false" />。 既定では、 <see langword="true" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -212,7 +212,7 @@
       </ReturnValue>
       <Docs>
         <summary>このバインディングによって処理されるメッセージが 1 回だけ受信されるものかどうかを示す値を取得または設定します。</summary>
-        <value>このバインディングによって処理されるメッセージが 1 回だけ受信される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="true" /> です。</value>
+        <value>このバインディングによって処理されるメッセージが 1 回だけ受信される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定では、 <see langword="true" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -395,7 +395,7 @@
 ## Remarks  
  メッセージの即時配信試行が最大回数実行されても、そのメッセージがアプリケーションからアクセスされない場合、メッセージは、後で再配信するために再試行キューに送信されます。 再試行サイクルが指定されていない場合は、メッセージが有害メッセージ キューに送信されるか、送信元に否定応答が返されます。  
   
- 詳細については、次のトピックを参照してください。 <xref:System.ServiceModel.MsmqBindingBase.MaxRetryCycles%2A> および <xref:System.ServiceModel.MsmqBindingBase.RetryCycleDelay%2A>.  
+ 詳細については、「 <xref:System.ServiceModel.MsmqBindingBase.MaxRetryCycles%2A> および <xref:System.ServiceModel.MsmqBindingBase.RetryCycleDelay%2A>」を参照してください。  
   
  ]]></format>
         </remarks>
@@ -472,7 +472,7 @@
       <MemberSignature Language="DocId" Value="P:System.ServiceModel.MsmqBindingBase.System#ServiceModel#Channels#IBindingRuntimePreferences#ReceiveSynchronously" />
       <MemberSignature Language="VB.NET" Value=" ReadOnly Property ReceiveSynchronously As Boolean Implements IBindingRuntimePreferences.ReceiveSynchronously" />
       <MemberSignature Language="C++ CLI" Value="property bool System::ServiceModel::Channels::IBindingRuntimePreferences::ReceiveSynchronously { bool get(); };" />
-      <MemberSignature Language="F#" Usage="System.ServiceModel.Channels.IBindingRuntimePreferences.ReceiveSynchronously" />
+      <MemberSignature Language="F#" Value="member this.System.ServiceModel.Channels.IBindingRuntimePreferences.ReceiveSynchronously : bool" Usage="System.ServiceModel.Channels.IBindingRuntimePreferences.ReceiveSynchronously" />
       <MemberType>Property</MemberType>
       <Implements>
         <InterfaceMember>P:System.ServiceModel.Channels.IBindingRuntimePreferences.ReceiveSynchronously</InterfaceMember>
@@ -492,7 +492,7 @@
       </ReturnValue>
       <Docs>
         <summary>受信した要求を処理するには同期と非同期のどちらの方が効率的かを示す値を取得します。</summary>
-        <value><see langword="true" />要求を同期的に効率的に処理できる場合は、それ<see langword=" false" />以外の場合は。 既定は <see langword="false" /> で、要求を非同期的に処理します。</value>
+        <value>要求を同期的に効率的に処理できるかどうかを <see langword="true" /> します。それ以外の場合は <see langword=" false" />。 既定は <see langword="false" /> で、要求を非同期的に処理します。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -560,7 +560,7 @@
       </ReturnValue>
       <Docs>
         <summary>このバインディングにより処理されるメッセージをトレースするかどうかを示す値を取得または設定します。</summary>
-        <value>このバインディングによって処理されるメッセージをトレースする必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value>このバインディングによって処理されるメッセージをトレースする必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定では、 <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -594,7 +594,7 @@
       </ReturnValue>
       <Docs>
         <summary>このバインディングにより処理されるメッセージのコピーをソース ジャーナル キューに保存するかどうかを示す値を取得または設定します。</summary>
-        <value>このバインディングによって処理されるメッセージのコピーをソース ジャーナル キューに格納する必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value>このバインディングによって処理されるメッセージのコピーをソース ジャーナル キューに格納する必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定では、 <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
