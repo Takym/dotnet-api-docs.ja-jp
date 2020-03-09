@@ -1,10 +1,11 @@
 <Type Name="IDataReader" FullName="System.Data.IDataReader">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="578d95dfa2b76aebdbfd9ef437aeda5c7ace41d1" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75140305" /></Metadata><TypeSignature Language="C#" Value="public interface IDataReader : IDisposable, System.Data.IDataRecord" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9c7392b558b728db32d00f6c61182b96253841d0" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78821728" /></Metadata><TypeSignature Language="C#" Value="public interface IDataReader : IDisposable, System.Data.IDataRecord" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDataReader implements class System.Data.IDataRecord, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Data.IDataReader" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDataReader&#xA;Implements IDataRecord, IDisposable" />
   <TypeSignature Language="C++ CLI" Value="public interface class IDataReader : IDisposable, System::Data::IDataRecord" />
-  <TypeSignature Language="F#" Value="type IDataReader = interface&#xA;    interface IDisposable&#xA;    interface IDataRecord" />
+  <TypeSignature Language="F#" Value="type IDataReader = interface&#xA;    interface IDataRecord&#xA;    interface IDisposable" FrameworkAlternate="netcore-1.0;netcore-1.1;netcore-2.0;netcore-2.1;netcore-2.2;netcore-3.0;netcore-3.1;netstandard-2.0;netstandard-2.1" />
+  <TypeSignature Language="F#" Value="type IDataReader = interface&#xA;    interface IDisposable&#xA;    interface IDataRecord" FrameworkAlternate="netframework-1.1;netframework-2.0;netframework-3.0;netframework-3.5;netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8;xamarinandroid-7.1;xamarinios-10.8;xamarinmac-3.0" />
   <AssemblyInfo>
     <AssemblyName>System.Data.Common</AssemblyName>
     <AssemblyVersion>4.1.0.0</AssemblyVersion>
@@ -42,9 +43,9 @@
   
  アプリケーションでは、<xref:System.Data.IDataReader> インターフェイスのインスタンスは直接作成されませんが、<xref:System.Data.IDataReader>を継承するクラスのインスタンスが作成されます。  
   
- <xref:System.Data.IDataReader> を継承するクラスは、継承されたメンバーを実装する必要があり、通常は、プロバイダー固有の機能を追加するための追加メンバーを定義します。  
+ <xref:System.Data.IDataReader> を継承するクラスは、継承されたメンバーを実装し、通常は、プロバイダー固有の機能を追加するための追加メンバーを定義する必要があります。  
   
- データの読み取り中に別のプロセスまたはスレッドによって結果セットに加えられた変更は、`IDataReader`を実装するクラスのユーザーに表示される可能性があります。 正確な動作は、プロバイダーとタイミングに応じて変わります。  
+ データが読み取られている間に別のプロセスまたはスレッドによって結果セットに加えられた変更は、`IDataReader` を実装するクラスのユーザーに表示される場合がありますが、 正確な動作は、プロバイダーとタイミングに応じて変わります。  
   
    
   
@@ -179,24 +180,24 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.Data.DataTable" /> の列メタデータを記述する <see cref="T:System.Data.IDataReader" /> を返します。</summary>
-        <returns>列メタデータを記述する <see cref="T:System.Data.DataTable" />。</returns>
+        <summary><see cref="T:System.Data.DataTable" /> の列メタデータを表す <see cref="T:System.Data.IDataReader" /> を返します。</summary>
+        <returns>列メタデータを記述する <see cref="T:System.Data.DataTable" /> 。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  OLE DB の .NET Framework Data Provider の <xref:System.Data.IDataReader.GetSchemaTable%2A> メソッドの実装は OLE DB IColumnsRowset:: GetColumnsRowset メソッドにマップされますが、他の .NET Framework データプロバイダーの実装は OLE DB プロバイダーレイヤーを使用しません。 <xref:System.Data.IDataReader.GetSchemaTable%2A> がテーブル内の各列に関するメタデータを返す順序、および返される DataReader 列は、使用するデータプロバイダーによって異なります。 次の表に、<xref:System.Data.IDataReader.GetSchemaTable%2A>を実装するデータプロバイダーとメンバーを示します。  
   
-|Data Provider|メンバー|  
+|データ プロバイダー|メンバー|  
 |-------------------|------------|  
-|ODBC 用 .NET Data Provider|<xref:System.Data.Odbc.OdbcDataReader.GetSchemaTable%2A?displayProperty=nameWithType> で初期化します。|  
-|OLE DB 用の .NET Data Provider|<xref:System.Data.OleDb.OleDbDataReader.GetSchemaTable%2A?displayProperty=nameWithType> で初期化します。|  
-|Oracle 用 .NET Data Provider|<xref:System.Data.OracleClient.OracleDataReader.GetSchemaTable%2A?displayProperty=nameWithType> で初期化します。|  
-|.NET Data Provider for SQL Server|<xref:System.Data.SqlClient.SqlDataReader.GetSchemaTable%2A?displayProperty=nameWithType> で初期化します。|  
+|ODBC 用 .NET Data Provider|[https://login.microsoftonline.com/consumers/](<xref:System.Data.Odbc.OdbcDataReader.GetSchemaTable%2A?displayProperty=nameWithType>)|  
+|OLE DB 用の .NET Data Provider|[https://login.microsoftonline.com/consumers/](<xref:System.Data.OleDb.OleDbDataReader.GetSchemaTable%2A?displayProperty=nameWithType>)|  
+|Oracle 用 .NET Data Provider|[https://login.microsoftonline.com/consumers/](<xref:System.Data.OracleClient.OracleDataReader.GetSchemaTable%2A?displayProperty=nameWithType>)|  
+|.NET Data Provider for SQL Server|[https://login.microsoftonline.com/consumers/](<xref:System.Data.SqlClient.SqlDataReader.GetSchemaTable%2A?displayProperty=nameWithType>)|  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.InvalidOperationException"><see cref="T:System.Data.IDataReader" /> が閉じています。</exception>
+        <exception cref="T:System.InvalidOperationException"><see cref="T:System.Data.IDataReader" /> は閉じています。</exception>
       </Docs>
     </Member>
     <Member MemberName="IsClosed">
@@ -231,12 +232,12 @@
       </ReturnValue>
       <Docs>
         <summary>データ リーダーが閉じているかどうかを示す値を取得します。</summary>
-        <value>データ リーダーが閉じている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</value>
+        <value>データ リーダーが閉じている場合は<see langword="true" /> 。それ以外の場合は <see langword="false" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.IDataReader> を閉じた後に呼び出すことができるプロパティは、<xref:System.Data.IDataReader.IsClosed%2A> と <xref:System.Data.IDataReader.RecordsAffected%2A> だけです。  
+ <xref:System.Data.IDataReader.IsClosed%2A> が閉じた後に呼び出すことができるプロパティは、<xref:System.Data.IDataReader.RecordsAffected%2A> と <xref:System.Data.IDataReader> だけです。  
   
  ]]></format>
         </remarks>
@@ -275,7 +276,7 @@
       <Parameters />
       <Docs>
         <summary>バッチ SQL ステートメントの結果を読み取っているときに、次の結果にデータ リーダーを進めます。</summary>
-        <returns>次の行が存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns>行がこれよりも多い場合は <see langword="true" />、それ以外の場合は <see langword="false" /> です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -323,15 +324,15 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.Data.IDataReader" /> を次のレコードに進めます。</summary>
-        <returns>次の行が存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <summary>次のレコードに <see cref="T:System.Data.IDataReader" /> を進めます。</summary>
+        <returns>行がこれよりも多い場合は <see langword="true" />、それ以外の場合は <see langword="false" /> です。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Data.IDataReader> の既定の位置は、最初のレコードよりも前です。 したがって、すべてのデータへのアクセスを開始するには、<xref:System.Data.IDataReader.Read%2A> を呼び出す必要があります。  
+ <xref:System.Data.IDataReader> の既定の位置は、最初のレコードよりも前になります。 そのため、データへのアクセスを開始するには <xref:System.Data.IDataReader.Read%2A> を呼び出す必要があります。  
   
- データリーダーが使用されている間、関連付けられている接続は <xref:System.Data.IDataReader>を提供しています。 これは <xref:System.Data.IDataReader.Close%2A> が呼び出されるまでのケースです。  
+ データ リーダーを使用している間、関連付けられた接続は <xref:System.Data.IDataReader> を処理するためにビジー状態になります。 この状態は、<xref:System.Data.IDataReader.Close%2A> が呼び出されるまで続きます。  
   
    
   
@@ -376,7 +377,7 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>SQL ステートメントの実行によって変更、挿入、または削除された行の数を取得します。</summary>
+        <summary>SQL ステートメントの実行によって変更、挿入、または削除された行数を取得します。</summary>
         <value>変更、挿入、または削除された行の数。影響を受けた行がない、またはステートメントが失敗した場合は 0。SELECT ステートメントの場合は -1。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -384,7 +385,7 @@
 ## Remarks  
  <xref:System.Data.IDataReader.RecordsAffected%2A> プロパティは、すべての行が読み取られ、<xref:System.Data.IDataReader>を閉じるまで設定されません。  
   
- <xref:System.Data.IDataReader> を閉じた後に呼び出すことができるプロパティは、<xref:System.Data.IDataReader.IsClosed%2A> と <xref:System.Data.IDataReader.RecordsAffected%2A> だけです。  
+ <xref:System.Data.IDataReader.IsClosed%2A> が閉じた後に呼び出すことができるプロパティは、<xref:System.Data.IDataReader.RecordsAffected%2A> と <xref:System.Data.IDataReader> だけです。  
   
  ]]></format>
         </remarks>
