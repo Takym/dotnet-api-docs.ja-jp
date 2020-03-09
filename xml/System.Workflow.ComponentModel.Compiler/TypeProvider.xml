@@ -1,5 +1,5 @@
 <Type Name="TypeProvider" FullName="System.Workflow.ComponentModel.Compiler.TypeProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5ebf8cbae43aedf1fbc4fb2b400f8e5a41391d03" /><Meta Name="ms.sourcegitcommit" Value="a22d0855bbf24d893f43605f8b7e3a44bd9551a5" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="09/05/2019" /><Meta Name="ms.locfileid" Value="70358448" /></Metadata><TypeSignature Language="C#" Value="public sealed class TypeProvider : IDisposable, IServiceProvider, System.Workflow.ComponentModel.Compiler.ITypeProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fcb7ea17e67739c7259403d0b0342f1f2a72eff0" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78808143" /></Metadata><TypeSignature Language="C#" Value="public sealed class TypeProvider : IDisposable, IServiceProvider, System.Workflow.ComponentModel.Compiler.ITypeProvider" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit TypeProvider extends System.Object implements class System.IDisposable, class System.IServiceProvider, class System.Workflow.ComponentModel.Compiler.ITypeProvider" />
   <TypeSignature Language="DocId" Value="T:System.Workflow.ComponentModel.Compiler.TypeProvider" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class TypeProvider&#xA;Implements IDisposable, IServiceProvider, ITypeProvider" />
@@ -42,7 +42,7 @@
  この <xref:System.Workflow.ComponentModel.Compiler.ITypeProvider> の実装では、コンパイル済みアセンブリ (<xref:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssembly%2A> および <xref:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssemblyReference%2A> メソッド) に加え、まだコンパイルしていない型 (<xref:System.Workflow.ComponentModel.Compiler.TypeProvider.AddCodeCompileUnit%2A>) も扱えます。 <xref:System.Type?displayProperty=nameWithType> を使用して参照される型を扱う、可能な操作を制限した <xref:System.CodeDom.CodeCompileUnit> の実装を返します。  
   
 > [!NOTE]
->  <xref:System.Workflow.ComponentModel.Compiler.TypeProvider> は、参照先アセンブリからはパブリック型のみを返し、ローカル アセンブリからはパブリック型と非パブリック型の両方を返します。  
+>  <xref:System.Workflow.ComponentModel.Compiler.TypeProvider> は、参照されたアセンブリからのパブリック型と、ローカルアセンブリからのパブリック型と非パブリック型の両方を返します。  
   
  ]]></format>
     </remarks>
@@ -84,6 +84,7 @@
       <MemberSignature Language="C#" Value="public void AddAssembly (System.Reflection.Assembly assembly);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void AddAssembly(class System.Reflection.Assembly assembly) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssembly(System.Reflection.Assembly)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub AddAssembly (assembly As Assembly)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void AddAssembly(System::Reflection::Assembly ^ assembly);" />
       <MemberSignature Language="F#" Value="member this.AddAssembly : System.Reflection.Assembly -&gt; unit" Usage="typeProvider.AddAssembly assembly" />
       <MemberType>Method</MemberType>
@@ -145,6 +146,7 @@
       <MemberSignature Language="C#" Value="public void AddCodeCompileUnit (System.CodeDom.CodeCompileUnit codeCompileUnit);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void AddCodeCompileUnit(class System.CodeDom.CodeCompileUnit codeCompileUnit) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddCodeCompileUnit(System.CodeDom.CodeCompileUnit)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub AddCodeCompileUnit (codeCompileUnit As CodeCompileUnit)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void AddCodeCompileUnit(System::CodeDom::CodeCompileUnit ^ codeCompileUnit);" />
       <MemberSignature Language="F#" Value="member this.AddCodeCompileUnit : System.CodeDom.CodeCompileUnit -&gt; unit" Usage="typeProvider.AddCodeCompileUnit codeCompileUnit" />
       <MemberType>Method</MemberType>
@@ -160,7 +162,7 @@
         <Parameter Name="codeCompileUnit" Type="System.CodeDom.CodeCompileUnit" />
       </Parameters>
       <Docs>
-        <param name="codeCompileUnit">追加する <see cref="T:System.CodeDom.CodeCompileUnit" />。</param>
+        <param name="codeCompileUnit">追加する <see cref="T:System.CodeDom.CodeCompileUnit" /> です。</param>
         <summary><see cref="T:System.CodeDom.CodeCompileUnit" /> の参照を内部リストに追加します。 この <see cref="T:System.CodeDom.CodeCompileUnit" /> は、<see cref="T:System.Type" /> メソッドで <see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.GetType(System.String)" /> を検索するために使います。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="codeCompileUnit" /> が null 参照 (Visual Basic の場合は <see langword="Nothing" />) です。</exception>
@@ -209,7 +211,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.Workflow.ComponentModel.Compiler.TypeProvider" /> によって使用されているすべてのリソースを解放します。</summary>
+        <summary><see cref="T:System.Workflow.ComponentModel.Compiler.TypeProvider" /> で使用されるすべてのリソースを解放します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -217,6 +219,7 @@
       <MemberSignature Language="C#" Value="public string GetAssemblyName (Type type);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance string GetAssemblyName(class System.Type type) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.GetAssemblyName(System.Type)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetAssemblyName (type As Type) As String" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; System::String ^ GetAssemblyName(Type ^ type);" />
       <MemberSignature Language="F#" Value="member this.GetAssemblyName : Type -&gt; string" Usage="typeProvider.GetAssemblyName type" />
       <MemberType>Method</MemberType>
@@ -269,6 +272,7 @@
       <MemberSignature Language="C#" Value="public static Type GetEventHandlerType (System.Reflection.EventInfo eventInfo);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Type GetEventHandlerType(class System.Reflection.EventInfo eventInfo) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.GetEventHandlerType(System.Reflection.EventInfo)" />
+      <MemberSignature Language="VB.NET" Value="Public Shared Function GetEventHandlerType (eventInfo As EventInfo) As Type" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static Type ^ GetEventHandlerType(System::Reflection::EventInfo ^ eventInfo);" />
       <MemberSignature Language="F#" Value="static member GetEventHandlerType : System.Reflection.EventInfo -&gt; Type" Usage="System.Workflow.ComponentModel.Compiler.TypeProvider.GetEventHandlerType eventInfo" />
       <MemberType>Method</MemberType>
@@ -359,8 +363,8 @@
         <Parameter Name="name" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="name">型名。</param>
-        <summary><see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssembly(System.Reflection.Assembly)" />、<see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssemblyReference(System.String)" />、<see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddCodeCompileUnit(System.CodeDom.CodeCompileUnit)" /> のいずれかを使用して <see langword="TypeProvider" /> に追加した一連のアセンブリから、型を取得します。</summary>
+        <param name="name">型名です。</param>
+        <summary><see langword="TypeProvider" />、<see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssembly(System.Reflection.Assembly)" />、<see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssemblyReference(System.String)" /> のいずれかを使用して <see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddCodeCompileUnit(System.CodeDom.CodeCompileUnit)" /> に追加した一連のアセンブリから、型を取得します。</summary>
         <returns>要求された <see cref="T:System.Type" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -397,9 +401,9 @@
         <Parameter Name="throwOnError" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="name">型名。</param>
+        <param name="name">型名です。</param>
         <param name="throwOnError"><paramref name="name" /> を解決できない場合に例外をスローするかどうかを指定する値。</param>
-        <summary><see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssembly(System.Reflection.Assembly)" />、<see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssemblyReference(System.String)" />、<see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddCodeCompileUnit(System.CodeDom.CodeCompileUnit)" /> のいずれかを使用して <see langword="TypeProvider" /> に追加した一連のアセンブリから、型を取得します。</summary>
+        <summary><see langword="TypeProvider" />、<see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssembly(System.Reflection.Assembly)" />、<see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddAssemblyReference(System.String)" /> のいずれかを使用して <see cref="M:System.Workflow.ComponentModel.Compiler.TypeProvider.AddCodeCompileUnit(System.CodeDom.CodeCompileUnit)" /> に追加した一連のアセンブリから、型を取得します。</summary>
         <returns>要求された <see cref="T:System.Type" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -472,6 +476,7 @@
       <MemberSignature Language="C#" Value="public static bool IsEnum (Type type);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsEnum(class System.Type type) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.IsEnum(System.Type)" />
+      <MemberSignature Language="VB.NET" Value="Public Shared Function IsEnum (type As Type) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; static bool IsEnum(Type ^ type);" />
       <MemberSignature Language="F#" Value="static member IsEnum : Type -&gt; bool" Usage="System.Workflow.ComponentModel.Compiler.TypeProvider.IsEnum type" />
       <MemberType>Method</MemberType>
@@ -489,7 +494,7 @@
       <Docs>
         <param name="type">調べる <see cref="T:System.Type" />。</param>
         <summary><see cref="T:System.Type" /> が <see cref="T:System.Enum" /> 型かどうかを調べます。</summary>
-        <returns><see cref="T:System.Type" /> が <see cref="T:System.Enum" /> であれば <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns><see langword="true" /> が <see cref="T:System.Type" /> であれば <see cref="T:System.Enum" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が null 参照 (Visual Basic の場合は <see langword="Nothing" />) です。</exception>
       </Docs>
@@ -545,7 +550,7 @@
         <param name="property">解決するプロパティ。</param>
         <param name="declaringInstance">指定したプロパティが宣言されているインスタンス。</param>
         <summary>指定したプロパティがターゲット [!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)] でサポートされているかどうかを示す値を返します。</summary>
-        <returns>指定したプロパティがターゲット [!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)] でサポートされている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns>指定したプロパティがターゲット <see langword="true" /> でサポートされている場合は [!INCLUDE[dnprdnshort](~/includes/dnprdnshort-md.md)]。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -624,6 +629,7 @@
       <MemberSignature Language="C#" Value="public void RefreshCodeCompileUnit (System.CodeDom.CodeCompileUnit codeCompileUnit, EventHandler refresher);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void RefreshCodeCompileUnit(class System.CodeDom.CodeCompileUnit codeCompileUnit, class System.EventHandler refresher) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.RefreshCodeCompileUnit(System.CodeDom.CodeCompileUnit,System.EventHandler)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub RefreshCodeCompileUnit (codeCompileUnit As CodeCompileUnit, refresher As EventHandler)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void RefreshCodeCompileUnit(System::CodeDom::CodeCompileUnit ^ codeCompileUnit, EventHandler ^ refresher);" />
       <MemberSignature Language="F#" Value="member this.RefreshCodeCompileUnit : System.CodeDom.CodeCompileUnit * EventHandler -&gt; unit" Usage="typeProvider.RefreshCodeCompileUnit (codeCompileUnit, refresher)" />
       <MemberType>Method</MemberType>
@@ -659,6 +665,7 @@
       <MemberSignature Language="C#" Value="public void RemoveAssembly (System.Reflection.Assembly assembly);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void RemoveAssembly(class System.Reflection.Assembly assembly) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.RemoveAssembly(System.Reflection.Assembly)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub RemoveAssembly (assembly As Assembly)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void RemoveAssembly(System::Reflection::Assembly ^ assembly);" />
       <MemberSignature Language="F#" Value="member this.RemoveAssembly : System.Reflection.Assembly -&gt; unit" Usage="typeProvider.RemoveAssembly assembly" />
       <MemberType>Method</MemberType>
@@ -724,6 +731,7 @@
       <MemberSignature Language="C#" Value="public void RemoveCodeCompileUnit (System.CodeDom.CodeCompileUnit codeCompileUnit);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void RemoveCodeCompileUnit(class System.CodeDom.CodeCompileUnit codeCompileUnit) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.RemoveCodeCompileUnit(System.CodeDom.CodeCompileUnit)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub RemoveCodeCompileUnit (codeCompileUnit As CodeCompileUnit)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void RemoveCodeCompileUnit(System::CodeDom::CodeCompileUnit ^ codeCompileUnit);" />
       <MemberSignature Language="F#" Value="member this.RemoveCodeCompileUnit : System.CodeDom.CodeCompileUnit -&gt; unit" Usage="typeProvider.RemoveCodeCompileUnit codeCompileUnit" />
       <MemberType>Method</MemberType>
@@ -739,7 +747,7 @@
         <Parameter Name="codeCompileUnit" Type="System.CodeDom.CodeCompileUnit" />
       </Parameters>
       <Docs>
-        <param name="codeCompileUnit">削除する <see cref="T:System.CodeDom.CodeCompileUnit" />。</param>
+        <param name="codeCompileUnit">削除する <see cref="T:System.CodeDom.CodeCompileUnit" /> です。</param>
         <summary>このインスタンスから、指定した <see cref="T:System.CodeDom.CodeCompileUnit" /> に対する参照をすべて削除します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -756,6 +764,7 @@
       <MemberSignature Language="C#" Value="public void SetLocalAssembly (System.Reflection.Assembly assembly);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void SetLocalAssembly(class System.Reflection.Assembly assembly) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.ComponentModel.Compiler.TypeProvider.SetLocalAssembly(System.Reflection.Assembly)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub SetLocalAssembly (assembly As Assembly)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void SetLocalAssembly(System::Reflection::Assembly ^ assembly);" />
       <MemberSignature Language="F#" Value="member this.SetLocalAssembly : System.Reflection.Assembly -&gt; unit" Usage="typeProvider.SetLocalAssembly assembly" />
       <MemberType>Method</MemberType>
