@@ -1,5 +1,5 @@
 <Type Name="DesignSurface" FullName="System.ComponentModel.Design.DesignSurface">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="888a90d908adc200cfa6d805f3645bf629cdfe7f" /><Meta Name="ms.sourcegitcommit" Value="a8ff98b48bda124cfcb2605f5da9b21bc6dcd791" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/14/2020" /><Meta Name="ms.locfileid" Value="77231097" /></Metadata><TypeSignature Language="C#" Value="public class DesignSurface : IDisposable, IServiceProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9cb750015186cd8bec67594ae1b2d9d84c97b2eb" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78711419" /></Metadata><TypeSignature Language="C#" Value="public class DesignSurface : IDisposable, IServiceProvider" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit DesignSurface extends System.Object implements class System.IDisposable, class System.IServiceProvider" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.DesignSurface" />
   <TypeSignature Language="VB.NET" Value="Public Class DesignSurface&#xA;Implements IDisposable, IServiceProvider" />
@@ -14,6 +14,9 @@
     <AssemblyName>System.Windows.Forms.Design</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.Design" FromVersion="4.0.0.0" To="System.Windows.Forms.Design" ToVersion="4.0.0.0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -44,7 +47,7 @@
   
  <xref:System.ComponentModel.Design.DesignSurface> クラスは、いくつかのデザイン時サービスを自動的に提供します。 <xref:System.ComponentModel.Design.DesignSurface> クラスは、そのすべてのサービスをコンストラクターに追加します。 これらのサービスのほとんどは、protected <xref:System.ComponentModel.Design.DesignSurface.ServiceContainer%2A> プロパティで置き換えることによってオーバーライドできます。 サービスを置き換えるには、コンストラクターをオーバーライドして base を呼び出し、protected <xref:System.ComponentModel.Design.DesignSurface.ServiceContainer%2A> プロパティを使用して変更を行います。 サービスコンテナーに追加され、<xref:System.IDisposable> を実装するすべてのサービスは、デザインサーフェイスが破棄されるときに破棄されます。 <xref:System.ComponentModel.Design.DesignSurface> クラスによって提供される置き換え可能なサービスの既定のセットを次の表に示します。  
   
-|サービス|Description|  
+|Service|説明|  
 |-------------|-----------------|  
 |<xref:System.ComponentModel.Design.IExtenderProviderService>|コンテナーのコンポーネントコレクションに含まれていないオブジェクトが、独自の extender プロバイダーを提供できるようにします。|  
 |<xref:System.ComponentModel.Design.IExtenderListService>|拡張プロバイダーの一覧を取得するために <xref:System.ComponentModel.TypeDescriptor> によって使用されます。 このサービスでは、拡張プロバイダーをコンテナーの外部にライブできます。|  
@@ -56,7 +59,7 @@
   
  次の表は、既定で提供される置換不可能なサービスを示しています。  
   
-|サービス|Description|  
+|Service|説明|  
 |-------------|-----------------|  
 |<xref:System.ComponentModel.Design.IComponentChangeService>|コンポーネントに変更が加えられたときにイベントを発生させます。|  
 |<xref:System.ComponentModel.Design.IDesignerHost>|型、サービス、およびトランザクションへのアクセスを制御します。 デザイナーのマスターインターフェイス。|  
@@ -65,7 +68,7 @@
   
  これらのサービスに加えて、<xref:System.ComponentModel.Design.DesignSurface> クラスには、コンポーネントのサイトを介して使用できる単一のサービスも用意されています。 このサービスは、コンポーネントごとに一意です。 次の表に、置き換えることができないサービスを示します。  
   
-|サービス|Description|  
+|Service|説明|  
 |-------------|-----------------|  
 |<xref:System.ComponentModel.Design.IDictionaryService>|コンポーネントに関する任意のデータを格納するために使用できるキーと値のペアのジェネリックディクショナリ。|  
 |<xref:System.ComponentModel.INestedContainer>|コンポーネントがデザイナーに子コンポーネントを追加できるようにするコンテナー。 これらのコンポーネントはデザインサーフェイスの一部になりますが、シリアル化には関与しません。 これは、デザイナーで自身の領域を公開できるコントロールをデザインするときに、その領域をシリアル化に参加させたくない場合に便利です。|  
@@ -75,7 +78,7 @@
 > [!CAUTION]
 >  他のサイト実装で実装されていない可能性があるため、区別キャストを使用するのではなく、これらのインターフェイスが存在するかどうかを確認してください。  
   
-|サービス|Description|  
+|Service|説明|  
 |-------------|-----------------|  
 |<xref:System.ComponentModel.Design.IServiceContainer>|サイト固有のサービスのコンテナーにアクセスする方法を提供します。 たとえば、<xref:System.ComponentModel.Design.IDictionaryService> はサイト固有のサービスです。 このサービスを使用すると、サイト固有のサービスを追加できます。|  
   
@@ -461,6 +464,7 @@
       <MemberSignature Language="C#" Value="protected internal virtual object CreateInstance (Type type);" />
       <MemberSignature Language="ILAsm" Value=".method familyorassemblyhidebysig newslot virtual instance object CreateInstance(class System.Type type) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.DesignSurface.CreateInstance(System.Type)" />
+      <MemberSignature Language="VB.NET" Value="Protected Friend Overridable Function CreateInstance (type As Type) As Object" />
       <MemberSignature Language="C++ CLI" Value="protected public:&#xA; virtual System::Object ^ CreateInstance(Type ^ type);" />
       <MemberSignature Language="F#" Value="abstract member CreateInstance : Type -&gt; obj&#xA;override this.CreateInstance : Type -&gt; obj" Usage="designSurface.CreateInstance type" />
       <MemberType>Method</MemberType>
@@ -482,7 +486,7 @@
       <Docs>
         <param name="type">作成する型。</param>
         <summary>指定された型のインスタンスを作成します。</summary>
-        <returns>新しく作成されたオブジェクトです。</returns>
+        <returns>新しく作成されたオブジェクト。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
