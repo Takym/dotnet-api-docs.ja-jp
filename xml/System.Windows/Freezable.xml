@@ -1,5 +1,5 @@
 <Type Name="Freezable" FullName="System.Windows.Freezable">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c03f12064cd349151d64fa19a969b0fd5691feef" /><Meta Name="ms.sourcegitcommit" Value="9058026d5788c19bed0a767fc52b40a1eac8ebfe" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="10/24/2019" /><Meta Name="ms.locfileid" Value="72849040" /></Metadata><TypeSignature Language="C#" Value="public abstract class Freezable : System.Windows.DependencyObject" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="84a1d4d58413b5da087fb4163d93657ff4ec0d7a" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78808689" /></Metadata><TypeSignature Language="C#" Value="public abstract class Freezable : System.Windows.DependencyObject" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit Freezable extends System.Windows.DependencyObject" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Freezable" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class Freezable&#xA;Inherits DependencyObject" />
@@ -39,7 +39,7 @@
   
 -   スレッドセーフ: 固定された <xref:System.Windows.Freezable> オブジェクトは、スレッド間で共有できます。  
   
--   詳細な変更通知:他の <xref:System.Windows.DependencyObject> オブジェクトとは異なり、<xref:System.Windows.Freezable> オブジェクトは、サブプロパティ値が変更されたときに変更通知を提供します。  
+-   詳細な変更通知: 他の <xref:System.Windows.DependencyObject> オブジェクトとは異なり、<xref:System.Windows.Freezable> オブジェクトは、サブプロパティ値が変更されたときに変更通知を提供します。  
   
 -   簡単な複製: Freezable クラスには、ディープクローンを生成するいくつかのメソッドが既に実装されています。  
   
@@ -47,7 +47,7 @@
   
  ]]></format>
     </remarks>
-    <threadsafe>この型のパブリック <see langword="static" /> メンバーはすべて、スレッドセーフです。 インスタンス メンバーの場合は、スレッド セーフであるとは限りません。  
+    <threadsafe>この型のパブリック <see langword="static" /> メンバーはすべて、スレッドセーフです。 インスタンス メンバーについては、スレッド セーフであることの保証はありません。  
   
 <see cref="P:System.Windows.Freezable.IsFrozen" /> プロパティが <see langword="false" />場合、<see cref="T:System.Windows.Freezable" /> オブジェクトは、そのオブジェクトが作成されたスレッドからのみアクセスできます。 別のスレッドからアクセスしようとすると、<see cref="T:System.InvalidOperationException" />がスローされます。 <see cref="Overload:System.Windows.Threading.Dispatcher.Invoke" /> メソッドと <see cref="Overload:System.Windows.Threading.Dispatcher.BeginInvoke" /> メソッドは、適切なスレッドへのマーシャリングをサポートします。  
   
@@ -154,7 +154,7 @@
       <Parameters />
       <Docs>
         <summary><see cref="T:System.Windows.Freezable" /> の変更可能な複製を作成し、オブジェクトの値の詳細コピーを作成します。 このメソッドは、オブジェクトの依存関係プロパティをコピーするときに式をコピーしますが (コピーされた式は解決されなくなる場合があります)、アニメーションやその現在の値はコピーしません。</summary>
-        <returns>現在のオブジェクトの変更可能な複製。 複製されたオブジェクトの <see cref="P:System.Windows.Freezable.IsFrozen" /> プロパティは、ソースの <see cref="P:System.Windows.Freezable.IsFrozen" /> プロパティが <see langword="true." /> である場合でも、<see langword="false" /> になります。</returns>
+        <returns>現在のオブジェクトの変更可能な複製。 複製されたオブジェクトの <see cref="P:System.Windows.Freezable.IsFrozen" /> プロパティは、ソースの <see langword="false" /> プロパティが <see cref="P:System.Windows.Freezable.IsFrozen" /> である場合でも、<see langword="true." /> になります。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -163,7 +163,7 @@
   
  次の表は、<xref:System.Windows.Freezable.Clone%2A> と <xref:System.Windows.Freezable.CloneCurrentValue%2A> の方法の違いをまとめたものです。  
   
-|アクション|複製メソッドの動作|CloneCurrentValue メソッドの動作|  
+|操作|複製メソッドの動作|CloneCurrentValue メソッドの動作|  
 |------------|---------------------------|---------------------------------------|  
 |式を持つ依存関係プロパティのコピー|式はコピーされますが、解決されなくなる可能性があります。 詳細については、「[Freezable オブジェクトの概要](~/docs/framework/wpf/advanced/freezable-objects-overview.md)」を参照してください。|式の現在の値はコピーされますが、式自体はコピーされません。|  
 |アニメーション化した依存関係プロパティのコピー|プロパティの基本 (アニメーション化されていない) 値がコピーされます。 アニメーションはコピーされません。|プロパティの現在のアニメーション化された値がコピーされます。 アニメーションはコピーされません。|  
@@ -211,7 +211,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは <xref:System.Windows.Freezable.Clone%2A> メソッドによって呼び出されます。このメソッドをオーバーライドするときに基本実装を呼び出す場合を除き、コードから直接呼び出すことはできません。 現在のオブジェクトの変更可能なコピーを作成するには、このメソッドを直接呼び出すのではなく、<xref:System.Windows.Freezable.Clone%2A> を呼び出します。  
+ このメソッドは <xref:System.Windows.Freezable.Clone%2A> メソッドによって呼び出され、このメソッドをオーバーライドするときに基本実装を呼び出す場合を除き、コードから直接呼び出すことはできません。 現在のオブジェクトの変更可能なコピーを作成するには、このメソッドを直接呼び出すのではなく、<xref:System.Windows.Freezable.Clone%2A> を呼び出します。  
   
  ]]></format>
         </remarks>
@@ -264,7 +264,7 @@
       <Parameters />
       <Docs>
         <summary><see cref="T:System.Windows.Freezable" /> の現在の値を使用して、変更可能な複製 (詳細コピー) を作成します。</summary>
-        <returns>現在のオブジェクトの変更可能な複製。 複製されたオブジェクトの <see cref="P:System.Windows.Freezable.IsFrozen" /> プロパティは、ソースの <see cref="P:System.Windows.Freezable.IsFrozen" /> プロパティが <see langword="true." /> である場合でも、<see langword="false" /> になります。</returns>
+        <returns>現在のオブジェクトの変更可能な複製。 複製されたオブジェクトの <see cref="P:System.Windows.Freezable.IsFrozen" /> プロパティは、ソースの <see langword="false" /> プロパティが <see cref="P:System.Windows.Freezable.IsFrozen" /> である場合でも、<see langword="true." /> になります。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -273,7 +273,7 @@
   
  次の表は、<xref:System.Windows.Freezable.Clone%2A> と <xref:System.Windows.Freezable.CloneCurrentValue%2A> の方法の違いをまとめたものです。  
   
-|アクション|複製メソッドの動作|CloneCurrentValue メソッドの動作|  
+|操作|複製メソッドの動作|CloneCurrentValue メソッドの動作|  
 |------------|---------------------------|---------------------------------------|  
 |式を持つ依存関係プロパティのコピー|式はコピーされますが、解決されなくなる可能性があります。 詳細については、「[Freezable オブジェクトの概要](~/docs/framework/wpf/advanced/freezable-objects-overview.md)」を参照してください。|式の現在の値はコピーされますが、式自体はコピーされません。|  
 |アニメーション化した依存関係プロパティのコピー|プロパティの基本 (アニメーション化されていない) 値がコピーされます。 アニメーションはコピーされません。|プロパティの現在のアニメーション化された値がコピーされます。 アニメーションはコピーされません。|  
@@ -320,7 +320,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは <xref:System.Windows.Freezable.CloneCurrentValue%2A> メソッドによって呼び出されます。このメソッドをオーバーライドするときに基本実装を呼び出す場合を除き、コードから直接呼び出すことはできません。 現在のオブジェクトの変更可能なコピーを作成するには、このメソッドを直接呼び出すのではなく、<xref:System.Windows.Freezable.CloneCurrentValue%2A> を呼び出します。  
+ このメソッドは <xref:System.Windows.Freezable.CloneCurrentValue%2A> メソッドによって呼び出され、このメソッドをオーバーライドするときに基本実装を呼び出す場合を除き、コードから直接呼び出すことはできません。 現在のオブジェクトの変更可能なコピーを作成するには、このメソッドを直接呼び出すのではなく、<xref:System.Windows.Freezable.CloneCurrentValue%2A> を呼び出します。  
   
  ]]></format>
         </remarks>
@@ -467,6 +467,7 @@
       <MemberSignature Language="C#" Value="protected internal static bool Freeze (System.Windows.Freezable freezable, bool isChecking);" />
       <MemberSignature Language="ILAsm" Value=".method familyorassemblystatic hidebysig bool Freeze(class System.Windows.Freezable freezable, bool isChecking) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Windows.Freezable.Freeze(System.Windows.Freezable,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Friend Shared Function Freeze (freezable As Freezable, isChecking As Boolean) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="protected public:&#xA; static bool Freeze(System::Windows::Freezable ^ freezable, bool isChecking);" />
       <MemberSignature Language="F#" Value="static member Freeze : System.Windows.Freezable * bool -&gt; bool" Usage="System.Windows.Freezable.Freeze (freezable, isChecking)" />
       <MemberType>Method</MemberType>
@@ -486,7 +487,7 @@
         <param name="freezable">確認する対象のオブジェクト、または変更不可能な状態にするオブジェクト。 <paramref name="isChecking" /> が <see langword="true" /> の場合、このオブジェクトを確認して、変更不可能な状態にできるかどうかを判断します。 <paramref name="isChecking" /> が <see langword="false" /> の場合、可能であればオブジェクトを変更不可能な状態にします。</param>
         <param name="isChecking">オブジェクトを固定できるかどうかを示す (実際には固定しない) 場合は <see langword="true" />。実際にオブジェクトを固定する場合は <see langword="false" />。</param>
         <summary><paramref name="isChecking" /> パラメーターが <see langword="true" /> の場合、このメソッドは、指定した <see cref="T:System.Windows.Freezable" /> を変更不可能な状態にできるかどうかを示します。 <paramref name="isChecking" /> パラメーターが <see langword="false" /> の場合、このメソッドは、指定した <see cref="T:System.Windows.Freezable" /> を変更不可能な状態にすることを試み、操作が成功したかどうかを示します。</summary>
-        <returns><paramref name="isChecking" /> が <see langword="true" /> のときに、指定した <see cref="T:System.Windows.Freezable" /> を変更不可能な状態にできる場合、このメソッドは <see langword="true" /> を返します。変更不可能な状態にできない場合は <see langword="false" /> を返します。 <paramref name="isChecking" /> が <see langword="false" /> のときに、指定した <see cref="T:System.Windows.Freezable" /> が変更不可能な状態になっている場合、このメソッドは <see langword="true" /> を返します。変更不可能な状態にできない場合は <see langword="false" /> を返します。</returns>
+        <returns><paramref name="isChecking" /> が <see langword="true" /> のときに、指定した <see langword="true" /> を変更不可能な状態にできる場合、このメソッドは <see cref="T:System.Windows.Freezable" /> を返します。変更不可能な状態にできない場合は <see langword="false" /> を返します。 <paramref name="isChecking" /> が <see langword="false" /> のときに、指定した <see langword="true" /> が変更不可能な状態になっている場合、このメソッドは <see cref="T:System.Windows.Freezable" /> を返します。変更不可能な状態にできない場合は <see langword="false" /> を返します。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -524,7 +525,7 @@
       <Docs>
         <param name="isChecking">オブジェクトを固定できるかどうかを示す (実際には固定しない) 場合は <see langword="true" />。実際にオブジェクトを固定する場合は <see langword="false" />。</param>
         <summary><see cref="T:System.Windows.Freezable" /> オブジェクトを変更不可能な状態にするか、変更不可能な状態にできるかどうかをテストします。</summary>
-        <returns><paramref name="isChecking" /> が <see langword="true" /> のときに、<see cref="T:System.Windows.Freezable" /> を変更不可能な状態にできる場合、このメソッドは <see langword="true" /> を返します。変更不可能な状態にできない場合は <see langword="false" /> を返します。 <paramref name="isChecking" /> が <see langword="false" /> のときに、指定した <see cref="T:System.Windows.Freezable" /> が変更不可能な状態になっている場合、このメソッドは <see langword="true" /> を返します。変更不可能な状態にできない場合は <see langword="false" /> を返します。</returns>
+        <returns><paramref name="isChecking" /> が <see langword="true" /> のときに、<see langword="true" /> を変更不可能な状態にできる場合、このメソッドは <see cref="T:System.Windows.Freezable" /> を返します。変更不可能な状態にできない場合は <see langword="false" /> を返します。 <paramref name="isChecking" /> が <see langword="false" /> のときに、指定した <see langword="true" /> が変更不可能な状態になっている場合、このメソッドは <see cref="T:System.Windows.Freezable" /> を返します。変更不可能な状態にできない場合は <see langword="false" /> を返します。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -536,7 +537,7 @@
         <block subset="none" type="overrides"><para>クラスに依存関係プロパティを使用して格納されていないデータが含まれている場合、
             <see cref="T:System.Windows.Freezable" /> の実装者はこのメソッドをオーバーライドする必要があります。  
   
-一般的な実装では、base を呼び出した後、クラスに含まれているすべての <see cref="T:System.Windows.Freezable" /> 型指定されたプロパティに対して静的な <see cref="M:System.Windows.Freezable.Freeze(System.Windows.Freezable,System.Boolean)" /> メソッドを呼び出し、すべてのプロパティが固定されている場合 (または @no_ の <see langword="true" /> を指定する場合には、固定されている可能性があります) にのみ <see langword="true" /> を返します。<paramref name="isChecking" /> ).</para></block>
+一般的な実装では、base を呼び出した後、クラスに含まれているすべての <see cref="T:System.Windows.Freezable" /> 型指定されたプロパティに対して static <see cref="M:System.Windows.Freezable.Freeze(System.Windows.Freezable,System.Boolean)" /> メソッドを呼び出します。 <paramref name="isChecking" />に <see langword="true" /> を指定する場合は、すべてのプロパティが固定されている (または固定されている可能性があります) 場合にのみ <see langword="true" /> を返します。</para></block>
         <altmember cref="M:System.Windows.Freezable.Freeze" />
         <altmember cref="P:System.Windows.Freezable.CanFreeze" />
       </Docs>
@@ -571,7 +572,7 @@
   
  次の表は、<xref:System.Windows.Freezable.GetAsFrozen%2A> と <xref:System.Windows.Freezable.GetCurrentValueAsFrozen%2A> の方法の違いをまとめたものです。  
   
-|アクション|GetAsFrozen メソッドの動作|GetCurrentValueAsFrozen メソッドの動作|  
+|操作|GetAsFrozen メソッドの動作|GetCurrentValueAsFrozen メソッドの動作|  
 |------------|---------------------------------|---------------------------------------------|  
 |式を持つ依存関係プロパティのコピー|メソッドは、プロパティを <xref:System.Windows.Freezable.Freeze%2A> できないため、<xref:System.InvalidOperationException> をスローします。|式の現在の値はコピーされますが、式自体はコピーされません。|  
 |アニメーション化した依存関係プロパティのコピー|プロパティの基本 (アニメーション化されていない) 値がコピーされます。 アニメーションはコピーされません。|プロパティの現在のアニメーション化された値がコピーされます。 アニメーションはコピーされません。|  
@@ -618,7 +619,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは <xref:System.Windows.Freezable.GetAsFrozen%2A> メソッドによって呼び出されます。このメソッドをオーバーライドするときに基本実装を呼び出す場合を除き、コードから直接呼び出すことはできません。 現在のオブジェクトの固定コピーを作成するには、このメソッドを直接呼び出すのではなく、<xref:System.Windows.Freezable.GetAsFrozen%2A> を呼び出します。  
+ このメソッドは <xref:System.Windows.Freezable.GetAsFrozen%2A> メソッドによって呼び出され、このメソッドをオーバーライドするときに基本実装を呼び出す場合を除き、コードから直接呼び出すことはできません。 現在のオブジェクトの固定コピーを作成するには、このメソッドを直接呼び出すのではなく、<xref:System.Windows.Freezable.GetAsFrozen%2A> を呼び出します。  
   
  ]]></format>
         </remarks>
@@ -669,7 +670,7 @@
   
  次の表は、<xref:System.Windows.Freezable.GetAsFrozen%2A> と <xref:System.Windows.Freezable.GetCurrentValueAsFrozen%2A> の方法の違いをまとめたものです。  
   
-|アクション|GetAsFrozen メソッドの動作|GetCurrentValueAsFrozen メソッドの動作|  
+|操作|GetAsFrozen メソッドの動作|GetCurrentValueAsFrozen メソッドの動作|  
 |------------|---------------------------------|---------------------------------------------|  
 |式を持つ依存関係プロパティのコピー|メソッドは、プロパティを <xref:System.Windows.Freezable.Freeze%2A> できないため、<xref:System.InvalidOperationException> をスローします。|式の現在の値はコピーされますが、式自体はコピーされません。|  
 |アニメーション化した依存関係プロパティのコピー|プロパティの基本 (アニメーション化されていない) 値がコピーされます。 アニメーションはコピーされません。|プロパティの現在のアニメーション化された値がコピーされます。 アニメーションはコピーされません。|  
@@ -716,7 +717,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは <xref:System.Windows.Freezable.GetCurrentValueAsFrozen%2A> メソッドによって呼び出されます。このメソッドをオーバーライドするときに基本実装を呼び出す場合を除き、コードから直接呼び出すことはできません。 現在のオブジェクトの固定コピーを作成するには、このメソッドを直接呼び出すのではなく、<xref:System.Windows.Freezable.GetCurrentValueAsFrozen%2A> を呼び出します。  
+ このメソッドは <xref:System.Windows.Freezable.GetCurrentValueAsFrozen%2A> メソッドによって呼び出され、このメソッドをオーバーライドするときに基本実装を呼び出す場合を除き、コードから直接呼び出すことはできません。 現在のオブジェクトの固定コピーを作成するには、このメソッドを直接呼び出すのではなく、<xref:System.Windows.Freezable.GetCurrentValueAsFrozen%2A> を呼び出します。  
   
  ]]></format>
         </remarks>
@@ -762,7 +763,7 @@
 ## Remarks  
  <xref:System.Windows.Freezable.IsFrozen%2A> プロパティが `true` ときにオブジェクトを変更しようとすると、<xref:System.InvalidOperationException>がスローされます。  
   
- このプロパティは、オブジェクトモデルのパースペクティブから読み取り専用です。 <xref:System.Windows.Freezable> の動作に関するドキュメントでは、<xref:System.Windows.Freezable>の他のメソッドの動作について説明するときに、「`true`に <xref:System.Windows.Freezable.IsFrozen%2A> を設定する」または類似の言語について説明している場合がありますが、この動作は、インスタンスは、抽象クラス内に存在するプライベート変数を操作します。 このプロパティの値を設定するには、<xref:System.Windows.Freezable.Freeze%2A>を呼び出す必要があります。 これは、<xref:System.Windows.Freezable.IsFrozen%2A> プロパティを初期の既定の `false` 状態から `true` の状態に変更する1回限りの操作です。 値を `false`に戻すことはできません。 代わりに、元のの詳細コピーを変更することもできます (<xref:System.Windows.Freezable.Clone%2A> メソッドを参照してください)。 これは仕様であり、<xref:System.Windows.Freezable> パターンが有用な場合に、派生クラスが適用される方法です。  
+ このプロパティは、オブジェクトモデルのパースペクティブから読み取り専用です。 <xref:System.Windows.Freezable> の動作に関するドキュメントでは、<xref:System.Windows.Freezable>の他のメソッドの動作について説明するときに、「`true`に <xref:System.Windows.Freezable.IsFrozen%2A> を設定する」または類似の言語について説明していますが、インスタンスのメソッドが抽象クラス内に存在するプライベート変数を操作するときに、この動作はクラスインスタンスで内部的に行われます。 このプロパティの値を設定するには、<xref:System.Windows.Freezable.Freeze%2A>を呼び出す必要があります。 これは、<xref:System.Windows.Freezable.IsFrozen%2A> プロパティを初期の既定の `false` 状態から `true` の状態に変更する1回限りの操作です。 値を `false`に戻すことはできません。 代わりに、元のの詳細コピーを変更することもできます (<xref:System.Windows.Freezable.Clone%2A> メソッドを参照してください)。 これは仕様であり、<xref:System.Windows.Freezable> パターンが有用な場合に、派生クラスが適用される方法です。  
   
  ]]></format>
         </remarks>
@@ -899,7 +900,7 @@
       </Parameters>
       <Docs>
         <param name="e">変更されたプロパティ、およびその変更前と変更後の値に関する情報を格納するイベント データ。</param>
-        <summary><see cref="M:System.Windows.DependencyObject.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)" /> の <see cref="T:System.Windows.DependencyObject" /> 実装をオーバーライドして、さらに型 <see cref="T:System.Windows.Freezable" /> の変化する依存関係プロパティへの応答として任意の <see cref="E:System.Windows.Freezable.Changed" /> ハンドラーも呼び出します。</summary>
+        <summary><see cref="T:System.Windows.DependencyObject" /> の <see cref="M:System.Windows.DependencyObject.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)" /> 実装をオーバーライドして、さらに型 <see cref="E:System.Windows.Freezable.Changed" /> の変化する依存関係プロパティへの応答として任意の <see cref="T:System.Windows.Freezable" /> ハンドラーも呼び出します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -959,7 +960,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.Windows.Freezable" /> の <see cref="E:System.Windows.Freezable.Changed" /> イベントを発生させ、その <see cref="M:System.Windows.Freezable.OnChanged" /> メソッドを呼び出します。 <see cref="T:System.Windows.Freezable" /> から派生するクラスは、依存関係プロパティとして格納されていないクラス メンバーを変更するすべての API の終了時に、このメソッドを呼び出す必要があります。</summary>
+        <summary><see cref="E:System.Windows.Freezable.Changed" /> の <see cref="T:System.Windows.Freezable" /> イベントを発生させ、その <see cref="M:System.Windows.Freezable.OnChanged" /> メソッドを呼び出します。 <see cref="T:System.Windows.Freezable" /> から派生するクラスは、依存関係プロパティとして格納されていないクラス メンバーを変更するすべての API の終了時に、このメソッドを呼び出す必要があります。</summary>
         <remarks>To be added.</remarks>
         <block subset="none" type="overrides"><para><see cref="T:System.Windows.Freezable" /> から派生するクラスは、<see cref="T:System.Windows.DependencyProperty" />として格納されていないクラスメンバーを変更する API の最後に、このメソッドを呼び出す必要があります。</para></block>
       </Docs>

@@ -1,5 +1,5 @@
 <Type Name="SqlWorkflowPersistenceService" FullName="System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="fa21b90bf83ad64252ec38b6001562357a3e7a15" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69417826" /></Metadata><TypeSignature Language="C#" Value="public class SqlWorkflowPersistenceService : System.Workflow.Runtime.Hosting.WorkflowPersistenceService, System.Workflow.Runtime.IPendingWork" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="85c4fdec2b7c6ce7055108516bbbc990058d04fe" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78807571" /></Metadata><TypeSignature Language="C#" Value="public class SqlWorkflowPersistenceService : System.Workflow.Runtime.Hosting.WorkflowPersistenceService, System.Workflow.Runtime.IPendingWork" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SqlWorkflowPersistenceService extends System.Workflow.Runtime.Hosting.WorkflowPersistenceService implements class System.Workflow.Runtime.IPendingWork" />
   <TypeSignature Language="DocId" Value="T:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService" />
   <TypeSignature Language="VB.NET" Value="Public Class SqlWorkflowPersistenceService&#xA;Inherits WorkflowPersistenceService&#xA;Implements IPendingWork" />
@@ -39,7 +39,7 @@
   
  <xref:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService> は、ワークフロー インスタンスのロックをサポートします。 この機能は、いくつかのワークフロー ランタイムが同じデータベースを共有するときに使用されます。 ワークフロー インスタンスがワークフロー ランタイムによって使用されているときは、そのワークフロー インスタンスがロックされていることをマークするために、SQL データベース テーブルの 1 つの列が使用されます。 <xref:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService> は、別のランタイムによって "使用中" とマークされたワークフロー インスタンスを読み込みません。 こうしたロックが解放されるのは通常、ワークフロー インスタンスが永続化されたとき、たとえばワークフロー インスタンスがアイドル状態になったとき、あるいは完了または終了したときです。 また、非アクティブ期間の後にロックを自動的に解放することもできます。 この非アクティブ期間は、<xref:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService> クラスのコンストラクターを使用して設定できます。  構成ファイルを介して設定することもできます。  
   
- 一般的な永続性サービスの詳細については<xref:System.Workflow.Runtime.Hosting.WorkflowPersistenceService> 、クラスを参照してください。  
+ 一般的な永続性サービスの詳細については、<xref:System.Workflow.Runtime.Hosting.WorkflowPersistenceService> クラスを参照してください。  
   
  たとえば <xref:System.Workflow.Activities.DelayActivity> を持つワークフロー インスタンスは、タイマーを含むことができます。 タイマーを含むワークフローの場合、<xref:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService> は、ワークフローの次のタイマーが切れる時刻を記録します。 <xref:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService> は定期的にデータベースをポーリングして、タイマーが切れたワークフローを探します。 ポーリング間隔の頻度は、<xref:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService> コンストラクターまたは構成ファイルを使用して設定できます。  
   
@@ -167,7 +167,7 @@
       </ReturnValue>
       <Docs>
         <summary><see cref="T:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService" /> が作業バッチのコミットを再試行するかどうかを指定する値を取得または設定します。</summary>
-        <value>サービスで作業バッチのコミットを再試行する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</value>
+        <value>サービスで作業バッチのコミットを再試行する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定では、 <see langword="false" />です。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -180,7 +180,7 @@
   
 -   ワークフロー ランタイム エンジン起動時のワークフロー インスタンスの再読み込み  
   
--   <xref:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService.GetAllWorkflows%2A> の呼び出し  
+-   <xref:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService.GetAllWorkflows%2A> の呼び出し。  
   
  この機能は、プログラムで設定する以外に、構成ファイルを使用して有効にすることもできます。 構成ファイルを使用してこのプロパティを設定する方法の詳細については、「[ワークフロー構成ファイル](https://msdn.microsoft.com/library/ada4bb90-6c9d-4f3d-a9d0-b559bb0f9909)」を参照してください。  
   
@@ -295,7 +295,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 既定値は2分です。  
+ 既定値は 2 分です。  
   
  ]]></format>
         </remarks>
@@ -507,7 +507,9 @@
       <MemberSignature Language="C#" Value="void IPendingWork.Commit (System.Transactions.Transaction transaction, System.Collections.ICollection items);" />
       <MemberSignature Language="ILAsm" Value=".method hidebysig newslot virtual instance void System.Workflow.Runtime.IPendingWork.Commit(class System.Transactions.Transaction transaction, class System.Collections.ICollection items) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService.System#Workflow#Runtime#IPendingWork#Commit(System.Transactions.Transaction,System.Collections.ICollection)" />
+      <MemberSignature Language="VB.NET" Value="Sub Commit (transaction As Transaction, items As ICollection) Implements IPendingWork.Commit" />
       <MemberSignature Language="C++ CLI" Value=" virtual void System.Workflow.Runtime.IPendingWork.Commit(System::Transactions::Transaction ^ transaction, System::Collections::ICollection ^ items) = System::Workflow::Runtime::IPendingWork::Commit;" />
+      <MemberSignature Language="F#" Value="abstract member System.Workflow.Runtime.IPendingWork.Commit : System.Transactions.Transaction * System.Collections.ICollection -&gt; unit&#xA;override this.System.Workflow.Runtime.IPendingWork.Commit : System.Transactions.Transaction * System.Collections.ICollection -&gt; unit" Usage="sqlWorkflowPersistenceService.System.Workflow.Runtime.IPendingWork.Commit (transaction, items)" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Workflow.Runtime.IPendingWork.Commit(System.Transactions.Transaction,System.Collections.ICollection)</InterfaceMember>
@@ -525,7 +527,7 @@
         <Parameter Name="items" Type="System.Collections.ICollection" />
       </Parameters>
       <Docs>
-        <param name="transaction"><see cref="T:System.Transactions.Transaction" />。</param>
+        <param name="transaction"><see cref="T:System.Transactions.Transaction" /> です。</param>
         <param name="items">データベースに書き込まれる作業項目の <see cref="T:System.Collections.ICollection" />。</param>
         <summary>シリアル化された状態オブジェクトの <see cref="T:System.Collections.ICollection" /> をデータベースに書き込みます。</summary>
         <remarks>
@@ -545,6 +547,7 @@
       <MemberSignature Language="DocId" Value="M:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService.System#Workflow#Runtime#IPendingWork#Complete(System.Boolean,System.Collections.ICollection)" />
       <MemberSignature Language="VB.NET" Value="Sub Complete (succeeded As Boolean, items As ICollection) Implements IPendingWork.Complete" />
       <MemberSignature Language="C++ CLI" Value=" virtual void System.Workflow.Runtime.IPendingWork.Complete(bool succeeded, System::Collections::ICollection ^ items) = System::Workflow::Runtime::IPendingWork::Complete;" />
+      <MemberSignature Language="F#" Value="abstract member System.Workflow.Runtime.IPendingWork.Complete : bool * System.Collections.ICollection -&gt; unit&#xA;override this.System.Workflow.Runtime.IPendingWork.Complete : bool * System.Collections.ICollection -&gt; unit" Usage="sqlWorkflowPersistenceService.System.Workflow.Runtime.IPendingWork.Complete (succeeded, items)" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Workflow.Runtime.IPendingWork.Complete(System.Boolean,System.Collections.ICollection)</InterfaceMember>
@@ -582,6 +585,7 @@
       <MemberSignature Language="DocId" Value="M:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService.System#Workflow#Runtime#IPendingWork#MustCommit(System.Collections.ICollection)" />
       <MemberSignature Language="VB.NET" Value="Function MustCommit (items As ICollection) As Boolean Implements IPendingWork.MustCommit" />
       <MemberSignature Language="C++ CLI" Value=" virtual bool System.Workflow.Runtime.IPendingWork.MustCommit(System::Collections::ICollection ^ items) = System::Workflow::Runtime::IPendingWork::MustCommit;" />
+      <MemberSignature Language="F#" Value="abstract member System.Workflow.Runtime.IPendingWork.MustCommit : System.Collections.ICollection -&gt; bool&#xA;override this.System.Workflow.Runtime.IPendingWork.MustCommit : System.Collections.ICollection -&gt; bool" Usage="sqlWorkflowPersistenceService.System.Workflow.Runtime.IPendingWork.MustCommit items" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Workflow.Runtime.IPendingWork.MustCommit(System.Collections.ICollection)</InterfaceMember>
@@ -615,6 +619,7 @@
       <MemberSignature Language="C#" Value="protected internal override bool UnloadOnIdle (System.Workflow.ComponentModel.Activity activity);" />
       <MemberSignature Language="ILAsm" Value=".method familyorassemblyhidebysig virtual instance bool UnloadOnIdle(class System.Workflow.ComponentModel.Activity activity) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.Runtime.Hosting.SqlWorkflowPersistenceService.UnloadOnIdle(System.Workflow.ComponentModel.Activity)" />
+      <MemberSignature Language="VB.NET" Value="Protected Friend Overrides Function UnloadOnIdle (activity As Activity) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="protected public:&#xA; override bool UnloadOnIdle(System::Workflow::ComponentModel::Activity ^ activity);" />
       <MemberSignature Language="F#" Value="override this.UnloadOnIdle : System.Workflow.ComponentModel.Activity -&gt; bool" Usage="sqlWorkflowPersistenceService.UnloadOnIdle activity" />
       <MemberType>Method</MemberType>

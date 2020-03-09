@@ -1,5 +1,5 @@
 <Type Name="ServicedComponent" FullName="System.EnterpriseServices.ServicedComponent">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9e1019a546fe134f3c40288fb3232fd92dbe23d0" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69246318" /></Metadata><TypeSignature Language="C#" Value="public abstract class ServicedComponent : ContextBoundObject, IDisposable, System.EnterpriseServices.IRemoteDispatch, System.EnterpriseServices.IServicedComponentInfo" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="98c87b45ae3e80244d4926a970e9bbde7f4b0df8" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78825095" /></Metadata><TypeSignature Language="C#" Value="public abstract class ServicedComponent : ContextBoundObject, IDisposable, System.EnterpriseServices.IRemoteDispatch, System.EnterpriseServices.IServicedComponentInfo" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract serializable ServicedComponent extends System.ContextBoundObject implements class System.EnterpriseServices.IRemoteDispatch, class System.EnterpriseServices.IServicedComponentInfo, class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.EnterpriseServices.ServicedComponent" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class ServicedComponent&#xA;Inherits ContextBoundObject&#xA;Implements IDisposable, IRemoteDispatch, IServicedComponentInfo" />
@@ -36,10 +36,10 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 特定の条件下では、com + アプリケーション<xref:System.EnterpriseServices.ServicedComponent>で実行されるから派生したクラスが応答を停止することがあります。 この問題は、アクティビティのデッドロックが原因で発生します。 コンポーネント参照の非同期クリーンアップが原因で、マルチスレッドアプリケーションでアクティビティがデッドロックする可能性があります。 この問題を回避するには、 <xref:System.EnterpriseServices.ServicedComponent.Dispose%2A>から<xref:System.EnterpriseServices.ServicedComponent>派生したオブジェクトを使用して作業を完了するときに、メソッドを呼び出します。
+ 特定の条件下では、COM + アプリケーションで実行される <xref:System.EnterpriseServices.ServicedComponent> から派生したクラスが応答を停止することがあります。 この問題は、アクティビティのデッドロックが原因で発生します。 コンポーネント参照の非同期クリーンアップが原因で、マルチスレッドアプリケーションでアクティビティがデッドロックする可能性があります。 この問題を回避するには、<xref:System.EnterpriseServices.ServicedComponent>から派生したオブジェクトを使用して作業を完了するときに、<xref:System.EnterpriseServices.ServicedComponent.Dispose%2A> メソッドを呼び出します。
   
 > [!NOTE]
->  クライアントコードは、 `Dispose`サービスコンポーネントでを呼び出して、適切な操作を行う必要があります。  
+>  クライアントコードは、サービスコンポーネントの `Dispose` を呼び出して、適切な操作を行う必要があります。  
   
    
   
@@ -222,7 +222,7 @@ regsvcs Calculator.dll
         <AssemblyVersion>4.0.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary><see cref="T:System.EnterpriseServices.ServicedComponent" /> で使用したリソースを解放します。</summary>
+        <summary><see cref="T:System.EnterpriseServices.ServicedComponent" /> で使用されたリソースを解放します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="Dispose">
@@ -247,20 +247,20 @@ regsvcs Calculator.dll
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary><see cref="T:System.EnterpriseServices.ServicedComponent" /> によって使用されているすべてのリソースを解放します。</summary>
+        <summary><see cref="T:System.EnterpriseServices.ServicedComponent" /> で使用されるすべてのリソースを解放します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
  オブジェクトを終了し、関連付けられている COM + コンテキストを削除します。  
   
- ガベージコレクターによってオブジェクトが解放される前に、COM + オブジェクトと外部リソースを明示的に解放することをお勧めします。 外部リソースが不足している場合やコストが高い場合は、COM + リソースが不要になったときに明示的に解放することで、パフォーマンスを向上させることができます。 明示的なコントロールは、 <xref:System.EnterpriseServices.ServicedComponent.Dispose%2A>メソッドによって提供されます。  
+ ガベージコレクターによってオブジェクトが解放される前に、COM + オブジェクトと外部リソースを明示的に解放することをお勧めします。 外部リソースが不足している場合やコストが高い場合は、COM + リソースが不要になったときに明示的に解放することで、パフォーマンスを向上させることができます。 明示的なコントロールは、<xref:System.EnterpriseServices.ServicedComponent.Dispose%2A> メソッドによって提供されます。  
   
- を<xref:System.EnterpriseServices.ServicedComponent.Dispose%2A>呼び出すと、 <xref:System.EnterpriseServices.ServicedComponent>によって使用されるリソースを他の目的で再割り当てできます。 の詳細<xref:System.EnterpriseServices.ServicedComponent.Dispose%2A>については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。  
+ <xref:System.EnterpriseServices.ServicedComponent.Dispose%2A> を呼び出すと、<xref:System.EnterpriseServices.ServicedComponent> によって使用されるリソースを他の目的で再割り当てできます。 <xref:System.EnterpriseServices.ServicedComponent.Dispose%2A>の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」を参照してください。  
   
  ]]></format>
         </remarks>
-        <block subset="none" type="overrides"><para><see cref="M:System.EnterpriseServices.ServicedComponent.Dispose(System.Boolean)" />メソッドをオーバーライドして、このクラスの dispose ロジックをカスタマイズします。</para></block>
+        <block subset="none" type="overrides"><para><see cref="M:System.EnterpriseServices.ServicedComponent.Dispose(System.Boolean)" /> メソッドをオーバーライドして、このクラスの dispose ロジックをカスタマイズします。</para></block>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
@@ -285,21 +285,21 @@ regsvcs Calculator.dll
       </Parameters>
       <Docs>
         <param name="disposing">マネージド リソースとアンマネージド リソースの両方を解放する場合は <see langword="true" />。アンマネージド リソースだけを解放する場合は <see langword="false" />。</param>
-        <summary><see cref="T:System.EnterpriseServices.ServicedComponent" /> によって使用されているアンマネージド リソースを解放し、オプションでマネージド リソースも解放します。</summary>
+        <summary><see cref="T:System.EnterpriseServices.ServicedComponent" /> で使用されたアンマネージド リソースを解放し、必要に応じてマネージド リソースも解放します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、パブリック`Dispose`メソッド<xref:System.Object.Finalize%2A>とメソッドによって呼び出されます。 `Dispose``disposing`パラメーターをに`Dispose(Boolean)` 設定して、保護されたメソッド`true`を呼び出します。 <xref:System.Object.Finalize%2A>をに`disposing` `Dispose` 設定してを呼び出します`false`。  
+ このメソッドは、パブリックな `Dispose` メソッドと <xref:System.Object.Finalize%2A> メソッドによって呼び出されます。 `Dispose` は、`disposing` パラメーターを `true`に設定して、protected `Dispose(Boolean)` メソッドを呼び出します。 <xref:System.Object.Finalize%2A> は `disposing` を `false`に設定して `Dispose` を呼び出します。  
   
  `disposing` パラメーターが `true` の場合、このメソッドは、この <xref:System.EnterpriseServices.ServicedComponent> が参照しているすべてのマネージド オブジェクトによって保持されているリソースをすべて解放します。 このメソッドは、参照される各オブジェクトの `Dispose` メソッドを呼び出します。  
   
  ]]></format>
         </remarks>
         <block subset="none" type="overrides"><para>
-            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 <see langword="Dispose(Boolean)" /> をオーバーライドする場合は、以前に <see langword="Dispose" /> を呼び出したときに破棄されたオブジェクトを参照しないように注意する必要があります。 を実装<see langword="Dispose(Boolean)" />する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
+            <see langword="Dispose" /> は、他のオブジェクトから複数回呼び出すことができます。 <see langword="Dispose(Boolean)" /> をオーバーライドする場合は、以前に <see langword="Dispose" /> を呼び出したときに破棄されたオブジェクトを参照しないように注意する必要があります。 <see langword="Dispose(Boolean)" />を実装する方法の詳細については、「 [Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)」を参照してください。  
   
-<see langword="Dispose" /> および<see cref="M:System.Object.Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」と「 [Finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。</para></block>
+<see langword="Dispose" /> と <see cref="M:System.Object.Finalize" />の詳細については、「[アンマネージリソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)」と「 [Finalize メソッドのオーバーライド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/ddae83kx(v=vs.100))」を参照してください。</para></block>
       </Docs>
     </Member>
     <Member MemberName="DisposeObject">
@@ -329,7 +329,7 @@ regsvcs Calculator.dll
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ではなく、 `Dispose`デザインパターンを使用することをお勧めします。<xref:System.EnterpriseServices.ServicedComponent.DisposeObject%2A>  
+ <xref:System.EnterpriseServices.ServicedComponent.DisposeObject%2A>ではなく `Dispose` デザインパターンを使用することをお勧めします。  
   
  ]]></format>
         </remarks>
@@ -341,6 +341,7 @@ regsvcs Calculator.dll
       <MemberSignature Language="DocId" Value="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IRemoteDispatch#RemoteDispatchAutoDone(System.String)" />
       <MemberSignature Language="VB.NET" Value="Function RemoteDispatchAutoDone (s As String) As String Implements IRemoteDispatch.RemoteDispatchAutoDone" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::String ^ System.EnterpriseServices.IRemoteDispatch.RemoteDispatchAutoDone(System::String ^ s) = System::EnterpriseServices::IRemoteDispatch::RemoteDispatchAutoDone;" />
+      <MemberSignature Language="F#" Value="abstract member System.EnterpriseServices.IRemoteDispatch.RemoteDispatchAutoDone : string -&gt; string&#xA;override this.System.EnterpriseServices.IRemoteDispatch.RemoteDispatchAutoDone : string -&gt; string" Usage="servicedComponent.System.EnterpriseServices.IRemoteDispatch.RemoteDispatchAutoDone s" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.EnterpriseServices.IRemoteDispatch.RemoteDispatchAutoDone(System.String)</InterfaceMember>
@@ -370,7 +371,7 @@ regsvcs Calculator.dll
           <format type="text/markdown"><![CDATA[
 
 ## Remarks  
-メソッド<xref:System.EnterpriseServices.IRemoteDispatch.RemoteDispatchAutoDone%2A>は、 <xref:System.EnterpriseServices.ServicedComponent>クラスの公開されたインターフェイスに属していないため、他の場所で実装する必要はありません。  
+<xref:System.EnterpriseServices.IRemoteDispatch.RemoteDispatchAutoDone%2A> メソッドは、<xref:System.EnterpriseServices.ServicedComponent> クラスの公開されたインターフェイスに属していないため、他の場所に実装する必要はありません。  
 
 ]]></format>
         </remarks>
@@ -383,6 +384,7 @@ regsvcs Calculator.dll
       <MemberSignature Language="DocId" Value="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IRemoteDispatch#RemoteDispatchNotAutoDone(System.String)" />
       <MemberSignature Language="VB.NET" Value="Function RemoteDispatchNotAutoDone (s As String) As String Implements IRemoteDispatch.RemoteDispatchNotAutoDone" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::String ^ System.EnterpriseServices.IRemoteDispatch.RemoteDispatchNotAutoDone(System::String ^ s) = System::EnterpriseServices::IRemoteDispatch::RemoteDispatchNotAutoDone;" />
+      <MemberSignature Language="F#" Value="abstract member System.EnterpriseServices.IRemoteDispatch.RemoteDispatchNotAutoDone : string -&gt; string&#xA;override this.System.EnterpriseServices.IRemoteDispatch.RemoteDispatchNotAutoDone : string -&gt; string" Usage="servicedComponent.System.EnterpriseServices.IRemoteDispatch.RemoteDispatchNotAutoDone s" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.EnterpriseServices.IRemoteDispatch.RemoteDispatchNotAutoDone(System.String)</InterfaceMember>
@@ -412,7 +414,7 @@ regsvcs Calculator.dll
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.EnterpriseServices.IRemoteDispatch.RemoteDispatchNotAutoDone%2A>は、 <xref:System.EnterpriseServices.ServicedComponent>クラスの公開されたインターフェイスに属していないため、他の場所で実装する必要はありません。  
+ <xref:System.EnterpriseServices.IRemoteDispatch.RemoteDispatchNotAutoDone%2A> メソッドは、<xref:System.EnterpriseServices.ServicedComponent> クラスの公開されたインターフェイスに属していないため、他の場所に実装する必要はありません。  
   
  ]]></format>
         </remarks>
@@ -424,6 +426,7 @@ regsvcs Calculator.dll
       <MemberSignature Language="DocId" Value="M:System.EnterpriseServices.ServicedComponent.System#EnterpriseServices#IServicedComponentInfo#GetComponentInfo(System.Int32@,System.String[]@)" />
       <MemberSignature Language="VB.NET" Value="Sub GetComponentInfo (ByRef infoMask As Integer, ByRef infoArray As String()) Implements IServicedComponentInfo.GetComponentInfo" />
       <MemberSignature Language="C++ CLI" Value=" virtual void System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo(int % infoMask, [Runtime::InteropServices::Out] cli::array &lt;System::String ^&gt; ^ % infoArray) = System::EnterpriseServices::IServicedComponentInfo::GetComponentInfo;" />
+      <MemberSignature Language="F#" Value="abstract member System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo : int * String[] -&gt; unit&#xA;override this.System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo : int * String[] -&gt; unit" Usage="servicedComponent.System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo (infoMask, infoArray)" />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo(System.Int32@,System.String[]@)</InterfaceMember>
@@ -449,7 +452,7 @@ regsvcs Calculator.dll
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo%2A>は、 <xref:System.EnterpriseServices.ServicedComponent>クラスの公開されたインターフェイスに属していないため、他の場所で実装する必要はありません。  
+ <xref:System.EnterpriseServices.IServicedComponentInfo.GetComponentInfo%2A> メソッドは、<xref:System.EnterpriseServices.ServicedComponent> クラスの公開されたインターフェイスに属していないため、他の場所に実装する必要はありません。  
   
  ]]></format>
         </remarks>

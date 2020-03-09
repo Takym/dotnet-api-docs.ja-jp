@@ -1,5 +1,5 @@
 <Type Name="WorkflowInstance" FullName="System.Workflow.Runtime.WorkflowInstance">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="637fd297a240ef6844493929bfdec6a41e588c83" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69416895" /></Metadata><TypeSignature Language="C#" Value="public sealed class WorkflowInstance" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="f567209130f6472e2c96c8fd46f7f0dcee3e4f93" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78844972" /></Metadata><TypeSignature Language="C#" Value="public sealed class WorkflowInstance" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit WorkflowInstance extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Workflow.Runtime.WorkflowInstance" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class WorkflowInstance" />
@@ -94,6 +94,7 @@
       <MemberSignature Language="C#" Value="public void ApplyWorkflowChanges (System.Workflow.ComponentModel.WorkflowChanges workflowChanges);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void ApplyWorkflowChanges(class System.Workflow.ComponentModel.WorkflowChanges workflowChanges) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Workflow.Runtime.WorkflowInstance.ApplyWorkflowChanges(System.Workflow.ComponentModel.WorkflowChanges)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub ApplyWorkflowChanges (workflowChanges As WorkflowChanges)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void ApplyWorkflowChanges(System::Workflow::ComponentModel::WorkflowChanges ^ workflowChanges);" />
       <MemberSignature Language="F#" Value="member this.ApplyWorkflowChanges : System.Workflow.ComponentModel.WorkflowChanges -&gt; unit" Usage="workflowInstance.ApplyWorkflowChanges workflowChanges" />
       <MemberType>Method</MemberType>
@@ -164,7 +165,7 @@
 ## Remarks  
  指定した `item` に <xref:System.Workflow.Runtime.WorkflowQueue> を送信します。 メッセージが配信されたときに通知を受けるには、サービスに <xref:System.Workflow.Runtime.IPendingWork> を実装して、`workItem` および <xref:System.Workflow.Runtime.IPendingWork> オブジェクトを <xref:System.Workflow.Runtime.WorkflowInstance.EnqueueItem%2A> に渡します。 そのような通知が不要な場合は、`Nothing` と `pendingWork` に null 参照 (Visual Basic の場合は `workItem`) を渡します。  
   
- このメソッドをステートマシンワークフローで使用すると、"Queue '{0}' が有効になっていません" というメッセージが表示され、例外が発生することがあります。 これは、ステート マシンの現在の状態では特定のイベントの処理方法を識別できないときに起こります。 たとえば、現在の状態以外の状態に、キュー '{0}' で表現される <xref:System.Workflow.Activities.EventDrivenActivity> を含む <xref:System.Workflow.Activities.HandleExternalEventActivity> が含まれている場合です。  
+ このメソッドをステートマシンワークフローで使用すると、"Queue '{0}' が有効になっていません" というメッセージが表示され、例外が発生する可能性があります。 これは、ステート マシンの現在の状態では特定のイベントの処理方法を識別できないときに起こります。 たとえば、現在の状態以外の状態に、キュー '<xref:System.Workflow.Activities.EventDrivenActivity>' で表現される <xref:System.Workflow.Activities.HandleExternalEventActivity> を含む {0} が含まれている場合です。  
   
 > [!NOTE]
 >  メッセージは、送信された順序でワークフロー インスタンスで受信されるとは限りません。 たとえば、既存のキュー (キュー A) でメッセージを受信し、ワークフローによって別のキュー (キュー B) が生成され、最初のメッセージの後に送信された別のメッセージをリッスンする場合は、2 番目のメッセージが最初に届き、キューがまだ作成されていないために受信されない場合があります。 この問題を回避するには、<xref:System.Workflow.Runtime.WorkflowInstance.GetWorkflowQueueData%2A> を使用して、2 番目のキューが存在することを確認するまで、2 番目のメッセージを送信しないようにする必要があります。  
@@ -184,7 +185,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="queueName" /> が null 参照 (Visual Basic の場合は <see langword="Nothing" />) です。</exception>
         <exception cref="T:System.InvalidOperationException">ワークフロー ランタイム エンジンが実行されていません。  
   
-- または - 
+または 
 <see cref="T:System.Workflow.Runtime.WorkflowQueue" /> で指定された <paramref name="queueName" /> が存在しません。  
   
 または 
@@ -226,12 +227,12 @@
 ## Remarks  
  ワークフロー インスタンスがアイドル状態になるまで待機してから、指定した `item` に <xref:System.Workflow.Runtime.WorkflowQueue> を送信します。 ワークフロー インスタンスが中断状態のときに <xref:System.Workflow.Runtime.WorkflowInstance.EnqueueItemOnIdle%2A> を呼び出すと、ワークフロー ランタイム エンジンは <xref:System.InvalidOperationException> をスローします。 メッセージが配信されたときに通知を受けるには、サービスに <xref:System.Workflow.Runtime.IPendingWork> を実装して、`workItem` および <xref:System.Workflow.Runtime.IPendingWork> オブジェクトを <xref:System.Workflow.Runtime.WorkflowInstance.EnqueueItem%2A> に渡します。 そのような通知が不要な場合は、`Nothing` と `pendingWork` に null 参照 (Visual Basic の場合は `workItem`) を渡します。  
   
- このメソッドをステートマシンワークフローで使用すると、"Queue '{0}' が有効になっていません" というメッセージを含む例外が発生する可能性があります。 これは、ステート マシンの現在の状態では特定のイベントの処理方法を識別できないときに起こります。 たとえば、現在の状態以外の状態に、キュー '{0}' で表現される <xref:System.Workflow.Activities.EventDrivenActivity> を含む <xref:System.Workflow.Activities.HandleExternalEventActivity> が含まれている場合です。  
+ このメソッドをステートマシンワークフローで使用すると、"Queue '{0}' が有効になっていません" というメッセージを含む例外が発生する可能性があります。 これは、ステート マシンの現在の状態では特定のイベントの処理方法を識別できないときに起こります。 たとえば、現在の状態以外の状態に、キュー '<xref:System.Workflow.Activities.EventDrivenActivity>' で表現される <xref:System.Workflow.Activities.HandleExternalEventActivity> を含む {0} が含まれている場合です。  
   
    
   
 ## Examples  
- 次の例は、`EnqueueItemOnIdle` メソッドを使用してワークフロー インスタンスに情報を送信する方法を示しています。 最初に WorkflowInstance オブジェクトが作成されて開始されます。次に <xref:System.Workflow.Runtime.IPendingWork> インターフェイスを実装するオブジェクトが作成されます。 `EnqueueItemOnIdle`次に、が呼び出され、キュー名、エンキューされた項目、および pendingWork オブジェクトのメソッドに渡される作業項目の文字列値が渡されます。  
+ 次の例は、`EnqueueItemOnIdle` メソッドを使用してワークフロー インスタンスに情報を送信する方法を示しています。 最初に WorkflowInstance オブジェクトが作成されて開始されます。次に <xref:System.Workflow.Runtime.IPendingWork> インターフェイスを実装するオブジェクトが作成されます。 次に、`EnqueueItemOnIdle` が呼び出され、キュー名、エンキューされた項目、および pendingWork オブジェクトのメソッドに渡される作業項目の文字列値が渡されます。  
   
  [!code-csharp[WF_Samples#12](~/samples/snippets/csharp/VS_Snippets_CFX/wf_samples/cs/snippets.cs#12)]
  [!code-vb[WF_Samples#12](~/samples/snippets/visualbasic/VS_Snippets_CFX/wf_samples/vb/snippets.vb#12)]  
@@ -241,7 +242,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="queueName" /> が null 参照 (Visual Basic の場合は <see langword="Nothing" />) です。</exception>
         <exception cref="T:System.InvalidOperationException">ワークフロー ランタイム エンジンが実行されていません。  
   
-- または - 
+または 
 ワークフロー インスタンスが中断されています。  
   
 または 
@@ -271,7 +272,7 @@
         <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="obj">比較対象のオブジェクト。</param>
+        <param name="obj">比較するオブジェクト。</param>
         <summary>指定したオブジェクトが <see cref="T:System.Workflow.Runtime.WorkflowInstance" /> と等しいかどうかを示す値を返します。</summary>
         <returns>指定したオブジェクトがこの <see langword="true" /> に等しい場合は <see cref="T:System.Workflow.Runtime.WorkflowInstance" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
@@ -333,7 +334,7 @@
       <Parameters />
       <Docs>
         <summary>このワークフロー インスタンスのルート アクティビティを取得します。</summary>
-        <returns><see cref="T:System.Workflow.ComponentModel.Activity" /> オブジェクト。</returns>
+        <returns><see cref="T:System.Workflow.ComponentModel.Activity" /> オブジェクトです。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -739,7 +740,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- ワークフロー インスタンスがアイドル状態または中断状態の場合、<xref:System.Workflow.Runtime.WorkflowInstance.TryUnload%2A> は永続性サービスを使用することによって、メモリからワークフロー インスタンスを削除し、削除したワークフロー インスタンスをデータ ストアに永続化します。 <xref:System.Workflow.Runtime.WorkflowRuntime> に登録された永続性サービスがない場合、<xref:System.Workflow.Runtime.WorkflowInstance.TryUnload%2A> は <xref:System.InvalidOperationException> をスローします。 ワークフローインスタンスが正常に永続化された場合、 <xref:System.Workflow.Runtime.WorkflowRuntime.WorkflowUnloaded>ランタイムはイベントを`true`発生させ、を返します。 <xref:System.Workflow.Runtime.WorkflowInstance.Unload%2A>ワークフロー `false`インスタンスが既にアンロードされている場合、終了した場合、中止された場合、または既に完了している場合は、を返します。  
+ ワークフロー インスタンスがアイドル状態または中断状態の場合、<xref:System.Workflow.Runtime.WorkflowInstance.TryUnload%2A> は永続性サービスを使用することによって、メモリからワークフロー インスタンスを削除し、削除したワークフロー インスタンスをデータ ストアに永続化します。 <xref:System.Workflow.Runtime.WorkflowRuntime> に登録された永続性サービスがない場合、<xref:System.Workflow.Runtime.WorkflowInstance.TryUnload%2A> は <xref:System.InvalidOperationException> をスローします。 ワークフローインスタンスが正常に永続化された場合、ランタイムは <xref:System.Workflow.Runtime.WorkflowRuntime.WorkflowUnloaded> イベントを発生させ、`true`を返します。 ワークフローインスタンスが既にアンロードされているか、終了しているか、中止されたか、既に完了している場合、<xref:System.Workflow.Runtime.WorkflowInstance.Unload%2A> は `false` を返します。  
   
  ホストは <xref:System.Workflow.Runtime.WorkflowInstance.TryUnload%2A> を使用して、アイドル状態のワークフローのシステム リソースを再利用できます。  
   
