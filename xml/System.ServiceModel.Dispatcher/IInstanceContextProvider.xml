@@ -1,5 +1,5 @@
 <Type Name="IInstanceContextProvider" FullName="System.ServiceModel.Dispatcher.IInstanceContextProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="d5fe22adabd6c7ddbd809e7be39d5cd041175a39" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69150301" /></Metadata><TypeSignature Language="C#" Value="public interface IInstanceContextProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5334d292a9b05b1dc2b0e6a6cba501aeb6017308" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78744625" /></Metadata><TypeSignature Language="C#" Value="public interface IInstanceContextProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IInstanceContextProvider" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Dispatcher.IInstanceContextProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface IInstanceContextProvider" />
@@ -22,7 +22,7 @@
  たとえば、共有を実装するには、カスタム <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider> を挿入して、クライアントからのどのセッションまたは呼び出しをどの <xref:System.ServiceModel.InstanceContext> オブジェクトと関連付けるかを決定します。 インスタンスコンテキストの共有を示す例については、「 [InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)」を参照してください。  
   
 > [!NOTE]
->  が Windows Communication Foundation (WCF) に挿入されると、オブジェクトの<xref:System.ServiceModel.InstanceContext>作成を制御する通常のプロパティ ( <xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType>プロパティ) がチェックされなくなり、効果はありません。 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider>  
+>  <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider> が Windows Communication Foundation (WCF) に挿入されると、<xref:System.ServiceModel.InstanceContext> オブジェクトの作成を制御する通常のプロパティ (<xref:System.ServiceModel.ServiceBehaviorAttribute.InstanceContextMode%2A?displayProperty=nameWithType> プロパティ) はチェックされなくなり、効果はありません。  
   
  <xref:System.ServiceModel.InstanceContext> オブジェクトを作成時に初期化できるさらに一般的なメカニズムは (たとえば、各 <xref:System.ServiceModel.InstanceContext> にカスタム拡張機能を関連付けるなど)、<xref:System.ServiceModel.Dispatcher.IInstanceContextInitializer?displayProperty=nameWithType> です。  
   
@@ -34,6 +34,7 @@
       <MemberSignature Language="C#" Value="public System.ServiceModel.InstanceContext GetExistingInstanceContext (System.ServiceModel.Channels.Message message, System.ServiceModel.IContextChannel channel);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.ServiceModel.InstanceContext GetExistingInstanceContext(class System.ServiceModel.Channels.Message message, class System.ServiceModel.IContextChannel channel) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ServiceModel.Dispatcher.IInstanceContextProvider.GetExistingInstanceContext(System.ServiceModel.Channels.Message,System.ServiceModel.IContextChannel)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetExistingInstanceContext (message As Message, channel As IContextChannel) As InstanceContext" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; System::ServiceModel::InstanceContext ^ GetExistingInstanceContext(System::ServiceModel::Channels::Message ^ message, System::ServiceModel::IContextChannel ^ channel);" />
       <MemberSignature Language="F#" Value="abstract member GetExistingInstanceContext : System.ServiceModel.Channels.Message * System.ServiceModel.IContextChannel -&gt; System.ServiceModel.InstanceContext" Usage="iInstanceContextProvider.GetExistingInstanceContext (message, channel)" />
       <MemberType>Method</MemberType>
@@ -58,7 +59,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.GetExistingInstanceContext%2A> メソッドは、メッセージを受信すると呼び出されます。 メッセージの処理に使用する <xref:System.ServiceModel.InstanceContext> オブジェクト、または `null` を返します。 の`null`場合、WCF はメッセージの新しい<xref:System.ServiceModel.InstanceContext>オブジェクトを作成し、メソッドを<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.InitializeInstanceContext%2A>呼び出します。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.GetExistingInstanceContext%2A> メソッドは、メッセージを受信すると呼び出されます。 メッセージの処理に使用する <xref:System.ServiceModel.InstanceContext> オブジェクト、または `null` を返します。 `null`の場合、WCF はメッセージの新しい <xref:System.ServiceModel.InstanceContext> オブジェクトを作成し、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.InitializeInstanceContext%2A> メソッドを呼び出します。  
   
  `null` を返すと、新しい <xref:System.ServiceModel.InstanceContext> オブジェクトがスロットル システムに渡って、<xref:System.ServiceModel.Dispatcher.ServiceThrottle.MaxConcurrentInstances%2A?displayProperty=nameWithType> のカウントをインクリメントします。  
   
@@ -70,6 +71,7 @@
       <MemberSignature Language="C#" Value="public void InitializeInstanceContext (System.ServiceModel.InstanceContext instanceContext, System.ServiceModel.Channels.Message message, System.ServiceModel.IContextChannel channel);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InitializeInstanceContext(class System.ServiceModel.InstanceContext instanceContext, class System.ServiceModel.Channels.Message message, class System.ServiceModel.IContextChannel channel) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ServiceModel.Dispatcher.IInstanceContextProvider.InitializeInstanceContext(System.ServiceModel.InstanceContext,System.ServiceModel.Channels.Message,System.ServiceModel.IContextChannel)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub InitializeInstanceContext (instanceContext As InstanceContext, message As Message, channel As IContextChannel)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void InitializeInstanceContext(System::ServiceModel::InstanceContext ^ instanceContext, System::ServiceModel::Channels::Message ^ message, System::ServiceModel::IContextChannel ^ channel);" />
       <MemberSignature Language="F#" Value="abstract member InitializeInstanceContext : System.ServiceModel.InstanceContext * System.ServiceModel.Channels.Message * System.ServiceModel.IContextChannel -&gt; unit" Usage="iInstanceContextProvider.InitializeInstanceContext (instanceContext, message, channel)" />
       <MemberType>Method</MemberType>
@@ -105,6 +107,7 @@
       <MemberSignature Language="C#" Value="public bool IsIdle (System.ServiceModel.InstanceContext instanceContext);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool IsIdle(class System.ServiceModel.InstanceContext instanceContext) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle(System.ServiceModel.InstanceContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Function IsIdle (instanceContext As InstanceContext) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; bool IsIdle(System::ServiceModel::InstanceContext ^ instanceContext);" />
       <MemberSignature Language="F#" Value="abstract member IsIdle : System.ServiceModel.InstanceContext -&gt; bool" Usage="iInstanceContextProvider.IsIdle instanceContext" />
       <MemberType>Method</MemberType>
@@ -127,7 +130,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>は、WCF がアイドル状態<xref:System.ServiceModel.InstanceContext>のオブジェクトを閉じてリサイクルしようとしているときに呼び出され、継続するかどうかをランタイムに通知できます。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> は、WCF がアイドル状態の <xref:System.ServiceModel.InstanceContext> オブジェクトを閉じてリサイクルしようとしているときに呼び出され、継続するかどうかをランタイムに通知できます。  
   
  インスタンスコンテキストの共有を示す例については、「 [InstanceContextSharing](https://msdn.microsoft.com/library/4a6a46d7-b7d7-4bb5-a0dd-03ffa3cbc230)」を参照してください。  
   
@@ -139,6 +142,7 @@
       <MemberSignature Language="C#" Value="public void NotifyIdle (System.ServiceModel.Dispatcher.InstanceContextIdleCallback callback, System.ServiceModel.InstanceContext instanceContext);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void NotifyIdle(class System.ServiceModel.Dispatcher.InstanceContextIdleCallback callback, class System.ServiceModel.InstanceContext instanceContext) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ServiceModel.Dispatcher.IInstanceContextProvider.NotifyIdle(System.ServiceModel.Dispatcher.InstanceContextIdleCallback,System.ServiceModel.InstanceContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub NotifyIdle (callback As InstanceContextIdleCallback, instanceContext As InstanceContext)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void NotifyIdle(System::ServiceModel::Dispatcher::InstanceContextIdleCallback ^ callback, System::ServiceModel::InstanceContext ^ instanceContext);" />
       <MemberSignature Language="F#" Value="abstract member NotifyIdle : System.ServiceModel.Dispatcher.InstanceContextIdleCallback * System.ServiceModel.InstanceContext -&gt; unit" Usage="iInstanceContextProvider.NotifyIdle (callback, instanceContext)" />
       <MemberType>Method</MemberType>
@@ -162,7 +166,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> `false` <xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType>メソッドは、メソッドがを返したときに呼び出されます。これにより、 <xref:System.ServiceModel.InstanceContext>が実行を完了したことをランタイムに通知するために使用するオブジェクトを WCF に提供できるようになります。 <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.NotifyIdle%2A> オブジェクトが、 <xref:System.ServiceModel.InstanceContext>が処理を完了したことをランタイムに通知する<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A>と、WCF はもう一度を呼び出します。 <xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType> このサイクルは、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> が `true` を返すまで継続されます。コンテキストはサイクルごとに閉じられ、再利用されます。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.NotifyIdle%2A> メソッドは、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> メソッドが `false` を返したときに呼び出されます。これにより、<xref:System.ServiceModel.InstanceContext> が作業を完了したことをランタイムに通知するために使用する <xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType> オブジェクトを WCF に渡すことができます。 <xref:System.ServiceModel.Dispatcher.InstanceContextIdleCallback?displayProperty=nameWithType> オブジェクトが、<xref:System.ServiceModel.InstanceContext> が作業を完了したことをランタイムに通知すると、WCF は <xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> を再度呼び出します。 このサイクルは、<xref:System.ServiceModel.Dispatcher.IInstanceContextProvider.IsIdle%2A> が `true` を返すまで継続されます。コンテキストはサイクルごとに閉じられ、再利用されます。  
   
  ]]></format>
         </remarks>

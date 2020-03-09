@@ -1,5 +1,5 @@
 <Type Name="InstanceStore" FullName="System.Runtime.DurableInstancing.InstanceStore">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="1d418b9eef9cddaced41cb2e90f46dff06435b26" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69272017" /></Metadata><TypeSignature Language="C#" Value="public abstract class InstanceStore" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cd86ca7948f2813bcf345702f79e4f921f667704" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78816944" /></Metadata><TypeSignature Language="C#" Value="public abstract class InstanceStore" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit InstanceStore extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Runtime.DurableInstancing.InstanceStore" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class InstanceStore" />
@@ -124,7 +124,7 @@
  コマンドを実行できる場合、永続化プロバイダーは InstancePersistenceContext 上の関連するメソッドを呼び出し、コマンドの結果を返します。  
   
 > [!WARNING]
->  このメソッドは`abstract`ではなくと`virtual`して宣言されていますが、実装はありません。 機能を提供するために、このメソッドをオーバーライドする必要があります。  
+>  このメソッドは `abstract`ではなく `virtual` として宣言されていますが、実装はありません。 機能を提供するために、このメソッドをオーバーライドする必要があります。  
   
  ]]></format>
         </remarks>
@@ -304,7 +304,7 @@
  不要になった場合は、DefaultInstanceOwner プロパティを null に設定する必要があります。 DefaultInstanceOwner が null でない場合は、InstanceStore オブジェクトはガベージ コレクトされない可能性があります。  
   
 > [!WARNING]
->  このメソッドは`abstract`ではなくと`virtual`して宣言されていますが、実装はありません。 機能を提供するために、このメソッドをオーバーライドする必要があります。  
+>  このメソッドは `abstract`ではなく `virtual` として宣言されていますが、実装はありません。 機能を提供するために、このメソッドをオーバーライドする必要があります。  
   
  ]]></format>
         </remarks>
@@ -370,7 +370,7 @@
 ## Remarks  
   
 > [!WARNING]
->  このメソッドは`abstract`ではなくと`virtual`して宣言されていますが、実装はありません。 機能を提供するために、このメソッドをオーバーライドする必要があります。  
+>  このメソッドは `abstract`ではなく `virtual` として宣言されていますが、実装はありません。 機能を提供するために、このメソッドをオーバーライドする必要があります。  
   
  ]]></format>
         </remarks>
@@ -434,9 +434,9 @@
  ホストは、<xref:System.Runtime.DurableInstancing.InstanceStore.Execute%2A> メソッドを呼び出して、永続化コマンドをインスタンス ハンドルに対して実行します。ホストは、<xref:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle%2A> メソッドを呼び出して、このインスタンス ハンドルを取得します。 インスタンス ハンドルは、インスタンス、インスタンス所有者、インスタンス ロックなどのコマンドのコンテキストとサブジェクトを表すエンティティにバインドできます。  インスタンス ハンドルに対して一度に発行できるコマンドは 1 つだけです。  
   
 > [!WARNING]
->  このメソッドがを<xref:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand>使用して実行される<xref:System.Runtime.DurableInstancing.InstanceOwner>と、が作成され、インスタンスにバインドされます。 これは、他のプロセスがそのワークフローにアクセスできないことを意味します。プロセスが終了した場合、ワークフローを復元したり、実行したりすることはできません。 このようなワークフローが再<xref:System.Runtime.DurableInstancing.InstanceLockedException>実行されると、がスローされます。  
+>  このメソッドが <xref:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand>で実行される場合、<xref:System.Runtime.DurableInstancing.InstanceOwner> が作成され、インスタンスにバインドされます。 これは、他のプロセスがそのワークフローにアクセスできないことを意味します。プロセスが終了した場合、ワークフローを復元したり、実行したりすることはできません。 そのようなワークフローが再実行されると、<xref:System.Runtime.DurableInstancing.InstanceLockedException> がスローされます。  
 >   
->  を<xref:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand>使用しない場合は、インスタンスストアによって<xref:System.Runtime.DurableInstancing.InstanceOwner>一時的なが作成され、プロセスの終了時に削除されます。 ただし、ワークフローの最終永続化ポイントの前にプロセスが終了した場合、 **HostLockRenewalPeriod**パラメーターで指定した期間が経過していない限り、この例外がスローされます。  
+>  <xref:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand> が使用されていない場合、インスタンスストアは、プロセスの終了時に削除される一時的な <xref:System.Runtime.DurableInstancing.InstanceOwner> を作成します。 ただし、ワークフローの最終永続化ポイントの前にプロセスが終了した場合、 **HostLockRenewalPeriod**パラメーターで指定した期間が経過していない限り、この例外がスローされます。  
   
  ]]></format>
         </remarks>
@@ -500,6 +500,7 @@
       <MemberSignature Language="C#" Value="protected virtual void OnFreeInstanceHandle (System.Runtime.DurableInstancing.InstanceHandle instanceHandle, object userContext);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void OnFreeInstanceHandle(class System.Runtime.DurableInstancing.InstanceHandle instanceHandle, object userContext) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Runtime.DurableInstancing.InstanceStore.OnFreeInstanceHandle(System.Runtime.DurableInstancing.InstanceHandle,System.Object)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Sub OnFreeInstanceHandle (instanceHandle As InstanceHandle, userContext As Object)" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; virtual void OnFreeInstanceHandle(System::Runtime::DurableInstancing::InstanceHandle ^ instanceHandle, System::Object ^ userContext);" />
       <MemberSignature Language="F#" Value="abstract member OnFreeInstanceHandle : System.Runtime.DurableInstancing.InstanceHandle * obj -&gt; unit&#xA;override this.OnFreeInstanceHandle : System.Runtime.DurableInstancing.InstanceHandle * obj -&gt; unit" Usage="instanceStore.OnFreeInstanceHandle (instanceHandle, userContext)" />
       <MemberType>Method</MemberType>
@@ -525,6 +526,7 @@
       <MemberSignature Language="C#" Value="protected virtual object OnNewInstanceHandle (System.Runtime.DurableInstancing.InstanceHandle instanceHandle);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance object OnNewInstanceHandle(class System.Runtime.DurableInstancing.InstanceHandle instanceHandle) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Runtime.DurableInstancing.InstanceStore.OnNewInstanceHandle(System.Runtime.DurableInstancing.InstanceHandle)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function OnNewInstanceHandle (instanceHandle As InstanceHandle) As Object" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; virtual System::Object ^ OnNewInstanceHandle(System::Runtime::DurableInstancing::InstanceHandle ^ instanceHandle);" />
       <MemberSignature Language="F#" Value="abstract member OnNewInstanceHandle : System.Runtime.DurableInstancing.InstanceHandle -&gt; obj&#xA;override this.OnNewInstanceHandle : System.Runtime.DurableInstancing.InstanceHandle -&gt; obj" Usage="instanceStore.OnNewInstanceHandle instanceHandle" />
       <MemberType>Method</MemberType>

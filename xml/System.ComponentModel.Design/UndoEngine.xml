@@ -1,5 +1,5 @@
 <Type Name="UndoEngine" FullName="System.ComponentModel.Design.UndoEngine">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="c643d7c6ce7b775df1a9a2c52f4e181524c038a0" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69348383" /></Metadata><TypeSignature Language="C#" Value="public abstract class UndoEngine : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="618f47b5270d5ffe50a583e11490d2f1547cce10" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78709404" /></Metadata><TypeSignature Language="C#" Value="public abstract class UndoEngine : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit UndoEngine extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.UndoEngine" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class UndoEngine&#xA;Implements IDisposable" />
@@ -14,6 +14,9 @@
     <AssemblyName>System.Windows.Forms.Design</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.Design" FromVersion="4.0.0.0" To="System.Windows.Forms.Design" ToVersion="4.0.0.0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -28,22 +31,22 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 抽象<xref:System.ComponentModel.Design.UndoEngine>クラスは、デザイン時に元に戻す機能の既定の実装を提供します。 元に戻す単位は、取り消し可能な1つの作業単位を表します。 この単位がスタックに追加され、ユーザーはスタックをたどって各アクションを元に戻すことができます。 通常、元に戻す単位は切り替えるように設計されています。つまり、undo を2回呼び出すと、アプリケーションが開始状態に戻ります。  
+ <xref:System.ComponentModel.Design.UndoEngine> 抽象クラスは、デザイン時に元に戻す機能の既定の実装を提供します。 元に戻す単位は、取り消し可能な1つの作業単位を表します。 この単位がスタックに追加され、ユーザーはスタックをたどって各アクションを元に戻すことができます。 通常、元に戻す単位は切り替えるように設計されています。つまり、undo を2回呼び出すと、アプリケーションが開始状態に戻ります。  
   
- クラス<xref:System.ComponentModel.Design.UndoEngine>では、デザイナー内で実行されているオブジェクトの次の特性を利用します。  
+ <xref:System.ComponentModel.Design.UndoEngine> クラスでは、デザイナー内で実行されているオブジェクトの次の特性を利用します。  
   
 -   すべての興味深いオブジェクトは、デザイナーローダーによって何らかの形式に永続化できます。  
   
 -   プロパティが変更されると、すべてのオブジェクトはプロパティ変更通知を発生させます。  
   
--   <xref:System.ComponentModel.Design.IDesignerHost>トランザクションの概念を提供します。これを使用すると、複数の小さなアクションにまたがる undo アクションを作成できます。  
+-   <xref:System.ComponentModel.Design.IDesignerHost> には、複数の小さなアクションにまたがる undo アクションを作成ために使用できるトランザクションの概念が用意されています。  
   
- これらの機能を<xref:System.ComponentModel.Design.UndoEngine>使用すると、は自動的に必要な取り消し単位を作成ことができます。  
+ これらの機能を使用すると <xref:System.ComponentModel.Design.UndoEngine>、作成は、自動的に必要なすべての取り消し単位をできます。  
   
 > [!NOTE]
->  プロパティ値は直接変更しないでください。 クラス<xref:System.ComponentModel.Design.UndoEngine>では、適切な<xref:System.ComponentModel.TypeDescriptor>を使用してプロパティ値を変更する必要があります。  
+>  プロパティ値は直接変更しないでください。 <xref:System.ComponentModel.Design.UndoEngine> クラスでは、適切な <xref:System.ComponentModel.TypeDescriptor> を使用してプロパティ値を変更する必要があります。  
   
- <xref:System.ComponentModel.Design.UndoEngine>変更通知を監視して取り消し単位を作成します。ユニット自体は、シリアル化されたオブジェクトの状態で構成されます。 次の表は、の作成時に<xref:System.ComponentModel.Design.UndoEngine>使用できる必要があるサービスを示しています。  
+ <xref:System.ComponentModel.Design.UndoEngine> は、変更通知を監視して元に戻す単位を作成し、ユニット自体はシリアル化されたオブジェクトの状態で構成されます。 次の表に、<xref:System.ComponentModel.Design.UndoEngine> の作成時に使用できる必要があるサービスを示します。  
   
 |サービス|説明|  
 |-------------|-----------------|  
@@ -52,7 +55,7 @@
 |<xref:System.ComponentModel.Design.IDesignerHost>|トランザクションを追跡するために使用されます。|  
   
 > [!NOTE]
->  クラスに<xref:System.ComponentModel.Design.UndoEngine>はと<xref:System.ComponentModel.Design.Serialization.ComponentSerializationService> <xref:System.ComponentModel.Design.IComponentChangeService>が必要であるため、デザイン時にのみ使用できます。  
+>  <xref:System.ComponentModel.Design.UndoEngine> クラスは <xref:System.ComponentModel.Design.Serialization.ComponentSerializationService> と <xref:System.ComponentModel.Design.IComponentChangeService>を必要とするため、デザイン時にのみ使用できます。  
   
  元に戻すエンジンは、トランザクションを追跡し、1つのトランザクションを含む単一の undo 単位を作成します。 その結果、元に戻すエンジンは、取り消し可能なアクションの期間を制御できます。 また、トランザクションに名前を付けることができるので、取り消し可能なアクションは、現在のトランザクションから名前を継承します。 使用できるトランザクションがなく、変更が報告された場合は、元に戻すエンジンによって、変更の種類 (たとえば、"プロパティ ' Text ' の変更 ') に基づいて元に戻す名前が作成されます。  
   
@@ -92,11 +95,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- を<xref:System.ComponentModel.Design.UndoEngine>使用するには、 `provider`パラメーターにいくつかのサービスが必要です。  
+ <xref:System.ComponentModel.Design.UndoEngine> を使用するには、`provider` パラメーターからいくつかのサービスを使用する必要があります。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="provider" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="provider" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.NotSupportedException">必要なサービスが見つかりません。 必要なサービスについては、<see cref="T:System.ComponentModel.Design.UndoEngine" /> のトピックを参照してください。 このサービスが削除されている場合は、必ず代わりのサービスを提供します。</exception>
         <altmember cref="T:System.ComponentModel.Design.UndoEngine.UndoUnit" />
         <altmember cref="T:System.ComponentModel.Design.IDesignerHost" />
@@ -133,7 +136,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッド<xref:System.ComponentModel.Design.UndoEngine.CreateUndoUnit%2A>を`unit`呼び出して、パラメーターを作成します。  
+ <xref:System.ComponentModel.Design.UndoEngine.CreateUndoUnit%2A> メソッドを呼び出して、`unit` パラメーターを作成します。  
   
  ]]></format>
         </remarks>
@@ -173,9 +176,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.UndoEngine.CreateUndoUnit%2A>メソッドの既定の実装では、単に<xref:System.ComponentModel.Design.UndoEngine.UndoUnit>新しいを返します。  
+ <xref:System.ComponentModel.Design.UndoEngine.CreateUndoUnit%2A> メソッドの既定の実装では、単に新しい <xref:System.ComponentModel.Design.UndoEngine.UndoUnit>が返されます。  
   
- 既定では<xref:System.ComponentModel.Design.UndoEngine> 、は`primary`パラメーターを使用して何も実行しませんが、COM `Microsoft.VisualStudio.OLE.Interop.IOleParentUndoUnit`デザインパターンに関係するものなど、元に戻すの実装によっては、プライマリユニットとその子の違いを識別する必要がある場合があります。  
+ 既定では、<xref:System.ComponentModel.Design.UndoEngine> は `primary` パラメーターを使用して何も実行しませんが、COM `Microsoft.VisualStudio.OLE.Interop.IOleParentUndoUnit` デザインパターンに関係するものなど、元に戻すの実装によっては、プライマリユニットとその子の違いを識別する必要がある場合があります。  
   
  ]]></format>
         </remarks>
@@ -211,7 +214,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ComponentModel.Design.UndoEngine.DiscardUndoUnit%2A>メソッドが呼び出される前に、元に戻す単位が閉じられ、元に戻されます。  
+ <xref:System.ComponentModel.Design.UndoEngine.DiscardUndoUnit%2A> メソッドが呼び出される前に、元に戻す単位が閉じられ、元に戻されます。  
   
  ]]></format>
         </remarks>
@@ -352,7 +355,7 @@
         <summary>要求したサービスを取得します。</summary>
         <returns>見つかった場合には、要求されたサービス。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="serviceType" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="serviceType" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.NotSupportedException"><paramref name="serviceType" /> が要求されましたが、見つかりません。 このサービスが削除されている場合は、必ず代わりのサービスを提供します。</exception>
       </Docs>
     </Member>
@@ -384,7 +387,7 @@
         <summary>要求したサービスを取得します。</summary>
         <returns>要求されたサービス。要求されたサービスが見つからない場合は <see langword="null" />。</returns>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="serviceType" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="serviceType" /> が <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="OnUndoing">
@@ -522,7 +525,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 例外がスローされた場合でも、イベントは常に発生します。<xref:System.ComponentModel.Design.UndoEngine.Undone>  
+ 例外がスローされた場合でも、<xref:System.ComponentModel.Design.UndoEngine.Undone> イベントは常に発生します。  
   
  ]]></format>
         </remarks>

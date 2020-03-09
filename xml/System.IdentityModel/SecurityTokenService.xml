@@ -1,5 +1,5 @@
 <Type Name="SecurityTokenService" FullName="System.IdentityModel.SecurityTokenService">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="098f090025956013bb455121d70f70fe58204a7d" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69118685" /></Metadata><TypeSignature Language="C#" Value="public abstract class SecurityTokenService" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1e0e3e073399fdd83dfecd08d6b19593747b1f7d" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78701825" /></Metadata><TypeSignature Language="C#" Value="public abstract class SecurityTokenService" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit SecurityTokenService extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.IdentityModel.SecurityTokenService" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class SecurityTokenService" />
@@ -19,35 +19,35 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- STS を作成するには、 <xref:System.IdentityModel.SecurityTokenService>クラスから派生する必要があります。 カスタムクラスでは、少なく<xref:System.IdentityModel.SecurityTokenService.GetScope%2A>ともメソッドと<xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A>メソッドをオーバーライドする必要があります。 これらのオーバーライドを使用すると、クラスで定義されている他のすべてのメソッドの既定の実装を使用して作成された STS は、セキュリティトークン要求 (RST) に応答してセキュリティトークンを発行することができます。 つまり、WS-TRUST 仕様で定義されている問題バインディングが実装されます。 このバインディングは、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドで実装されます。 その他の WS-TRUST バインド (更新、キャンセル、および検証) は、既定のケースで実装されていません。これらのバインドのいずれかに対応する RST が検出された場合は、適切なエラーが呼び出し元に返されます。 もちろん、適切なメソッド (<xref:System.IdentityModel.SecurityTokenService.Renew%2A>、 <xref:System.IdentityModel.SecurityTokenService.Cancel%2A>、および<xref:System.IdentityModel.SecurityTokenService.Validate%2A>) をオーバーライドして、これらのバインドを STS に実装することができます。  
+ STS を作成するには、<xref:System.IdentityModel.SecurityTokenService> クラスから派生する必要があります。 カスタムクラスでは、少なくとも <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> および <xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> メソッドをオーバーライドする必要があります。 これらのオーバーライドを使用すると、クラスで定義されている他のすべてのメソッドの既定の実装を使用して作成された STS は、セキュリティトークン要求 (RST) に応答してセキュリティトークンを発行することができます。 つまり、WS-TRUST 仕様で定義されている問題バインディングが実装されます。 このバインディングは、<xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドに実装されています。 その他の WS-TRUST バインド (更新、キャンセル、および検証) は、既定のケースで実装されていません。これらのバインドのいずれかに対応する RST が検出された場合は、適切なエラーが呼び出し元に返されます。 もちろん、適切なメソッド (<xref:System.IdentityModel.SecurityTokenService.Renew%2A>、<xref:System.IdentityModel.SecurityTokenService.Cancel%2A>、および <xref:System.IdentityModel.SecurityTokenService.Validate%2A>) をオーバーライドして、これらのバインドを STS に実装することができます。  
   
 > [!IMPORTANT]
->  運用の準備ができている STS を実装するには、そのようなサービスの公開に固有のセキュリティリスクを軽減するために、慎重に計画し、大量のリソースを消費することがあります。 Windows Identity Foundation (WIF) を使用するほとんどの開発者は、STS 自体を開発するのではなく、STS に id 管理をアウトソーシングするアプリケーションを開発します。 WIF は visual Studio の拡張機能であり、Visual Studio 2012 の Id およびアクセスツールであり、開発環境で開発者がソリューションをテストするのに役立ちます。 このツールには、開発`LocalSTS`中のアプリケーションに対して特定の要求を処理するように構成できる STS () が含まれています。 Id およびアクセスツールの詳細については、「 [Visual Studio 2012 用 id およびアクセスツール](~/docs/framework/security/identity-and-access-tool-for-vs.md)」を参照してください。 場合によって`LocalSTS`は、アプリケーションを適切にテストするために必要な機能がによって提供されないことがあります。たとえば、アプリケーションで使用するカスタムトークンハンドラーの開発が必要になる場合などです。 このような場合は、から<xref:System.IdentityModel.SecurityTokenService>派生させて、開発環境に配置でき、アプリケーションでそのような機能をテストするために使用できる1つ以上の単純な stss を作成できます。 このセクションの残りの部分では、 <xref:System.IdentityModel.SecurityTokenService>クラスによって公開されるメソッドに焦点を当て、単純な STS を実装し、トークン発行パイプラインを拡張できるようにします。  
+>  運用の準備ができている STS を実装するには、そのようなサービスの公開に固有のセキュリティリスクを軽減するために、慎重に計画し、大量のリソースを消費することがあります。 Windows Identity Foundation (WIF) を使用するほとんどの開発者は、STS 自体を開発するのではなく、STS に id 管理をアウトソーシングするアプリケーションを開発します。 WIF は visual Studio の拡張機能であり、Visual Studio 2012 の Id およびアクセスツールであり、開発環境で開発者がソリューションをテストするのに役立ちます。 このツールには、開発中のアプリケーションに対して特定の要求を処理するように構成できる STS の `LocalSTS`が含まれています。 Id およびアクセスツールの詳細については、「 [Visual Studio 2012 用 id およびアクセスツール](~/docs/framework/security/identity-and-access-tool-for-vs.md)」を参照してください。 場合によっては、`LocalSTS` は、アプリケーションを適切にテストするために必要な機能を提供しないことがあります。たとえば、アプリケーションで使用するためのカスタムトークンハンドラーの開発が必要なシナリオで、 このような場合は、<xref:System.IdentityModel.SecurityTokenService> から派生させて、開発環境に配置でき、アプリケーションでそのような機能をテストするために使用できる1つ以上の単純な STSs を作成できます。 このセクションの残りの部分では、<xref:System.IdentityModel.SecurityTokenService> クラスによって公開されるメソッドに焦点を当て、単純な STS を実装し、トークン発行パイプラインを拡張できるようにします。  
   
  次の一覧は、テスト環境または開発環境で使用するために開発者にとって重要な主要な方法の概要を示しています。  
   
--   <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッド。 このメソッドは、 <xref:System.IdentityModel.Scope> RP に関する情報を含むオブジェクトを返します。 このオブジェクトは、トークン発行パイプラインの残りの部分で使用されます。また、応答`AppliesTo`で使用する署名と暗号化の資格情報、および`ReplyTo` (必要な場合) アドレスも含まれます。 このメソッドはオーバーライドする必要があります。  
+-   <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッド。 このメソッドは、RP に関する情報を含む <xref:System.IdentityModel.Scope> オブジェクトを返します。 このオブジェクトは、トークン発行パイプラインの残りの部分で使用されます。また、応答で使用する署名と暗号化の資格情報、および `AppliesTo` と `ReplyTo` (必要な場合) のアドレスに関する情報も含まれます。 このメソッドはオーバーライドする必要があります。  
   
--   <xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> メソッド。 このメソッドは、 <xref:System.Security.Claims.ClaimsIdentity> RP に返すクレームを含むオブジェクトを返します。 このメソッドはオーバーライドする必要があります。  
+-   <xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> メソッド。 このメソッドは、RP に返すクレームを含む <xref:System.Security.Claims.ClaimsIdentity> オブジェクトを返します。 このメソッドはオーバーライドする必要があります。  
   
--   <xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッド。 このメソッドは、受信セキュリティトークン要求 (RST) を処理し、RP での認証に使用できるトークンを含む応答 (RSTR) を呼び出し元に返すトークン要求パイプラインを実装します。 <xref:System.IdentityModel.SecurityTokenService>クラスで定義されている他のメソッドの多くは、メソッド<xref:System.IdentityModel.SecurityTokenService.GetScope%2A>や<xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A>メソッドなど、このメソッドから呼び出されます。 このメソッドをオーバーライドする必要はありませんが、実装するトークン要求パイプラインについて理解しておくと役立つ場合があります。  
+-   <xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッド。 このメソッドは、受信セキュリティトークン要求 (RST) を処理し、RP での認証に使用できるトークンを含む応答 (RSTR) を呼び出し元に返すトークン要求パイプラインを実装します。 <xref:System.IdentityModel.SecurityTokenService> クラスで定義されている他のメソッドの多くは、このメソッドから呼び出されます。これには、<xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッドと <xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> メソッドが含まれます。 このメソッドをオーバーライドする必要はありませんが、実装するトークン要求パイプラインについて理解しておくと役立つ場合があります。  
   
- STS は、クラスを<xref:System.IdentityModel.Configuration.SecurityTokenServiceConfiguration>使用して構成されます。  
+ STS は <xref:System.IdentityModel.Configuration.SecurityTokenServiceConfiguration> クラスを使用して構成されます。  
   
    
   
 ## Examples  
- <xref:System.IdentityModel.SecurityTokenService>トピックで使用されているコード例は、「」 `Custom Token`のサンプルから抜粋したものです。 このサンプルは、単純な Web トークン (SWT) の処理を可能にするカスタムクラスを提供します。これには、SWT トークンを提供できるパッシブ STS の実装が含まれています。 アクティブな STS を実装する方法の例については、「 `Federation Metadata` 」のサンプルを参照してください。 これらのサンプルと、WIF で使用できるその他のサンプルと、それらをダウンロードする場所については、「 [WIF Code Sample Index](~/docs/framework/security/wif-code-sample-index.md)」を参照してください。 次のコードは、 <xref:System.IdentityModel.SecurityTokenService>クラスを使用してパッシブ STS を実装する方法を示しています。  
+ <xref:System.IdentityModel.SecurityTokenService> のトピックで使用されているコード例は、`Custom Token` のサンプルから抜粋したものです。 このサンプルは、単純な Web トークン (SWT) の処理を可能にするカスタムクラスを提供します。これには、SWT トークンを提供できるパッシブ STS の実装が含まれています。 アクティブな STS を実装する方法の例については、`Federation Metadata` のサンプルを参照してください。 これらのサンプルと、WIF で使用できるその他のサンプルと、それらをダウンロードする場所については、「 [WIF Code Sample Index](~/docs/framework/security/wif-code-sample-index.md)」を参照してください。 次のコードは、<xref:System.IdentityModel.SecurityTokenService> クラスを使用してパッシブ STS を実装する方法を示しています。  
   
  [!code-csharp[WIFCustomTokenSTS#3](~/samples/snippets/csharp/VS_Snippets_Misc/wifcustomtokensts/cs/passivests/customsecuritytokenservice.cs#3)]  
   
- 次のコードは、 <xref:System.IdentityModel.Services.FederatedPassiveSecurityTokenServiceOperations.ProcessRequest%28System.Web.HttpRequest%2CSystem.Security.Claims.ClaimsPrincipal%2CSystem.IdentityModel.SecurityTokenService%2CSystem.Web.HttpResponse%29?displayProperty=nameWithType> `default.aspx.cs`ファイルの分離コードからメソッドを呼び出すことによって、カスタムパッシブ STS を呼び出して ws-federation 要求を処理する方法を示しています。  
+ 次のコードは、`default.aspx.cs` ファイルの分離コードから <xref:System.IdentityModel.Services.FederatedPassiveSecurityTokenServiceOperations.ProcessRequest%28System.Web.HttpRequest%2CSystem.Security.Claims.ClaimsPrincipal%2CSystem.IdentityModel.SecurityTokenService%2CSystem.Web.HttpResponse%29?displayProperty=nameWithType> メソッドを呼び出すことによって、カスタムパッシブ STS を呼び出して WS-FEDERATION 要求を処理する方法を示しています。  
   
  [!code-csharp[WIFCustomTokenSTS#1](~/samples/snippets/csharp/VS_Snippets_Misc/wifcustomtokensts/cs/passivests/default.aspx.cs#1)]  
   
  ]]></format>
     </remarks>
-    <block subset="none" type="overrides"><para>メソッド<see cref="M:System.IdentityModel.SecurityTokenService.GetScope(System.Security.Claims.ClaimsPrincipal,System.IdentityModel.Protocols.WSTrust.RequestSecurityToken)" />とメソッドの<see cref="M:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity(System.Security.Claims.ClaimsPrincipal,System.IdentityModel.Protocols.WSTrust.RequestSecurityToken,System.IdentityModel.Scope)" />両方をオーバーライドする必要があります。</para></block>
+    <block subset="none" type="overrides"><para><see cref="M:System.IdentityModel.SecurityTokenService.GetScope(System.Security.Claims.ClaimsPrincipal,System.IdentityModel.Protocols.WSTrust.RequestSecurityToken)" /> と <see cref="M:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity(System.Security.Claims.ClaimsPrincipal,System.IdentityModel.Protocols.WSTrust.RequestSecurityToken,System.IdentityModel.Scope)" /> の両方のメソッドをオーバーライドする必要があります。</para></block>
     <altmember cref="T:System.IdentityModel.Scope" />
     <altmember cref="T:System.IdentityModel.Configuration.SecurityTokenServiceConfiguration" />
     <altmember cref="T:System.IdentityModel.Services.FederatedPassiveSecurityTokenServiceOperations" />
@@ -57,6 +57,7 @@
       <MemberSignature Language="C#" Value="protected SecurityTokenService (System.IdentityModel.Configuration.SecurityTokenServiceConfiguration securityTokenServiceConfiguration);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(class System.IdentityModel.Configuration.SecurityTokenServiceConfiguration securityTokenServiceConfiguration) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.IdentityModel.SecurityTokenService.#ctor(System.IdentityModel.Configuration.SecurityTokenServiceConfiguration)" />
+      <MemberSignature Language="VB.NET" Value="Protected Sub New (securityTokenServiceConfiguration As SecurityTokenServiceConfiguration)" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; SecurityTokenService(System::IdentityModel::Configuration::SecurityTokenServiceConfiguration ^ securityTokenServiceConfiguration);" />
       <MemberSignature Language="F#" Value="new System.IdentityModel.SecurityTokenService : System.IdentityModel.Configuration.SecurityTokenServiceConfiguration -&gt; System.IdentityModel.SecurityTokenService" Usage="new System.IdentityModel.SecurityTokenService securityTokenServiceConfiguration" />
       <MemberType>Constructor</MemberType>
@@ -78,7 +79,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="securityTokenServiceConfiguration" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="securityTokenServiceConfiguration" /> が <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="BeginCancel">
@@ -113,7 +114,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -123,6 +124,7 @@
       <MemberSignature Language="C#" Value="protected virtual IAsyncResult BeginGetOutputClaimsIdentity (System.Security.Claims.ClaimsPrincipal principal, System.IdentityModel.Protocols.WSTrust.RequestSecurityToken request, System.IdentityModel.Scope scope, AsyncCallback callback, object state);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.IAsyncResult BeginGetOutputClaimsIdentity(class System.Security.Claims.ClaimsPrincipal principal, class System.IdentityModel.Protocols.WSTrust.RequestSecurityToken request, class System.IdentityModel.Scope scope, class System.AsyncCallback callback, object state) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.IdentityModel.SecurityTokenService.BeginGetOutputClaimsIdentity(System.Security.Claims.ClaimsPrincipal,System.IdentityModel.Protocols.WSTrust.RequestSecurityToken,System.IdentityModel.Scope,System.AsyncCallback,System.Object)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function BeginGetOutputClaimsIdentity (principal As ClaimsPrincipal, request As RequestSecurityToken, scope As Scope, callback As AsyncCallback, state As Object) As IAsyncResult" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; virtual IAsyncResult ^ BeginGetOutputClaimsIdentity(System::Security::Claims::ClaimsPrincipal ^ principal, System::IdentityModel::Protocols::WSTrust::RequestSecurityToken ^ request, System::IdentityModel::Scope ^ scope, AsyncCallback ^ callback, System::Object ^ state);" />
       <MemberSignature Language="F#" Value="abstract member BeginGetOutputClaimsIdentity : System.Security.Claims.ClaimsPrincipal * System.IdentityModel.Protocols.WSTrust.RequestSecurityToken * System.IdentityModel.Scope * AsyncCallback * obj -&gt; IAsyncResult&#xA;override this.BeginGetOutputClaimsIdentity : System.Security.Claims.ClaimsPrincipal * System.IdentityModel.Protocols.WSTrust.RequestSecurityToken * System.IdentityModel.Scope * AsyncCallback * obj -&gt; IAsyncResult" Usage="securityTokenService.BeginGetOutputClaimsIdentity (principal, request, scope, callback, state)" />
       <MemberType>Method</MemberType>
@@ -152,7 +154,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.NotImplementedException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.NotImplementedException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -190,7 +192,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.NotImplementedException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.NotImplementedException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -228,7 +230,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -266,7 +268,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -304,7 +306,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -338,7 +340,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -348,6 +350,7 @@
       <MemberSignature Language="C#" Value="protected virtual System.IdentityModel.Tokens.SecurityTokenDescriptor CreateSecurityTokenDescriptor (System.IdentityModel.Protocols.WSTrust.RequestSecurityToken request, System.IdentityModel.Scope scope);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.IdentityModel.Tokens.SecurityTokenDescriptor CreateSecurityTokenDescriptor(class System.IdentityModel.Protocols.WSTrust.RequestSecurityToken request, class System.IdentityModel.Scope scope) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.IdentityModel.SecurityTokenService.CreateSecurityTokenDescriptor(System.IdentityModel.Protocols.WSTrust.RequestSecurityToken,System.IdentityModel.Scope)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function CreateSecurityTokenDescriptor (request As RequestSecurityToken, scope As Scope) As SecurityTokenDescriptor" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; virtual System::IdentityModel::Tokens::SecurityTokenDescriptor ^ CreateSecurityTokenDescriptor(System::IdentityModel::Protocols::WSTrust::RequestSecurityToken ^ request, System::IdentityModel::Scope ^ scope);" />
       <MemberSignature Language="F#" Value="abstract member CreateSecurityTokenDescriptor : System.IdentityModel.Protocols.WSTrust.RequestSecurityToken * System.IdentityModel.Scope -&gt; System.IdentityModel.Tokens.SecurityTokenDescriptor&#xA;override this.CreateSecurityTokenDescriptor : System.IdentityModel.Protocols.WSTrust.RequestSecurityToken * System.IdentityModel.Scope -&gt; System.IdentityModel.Tokens.SecurityTokenDescriptor" Usage="securityTokenService.CreateSecurityTokenDescriptor (request, scope)" />
       <MemberType>Method</MemberType>
@@ -371,14 +374,14 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- の後<xref:System.IdentityModel.SecurityTokenService.GetScope%2A>のトークンの発行中に呼び出されます。  
+ <xref:System.IdentityModel.SecurityTokenService.GetScope%2A>後のトークンの発行中に呼び出されます。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="request" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="request" /> が <see langword="null" />です。  
   
 - または - 
- <paramref name="scope" /> は <see langword="null" />です。</exception>
+ <paramref name="scope" /> が <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="EndCancel">
@@ -407,7 +410,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -439,7 +442,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.NotImplementedException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.NotImplementedException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -471,7 +474,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.NotImplementedException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.NotImplementedException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -503,7 +506,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -535,7 +538,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -567,7 +570,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -596,9 +599,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドに実装されている既定のトークン発行パイプラインから呼び出されます。  
+ このメソッドは、<xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドに実装されている既定のトークン発行パイプラインから呼び出されます。  
   
- 既定の実装は、 <xref:System.IdentityModel.Configuration.SecurityTokenServiceConfiguration.TokenIssuerName%2A>プロパティを<xref:System.IdentityModel.SecurityTokenService.SecurityTokenServiceConfiguration%2A>通じてアクセスされる構成からプロパティを返します。  
+ 既定の実装は、<xref:System.IdentityModel.SecurityTokenService.SecurityTokenServiceConfiguration%2A> プロパティを通じてアクセスされる構成から <xref:System.IdentityModel.Configuration.SecurityTokenServiceConfiguration.TokenIssuerName%2A> プロパティを返します。  
   
  ]]></format>
         </remarks>
@@ -609,6 +612,7 @@
       <MemberSignature Language="C#" Value="protected abstract System.Security.Claims.ClaimsIdentity GetOutputClaimsIdentity (System.Security.Claims.ClaimsPrincipal principal, System.IdentityModel.Protocols.WSTrust.RequestSecurityToken request, System.IdentityModel.Scope scope);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.Security.Claims.ClaimsIdentity GetOutputClaimsIdentity(class System.Security.Claims.ClaimsPrincipal principal, class System.IdentityModel.Protocols.WSTrust.RequestSecurityToken request, class System.IdentityModel.Scope scope) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity(System.Security.Claims.ClaimsPrincipal,System.IdentityModel.Protocols.WSTrust.RequestSecurityToken,System.IdentityModel.Scope)" />
+      <MemberSignature Language="VB.NET" Value="Protected MustOverride Function GetOutputClaimsIdentity (principal As ClaimsPrincipal, request As RequestSecurityToken, scope As Scope) As ClaimsIdentity" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; abstract System::Security::Claims::ClaimsIdentity ^ GetOutputClaimsIdentity(System::Security::Claims::ClaimsPrincipal ^ principal, System::IdentityModel::Protocols::WSTrust::RequestSecurityToken ^ request, System::IdentityModel::Scope ^ scope);" />
       <MemberSignature Language="F#" Value="abstract member GetOutputClaimsIdentity : System.Security.Claims.ClaimsPrincipal * System.IdentityModel.Protocols.WSTrust.RequestSecurityToken * System.IdentityModel.Scope -&gt; System.Security.Claims.ClaimsIdentity" Usage="securityTokenService.GetOutputClaimsIdentity (principal, request, scope)" />
       <MemberType>Method</MemberType>
@@ -634,16 +638,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドによって実装されるトークン発行パイプラインから呼び出されます。 <xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> このメソッドは<xref:System.Security.Claims.ClaimsIdentity> 、トークン`principal`の要求元 (パラメーター)、受信 RST ( `request`パラメーター)、およびトークンの対象となる証明書利用者に基づいて、発行されたセキュリティトークンに含める要求を含むを返します (`scope`パラメーター)。 このメソッドのロジックは、主に次の質問に答えることに関係しています。  
+ <xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> メソッドは、<xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドによって実装されるトークン発行パイプラインから呼び出されます。 このメソッドは、トークンの要求元 (`principal` パラメーター)、受信 RST (`request` パラメーター)、およびトークンの対象となる証明書利用者 (`scope` パラメーター) に基づいて、発行されたセキュリティトークンに含める要求を含む <xref:System.Security.Claims.ClaimsIdentity> を返します。 このメソッドのロジックは、主に次の質問に答えることに関係しています。  
   
--   **目的の RP に基づいて、応答に含める要求の種類を指定してください。** 通常、この方法は、要求のプロパティを<xref:System.IdentityModel.Protocols.WSTrust.RequestSecurityToken.Claims%2A>調べることによって、各 rp に必要なクレームの種類のリストや要求ごとに、rp 単位で決定されます。 ただし、応答に含める要求を決定するためのロジックと詳細は、実装に完全に対応しています。  
+-   **目的の RP に基づいて、応答に含める要求の種類を指定してください。** 通常、この方法は、要求の <xref:System.IdentityModel.Protocols.WSTrust.RequestSecurityToken.Claims%2A> プロパティを調べることによって、各 RP に必要なクレームの種類のリストや要求ごとに、RP 単位で決定されます。 ただし、応答に含める要求を決定するためのロジックと詳細は、実装に完全に対応しています。  
   
--   **応答内の要求に割り当てる必要がある要求の値** Id プロバイダー (ip-https) の場合、通常は、要求元<xref:System.Security.Claims.ClaimsPrincipal> ( `principal`パラメーターによって提供される) の1つ以上の要求を使用して、ストア (またはその他のエンティティ) にアクセスし、必要な要求の種類の値を返します。 フェデレーションプロバイダー (R STS) の場合、これは通常、要求を満たすために要求元の入力方向の要求に対して何らかの処理を実行することを意味します。要求元によって提示された一部の要求に対してフィルター処理または変換を実行し、その他の要求を未変更の状態で渡すこと。 もちろん、応答に含める要求を決定する場合と同様に、これらの要求の値を確認する方法の詳細とロジックは、実装によって決まります。  
+-   **応答内の要求に割り当てる必要がある要求の値** Id プロバイダー (IP-HTTPS) の場合、これは通常、(`principal` パラメーターによって提供される) 要求元の <xref:System.Security.Claims.ClaimsPrincipal> 内の1つ以上の要求を使用してストア (またはその他のエンティティ) にアクセスし、必要な要求の種類の値を返すことを意味します。 フェデレーションプロバイダー (R STS) の場合、これは通常、要求を満たすために要求元の入力方向の要求に対して何らかの処理を実行することを意味します。要求元によって提示された一部の要求に対してフィルター処理または変換を実行し、その他の要求を未変更の状態で渡すこと。 もちろん、応答に含める要求を決定する場合と同様に、これらの要求の値を確認する方法の詳細とロジックは、実装によって決まります。  
   
    
   
 ## Examples  
- このトピックで使用するコード例は、 `Custom Token` 「」のサンプルから抜粋したものです。 このサンプルは、単純な Web トークン (SWT) の処理を可能にするカスタムクラスを提供します。これには、SWT トークンを提供できるパッシブ STS の実装が含まれています。 アクティブな STS を実装する方法の例については、「 `Federation Metadata` 」のサンプルを参照してください。 これらのサンプルと、WIF で使用できるその他のサンプルと、それらをダウンロードする場所については、「 [WIF Code Sample Index](~/docs/framework/security/wif-code-sample-index.md)」を参照してください。 次のコードは、 <xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A>メソッドをオーバーライドして STS の要求を返す方法を示しています。 この例では、要求セキュリティトークン (RST) メッセージは無視され、STS で認証されたユーザーに基づくクレームのコレクションが返されます。  
+ このトピックで使用するコード例は、`Custom Token` のサンプルから抜粋したものです。 このサンプルは、単純な Web トークン (SWT) の処理を可能にするカスタムクラスを提供します。これには、SWT トークンを提供できるパッシブ STS の実装が含まれています。 アクティブな STS を実装する方法の例については、`Federation Metadata` のサンプルを参照してください。 これらのサンプルと、WIF で使用できるその他のサンプルと、それらをダウンロードする場所については、「 [WIF Code Sample Index](~/docs/framework/security/wif-code-sample-index.md)」を参照してください。 次のコードは、<xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> メソッドをオーバーライドして STS の要求を返す方法を示しています。 この例では、要求セキュリティトークン (RST) メッセージは無視され、STS で認証されたユーザーに基づくクレームのコレクションが返されます。  
   
  [!code-csharp[WIFCustomTokenSTS#6](~/samples/snippets/csharp/VS_Snippets_Misc/wifcustomtokensts/cs/passivests/customsecuritytokenservice.cs#6)]  
   
@@ -658,6 +662,7 @@
       <MemberSignature Language="C#" Value="protected virtual System.IdentityModel.Tokens.ProofDescriptor GetProofToken (System.IdentityModel.Protocols.WSTrust.RequestSecurityToken request, System.IdentityModel.Scope scope);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance class System.IdentityModel.Tokens.ProofDescriptor GetProofToken(class System.IdentityModel.Protocols.WSTrust.RequestSecurityToken request, class System.IdentityModel.Scope scope) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.IdentityModel.SecurityTokenService.GetProofToken(System.IdentityModel.Protocols.WSTrust.RequestSecurityToken,System.IdentityModel.Scope)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function GetProofToken (request As RequestSecurityToken, scope As Scope) As ProofDescriptor" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; virtual System::IdentityModel::Tokens::ProofDescriptor ^ GetProofToken(System::IdentityModel::Protocols::WSTrust::RequestSecurityToken ^ request, System::IdentityModel::Scope ^ scope);" />
       <MemberSignature Language="F#" Value="abstract member GetProofToken : System.IdentityModel.Protocols.WSTrust.RequestSecurityToken * System.IdentityModel.Scope -&gt; System.IdentityModel.Tokens.ProofDescriptor&#xA;override this.GetProofToken : System.IdentityModel.Protocols.WSTrust.RequestSecurityToken * System.IdentityModel.Scope -&gt; System.IdentityModel.Tokens.ProofDescriptor" Usage="securityTokenService.GetProofToken (request, scope)" />
       <MemberType>Method</MemberType>
@@ -681,16 +686,16 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドに実装されている既定のトークン発行パイプラインから呼び出されます。  
+ このメソッドは、<xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドに実装されている既定のトークン発行パイプラインから呼び出されます。  
   
  既定の実装は、証明の記述子を返すか、適切な例外をスローします。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="request" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="request" /> が <see langword="null" />です。  
   
 - または - 
- <paramref name="scope" /> が <see langword="null" /> です。</exception>
+ <paramref name="scope" /> が <see langword="null" />です。</exception>
         <altmember cref="M:System.IdentityModel.SecurityTokenService.Issue(System.Security.Claims.ClaimsPrincipal,System.IdentityModel.Protocols.WSTrust.RequestSecurityToken)" />
       </Docs>
     </Member>
@@ -720,13 +725,13 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、 <xref:System.IdentityModel.SecurityTokenService.GetProofToken%2A>メソッドから呼び出されます。  
+ このメソッドは、<xref:System.IdentityModel.SecurityTokenService.GetProofToken%2A> メソッドから呼び出されます。  
   
- 既定の実装では、次のことが行われます。 要求`null`に暗号化トークンが指定されていない場合 ( <xref:System.IdentityModel.Protocols.WSTrust.RequestSecurityToken.ProofEncryption%2A?displayProperty=nameWithType>プロパティが`null`の場合) は、を返します。 それ以外の場合、トークンをとして<xref:System.IdentityModel.Tokens.X509SecurityToken>取得できる場合は、そのトークンに基づいて資格情報が返されます。 トークンをとして<xref:System.IdentityModel.Tokens.X509SecurityToken> <xref:System.IdentityModel.RequestFailedException>解決できない場合は、がスローされます。  
+ 既定の実装では、次のことが行われます。 要求に暗号化トークンが指定されていない場合は `null` を返します (<xref:System.IdentityModel.Protocols.WSTrust.RequestSecurityToken.ProofEncryption%2A?displayProperty=nameWithType> プロパティは `null`)。 それ以外の場合、トークンを <xref:System.IdentityModel.Tokens.X509SecurityToken>として取得できる場合は、そのトークンに基づいて資格情報が返されます。 トークンを <xref:System.IdentityModel.Tokens.X509SecurityToken>として解決できない場合は、<xref:System.IdentityModel.RequestFailedException> がスローされます。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="request" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="request" /> が <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName="GetResponse">
@@ -757,9 +762,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドによって実装されるトークン発行パイプラインからの最後の手順として呼び出されます。 <xref:System.IdentityModel.SecurityTokenService.GetResponse%2A> このメソッドは、元の受信要求 (RST) と、トークン発行パイプラインの前の手順で作成されたトークン記述子を使用して、応答 (RSTR) を作成し、返します。  
+ <xref:System.IdentityModel.SecurityTokenService.GetResponse%2A> メソッドは、<xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドによって実装されるトークン発行パイプラインからの最後の手順として呼び出されます。 このメソッドは、元の受信要求 (RST) と、トークン発行パイプラインの前の手順で作成されたトークン記述子を使用して、応答 (RSTR) を作成し、返します。  
   
- 既定の実装では、要求パラメーターで指定された RST を<xref:System.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse.%23ctor%28System.IdentityModel.Protocols.WSTrust.WSTrustMessage%29?displayProperty=nameWithType>コンストラクターに渡して RSTR を作成し、に<xref:System.IdentityModel.SecurityTokenService.GetResponse%2A>渡されるトークン記述子に対して<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.ApplyTo%2A?displayProperty=nameWithType>メソッドを呼び出して、そのプロパティを新しくrstr を作成し、 <xref:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.AppliesTo%2A>トークン記述子の<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.AppliesToAddress%2A>プロパティを使用して rstr のプロパティを設定します。最後<xref:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.ReplyTo%2A>に、次の表に従って rstr のプロパティを設定します。  
+ 既定の実装では、要求パラメーターで指定された RST を <xref:System.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse.%23ctor%28System.IdentityModel.Protocols.WSTrust.WSTrustMessage%29?displayProperty=nameWithType> コンストラクターに渡し、<xref:System.IdentityModel.SecurityTokenService.GetResponse%2A> に渡されるトークン記述子の <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.ApplyTo%2A?displayProperty=nameWithType> メソッドを呼び出して、そのプロパティを新しく作成した RSTR に適用し、トークン記述子の <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.AppliesToAddress%2A> プロパティを使用して RSTR の <xref:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.AppliesTo%2A> プロパティを設定し、最後に次の表に従って RSTR の <xref:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.ReplyTo%2A> プロパティを設定します。  
   
 |`RST.ReplyTo` プロパティ|<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.AppliesToAddress%2A?displayProperty=nameWithType> プロパティ。|`RSTR.ReplyTo` プロパティ|  
 |----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|  
@@ -801,25 +806,25 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは、メソッドの<xref:System.IdentityModel.SecurityTokenService.ValidateRequest%2A>後にトークン発行パイプラインから呼び出され、受信要求<xref:System.IdentityModel.Scope>用に構成されたオブジェクトを返す必要があります。 <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> (トークン発行パイプラインは、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドで実装されています)。オブジェクト<xref:System.IdentityModel.Scope>は、セキュリティトークン要求 (RST) に関連付けられた RP に関する情報をカプセル化します。 これには、RP で使用される暗号化と署名の資格情報、および応答で発行されたトークンや対称キーを暗号化するかどうかに関する情報が含まれます。 <xref:System.IdentityModel.SecurityTokenService.GetScope%2A>メソッドで実行されるいくつかの一般的なタスクは次のとおりです。  
+ <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッドは、<xref:System.IdentityModel.SecurityTokenService.ValidateRequest%2A> メソッドの後にトークン発行パイプラインから呼び出され、受信要求用に構成された <xref:System.IdentityModel.Scope> オブジェクトを返す必要があります。 (トークン発行パイプラインは <xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドに実装されています)。<xref:System.IdentityModel.Scope> オブジェクトは、セキュリティトークン要求 (RST) に関連付けられた RP に関する情報をカプセル化します。 これには、RP で使用される暗号化と署名の資格情報、および応答で発行されたトークンや対称キーを暗号化するかどうかに関する情報が含まれます。 <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッドで実行されるいくつかの一般的なタスクは次のとおりです。  
   
--   トークンが意図されている RP が、認識されている RP であるかどうかを判断します。 この方法は、実装によって異なります。 目的の RP がこの STS の有効な RP でない場合、メソッドはを<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>スローする必要があります。  
+-   トークンが意図されている RP が、認識されている RP であるかどうかを判断します。 この方法は、実装によって異なります。 目的の RP がこの STS の有効な RP でない場合、メソッドは <xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>をスローする必要があります。  
   
--   応答 (RSTR) で使用される署名資格情報を決定し、それ<xref:System.IdentityModel.Scope.SigningCredentials%2A>に応じてプロパティを設定します。  
+-   応答 (RSTR) で使用される署名資格情報を決定し、それに応じて <xref:System.IdentityModel.Scope.SigningCredentials%2A> プロパティを設定します。  
   
--   応答とそれに含まれる対称キーを暗号化する必要があるかどうか、および暗号化に使用する資格情報を決定します。 、 <xref:System.IdentityModel.Scope.TokenEncryptionRequired%2A> 、<xref:System.IdentityModel.Scope.SymmetricKeyEncryptionRequired%2A>およびの各プロパティを適宜<xref:System.IdentityModel.Scope.EncryptingCredentials%2A>設定します。  
+-   応答とそれに含まれる対称キーを暗号化する必要があるかどうか、および暗号化に使用する資格情報を決定します。 <xref:System.IdentityModel.Scope.TokenEncryptionRequired%2A>、<xref:System.IdentityModel.Scope.SymmetricKeyEncryptionRequired%2A>、および <xref:System.IdentityModel.Scope.EncryptingCredentials%2A> の各プロパティを適宜設定します。  
   
     > [!IMPORTANT]
-    >  既定<xref:System.IdentityModel.Scope.TokenEncryptionRequired%2A>では、プロパティ<xref:System.IdentityModel.Scope.SymmetricKeyEncryptionRequired%2A>とプロパティは`true` 、STS がセキュリティで保護されていないトークンを発行するのを防ぐために設定されています。 運用環境では、これらのプロパティをに`false`設定しないことをお勧めします。  
+    >  既定では、STS がセキュリティで保護されていないトークンを発行するのを防ぐために、<xref:System.IdentityModel.Scope.TokenEncryptionRequired%2A> プロパティと <xref:System.IdentityModel.Scope.SymmetricKeyEncryptionRequired%2A> プロパティが `true` に設定されています。 運用環境では、これらのプロパティを `false` に設定しないことをお勧めします。  
   
--   応答が返されるアドレスを決定します。 それに応じ<xref:System.IdentityModel.Scope.AppliesToAddress%2A>て<xref:System.IdentityModel.Scope.ReplyToAddress%2A> 、プロパティまたはプロパティを設定します。  
+-   応答が返されるアドレスを決定します。 <xref:System.IdentityModel.Scope.AppliesToAddress%2A> または <xref:System.IdentityModel.Scope.ReplyToAddress%2A> のいずれかのプロパティを適宜設定します。  
   
    
   
 ## Examples  
- このトピックで使用するコード例は、 `Custom Token` 「」のサンプルから抜粋したものです。 このサンプルは、単純な Web トークン (SWT) の処理を可能にするカスタムクラスを提供します。これには、SWT トークンを提供できるパッシブ STS の実装が含まれています。 アクティブな STS を実装する方法の例については、「 `Federation Metadata` 」のサンプルを参照してください。 これらのサンプルと、WIF で使用できるその他のサンプルと、それらをダウンロードする場所については、「 [WIF Code Sample Index](~/docs/framework/security/wif-code-sample-index.md)」を参照してください。  
+ このトピックで使用するコード例は、`Custom Token` のサンプルから抜粋したものです。 このサンプルは、単純な Web トークン (SWT) の処理を可能にするカスタムクラスを提供します。これには、SWT トークンを提供できるパッシブ STS の実装が含まれています。 アクティブな STS を実装する方法の例については、`Federation Metadata` のサンプルを参照してください。 これらのサンプルと、WIF で使用できるその他のサンプルと、それらをダウンロードする場所については、「 [WIF Code Sample Index](~/docs/framework/security/wif-code-sample-index.md)」を参照してください。  
   
- <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッドを実装する方法を次のコード例に示します。 この実装では、rp が STS によって認識され<xref:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.ReplyTo%2A>ていることを確認し、 <xref:System.IdentityModel.Scope.ReplyToAddress%2A?displayProperty=nameWithType>要求内のアドレスを検証し、それに応じてプロパティを設定します。また、次の証明書に基づいて、rp で使用する署名と暗号化の資格情報を設定します。ファイルにハードコーディングされています。  
+ <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッドを実装する方法を次のコード例に示します。 この実装では、RP が STS によって認識されていることを確認し、要求の <xref:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.ReplyTo%2A> アドレスを検証して、<xref:System.IdentityModel.Scope.ReplyToAddress%2A?displayProperty=nameWithType> プロパティを設定します。また、ファイルにハードコーディングされている証明書に基づいて、RP で使用する署名と暗号化の資格情報を設定します。  
   
  [!code-csharp[WIFCustomTokenSTS#4](~/samples/snippets/csharp/VS_Snippets_Misc/wifcustomtokensts/cs/passivests/customsecuritytokenservice.cs#4)]  
 [!code-csharp[WIFCustomTokenSTS#5](~/samples/snippets/csharp/VS_Snippets_Misc/wifcustomtokensts/cs/passivests/customsecuritytokenservice.cs#5)]  
@@ -858,9 +863,9 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `requestedTokenType` が`null`または空の文字列の場合、既定の実装では、構成からの既定のトークンの種類が使用されます。 これは、 <xref:System.IdentityModel.SecurityTokenService.SecurityTokenServiceConfiguration%2A>プロパティを<xref:System.IdentityModel.Configuration.SecurityTokenServiceConfiguration.DefaultTokenType%2A>通じてアクセスされる STS 構成オブジェクトのプロパティによって指定されます。  
+ 既定の実装では `requestedTokenType` が `null` または空の文字列の場合、構成からの既定のトークンの種類が使用されます。 これは、<xref:System.IdentityModel.SecurityTokenService.SecurityTokenServiceConfiguration%2A> プロパティを通じてアクセスされる STS 構成オブジェクトの <xref:System.IdentityModel.Configuration.SecurityTokenServiceConfiguration.DefaultTokenType%2A> プロパティによって指定されます。  
   
- このメソッドは、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドに実装されている既定のトークン発行パイプラインから呼び出されます。  
+ このメソッドは、<xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドに実装されている既定のトークン発行パイプラインから呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -902,7 +907,7 @@
 |`null`|E|<xref:System.DateTime.UtcNow%2A?displayProperty=nameWithType>|E|  
 |C|E|C|E|  
   
- このメソッドは、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドに実装されている既定のトークン発行パイプラインから呼び出されます。  
+ このメソッドは、<xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドに実装されている既定のトークン発行パイプラインから呼び出されます。  
   
  ]]></format>
         </remarks>
@@ -937,27 +942,27 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドは、WS-TRUST 仕様で定義されている問題バインディングを実装します。 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>メソッドの既定の実装は、トークン発行 (要求発行) パイプラインを使用して受信要求 (RST) を処理し、適切なセキュリティトークンを含む応答 (RSTR) と、認証に必要なクレームを返します。RP または適切な例外を含むリクエスター。 既定の実装のトークン発行パイプラインは、 <xref:System.IdentityModel.SecurityTokenService>クラスの次のメソッドの呼び出しで構成されます。  
+ このメソッドは、WS-TRUST 仕様で定義されている問題バインディングを実装します。 <xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドの既定の実装では、トークン発行 (要求発行) パイプラインを使用して受信要求 (RST) を処理し、RP または適切な例外で要求元を認証するための適切な要求を含むセキュリティトークンを含む応答 (RSTR) のいずれかを返します。 既定の実装のトークン発行パイプラインは、(<xref:System.IdentityModel.SecurityTokenService> クラスの) 次のメソッドの呼び出しで構成されます。  
   
-1.  要求 (RST) を検証するメソッド。<xref:System.IdentityModel.SecurityTokenService.ValidateRequest%2A>  
+1.  要求 (RST) を検証する <xref:System.IdentityModel.SecurityTokenService.ValidateRequest%2A> メソッド。  
   
-2.  要求に関連付けら<xref:System.IdentityModel.Scope>れている証明書利用者 (RP) に関する情報を格納するオブジェクトを取得するメソッド。<xref:System.IdentityModel.SecurityTokenService.GetScope%2A> このメソッドはオーバーライドする必要があります。 が<xref:System.IdentityModel.SecurityTokenService.GetScope%2A>を`null`返し<xref:System.InvalidOperationException>た場合は、がスローされます。  
+2.  要求に関連付けられている証明書利用者 (RP) に関する情報を格納する <xref:System.IdentityModel.Scope> オブジェクトを取得する <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッド。 このメソッドはオーバーライドする必要があります。 <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> が `null`を返すと、<xref:System.InvalidOperationException> がスローされます。  
   
-3.  RST と、前の手順で返された<xref:System.IdentityModel.SecurityTokenService.CreateSecurityTokenDescriptor%2A> オブジェクトに基づいてセキュリティトークン記述子<xref:System.IdentityModel.Scope>を返すメソッド。 セキュリティトークン記述子 (<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor>) には、トークンハンドラーで使用できる形式の要求に関する情報が含まれています。 <xref:System.IdentityModel.SecurityTokenService.SecurityTokenDescriptor%2A?displayProperty=nameWithType>プロパティは、呼び出しによって返される記述子に設定されます。 が`null`返された場合、 <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.SigningCredentials%2A>または記述子のプロパティ`null`が<xref:System.InvalidOperationException>の場合は、がスローされます。 この<xref:System.IdentityModel.Scope.TokenEncryptionRequired%2A?displayProperty=nameWithType>例外は、プロパティが`true`であるにもかかわら<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.EncryptingCredentials%2A>ず、返される記述子の`null`プロパティがの場合にもスローされます。  
+3.  RST と、前の手順で返された <xref:System.IdentityModel.Scope> オブジェクトに基づいてセキュリティトークン記述子を返す <xref:System.IdentityModel.SecurityTokenService.CreateSecurityTokenDescriptor%2A> メソッド。 セキュリティトークン記述子 (<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor>) には、トークンハンドラーで使用できる形式の要求に関する情報が含まれています。 <xref:System.IdentityModel.SecurityTokenService.SecurityTokenDescriptor%2A?displayProperty=nameWithType> プロパティは、呼び出しによって返される記述子に設定されます。 `null` が返された場合、または記述子の <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.SigningCredentials%2A> プロパティが `null`場合は、<xref:System.InvalidOperationException> がスローされます。 この例外は、<xref:System.IdentityModel.Scope.TokenEncryptionRequired%2A?displayProperty=nameWithType> プロパティが `true`、返された記述子の <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.EncryptingCredentials%2A> プロパティが `null`場合にもスローされます。  
   
-4.  要求されたトークンの種類に基づいて適切なトークンハンドラーを取得するメソッド。<xref:System.IdentityModel.SecurityTokenService.GetSecurityTokenHandler%2A> が`null` 返さ<xref:System.NotImplementedException>れた場合は、がスローされます。  
+4.  要求されたトークンの種類に基づいて適切なトークンハンドラーを取得する <xref:System.IdentityModel.SecurityTokenService.GetSecurityTokenHandler%2A> メソッド。 `null` が返された場合は、<xref:System.NotImplementedException> がスローされます。  
   
-5.  トークンの発行者名を取得するメソッド。<xref:System.IdentityModel.SecurityTokenService.GetIssuerName%2A> 名前が<xref:System.InvalidOperationException> `null`または空の場合、をスローします<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.TokenIssuerName%2A> 。それ以外の場合は、記述子のプロパティを設定します。  
+5.  トークンの発行者名を取得する <xref:System.IdentityModel.SecurityTokenService.GetIssuerName%2A> メソッド。 名前が `null` または空の場合、<xref:System.InvalidOperationException> をスローします。それ以外の場合は、記述子の <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.TokenIssuerName%2A> プロパティを設定します。  
   
-6.  トークンの有効期間を取得し、記述子の<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.Lifetime%2A>プロパティを設定するメソッド。<xref:System.IdentityModel.SecurityTokenService.GetTokenLifetime%2A>  
+6.  トークンの有効期間を取得し、記述子の <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.Lifetime%2A> プロパティを設定する <xref:System.IdentityModel.SecurityTokenService.GetTokenLifetime%2A> メソッド。  
   
-7.  発行されたトークンに含める証明トークンを取得し、記述子の<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.Proof%2A>プロパティを設定するメソッド。<xref:System.IdentityModel.SecurityTokenService.GetProofToken%2A>  
+7.  発行されたトークンに含める証明トークンを取得し、記述子の <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.Proof%2A> プロパティを設定する <xref:System.IdentityModel.SecurityTokenService.GetProofToken%2A> メソッド。  
   
-8.  発行されたトークンに含まれるクレームを取得し、記述子の<xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.Subject%2A>プロパティを設定するメソッド。<xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> このメソッドはオーバーライドする必要があります。  
+8.  発行されたトークンに含まれるクレームを取得し、記述子の <xref:System.IdentityModel.Tokens.SecurityTokenDescriptor.Subject%2A> プロパティを設定する <xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> メソッド。 このメソッドはオーバーライドする必要があります。  
   
-9. 発行されたトークンを格納する応答 (RSTR) を作成するメソッド。<xref:System.IdentityModel.SecurityTokenService.GetResponse%2A>  
+9. 発行されたトークンを含む応答 (RSTR) を作成する <xref:System.IdentityModel.SecurityTokenService.GetResponse%2A> メソッド。  
   
- メソッドをオーバーライドし<xref:System.IdentityModel.SecurityTokenService.Issue%2A>てカスタムトークン発行パイプラインを実装できます。ただし、これは通常、 <xref:System.IdentityModel.SecurityTokenService>クラスのほとんどのカスタム実装が意図されている開発環境とテスト環境では必要ありません。 多くの場合、メソッド<xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A>と<xref:System.IdentityModel.SecurityTokenService.GetScope%2A> <xref:System.IdentityModel.SecurityTokenService.ValidateRequest%2A>メソッドをオーバーライドし、必要に応じてメソッドをオーバーライドして、環境に対して保守可能な STS を提供します。 さらにカスタマイズが必要な場合は、前に示した既定のトークン発行パイプラインの各ステージを実装するメソッドをオーバーライドすることによって、多くの場合、これを提供できます。  
+ <xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッドをオーバーライドして、カスタムトークン発行パイプラインを実装できます。ただし、これは通常、<xref:System.IdentityModel.SecurityTokenService> クラスのほとんどのカスタム実装が意図されている開発環境とテスト環境では必要ありません。 多くの場合、<xref:System.IdentityModel.SecurityTokenService.GetOutputClaimsIdentity%2A> と <xref:System.IdentityModel.SecurityTokenService.GetScope%2A> メソッドをオーバーライドし、必要に応じて <xref:System.IdentityModel.SecurityTokenService.ValidateRequest%2A> メソッドをオーバーライドして、環境に対して保守可能な STS を提供します。 さらにカスタマイズが必要な場合は、前に示した既定のトークン発行パイプラインの各ステージを実装するメソッドをオーバーライドすることによって、多くの場合、これを提供できます。  
   
  ]]></format>
         </remarks>
@@ -1012,7 +1017,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -1131,7 +1136,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このメソッドの既定の実装では<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>、がスローされます。  
+ このメソッドの既定の実装では、<xref:System.IdentityModel.Protocols.WSTrust.InvalidRequestException>がスローされます。  
   
  ]]></format>
         </remarks>
@@ -1162,18 +1167,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- メソッドは、受信 RST を検証するために、 <xref:System.IdentityModel.SecurityTokenService.Issue%2A>トークン発行パイプライン (メソッド) から呼び出されます。 <xref:System.IdentityModel.SecurityTokenService.ValidateRequest%2A> RST は STS の要件 (ポリシー) に対して検証され、有効でない場合は適切な例外がスローされます。  
+ <xref:System.IdentityModel.SecurityTokenService.ValidateRequest%2A> メソッドは、受信 RST を検証するために、トークン発行パイプライン (<xref:System.IdentityModel.SecurityTokenService.Issue%2A> メソッド) から呼び出されます。 RST は STS の要件 (ポリシー) に対して検証され、有効でない場合は適切な例外がスローされます。  
   
- <xref:System.IdentityModel.SecurityTokenService>クラスの既定の実装では、RST-RSTR パターンのみがサポートされ、ws-trust 仕様の問題バインディングのみがサポート<xref:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.RequestType%2A>されます (要求のプロパティは<xref:System.IdentityModel.Protocols.WSTrust.RequestTypes.Issue?displayProperty=nameWithType>に設定する必要があります)。 このメソッドの既定の実装では、これらの要件 (および「例外」セクションで説明されている他の要件) が適用されます。 カスタム STS に対して異なる検証要件を適用する必要がある場合は、このメソッドをオーバーライドできます。  
+ <xref:System.IdentityModel.SecurityTokenService> クラスの既定の実装では、RST-RSTR パターンのみがサポートされており、WS-TRUST 仕様の問題バインディングのみがサポートされます (要求の <xref:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.RequestType%2A> プロパティは <xref:System.IdentityModel.Protocols.WSTrust.RequestTypes.Issue?displayProperty=nameWithType>に設定する必要があります)。 このメソッドの既定の実装では、これらの要件 (および「例外」セクションで説明されている他の要件) が適用されます。 カスタム STS に対して異なる検証要件を適用する必要がある場合は、このメソッドをオーバーライドできます。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.IdentityModel.Protocols.WSTrust.InvalidRequestException"><paramref name="request" /> は <see langword="null" />です。  
+        <exception cref="T:System.IdentityModel.Protocols.WSTrust.InvalidRequestException"><paramref name="request" /> が <see langword="null" />です。  
   
 - または - 
 要求の <see cref="P:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.RequestType" /> プロパティは <see cref="F:System.IdentityModel.Protocols.WSTrust.RequestTypes.Issue" /> に設定されません。  
   
-または 
+- または - 
 要求の <see cref="P:System.IdentityModel.Protocols.WSTrust.WSTrustMessage.KeyType" /> プロパティが <see langword="null" /> でなく、<see cref="T:System.IdentityModel.Protocols.WSTrust.KeyTypes" /> クラスで定義されている定数の 1 つでもありません。  
   
 - または - 

@@ -1,5 +1,5 @@
 <Type Name="XamlXmlWriter" FullName="System.Xaml.XamlXmlWriter">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4c517484e17b8799fb8895c418c6e2a7e5f7122f" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69441238" /></Metadata><TypeSignature Language="C#" Value="public class XamlXmlWriter : System.Xaml.XamlWriter" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="3684c569ca980a968cd330800ebeda89b863b75d" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78731595" /></Metadata><TypeSignature Language="C#" Value="public class XamlXmlWriter : System.Xaml.XamlWriter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit XamlXmlWriter extends System.Xaml.XamlWriter" />
   <TypeSignature Language="DocId" Value="T:System.Xaml.XamlXmlWriter" />
   <TypeSignature Language="VB.NET" Value="Public Class XamlXmlWriter&#xA;Inherits XamlWriter" />
@@ -22,17 +22,17 @@
  このクラスは、通常、シリアル化のシナリオで使用されます。  
   
 ## <a name="how-to-use-xamlxmlwriter"></a>XamlXmlWriter の使用方法  
- API <xref:System.Xaml.XamlWriter>には、さまざまな種類の XAML ノードを記述するいくつかのメソッドがあります。 これらはまとめて、 `Write` <xref:System.Xaml.XamlWriter>のメソッドとしてドキュメント内で参照されます。 <xref:System.Xaml.XamlXmlWriter>は、いくつかの内部状態クラスを使用して、その`Write`実装の1つが呼び出されたときの処理を決定します。 呼び出し`Write`では、状態を使用して、要求された要素、属性、または値を書き込むことができるかどうか、または例外がスローされるかどうかを判断します。 たとえば、を呼び出し<xref:System.Xaml.XamlXmlWriter.WriteEndObject%2A> 、 <xref:System.Xaml.XamlXmlWriter>現在のノード位置の状態が値またはメンバー内にある場合、例外がスローされます。 通常、 <xref:System.Xaml.XamlXmlWriter> API の呼び出し元は、xaml リーダーおよび xaml ノードストリームから取得される現在の xaml ノードの型を認識している必要があります。 この知識に基づいて、呼び出し元は`Write` 、現在のノード型に関連しない api を呼び出さないようにする必要があります。  
+ <xref:System.Xaml.XamlWriter> API には、さまざまな種類の XAML ノードを記述するメソッドがいくつかあります。 これらはまとめて、ドキュメントで <xref:System.Xaml.XamlWriter>の `Write` メソッドと呼ばれています。 <xref:System.Xaml.XamlXmlWriter> は、いくつかの内部状態クラスを使用して、その `Write` の実装の1つが呼び出されたときの処理を決定します。 `Write` の呼び出しでは、状態を使用して、要求された要素、属性、または値を書き込むことができるかどうか、または例外がスローされるかどうかを判断します。 たとえば、<xref:System.Xaml.XamlXmlWriter.WriteEndObject%2A> を呼び出し、現在のノード位置 <xref:System.Xaml.XamlXmlWriter> の状態が値またはメンバー内にある場合は、例外がスローされます。 通常、<xref:System.Xaml.XamlXmlWriter> API の呼び出し元は、XAML リーダーと XAML ノードストリームから取得される現在の XAML ノードの型を認識している必要があります。 この知識に基づいて、呼び出し元は、現在のノード型に関連しない `Write` Api を呼び出さないようにする必要があります。  
   
 ## <a name="xaml-namespaces-and-xamlxmlwriter"></a>XAML 名前空間と XamlXmlWriter  
- の XAML 名前空間の書き込み<xref:System.Xaml.XamlXmlWriter>動作は複雑であり、へ<xref:System.Xaml.XamlXmlWriter.WriteNamespace%2A>の明示的な呼び出しに限定されません。 代わりに、など`Write`の他の呼び出し<xref:System.Xaml.XamlXmlWriter.WriteStartObject%2A>では、ノード構造内の特定のポイントで名前空間宣言を記述することが必要になる場合があります。 XAML ライターは、独自のロジックでプレフィックスを生成するか、 <xref:System.Xaml.INamespacePrefixLookup>サービスの情報を使用して優先するプレフィックスを決定します。 また、明示<xref:System.Xaml.XamlXmlWriter.WriteNamespace%2A>的な呼び出しは、XAML 名前空間の宣言が既に適用され、他の場所で宣言されている場合には、何も返さないことがあります。  
+ <xref:System.Xaml.XamlXmlWriter> の XAML 名前空間の書き込み動作は複雑であり、<xref:System.Xaml.XamlXmlWriter.WriteNamespace%2A>への明示的な呼び出しに限定されるわけではありません。 代わりに、<xref:System.Xaml.XamlXmlWriter.WriteStartObject%2A>などの `Write` の他の呼び出しでは、ノード構造内の特定のポイントで名前空間宣言を記述することが必要になる場合があります。 XAML ライターは、独自のロジックでプレフィックスを生成するか、<xref:System.Xaml.INamespacePrefixLookup> サービスの情報を使用して、優先するプレフィックスを決定します。 また、明示的な <xref:System.Xaml.XamlXmlWriter.WriteNamespace%2A> 呼び出しは、XAML 名前空間の宣言が既に適用され、他の場所で宣言されている場合は、何も返さないことがあります。  
   
 ## <a name="write-method-exceptions"></a>書き込みメソッドの例外  
- メソッドによって<xref:System.Xaml.XamlXmlWriter> <xref:System.InvalidOperationException> <xref:System.Xaml.XamlXmlWriterException>スローされる例外は、通常、またはです。 `Write`  
+ <xref:System.Xaml.XamlXmlWriter>`Write` メソッドによってスローされる例外は、通常 <xref:System.InvalidOperationException> または <xref:System.Xaml.XamlXmlWriterException>です。  
   
- は<xref:System.InvalidOperationException> 、多くの場合、xaml リーダーが無効なノード構造を xaml ノードストリームに渡したことを示します。 この場合、XAML スキーマまたは XAML スキーマコンテキストの検証に関連しない理由により、ノード構造は無効になります。 代わりに、ノードストリームは基本的な形式では無効です。 たとえば、問題のある xaml リーダー実装が、連続`StartObject`する2つのノードを含む xaml ノードストリームを生成した場合、2番目<xref:System.Xaml.XamlXmlWriter.WriteStartObject%2A>のノードを呼び出そうとすると、が<xref:System.InvalidOperationException>スローされます。 すべての XAML ライターは、このような操作が無効であると見なします。 また、 <xref:System.InvalidOperationException>の別の例として、現在のノードストリームの位置に適用される xaml スキーマコンテキストで xaml 名前空間情報を使用できない場合があります。  
+ <xref:System.InvalidOperationException> は、多くの場合、XAML リーダーが無効なノード構造を XAML ノードストリームに渡したことを示しています。 この場合、XAML スキーマまたは XAML スキーマコンテキストの検証に関連しない理由により、ノード構造は無効になります。 代わりに、ノードストリームは基本的な形式では無効です。 たとえば、問題のある XAML リーダー実装が、2つの連続する `StartObject` ノードを含む XAML ノードストリームを生成した場合、2番目の <xref:System.Xaml.XamlXmlWriter.WriteStartObject%2A> を呼び出そうとすると <xref:System.InvalidOperationException>がスローされます。 すべての XAML ライターは、このような操作が無効であると見なします。 <xref:System.InvalidOperationException> のもう1つの例は、現在のノードストリームの位置に適用される XAML スキーマコンテキストで XAML 名前空間情報を使用できない場合です。  
   
- は<xref:System.Xaml.XamlXmlWriterException> 、この特定の XAML ライターの実装が、意図された機能に基づいて例外をスローすることを選択した場合の例外を示します。 は、が独自の状態また<xref:System.Xaml.XamlXmlWriter>は設定に違反している特定のケースを示すことができます。<xref:System.Xaml.XamlXmlWriterException> たとえば<xref:System.Xaml.XamlXmlWriterException> 、 <xref:System.Xaml.XamlXmlWriter>とそのシリアル化形式がサポートしていない位置に XAML 名前空間情報を書き込もうとした場合や、インスタンスで<xref:System.Xaml.XamlXmlWriterSettings>禁止されている場合に重複したメンバーを書き込むと、が発生することがあります。  
+ <xref:System.Xaml.XamlXmlWriterException> は、この特定の XAML ライターの実装が、意図された機能に基づいて例外をスローすることを選択した場合の例外を示します。 <xref:System.Xaml.XamlXmlWriterException> は、<xref:System.Xaml.XamlXmlWriter> が独自の状態または設定に違反している特定のケースを示すことができます。 たとえば、<xref:System.Xaml.XamlXmlWriterException> は、<xref:System.Xaml.XamlXmlWriter> とそのシリアル化形式がサポートしていない位置に XAML 名前空間情報を書き込もうとした場合や、インスタンスの <xref:System.Xaml.XamlXmlWriterSettings> 禁止されている場合に重複するメンバーを書き込むことによって発生する可能性があります。  
   
  ]]></format>
     </remarks>
@@ -53,6 +53,7 @@
       <MemberSignature Language="C#" Value="public XamlXmlWriter (System.IO.Stream stream, System.Xaml.XamlSchemaContext schemaContext);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.IO.Stream stream, class System.Xaml.XamlSchemaContext schemaContext) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Xaml.XamlXmlWriter.#ctor(System.IO.Stream,System.Xaml.XamlSchemaContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (stream As Stream, schemaContext As XamlSchemaContext)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; XamlXmlWriter(System::IO::Stream ^ stream, System::Xaml::XamlSchemaContext ^ schemaContext);" />
       <MemberSignature Language="F#" Value="new System.Xaml.XamlXmlWriter : System.IO.Stream * System.Xaml.XamlSchemaContext -&gt; System.Xaml.XamlXmlWriter" Usage="new System.Xaml.XamlXmlWriter (stream, schemaContext)" />
       <MemberType>Constructor</MemberType>
@@ -74,16 +75,17 @@
         <param name="schemaContext">XAML ライターの XAML スキーマ コンテキスト。</param>
         <summary>ストリームから <see cref="T:System.Xaml.XamlXmlWriter" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> は <see langword="null" />です。  
+        <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> が <see langword="null" />です。  
   
 - または - 
- <paramref name="schemaContext" /> は <see langword="null" />です。</exception>
+ <paramref name="schemaContext" /> が <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public XamlXmlWriter (System.IO.TextWriter textWriter, System.Xaml.XamlSchemaContext schemaContext);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.IO.TextWriter textWriter, class System.Xaml.XamlSchemaContext schemaContext) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Xaml.XamlXmlWriter.#ctor(System.IO.TextWriter,System.Xaml.XamlSchemaContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (textWriter As TextWriter, schemaContext As XamlSchemaContext)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; XamlXmlWriter(System::IO::TextWriter ^ textWriter, System::Xaml::XamlSchemaContext ^ schemaContext);" />
       <MemberSignature Language="F#" Value="new System.Xaml.XamlXmlWriter : System.IO.TextWriter * System.Xaml.XamlSchemaContext -&gt; System.Xaml.XamlXmlWriter" Usage="new System.Xaml.XamlXmlWriter (textWriter, schemaContext)" />
       <MemberType>Constructor</MemberType>
@@ -112,6 +114,7 @@
       <MemberSignature Language="C#" Value="public XamlXmlWriter (System.Xml.XmlWriter xmlWriter, System.Xaml.XamlSchemaContext schemaContext);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.Xml.XmlWriter xmlWriter, class System.Xaml.XamlSchemaContext schemaContext) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Xaml.XamlXmlWriter.#ctor(System.Xml.XmlWriter,System.Xaml.XamlSchemaContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (xmlWriter As XmlWriter, schemaContext As XamlSchemaContext)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; XamlXmlWriter(System::Xml::XmlWriter ^ xmlWriter, System::Xaml::XamlSchemaContext ^ schemaContext);" />
       <MemberSignature Language="F#" Value="new System.Xaml.XamlXmlWriter : System.Xml.XmlWriter * System.Xaml.XamlSchemaContext -&gt; System.Xaml.XamlXmlWriter" Usage="new System.Xaml.XamlXmlWriter (xmlWriter, schemaContext)" />
       <MemberType>Constructor</MemberType>
@@ -140,6 +143,7 @@
       <MemberSignature Language="C#" Value="public XamlXmlWriter (System.IO.Stream stream, System.Xaml.XamlSchemaContext schemaContext, System.Xaml.XamlXmlWriterSettings settings);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.IO.Stream stream, class System.Xaml.XamlSchemaContext schemaContext, class System.Xaml.XamlXmlWriterSettings settings) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Xaml.XamlXmlWriter.#ctor(System.IO.Stream,System.Xaml.XamlSchemaContext,System.Xaml.XamlXmlWriterSettings)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (stream As Stream, schemaContext As XamlSchemaContext, settings As XamlXmlWriterSettings)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; XamlXmlWriter(System::IO::Stream ^ stream, System::Xaml::XamlSchemaContext ^ schemaContext, System::Xaml::XamlXmlWriterSettings ^ settings);" />
       <MemberSignature Language="F#" Value="new System.Xaml.XamlXmlWriter : System.IO.Stream * System.Xaml.XamlSchemaContext * System.Xaml.XamlXmlWriterSettings -&gt; System.Xaml.XamlXmlWriter" Usage="new System.Xaml.XamlXmlWriter (stream, schemaContext, settings)" />
       <MemberType>Constructor</MemberType>
@@ -161,7 +165,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlXmlWriter>インスタンスを構築した後は`settings` 、オブジェクトの値を変更しないでください。 <xref:System.Xaml.XamlXmlWriter>実行時に変更可能な設定値に基づいて、内部設定を更新することはできません。 初期化のためだけに設定を指定する必要があります。 <xref:System.Xaml.XamlXmlWriterSettings>コンストラクターシグネチャの1つを使用して、アクティブな xaml ライターから設定をマージできます。ただし、既存のものを調整するのではなく、これらの設定を新しい xaml ライターインスタンスに適用する必要があります。  
+ <xref:System.Xaml.XamlXmlWriter> インスタンスの構築後に `settings` オブジェクトの値を変更しないでください。 実行時に変更可能な設定値に基づいて、<xref:System.Xaml.XamlXmlWriter> の内部設定を更新することはできません。 初期化のためだけに設定を指定する必要があります。 <xref:System.Xaml.XamlXmlWriterSettings> コンストラクターシグネチャの1つを使用して、アクティブな XAML ライターから設定をマージできます。ただし、既存のものを調整するのではなく、これらの設定を新しい XAML ライターインスタンスに適用する必要があります。  
   
  ]]></format>
         </remarks>
@@ -172,6 +176,7 @@
       <MemberSignature Language="C#" Value="public XamlXmlWriter (System.IO.TextWriter textWriter, System.Xaml.XamlSchemaContext schemaContext, System.Xaml.XamlXmlWriterSettings settings);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.IO.TextWriter textWriter, class System.Xaml.XamlSchemaContext schemaContext, class System.Xaml.XamlXmlWriterSettings settings) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Xaml.XamlXmlWriter.#ctor(System.IO.TextWriter,System.Xaml.XamlSchemaContext,System.Xaml.XamlXmlWriterSettings)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (textWriter As TextWriter, schemaContext As XamlSchemaContext, settings As XamlXmlWriterSettings)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; XamlXmlWriter(System::IO::TextWriter ^ textWriter, System::Xaml::XamlSchemaContext ^ schemaContext, System::Xaml::XamlXmlWriterSettings ^ settings);" />
       <MemberSignature Language="F#" Value="new System.Xaml.XamlXmlWriter : System.IO.TextWriter * System.Xaml.XamlSchemaContext * System.Xaml.XamlXmlWriterSettings -&gt; System.Xaml.XamlXmlWriter" Usage="new System.Xaml.XamlXmlWriter (textWriter, schemaContext, settings)" />
       <MemberType>Constructor</MemberType>
@@ -193,7 +198,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlXmlWriter>インスタンスを構築した後は`settings` 、オブジェクトの値を変更しないでください。 <xref:System.Xaml.XamlXmlWriter>実行時に変更可能な設定値に基づいて、内部設定を更新することはできません。 初期化のためだけに設定を指定する必要があります。 <xref:System.Xaml.XamlXmlWriterSettings>コンストラクターシグネチャの1つを使用して、アクティブな xaml ライターから設定をマージできます。ただし、既存のものを調整するのではなく、これらの設定を新しい xaml ライターインスタンスに適用する必要があります。  
+ <xref:System.Xaml.XamlXmlWriter> インスタンスの構築後に `settings` オブジェクトの値を変更しないでください。 実行時に変更可能な設定値に基づいて、<xref:System.Xaml.XamlXmlWriter> の内部設定を更新することはできません。 初期化のためだけに設定を指定する必要があります。 <xref:System.Xaml.XamlXmlWriterSettings> コンストラクターシグネチャの1つを使用して、アクティブな XAML ライターから設定をマージできます。ただし、既存のものを調整するのではなく、これらの設定を新しい XAML ライターインスタンスに適用する必要があります。  
   
  ]]></format>
         </remarks>
@@ -204,6 +209,7 @@
       <MemberSignature Language="C#" Value="public XamlXmlWriter (System.Xml.XmlWriter xmlWriter, System.Xaml.XamlSchemaContext schemaContext, System.Xaml.XamlXmlWriterSettings settings);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.Xml.XmlWriter xmlWriter, class System.Xaml.XamlSchemaContext schemaContext, class System.Xaml.XamlXmlWriterSettings settings) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Xaml.XamlXmlWriter.#ctor(System.Xml.XmlWriter,System.Xaml.XamlSchemaContext,System.Xaml.XamlXmlWriterSettings)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (xmlWriter As XmlWriter, schemaContext As XamlSchemaContext, settings As XamlXmlWriterSettings)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; XamlXmlWriter(System::Xml::XmlWriter ^ xmlWriter, System::Xaml::XamlSchemaContext ^ schemaContext, System::Xaml::XamlXmlWriterSettings ^ settings);" />
       <MemberSignature Language="F#" Value="new System.Xaml.XamlXmlWriter : System.Xml.XmlWriter * System.Xaml.XamlSchemaContext * System.Xaml.XamlXmlWriterSettings -&gt; System.Xaml.XamlXmlWriter" Usage="new System.Xaml.XamlXmlWriter (xmlWriter, schemaContext, settings)" />
       <MemberType>Constructor</MemberType>
@@ -225,7 +231,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Xaml.XamlXmlWriter>インスタンスを構築した後は`settings` 、オブジェクトの値を変更しないでください。 <xref:System.Xaml.XamlXmlWriter>実行時に変更可能な設定値に基づいて、内部設定を更新することはできません。 初期化のためだけに設定を指定する必要があります。 <xref:System.Xaml.XamlXmlWriterSettings>コンストラクターシグネチャの1つを使用して、アクティブな xaml ライターから設定をマージできます。ただし、既存のものを調整するのではなく、これらの設定を新しい xaml ライターインスタンスに適用する必要があります。  
+ <xref:System.Xaml.XamlXmlWriter> インスタンスの構築後に `settings` オブジェクトの値を変更しないでください。 実行時に変更可能な設定値に基づいて、<xref:System.Xaml.XamlXmlWriter> の内部設定を更新することはできません。 初期化のためだけに設定を指定する必要があります。 <xref:System.Xaml.XamlXmlWriterSettings> コンストラクターシグネチャの1つを使用して、アクティブな XAML ライターから設定をマージできます。ただし、既存のものを調整するのではなく、これらの設定を新しい XAML ライターインスタンスに適用する必要があります。  
   
  ]]></format>
         </remarks>
@@ -257,7 +263,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- この実装は`Close` 、 <xref:System.Xaml.XamlXmlWriterSettings.CloseOutput%2A>が指定<xref:System.Xml.XmlWriter> <xref:System.IO.TextWriter> さ<xref:System.Xaml.XamlXmlWriterSettings>れたいずれかにある場合に、基になるまたはに対してを呼び出します。 `true` それ以外の場合<xref:System.Xaml.XamlXmlWriter.Flush%2A>は、を呼び出します。  
+ この実装では、基になる <xref:System.Xml.XmlWriter> または <xref:System.IO.TextWriter> に対して `Close` が呼び出されます。この場合、指定された `true` に <xref:System.Xaml.XamlXmlWriterSettings.CloseOutput%2A> が <xref:System.Xaml.XamlXmlWriterSettings>ます。 それ以外の場合は、<xref:System.Xaml.XamlXmlWriter.Flush%2A>を呼び出します。  
   
  ]]></format>
         </remarks>
@@ -285,7 +291,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- の動作は`Dispose` 、ライターの設定 (特に<xref:System.Xaml.XamlXmlWriterSettings.CloseOutput%2A?displayProperty=nameWithType>) によって影響を受けることがあります。<xref:System.Xaml.XamlXmlWriter>  
+ <xref:System.Xaml.XamlXmlWriter> の `Dispose` の動作は、特に <xref:System.Xaml.XamlXmlWriterSettings.CloseOutput%2A?displayProperty=nameWithType>によって、ライターの設定によって影響を受けることがあります。  
   
  ]]></format>
         </remarks>
@@ -346,7 +352,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティから取得する値はコピーであり、参照ではありません。 設定のプロパティ値を変更しても、アクティブ<xref:System.Xaml.XamlXmlWriter>なには影響しません。  
+ このプロパティから取得する値はコピーであり、参照ではありません。 設定のプロパティ値を変更しても、アクティブな <xref:System.Xaml.XamlXmlWriter>には影響しません。  
   
  ]]></format>
         </remarks>
@@ -399,7 +405,7 @@
 ## Remarks  
  XAML のマークアップとテキスト表現では、終了オブジェクトは終了タグです。  
   
- がによって<xref:System.InvalidOperationException> <xref:System.Xaml.XamlXmlWriter.WriteEndObject%2A>スローされる最も一般的なケースは、現在の XAML ノードストリームの位置がまだメンバー <xref:System.Xaml.XamlXmlWriter.WriteEndObject%2A>内にあり、が呼び出される場合です。  
+ <xref:System.InvalidOperationException> が <xref:System.Xaml.XamlXmlWriter.WriteEndObject%2A> によってスローされる最も一般的なケースは、現在の XAML ノードストリームの位置がまだメンバー内にあり、<xref:System.Xaml.XamlXmlWriter.WriteEndObject%2A> が呼び出される場合です。  
   
  ]]></format>
         </remarks>
@@ -432,6 +438,7 @@
       <MemberSignature Language="C#" Value="public override void WriteNamespace (System.Xaml.NamespaceDeclaration namespaceDeclaration);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance void WriteNamespace(class System.Xaml.NamespaceDeclaration namespaceDeclaration) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Xaml.XamlXmlWriter.WriteNamespace(System.Xaml.NamespaceDeclaration)" />
+      <MemberSignature Language="VB.NET" Value="Public Overrides Sub WriteNamespace (namespaceDeclaration As NamespaceDeclaration)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; override void WriteNamespace(System::Xaml::NamespaceDeclaration ^ namespaceDeclaration);" />
       <MemberSignature Language="F#" Value="override this.WriteNamespace : System.Xaml.NamespaceDeclaration -&gt; unit" Usage="xamlXmlWriter.WriteNamespace namespaceDeclaration" />
       <MemberType>Method</MemberType>
@@ -449,7 +456,7 @@
         <param name="namespaceDeclaration">書き込む XAML 名前空間宣言。</param>
         <summary>基になる <see cref="T:System.Xml.XmlWriter" /> または <see cref="T:System.IO.TextWriter" /> に名前空間の情報を書き込みます。 特定の状態で例外がスローされる可能性がありますが、例外をスローする代わりに、XAML 名前空間の宣言を挿入できる位置にライターおよび処理される XAML ノード ストリームが到達するまで名前空間情報の書き込みを遅延させる場合があります。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="namespaceDeclaration" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="namespaceDeclaration" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="namespaceDeclaration" /> は、有効な XAML 名前空間の宣言ではありません (null プレフィックスまたは null 識別子コンポーネントがあります)。</exception>
         <exception cref="T:System.Xaml.XamlXmlWriterException">現在のライター状態は、XAML 名前空間の宣言の書き込みをサポートしていません。</exception>
       </Docs>
@@ -479,18 +486,18 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- の内部の既定の<xref:System.Xaml.XamlXmlWriter>ロジックでは、最初に属性形式でメンバーを書き込もうとします。 プロパティまたはその値がテキスト構文をサポートしていないために属性フォームがサポートされていない場合は、代わりにプロパティ要素が書き込まれます。 プロパティが XAML コンテンツプロパティ`GetObject` 、ケース、または暗黙的なプロパティである場合は、内部テキストや、介在するメンバーを持たないオブジェクトの子など、他の xaml フォームが記述されることがあります。  
+ <xref:System.Xaml.XamlXmlWriter> の内部既定のロジックでは、最初に属性形式でメンバーを書き込もうとします。 プロパティまたはその値がテキスト構文をサポートしていないために属性フォームがサポートされていない場合は、代わりにプロパティ要素が書き込まれます。 プロパティが XAML コンテンツプロパティ、`GetObject` のケース、または暗黙的なプロパティである場合は、内部テキストや、介在するメンバーを持たないオブジェクトの子など、他の XAML フォームが書き込まれる可能性があります。  
   
- が<xref:System.Xaml.XamlXmlWriterSettings.AssumeValidInput%2A> この`true` <xref:System.Xaml.XamlXmlWriterSettings>の設定に使用されたオブジェクト内にある場合、重複したメンバーの例外はスローされません。 <xref:System.Xaml.XamlXmlWriter>  
+ この <xref:System.Xaml.XamlXmlWriter>の設定に使用されていた <xref:System.Xaml.XamlXmlWriterSettings> オブジェクトに <xref:System.Xaml.XamlXmlWriterSettings.AssumeValidInput%2A> が `true` 場合、重複したメンバーの例外はスローされません。  
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="property" /> は <see langword="null" />です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="property" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="property" /> は有効な <see cref="T:System.Xaml.XamlMember" /> ではありません。</exception>
         <exception cref="T:System.InvalidOperationException">XAML ノード ストリームの現在位置が、開始メンバーの書き込みに対して無効です。</exception>
         <exception cref="T:System.Xaml.XamlXmlWriterException">ライター状態は、開始メンバーの書き込みについて有効ではありません。  
   
- または  
+ - または -  
   
  XAML ライターが重複するメンバーを記述しようとしました。 この例外には、より正確な内部例外がある可能性があります。</exception>
       </Docs>
@@ -517,7 +524,7 @@
         <param name="type">書き込むオブジェクトの <see cref="T:System.Xaml.XamlType" /> (XAML 型識別子)。</param>
         <summary>基になる <see cref="T:System.Xml.XmlWriter" /> または <see cref="T:System.IO.TextWriter" /> に XAML 開始オブジェクト ノードを書き込みます。 XAML ノード ストリームの現在位置が開始オブジェクトを書き込むことのできるスコープにない場合、またはライターが開始オブジェクトを書き込むことのできる状態にない場合は、例外をスローします。</summary>
         <remarks>To be added.</remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="type" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException"><paramref name="type" /> が有効な <see cref="T:System.Xaml.XamlType" /> ではありません。</exception>
         <exception cref="T:System.InvalidOperationException">XAML ノード ストリームの現在位置が、新規開始オブジェクトの書き込みに対して有効ではありません。</exception>
         <exception cref="T:System.Xaml.XamlXmlWriterException">XAML ライターの状態が、新規開始オブジェクトの書き込みに対して有効ではありません。</exception>
@@ -548,7 +555,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 入力`value`はである`null`可能性があります。これは、シリアル化された値として null を明示的に書き込むことをサポートします。 この動作では<xref:System.Xaml.XamlLanguage.Null%2A?displayProperty=nameWithType> 、入力<xref:System.Xaml.XamlXmlWriter.WriteStartObject%2A>として定義を<xref:System.Xaml.XamlXmlWriter.WriteEndObject%2A>使用し、その後すぐにを呼び出します。  
+ 入力 `value` は `null`であり、シリアル化された値として null を明示的に書き込むことをサポートしています。 この動作では、<xref:System.Xaml.XamlLanguage.Null%2A?displayProperty=nameWithType> 定義を入力 <xref:System.Xaml.XamlXmlWriter.WriteStartObject%2A> として使用し、すぐに <xref:System.Xaml.XamlXmlWriter.WriteEndObject%2A>を呼び出します。  
   
  ]]></format>
         </remarks>

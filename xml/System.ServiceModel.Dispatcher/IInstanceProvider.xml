@@ -1,5 +1,5 @@
 <Type Name="IInstanceProvider" FullName="System.ServiceModel.Dispatcher.IInstanceProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="8d7f5cb8ac72f0db7316c602201327733c3521a0" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69235790" /></Metadata><TypeSignature Language="C#" Value="public interface IInstanceProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="9cae3567d8eebf69d050d2dcc962aa05df362b1e" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78744547" /></Metadata><TypeSignature Language="C#" Value="public interface IInstanceProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IInstanceProvider" />
   <TypeSignature Language="DocId" Value="T:System.ServiceModel.Dispatcher.IInstanceProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface IInstanceProvider" />
@@ -27,7 +27,7 @@
   
  通常、<xref:System.ServiceModel.InstanceContext> は、<xref:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance%2A> が最初に作成された時点で <xref:System.ServiceModel.InstanceContext> を呼び出し、<xref:System.ServiceModel.Dispatcher.IInstanceProvider.ReleaseInstance%2A> が閉じられると、<xref:System.ServiceModel.InstanceContext> メソッドを呼び出します。  
   
- <xref:System.ServiceModel.InstanceContext> が閉じられる前に <xref:System.ServiceModel.InstanceContext> オブジェクトにサービス オブジェクトを解放させるには、2 つの方法があります。 第 1 の方法は、<xref:System.ServiceModel.OperationBehaviorAttribute.ReleaseInstanceMode%2A> を <xref:System.ServiceModel.ReleaseInstanceMode.AfterCall> または <xref:System.ServiceModel.ReleaseInstanceMode.BeforeAndAfterCall> に設定することです。 第 2 の方法は、<xref:System.ServiceModel.InstanceContext.ReleaseServiceInstance%2A> メソッドを呼び出すことです。 この方法を使用すると、<xref:System.ServiceModel.InstanceContext> は、ディスパッチャーのインスタンス プロバイダーで <xref:System.ServiceModel.Dispatcher.IInstanceProvider.ReleaseInstance%2A> メソッドを呼び出します。 インスタンスが解放された後に新しいメッセージが到着すると、WCF は<xref:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance%2A>メソッドを使用して新しいインスタンスを作成します。  
+ <xref:System.ServiceModel.InstanceContext> が閉じられる前に <xref:System.ServiceModel.InstanceContext> オブジェクトにサービス オブジェクトを解放させるには、2 つの方法があります。 第 1 の方法は、<xref:System.ServiceModel.OperationBehaviorAttribute.ReleaseInstanceMode%2A> を <xref:System.ServiceModel.ReleaseInstanceMode.AfterCall> または <xref:System.ServiceModel.ReleaseInstanceMode.BeforeAndAfterCall> に設定することです。 第 2 の方法は、<xref:System.ServiceModel.InstanceContext.ReleaseServiceInstance%2A> メソッドを呼び出すことです。 この方法を使用すると、<xref:System.ServiceModel.InstanceContext> は、ディスパッチャーのインスタンス プロバイダーで <xref:System.ServiceModel.Dispatcher.IInstanceProvider.ReleaseInstance%2A> メソッドを呼び出します。 インスタンスが解放された後に新しいメッセージが到着すると、WCF は <xref:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance%2A> メソッドを使用して新しいインスタンスを作成します。  
   
 > [!NOTE]
 >  サービスの <xref:System.ServiceModel.InstanceContextMode> が <xref:System.ServiceModel.InstanceContextMode.Single> の場合は、ユーザーが既知のサービス オブジェクトを提供しなかったときでも、システムは <xref:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance%2A> メソッドと <xref:System.ServiceModel.Dispatcher.IInstanceProvider.ReleaseInstance%2A> メソッドのいずれも呼び出しません。ただし、ユーザーが直接 <xref:System.ServiceModel.InstanceContext.ReleaseServiceInstance%2A> を呼び出してから、<xref:System.ServiceModel.InstanceContext.GetServiceInstance%2A> を呼び出す場合を除きます。  
@@ -62,6 +62,7 @@
       <MemberSignature Language="C#" Value="public object GetInstance (System.ServiceModel.InstanceContext instanceContext);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance object GetInstance(class System.ServiceModel.InstanceContext instanceContext) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance(System.ServiceModel.InstanceContext)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetInstance (instanceContext As InstanceContext) As Object" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Object ^ GetInstance(System::ServiceModel::InstanceContext ^ instanceContext);" />
       <MemberSignature Language="F#" Value="abstract member GetInstance : System.ServiceModel.InstanceContext -&gt; obj" Usage="iInstanceProvider.GetInstance instanceContext" />
       <MemberType>Method</MemberType>
@@ -84,7 +85,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance%28System.ServiceModel.InstanceContext%29>メソッドを使用して、WCF サービスが新しいサービスオブジェクトを作成しようとしたときに受け取る、正確なサービスオブジェクトを制御します。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance%28System.ServiceModel.InstanceContext%29> メソッドを使用して、WCF サービスが新しいサービスオブジェクトを作成しようとしたときに受け取る、正確なサービスオブジェクトを制御します。  
   
    
   
@@ -107,6 +108,7 @@
       <MemberSignature Language="C#" Value="public object GetInstance (System.ServiceModel.InstanceContext instanceContext, System.ServiceModel.Channels.Message message);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance object GetInstance(class System.ServiceModel.InstanceContext instanceContext, class System.ServiceModel.Channels.Message message) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance(System.ServiceModel.InstanceContext,System.ServiceModel.Channels.Message)" />
+      <MemberSignature Language="VB.NET" Value="Public Function GetInstance (instanceContext As InstanceContext, message As Message) As Object" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Object ^ GetInstance(System::ServiceModel::InstanceContext ^ instanceContext, System::ServiceModel::Channels::Message ^ message);" />
       <MemberSignature Language="F#" Value="abstract member GetInstance : System.ServiceModel.InstanceContext * System.ServiceModel.Channels.Message -&gt; obj" Usage="iInstanceProvider.GetInstance (instanceContext, message)" />
       <MemberType>Method</MemberType>
@@ -131,7 +133,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance%28System.ServiceModel.InstanceContext%2CSystem.ServiceModel.Channels.Message%29>メソッドを使用して、WCF サービスが新しいサービスオブジェクトを作成しようとしたときに受け取る、正確なサービスオブジェクトを制御します。  
+ <xref:System.ServiceModel.Dispatcher.IInstanceProvider.GetInstance%28System.ServiceModel.InstanceContext%2CSystem.ServiceModel.Channels.Message%29> メソッドを使用して、WCF サービスが新しいサービスオブジェクトを作成しようとしたときに受け取る、正確なサービスオブジェクトを制御します。  
   
    
   
@@ -154,6 +156,7 @@
       <MemberSignature Language="C#" Value="public void ReleaseInstance (System.ServiceModel.InstanceContext instanceContext, object instance);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void ReleaseInstance(class System.ServiceModel.InstanceContext instanceContext, object instance) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ServiceModel.Dispatcher.IInstanceProvider.ReleaseInstance(System.ServiceModel.InstanceContext,System.Object)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub ReleaseInstance (instanceContext As InstanceContext, instance As Object)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void ReleaseInstance(System::ServiceModel::InstanceContext ^ instanceContext, System::Object ^ instance);" />
       <MemberSignature Language="F#" Value="abstract member ReleaseInstance : System.ServiceModel.InstanceContext * obj -&gt; unit" Usage="iInstanceProvider.ReleaseInstance (instanceContext, instance)" />
       <MemberType>Method</MemberType>
