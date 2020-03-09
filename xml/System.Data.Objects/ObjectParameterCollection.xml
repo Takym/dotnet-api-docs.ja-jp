@@ -1,5 +1,5 @@
 <Type Name="ObjectParameterCollection" FullName="System.Data.Objects.ObjectParameterCollection">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="9471839534ec766104e35bdf9e3b6064ed5acfca" /><Meta Name="ms.sourcegitcommit" Value="8dc7427b3f8ede13c290b671feeb1dc33978e582" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/06/2020" /><Meta Name="ms.locfileid" Value="77040427" /></Metadata><TypeSignature Language="C#" Value="public sealed class ObjectParameterCollection : System.Collections.Generic.ICollection&lt;System.Data.Objects.ObjectParameter&gt;, System.Collections.Generic.IEnumerable&lt;System.Data.Objects.ObjectParameter&gt;" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="77ee1bc67e4caa2a9d97809048a0d86e6ad1e475" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78687629" /></Metadata><TypeSignature Language="C#" Value="public sealed class ObjectParameterCollection : System.Collections.Generic.ICollection&lt;System.Data.Objects.ObjectParameter&gt;, System.Collections.Generic.IEnumerable&lt;System.Data.Objects.ObjectParameter&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit ObjectParameterCollection extends System.Object implements class System.Collections.Generic.ICollection`1&lt;class System.Data.Objects.ObjectParameter&gt;, class System.Collections.Generic.IEnumerable`1&lt;class System.Data.Objects.ObjectParameter&gt;, class System.Collections.IEnumerable" />
   <TypeSignature Language="DocId" Value="T:System.Data.Objects.ObjectParameterCollection" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class ObjectParameterCollection&#xA;Implements ICollection(Of ObjectParameter), IEnumerable(Of ObjectParameter)" />
@@ -41,7 +41,7 @@
 
  パラメーターは、<xref:System.Data.Objects.ObjectParameterCollection> 内で一意である必要があります。 コレクション内に同じ名前のパラメーターが 2 つ存在することはできません。
 
- <xref:System.Data.Objects.ObjectQuery%601.Union%2A>、<xref:System.Data.Objects.ObjectQuery%601.UnionAll%2A>、<xref:System.Data.Objects.ObjectQuery%601.Intersect%2A>、<xref:System.Data.Objects.ObjectQuery%601.Except%2A> などのマージメソッドを使用すると、パラメーターがマージされます。 パラメーターのセットに互換性がない場合やパラメーターのセットが不完全である場合は、例外がスローされます。 詳細については、「[クエリビルダーメソッド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/bb896238(v=vs.100))」を参照してください。
+ <xref:System.Data.Objects.ObjectQuery%601.Union%2A>、<xref:System.Data.Objects.ObjectQuery%601.UnionAll%2A>、<xref:System.Data.Objects.ObjectQuery%601.Intersect%2A>、<xref:System.Data.Objects.ObjectQuery%601.Except%2A> などの結合メソッドを使用すると、パラメーターが結合されます。 パラメーターのセットに互換性がない場合やパラメーターのセットが不完全である場合は、例外がスローされます。 詳細については、「[クエリビルダーメソッド](https://docs.microsoft.com/previous-versions/dotnet/netframework-4.0/bb896238(v=vs.100))」を参照してください。
 
 
 
@@ -80,7 +80,7 @@
       </Parameters>
       <Docs>
         <param name="parameter">コレクションに追加するパラメーター。</param>
-        <summary>指定した <see cref="T:System.Data.Objects.ObjectParameter" /> をコレクションに追加します。</summary>
+        <summary>指定された <see cref="T:System.Data.Objects.ObjectParameter" /> をコレクションに追加します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -102,7 +102,7 @@
         <exception cref="T:System.ArgumentNullException"><paramref name="parameter" /> 引数が <see langword="null" /> です。</exception>
         <exception cref="T:System.ArgumentException">引数 <paramref name="parameter" /> はコレクション内に既に存在します。 この動作は、エントリの重複を許可するほとんどのコレクションの動作とは異なります。
 
-または
+- または -
 
 引数 <paramref name="parameter" /> と同じ名前を持つ別のパラメーターがコレクション内に既に存在します。 参照では大文字と小文字が区別されないことに注意してください。 この動作は、ほとんどのコレクションの動作とは異なり、むしろ <see cref="T:System.Collections.Generic.Dictionary`2" /> の動作に似ています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="parameter" /> の型が有効ではありません。</exception>
@@ -225,6 +225,9 @@
       <MemberSignature Language="C++ CLI" Value="public:&#xA; virtual void CopyTo(cli::array &lt;System::Data::Objects::ObjectParameter ^&gt; ^ array, int index);" />
       <MemberSignature Language="F#" Value="abstract member CopyTo : System.Data.Objects.ObjectParameter[] * int -&gt; unit&#xA;override this.CopyTo : System.Data.Objects.ObjectParameter[] * int -&gt; unit" Usage="objectParameterCollection.CopyTo (array, index)" />
       <MemberType>Method</MemberType>
+      <Implements>
+        <InterfaceMember>M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)</InterfaceMember>
+      </Implements>
       <AssemblyInfo>
         <AssemblyName>System.Data.Entity</AssemblyName>
         <AssemblyVersion>3.5.0.0</AssemblyVersion>
@@ -312,7 +315,7 @@
       <Docs>
         <param name="name">検索するパラメーターの名前。 この名前には、Entity SQL ステートメントで使用される "\@" パラメーター マーカーは含めないでください。実際の名前だけにする必要があります。</param>
         <summary>呼び出し元がパラメーターを名前によって取得できるようにするインデクサーを提供します。</summary>
-        <value><see cref="T:System.Data.Objects.ObjectParameter" /> のインスタンスです。</value>
+        <value><see cref="T:System.Data.Objects.ObjectParameter" /> インスタンス。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ArgumentOutOfRangeException">指定された名前のパラメーターがコレクション内に見つかりません。</exception>
       </Docs>
@@ -368,7 +371,7 @@
       <MemberSignature Language="DocId" Value="P:System.Data.Objects.ObjectParameterCollection.System#Collections#Generic#ICollection&lt;System#Data#Objects#ObjectParameter&gt;#IsReadOnly" />
       <MemberSignature Language="VB.NET" Value=" ReadOnly Property IsReadOnly As Boolean Implements ICollection(Of ObjectParameter).IsReadOnly" />
       <MemberSignature Language="C++ CLI" Value="property bool System::Collections::Generic::ICollection&lt;System::Data::Objects::ObjectParameter&gt;::IsReadOnly { bool get(); };" />
-      <MemberSignature Language="F#" Usage="System.Collections.Generic.ICollection&lt;System.Data.Objects.ObjectParameter&gt;.IsReadOnly" />
+      <MemberSignature Language="F#" Value="member this.System.Collections.Generic.ICollection&lt;System.Data.Objects.ObjectParameter&gt;.IsReadOnly : bool" Usage="System.Collections.Generic.ICollection&lt;System.Data.Objects.ObjectParameter&gt;.IsReadOnly" />
       <MemberType>Property</MemberType>
       <Implements>
         <InterfaceMember>P:System.Collections.Generic.ICollection`1.IsReadOnly</InterfaceMember>
@@ -400,6 +403,7 @@
       <MemberSignature Language="DocId" Value="M:System.Data.Objects.ObjectParameterCollection.System#Collections#Generic#IEnumerable&lt;System#Data#Objects#ObjectParameter&gt;#GetEnumerator" />
       <MemberSignature Language="VB.NET" Value="Function GetEnumerator () As IEnumerator(Of ObjectParameter) Implements IEnumerable(Of ObjectParameter).GetEnumerator" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::Collections::Generic::IEnumerator&lt;System::Data::Objects::ObjectParameter ^&gt; ^ System.Collections.Generic.IEnumerable&lt;System.Data.Objects.ObjectParameter&gt;.GetEnumerator() = System::Collections::Generic::IEnumerable&lt;System::Data::Objects::ObjectParameter ^&gt;::GetEnumerator;" />
+      <MemberSignature Language="F#" Value="abstract member System.Collections.Generic.IEnumerable&lt;System.Data.Objects.ObjectParameter&gt;.GetEnumerator : unit -&gt; System.Collections.Generic.IEnumerator&lt;System.Data.Objects.ObjectParameter&gt;&#xA;override this.System.Collections.Generic.IEnumerable&lt;System.Data.Objects.ObjectParameter&gt;.GetEnumerator : unit -&gt; System.Collections.Generic.IEnumerator&lt;System.Data.Objects.ObjectParameter&gt;" Usage="objectParameterCollection.System.Collections.Generic.IEnumerable&lt;System.Data.Objects.ObjectParameter&gt;.GetEnumerator " />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Collections.Generic.IEnumerable`1.GetEnumerator</InterfaceMember>
@@ -415,7 +419,7 @@
       <Parameters />
       <Docs>
         <summary>コレクションに対する型指定された列挙子を返します。</summary>
-        <returns><see cref="T:System.Collections.Generic.IEnumerator`1" /> 型の <see cref="T:System.Data.Objects.ObjectParameter" /> です。</returns>
+        <returns><see cref="T:System.Collections.Generic.IEnumerator`1" /> 型の <see cref="T:System.Data.Objects.ObjectParameter" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -432,6 +436,7 @@
       <MemberSignature Language="DocId" Value="M:System.Data.Objects.ObjectParameterCollection.System#Collections#IEnumerable#GetEnumerator" />
       <MemberSignature Language="VB.NET" Value="Function GetEnumerator () As IEnumerator Implements IEnumerable.GetEnumerator" />
       <MemberSignature Language="C++ CLI" Value=" virtual System::Collections::IEnumerator ^ System.Collections.IEnumerable.GetEnumerator() = System::Collections::IEnumerable::GetEnumerator;" />
+      <MemberSignature Language="F#" Value="abstract member System.Collections.IEnumerable.GetEnumerator : unit -&gt; System.Collections.IEnumerator&#xA;override this.System.Collections.IEnumerable.GetEnumerator : unit -&gt; System.Collections.IEnumerator" Usage="objectParameterCollection.System.Collections.IEnumerable.GetEnumerator " />
       <MemberType>Method</MemberType>
       <Implements>
         <InterfaceMember>M:System.Collections.IEnumerable.GetEnumerator</InterfaceMember>
