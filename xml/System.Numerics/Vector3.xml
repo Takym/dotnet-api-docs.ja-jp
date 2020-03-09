@@ -1,5 +1,5 @@
 <Type Name="Vector3" FullName="System.Numerics.Vector3">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="581f657c3446fa09c3e0e17317b2eea7ae6be765" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76943564" /></Metadata><TypeSignature Language="C#" Value="public struct Vector3 : IEquatable&lt;System.Numerics.Vector3&gt;, IFormattable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="a33b4163e11aaa0b2e19a05b2c4ac740992df92b" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78694714" /></Metadata><TypeSignature Language="C#" Value="public struct Vector3 : IEquatable&lt;System.Numerics.Vector3&gt;, IFormattable" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit Vector3 extends System.ValueType implements class System.IEquatable`1&lt;valuetype System.Numerics.Vector3&gt;, class System.IFormattable" />
   <TypeSignature Language="DocId" Value="T:System.Numerics.Vector3" />
   <TypeSignature Language="VB.NET" Value="Public Structure Vector3&#xA;Implements IEquatable(Of Vector3), IFormattable" />
@@ -25,6 +25,10 @@
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.Numerics.Vectors" FromVersion="4.0.0.0" To="System.Numerics" ToVersion="4.0.0.0" FrameworkAlternate="netframework-4.6;netframework-4.6.1;xamarinmac-3.0" />
+    <TypeForwarding From="System.Numerics.Vectors" FromVersion="2.0.5.0" To="System.Numerics" ToVersion="2.0.5.0" FrameworkAlternate="xamarinandroid-7.1;xamarinios-10.8" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.ValueType</BaseTypeName>
   </Base>
@@ -133,7 +137,7 @@
       <Docs>
         <param name="value">2 つの要素を持つベクトル。</param>
         <param name="z"><see cref="F:System.Numerics.Vector3.Z" /> フィールドに代入する追加の値。</param>
-        <summary>指定した <see cref="T:System.Numerics.Vector3" /> オブジェクトと指定した値から、新しい <see cref="T:System.Numerics.Vector2" /> オブジェクトを作成します。</summary>
+        <summary>指定した <see cref="T:System.Numerics.Vector2" /> オブジェクトと指定した値から、新しい <see cref="T:System.Numerics.Vector3" /> オブジェクトを作成します。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -358,7 +362,7 @@
         <Parameter Name="array" Type="System.Single[]" />
       </Parameters>
       <Docs>
-        <param name="array">コピー先の配列です。</param>
+        <param name="array">コピー先の配列。</param>
         <summary>ベクトルの要素を、指定された配列にコピーします。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -368,9 +372,9 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException">現在のインスタンスの要素数が、配列内の要素数を超えています。</exception>
-        <exception cref="T:System.RankException"><paramref name="array" /> に多次元配列が設定されています。</exception>
+        <exception cref="T:System.RankException"><paramref name="array" /> が多次元です。</exception>
       </Docs>
     </Member>
     <Member MemberName="CopyTo">
@@ -414,7 +418,7 @@
         <Parameter Name="index" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="array">コピー先の配列です。</param>
+        <param name="array">コピー先の配列。</param>
         <param name="index">ベクトルの最初の要素のコピー先位置のインデックス。</param>
         <summary>指定した配列に、指定したインデックス位置を開始位置として、ベクトルの要素をコピーします。</summary>
         <remarks>
@@ -425,13 +429,13 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="array" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ArgumentException">現在のインスタンスの要素数が、配列内の要素数を超えています。</exception>
-        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> に 0 より小さい値が指定されています。  
+        <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index" /> が 0 未満です。  
   
-または 
+- または - 
  <paramref name="index" /> が配列の長さ以上です。</exception>
-        <exception cref="T:System.RankException"><paramref name="array" /> に多次元配列が設定されています。</exception>
+        <exception cref="T:System.RankException"><paramref name="array" /> が多次元です。</exception>
       </Docs>
     </Member>
     <Member MemberName="Cross">
@@ -812,7 +816,7 @@
       <Docs>
         <param name="obj">現在のインスタンスと比較するオブジェクト。</param>
         <summary>このインスタンスと、指定したオブジェクトが等しいかどうかを示す値を返します。</summary>
-        <returns>現在のインスタンスと <see langword="true" /> が等しい場合は <paramref name="obj" />、それ以外の場合は <see langword="false" />。 <paramref name="obj" /> が <see langword="null" /> の場合、メソッドは <see langword="false" /> を返します。</returns>
+        <returns>現在のインスタンスと <paramref name="obj" /> が等しい場合は <see langword="true" />、それ以外の場合は <see langword="false" />。 <paramref name="obj" /> が <see langword="null" /> の場合、メソッドは <see langword="false" /> を返します。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1551,7 +1555,7 @@
         <param name="left">比較する最初のベクトル。</param>
         <param name="right">比較する 2 番目のベクトル。</param>
         <summary>指定した 2 つのベクトルの要素の各ペアが等しいかどうかを示す値を返します。</summary>
-        <returns><see langword="true" /> と <paramref name="left" /> が等しい場合は <paramref name="right" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><paramref name="left" /> と <paramref name="right" /> が等しい場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1601,7 +1605,7 @@
         <param name="left">比較する最初のベクトル。</param>
         <param name="right">比較する 2 番目のベクトル。</param>
         <summary>指定した 2 つのベクトルが等しくないかどうかを示す値を返します。</summary>
-        <returns><see langword="true" /> と <paramref name="left" /> が等しくない場合は <paramref name="right" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><paramref name="left" /> と <paramref name="right" /> が等しくない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1805,7 +1809,7 @@
         <param name="left">最初のベクトル。</param>
         <param name="right">2 番目のベクトル。</param>
         <summary>最初のベクトルから 2 番目のベクトルを減算します。</summary>
-        <returns><paramref name="right" /> から <paramref name="left" /> を減算した結果のベクトル。</returns>
+        <returns><paramref name="left" /> から <paramref name="right" /> を減算した結果のベクトル。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -2103,8 +2107,8 @@
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/standard/base-types/standard-numeric-format-strings.md">標準の数値書式指定文字列</related>
-        <related type="Article" href="~/docs/standard/base-types/custom-numeric-format-strings.md">カスタム数値書式指定文字列</related>
+        <related type="Article" href="~/docs/standard/base-types/standard-numeric-format-strings.md">標準の数値形式文字列</related>
+        <related type="Article" href="~/docs/standard/base-types/custom-numeric-format-strings.md">カスタム数値形式文字列</related>
       </Docs>
     </Member>
     <Member MemberName="ToString">
@@ -2163,8 +2167,8 @@
   
  ]]></format>
         </remarks>
-        <related type="Article" href="~/docs/standard/base-types/standard-numeric-format-strings.md">標準の数値書式指定文字列</related>
-        <related type="Article" href="~/docs/standard/base-types/custom-numeric-format-strings.md">カスタム数値書式指定文字列</related>
+        <related type="Article" href="~/docs/standard/base-types/standard-numeric-format-strings.md">標準の数値形式文字列</related>
+        <related type="Article" href="~/docs/standard/base-types/custom-numeric-format-strings.md">カスタム数値形式文字列</related>
       </Docs>
     </Member>
     <MemberGroup MemberName="Transform">

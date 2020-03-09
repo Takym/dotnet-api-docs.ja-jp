@@ -1,5 +1,5 @@
 <Type Name="UriBuilder" FullName="System.UriBuilder">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="16b071512e48d5011554c61d2f1c889f655a6dd5" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75171960" /></Metadata><TypeSignature Language="C#" Value="public class UriBuilder" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="fb83a28058957eafd592b2ca9be5a4b6c9026e78" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78680202" /></Metadata><TypeSignature Language="C#" Value="public class UriBuilder" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit UriBuilder extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.UriBuilder" />
   <TypeSignature Language="VB.NET" Value="Public Class UriBuilder" />
@@ -26,6 +26,9 @@
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System" FromVersion="4.0.0.0" To="System.Runtime.Extensions" ToVersion="0.0.0.0" FrameworkAlternate="dotnet-uwp-10.0" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -98,10 +101,10 @@
 |--------------|-------------------|  
 |Fragment|<xref:System.String.Empty>|  
 |Host|バック|  
-|Password|<xref:System.String.Empty>|  
-|Path|"/"|  
-|Port|-1|  
-|[クエリ]|<xref:System.String.Empty>|  
+|パスワード|<xref:System.String.Empty>|  
+|パス|"/"|  
+|ポート|-1|  
+|クエリ|<xref:System.String.Empty>|  
 |Scheme|http|  
 |UserName|<xref:System.String.Empty>|  
   
@@ -154,7 +157,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="uri" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="uri" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.UriFormatException"><block subset="none" type="note">
             <para>  
  <see href="https://go.microsoft.com/fwlink/?LinkID=247912">Windows ストア アプリ用 .NET</see> または<see href="https://docs.microsoft.com/dotnet/standard/cross-platform/cross-platform-development-with-the-portable-class-library">ポータブル クラス ライブラリ</see>では、基本クラスの例外である <see cref="T:System.FormatException" /> を代わりにキャッチします。  
@@ -163,13 +166,13 @@
           </block>
           <paramref name="uri" /> は長さ 0 の文字列、または空白だけを含みます。  
   
-または 
+- または - 
 解析ルーチンが無効な形式のスキームを検出しました。  
   
-または 
+- または - 
 パーサーが、"file" スキームを使用しない URI で 3 つ以上の連続するスラッシュを検出しました。  
   
-または 
+- または - 
  <paramref name="uri" /> は有効な URI ではありません。</exception>
       </Docs>
     </Member>
@@ -177,6 +180,7 @@
       <MemberSignature Language="C#" Value="public UriBuilder (Uri uri);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.Uri uri) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.UriBuilder.#ctor(System.Uri)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (uri As Uri)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; UriBuilder(Uri ^ uri);" />
       <MemberSignature Language="F#" Value="new UriBuilder : Uri -&gt; UriBuilder" Usage="new System.UriBuilder uri" />
       <MemberType>Constructor</MemberType>
@@ -215,7 +219,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="uri" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="uri" /> が <see langword="null" />です。</exception>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
@@ -502,7 +506,7 @@
       <Docs>
         <param name="rparam">現在のインスタンスと比較するオブジェクト。</param>
         <summary>既存の <see cref="T:System.Uri" /> インスタンスと、<see cref="T:System.UriBuilder" /> の内容が等しいかどうかを比較します。</summary>
-        <returns><see langword="true" /> がこの <paramref name="rparam" /> インスタンスによって構築される <see cref="T:System.Uri" /> と同じ <see cref="T:System.Uri" /> を表す場合は <see cref="T:System.UriBuilder" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><paramref name="rparam" /> がこの <see cref="T:System.Uri" /> インスタンスによって構築される <see cref="T:System.Uri" /> と同じ <see cref="T:System.UriBuilder" /> を表す場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1041,7 +1045,7 @@
       </ReturnValue>
       <Docs>
         <summary>指定された <see cref="T:System.Uri" /> インスタンスによって構築された <see cref="T:System.UriBuilder" /> インスタンスを取得します。</summary>
-        <value><see cref="T:System.Uri" /> によって構築された URI を含む <see cref="T:System.UriBuilder" />。</value>
+        <value><see cref="T:System.UriBuilder" /> によって構築された URI を含む <see cref="T:System.Uri" />。</value>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
