@@ -1,5 +1,5 @@
 <Type Name="Semaphore" FullName="System.Threading.Semaphore">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="683a439fa1a192c8f3ca5c96ea1fa27ae2f0170b" /><Meta Name="ms.sourcegitcommit" Value="a8ff98b48bda124cfcb2605f5da9b21bc6dcd791" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/14/2020" /><Meta Name="ms.locfileid" Value="77220828" /></Metadata><TypeSignature Language="C#" Value="public sealed class Semaphore : System.Threading.WaitHandle" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b71c012272e3613821b020b11b0865186ec4dded" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78781114" /></Metadata><TypeSignature Language="C#" Value="public sealed class Semaphore : System.Threading.WaitHandle" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Semaphore extends System.Threading.WaitHandle" />
   <TypeSignature Language="DocId" Value="T:System.Threading.Semaphore" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class Semaphore&#xA;Inherits WaitHandle" />
@@ -24,6 +24,9 @@
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System" FromVersion="4.0.0.0" To="System.Threading" ToVersion="0.0.0.0" FrameworkAlternate="dotnet-uwp-10.0" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Threading.WaitHandle</BaseTypeName>
   </Base>
@@ -145,7 +148,7 @@
         <exception cref="T:System.ArgumentException"><paramref name="initialCount" /> が <paramref name="maximumCount" /> より大きくなっています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumCount" /> が 1 未満です。  
   
-または 
+- または - 
  <paramref name="initialCount" /> が 0 未満です。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
@@ -218,14 +221,14 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="initialCount" /> が <paramref name="maximumCount" /> より大きくなっています。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumCount" /> が 1 未満です。  
   
-または 
+- または - 
  <paramref name="initialCount" /> が 0 未満です。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
-        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォが存在し、それにアクセス制御セキュリティがあり、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" />がありません。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">アクセス制御セキュリティを使用した名前付きセマフォが存在しており、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" /> がありません。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォを作成できません。原因として、別の型の待機ハンドルに同じ名前が付けられていることが考えられます。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
@@ -273,7 +276,7 @@
         <param name="initialCount">同時に満たされるセマフォの要求の初期数。</param>
         <param name="maximumCount">同時に満たされるセマフォの要求の最大数。</param>
         <param name="name">名前付きシステム セマフォ オブジェクトの名前。</param>
-        <param name="createdNew">このメソッドから制御が戻るときに、ローカル セマフォが作成された場合 (<see langword="true" /> が <paramref name="name" /> または空の文字列の場合)、または指定した名前付きシステム セマフォが作成された場合は <see langword="null" /> が格納されます。指定した名前付きシステム セマフォが既に存在する場合は <see langword="false" /> が格納されます。 このパラメーターは初期化せずに渡されます。</param>
+        <param name="createdNew">このメソッドから制御が戻るときに、ローカル セマフォが作成された場合 (<paramref name="name" /> が <see langword="null" /> または空の文字列の場合)、または指定した名前付きシステム セマフォが作成された場合は <see langword="true" /> が格納されます。指定した名前付きシステム セマフォが既に存在する場合は <see langword="false" /> が格納されます。 このパラメーターは初期化せずに渡されます。</param>
         <summary>エントリ数の初期値と同時実行エントリの最大数を指定し、オプションでシステム セマフォ オブジェクトの名前を指定し、新しいシステム セマフォが作成されたかどうかを示す値を受け取る変数を指定して、<see cref="T:System.Threading.Semaphore" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -302,14 +305,14 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="initialCount" /> が <paramref name="maximumCount" /> より大きくなっています。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumCount" /> が 1 未満です。  
   
-または 
+- または - 
  <paramref name="initialCount" /> が 0 未満です。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
-        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォが存在し、それにアクセス制御セキュリティがあり、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" />がありません。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">アクセス制御セキュリティを使用した名前付きセマフォが存在しており、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" /> がありません。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォを作成できません。原因として、別の型の待機ハンドルに同じ名前が付けられていることが考えられます。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
@@ -319,6 +322,7 @@
       <MemberSignature Language="C#" Value="public Semaphore (int initialCount, int maximumCount, string name, out bool createdNew, System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(int32 initialCount, int32 maximumCount, string name, [out] bool&amp; createdNew, class System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Threading.Semaphore.#ctor(System.Int32,System.Int32,System.String,System.Boolean@,System.Security.AccessControl.SemaphoreSecurity)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (initialCount As Integer, maximumCount As Integer, name As String, ByRef createdNew As Boolean, semaphoreSecurity As SemaphoreSecurity)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; Semaphore(int initialCount, int maximumCount, System::String ^ name, [Runtime::InteropServices::Out] bool % createdNew, System::Security::AccessControl::SemaphoreSecurity ^ semaphoreSecurity);" />
       <MemberSignature Language="F#" Value="new System.Threading.Semaphore : int * int * string * bool * System.Security.AccessControl.SemaphoreSecurity -&gt; System.Threading.Semaphore" Usage="new System.Threading.Semaphore (initialCount, maximumCount, name, createdNew, semaphoreSecurity)" />
       <MemberType>Constructor</MemberType>
@@ -345,7 +349,7 @@
         <param name="initialCount">同時に満たされるセマフォの要求の初期数。</param>
         <param name="maximumCount">同時に満たされるセマフォの要求の最大数。</param>
         <param name="name">名前付きシステム セマフォ オブジェクトの名前。</param>
-        <param name="createdNew">このメソッドから制御が戻るときに、ローカル セマフォが作成された場合 (<see langword="true" /> が <paramref name="name" /> または空の文字列の場合)、または指定した名前付きシステム セマフォが作成された場合は <see langword="null" /> が格納されます。指定した名前付きシステム セマフォが既に存在する場合は <see langword="false" /> が格納されます。 このパラメーターは初期化せずに渡されます。</param>
+        <param name="createdNew">このメソッドから制御が戻るときに、ローカル セマフォが作成された場合 (<paramref name="name" /> が <see langword="null" /> または空の文字列の場合)、または指定した名前付きシステム セマフォが作成された場合は <see langword="true" /> が格納されます。指定した名前付きシステム セマフォが既に存在する場合は <see langword="false" /> が格納されます。 このパラメーターは初期化せずに渡されます。</param>
         <param name="semaphoreSecurity">名前付きシステム セマフォに適用するアクセス制御セキュリティを表す <see cref="T:System.Security.AccessControl.SemaphoreSecurity" /> オブジェクト。</param>
         <summary>エントリ数の初期値と同時実行エントリの最大数を指定し、オプションでシステム セマフォ オブジェクトの名前を指定し、新しいシステム セマフォが作成されたかどうかを示す値を受け取る変数を指定し、システム セマフォのセキュリティ アクセス制御を指定して、<see cref="T:System.Threading.Semaphore" /> クラスの新しいインスタンスを初期化します。</summary>
         <remarks>
@@ -384,13 +388,13 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="initialCount" /> が <paramref name="maximumCount" /> より大きくなっています。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="maximumCount" /> が 1 未満です。  
   
-または 
+- または - 
  <paramref name="initialCount" /> が 0 未満です。</exception>
-        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォが存在し、それにアクセス制御セキュリティがあり、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" />がありません。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">アクセス制御セキュリティを使用した名前付きセマフォが存在しており、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.FullControl" /> がありません。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォを作成できません。原因として、別の型の待機ハンドルに同じ名前が付けられていることが考えられます。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
@@ -451,10 +455,10 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.UnauthorizedAccessException">現在の <see cref="T:System.Threading.Semaphore" /> オブジェクトは名前付きシステム セマフォを表していますが、ユーザーには <see cref="F:System.Security.AccessControl.SemaphoreRights.ReadPermissions" /> 権限がありません。  
+        <exception cref="T:System.UnauthorizedAccessException">現在の <see cref="T:System.Threading.Semaphore" /> オブジェクトは名前付きシステム セマフォを表していますが、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.ReadPermissions" /> 権限がありません。  
   
-または 
-現在の <see cref="T:System.Threading.Semaphore" /> オブジェクトは名前付きシステム セマフォを表していますが、 <see cref="F:System.Security.AccessControl.SemaphoreRights.ReadPermissions" /> 権限で開かれませんでした。</exception>
+- または - 
+現在の <see cref="T:System.Threading.Semaphore" /> オブジェクトは名前付きシステム セマフォを表しており、<see cref="F:System.Security.AccessControl.SemaphoreRights.ReadPermissions" /> 権限で開かれませんでした。</exception>
         <exception cref="T:System.NotSupportedException">Windows 98 または Windows Millennium Edition はサポートされていません。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
@@ -544,12 +548,12 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> が空の文字列です。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォが存在しません。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
-        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、ユーザーにはそれを使用するために必要なセキュリティ アクセスがありません。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、それを使用するために必要なセキュリティ アクセスがユーザーにありません。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
       </Docs>
@@ -615,9 +619,9 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> が空の文字列です。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.Threading.WaitHandleCannotBeOpenedException">名前付きセマフォが存在しません。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
         <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、必要なセキュリティ アクセス権がユーザーにありません。</exception>
@@ -708,7 +712,7 @@
         <exception cref="T:System.IO.IOException">名前付きセマフォで Win32 エラーが発生しました。</exception>
         <exception cref="T:System.UnauthorizedAccessException">現在のセマフォは名前付きシステム セマフォを表していますが、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.Modify" /> がありません。  
   
-または 
+- または - 
 現在のセマフォは名前付きシステム セマフォを表していますが、<see cref="F:System.Security.AccessControl.SemaphoreRights.Modify" /> で開かれませんでした。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
@@ -784,7 +788,7 @@
         <exception cref="T:System.IO.IOException">名前付きセマフォで Win32 エラーが発生しました。</exception>
         <exception cref="T:System.UnauthorizedAccessException">現在のセマフォは名前付きシステム セマフォを表していますが、ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.Modify" /> 権限がありません。  
   
-または 
+- または - 
 現在のセマフォは名前付きシステム セマフォを表していますが、<see cref="F:System.Security.AccessControl.SemaphoreRights.Modify" /> 権限で開かれませんでした。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore</related>
@@ -794,6 +798,7 @@
       <MemberSignature Language="C#" Value="public void SetAccessControl (System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void SetAccessControl(class System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Threading.Semaphore.SetAccessControl(System.Security.AccessControl.SemaphoreSecurity)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub SetAccessControl (semaphoreSecurity As SemaphoreSecurity)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void SetAccessControl(System::Security::AccessControl::SemaphoreSecurity ^ semaphoreSecurity);" />
       <MemberSignature Language="F#" Value="member this.SetAccessControl : System.Security.AccessControl.SemaphoreSecurity -&gt; unit" Usage="semaphore.SetAccessControl semaphoreSecurity" />
       <MemberType>Method</MemberType>
@@ -843,10 +848,10 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="semaphoreSecurity" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="semaphoreSecurity" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.UnauthorizedAccessException">ユーザーに <see cref="F:System.Security.AccessControl.SemaphoreRights.ChangePermissions" /> 権限がありません。  
   
-または 
+- または - 
 セマフォは <see cref="F:System.Security.AccessControl.SemaphoreRights.ChangePermissions" /> 権限で開かれませんでした。</exception>
         <exception cref="T:System.NotSupportedException">現在の <see cref="T:System.Threading.Semaphore" /> オブジェクトは名前付きシステム セマフォを表していません。</exception>
         <related type="Article" href="~/docs/standard/threading/index.md">マネージド スレッド処理</related>
@@ -899,7 +904,7 @@
       </Parameters>
       <Docs>
         <param name="name">開くシステム セマフォの名前。</param>
-        <param name="result">このメソッドから制御が戻るときに、呼び出しに成功した場合は名前付きセマフォを表す <see cref="T:System.Threading.Semaphore" /> オブジェクトが格納されます。呼び出しに失敗した場合は <see langword="null" /> が格納されます。 このパラメーターは未初期化として扱われます。</param>
+        <param name="result">このメソッドから制御が戻るときに、呼び出しに成功した場合は名前付きセマフォを表す <see cref="T:System.Threading.Semaphore" /> オブジェクトが格納されます。呼び出しに失敗した場合は <see langword="null" /> が格納されます。 このパラメーターは初期化前として処理されます。</param>
         <summary>既に存在する場合は、指定した名前付きセマフォを開き操作が成功したかどうかを示す値を返します。</summary>
         <returns>名前付きのセマフォが正常に開かれた場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
@@ -916,11 +921,11 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> が空の文字列です。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
-        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、ユーザーにはそれを使用するために必要なセキュリティ アクセスがありません。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、それを使用するために必要なセキュリティ アクセスがユーザーにありません。</exception>
       </Docs>
     </Member>
     <Member MemberName="TryOpenExisting">
@@ -953,7 +958,7 @@
       <Docs>
         <param name="name">開くシステム セマフォの名前。</param>
         <param name="rights">必要なセキュリティ アクセス権を表す列挙値のビットごとの組み合わせ。</param>
-        <param name="result">このメソッドから制御が戻るときに、呼び出しに成功した場合は名前付きセマフォを表す <see cref="T:System.Threading.Semaphore" /> オブジェクトが格納されます。呼び出しに失敗した場合は <see langword="null" /> が格納されます。 このパラメーターは未初期化として扱われます。</param>
+        <param name="result">このメソッドから制御が戻るときに、呼び出しに成功した場合は名前付きセマフォを表す <see cref="T:System.Threading.Semaphore" /> オブジェクトが格納されます。呼び出しに失敗した場合は <see langword="null" /> が格納されます。 このパラメーターは初期化前として処理されます。</param>
         <summary>既に存在する場合は、必要なセキュリティ アクセスを使って指定した名前付きセマフォを開き、操作が成功したかどうかを示す値を返します。</summary>
         <returns>名前付きのセマフォが正常に開かれた場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
@@ -972,11 +977,11 @@
         </remarks>
         <exception cref="T:System.ArgumentException"><paramref name="name" /> が空の文字列です。  
   
-または 
+- または - 
  <paramref name="name" /> が 260 文字を超えています。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="name" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.IO.IOException">Win32 エラーが発生しました。</exception>
-        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、ユーザーにはそれを使用するために必要なセキュリティ アクセスがありません。</exception>
+        <exception cref="T:System.UnauthorizedAccessException">名前付きセマフォは存在しますが、それを使用するために必要なセキュリティ アクセスがユーザーにありません。</exception>
       </Docs>
     </Member>
   </Members>

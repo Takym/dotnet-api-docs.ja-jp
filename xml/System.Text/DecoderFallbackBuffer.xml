@@ -1,5 +1,5 @@
 <Type Name="DecoderFallbackBuffer" FullName="System.Text.DecoderFallbackBuffer">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="4a387fafb936d76b3936014506b6d6d276e9c0bc" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75052971" /></Metadata><TypeSignature Language="C#" Value="public abstract class DecoderFallbackBuffer" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="eed7ffbb4ef7f3b4550936001ab2fa69e436ea4b" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78785484" /></Metadata><TypeSignature Language="C#" Value="public abstract class DecoderFallbackBuffer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit DecoderFallbackBuffer extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Text.DecoderFallbackBuffer" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class DecoderFallbackBuffer" />
@@ -26,6 +26,11 @@
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
     <AssemblyVersion>4.2.2.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.Text.Encoding" FromVersion="4.1.0.0" To="System.Runtime" ToVersion="4.2.0.0" FrameworkAlternate="netcore-2.0" />
+    <TypeForwarding From="System.Text.Encoding" FromVersion="4.1.1.0" To="System.Runtime" ToVersion="4.2.1.0" FrameworkAlternate="netcore-2.1;netcore-2.2;netcore-3.0" />
+    <TypeForwarding From="System.Text.Encoding" FromVersion="4.1.2.0" To="System.Runtime" ToVersion="4.2.2.0" FrameworkAlternate="netcore-3.1" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -48,7 +53,7 @@
   
 -   最適マッピング。 デコーダーフォールバックバッファーは、入力バイトシーケンスに対する近似値を表す文字列を返すことができます。 .NET Framework には、最適な <xref:System.Text.DecoderFallbackBuffer> の実装は提供されていません。  
   
--   代わりに. デコーダーフォールバックバッファーは、バイトシーケンスをデコードできなかったことを示す疑問符 ("?") などの文字列を返すことができます。 .NET Framework では、<xref:System.Text.DecoderReplacementFallback> クラスと <xref:System.Text.DecoderReplacementFallbackBuffer> クラスは、置換フォールバックバッファーのパブリックな実装を提供します。 <xref:System.Text.DecoderReplacementFallback> クラスのコンストラクターを使用すると、置換文字列を定義できます。  
+-   置換します。 デコーダーフォールバックバッファーは、バイトシーケンスをデコードできなかったことを示す疑問符 ("?") などの文字列を返すことができます。 .NET Framework では、<xref:System.Text.DecoderReplacementFallback> クラスと <xref:System.Text.DecoderReplacementFallbackBuffer> クラスは、置換フォールバックバッファーのパブリックな実装を提供します。 <xref:System.Text.DecoderReplacementFallback> クラスのコンストラクターを使用すると、置換文字列を定義できます。  
   
 -   例外。 <xref:System.Text.DecoderFallbackBuffer> の実装は、バイトシーケンスをデコードできないことを示す例外をスローし、デコード操作を終了します。 この場合、フォールバックハンドラーは <xref:System.Text.DecoderFallbackBuffer> の実装を提供する必要がありますが、デコーダーに文字列を返しません。 .NET Framework では、<xref:System.Text.DecoderExceptionFallback> クラスと <xref:System.Text.DecoderExceptionFallbackBuffer> クラスによって、バイトシーケンスをデコードできない場合に <xref:System.Text.DecoderFallbackException> をスローするパブリック例外フォールバック実装が提供されます。  
   
@@ -142,7 +147,7 @@
         <param name="bytesUnknown">入力バイト配列。</param>
         <param name="index"><paramref name="bytesUnknown" /> におけるバイトのインデックス位置。</param>
         <summary>派生クラスでオーバーライドされた場合、指定した入力バイト シーケンスを処理するためのフォールバック バッファーを確保します。</summary>
-        <returns>フォールバック バッファーが <see langword="true" /> を処理できる場合は <paramref name="bytesUnknown" />、フォールバック バッファーが <see langword="false" /> を無視する場合は <paramref name="bytesUnknown" />。</returns>
+        <returns>フォールバック バッファーが <paramref name="bytesUnknown" /> を処理できる場合は <see langword="true" />、フォールバック バッファーが <paramref name="bytesUnknown" /> を無視する場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -236,7 +241,7 @@
       <Parameters />
       <Docs>
         <summary>派生クラスでオーバーライドされた場合、<see cref="M:System.Text.DecoderFallbackBuffer.GetNextChar" /> メソッドに対する次の呼び出しで、データ バッファーにおける現在の文字位置の前の文字位置に移動します。</summary>
-        <returns><see langword="true" /> 操作が正常に実行された場合は <see cref="M:System.Text.DecoderFallbackBuffer.MovePrevious" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><see cref="M:System.Text.DecoderFallbackBuffer.MovePrevious" /> 操作が正常に実行された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   

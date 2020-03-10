@@ -1,5 +1,5 @@
 <Type Name="SqlUserDefinedTypeAttribute" FullName="Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="f4499c2d90fdca8f85bb6e5b5bc6289c1ed3ba40" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75156529" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlUserDefinedTypeAttribute : Attribute" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="5a35add5da7eaa0ed79861c21140d631007963c9" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78729515" /></Metadata><TypeSignature Language="C#" Value="public sealed class SqlUserDefinedTypeAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit SqlUserDefinedTypeAttribute extends System.Attribute" />
   <TypeSignature Language="DocId" Value="T:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute" />
   <TypeSignature Language="VB.NET" Value="Public NotInheritable Class SqlUserDefinedTypeAttribute&#xA;Inherits Attribute" />
@@ -51,6 +51,7 @@
       <MemberSignature Language="C#" Value="public SqlUserDefinedTypeAttribute (Microsoft.SqlServer.Server.Format format);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(valuetype Microsoft.SqlServer.Server.Format format) cil managed" />
       <MemberSignature Language="DocId" Value="M:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.#ctor(Microsoft.SqlServer.Server.Format)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub New (format As Format)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; SqlUserDefinedTypeAttribute(Microsoft::SqlServer::Server::Format format);" />
       <MemberSignature Language="F#" Value="new Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute : Microsoft.SqlServer.Server.Format -&gt; Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute" Usage="new Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute format" />
       <MemberType>Constructor</MemberType>
@@ -164,7 +165,7 @@
   
 -   この型の計算列を保存する機能。  
   
- <xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.IsByteOrdered%2A> が `true`に設定されている場合、`Native` と `UserDefined` の両方のシリアル化形式で次の比較演算子がサポートされることに注意してください。  
+ `Native` を `UserDefined` に設定すると、<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.IsByteOrdered%2A> と `true` のどちらのシリアル化形式でも次の比較演算子がサポートされることに注意してください。  
   
 -   等しい (=)  
   
@@ -256,7 +257,7 @@
   
  SQL Server 2008 以降に接続する場合は、インスタンスが常に8000バイト以下である型について、1 ~ 8000 の <xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.MaxByteSize%2A> を設定します。 8000を超えるインスタンスを持つことができる型の場合は、-1 を指定します。  
   
- ユーザー定義のシリアル化が指定された UDT の場合、<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.MaxByteSize%2A> は、ユーザーが定義したように、シリアル化された形式の UDT の合計サイズを参照します。 10文字の文字列のプロパティを持つ UDT について考えてみます (<xref:System.Char>)。 <xref:System.IO.BinaryWriter>を使用して UDT をシリアル化する場合、シリアル化された文字列の合計サイズは22バイトになります。 Unicode UTF-16 文字あたり2バイト、最大文字数を乗算した値、およびバイナリストリームのシリアル化によって発生するオーバーヘッドの制御バイト数が2バイトになります。 したがって、<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.MaxByteSize%2A>の値を決定する場合は、シリアル化された UDT の合計サイズを考慮する必要があります。これは、バイナリ形式でシリアル化されるデータのサイズと、シリアル化によって発生するオーバーヘッドを加算したものです。  
+ UDT にユーザー定義のシリアル化を指定した場合、<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.MaxByteSize%2A> は、ユーザーが定義した形式でシリアル化された UDT の合計サイズを表します。 たとえば、10 文字 (<xref:System.Char>) の文字列プロパティを持つ UDT について考えてみましょう。 <xref:System.IO.BinaryWriter>を使用して UDT をシリアル化する場合、シリアル化された文字列の合計サイズは22バイトになります。 Unicode UTF-16 文字あたり2バイト、最大文字数を乗算した値、およびバイナリストリームのシリアル化によって発生するオーバーヘッドの制御バイト数が2バイトになります。 したがって、<xref:Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.MaxByteSize%2A>の値を決定する場合は、シリアル化された UDT の合計サイズを考慮する必要があります。これは、バイナリ形式でシリアル化されるデータのサイズと、シリアル化によって発生するオーバーヘッドを加算したものです。  
   
  このプロパティは、`Native` シリアル化 <xref:Microsoft.SqlServer.Server.Format>では使用しないでください。  
   

@@ -1,5 +1,5 @@
 <Type Name="IDictionaryEnumerator" FullName="System.Collections.IDictionaryEnumerator">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="055e01f28e1e029e888c496a70fa9ce1d8380368" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75150484" /></Metadata><TypeSignature Language="C#" Value="public interface IDictionaryEnumerator : System.Collections.IEnumerator" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="b115b6e28f69af7099db5911e625d246309e8574" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78715514" /></Metadata><TypeSignature Language="C#" Value="public interface IDictionaryEnumerator : System.Collections.IEnumerator" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IDictionaryEnumerator implements class System.Collections.IEnumerator" />
   <TypeSignature Language="DocId" Value="T:System.Collections.IDictionaryEnumerator" />
   <TypeSignature Language="VB.NET" Value="Public Interface IDictionaryEnumerator&#xA;Implements IEnumerator" />
@@ -27,6 +27,9 @@
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="mscorlib" FromVersion="4.0.0.0" To="System.Runtime" ToVersion="0.0.0.0" FrameworkAlternate="dotnet-uwp-10.0" />
+  </TypeForwardingChain>
   <Interfaces>
     <Interface>
       <InterfaceName>System.Collections.IEnumerator</InterfaceName>
@@ -47,15 +50,15 @@
   
  列挙子を使用すると、コレクション内のデータを読み取ることができますが、基になるコレクションを変更することはできません。  
   
- 最初、列挙子はコレクションの先頭の要素の前に位置付けられます。 <xref:System.Collections.IEnumerator.Reset%2A> メソッドは、この位置に列挙子を戻します。 この位置では、<xref:System.Collections.IEnumerator.Current%2A> は未定義です。 そのため、<xref:System.Collections.IEnumerator.MoveNext%2A> の値を読み取る前に、<xref:System.Collections.IEnumerator.Current%2A> メソッドを呼び出し、列挙子をコレクションの最初の要素に進める必要があります。  
+ 最初に、列挙子はコレクション内の 1 番目の要素の前に位置付けられます。 <xref:System.Collections.IEnumerator.Reset%2A> メソッドは、この位置に列挙子を戻します。 この位置では、<xref:System.Collections.IEnumerator.Current%2A> は未定義です。 そのため、<xref:System.Collections.IEnumerator.Current%2A> の値を読み取る前に、<xref:System.Collections.IEnumerator.MoveNext%2A> メソッドを呼び出し、列挙子をコレクションの最初の要素に進める必要があります。  
   
  <xref:System.Collections.IEnumerator.Current%2A> は、<xref:System.Collections.IEnumerator.MoveNext%2A> または <xref:System.Collections.IEnumerator.Reset%2A> が呼び出されるまでは同じオブジェクトを返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> は、<xref:System.Collections.IEnumerator.Current%2A> を次の要素に設定します。  
   
  <xref:System.Collections.IEnumerator.MoveNext%2A> がコレクションの末尾を通過した場合、列挙子がコレクション内の最後の要素の後に配置され、<xref:System.Collections.IEnumerator.MoveNext%2A> は `false` を返します。 列挙子がこの位置にある場合、後続の <xref:System.Collections.IEnumerator.MoveNext%2A> 呼び出しも `false` を返します。 <xref:System.Collections.IEnumerator.MoveNext%2A> の最後の呼び出しが `false`を返した場合、<xref:System.Collections.IEnumerator.Current%2A> は定義されていません。 <xref:System.Collections.IEnumerator.Current%2A> をコレクションの最初の要素にもう一度設定するには、<xref:System.Collections.IEnumerator.Reset%2A> を呼び出してから <xref:System.Collections.IEnumerator.MoveNext%2A> を呼び出します。  
   
- 列挙子は、コレクションが変更されない限り有効です。 要素の追加、変更、削除などの変更がコレクションに対して行われた場合、列挙子はなりに無効になり、次に <xref:System.Collections.IEnumerator.MoveNext%2A> または <xref:System.Collections.IEnumerator.Reset%2A> を呼び出すと <xref:System.InvalidOperationException>がスローされます。
+ コレクションが変更されない限り、列挙子は有効です。 要素の追加、変更、削除などの変更がコレクションに対して行われた場合、列挙子はなりに無効になり、次に <xref:System.Collections.IEnumerator.MoveNext%2A> または <xref:System.Collections.IEnumerator.Reset%2A> を呼び出すと <xref:System.InvalidOperationException>がスローされます。
   
- 列挙子はコレクションに排他アクセスできないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。 コレクションが同期されていても、他のスレッドがコレクションを変更する場合があり、このときは列挙子から例外がスローされます。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
+ 列挙子にはコレクションへの排他アクセス権限はないため、コレクションの列挙処理は本質的にスレッド セーフな処理ではありません。 コレクションの同期がとられている場合でも、別のスレッドによってそのコレクションを変更できるため、変更の結果として列挙子は例外をスローします。 列挙処理を確実にスレッド セーフに行うには、列挙中にコレクションをロックするか、他のスレッドによって行われた変更によってスローされる例外をキャッチします。  
   
    
   
