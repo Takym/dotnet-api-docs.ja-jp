@@ -1,5 +1,5 @@
 <Type Name="CodeDomSerializerBase" FullName="System.ComponentModel.Design.Serialization.CodeDomSerializerBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="5c7896b980f04c60e660dae39df0ce2d0f20d44b" /><Meta Name="ms.sourcegitcommit" Value="f9576bf8c61e3d46834aeeff50f858359f2a99ba" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/09/2020" /><Meta Name="ms.locfileid" Value="77097048" /></Metadata><TypeSignature Language="C#" Value="public abstract class CodeDomSerializerBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="646ee8361048b4e9270ba412c5f388d56ec106ee" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78712134" /></Metadata><TypeSignature Language="C#" Value="public abstract class CodeDomSerializerBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CodeDomSerializerBase extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.ComponentModel.Design.Serialization.CodeDomSerializerBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class CodeDomSerializerBase" />
@@ -14,6 +14,9 @@
     <AssemblyName>System.Windows.Forms.Design</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.Design" FromVersion="4.0.0.0" To="System.Windows.Forms.Design" ToVersion="4.0.0.0" FrameworkAlternate="netcore-3.0;netcore-3.1" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -77,7 +80,7 @@
 ## Remarks  
  これは、派生クラスが式を逆シリアル化するために呼び出すことができるヘルパーメソッドです。 `expression` パラメーターで指定された CodeDOM 式を解釈および実行することによって、ステートメントを逆シリアル化した後、結果を返します。 この式の結果としてオブジェクトを作成する必要がある場合は、`name` パラメーターによって指定された名前が付けられます。 オブジェクトに名前を指定する必要がない場合は、名前を `null` できます。 次の表では、特定の式を処理する方法について説明します。  
   
-|式|動作|  
+|正規表現|動作|  
 |----------------|--------------|  
 |<xref:System.CodeDom.CodeThisReferenceExpression>|この式は、`this` または `Me`を表します。 この式に関連付けられているオブジェクトを検索するには、<xref:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeExpression%2A> メソッドによって <xref:System.ComponentModel.Design.Serialization.RootContext>のコンテキストスタックが検索されます。 このオブジェクトには、グラフのルートオブジェクトとそれを表す式が含まれています。 オブジェクトが存在し、式がと一致する場合、ルートオブジェクトが返されます。 インスタンスが見つからない場合は、エラーが報告されます。|  
 |<xref:System.CodeDom.CodeFieldReferenceExpression>|フィールド参照の対象がルートオブジェクトに評価される場合は、manager パラメーターの <xref:System.ComponentModel.Design.Serialization.IDesignerSerializationManager.GetInstance%2A> メソッドを使用して、名前に基づいてオブジェクトインスタンスを取得します。 それ以外の場合は、要求されたフィールドを検索するために、ターゲットオブジェクトに対して標準のリフレクションが使用されます。 フィールドが見つからない場合は、エラーが報告されます。|  
@@ -102,6 +105,7 @@
       <MemberSignature Language="C#" Value="protected virtual object DeserializeInstance (System.ComponentModel.Design.Serialization.IDesignerSerializationManager manager, Type type, object[] parameters, string name, bool addToContainer);" />
       <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance object DeserializeInstance(class System.ComponentModel.Design.Serialization.IDesignerSerializationManager manager, class System.Type type, object[] parameters, string name, bool addToContainer) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.DeserializeInstance(System.ComponentModel.Design.Serialization.IDesignerSerializationManager,System.Type,System.Object[],System.String,System.Boolean)" />
+      <MemberSignature Language="VB.NET" Value="Protected Overridable Function DeserializeInstance (manager As IDesignerSerializationManager, type As Type, parameters As Object(), name As String, addToContainer As Boolean) As Object" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; virtual System::Object ^ DeserializeInstance(System::ComponentModel::Design::Serialization::IDesignerSerializationManager ^ manager, Type ^ type, cli::array &lt;System::Object ^&gt; ^ parameters, System::String ^ name, bool addToContainer);" />
       <MemberSignature Language="F#" Value="abstract member DeserializeInstance : System.ComponentModel.Design.Serialization.IDesignerSerializationManager * Type * obj[] * string * bool -&gt; obj&#xA;override this.DeserializeInstance : System.ComponentModel.Design.Serialization.IDesignerSerializationManager * Type * obj[] * string * bool -&gt; obj" Usage="codeDomSerializerBase.DeserializeInstance (manager, type, parameters, name, addToContainer)" />
       <MemberType>Method</MemberType>
@@ -238,6 +242,7 @@
       <MemberSignature Language="C#" Value="protected static System.ComponentModel.AttributeCollection GetAttributesFromTypeHelper (System.ComponentModel.Design.Serialization.IDesignerSerializationManager manager, Type type);" />
       <MemberSignature Language="ILAsm" Value=".method familystatic hidebysig class System.ComponentModel.AttributeCollection GetAttributesFromTypeHelper(class System.ComponentModel.Design.Serialization.IDesignerSerializationManager manager, class System.Type type) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetAttributesFromTypeHelper(System.ComponentModel.Design.Serialization.IDesignerSerializationManager,System.Type)" />
+      <MemberSignature Language="VB.NET" Value="Protected Shared Function GetAttributesFromTypeHelper (manager As IDesignerSerializationManager, type As Type) As AttributeCollection" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; static System::ComponentModel::AttributeCollection ^ GetAttributesFromTypeHelper(System::ComponentModel::Design::Serialization::IDesignerSerializationManager ^ manager, Type ^ type);" />
       <MemberSignature Language="F#" Value="static member GetAttributesFromTypeHelper : System.ComponentModel.Design.Serialization.IDesignerSerializationManager * Type -&gt; System.ComponentModel.AttributeCollection" Usage="System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetAttributesFromTypeHelper (manager, type)" />
       <MemberType>Method</MemberType>
@@ -356,7 +361,7 @@
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">式の取得対象となるオブジェクト。</param>
         <summary>指定したオブジェクトの式を返します。</summary>
-        <returns><see cref="T:System.CodeDom.CodeExpression" /> を表す <paramref name="value" />。<see langword="null" /> の既存の式が存在しない場合は <paramref name="value" />。</returns>
+        <returns><paramref name="value" /> を表す <see cref="T:System.CodeDom.CodeExpression" />。<paramref name="value" /> の既存の式が存在しない場合は <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -375,7 +380,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="manager" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="manager" /> が <see langword="null" />です。</exception>
         <altmember cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
         <related type="Article" href="~/docs/framework/reflection-and-codedom/dynamic-source-code-generation-and-compilation.md">動的なソース コードの生成とコンパイル</related>
@@ -418,6 +423,7 @@
       <MemberSignature Language="C#" Value="protected static Type GetReflectionTypeFromTypeHelper (System.ComponentModel.Design.Serialization.IDesignerSerializationManager manager, Type type);" />
       <MemberSignature Language="ILAsm" Value=".method familystatic hidebysig class System.Type GetReflectionTypeFromTypeHelper(class System.ComponentModel.Design.Serialization.IDesignerSerializationManager manager, class System.Type type) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetReflectionTypeFromTypeHelper(System.ComponentModel.Design.Serialization.IDesignerSerializationManager,System.Type)" />
+      <MemberSignature Language="VB.NET" Value="Protected Shared Function GetReflectionTypeFromTypeHelper (manager As IDesignerSerializationManager, type As Type) As Type" />
       <MemberSignature Language="C++ CLI" Value="protected:&#xA; static Type ^ GetReflectionTypeFromTypeHelper(System::ComponentModel::Design::Serialization::IDesignerSerializationManager ^ manager, Type ^ type);" />
       <MemberSignature Language="F#" Value="static member GetReflectionTypeFromTypeHelper : System.ComponentModel.Design.Serialization.IDesignerSerializationManager * Type -&gt; Type" Usage="System.ComponentModel.Design.Serialization.CodeDomSerializerBase.GetReflectionTypeFromTypeHelper (manager, type)" />
       <MemberType>Method</MemberType>
@@ -526,7 +532,7 @@
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">取得するシリアライザーを指定するオブジェクト。</param>
         <summary>指定したオブジェクト値のシリアライザーを検索します。</summary>
-        <returns><see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" /> に適合する <paramref name="value" />。</returns>
+        <returns><paramref name="value" /> に適合する <see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -568,7 +574,7 @@
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="valueType">取得するシリアライザーを指定する <see cref="T:System.Type" />。</param>
         <summary>指定した型のシリアライザーを検索します。</summary>
-        <returns><see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" /> に適合する <paramref name="valueType" />。</returns>
+        <returns><paramref name="valueType" /> に適合する <see cref="T:System.ComponentModel.Design.Serialization.CodeDomSerializer" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -698,7 +704,7 @@
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">以前のシリアル化のテスト対象となるオブジェクト。</param>
         <summary>指定したオブジェクトがシリアル化されているかどうかを示す値を返します。</summary>
-        <returns><see langword="true" /> がシリアル化されている場合は <paramref name="value" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><paramref name="value" /> がシリアル化されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -742,7 +748,7 @@
         <param name="value">以前のシリアル化のテスト対象となるオブジェクト。</param>
         <param name="honorPreset">あらかじめ設定された式を含める場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary>指定したオブジェクトがシリアル化されているかどうかを示す値を返します。オプションで、あらかじめ設定された式を考慮することもできます。</summary>
-        <returns><see langword="true" /> がシリアル化されている場合は <paramref name="value" />。それ以外の場合は <see langword="false" />。</returns>
+        <returns><paramref name="value" /> がシリアル化されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -784,7 +790,7 @@
       <Docs>
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">シリアル化するオブジェクト。</param>
-        <param name="isComplete"><see langword="true" /> が完全にシリアル化されている場合は <paramref name="value" />。それ以外の場合は <see langword="false" />。</param>
+        <param name="isComplete"><paramref name="value" /> が完全にシリアル化されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary>指定したオブジェクトの作成を表す式を返します。</summary>
         <returns><paramref name="value" /> の作成を表す式。</returns>
         <remarks>
@@ -988,7 +994,7 @@
       </Parameters>
       <Docs>
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="statements">使用されていません。</param>
+        <param name="statements">使用しません。</param>
         <param name="value">プロパティがシリアル化されるオブジェクト。</param>
         <param name="filter">シリアル化するプロパティをフィルター処理する <see cref="T:System.Attribute" /> 配列。</param>
         <summary>指定されたオブジェクトのプロパティをインバリアント カルチャのリソース バンドルにシリアル化します。</summary>
@@ -1182,9 +1188,9 @@
       </Parameters>
       <Docs>
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
-        <param name="value">シリアル化するオブジェクト。 <see langword="null" /> を指定できます。</param>
+        <param name="value">シリアル化するオブジェクト。 <see langword="null" /> の可能性があります。</param>
         <summary>指定したオブジェクトを式にシリアル化します。</summary>
-        <returns><see cref="T:System.CodeDom.CodeExpression" /> をシリアル化できる場合は <paramref name="value" /> オブジェクト。それ以外の場合は <see langword="null" />。</returns>
+        <returns><paramref name="value" /> をシリアル化できる場合は <see cref="T:System.CodeDom.CodeExpression" /> オブジェクト。それ以外の場合は <see langword="null" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1212,7 +1218,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="manager" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="manager" /> が <see langword="null" />です。</exception>
         <altmember cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
         <altmember cref="T:System.CodeDom.CodeStatementCollection" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
@@ -1262,7 +1268,7 @@
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">シリアル化するオブジェクト。</param>
         <summary>指定したオブジェクトを式にシリアル化します。</summary>
-        <returns>シリアル化された式として <see cref="T:System.CodeDom.CodeExpression" /> を格納している <paramref name="value" />。</returns>
+        <returns>シリアル化された式として <paramref name="value" /> を格納している <see cref="T:System.CodeDom.CodeExpression" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1279,7 +1285,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="manager" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="manager" /> が <see langword="null" />です。</exception>
         <altmember cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
         <related type="Article" href="~/docs/framework/reflection-and-codedom/dynamic-source-code-generation-and-compilation.md">動的なソース コードの生成とコンパイル</related>
@@ -1315,7 +1321,7 @@
         <param name="value">シリアル化するオブジェクト。</param>
         <param name="ensureInvariant">インバリアント カルチャにシリアル化する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary>指定したオブジェクトをインバリアント カルチャに適した式にシリアル化します。</summary>
-        <returns>シリアル化された式として <see cref="T:System.CodeDom.CodeExpression" /> を格納している <paramref name="value" />。</returns>
+        <returns>シリアル化された式として <paramref name="value" /> を格納している <see cref="T:System.CodeDom.CodeExpression" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1324,7 +1330,7 @@
   
  ]]></format>
         </remarks>
-        <exception cref="T:System.ArgumentNullException"><paramref name="manager" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="manager" /> が <see langword="null" />です。</exception>
         <altmember cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />
         <altmember cref="T:System.CodeDom.CodeExpression" />
         <related type="Article" href="~/docs/framework/reflection-and-codedom/dynamic-source-code-generation-and-compilation.md">動的なソース コードの生成とコンパイル</related>
@@ -1372,7 +1378,7 @@
       <Docs>
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">シリアル化するオブジェクト。</param>
-        <param name="expression"><see cref="T:System.CodeDom.CodeExpression" /> を関連付ける <paramref name="value" />。</param>
+        <param name="expression"><paramref name="value" /> を関連付ける <see cref="T:System.CodeDom.CodeExpression" />。</param>
         <summary>オブジェクトを式に関連付けます。</summary>
         <remarks>
           <format type="text/markdown"><![CDATA[  
@@ -1417,7 +1423,7 @@
       <Docs>
         <param name="manager">シリアル化に使用する <see cref="T:System.ComponentModel.Design.Serialization.IDesignerSerializationManager" />。</param>
         <param name="value">シリアル化するオブジェクト。</param>
-        <param name="expression"><see cref="T:System.CodeDom.CodeExpression" /> を関連付ける <paramref name="value" />。</param>
+        <param name="expression"><paramref name="value" /> を関連付ける <see cref="T:System.CodeDom.CodeExpression" />。</param>
         <param name="isPreset">あらかじめ設定された式を指定する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary>必要に応じて事前設定された式を指定し、オブジェクトを式に関連付けます。</summary>
         <remarks>

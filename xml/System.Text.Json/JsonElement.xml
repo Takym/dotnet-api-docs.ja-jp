@@ -1,5 +1,5 @@
 <Type Name="JsonElement" FullName="System.Text.Json.JsonElement">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="400d8d7cd98591589354bbb04924aa38170c64b5" /><Meta Name="ms.sourcegitcommit" Value="19810b7f44c3fa6cc5f0af0391e435c59897b089" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="01/07/2020" /><Meta Name="ms.locfileid" Value="75707122" /></Metadata><TypeSignature Language="C#" Value="public struct JsonElement" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="cc8a7aad17f44ad2dd20977127de8e87f8ebf7a4" /><Meta Name="ms.sourcegitcommit" Value="355778a8154b2dab885accd76cc040b19ea80e32" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/03/2020" /><Meta Name="ms.locfileid" Value="78243939" /></Metadata><TypeSignature Language="C#" Value="public struct JsonElement" />
   <TypeSignature Language="ILAsm" Value=".class public sequential ansi sealed beforefieldinit JsonElement extends System.ValueType" />
   <TypeSignature Language="DocId" Value="T:System.Text.Json.JsonElement" />
   <TypeSignature Language="VB.NET" Value="Public Structure JsonElement" />
@@ -532,7 +532,7 @@
       </Parameters>
       <Docs>
         <param name="utf8PropertyName">返されるプロパティの名前の UTF-8 表現 (バイト オーダー マーク (BOM) なし)。</param>
-        <summary><see cref="T:System.Text.Json.JsonElement" /> によって識別される必須プロパティの値を表す <paramref name="utf8PropertyName" /> を取得します。</summary>
+        <summary><paramref name="utf8PropertyName" /> によって識別される必須プロパティの値を表す <see cref="T:System.Text.Json.JsonElement" /> を取得します。</summary>
         <returns>要求されたプロパティの値を表す <see cref="T:System.Text.Json.JsonElement" />。</returns>
         <remarks>
           <format><![CDATA[
@@ -573,7 +573,7 @@
       </Parameters>
       <Docs>
         <param name="propertyName">値が返されるプロパティの名前。</param>
-        <summary><see cref="T:System.Text.Json.JsonElement" /> によって識別される必須プロパティの値を表す <paramref name="propertyName" /> を取得します。</summary>
+        <summary><paramref name="propertyName" /> によって識別される必須プロパティの値を表す <see cref="T:System.Text.Json.JsonElement" /> を取得します。</summary>
         <returns>要求されたプロパティの値を表す <see cref="T:System.Text.Json.JsonElement" />。</returns>
         <remarks>
           <format><![CDATA[
@@ -612,7 +612,7 @@
       </Parameters>
       <Docs>
         <param name="propertyName">値が返されるプロパティの名前。</param>
-        <summary><see cref="T:System.Text.Json.JsonElement" /> によって識別される必須プロパティの値を表す <paramref name="propertyName" /> を取得します。</summary>
+        <summary><paramref name="propertyName" /> によって識別される必須プロパティの値を表す <see cref="T:System.Text.Json.JsonElement" /> を取得します。</summary>
         <returns>要求されたプロパティの値を表す <see cref="T:System.Text.Json.JsonElement" />。</returns>
         <remarks>
           <format><![CDATA[
@@ -627,7 +627,7 @@
         </remarks>
         <exception cref="T:System.InvalidOperationException">この値の <see cref="P:System.Text.Json.JsonElement.ValueKind" /> は <see cref="F:System.Text.Json.JsonValueKind.Object" /> ではありません。</exception>
         <exception cref="T:System.Collections.Generic.KeyNotFoundException">要求された名前のプロパティは見つかりませんでした。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="propertyName" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="propertyName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ObjectDisposedException">親 <see cref="T:System.Text.Json.JsonDocument" /> は破棄されています。</exception>
       </Docs>
     </Member>
@@ -651,7 +651,15 @@
       <Docs>
         <summary>この値を裏付ける元の入力データを表す文字列を取得します。</summary>
         <returns>この値を裏付ける元の入力データ。</returns>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <format type="text/markdown"><![CDATA[
+
+## Remarks
+
+<xref:System.Text.Json.JsonElement> インスタンスが <xref:System.Text.Json.JsonNode>から構築されている場合は、<xref:System.Text.Json.JsonNode.ToJsonString> の値が返されます。
+
+          ]]></format>
+        </remarks>
         <exception cref="T:System.ObjectDisposedException">親 <see cref="T:System.Text.Json.JsonDocument" /> は破棄されています。</exception>
       </Docs>
     </Member>
@@ -894,7 +902,7 @@
       <Docs>
         <param name="index">項目のインデックス。</param>
         <summary>現在の値が <see cref="F:System.Text.Json.JsonValueKind.Array" /> の場合、指定されたインデックスの値を取得します。</summary>
-        <value>指定されたインデックスの値。</value>
+        <value>指定したインデックス位置にある値。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.InvalidOperationException">この値の <see cref="P:System.Text.Json.JsonElement.ValueKind" /> は <see cref="F:System.Text.Json.JsonValueKind.Array" /> ではありません。</exception>
         <exception cref="T:System.IndexOutOfRangeException"><paramref name="index" /> が [0, <see cref="M:System.Text.Json.JsonElement.GetArrayLength" />()) という範囲内にありません。</exception>
@@ -963,7 +971,7 @@
       <Docs>
         <param name="value">メソッドから制御が戻る時点で、変換が成功した場合は、現在の JSON 数値と等価のバイトが格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.Byte" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.Byte" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.Byte" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -1035,7 +1043,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 文字列と同等の日時の値が格納されます。</param>
         <summary>現在の JSON 文字列を <see cref="T:System.DateTime" /> として表現しようと試みます。</summary>
-        <returns>文字列を <see langword="true" /> として表現できる場合は <see cref="T:System.DateTime" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>文字列を <see cref="T:System.DateTime" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1071,7 +1079,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 文字列と同等の日時が格納されます。</param>
         <summary>現在の JSON 文字列を <see cref="T:System.DateTimeOffset" /> として表現しようと試みます。</summary>
-        <returns>文字列を <see langword="true" /> として表現できる場合は <see cref="T:System.DateTimeOffset" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>文字列を <see cref="T:System.DateTimeOffset" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1107,7 +1115,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 数値の 10 進数に相当するものが格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.Decimal" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.Decimal" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.Decimal" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1143,7 +1151,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 数値と同等の倍精度浮動小数点値が格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.Double" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.Double" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.Double" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1181,7 +1189,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 文字列と同等の GUID が格納されます。</param>
         <summary>現在の JSON 文字列を <see cref="T:System.Guid" /> として表現しようと試みます。</summary>
-        <returns>文字列を <see langword="true" /> として表現できる場合は <see cref="T:System.Guid" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>文字列を <see cref="T:System.Guid" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1217,7 +1225,7 @@
       <Docs>
         <param name="value">メソッドから制御が戻る時点で、変換が成功した場合は、現在の JSON 数値と等価の 16 ビット整数が格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.Int16" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.Int16" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.Int16" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -1253,7 +1261,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 数値と同等の 32 ビット整数値が格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.Int32" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.Int32" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.Int32" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1289,7 +1297,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 数値と同等の 64 ビット整数値が格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.Int64" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.Int64" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.Int64" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1366,7 +1374,7 @@
         <Parameter Name="value" Type="System.Text.Json.JsonElement" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="propertyName">検索するプロパティの名前です。</param>
+        <param name="propertyName">検索するプロパティの名前。</param>
         <param name="value">このメソッドから戻るときに、指定したプロパティの値が格納されます。</param>
         <summary>現在のオブジェクトで <paramref name="propertyName" /> という名前のプロパティを探し、そのようなプロパティが存在するかどうかを示す値を返します。 プロパティが存在する場合、メソッドではその値を <paramref name="value" /> 引数に割り当てます。</summary>
         <returns>プロパティが見つかった場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
@@ -1406,7 +1414,7 @@
         <Parameter Name="value" Type="System.Text.Json.JsonElement" RefType="out" />
       </Parameters>
       <Docs>
-        <param name="propertyName">検索するプロパティの名前です。</param>
+        <param name="propertyName">検索するプロパティの名前。</param>
         <param name="value">このメソッドから戻るときに、指定したプロパティの値が格納されます。</param>
         <summary>現在のオブジェクトで <paramref name="propertyName" /> という名前のプロパティを探し、そのようなプロパティが存在するかどうかを示す値を返します。 プロパティが存在する場合、その値は <paramref name="value" /> 引数に割り当てられています。</summary>
         <returns>プロパティが見つかった場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
@@ -1422,7 +1430,7 @@
           ]]></format>
         </remarks>
         <exception cref="T:System.InvalidOperationException">この値の <see cref="P:System.Text.Json.JsonElement.ValueKind" /> は <see cref="F:System.Text.Json.JsonValueKind.Object" /> ではありません。</exception>
-        <exception cref="T:System.ArgumentNullException"><paramref name="propertyName" /> は <see langword="null" /> です。</exception>
+        <exception cref="T:System.ArgumentNullException"><paramref name="propertyName" /> が <see langword="null" />です。</exception>
         <exception cref="T:System.ObjectDisposedException">親 <see cref="T:System.Text.Json.JsonDocument" /> は破棄されています。</exception>
       </Docs>
     </Member>
@@ -1453,7 +1461,7 @@
       <Docs>
         <param name="value">メソッドから制御が戻る時点で、変換が成功した場合は、現在の JSON 数値と等価の符号付きバイトが格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.SByte" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.SByte" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.SByte" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -1489,7 +1497,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 数値と同等の単精度浮動小数点値が格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.Single" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.Single" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.Single" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1532,7 +1540,7 @@
       <Docs>
         <param name="value">メソッドから制御が戻る時点で、変換が成功した場合は、現在の JSON 数値と等価の符号なし 16 ビット整数が格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.UInt16" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.UInt16" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.UInt16" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -1573,7 +1581,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 数値と同等の 32 ビット符号なし整数値が格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.UInt32" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.UInt32" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.UInt32" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1614,7 +1622,7 @@
       <Docs>
         <param name="value">このメソッドから戻るときに、現在の JSON 数値と同等の 64 ビット符号なし整数値が格納されます。</param>
         <summary>現在の JSON 数値を <see cref="T:System.UInt64" /> として表現しようと試みます。</summary>
-        <returns>数値を <see langword="true" /> として表現できる場合は <see cref="T:System.UInt64" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>数値を <see cref="T:System.UInt64" /> として表現できる場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format><![CDATA[
 
@@ -1650,7 +1658,7 @@
       <Docs>
         <param name="utf8Text">比較対象の UTF-8 でエンコードされたテキスト。</param>
         <summary>UTF-8 でエンコードされたバイト スパンによって表されるテキストを、この要素の文字列値と比較します。</summary>
-        <returns>この要素の文字列値に <see langword="true" /> と同じ UTF-8 エンコードがある場合は <paramref name="utf8Text" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>この要素の文字列値に <paramref name="utf8Text" /> と同じ UTF-8 エンコードがある場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -1685,7 +1693,7 @@
       <Docs>
         <param name="text">比較対象のテキスト。</param>
         <summary>指定された読み取り専用の文字スパンを、この要素の文字列値と比較します。</summary>
-        <returns>この要素の文字列値が <see langword="true" /> と一致する場合は <paramref name="text" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>この要素の文字列値が <paramref name="text" /> と一致する場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 
@@ -1720,7 +1728,7 @@
       <Docs>
         <param name="text">比較対象のテキスト。</param>
         <summary>指定された文字列を、この要素の文字列値と比較します。</summary>
-        <returns>この要素の文字列値が <see langword="true" /> と一致する場合は <paramref name="text" />、それ以外の場合は <see langword="false" />。</returns>
+        <returns>この要素の文字列値が <paramref name="text" /> と一致する場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[
 

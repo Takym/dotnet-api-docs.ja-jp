@@ -1,5 +1,5 @@
 <Type Name="HttpCachePolicyBase" FullName="System.Web.HttpCachePolicyBase">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="6dedd936bedb898edfe83b175d8ccf5b1ec025f1" /><Meta Name="ms.sourcegitcommit" Value="8b09499854b5b7b909802126edc1f1fca0054c10" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="02/01/2020" /><Meta Name="ms.locfileid" Value="76959663" /></Metadata><TypeSignature Language="C#" Value="public abstract class HttpCachePolicyBase" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="1f93d2702805b5d1c64dfbb3a61ba51ecf14b35d" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78757378" /></Metadata><TypeSignature Language="C#" Value="public abstract class HttpCachePolicyBase" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit HttpCachePolicyBase extends System.Object" />
   <TypeSignature Language="DocId" Value="T:System.Web.HttpCachePolicyBase" />
   <TypeSignature Language="VB.NET" Value="Public MustInherit Class HttpCachePolicyBase" />
@@ -13,6 +13,9 @@
     <AssemblyName>System.Web.Abstractions</AssemblyName>
     <AssemblyVersion>3.5.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="System.Web.Abstractions" FromVersion="4.0.0.0" To="System.Web" ToVersion="4.0.0.0" FrameworkAlternate="netframework-4.0;netframework-4.5;netframework-4.5.1;netframework-4.5.2;netframework-4.6;netframework-4.6.1;netframework-4.6.2;netframework-4.7;netframework-4.7.1;netframework-4.7.2;netframework-4.8" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -58,7 +61,7 @@
       </Attributes>
       <Parameters />
       <Docs>
-        <summary>継承クラス インスタンスによって使用されるクラスを初期化します。 このコンストラクターは、継承されたクラスによってのみ呼び出すことができます。</summary>
+        <summary>継承クラス インスタンスによって使用されるクラスを初期化します。 このコンストラクターは、継承クラスによってのみ呼び出すことができます。</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -145,8 +148,8 @@
         <Parameter Name="allow" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="allow">ブラウザーの履歴キャッシュに応答を格納するようクライアントのブラウザーに指示するには <see langword="true" />、それ以外の場合は <see langword="false" />。</param>
-        <summary>派生クラスでオーバーライドされると、サーバーで行われた <see cref="T:System.Web.HttpCacheability" /> の設定に関係なく、ブラウザーの履歴キャッシュに応答を格納できるようにします。</summary>
+        <param name="allow">応答をブラウザーの履歴キャッシュに格納するようクライアントのブラウザーに指示する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+        <summary>派生クラスでオーバーライドされた場合、サーバーで行われた <see cref="T:System.Web.HttpCacheability" /> の設定に関係なく、ブラウザーの履歴キャッシュに応答を格納できるようにします。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -184,7 +187,7 @@
       </Parameters>
       <Docs>
         <param name="cacheability">ヘッダーに設定する <see cref="T:System.Web.HttpCacheability" /> 列挙値。</param>
-        <summary>派生クラスでオーバーライドされると、指定された <see langword="Cache-Control" /> 値に <see cref="T:System.Web.HttpCacheability" /> ヘッダーを設定します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、<see langword="Cache-Control" /> ヘッダーを指定された <see cref="T:System.Web.HttpCacheability" /> 値に設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -215,7 +218,7 @@
       <Docs>
         <param name="cacheability">ヘッダーに設定する <see cref="T:System.Web.HttpCacheability" /> 列挙値。</param>
         <param name="field">ヘッダーに追加するキャッシュ制御の拡張文字列。</param>
-        <summary>派生クラスでオーバーライドされると、<see langword="Cache-Control" /> ヘッダーを指定された <see cref="T:System.Web.HttpCacheability" /> 値に設定し、ディレクティブに拡張文字列を追加します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、<see langword="Cache-Control" /> ヘッダーを指定された <see cref="T:System.Web.HttpCacheability" /> 値に設定し、ディレクティブに拡張文字列を追加します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -243,8 +246,8 @@
         <Parameter Name="etag" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="etag"><see langword="ETag" /> ヘッダーで使用するテキスト。</param>
-        <summary>派生クラスでオーバーライドされた場合、指定した文字列に <see langword="ETag" /> HTTP ヘッダーを設定します。</summary>
+        <param name="etag"><see langword="ETag" /> ヘッダーに使用するテキスト。</param>
+        <summary>派生クラスでオーバーライドされた場合、<see langword="ETag" /> HTTP ヘッダーを指定された文字列に設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -270,7 +273,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>派生クラスでオーバーライドされるとき、ハンドラーのファイル依存関係のタイムスタンプに基づいて <see langword="ETag" /> HTTP ヘッダーを設定します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、ハンドラーが依存するファイルのタイム スタンプに基づいて、<see langword="ETag" /> HTTP ヘッダーを設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -299,7 +302,7 @@
       </Parameters>
       <Docs>
         <param name="date">絶対有効期限。</param>
-        <summary>派生クラスでオーバーライドされると、<see langword="Expires" /> HTTP ヘッダーを絶対日時に設定します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、<see langword="Expires" /> HTTP ヘッダーを絶対日時に設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -327,8 +330,8 @@
         <Parameter Name="date" Type="System.DateTime" />
       </Parameters>
       <Docs>
-        <param name="date"><see langword="Last-Modified" /> ヘッダーを設定する日付時刻値。</param>
-        <summary>派生クラスでオーバーライドされた場合、<see langword="Last-Modified" /> HTTP ヘッダーを指定した日時に設定します。</summary>
+        <param name="date"><see langword="Last-Modified" /> ヘッダーを設定する日時の値。</param>
+        <summary>派生クラスでオーバーライドされた場合、<see langword="Last-Modified" /> HTTP ヘッダーを指定された日時に設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -354,7 +357,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>派生クラスでオーバーライドされるとき、ハンドラーのファイル依存関係のタイムスタンプに基づいて <see langword="Last-Modified" /> HTTP ヘッダーを設定します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、ハンドラーが依存するファイルのタイム スタンプに基づいて、<see langword="Last-Modified" /> HTTP ヘッダーを設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -382,8 +385,8 @@
         <Parameter Name="delta" Type="System.TimeSpan" />
       </Parameters>
       <Docs>
-        <param name="delta"><see langword="Cache-Control: max-age" /> ヘッダーに設定する時間間隔。</param>
-        <summary>派生クラスでオーバーライドされた場合、指定した時間間隔に <see langword="Cache-Control: max-age" /> HTTP ヘッダーを設定します。</summary>
+        <param name="delta"><see langword="Cache-Control: max-age" /> ヘッダーを設定する期間。</param>
+        <summary>派生クラスでオーバーライドされた場合、<see langword="Cache-Control: max-age" /> HTTP ヘッダーを指定された期間に設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -409,7 +412,7 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>派生クラスでオーバーライドされた場合は、現在の応答に対するすべての配信元サーバー キャッシュを停止します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、現在の応答に対する、送信元サーバーによるすべてのキャッシュを中止します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -489,8 +492,8 @@
         <Parameter Name="omit" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="omit"><see langword="true" /> プロパティに * 値を使用しないように <see cref="T:System.Web.HttpCachePolicy" /> オブジェクトに指示を出す場合は <see cref="P:System.Web.HttpCachePolicy.VaryByHeaders" />。それ以外の場合は <see langword="false" />。</param>
-        <summary>派生クラスでオーバーライドされた場合は、キャッシュがパラメーターによって異なるときに、応答に <see langword="vary:*" /> ヘッダーが含まれるかどうかを指定します。</summary>
+        <param name="omit"><see cref="T:System.Web.HttpCachePolicy" /> オブジェクトの <see cref="P:System.Web.HttpCachePolicy.VaryByHeaders" /> プロパティに * 値を使用しないように指定する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+        <summary>派生クラスでオーバーライドされるときに、パラメーターによってキャッシュが変更される場合、応答に <see langword="vary:*" /> ヘッダーを含めるかどうかを指定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -518,8 +521,8 @@
         <Parameter Name="delta" Type="System.TimeSpan" />
       </Parameters>
       <Docs>
-        <param name="delta"><see langword="Cache-Control: s-maxage" /> ヘッダーに設定する時間間隔。</param>
-        <summary>派生クラスでオーバーライドされた場合、指定した時間間隔に <see langword="Cache-Control: s-maxage" /> HTTP ヘッダーを設定します。</summary>
+        <param name="delta"><see langword="Cache-Control: s-maxage" /> ヘッダーを設定する期間。</param>
+        <summary>派生クラスでオーバーライドされた場合、<see langword="Cache-Control: s-maxage" /> HTTP ヘッダーを指定された期間に設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -547,8 +550,8 @@
         <Parameter Name="revalidation" Type="System.Web.HttpCacheRevalidation" />
       </Parameters>
       <Docs>
-        <param name="revalidation"><see cref="T:System.Web.HttpCacheRevalidation" /> ヘッダーに設定する <see langword="Cache-Control" /> 列挙値。</param>
-        <summary>派生クラスでオーバーライドされると、指定した列挙値に基づいて、<see langword="Cache-Control" /> HTTP ヘッダーを <see langword="must-revalidate" /> ディレクティブまたは <see langword="proxy-revalidate" /> ディレクティブのいずれかに設定します。</summary>
+        <param name="revalidation"><see langword="Cache-Control" /> ヘッダーに設定する <see cref="T:System.Web.HttpCacheRevalidation" /> 列挙値。</param>
+        <summary>派生クラスでオーバーライドされた場合、指定された列挙値に基づいて、<see langword="Cache-Control" /> HTTP ヘッダーを <see langword="must-revalidate" /> ディレクティブまたは <see langword="proxy-revalidate" /> ディレクティブに設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -576,8 +579,8 @@
         <Parameter Name="slide" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="slide">スライド式キャッシュ有効期限を設定するには <see langword="true" />。絶対キャッシュ有効期限を設定するには <see langword="false" />。</param>
-        <summary>派生クラスでオーバーライドされるとき、キャッシュの有効期限を絶対またはスライド式に設定します。</summary>
+        <param name="slide">スライド式有効期限に設定する場合は <see langword="true" />。絶対キャッシュ有効期限に設定する場合は <see langword="false" />。</param>
+        <summary>派生クラスでオーバーライドされた場合、キャッシュの有効期限を絶対またはスライド式に設定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -605,7 +608,7 @@
         <Parameter Name="validUntilExpires" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="validUntilExpires">ASP.NET で <see langword="true" /> 無効化ヘッダーを無視するように指定する場合は <see langword="Cache-Control" />。それ以外の場合は <see langword="false" />。</param>
+        <param name="validUntilExpires">ASP.NET で <see langword="Cache-Control" /> 無効化ヘッダーを無視するように指定する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
         <summary>派生クラスでオーバーライドされた場合、クライアントから送信された、キャッシュを無効にする HTTP <see langword="Cache-Control" /> ヘッダーを ASP.NET キャッシュで無視するかどうかを指定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
@@ -635,7 +638,7 @@
       </Parameters>
       <Docs>
         <param name="custom">キャッシュされている出力の変更に使用するテキスト文字列。</param>
-        <summary>派生クラスでオーバーライドされた場合は、キャッシュされている出力応答の変更に使用するテキスト文字列を指定します。</summary>
+        <summary>派生クラスでオーバーライドされた場合、キャッシュされている出力応答の変更に使用するテキスト文字列を指定します。</summary>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -660,8 +663,8 @@
         <ReturnType>System.Web.HttpCacheVaryByContentEncodings</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>派生クラスでオーバーライドされると、出力キャッシュの変更に使用される <see langword="Content-Encoding" /> ヘッダーの一覧を取得します。</summary>
-        <value>キャッシュされた応答の選択に使用される <see langword="Content-Encoding" /> ヘッダー。</value>
+        <summary>派生クラスでオーバーライドされた場合、出力キャッシュの変更に使用する <see langword="Content-Encoding" /> ヘッダーの一覧を取得します。</summary>
+        <value>キャッシュされた応答を選択するために使用する <see langword="Content-Encoding" /> ヘッダー。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -686,8 +689,8 @@
         <ReturnType>System.Web.HttpCacheVaryByHeaders</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>派生クラスでオーバーライドされると、キャッシュの出力の変更に使用されるすべての HTTP ヘッダーの一覧を取得します。</summary>
-        <value>キャッシュされた応答の選択に使用される HTTP ヘッダー。</value>
+        <summary>派生クラスでオーバーライドされた場合、キャッシュ出力の変更に使用するすべての HTTP ヘッダーの一覧を取得します。</summary>
+        <value>キャッシュされた応答を選択するために使用する HTTP ヘッダー。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
@@ -712,8 +715,8 @@
         <ReturnType>System.Web.HttpCacheVaryByParams</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>派生クラスでオーバーライドされた場合は、キャッシュに影響する HTTP の <see langword="GET" /> または <see langword="POST" /> 動詞が受け取るパラメーターの一覧を取得します。</summary>
-        <value>キャッシュされた応答の選択に使用されるキャッシュ制御パラメーター。</value>
+        <summary>派生クラスでオーバーライドされた場合、HTTP <see langword="GET" /> または <see langword="POST" /> 動詞が受け取る、キャッシュに影響するパラメーターの一覧を取得します。</summary>
+        <value>キャッシュされた応答を選択するために使用するキャッシュ制御パラメーター。</value>
         <remarks>To be added.</remarks>
         <exception cref="T:System.NotImplementedException">常に。</exception>
       </Docs>
