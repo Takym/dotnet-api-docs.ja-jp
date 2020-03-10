@@ -1,5 +1,5 @@
 <Type Name="SemaphoreSlim" FullName="System.Threading.SemaphoreSlim">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="502b2cd9e76ecdee9e16d526beb79dc5562a215f" /><Meta Name="ms.sourcegitcommit" Value="8ae9a18b248625c8e1851e607c00346a64849587" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="12/17/2019" /><Meta Name="ms.locfileid" Value="75158622" /></Metadata><TypeSignature Language="C#" Value="public class SemaphoreSlim : IDisposable" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="769daa6a37f95fa0da09afca7900712dc0439941" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78781066" /></Metadata><TypeSignature Language="C#" Value="public class SemaphoreSlim : IDisposable" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SemaphoreSlim extends System.Object implements class System.IDisposable" />
   <TypeSignature Language="DocId" Value="T:System.Threading.SemaphoreSlim" />
   <TypeSignature Language="VB.NET" Value="Public Class SemaphoreSlim&#xA;Implements IDisposable" />
@@ -23,6 +23,9 @@
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <TypeForwardingChain>
+    <TypeForwarding From="mscorlib" FromVersion="4.0.0.0" To="System.Threading" ToVersion="0.0.0.0" FrameworkAlternate="dotnet-uwp-10.0" />
+  </TypeForwardingChain>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
@@ -45,7 +48,7 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- セマフォには、ローカルセマフォと名前付きシステムセマフォの2種類があります。 前者はアプリに対してローカルです。 後者はオペレーティングシステム全体に表示され、プロセス間の同期に適しています。 <xref:System.Threading.SemaphoreSlim> は、Windows カーネルセマフォを使用しない <xref:System.Threading.Semaphore> クラスに代わる軽量の手段です。 <xref:System.Threading.Semaphore> クラスとは異なり、<xref:System.Threading.SemaphoreSlim> クラスは名前付きシステムセマフォをサポートしていません。 ローカルセマフォとしてのみ使用できます。 <xref:System.Threading.SemaphoreSlim> クラスは、1つのアプリ内で同期するために推奨されるセマフォです。  
+ セマフォには、ローカルセマフォと名前付きシステムセマフォの2種類があります。 ローカルセマフォはアプリケーションに対してローカルであり、システムセマフォはオペレーティングシステム全体にわたって表示され、プロセス間の同期に適しています。 <xref:System.Threading.SemaphoreSlim> は、Windows カーネルセマフォを使用しない <xref:System.Threading.Semaphore> クラスに代わる軽量の手段です。 <xref:System.Threading.Semaphore> クラスとは異なり、<xref:System.Threading.SemaphoreSlim> クラスは名前付きシステムセマフォをサポートしていません。 ローカルセマフォとしてのみ使用できます。 <xref:System.Threading.SemaphoreSlim> クラスは、1つのアプリ内で同期するために推奨されるセマフォです。  
   
  ライトウェイトセマフォは、アプリケーションに対してローカルなリソースのプールへのアクセスを制御します。 セマフォをインスタンス化するときに、同時にセマフォに入ることができるスレッドの最大数を指定できます。 また、セマフォに同時に入力できるスレッドの初期数を指定します。 これにより、セマフォのカウントが定義されます。  
   
@@ -91,8 +94,7 @@ SemaphoreSlim.Release()
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary>
-          <see cref="T:System.Threading.SemaphoreSlim" /> クラスの新しいインスタンスを初期化します。</summary>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> クラスの新しいインスタンスを初期化します。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName=".ctor">
@@ -315,12 +317,12 @@ SemaphoreSlim.Release()
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- `Dispose` を使い終わったら、<xref:System.Threading.SemaphoreSlim>を呼び出します。 `Dispose`メソッドによって、<xref:System.Threading.SemaphoreSlim> は使用不可の状態になります。 `Dispose`呼び出し後は、<xref:System.Threading.SemaphoreSlim>によって占有されていたメモリをガベージ コレクターがクリアできるよう、<xref:System.Threading.SemaphoreSlim> へのすべての参照を解放する必要があります。  
+ <xref:System.Threading.SemaphoreSlim> を使い終わったら、`Dispose`を呼び出します。 `Dispose`メソッドによって、<xref:System.Threading.SemaphoreSlim> は使用不可の状態になります。 `Dispose`呼び出し後は、<xref:System.Threading.SemaphoreSlim>によって占有されていたメモリをガベージ コレクターがクリアできるよう、<xref:System.Threading.SemaphoreSlim> へのすべての参照を解放する必要があります。  
   
  詳細については、[アンマネージ リソースのクリーンアップ](~/docs/standard/garbage-collection/unmanaged.md)および[Dispose メソッドの実装](~/docs/standard/garbage-collection/implementing-dispose.md)を参照してください。  
   
 > [!NOTE]
->  `Dispose`への最後の参照を解放する前に、必ず<xref:System.Threading.SemaphoreSlim>を呼び出してください。 そうしないと、ガベージ コレクターが <xref:System.Threading.SemaphoreSlim> オブジェクトの `Finalize` メソッドを呼び出すまで、使用されているリソースは解放されません。  
+>  <xref:System.Threading.SemaphoreSlim>への最後の参照を解放する前に、必ず`Dispose`を呼び出してください。 そうしないと、ガベージ コレクターが <xref:System.Threading.SemaphoreSlim> オブジェクトの `Finalize` メソッドを呼び出すまで、使用されているリソースは解放されません。  
   
  ]]></format>
         </remarks>
@@ -488,7 +490,7 @@ SemaphoreSlim.Release()
         <AssemblyVersion>4.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Docs>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> に入れるようになるまで、現在のスレッドをブロックします。</summary>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> に入るまで、現在のスレッドをブロックします。</summary>
       </Docs>
     </MemberGroup>
     <Member MemberName="Wait">
@@ -569,8 +571,8 @@ SemaphoreSlim.Release()
       </Parameters>
       <Docs>
         <param name="millisecondsTimeout">待機するミリ秒数です。<see cref="F:System.Threading.Timeout.Infinite" /> (-1) の場合は無期限に待機します。または、ゼロの場合は待機ハンドルの状態をテストしてすぐに返します。</param>
-        <summary>タイムアウト値を 32 ビット符号付き整数で指定して、<see cref="T:System.Threading.SemaphoreSlim" /> に入れるようになるまで、現在のスレッドをブロックします。</summary>
-        <returns>現在のスレッドが <see langword="true" /> に正常に入った場合は <see cref="T:System.Threading.SemaphoreSlim" />。それ以外の場合は <see langword="false" />。</returns>
+        <summary>タイムアウト値を 32 ビット符号付き整数で指定して、<see cref="T:System.Threading.SemaphoreSlim" /> に入るまで、現在のスレッドをブロックします。</summary>
+        <returns>現在のスレッドが <see cref="T:System.Threading.SemaphoreSlim" /> に正常に入った場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -597,6 +599,7 @@ SemaphoreSlim.Release()
       <MemberSignature Language="C#" Value="public void Wait (System.Threading.CancellationToken cancellationToken);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void Wait(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Threading.SemaphoreSlim.Wait(System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Sub Wait (cancellationToken As CancellationToken)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; void Wait(System::Threading::CancellationToken cancellationToken);" />
       <MemberSignature Language="F#" Value="member this.Wait : System.Threading.CancellationToken -&gt; unit" Usage="semaphoreSlim.Wait cancellationToken" />
       <MemberType>Method</MemberType>
@@ -640,8 +643,8 @@ SemaphoreSlim.Release()
         <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken" /> が取り消されました。</exception>
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。  
   
-または 
-<see cref="T:System.Threading.CancellationTokenSource" /> を作成した <paramref name="cancellationToken" /> は既に破棄されています。</exception>
+- または - 
+<paramref name="cancellationToken" /> を作成した <see cref="T:System.Threading.CancellationTokenSource" /> は既に破棄されています。</exception>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore と SemaphoreSlim</related>
         <related type="Article" href="~/docs/standard/threading/cancellation-in-managed-threads.md">キャンセル</related>
       </Docs>
@@ -680,8 +683,8 @@ SemaphoreSlim.Release()
       </Parameters>
       <Docs>
         <param name="timeout"><see cref="T:System.TimeSpan" /> は、待機するミリ秒数を表します。<see cref="T:System.TimeSpan" /> が -1 ミリ秒の場合は、無期限に待機します。<see cref="T:System.TimeSpan" /> が 0 ミリ秒の場合は、待機ハンドルをテストしてすぐに返します。</param>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を使用してタイムアウトを指定し、<see cref="T:System.TimeSpan" /> に入れるようになるまで、現在のスレッドをブロックします。</summary>
-        <returns>現在のスレッドが <see langword="true" /> に正常に入った場合は <see cref="T:System.Threading.SemaphoreSlim" />。それ以外の場合は <see langword="false" />。</returns>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を使用してタイムアウトを指定し、<see cref="T:System.TimeSpan" /> に入るまで、現在のスレッドをブロックします。</summary>
+        <returns>現在のスレッドが <see cref="T:System.Threading.SemaphoreSlim" /> に正常に入った場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -701,7 +704,7 @@ SemaphoreSlim.Release()
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
 
-または
+- または -
 
 <paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.ObjectDisposedException">semaphoreSlim インスタンスが破棄されました。</exception>
@@ -712,6 +715,7 @@ SemaphoreSlim.Release()
       <MemberSignature Language="C#" Value="public bool Wait (int millisecondsTimeout, System.Threading.CancellationToken cancellationToken);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool Wait(int32 millisecondsTimeout, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Threading.SemaphoreSlim.Wait(System.Int32,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function Wait (millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; bool Wait(int millisecondsTimeout, System::Threading::CancellationToken cancellationToken);" />
       <MemberSignature Language="F#" Value="member this.Wait : int * System.Threading.CancellationToken -&gt; bool" Usage="semaphoreSlim.Wait (millisecondsTimeout, cancellationToken)" />
       <MemberType>Method</MemberType>
@@ -743,8 +747,8 @@ SemaphoreSlim.Release()
       <Docs>
         <param name="millisecondsTimeout">待機するミリ秒数です。<see cref="F:System.Threading.Timeout.Infinite" /> (-1) の場合は無期限に待機します。または、ゼロの場合は待機ハンドルの状態をテストしてすぐに返します。</param>
         <param name="cancellationToken">観察する <see cref="T:System.Threading.CancellationToken" />。</param>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を観察すると同時に、タイムアウト値を 32 ビット符号付き整数で指定して、<see cref="T:System.Threading.CancellationToken" /> に入れるようになるまで、現在のスレッドをブロックします。</summary>
-        <returns>現在のスレッドが <see langword="true" /> に正常に入った場合は <see cref="T:System.Threading.SemaphoreSlim" />。それ以外の場合は <see langword="false" />。</returns>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を観察すると同時に、タイムアウト値を 32 ビット符号付き整数で指定して、<see cref="T:System.Threading.CancellationToken" /> に入るまで、現在のスレッドをブロックします。</summary>
+        <returns>現在のスレッドが <see cref="T:System.Threading.SemaphoreSlim" /> に正常に入った場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -767,10 +771,10 @@ SemaphoreSlim.Release()
         <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken" /> が取り消されました。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
 
-または
+- または -
 
 <paramref name="millisecondsTimeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
-        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.SemaphoreSlim" /> インスタンスが破棄されたか、<see cref="T:System.Threading.CancellationTokenSource" /> を作成した <paramref name="cancellationToken" /> が破棄されました。</exception>
+        <exception cref="T:System.ObjectDisposedException"><see cref="T:System.Threading.SemaphoreSlim" /> インスタンスが破棄されたか、<paramref name="cancellationToken" /> を作成した <see cref="T:System.Threading.CancellationTokenSource" /> が破棄されました。</exception>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore と SemaphoreSlim</related>
       </Docs>
     </Member>
@@ -778,6 +782,7 @@ SemaphoreSlim.Release()
       <MemberSignature Language="C#" Value="public bool Wait (TimeSpan timeout, System.Threading.CancellationToken cancellationToken);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance bool Wait(valuetype System.TimeSpan timeout, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Threading.SemaphoreSlim.Wait(System.TimeSpan,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function Wait (timeout As TimeSpan, cancellationToken As CancellationToken) As Boolean" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; bool Wait(TimeSpan timeout, System::Threading::CancellationToken cancellationToken);" />
       <MemberSignature Language="F#" Value="member this.Wait : TimeSpan * System.Threading.CancellationToken -&gt; bool" Usage="semaphoreSlim.Wait (timeout, cancellationToken)" />
       <MemberType>Method</MemberType>
@@ -809,8 +814,8 @@ SemaphoreSlim.Release()
       <Docs>
         <param name="timeout"><see cref="T:System.TimeSpan" /> は、待機するミリ秒数を表します。<see cref="T:System.TimeSpan" /> が -1 ミリ秒の場合は、無期限に待機します。<see cref="T:System.TimeSpan" /> が 0 ミリ秒の場合は、待機ハンドルをテストしてすぐに返します。</param>
         <param name="cancellationToken">観察する <see cref="T:System.Threading.CancellationToken" />。</param>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を観察すると同時に、タイムアウトを指定する <see cref="T:System.TimeSpan" /> を使用して、<see cref="T:System.Threading.CancellationToken" /> に入れるようになるまで、現在のスレッドをブロックします。</summary>
-        <returns>現在のスレッドが <see langword="true" /> に正常に入った場合は <see cref="T:System.Threading.SemaphoreSlim" />。それ以外の場合は <see langword="false" />。</returns>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を観察すると同時に、タイムアウトを指定する <see cref="T:System.TimeSpan" /> を使用して、<see cref="T:System.Threading.CancellationToken" /> に入るまで、現在のスレッドをブロックします。</summary>
+        <returns>現在のスレッドが <see cref="T:System.Threading.SemaphoreSlim" /> に正常に入った場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -838,9 +843,9 @@ SemaphoreSlim.Release()
 <paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.ObjectDisposedException">semaphoreSlim インスタンスが破棄されました。
           
-または
+- または -
 
-<see cref="T:System.Threading.CancellationTokenSource" /> を作成した <paramref name="cancellationToken" /> は既に破棄されています。</exception>
+<paramref name="cancellationToken" /> を作成した <see cref="T:System.Threading.CancellationTokenSource" /> は既に破棄されています。</exception>
         <related type="Article" href="~/docs/standard/threading/semaphore-and-semaphoreslim.md">Semaphore と SemaphoreSlim</related>
         <related type="Article" href="~/docs/standard/threading/cancellation-in-managed-threads.md">キャンセル</related>
       </Docs>
@@ -927,8 +932,8 @@ SemaphoreSlim.Release()
       </Parameters>
       <Docs>
         <param name="millisecondsTimeout">待機するミリ秒数です。<see cref="F:System.Threading.Timeout.Infinite" /> (-1) の場合は無期限に待機します。または、ゼロの場合はハンドルの状態をテストしてすぐに返します。</param>
-        <summary>32 ビット符号付き整数を使用して時間間隔を測定しながら、<see cref="T:System.Threading.SemaphoreSlim" /> に移行するために非同期に待機します。</summary>
-        <returns>現在のスレッドが正常に <see langword="true" /> を入力した場合は <see cref="T:System.Threading.SemaphoreSlim" />、それ以外の場合は <see langword="false" /> で完了するタスク。</returns>
+        <summary>32 ビット符号付き整数を使用して時間間隔を測定する <see cref="T:System.Threading.SemaphoreSlim" /> に移行するために非同期に待機します。</summary>
+        <returns>現在のスレッドが正常に <see cref="T:System.Threading.SemaphoreSlim" /> を入力した場合は <see langword="true" />、それ以外の場合は <see langword="false" /> で完了するタスク。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -942,7 +947,7 @@ SemaphoreSlim.Release()
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
           
-または 
+- または - 
 <paramref name="millisecondsTimeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
       </Docs>
     </Member>
@@ -950,6 +955,7 @@ SemaphoreSlim.Release()
       <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task WaitAsync (System.Threading.CancellationToken cancellationToken);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Threading.Tasks.Task WaitAsync(valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Threading.SemaphoreSlim.WaitAsync(System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function WaitAsync (cancellationToken As CancellationToken) As Task" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Threading::Tasks::Task ^ WaitAsync(System::Threading::CancellationToken cancellationToken);" />
       <MemberSignature Language="F#" Value="member this.WaitAsync : System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task" Usage="semaphoreSlim.WaitAsync cancellationToken" />
       <MemberType>Method</MemberType>
@@ -979,7 +985,7 @@ SemaphoreSlim.Release()
       </Parameters>
       <Docs>
         <param name="cancellationToken">観察する <see cref="T:System.Threading.CancellationToken" /> トークン。</param>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を観察すると同時に、<see cref="T:System.Threading.CancellationToken" /> に移行するために非同期に待機します。</summary>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を観察する <see cref="T:System.Threading.CancellationToken" /> に移行するために非同期に待機します。</summary>
         <returns>セマフォに入っているときに完了するタスク。</returns>
         <remarks>To be added.</remarks>
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。</exception>
@@ -1020,8 +1026,8 @@ SemaphoreSlim.Release()
       </Parameters>
       <Docs>
         <param name="timeout"><see cref="T:System.TimeSpan" /> は、待機するミリ秒数を表します。<see cref="T:System.TimeSpan" /> が -1 ミリ秒の場合は、無期限に待機します。<see cref="T:System.TimeSpan" /> が 0 ミリ秒の場合は、待機ハンドルをテストしてすぐに返します。</param>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を使用して時間間隔を測定しながら、<see cref="T:System.TimeSpan" /> に移行するために非同期に待機します。</summary>
-        <returns>現在のスレッドが正常に <see langword="true" /> を入力した場合は <see cref="T:System.Threading.SemaphoreSlim" />、それ以外の場合は <see langword="false" /> で完了するタスク。</returns>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を使用して時間間隔を測定する <see cref="T:System.TimeSpan" /> に移行するために非同期に待機します。</summary>
+        <returns>現在のスレッドが正常に <see cref="T:System.Threading.SemaphoreSlim" /> を入力した場合は <see langword="true" />、それ以外の場合は <see langword="false" /> で完了するタスク。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1035,7 +1041,7 @@ SemaphoreSlim.Release()
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。</exception>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
 
-または 
+- または - 
 <paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
       </Docs>
     </Member>
@@ -1043,6 +1049,7 @@ SemaphoreSlim.Release()
       <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;bool&gt; WaitAsync (int millisecondsTimeout, System.Threading.CancellationToken cancellationToken);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Threading.Tasks.Task`1&lt;bool&gt; WaitAsync(int32 millisecondsTimeout, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Threading.SemaphoreSlim.WaitAsync(System.Int32,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function WaitAsync (millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Task(Of Boolean)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Threading::Tasks::Task&lt;bool&gt; ^ WaitAsync(int millisecondsTimeout, System::Threading::CancellationToken cancellationToken);" />
       <MemberSignature Language="F#" Value="member this.WaitAsync : int * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;bool&gt;" Usage="semaphoreSlim.WaitAsync (millisecondsTimeout, cancellationToken)" />
       <MemberType>Method</MemberType>
@@ -1074,8 +1081,8 @@ SemaphoreSlim.Release()
       <Docs>
         <param name="millisecondsTimeout">待機するミリ秒数です。<see cref="F:System.Threading.Timeout.Infinite" /> (-1) の場合は無期限に待機します。または、ゼロの場合はハンドルの状態をテストしてすぐに返します。</param>
         <param name="cancellationToken">観察する <see cref="T:System.Threading.CancellationToken" />。</param>
-        <summary>32 ビット符号付き整数を使用して時間間隔を測定しながら、<see cref="T:System.Threading.SemaphoreSlim" /> を観察すると同時に、<see cref="T:System.Threading.CancellationToken" /> に移行するために非同期に待機します。</summary>
-        <returns>現在のスレッドが正常に <see langword="true" /> を入力した場合は <see cref="T:System.Threading.SemaphoreSlim" />、それ以外の場合は <see langword="false" /> で完了するタスク。</returns>
+        <summary>32 ビット符号付き整数を使用して時間間隔を測定する一方、<see cref="T:System.Threading.SemaphoreSlim" /> を観察する <see cref="T:System.Threading.CancellationToken" /> に移行するために非同期に待機します。</summary>
+        <returns>現在のスレッドが正常に <see cref="T:System.Threading.SemaphoreSlim" /> を入力した場合は <see langword="true" />、それ以外の場合は <see langword="false" /> で完了するタスク。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1088,7 +1095,7 @@ SemaphoreSlim.Release()
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout" /> が -1 以外の数です。これは無制限のタイムアウトを表します。
           
-または
+- または -
 
 <paramref name="millisecondsTimeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.ObjectDisposedException">現在のインスタンスは既に破棄されています。</exception>
@@ -1099,6 +1106,7 @@ SemaphoreSlim.Release()
       <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;bool&gt; WaitAsync (TimeSpan timeout, System.Threading.CancellationToken cancellationToken);" />
       <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class System.Threading.Tasks.Task`1&lt;bool&gt; WaitAsync(valuetype System.TimeSpan timeout, valuetype System.Threading.CancellationToken cancellationToken) cil managed" />
       <MemberSignature Language="DocId" Value="M:System.Threading.SemaphoreSlim.WaitAsync(System.TimeSpan,System.Threading.CancellationToken)" />
+      <MemberSignature Language="VB.NET" Value="Public Function WaitAsync (timeout As TimeSpan, cancellationToken As CancellationToken) As Task(Of Boolean)" />
       <MemberSignature Language="C++ CLI" Value="public:&#xA; System::Threading::Tasks::Task&lt;bool&gt; ^ WaitAsync(TimeSpan timeout, System::Threading::CancellationToken cancellationToken);" />
       <MemberSignature Language="F#" Value="member this.WaitAsync : TimeSpan * System.Threading.CancellationToken -&gt; System.Threading.Tasks.Task&lt;bool&gt;" Usage="semaphoreSlim.WaitAsync (timeout, cancellationToken)" />
       <MemberType>Method</MemberType>
@@ -1130,8 +1138,8 @@ SemaphoreSlim.Release()
       <Docs>
         <param name="timeout"><see cref="T:System.TimeSpan" /> は、待機するミリ秒数を表します。<see cref="T:System.TimeSpan" /> が -1 ミリ秒の場合は、無期限に待機します。<see cref="T:System.TimeSpan" /> が 0 ミリ秒の場合は、待機ハンドルをテストしてすぐに返します。</param>
         <param name="cancellationToken">観察する <see cref="T:System.Threading.CancellationToken" /> トークン。</param>
-        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を使用して時間間隔を測定しながら、<see cref="T:System.TimeSpan" /> を観察すると同時に、<see cref="T:System.Threading.CancellationToken" /> に移行するために非同期に待機します。</summary>
-        <returns>現在のスレッドが正常に <see langword="true" /> を入力した場合は <see cref="T:System.Threading.SemaphoreSlim" />、それ以外の場合は <see langword="false" /> で完了するタスク。</returns>
+        <summary><see cref="T:System.Threading.SemaphoreSlim" /> を使用して時間間隔を測定する一方、<see cref="T:System.TimeSpan" /> を観察する <see cref="T:System.Threading.CancellationToken" /> に移行するために非同期に待機します。</summary>
+        <returns>現在のスレッドが正常に <see cref="T:System.Threading.SemaphoreSlim" /> を入力した場合は <see langword="true" />、それ以外の場合は <see langword="false" /> で完了するタスク。</returns>
         <remarks>
           <format type="text/markdown"><![CDATA[  
   
@@ -1144,7 +1152,7 @@ SemaphoreSlim.Release()
         </remarks>
         <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout" /> が -1 以外の負数です。これは無制限のタイムアウトを表します。
           
-または
+- または -
 
 <paramref name="timeout" /> が <see cref="F:System.Int32.MaxValue" /> より大きくなっています。</exception>
         <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken" /> が取り消されました。</exception>
