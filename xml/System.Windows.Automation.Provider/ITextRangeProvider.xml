@@ -1,5 +1,5 @@
 <Type Name="ITextRangeProvider" FullName="System.Windows.Automation.Provider.ITextRangeProvider">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="b2f20a29c8e22d82d605decacbdb737eea374887" /><Meta Name="ms.sourcegitcommit" Value="055a4a82a0b08bfbdc21bd1347fb71f7fe2c099e" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="08/15/2019" /><Meta Name="ms.locfileid" Value="69225100" /></Metadata><TypeSignature Language="C#" Value="public interface ITextRangeProvider" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="27610887d2fd26349eb38a00c8b9833ee309185f" /><Meta Name="ms.sourcegitcommit" Value="83d757eaee63e682417f41094d711281691d9aba" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/10/2020" /><Meta Name="ms.locfileid" Value="78956243" /></Metadata><TypeSignature Language="C#" Value="public interface ITextRangeProvider" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITextRangeProvider" />
   <TypeSignature Language="DocId" Value="T:System.Windows.Automation.Provider.ITextRangeProvider" />
   <TypeSignature Language="VB.NET" Value="Public Interface ITextRangeProvider" />
@@ -28,17 +28,17 @@
       <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- コントロールパターンを<xref:System.Windows.Automation.TextPattern>サポートする必要がある UI オートメーションプロバイダーに実装されます。  
+ <xref:System.Windows.Automation.TextPattern> コントロールパターンをサポートする必要がある UI オートメーションプロバイダーに実装されます。  
   
- は<xref:System.Windows.Automation.Text.TextPatternRange> 、 <xref:System.Windows.Automation.TextPattern>コンテナー内の挿入ポイント、サブセット、またはすべてのテキストを表すことができます。  
+ <xref:System.Windows.Automation.Text.TextPatternRange> は、<xref:System.Windows.Automation.TextPattern> コンテナー内の挿入ポイント、サブセット、またはすべてのテキストを表すことができます。  
   
  ]]></format>
     </remarks>
     <altmember cref="T:System.Windows.Automation.Text.TextPatternRange" />
     <related type="Article" href="~/docs/framework/ui-automation/ui-automation-control-patterns-overview.md">UI オートメーション コントロール パターンの概要</related>
-    <related type="Article" href="https://msdn.microsoft.com/library/6acc6d08-bd67-4e2e-915c-9c1d34eb86fe">サーバー側 UI オートメーションプロバイダーの実装</related>
-    <related type="Article" href="https://msdn.microsoft.com/library/3584c0a1-9cd0-4968-8b63-b06390890ef6">クライアント側 UI オートメーションプロバイダーの実装</related>
-    <related type="Article" href="https://msdn.microsoft.com/library/0d635c35-ffa8-4dc8-bbc9-12fcd5445776">UI オートメーション プロバイダーでのコントロール パターンのサポート</related>
+    <related type="Article" href="~/docs/framework/ui-automation/server-side-ui-automation-provider-implementation.md">サーバー側 UI オートメーションプロバイダーの実装</related>
+    <related type="Article" href="~/docs/framework/ui-automation/client-side-ui-automation-provider-implementation.md">クライアント側 UI オートメーションプロバイダーの実装</related>
+    <related type="Article" href="~/docs/framework/ui-automation/support-control-patterns-in-a-ui-automation-provider.md">UI オートメーション プロバイダーでのコントロール パターンのサポート</related>
     <related type="Article" href="https://msdn.microsoft.com/library/41787927-df1f-4f4a-aba3-641662854fc4">UI オートメーション TextPattern の概要</related>
   </Docs>
   <Members>
@@ -194,9 +194,9 @@
 ## Remarks  
  範囲が既に指定した単位の正確な数量である場合は、変更されません。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A>メソッドが正常に実行されるようにするために、一連の手順がバックグラウンドで行われています。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> メソッドが正常に実行されるようにするために、一連の手順がバックグラウンドで行われています。  
   
-1.  テキスト範囲は正規化されます。つまり、テキスト範囲は <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> エンドポイントで低次元テキスト範囲に縮小されるため、 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> エンドポイントは不要になります。 この手順は、テキスト範囲が複数の境界にまたがる`unit`状況であいまいさを解消するために必要です。たとえば、"{" と "}" がテキスト範囲エンドポイントである "{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/) is embedded in text" のようになります。  
+1.  テキスト範囲は正規化されます。つまり、テキスト範囲は <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> エンドポイントで低次元テキスト範囲に縮小されるため、 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> エンドポイントは不要になります。 この手順は、テキスト範囲が境界 `unit` 範囲内にある場合にあいまいさを解消するために必要です。たとえば、"{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/)は、テキスト範囲エンドポイントである" {"と"} "がテキスト範囲内に埋め込まれています。  
   
 2.  結果として得られる範囲は、 <xref:System.Windows.Automation.Provider.ITextProvider.DocumentRange%2A> 内で、要求された `unit` 境界の先頭に向かって後方に移動されます。  
   
@@ -204,15 +204,15 @@
   
 4.  その後、この範囲は、要求された 1 つの <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 境界の分、 `unit` エンドポイントを移動することによって、低次元テキスト範囲の状態から展開されます。  
   
- ![移動 & ExpandToEnclosingUnit による範囲の調整](~/add/media/uia-textpattern-moveandexpand-examples.png "移動 & ExpandToEnclosingUnit による範囲の調整")  
+ ![移動 & ExpandToEnclosingUnit による範囲の調整](~/add/media/uia-textpattern-moveandexpand-examples.png "Move & ExpandToEnclosingUnit による範囲調整")  
 テキスト範囲を Move() と ExpandToEnclosingUnit() に対して調整する方法の例  
   
 > [!NOTE]
 >  これらの手順は、スクリーンリーダーが挿入ポイントまたは任意の仮想カーソル位置で完全な単語、文、または段落全体を読み取ることが一般的であるために必要です。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit%2A>非表示テキストと表示テキストの両方を考慮します。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit%2A> は、非表示テキストと表示テキストの両方に反映されます。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit%2A><xref:System.Windows.Automation.Text.TextUnit> 指定<xref:System.Windows.Automation.Text.TextUnit>されたがコントロールでサポートされていない場合、サポートされる次の最大の値に従います。  
+ 指定された <xref:System.Windows.Automation.Text.TextUnit> がコントロールでサポートされていない場合、<xref:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit%2A> は、次にサポートされる最大の <xref:System.Windows.Automation.Text.TextUnit> に従います。  
   
  最小単位から最大値までの順序を以下に示します。  
   
@@ -369,7 +369,7 @@
   
  低次元テキスト範囲の空の配列。  
   
- 完全に画面外となる、スクロール アウトする、または重なったウィンドウによって隠されてしまう画面座標を持つテキスト範囲を表す空の配列。</returns>
+ 完全に画面外となる、スクロール アウトする、または重なったウィンドウによって隠れる画面座標を持つテキスト範囲を表す空の配列。</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -448,11 +448,11 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.GetText%2A>非表示テキストと表示テキストの両方を考慮します。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.GetText%2A> は、非表示テキストと表示テキストの両方に反映されます。  
   
- が`maxLength`呼び出し元のテキスト範囲の長さを超える場合、返される文字列はテキスト範囲のプレーンテキストになります。  
+ `maxLength` が呼び出し元のテキスト範囲の長さを超える場合、返される文字列はテキスト範囲のプレーンテキストになります。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.GetText%2A>テキストフロー内のエンドポイントの順序によって影響を受けることはありません。このメソッドは、論理テキストフローの順序で、テキスト範囲の開始エンドポイントと終了エンドポイントの間のテキストを常に返します。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.GetText%2A> は、テキストフロー内のエンドポイントの順序に影響されません。このメソッドは、論理テキストフローの順序で、テキスト範囲の開始エンドポイントと終了エンドポイントの間のテキストを常に返します。  
   
  ]]></format>
         </remarks>
@@ -492,7 +492,7 @@
 ## Remarks  
  テキスト範囲の内容を走査する必要がある場合、 <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> メソッドを正常に実行するために、一連の手順がその背後で関係しています。  
   
-1.  テキスト範囲は正規化されます。つまり、テキスト範囲は <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> エンドポイントで低次元テキスト範囲に縮小されるため、 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> エンドポイントは不要になります。 この手順は、テキスト範囲が複数の境界にまたがる`unit`状況であいまいさを解消するために必要です。たとえば、"{" と "}" がテキスト範囲エンドポイントである "{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/) is embedded in text" のようになります。  
+1.  テキスト範囲は正規化されます。つまり、テキスト範囲は <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> エンドポイントで低次元テキスト範囲に縮小されるため、 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> エンドポイントは不要になります。 この手順は、テキスト範囲が境界 `unit` 範囲内にある場合にあいまいさを解消するために必要です。たとえば、"{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/)は、テキスト範囲エンドポイントである" {"と"} "がテキスト範囲内に埋め込まれています。  
   
 2.  結果として得られる範囲は、 <xref:System.Windows.Automation.Provider.ITextProvider.DocumentRange%2A> 内で、要求された `unit` 境界の先頭に向かって後方に移動されます。  
   
@@ -500,17 +500,17 @@
   
 4.  その後、この範囲は、要求された 1 つの <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 境界の分、 `unit` エンドポイントを移動することによって、低次元テキスト範囲の状態から展開されます。  
   
- ![移動 & ExpandToEnclosingUnit による範囲の調整](~/add/media/uia-textpattern-moveandexpand-examples.png "移動 & ExpandToEnclosingUnit による範囲の調整")  
+ ![移動 & ExpandToEnclosingUnit による範囲の調整](~/add/media/uia-textpattern-moveandexpand-examples.png "Move & ExpandToEnclosingUnit による範囲調整")  
 テキスト範囲を Move() と ExpandToEnclosingUnit() に対して調整する方法の例  
   
  テキスト コンテナーのテキスト コンテンツ (内部テキスト) と埋め込みオブジェクト (ハイパーリンクやテーブルのセルなど) は、連続する単一のテキスト ストリームとして、 [!INCLUDE[TLA2#tla_uiautomation](~/includes/tla2sharptla-uiautomation-md.md)] ツリーのコントロール ビューとコンテンツ ビューの両方で公開されます。そのため、オブジェクトの境界は無視されます。  
   
- ![埋め込みオブジェクトによってスパンされるテキスト範囲。](~/add/media/uia-textpattern-embeddedobjecttextranges.png "埋め込みオブジェクトによってスパンされるテキスト範囲。")  
+ ![埋め込みオブジェクトによってスパンされるテキスト範囲。](~/add/media/uia-textpattern-embeddedobjecttextranges.png "埋め込みオブジェクトにまたがるテキスト範囲。")  
 埋め込みオブジェクトとその範囲を含むテキスト ストリームの例  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A>非表示テキストと表示テキストの両方を考慮します。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> は、非表示テキストと表示テキストの両方に反映されます。  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A><xref:System.Windows.Automation.Text.TextUnit> 指定<xref:System.Windows.Automation.Text.TextUnit>されたがコントロールでサポートされていない場合、サポートされる次の最大の値に従います。  
+ 指定された <xref:System.Windows.Automation.Text.TextUnit> がコントロールでサポートされていない場合、<xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> は、次にサポートされる最大の <xref:System.Windows.Automation.Text.TextUnit> に従います。  
   
  最小単位から最大値までの順序を以下に示します。  
   
@@ -564,7 +564,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 移動するエンドポイントが同じテキスト範囲の他のエンドポイントと交差する場合は、他のエンドポイントも移動されます。その結果、低次元テキスト範囲が作成され<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> 、エンドポイントの正しい順序 (つまり、常に<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End>次の値以下であること)が確認されます。).  
+ 移動されるエンドポイントが同じテキスト範囲の他のエンドポイントと交差する場合は、他のエンドポイントも移動されます。その結果、低次元テキスト範囲が作成され、エンドポイントの正しい順序 (つまり、<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> が常に <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End>以下) であることが確認されます。  
   
  ]]></format>
         </remarks>
@@ -603,16 +603,16 @@
 ## Remarks  
  テキスト範囲の内容を走査する必要がある場合、 <xref:System.Windows.Automation.Provider.ITextRangeProvider.Move%2A> メソッドを正常に実行するために、一連の手順がその背後で関係しています。  
   
-1.  テキスト範囲は正規化されます。つまり、テキスト範囲は <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> エンドポイントで低次元テキスト範囲に縮小されるため、 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> エンドポイントは不要になります。 この手順は、テキスト範囲が複数の境界にまたがる`unit`状況であいまいさを解消するために必要です。たとえば、"{" と "}" がテキスト範囲エンドポイントである "{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/) is embedded in text" のようになります。  
+1.  テキスト範囲は正規化されます。つまり、テキスト範囲は <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> エンドポイントで低次元テキスト範囲に縮小されるため、 <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> エンドポイントは不要になります。 この手順は、テキスト範囲が境界 `unit` 範囲内にある場合にあいまいさを解消するために必要です。たとえば、"{the U} RL [https://www.microsoft.com/](https://www.microsoft.com/)は、テキスト範囲エンドポイントである" {"と"} "がテキスト範囲内に埋め込まれています。  
   
 2.  結果として得られる範囲は、 <xref:System.Windows.Automation.Provider.ITextProvider.DocumentRange%2A> 内で、要求された `unit` 境界の先頭に向かって後方に移動されます。  
   
 3.  その後、この範囲は、要求された 1 つの <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.End> 境界の分、 `unit` エンドポイントを移動することによって、低次元テキスト範囲の状態から展開されます。  
   
- ![移動 & ExpandToEnclosingUnit による範囲の調整](~/add/media/uia-textpattern-moveandexpand-examples.png "移動 & ExpandToEnclosingUnit による範囲の調整")  
+ ![移動 & ExpandToEnclosingUnit による範囲の調整](~/add/media/uia-textpattern-moveandexpand-examples.png "Move & ExpandToEnclosingUnit による範囲調整")  
 テキスト範囲を Move() と ExpandToEnclosingUnit() に対して調整する方法の例  
   
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit%2A><xref:System.Windows.Automation.Text.TextUnit> 指定<xref:System.Windows.Automation.Text.TextUnit>されたがコントロールでサポートされていない場合、サポートされる次の最大の値に従います。  
+ 指定された <xref:System.Windows.Automation.Text.TextUnit> がコントロールでサポートされていない場合、<xref:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit%2A> は、次にサポートされる最大の <xref:System.Windows.Automation.Text.TextUnit> に従います。  
   
  最小単位から最大値までの順序を以下に示します。  
   
@@ -692,7 +692,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- <xref:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView%2A>非表示テキストと表示テキストの両方を考慮します。  
+ <xref:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView%2A> は、非表示テキストと表示テキストの両方に反映されます。  
   
  テキスト範囲が非表示の場合、テキストコントロールは、非表示テキストにビューポートのアンカーがある場合にのみスクロールします。  
   
@@ -723,7 +723,7 @@
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- 低次元テキスト範囲が指定されている場合は、テキストの挿入ポイント<xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start>がテキスト範囲のエンドポイントに移動します。  
+ 低次元テキスト範囲が指定されている場合は、テキストの挿入ポイントがテキスト範囲の <xref:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start> エンドポイントに移動します。  
   
  ]]></format>
         </remarks>
