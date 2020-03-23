@@ -1,5 +1,5 @@
 <Type Name="HttpClient" FullName="System.Net.Http.HttpClient">
-  <Metadata><Meta Name="ms.openlocfilehash" Value="ac1a5b1f82adb84ffbe61196c7d370a349b55830" /><Meta Name="ms.sourcegitcommit" Value="1b924db57b3a1cf768d98c21f9b988d6966a0f2b" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/06/2020" /><Meta Name="ms.locfileid" Value="78820415" /></Metadata><TypeSignature Language="C#" Value="public class HttpClient : System.Net.Http.HttpMessageInvoker" />
+  <Metadata><Meta Name="ms.openlocfilehash" Value="97ad446c509477db4234b141181b251e534b49c0" /><Meta Name="ms.sourcegitcommit" Value="46b6829001d7a117b555e2b8cd81170b68efff08" /><Meta Name="ms.translationtype" Value="MT" /><Meta Name="ms.contentlocale" Value="ja-JP" /><Meta Name="ms.lasthandoff" Value="03/18/2020" /><Meta Name="ms.locfileid" Value="79506458" /></Metadata><TypeSignature Language="C#" Value="public class HttpClient : System.Net.Http.HttpMessageInvoker" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit HttpClient extends System.Net.Http.HttpMessageInvoker" />
   <TypeSignature Language="DocId" Value="T:System.Net.Http.HttpClient" />
   <TypeSignature Language="VB.NET" Value="Public Class HttpClient&#xA;Inherits HttpMessageInvoker" />
@@ -36,7 +36,10 @@
  .NET Framework と Mono では、既定で <xref:System.Net.HttpWebRequest> を使用してサーバーに要求が送信されます。 この動作は、<xref:System.Net.Http.HttpMessageHandler> インスタンスをパラメーターとして受け取るコンストラクターのオーバーロードの1つで別のチャネルを指定することによって変更できます。 認証やキャッシュなどの機能が必要な場合は、<xref:System.Net.Http.WebRequestHandler> を使用して設定を構成し、インスタンスをコンストラクターに渡すことができます。 返されたハンドラーは、<xref:System.Net.Http.HttpMessageHandler> パラメーターを受け取るコンストラクターのオーバーロードの1つに渡すことができます。  
   
  <xref:System.Net.Http> 名前空間の <xref:System.Net.Http.HttpClient> および関連するクラスを使用しているアプリで大量のデータ (50 mb 以上) をダウンロードする場合、アプリはこれらのダウンロードをストリーミングし、既定のバッファリングを使用しないようにする必要があります。 既定のバッファリングを使用すると、クライアントのメモリ使用量が非常に大きくなり、パフォーマンスが大幅に低下する可能性があります。  
-  
+
+ 未処理の要求がスレッドセーフではないため、<xref:System.Net.Http.HttpClient> のプロパティは変更しないでください。
+
+   
  次のメソッドはスレッドセーフです。  
   
 1.  <xref:System.Net.Http.HttpClient.CancelPendingRequests%2A>  
@@ -454,7 +457,7 @@ Windows および Unix ベースのプラットフォームでの `DefaultProxy`
           <format type="text/markdown"><![CDATA[  
   
 ## Remarks  
- このプロパティで設定されたヘッダーは、要求メッセージで再度設定する必要はありません。  
+ このプロパティで設定されたヘッダーは、要求メッセージで再度設定する必要はありません。 未処理の要求がスレッドセーフではないため、`DefaultRequestHeaders` は変更しないでください。
   
  ]]></format>
         </remarks>
